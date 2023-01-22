@@ -220,6 +220,7 @@ const resolve = () => {
   }
 
   formUpdated(true);
+  calculateChart(inputValues);
 };
 
 const displayDmg = (damage, type) => {
@@ -620,4 +621,113 @@ class Artifact {
     
     return artifacts[this.id].dot;
   }
+}
+
+// Charting
+const ctx = document.getElementById('damage-chart');
+const chart = new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: [],
+    datasets: [
+      {
+        label: 'Attack',
+        data: [],
+        borderWidth: 1
+      },
+      {
+        label: 'CDam',
+        data: [],
+        borderWidth: 1
+      },
+      // {
+      //   label: 'Defense',
+      //   data: [],
+      //   borderWidth: 1
+      // }
+   ]
+  },
+  options: {
+    scales: {
+      y: {
+        beginAtZero: false
+      },
+      x: {
+        ticks: {
+          count: 5
+        }
+      }
+    },
+    plugins: {
+      tooltip: {
+          callbacks: {
+              label: (item) =>
+                  `With this ${item.dataset.label}: ${item.formattedValue} damage`,
+          },
+      },
+  },
+  }
+});
+
+const calculateChart = (inputValues, skillId = 's3') => {
+  // inputValues = getInputValues(true);
+  const artifact = new Artifact(inputValues.artifact);
+  const hero = new Hero(inputValues.hero, artifact);
+  const skill = heroes[hero.id].skills[skillId]
+  const damageToUse = !skill?.noCrit ? 'crit' : 'normal';
+
+  // TODO: check which to use (crit, normal, miss (dizzy))
+  // curAtk = inputValues.atk
+  chart.data.labels = []
+
+  if (inputValues.hero == 'achates') {
+    return;
+  }
+
+  // pick different num steps if skill.nocrit
+  const numSteps = Math.max(50, (350 - inputValues.crit) + 1)
+
+  chart.data.datasets[0].data = [];
+  chart.data.datasets[1].data = [];
+
+  while (chart.data.datasets[0].data.length < numSteps) {
+    const damage = hero.getDamage(skillId);
+    const finalDam = displayDmg(damage, damageToUse);
+  
+    chart.data.datasets[0].data.push(finalDam);
+    chart.data.labels.push(`${hero.atk} attack`);
+    hero.atk += Math.floor(((8/7) / 100) * hero.baseAtk); // deal with innate attack up?
+    
+  }
+
+  hero.atk = inputValues.atk
+
+  if (damageToUse === 'crit') {
+    index = 0;
+    while (chart.data.datasets[1].data.length < numSteps && hero.crit < 351) {
+      const damage = hero.getDamage(skillId);
+      const finalDam = displayDmg(damage, damageToUse)
+  
+      chart.data.datasets[1].data.push(finalDam)
+      chart.data.labels[index] += ` vs ${hero.crit} CDam`
+      hero.crit += 1
+      index++
+    }
+  }
+  
+
+  // chart.data.datasets[2].data = []
+  // hero.crit = inputValues.crit
+  // console.log(hero) // would need to make defense, hp, other unique scalings? in the hero object and used in calculation
+  // while (chart.data.datasets[2].data.length < 75) {
+  //   const damage = hero.getDamage(skillId);
+  //   const finalDam = displayDmg(damage, 'crit')
+  
+  //   chart.data.datasets[2].data.push(finalDam)
+  //   chart.data.labels.push(''/*`${hero.atk} attack`*/)
+  //   hero.atk += Math.floor(0.00875 * hero.baseAtk)
+  // }
+  // console.log(attackDamagePoints)
+  // console.log(chartData)
+  chart.update();
 }
