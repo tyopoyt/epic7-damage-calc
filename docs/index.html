@@ -555,6 +555,9 @@
                     <button id="link-share" type="button" class="btn btn-success btn-sm" onclick="copyLinkToClipboard()">
                         <img class="icon" src="./assets/icons/share-nodes-solid.svg"> <span id="share-button-text" class="d-none d-md-inline">Share</span>
                     </button>
+                    <button id="toggle-chart" type="button" class="btn btn-info btn-sm" onclick="toggleChart()">
+                        <img class="icon" src="./assets/icons/line-chart.svg"> <span id="chart-button-text" class="d-none d-md-inline">Show Chart</span>
+                    </button>
                 </div>
                 <span id="barrier-block" class="badge badge-light float-right">
                     <img src="./assets/buffs/barrier-buff.png" width="20" height="20" /> <span id="barrier"></span>
@@ -588,7 +591,9 @@
                 </table>
             </div>
 
-            <canvas id="damage-chart"></canvas>
+            <div id="damage-chart-container">
+                <canvas id="damage-chart"></canvas>
+            </div>
         </div>
     
         <footer class="page-footer pt-3 mt-5 initial-hide">

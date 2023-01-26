@@ -189,6 +189,10 @@ body .popover {
     margin-right: 0.5rem;
 }
 
+#damage-chart-container {
+    height: 23vh;
+}
+
 /* Dark Theme */
 
 [data-theme="dark"] {

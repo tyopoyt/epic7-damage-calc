@@ -648,13 +648,14 @@ const chart = new Chart(ctx, {
    ]
   },
   options: {
+    maintainAspectRatio: false,
     scales: {
       y: {
         beginAtZero: false
       },
       x: {
         ticks: {
-          count: 5
+          display: false
         }
       }
     },
@@ -662,12 +663,22 @@ const chart = new Chart(ctx, {
       tooltip: {
           callbacks: {
               label: (item) =>
-                  `With this ${item.dataset.label}: ${item.formattedValue} damage`,
+                  `With more ${item.dataset.label}: ${item.formattedValue} damage`,
           },
-      },
-  },
+      }
+    }
   }
 });
+
+const toggleChart = () => {
+  const chartContainer = document.getElementById('damage-chart-container')
+
+  if (chartContainer.style.display == 'none') {
+    chartContainer.style.display = 'block';
+  } else {
+    chartContainer.style.display = 'none';
+  }
+}
 
 const calculateChart = (inputValues, skillId = 's3') => {
   // inputValues = getInputValues(true);
@@ -695,7 +706,7 @@ const calculateChart = (inputValues, skillId = 's3') => {
     const finalDam = displayDmg(damage, damageToUse);
   
     chart.data.datasets[0].data.push(finalDam);
-    chart.data.labels.push(`${hero.atk} attack`);
+    chart.data.labels.push(`${hero.atk} Attack`);
     hero.atk += Math.floor(((8/7) / 100) * hero.baseAtk); // deal with innate attack up?
     
   }
