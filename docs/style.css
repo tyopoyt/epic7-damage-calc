@@ -190,7 +190,23 @@ body .popover {
 }
 
 #damage-chart-container {
-    height: 23vh;
+    height: 27vh;
+}
+
+#damage-chart-container > canvas {
+    margin-bottom: 2.5rem;
+}
+
+.btn-orange {
+    background-color: #de7715;
+    border-color: #de7715;
+    color: white;
+}
+
+.btn-orange:hover {
+    background-color: #c96d17;
+    border-color: #a95c13;
+    color:white;
 }
 
 /* Dark Theme */

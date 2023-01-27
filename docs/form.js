@@ -1106,6 +1106,7 @@ window.addEventListener('DOMContentLoaded', () => {
   try {
     const heroSelector = document.getElementById('hero');
     const artiSelector = document.getElementById('artifact');
+    const chartSkillSelector = document.getElementById('chart-skill');
     Object.keys(heroes).map((id => {
       $(heroSelector).append(`<option value="${id}" data-tokens="${heroNicknames(id)}" data-content="${elemIcon(heroes[id].element)}${classIcon(heroes[id].classType)}<span>${heroName(id)}</span>">${heroName(id)}</option>`)
     }));
@@ -1116,6 +1117,13 @@ window.addEventListener('DOMContentLoaded', () => {
     Object.keys(artifacts).map((id => {
       $(artiSelector).append(`<option value="${id}">${artifactName(id)}</option>`)
     }));
+
+    $(chartSkillSelector).append(`<option value="s1" data-content="<span>S1</span>">S1</option>`)
+    $(chartSkillSelector).selectpicker('refresh');
+
+    chartSkillSelector.onchange = () => {
+      calculateChart(inputValues);
+    }
 
     heroSelector.onchange = () => {
       if (currentHero) {
@@ -1134,6 +1142,15 @@ window.addEventListener('DOMContentLoaded', () => {
         'hero': hero.name
       });
       refreshCompareBadge();
+
+      $(chartSkillSelector).find('option').remove()
+      Object.keys(heroes[currentHero.id].skills).map((id => {
+        const skill = heroes[currentHero.id].skills[id];
+        $(chartSkillSelector).append(`<option value="${id}" data-content="<span>${skill.name ? skill.name : skillLabel(id)}</span>">${skill.name ? skill.name : skillLabel(id)}</option>`)
+      }));
+      $(chartSkillSelector).selectedIndex = 0;
+      $(chartSkillSelector).selectpicker('refresh');
+      chartSkillSelector.onchange();
     };
 
     const defPresetSelector = document.getElementById('def-preset');

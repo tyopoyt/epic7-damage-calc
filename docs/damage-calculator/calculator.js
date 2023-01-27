@@ -675,25 +675,28 @@ const toggleChart = () => {
 
   if (chartContainer.style.display == 'none') {
     chartContainer.style.display = 'block';
+    document.getElementById('chart-button-text').innerText = 'Hide Chart';
   } else {
     chartContainer.style.display = 'none';
+    document.getElementById('chart-button-text').innerText = 'Show Chart';
   }
 }
 
-const calculateChart = (inputValues, skillId = 's3') => {
-  // inputValues = getInputValues(true);
+const calculateChart = (inputValues) => {
   const artifact = new Artifact(inputValues.artifact);
   const hero = new Hero(inputValues.hero, artifact);
-  const skill = heroes[hero.id].skills[skillId]
+  const skillSelect = document.getElementById('chart-skill')
+  const selected = skillSelect.options[skillSelect.selectedIndex]?.value || 's1';
+  const skill = heroes[hero.id].skills[selected]
+  if (!skill) {
+    // skill = heroes[hero.id]['s1']
+    return;
+  }
   const damageToUse = !skill?.noCrit ? 'crit' : 'normal';
 
   // TODO: check which to use (crit, normal, miss (dizzy))
   // curAtk = inputValues.atk
   chart.data.labels = []
-
-  if (inputValues.hero == 'achates') {
-    return;
-  }
 
   // pick different num steps if skill.nocrit
   const numSteps = Math.max(50, (350 - inputValues.crit) + 1)
@@ -702,7 +705,7 @@ const calculateChart = (inputValues, skillId = 's3') => {
   chart.data.datasets[1].data = [];
 
   while (chart.data.datasets[0].data.length < numSteps) {
-    const damage = hero.getDamage(skillId);
+    const damage = hero.getDamage(selected);
     const finalDam = displayDmg(damage, damageToUse);
   
     chart.data.datasets[0].data.push(finalDam);
@@ -716,7 +719,7 @@ const calculateChart = (inputValues, skillId = 's3') => {
   if (damageToUse === 'crit') {
     index = 0;
     while (chart.data.datasets[1].data.length < numSteps && hero.crit < 351) {
-      const damage = hero.getDamage(skillId);
+      const damage = hero.getDamage(selected);
       const finalDam = displayDmg(damage, damageToUse)
   
       chart.data.datasets[1].data.push(finalDam)
@@ -731,7 +734,7 @@ const calculateChart = (inputValues, skillId = 's3') => {
   // hero.crit = inputValues.crit
   // console.log(hero) // would need to make defense, hp, other unique scalings? in the hero object and used in calculation
   // while (chart.data.datasets[2].data.length < 75) {
-  //   const damage = hero.getDamage(skillId);
+  //   const damage = hero.getDamage(selected);
   //   const finalDam = displayDmg(damage, 'crit')
   
   //   chart.data.datasets[2].data.push(finalDam)

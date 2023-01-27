@@ -542,6 +542,11 @@
         </div>
 
         <div id="damage-block" class="initial-hide fade-in">
+            <div id="damage-chart-container" style="display: none">
+                <select id="chart-skill" name="chart-skill" class="form-control custom-select selectpicker" data-size="12"></select>
+                <canvas id="damage-chart"></canvas>
+                <br>
+            </div>
             <h4>
                 Damage
                 <div class="btn-group" role="group">
@@ -552,11 +557,11 @@
                         <i class="fas fa-exchange-alt"></i> <span class="d-none d-md-inline">Compare</span>
                         <span id="compare-pool-size" class="badge badge-light">0</span>
                     </button>
+                    <button id="toggle-chart" type="button" class="btn btn-orange btn-sm" onclick="toggleChart()">
+                        <img class="icon" src="./assets/icons/line-chart.svg"> <span id="chart-button-text" class="d-none d-md-inline">Show Chart</span>
+                    </button>
                     <button id="link-share" type="button" class="btn btn-success btn-sm" onclick="copyLinkToClipboard()">
                         <img class="icon" src="./assets/icons/share-nodes-solid.svg"> <span id="share-button-text" class="d-none d-md-inline">Share</span>
-                    </button>
-                    <button id="toggle-chart" type="button" class="btn btn-info btn-sm" onclick="toggleChart()">
-                        <img class="icon" src="./assets/icons/line-chart.svg"> <span id="chart-button-text" class="d-none d-md-inline">Show Chart</span>
                     </button>
                 </div>
                 <span id="barrier-block" class="badge badge-light float-right">
@@ -591,9 +596,9 @@
                 </table>
             </div>
 
-            <div id="damage-chart-container">
+            <!-- <div id="damage-chart-container">
                 <canvas id="damage-chart"></canvas>
-            </div>
+            </div> -->
         </div>
     
         <footer class="page-footer pt-3 mt-5 initial-hide">
