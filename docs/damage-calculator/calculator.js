@@ -699,10 +699,14 @@ const calculateChart = (inputValues) => {
   chart.data.labels = []
 
   // pick different num steps if skill.nocrit
-  const numSteps = Math.max(50, (350 - inputValues.crit) + 1)
+  const windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+  const intersectionPoint = 2; // denominator of fraction, so 3 = intersection 1/3 from the left of chart
+  const numSteps = windowWidth < 768 ? 50 : 120;// Math.max(75, (350 - inputValues.crit) + 1);
 
   chart.data.datasets[0].data = [];
   chart.data.datasets[1].data = [];
+
+  hero.atk = hero.atk - (((numSteps) / intersectionPoint) *  Math.floor((((8/7) / 100) * hero.baseAtk)))
 
   while (chart.data.datasets[0].data.length < numSteps) {
     const damage = hero.getDamage(selected);
@@ -713,12 +717,17 @@ const calculateChart = (inputValues) => {
     hero.atk += Math.floor(((8/7) / 100) * hero.baseAtk); // deal with innate attack up?
     
   }
-
+  hero.crit = hero.crit - (numSteps / intersectionPoint)
   hero.atk = inputValues.atk
 
   if (damageToUse === 'crit') {
     index = 0;
     while (chart.data.datasets[1].data.length < numSteps && hero.crit < 351) {
+      if (hero.crit < 150) {
+        hero.crit += 1;
+        chart.data.datasets[1].data.push(null)
+        continue;
+      }
       const damage = hero.getDamage(selected);
       const finalDam = displayDmg(damage, damageToUse)
   
