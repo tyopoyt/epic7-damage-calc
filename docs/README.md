@@ -1,5 +1,12 @@
 ## Changelog
 
+<strong>Apr. 13 2023 Update:</strong> Updated Architect Laika, Last Rider Krau, Lilias, Ilynav, and Tywin for the 4/13 balance patch.<br>
+<strong>Apr. 12 2023 Update:</strong> Added Ainos 2.0 and Shadow Knight Pyllis and added translations for Architect Laika. Updated spreadsheet link. Added some missing translations for Português (BR). Ainos 2.0 and Shadow Knight Pyllis are exactly the same as the regular versions in terms of damage, but they're there now.<br>
+<strong>Mar. 25 2023 Update: Fixed some pows.  Not adding to banner cause it's small.<br>
+<strong>Mar. 24 2023 Update:</strong> Added Architect Laika (Unreleased).<br>
+<strong>Mar. 21 2023 Update:</strong> Added Eligos and An Offer You Can't Refuse. Fixed skillups for Adin S3, Benevolent Romann S1, Cecilia S3, Kikirat v2 S1, Mui S2, Ravi S3, Tenebria S3, Yuna S1 (Thanks to zacjl for those fixes)<br>
+<strong>Feb. 20 2023 Update:</strong> Added Amid. Updated heroes from balance patch.<br>
+<strong>Feb. 4 2023 Update:</strong> Added Lone Crescent Bellona.<br>
 <strong>Jan. 28 2023 Update:</strong> Updated Peacemaker Furious and Beehoo multipliers.  Removed Celine's S2 ignore transfer, and Haste's S3 detonate.<br>
 <strong>Jan. 20 2023 Update:</strong> Added Beehoo, Peacemaker Furious, Lilka, Juni, Talia, Suthan, and Talaz. Some of these heroes have caveats listed as a notice on their page and will be updated/corrected in the future.<br>
 <strong>Jan. 16 2023 Update:</strong> Added P.O.S and Scroll of shadows. Added Shepherd Jena. I am aware of some other artifacts that have been missing and will add a few at at time as when I can.<br>
