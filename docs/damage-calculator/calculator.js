@@ -228,7 +228,7 @@ const displayDmg = (damage, type) => {
 };
 
 const getModTooltip = (hero, skillId, soulburn = false) => {
-  const values = hero.getModifiers(skillId, soulburn);
+  const values = hero.getModifiers(skillId, soulburn, hero);
   let content = `${skillLabel('att_rate')}: <b class="float-right">${values.rate}</b><br/>
                  ${skillLabel('power')}: <b class="float-right">${values.pow}</b><br/>`;
 
@@ -311,6 +311,7 @@ class Hero {
     this.bonus = inputValues.bonusDamage;
     this.skills = heroes[id].skills;
     this.baseAtk = heroes[id].baseAtk || 0;
+    this.baseDef = heroes[id].baseDef || 0;
     this.dot = [...(heroes[id].dot || []), ...(artifact?.getDoT() || [])];
     this.atkUp = heroes[id].atkUp;
     this.innateAtkUp = heroes[id].innateAtkUp;
@@ -330,9 +331,9 @@ class Hero {
     return {
       rate: (typeof skill.rate === 'function') ? skill.rate(soulburn) : skill.rate,
       pow: (typeof skill.pow === 'function') ? skill.pow(soulburn) : skill.pow,
-      mult: skill.mult ? skill.mult(soulburn)-1 : null,
+      mult: skill.mult ? skill.mult(soulburn, this)-1 : null,
       multTip: skill.multTip !== undefined ? getSkillModTip(skill.multTip(soulburn)) : '',
-      flat: skill.flat ? skill.flat(soulburn) : null,
+      flat: skill.flat ? skill.flat(soulburn, this) : null,
       flatTip: skill.flatTip !== undefined ? getSkillModTip(skill.flatTip(soulburn)) : '',
       critBoost: skill.critDmgBoost ? skill.critDmgBoost(soulburn) : null,
       critBoostTip: skill.critDmgBoostTip ? getSkillModTip(skill.critDmgBoostTip(soulburn)) : '',
@@ -354,7 +355,7 @@ class Hero {
     const critDmgBuff = inputValues.critDmgUp ? battleConstants.critDmgUp : 0.0;
 
     const skill = this.skills[skillId];
-    const hit = this.offensivePower(skillId, soulburn) * this.target.defensivePower(skill);
+    const hit = this.offensivePower(skillId, soulburn, this) * this.target.defensivePower(skill);
     const critDmg = Math.min((this.crit / 100)+critDmgBuff, 3.5)
         +(skill.critDmgBoost ? skill.critDmgBoost(soulburn) : 0)
         +(this.artifact.getCritDmgBoost()||0)
@@ -390,11 +391,20 @@ class Hero {
     return (atk+atkImprint)*atkMod;
   }
 
-  offensivePower(skillId, soulburn) {
+  getDef() {
+    if (this.def) {
+      return this.def * (1 + (elements.caster_defense_up.value() ? battleConstants.defUp : 0)
+           + (document.getElementById('vigor').checked ? battleConstants.vigor - 1 : 0)
+           + (document.getElementById('caster-fury')?.checked ? battleConstants['caster-fury'] - 1 : 0))
+    }
+    return elements.caster_defense.value();
+  }
+
+  offensivePower(skillId, soulburn, hero) {
     const skill = this.skills[skillId];
 
     const rate = (typeof skill.rate === 'function') ? skill.rate(soulburn) : skill.rate;
-    const flatMod = skill.flat ? skill.flat(soulburn) : 0;
+    const flatMod = skill.flat ? skill.flat(soulburn, hero) : 0;
     const flatMod2 = this.artifact.getFlatMult() + (skill.flat2 !== undefined ? skill.flat2() : 0);
 
     const pow = (typeof skill.pow === 'function') ? skill.pow(soulburn) : skill.pow;
@@ -700,7 +710,7 @@ const calculateChart = (inputValues) => {
 
   // pick different num steps if skill.nocrit
   const windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-  const intersectionPoint = 2; // denominator of fraction, so 3 = intersection 1/3 from the left of chart
+  const intersectionPoint = 3; // denominator of fraction, so 3 = intersection 1/3 from the left of chart
   const numSteps = windowWidth < 768 ? 50 : 120;// Math.max(75, (350 - inputValues.crit) + 1);
 
   chart.data.datasets[0].data = [];
@@ -714,7 +724,7 @@ const calculateChart = (inputValues) => {
   
     chart.data.datasets[0].data.push(finalDam);
     chart.data.labels.push(`${hero.atk} Attack`);
-    hero.atk += Math.floor(((8/7) / 100) * hero.baseAtk); // deal with innate attack up?
+    hero.atk += Math.floor(((8/7) / 100) * hero.baseAtk); // TODO: deal with innate attack up?
     
   }
   hero.crit = hero.crit - (numSteps / intersectionPoint)
@@ -734,6 +744,38 @@ const calculateChart = (inputValues) => {
       chart.data.datasets[1].data.push(finalDam)
       chart.data.labels[index] += ` vs ${hero.crit} CDam`
       hero.crit += 1
+      index++
+    }
+  }
+
+  if (skill.defenseScaling) {
+    if (chart.data.datasets.length !== 3) {
+      chart.data.datasets.push({
+        label: 'Defense',
+        data: [],
+        borderWidth: 1
+      })
+    }
+    chart.data.datasets[2].data = [];
+    hero.def = inputValues['caster-defense'] - (((numSteps) / intersectionPoint) *  Math.floor((((8/7) / 100) * hero.baseDef)))
+
+    hero.crit = inputValues.crit
+    hero.atk = inputValues.atk
+
+    index = 0;
+    while (chart.data.datasets[2].data.length < numSteps) {
+      //TODO: null if below base.  Do for atk also
+      // if (hero.crit < 150) {
+      //   hero.crit += 1;
+      //   chart.data.datasets[1].data.push(null)
+      //   continue;
+      // }
+      const damage = hero.getDamage(selected);
+      const finalDam = displayDmg(damage, damageToUse)
+  
+      chart.data.datasets[2].data.push(finalDam)
+      chart.data.labels[index] += ` vs ${hero.def} Def` //TODO: handle defup and shit
+      hero.def += Math.floor(((8/7) / 100) * hero.baseDef); //TODO: deal with anything that might affect this number like innate boosts
       index++
     }
   }
