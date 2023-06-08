@@ -162,12 +162,10 @@ const i18n = {
     heroes: {
       // Unreleased units: (未発表)
       // Pre-Balance versions: (前のバージョン)
-      architect_laika_old: '設計者 ライカ (前のバージョン)',
-      last_rider_krau_old: 'ラストライダー クラウ (前のバージョン)',
-      ken_old: 'ケン (前のバージョン)',
-      lilias_old: 'リリアス (前のバージョン)',
-      tywin_old: 'タイウィン (前のバージョン)',
-      ilynav_old: 'イリーナブ (前のバージョン)',
+      arunka_old: 'アルンカ (前のバージョン)',
+      little_queen_charlotte_old: '若き女王 シャルロッテ (前のバージョン)',
+      jack_o_old: 'ジャック・オー (前のバージョン)',
+      summer_break_charlotte_old: '夏休みのシャルロッテ (前のバージョン)',
       // End Pre-Balance
       abigail: 'アビゲイル',
       achates: 'アカテス',
@@ -381,6 +379,7 @@ const i18n = {
       ray: 'レイ',
       rem: 'レム',
       remnant_violet: '残影のヴィオレタ',
+      requiem_roana: '鎮魂のロエンナ',
       requiemroar: 'レクイエム・ロア',
       researcher_carrot: '研究者 キャロット',
       righteous_thief_roozid: '義賊のルージッド',
@@ -615,12 +614,10 @@ const i18n = {
     heroes: {
       // Unreleased units: (未發布)
       // Pre-Balance versions: (以前的版本)
-      architect_laika_old: '策畫者萊伊卡 (以前的版本)',
-      last_rider_krau_old: '最後的騎士克勞烏 (以前的版本)',
-      ken_old: '肯恩 (以前的版本)',
-      lilias_old: '莉莉亞斯 (以前的版本)',
-      tywin_old: '泰溫 (以前的版本)',
-      ilynav_old: '伊莉娜芙 (以前的版本)',
+      arunka_old: '亞露嘉 (以前的版本)',
+      little_queen_charlotte_old: '年輕的女王夏綠蒂 (以前的版本)',
+      jack_o_old: '潔克‧歐 (以前的版本)',
+      summer_break_charlotte_old: '暑假夏綠蒂 (以前的版本)',
       // End Pre-Balance
       abigail: '雅碧凱',
       achates: '雅卡泰絲',
@@ -834,6 +831,7 @@ const i18n = {
       ray: '雷伊',
       rem: '雷姆',
       remnant_violet: '殘影的菲奧雷托',
+      requiem_roana: '鎮魂的羅安納',
       requiemroar: '雷奎姆洛',
       researcher_carrot: '研究者卡蘿',
       righteous_thief_roozid: '義賊魯茲德',
@@ -1302,12 +1300,10 @@ const i18n = {
     heroes: {
       // Unreleased units: (未发布)
       // Pre-Balance versions: (以前的版本)
-      architect_laika_old: '策划者莱伊卡 (以前的版本)',
-      last_rider_krau_old: '最后的骑士克劳乌 (以前的版本)',
-      ken_old: '肯恩 (以前的版本)',
-      lilias_old: '莉莉亚斯 (以前的版本)',
-      tywin_old: '泰温 (以前的版本)',
-      ilynav_old: '伊莉娜芙 (以前的版本)',
+      arunka_old: '亚露嘉 (以前的版本)',
+      little_queen_charlotte_old: '年轻的女王夏绿蒂 (以前的版本)',
+      jack_o_old: '杰克·欧 (以前的版本)',
+      summer_break_charlotte_old: '暑假夏绿蒂 (以前的版本)',
       // End Pre-Balance
       abigail: '雅碧凱',
       achates: '雅卡泰丝',
@@ -1521,6 +1517,7 @@ const i18n = {
       ray: '雷伊',
       rem:'雷姆',
       remnant_violet: '残影的菲奥雷托',
+      requiem_roana: '鎮魂的羅安納',
       requiemroar: '雷奎姆洛',
       researcher_carrot: '研究者卡萝',
       righteous_thief_roozid: '义贼鲁兹德',
@@ -1991,12 +1988,10 @@ const i18n = {
     heroes: {
       // Unreleased units: (미공개)
       // Pre-Balance versions: (이전 버전)
-      architect_laika_old: '설계자 라이카 (이전 버전)',
-      last_rider_krau_old: '라스트 라이더 크라우 (이전 버전)',
-      ken_old: '켄 (이전 버전)',
-      lilias_old: '릴리아스 (이전 버전)',
-      tywin_old: '타이윈 (이전 버전)',
-      ilynav_old: '일리나브 (이전 버전)',
+      arunka_old: '아룬카 (이전 버전)',
+      little_queen_charlotte_old: '어린 여왕 샬롯 (이전 버전)',
+      jack_o_old: '잭 오 (이전 버전)',
+      summer_break_charlotte_old: '여름 방학 샬롯 (이전 버전)',
       // End Pre-Balance
       abigail: '아비게일',
       achates: '아카테스',
@@ -2214,6 +2209,7 @@ const i18n = {
       ray: '레이',
       rem: '렘',
       remnant_violet: '잔영의 비올레토',
+      requiem_roana: '진혼의 로앤나',
       requiemroar: '레퀴엠로어',
       researcher_carrot: '연구자 캐롯',
       righteous_thief_roozid: '의적 루지드',
@@ -2610,12 +2606,10 @@ const i18n = {
     heroes: {
       // Unreleased units: (Unidades) (Não Lançadas)
       // Pre-Balance versions: (Versão) (Pré-Balanceamento)
-      architect_laika_old: 'Planejadora Laika (Pré-Balanceamento)',
-      last_rider_krau_old: 'Último Paladino Krato (Pré-Balanceamento)',
-      ken_old: 'Ken (Pré-Balanceamento)',
-      lilias_old: 'Lilias (Pré-Balanceamento)',
-      tywin_old: 'Tywin (Pré-Balanceamento)',
-      ilynav_old: 'Ilynav (Pré-Balanceamento)',
+      arunka_old: 'Arunka (Pré-Balanceamento)',
+      little_queen_charlotte_old: 'Jovem Rainha Charlotte (Pré-Balanceamento)',
+      jack_o_old: 'Jack-O (Pré-Balanceamento)',
+      summer_break_charlotte_old: 'Charlotte Férias de Verão (Pré-Balanceamento)',
       // End Pre-Balance
       abigail: 'Abigail', // TODO: translate when available
       achates: 'Acates',
@@ -2829,6 +2823,7 @@ const i18n = {
       ray: 'Ray',
       rem: 'Rem',
       remnant_violet: 'Purpúrio Réliquo',
+      requiem_roana: 'Requiem Roana',
       requiemroar: 'Rugirréquiem',
       researcher_carrot: 'Cenoura Pesquisadora',
       righteous_thief_roozid: 'Ladrão Ruzide Honrado',
