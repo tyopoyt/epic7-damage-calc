@@ -1,5 +1,6 @@
 ## Changelog
 
+<strong>Jun 8 2023 Update:</strong> Added Requiem Roana. Adjusted Arunka, Little Queen Charlotte, Summer Break Charlotte, and Jack-O from the balance patch.<br>
 <strong>May 25 2023 Update:</strong> Added Abigail, Golden Rose, and Last Piece Karin.<br>
 <strong>May 15 2023 Update:</strong> Added Benimaru.<br>
 <strong>Apr. 27 2023 Update:</strong> Added Twisted Eidolon Kayron (Unreleased).<br>

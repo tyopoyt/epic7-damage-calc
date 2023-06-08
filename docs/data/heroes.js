@@ -34,7 +34,6 @@ const heroes = {
     classType: classType.warrior,
     baseAtk: 984,
     form: [elements.caster_max_hp],
-    info: infoLabel('unreleased_hero'),
     skills: {
       s1: {
         rate: 0.8,
@@ -645,31 +644,31 @@ const heroes = {
       }
     }
   },
-  architect_laika_old: {
-    name: 'Architect Laika (Pre-Balance)',
-    element: element.light,
-    classType: classType.mage,
-    baseAtk: 1306,
-    form: [elements.caster_speed],
-    skills: {
-      s1: {
-        rate: 1,
-        pow: 0.9,
-        enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.15],
-        single: true,
-      },
-      s3: {
-        rate: 0.9,
-        pow: 0.9,
-        penetrate: () => elements.target_has_target.value() ? 0.8 : 0,
-        mult: () => 1 + elements.caster_speed.value() * 0.001125,
-        multTip: () => ({ caster_speed: 0.1125 }),
-        enhance: [0.05, 0.05, 0.05, 0, 0.1, 0.15],
-        noTrans: true,
-        aoe: true,
-      }
-    }
-  },
+  // architect_laika_old: {
+  //   name: 'Architect Laika (Pre-Balance)',
+  //   element: element.light,
+  //   classType: classType.mage,
+  //   baseAtk: 1306,
+  //   form: [elements.caster_speed],
+  //   skills: {
+  //     s1: {
+  //       rate: 1,
+  //       pow: 0.9,
+  //       enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.15],
+  //       single: true,
+  //     },
+  //     s3: {
+  //       rate: 0.9,
+  //       pow: 0.9,
+  //       penetrate: () => elements.target_has_target.value() ? 0.8 : 0,
+  //       mult: () => 1 + elements.caster_speed.value() * 0.001125,
+  //       multTip: () => ({ caster_speed: 0.1125 }),
+  //       enhance: [0.05, 0.05, 0.05, 0, 0.1, 0.15],
+  //       noTrans: true,
+  //       aoe: true,
+  //     }
+  //   }
+  // },
   aria: {
     name: 'Aria',
     element: element.ice,
@@ -740,6 +739,42 @@ const heroes = {
   },
   arunka: {
     name: 'Arunka',
+    element: element.earth,
+    classType: classType.warrior,
+    baseAtk: 1570,
+    form: [elements.target_has_barrier],
+    dot: [dot.bleed],
+    innateAtkUp: () => 0.30,
+    skills: {
+      s1: {
+        rate: 1,
+        pow: 1,
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        single: true,
+        noCrit: true,
+      },
+      s1_bis: {
+        name: infoLabel('arunka_expose'),
+        rate: 1.3,
+        pow: 1.3,
+        // enhance_from: 's1', Presumed not to inherit from s1 mola since the pow is so high already
+        single: true,
+        noCrit: true,
+      },
+      s3: {
+        rate: 0.9,
+        pow: 1,
+        penetrate: () => 0.7,
+        mult: () => elements.target_has_barrier.value() ? 3.4 : 1,
+        multTip: () => ({ target_has_barrier: 240 }),
+        enhance: [0.05, 0.05, 0, 0.1, 0.1],
+        single: true,
+        noCrit: true,
+      },
+    }
+  },
+  arunka_old: {
+    name: 'Arunka (Pre-Balance)',
     element: element.earth,
     classType: classType.warrior,
     baseAtk: 1570,
@@ -3636,39 +3671,39 @@ const heroes = {
       }
     }
   },
-  ilynav_old: {
-    name: 'Ilynav (Pre-Balance)',
-    element: element.fire,
-    classType: classType.knight,
-    baseAtk: 957,
-    form: [elements.caster_max_hp],
-    skills: {
-      s1: {
-        rate: 0.7,
-        pow: 1,
-        flat: () => elements.caster_max_hp.value()*0.08,
-        flatTip: () => ({ caster_max_hp: 8 }),
-        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
-        single: true,
-      },
-      s2: {
-        rate: 1,
-        pow: 1,
-        flat: () => elements.caster_max_hp.value()*0.18,
-        flatTip: () => ({ caster_max_hp: 18 }),
-        enhance: [0.05, 0.05, 0, 0.1, 0.1],
-        single: true,
-      },
-      s3: {
-        rate: 0.7,
-        pow: 1,
-        flat: () => elements.caster_max_hp.value()*0.12,
-        flatTip: () => ({ caster_max_hp: 12 }),
-        enhance: [0.05, 0.05, 0, 0.1, 0.1],
-        aoe: true,
-      }
-    }
-  },
+  // ilynav_old: {
+  //   name: 'Ilynav (Pre-Balance)',
+  //   element: element.fire,
+  //   classType: classType.knight,
+  //   baseAtk: 957,
+  //   form: [elements.caster_max_hp],
+  //   skills: {
+  //     s1: {
+  //       rate: 0.7,
+  //       pow: 1,
+  //       flat: () => elements.caster_max_hp.value()*0.08,
+  //       flatTip: () => ({ caster_max_hp: 8 }),
+  //       enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+  //       single: true,
+  //     },
+  //     s2: {
+  //       rate: 1,
+  //       pow: 1,
+  //       flat: () => elements.caster_max_hp.value()*0.18,
+  //       flatTip: () => ({ caster_max_hp: 18 }),
+  //       enhance: [0.05, 0.05, 0, 0.1, 0.1],
+  //       single: true,
+  //     },
+  //     s3: {
+  //       rate: 0.7,
+  //       pow: 1,
+  //       flat: () => elements.caster_max_hp.value()*0.12,
+  //       flatTip: () => ({ caster_max_hp: 12 }),
+  //       enhance: [0.05, 0.05, 0, 0.1, 0.1],
+  //       aoe: true,
+  //     }
+  //   }
+  // },
   inferno_khawazu: {
     name: 'Inferno Khawazu',
     element: element.dark,
@@ -3715,6 +3750,37 @@ const heroes = {
   },
   jack_o: {
     name: 'Jack-O\'',
+    element: element.fire,
+    classType: classType.warrior,
+    form: [elements.target_has_debuff],
+    baseAtk: 1228,
+    skills: {
+      s1: {
+        rate: 0.75,
+        pow: 1,
+        enhance: [0.05, 0.05, 0, 0.1, 0.1],
+        single: true,
+      },
+      s1_extra: {
+        name: infoLabel('s1_extra_attack'),
+        rate: 1.1,
+        pow: 1,
+        enhance_from: 's1',
+        single: true,
+      },
+      s3: {
+        rate: 1,
+        pow: 1,
+        mult: () => elements.target_has_debuff.value() ? 1.5 : 1,
+        multTip: () => ({ target_has_debuff: 50 }),
+        penetrate: () => 0.5,
+        enhance: [0.05, 0.05, 0, 0.1, 0.1],
+        single: true,
+      }
+    }
+  },
+  jack_o_old: {
+    name: 'Jack-O\' (Pre-Balance)',
     element: element.fire,
     classType: classType.warrior,
     form: [elements.target_has_debuff],
@@ -4359,7 +4425,6 @@ const heroes = {
     baseAtk: 1029,
     barrier: (hero) => hero.getAtk() * 0.65,
     form: [elements.caster_speed, elements.target_max_hp, elements.caster_has_neo_phantom_sword],
-    info: infoLabel('unreleased_hero'),
     skills: {
       s1: {
         soulburn: true,
@@ -4420,40 +4485,40 @@ const heroes = {
       }
     }
   },
-  last_rider_krau_old: {
-    name: 'Last Rider Krau (Pre-Balance)',
-    element: element.light,
-    classType: classType.knight,
-    baseAtk: 839,
-    form: [elements.caster_max_hp, elements.attack_skill_stack_3],
-    barrier: () => elements.caster_max_hp.value()*0.07,
-    barrierEnhance: 's2',
-    skills: {
-      s1: {
-        rate: 0.7,
-        pow: 1,
-        flat: () => 0.1*elements.caster_max_hp.value(),
-        flatTip: () => ({ caster_max_hp: 10 }),
-        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
-        single: true,
-      },
-      s2: {
-        enhance: [0.05, 0.1, 0.1, 0.1, 0.15]
-      },
-      s3: {
-        noCrit: true,
-        rate: 0.3,
-        pow: 1,
-        flat: () => 0.06*elements.caster_max_hp.value(),
-        flatTip: () => ({ caster_max_hp: 6 }),
-        mult: () => 1 + elements.attack_skill_stack_3.value()*0.2,
-        multTip: () => ({ per_stack: 20 }),
-        penetrate: () => 1.0,
-        enhance: [0.05, 0.05, 0, 0.1, 0.1],
-        aoe: true,
-      }
-    }
-  },
+  // last_rider_krau_old: {
+  //   name: 'Last Rider Krau (Pre-Balance)',
+  //   element: element.light,
+  //   classType: classType.knight,
+  //   baseAtk: 839,
+  //   form: [elements.caster_max_hp, elements.attack_skill_stack_3],
+  //   barrier: () => elements.caster_max_hp.value()*0.07,
+  //   barrierEnhance: 's2',
+  //   skills: {
+  //     s1: {
+  //       rate: 0.7,
+  //       pow: 1,
+  //       flat: () => 0.1*elements.caster_max_hp.value(),
+  //       flatTip: () => ({ caster_max_hp: 10 }),
+  //       enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+  //       single: true,
+  //     },
+  //     s2: {
+  //       enhance: [0.05, 0.1, 0.1, 0.1, 0.15]
+  //     },
+  //     s3: {
+  //       noCrit: true,
+  //       rate: 0.3,
+  //       pow: 1,
+  //       flat: () => 0.06*elements.caster_max_hp.value(),
+  //       flatTip: () => ({ caster_max_hp: 6 }),
+  //       mult: () => 1 + elements.attack_skill_stack_3.value()*0.2,
+  //       multTip: () => ({ per_stack: 20 }),
+  //       penetrate: () => 1.0,
+  //       enhance: [0.05, 0.05, 0, 0.1, 0.1],
+  //       aoe: true,
+  //     }
+  //   }
+  // },
   lena: {
     name: 'Lena',
     element: element.ice,
@@ -4555,31 +4620,31 @@ const heroes = {
       }
     }
   },
-  lilias_old: {
-    name: 'Lilias (Pre-Balance)',
-    element: element.fire,
-    classType: classType.knight,
-    baseAtk: 821,
-    form: [elements.caster_max_hp, elements.highest_ally_attack],
-    skills: {
-      s1: {
-        rate: 0.8,
-        pow: 0.95,
-        flat: () => elements.caster_max_hp.value()*0.12,
-        flatTip: () => ({ caster_max_hp: 12 }),
-        enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.1],
-        single: true,
-      },
-      s3: {
-        rate: 0.9,
-        pow: 1,
-        atk: () =>  elements.highest_ally_attack.value(),
-        noBuff: true,
-        enhance: [0.05, 0.05, 0, 0.05, 0.05, 0.1],
-        aoe: true,
-      }
-    }
-  },
+  // lilias_old: {
+  //   name: 'Lilias (Pre-Balance)',
+  //   element: element.fire,
+  //   classType: classType.knight,
+  //   baseAtk: 821,
+  //   form: [elements.caster_max_hp, elements.highest_ally_attack],
+  //   skills: {
+  //     s1: {
+  //       rate: 0.8,
+  //       pow: 0.95,
+  //       flat: () => elements.caster_max_hp.value()*0.12,
+  //       flatTip: () => ({ caster_max_hp: 12 }),
+  //       enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.1],
+  //       single: true,
+  //     },
+  //     s3: {
+  //       rate: 0.9,
+  //       pow: 1,
+  //       atk: () =>  elements.highest_ally_attack.value(),
+  //       noBuff: true,
+  //       enhance: [0.05, 0.05, 0, 0.05, 0.05, 0.1],
+  //       aoe: true,
+  //     }
+  //   }
+  // },
   lilibet: {
     name: 'Lilibet',
     element: element.earth,
@@ -4660,6 +4725,37 @@ const heroes = {
   },
   little_queen_charlotte: {
     name: 'Little Queen Charlotte',
+    element: element.light,
+    classType: classType.warrior,
+    baseAtk: 1119,
+    skills: {
+      s1: {
+        rate: 1.2,
+        pow: 1,
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        single: true,
+      },
+      s3: {
+        rate: 1.5,
+        pow: 1,
+        mult: () => document.getElementById(`elem-adv`).checked ? 1.5 : 1,
+        multTip: () => ({ elemental_advantage: 50 }),
+        penetrate: () => 0.5,
+        enhance: [0.05, 0.05, 0, 0.05, 0.15],
+        single: true,
+      },
+      s3_splash: {
+        name: infoLabel('lqc_s3_splash'),
+        rate: 0,
+        pow: 0,
+        afterMath: () => document.getElementById(`elem-adv`).checked ? { atkPercent: 1.2, penetrate: 0.7 } : null,
+        noCrit: true,
+        noMiss: true,
+      }
+    }
+  },
+  little_queen_charlotte_old: {
+    name: 'Little Queen Charlotte (Pre-Balance)',
     element: element.light,
     classType: classType.warrior,
     baseAtk: 1119,
@@ -6026,6 +6122,34 @@ const heroes = {
       }
     }
   },
+  requiem_roana: {
+    name: 'Requiem Roana',
+    element: element.dark,
+    classType: classType.mage,
+    info: infoLabel('unreleased_hero'),
+    form: [elements.attack_skill_stack_3],
+    baseAtk: 1316,
+    skills: {
+      s1: {
+        rate: 1,
+        pow: 1,
+        afterMath: (hitType) => hitType !== hitTypes.miss ? ({ atkPercent: 0.5, penetrate: 0.7 }) : null,
+        noCrit: true,
+        enhance: [0.05, 0.05, 0, 0.1, 0.1],
+        single: true,
+      },
+      s3: {
+        rate: 0.3,
+        pow: 1,
+        mult: () => 1 + elements.attack_skill_stack_3.value() * 0.15,
+        multTip: () => ({per_stack: 15}),
+        penetrate: () => 1.0,
+        noCrit: true,
+        enhance: [0.05, 0.05, 0, 0.1, 0.1],
+        aoe: true
+      },
+    }
+  },
   requiemroar: {
     name: 'Requiemroar',
     element: element.dark,
@@ -7123,6 +7247,27 @@ const heroes = {
     element: element.ice,
     classType: classType.knight,
     baseAtk: 957,
+    skills: {
+      s1: {
+        rate: 0.9,
+        pow: 1,
+        enhance: [0.05, 0.05, 0, 0.1, 0.1],
+        single: true,
+      },
+      s3: {
+        rate: 1.5,
+        pow: 1,
+        penetrate: () => 0.5,
+        enhance: [0.05, 0.05, 0, 0.1, 0.1],
+        single: true,
+      },
+    }
+  },
+  summer_break_charlotte_old: {
+    name: 'Summer Break Charlotte (Pre-Balance)',
+    element: element.ice,
+    classType: classType.knight,
+    baseAtk: 957,
     form: [elements.target_hp_pc],
     skills: {
       s1: {
@@ -7657,31 +7802,31 @@ const heroes = {
       }
     }
   },
-  tywin_old: {
-    name: 'Tywin (Pre-Balance)',
-    element: element.ice,
-    classType: classType.knight,
-    baseAtk: 821,
-    form: [elements.caster_max_hp],
-    skills: {
-      s1: {
-        rate: 0.8,
-        pow: 0.95,
-        flat: () => elements.caster_max_hp.value()*0.04,
-        flatTip: () => ({ caster_max_hp: 4 }),
-        enhance: [0.05, 0.05, 0, 0.1, 0, 0.15],
-        single: true,
-      },
-      s3: {
-        rate: 0.5,
-        pow: 0.95,
-        flat: () => elements.caster_max_hp.value()*0.1,
-        flatTip: () => ({ caster_max_hp: 10 }),
-        enhance: [0.05, 0.05, 0, 0, 0, 0.1, 0.15],
-        aoe: true,
-      }
-    }
-  },
+  // tywin_old: {
+  //   name: 'Tywin (Pre-Balance)',
+  //   element: element.ice,
+  //   classType: classType.knight,
+  //   baseAtk: 821,
+  //   form: [elements.caster_max_hp],
+  //   skills: {
+  //     s1: {
+  //       rate: 0.8,
+  //       pow: 0.95,
+  //       flat: () => elements.caster_max_hp.value()*0.04,
+  //       flatTip: () => ({ caster_max_hp: 4 }),
+  //       enhance: [0.05, 0.05, 0, 0.1, 0, 0.15],
+  //       single: true,
+  //     },
+  //     s3: {
+  //       rate: 0.5,
+  //       pow: 0.95,
+  //       flat: () => elements.caster_max_hp.value()*0.1,
+  //       flatTip: () => ({ caster_max_hp: 10 }),
+  //       enhance: [0.05, 0.05, 0, 0, 0, 0.1, 0.15],
+  //       aoe: true,
+  //     }
+  //   }
+  // },
   unbound_knight_arowell: {
     name: 'Unbound Knight Arowell',
     element: element.light,
