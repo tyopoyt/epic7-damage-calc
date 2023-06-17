@@ -434,8 +434,13 @@ const artifacts = {
     id: 'wind_rider',
     name: 'Wind Rider',
     type: artifactDmgType.attack,
-    scale: [0.3, 0.33, 0.36, 0.39, 0.42, 0.45, 0.48, 0.51, 0.54, 0.57, 0.6],
-    exclusive: classType.thief
+    scale: [0.2, 0.22, 0.24, 0.26, 0.28, 0.3, 0.32, 0.34, 0.36, 0.38, 0.4],
+    additional: [0.1, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2],
+    exclusive: classType.thief,
+    form: [elements.enemy_defeated],
+    value: (input) => {
+      return input + (elements.enemy_defeated.value() ? artifacts.wind_rider.additional[artifacts.wind_rider.scale.indexOf(input)] : 0);
+    }
   },
   wings_of_light_and_shadow: {
     id: 'wings_of_light_and_shadow',
