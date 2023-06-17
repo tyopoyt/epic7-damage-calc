@@ -7758,6 +7758,7 @@ const heroes = {
         mult: () => 1 + (1-(elements.target_hp_pc.value() / 100)) * 0.3,
         multTip: () => ({ target_lost_hp_pc: 30 }),
         single: true,
+        soulburn: true
       },
       s1_bis: {
         name: infoLabel('ml_kayron_flash_slash'),
