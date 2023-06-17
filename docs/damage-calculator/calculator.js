@@ -559,14 +559,9 @@ class Artifact {
   }
 
   getValue() {
-    if ((typeof artifacts[this.id].scale) !== Function) {
-      return artifacts[this.id].scale
+    return artifacts[this.id].scale
       ? artifacts[this.id].scale[Math.floor(document.getElementById('artifact-lvl').value/3)]
       : artifacts[this.id].value;
-    } else {
-      console.log('function!')
-    }
-    
   }
 
   getDamageMultiplier(skill, skillId) {
