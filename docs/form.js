@@ -838,6 +838,14 @@ const elements = {
     value: () => document.getElementById('beehoo-passive').checked,
     icon: './assets/heroes/beehoo-icon.png'
   },
+  enemy_defeated: {
+    ref: 'enemy_defeated',
+    id: 'enemy-defeated',
+    label: 'Caster defeated an enemy',
+    type: 'checkbox',
+    default: true,
+    value: () => document.getElementById('enemy-defeated').checked
+  },
 };
 
 elements.caster_speed.sub_elements = [elements.caster_speed_up];
