@@ -1,5 +1,6 @@
 ## Changelog
 
+<strong>Jul 7 2023 Update:</strong> Added Ocean Breeze Luluca.<br>
 <strong>Jun 17 2023 Update:</strong> Split Wind Rider's damage to allow caculation of both scenarios and added ML Kayron's soulburn.<br>
 <strong>Jun 8 2023 Update:</strong> Added Requiem Roana. Adjusted Arunka, Little Queen Charlotte, Summer Break Charlotte, and Jack-O from the balance patch.<br>
 <strong>May 25 2023 Update:</strong> Added Abigail, Golden Rose, and Last Piece Karin.<br>
