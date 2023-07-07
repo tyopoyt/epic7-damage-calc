@@ -5613,6 +5613,25 @@ const heroes = {
       }
     }
   },
+  ocean_breeze_luluca: {
+    name: 'Ocean Breeze Luluca',
+    element: element.earth,
+    classType: classType.soul_weaver,
+    baseAtk: 649,
+    skills: {
+      s1: {
+        rate: 1,
+        pow: 1,
+        enhance: [0.05, 0.05, 0, 0.05, 0, 0.05, 0.1],
+        single: true,
+      },
+      s2: {
+        rate: 1,
+        pow: 1,
+        aoe: true,
+      }
+    }
+  },
   operator_sigret: {
     name: 'Operator Sigret',
     element: element.dark,
