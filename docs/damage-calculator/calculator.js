@@ -216,6 +216,22 @@ const resolve = () => {
             <td>${displayDmg(damage, 'miss')}</td>
         </tr>`);
       }
+
+      if (skill.canExtra && inputValues.artifact === 'prayer_of_solitude') {
+        const damage = hero.getDamage(skillId, true, true);
+        $(table).append(`<tr>
+            <td>
+              ${skill.name ? skill.name : skillLabel(skillId, false, true)}
+              <a tabindex="0" class="btn btn-xs btn-light p-1 float-right" data-toggle="popover" title="${skillLabel('mods')}" data-content='${getModTooltip(hero, skillId, true)}' data-html="true" data-placement="top">
+                <i class="fas fa-square-root-alt fa-sm"></i>
+              </a>
+            </td>
+            <td>${displayDmg(damage, 'crit')}</td>
+            <td>${displayDmg(damage, 'crush')}</td>
+            <td>${displayDmg(damage, 'normal')}</td>
+            <td>${displayDmg(damage, 'miss')}</td>
+        </tr>`);
+      }
     }
   }
 
@@ -349,11 +365,11 @@ class Hero {
     }
   }
 
-  getDamage(skillId, soulburn = false) {
+  getDamage(skillId, soulburn = false, isExtra = false) {
     const critDmgBuff = inputValues.critDmgUp ? battleConstants.critDmgUp : 0.0;
 
     const skill = this.skills[skillId];
-    const hit = this.offensivePower(skillId, soulburn) * this.target.defensivePower(skill);
+    const hit = this.offensivePower(skillId, soulburn, isExtra) * this.target.defensivePower(skill);
     const critDmg = Math.min((this.crit / 100)+critDmgBuff, 3.5)
         +(skill.critDmgBoost ? skill.critDmgBoost(soulburn) : 0)
         +(this.artifact.getCritDmgBoost()||0)
@@ -389,7 +405,7 @@ class Hero {
     return (atk+atkImprint)*atkMod;
   }
 
-  offensivePower(skillId, soulburn) {
+  offensivePower(skillId, soulburn, isExtra) {
     const skill = this.skills[skillId];
 
     const rate = (typeof skill.rate === 'function') ? skill.rate(soulburn) : skill.rate;
@@ -407,7 +423,7 @@ class Hero {
     let dmgMod = 1.0
         + getGlobalDamageMult(this, skill)
         + this.bonus / 100
-        + this.artifact.getDamageMultiplier(skill, skillId)
+        + this.artifact.getDamageMultiplier(skill, skillId, isExtra)
         + (skill.mult ? skill.mult(soulburn)-1 : 0);
 
     return ((this.getAtk(skillId)*rate + flatMod)*dmgConst + flatMod2) * pow * skillEnhance * elemAdv * target * dmgMod;
@@ -564,12 +580,12 @@ class Artifact {
       : artifacts[this.id].value;
   }
 
-  getDamageMultiplier(skill, skillId) {
+  getDamageMultiplier(skill, skillId, isExtra) {
     if(!this.applies(skill, skillId)) return 0;
     if (this.id === undefined || artifacts[this.id].type !== artifactDmgType.damage) {
       return 0;
     }
-    return typeof artifacts[this.id].value === 'function' ? artifacts[this.id].value(this.getValue()) : this.getValue();
+    return typeof artifacts[this.id].value === 'function' ? artifacts[this.id].value(this.getValue(), skill, isExtra) : this.getValue();
   }
 
   getDefensePenetration(skill) {

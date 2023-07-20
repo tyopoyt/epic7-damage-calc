@@ -237,6 +237,14 @@ const artifacts = {
     form: [elements.turn_stack_10],
     value: (artiScale) => elements.turn_stack_10.value() * artiScale
   },
+  prayer_of_solitude: {
+    id: 'prayer_of_solitude',
+    name: 'Prayer of Solitude',
+    scale: [0.05, 0.055, 0.06, 0.065, 0.07, 0.075, 0.08, 0.085, 0.09, 0.095, 0.1],
+    value:(artiScale, skill, isExtra) => (skill.isExtra || isExtra) ? artiScale * 2 : artiScale,
+    exclusive: classType.warrior,
+    type: artifactDmgType.damage
+  },
   prelude_to_a_new_era: {
     id: 'prelude_to_a_new_era',
     name: 'Prelude to a New Era',
