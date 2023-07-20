@@ -442,8 +442,8 @@ const artifacts = {
     id: 'wind_rider',
     name: 'Wind Rider',
     type: artifactDmgType.attack,
-    scale: [0.2, 0.22, 0.24, 0.26, 0.28, 0.3, 0.32, 0.34, 0.36, 0.38, 0.4],
-    additional: [0.1, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2],
+    scale: [0.1, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2],
+    additional: [0.2, 0.22, 0.24, 0.26, 0.28, 0.3, 0.32, 0.34, 0.36, 0.38, 0.4],
     exclusive: classType.thief,
     form: [elements.enemy_defeated],
     value: (input) => {
