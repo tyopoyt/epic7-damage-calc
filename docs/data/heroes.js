@@ -5652,8 +5652,6 @@ const heroes = {
         name: infoLabel('navy_captain_landy_salvo_fire'),
         rate: 0.3,
         pow: 1.3,
-        penetrate: () => 1,
-        noCrit: true,
         isExtra: true,
         aoe: true,
       },
