@@ -5633,6 +5633,7 @@ const heroes = {
   },
   navy_captain_landy: {
     name: 'Navy Captain Landy',
+    info: infoLabel('unreleased_hero'),
     element: element.light,
     classType: classType.knight,
     baseAtk: 1134,
@@ -6222,7 +6223,6 @@ const heroes = {
     name: 'Requiem Roana',
     element: element.dark,
     classType: classType.mage,
-    info: infoLabel('unreleased_hero'),
     form: [elements.attack_skill_stack_3],
     baseAtk: 1316,
     skills: {
