@@ -1204,7 +1204,6 @@ const heroes = {
         pow: 1.3,
         flat: () => elements.caster_max_hp.value()*0.045,
         flatTip: () => ({ caster_max_hp: 4.5 }),
-        enhance_from: 's1',
         aoe: true,
       },
       s3: {
@@ -5643,7 +5642,7 @@ const heroes = {
     },
     skills: {
       s1: {
-        rate: 1,
+        rate: 1.1,
         pow: 1,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
         single: true,
