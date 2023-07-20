@@ -142,9 +142,11 @@ const i18n = {
       arunka_expose: 'Expose',
       balance_op_sigret: 'Balance Update: Added Speed scaling, lowered Attack scaling: S2: 0.8 -> 0.75 / S3 1.1 -> 1',
       beehoo_incinerate: 'Incinerate',
+      lethe_call_of_the_abyss: 'Call of the Abyss',
       lqc_s3_splash: 'S3 Splash',
       ml_celine_nimble_sword: 'Nimble Sword',
       ml_kayron_flash_slash: 'Flash Slash',
+      navy_captain_landy_salvo_fire: 'Salvo Fire',
       sez_encroach: 'Encroach',
       s1_extra_attack: 'S1 Extra Attack',
       s1_soulburn: 'S1 Soulburn',
@@ -320,6 +322,7 @@ const i18n = {
       kluri: 'クルリ',
       krau: 'クラウ',
       landy: 'ランディ',
+      lethe: 'レーテー',
       last_piece_karin: 'ラストピース カリン',
       last_rider_krau: 'ラストライダー クラウ',
       lena: 'レナ',
@@ -359,6 +362,7 @@ const i18n = {
       mui: 'ミュイ',
       muse_rima: 'ミューズ リマ',
       muwi: 'ムーム',
+      navy_captain_landy: '海軍大佐 ランディ',
       nemunas: 'ネムナス',
       ocean_breeze_luluca: '海の香り ルルカ',
       operator_sigret: 'オペレーター セクレット',
@@ -599,8 +603,10 @@ const i18n = {
       alencia_trample: '圧殺',
       arunka_expose: 'えぐり',
       beehoo_incinerate: '焼却',
+      lethe_call_of_the_abyss: '',
       lqc_s3_splash: 'S3 スプラッシュダメージ',
       ml_celine_nimble_sword: '快剣',
+      navy_captain_landy_salvo_fire: '',
       s1_extra_attack: 'S1 追加攻撃',
       s1_soulburn: 'S1 魂力解放',
       s2_wave_2: 'S2 2回目',
@@ -774,6 +780,7 @@ const i18n = {
       kluri: '可露莉',
       krau: '克勞烏',
       landy: '蘭蒂',
+      lethe: '麗希',
       last_piece_karin: '最後的碎片卡琳',
       last_rider_krau: '最後的騎士克勞烏',
       lena: '雷娜',
@@ -813,6 +820,7 @@ const i18n = {
       mui: '繆伊',
       muse_rima: '繆斯黎瑪',
       muwi: '武蔚',
+      navy_captain_landy: '海軍上校蘭蒂',
       nemunas: '尼姆拉斯',
       ocean_breeze_luluca: '海洋香氣璐璐卡',
       operator_sigret: '操作員賽珂蘭特',
@@ -1288,8 +1296,10 @@ const i18n = {
       alencia_trample: '扼殺',
       arunka_expose: '揭露',
       beehoo_incinerate: '焚燒',
+      lethe_call_of_the_abyss: '',
       lqc_s3_splash: 'S3 濺射傷害',
       ml_celine_nimble_sword: '快劍',
+      navy_captain_landy_salvo_fire: '',
       s1_extra_attack: 'S1 追加攻擊',
       s2_wave_2: 'S2 第二波',
       s2_counter: 'S2 (反擊)',
@@ -1322,7 +1332,7 @@ const i18n = {
       alexa: '雅莉莎',
       all_rounder_wanda: '疑难杂症专家汪达',
       ambitious_tywin: '野心份子泰温',
-      amid: '雅咪德', // TODO: simplified translation
+      amid: '雅咪德',
       angel_of_light_angelica: '光之天使安洁莉卡',
       angelic_montmorancy: '守护天使蒙茉朗西',
       angelica: '安洁莉卡',
@@ -1347,7 +1357,7 @@ const i18n = {
       basar: '巴萨尔',
       bask: '巴思克',
       batisse: '巴托斯',
-      beehoo: '雨脩', // simplified when available
+      beehoo: '雨修',
       belian: '伯里安',
       bellona: '维尔萝娜',
       benevolent_romann: '仁慈的洛曼',
@@ -1391,7 +1401,7 @@ const i18n = {
       crimson_armin: '红焰亚敏',
       crozet: '克罗泽',
       dark_corvus: '黑暗的科尔布思',
-      death_dealer_ray: '死亡探究者雷伊', //TODO: change to simplified version when available
+      death_dealer_ray: '死亡探究者雷伊',
       desert_jewel_basar: '沙漠宝石巴萨尔',
       designer_lilibet: '设计师莉莉贝',
       destina: '戴丝蒂娜',
@@ -1405,7 +1415,7 @@ const i18n = {
       eda:'艾妲',
       edward_elric: '爱德华·爱力克',
       elena: '艾蕾娜',
-      eligos: '艾利戈斯', // TODO: change to simplified when available
+      eligos: '艾利戈斯',
       elphelt_valentine: '爱尔菲特',
       elson: '艾尔森',
       emilia:'爱蜜莉雅',
@@ -1462,7 +1472,8 @@ const i18n = {
       kluri: '可露莉',
       krau: '克劳乌',
       landy: '兰蒂',
-      last_piece_karin: '最後的碎片卡琳', // TODO: simplified when available
+      lethe: '丽希',
+      last_piece_karin: '最后的碎片卡琳',
       last_rider_krau: '最后的骑士克劳乌',
       lena: '雷娜',
       leo: '雷欧',
@@ -1472,7 +1483,7 @@ const i18n = {
       lilka: '莉珈',
       lionheart_cermia: '狮心王洁若米亚',
       little_queen_charlotte: '年轻的女王夏绿蒂',
-      lone_crescent_bellona: '一輪孤月維爾蘿娜', // TODO: simplified when available
+      lone_crescent_bellona: '一轮孤月维尔夢娜',
       lorina: '萝里娜',
       lots: '拉兹',
       lua: '路雅',
@@ -1501,13 +1512,14 @@ const i18n = {
       mui:'缪伊',
       muse_rima: '缪斯黎玛',
       muwi: '武蔚',
+      navy_captain_landy: '海軍上校蘭蒂', //TODO: Simplified when available
       nemunas: '尼姆拉斯',
       ocean_breeze_luluca: '',
       operator_sigret: '操作员赛珂兰特',
       orte: '奥乐缇',
       otillie: '奥缇莉尔',
       pavel: '帕贝尔',
-      peacemaker_furious: '平衡的尤貝烏斯', // simplified when available
+      peacemaker_furious: '平衡的尤贝乌斯',
       pearlhorizon: '波萝莱珍',
       peira: '沛伊拉',
       penelope: '潘尼罗佩',
@@ -1599,7 +1611,7 @@ const i18n = {
       zealot_carmainerose: '传道者卡麦萝兹',
       zeno: '杰诺',
       zerato: '杰拉图',
-      zio: '智武', // TODO: add simplified translation when possible
+      zio: '智武',
     },
     nicknames: {
       achates: '火奶',
@@ -1781,7 +1793,7 @@ const i18n = {
       no_proc: '无神器',
       a_little_queens_crown:'小小女王的巨大王冠',
       a_symbol_of_unity:'团结的象征',
-      an_offer_you_cant_refuse: '無法拒絕的提議', // TODO: simplified when possible
+      an_offer_you_cant_refuse: '无法拒绝的提议',
       air_to_surface_missile_misha:'空对地导弹: 美莎',
       ambrote:'安布罗泰',
       ancient_sheath:'古代剑鞘',
@@ -1795,8 +1807,8 @@ const i18n = {
       els_fist: '艾尔之拳',
       elyha_knife: '埃里哈刀',
       exorcist_tonfa: '斗鬼的拐棍',
-      golden_rose: '金玫瑰', // TODO: update simplified when available
-      frame_of_light: '光之框架', // update with simplified when available
+      golden_rose: '金玫瑰',
+      frame_of_light: '光之框架 (Frame of Light)',
       hell_cutter: '地狱切割机',
       ignition_cloth_gloves: '发火布手套',
       iron_fan: '铁扇',
@@ -1976,9 +1988,11 @@ const i18n = {
     info: {
       alencia_trample: '扼杀',
       arunka_expose: '揭露',
-      beehoo_incinerate: '焚燒', // update with simplified when available
+      beehoo_incinerate: '焚烧',
+      lethe_call_of_the_abyss: '',
       lqc_s3_splash: 'S3 溅射伤害',
       ml_celine_nimble_sword: '快剑',
+      navy_captain_landy_salvo_fire: '',
       s1_extra_attack: 'S1 追加攻击',
       s1_soulburn: 'S1 灵魂燃烧',
       s2_wave_2: 'S2 第二波',
@@ -2156,6 +2170,7 @@ const i18n = {
       kluri: '쿠루리',
       krau: '크라우',
       landy: '랑디',
+      lethe: '레테',
       last_piece_karin: '라스트 피스 카린',
       last_rider_krau: '라스트 라이더 크라우',
       lena: '레나',
@@ -2195,6 +2210,7 @@ const i18n = {
       mui: '뮤이',
       muse_rima: '뮤즈 리마',
       muwi: '무위',
+      navy_captain_landy: '해군 대령 랑디',
       nemunas: '네무나스',
       ocean_breeze_luluca: '바다 향기 루루카',
       operator_sigret: '오퍼레이터 세크레트',
@@ -2597,8 +2613,10 @@ const i18n = {
       alencia_trample: '압살',
       arunka_expose: '파헤치기',
       beehoo_incinerate: '소각',
+      lethe_call_of_the_abyss: '',
       lqc_s3_splash: '스킬 3 스플래시',
       ml_celine_nimble_sword: '쾌검',
+      navy_captain_landy_salvo_fire: '',
       s1_extra_attack: '스킬 1 추가 공격',
       s1_soulburn: '스킬 1 소울번',
       s2_wave_2: '스킬 2 2타',
@@ -2772,7 +2790,8 @@ const i18n = {
       kluri: 'Kluri',
       krau: 'Krato',
       landy: 'Landy',
-      last_piece_karin: 'Last Piece Karin', // TODO: translate when available
+      lethe: 'Lethe',
+      last_piece_karin: 'Última Peça Karin',
       last_rider_krau: 'Último Paladino Krato',
       lena: 'Lena',
       leo: 'Léo',
@@ -2811,6 +2830,7 @@ const i18n = {
       mui: 'Mui',
       muse_rima: 'Rima Musa',
       muwi: 'Muwi',
+      navy_captain_landy: 'Navy Captain Landy', //TODO: Translate when available
       nemunas: 'Nemunas',
       ocean_breeze_luluca: 'Luluca Aroma de Mar',
       operator_sigret: 'Operadora Sigret',
@@ -3135,8 +3155,10 @@ const i18n = {
       alencia_trample: 'Pisotear',
       arunka_expose: 'Carcomere',
       beehoo_incinerate: 'Carbonizar',
+      lethe_call_of_the_abyss: '',
       lqc_s3_splash: 'S3 Splash',
       ml_celine_nimble_sword: 'Fulgor',
+      navy_captain_landy_salvo_fire: '',
       s1_extra_attack: 'S1 Ataque Extra',
       s1_soulburn: 'S1 Soulburn',
       s2_wave_2: 'S2 Onda 2',
@@ -3183,12 +3205,12 @@ const formLabel = (id) => {
   }
 };
 
-const skillLabel = (id, soulburn = false) => {
+const skillLabel = (id, soulburn = false, extra = false) => {
   const lang = document.getElementById('root').getAttribute('lang');
   if (lang === 'en') {
-    return (id === 'non_applicable') ? 'n/a' : i18n[lang].skills[id] || id.toUpperCase() + (soulburn ? ' Soulburn' : '');
+    return (id === 'non_applicable') ? 'n/a' : i18n[lang].skills[id] || id.toUpperCase() + (soulburn ? ' Soulburn' : (extra ? ' (Extra)' : ''));
   } else {
-    id = soulburn ? id+'_soulburn' : id;
+    id = soulburn ? id + '_soulburn' : (extra ? id + '_extra' : id);
     return i18n[lang].skills[id] || i18n['en'].skills[id] || id.toUpperCase();
   }
 };

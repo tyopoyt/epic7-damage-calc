@@ -355,6 +355,7 @@ const heroes = {
         flatTip: () => ({caster_max_hp: 11}),
         exEq: () => elements.exclusive_equipment_2.value() ? 0.2 : 0,
         enhance: [0.05, 0, 0.1, 0, 0.15],
+        isExtra: true,
         single: true,
       },
       s3: {
@@ -759,6 +760,7 @@ const heroes = {
         pow: 1.3,
         // enhance_from: 's1', Presumed not to inherit from s1 mola since the pow is so high already
         single: true,
+        isExtra: true,
         noCrit: true,
       },
       s3: {
@@ -1133,6 +1135,7 @@ const heroes = {
         rate: 0.5,
         pow: 0.95,
         enhance_from: 's1',
+        isExtra: true,
         aoe: true,
       },
       s3: {
@@ -1290,6 +1293,7 @@ const heroes = {
         rate: 1.2,
         pow: 1,
         penetrate: () => elements.caster_has_multilayer_barrier.value() ? 0.6 : 0.3,
+        isExtra: true,
         aoe: true,
       },
       s3: {
@@ -1771,6 +1775,7 @@ const heroes = {
         rate: 1.2,
         pow: 1,
         enhance: [0.05, 0, 0.05, 0, 0.1, 0, 0.1],
+        canExtra: true,
         single: true,
       },
       s3: {
@@ -2048,6 +2053,7 @@ const heroes = {
         flatTip: () => ({ caster_max_hp: (elements.caster_full_focus.value() ? 15 : 11) }),
         penetrate: () => 0.7,
         enhance: [0.05, 0.1, 0.15],
+        canExtra: true,
         single: true,
       },
       s3: {
@@ -2156,6 +2162,7 @@ const heroes = {
         rate: 0.7,
         pow: 1,
         enhance: [0.05, 0.05, 0.05, 0.1, 0.1],
+        isExtra: true,
         aoe: true,
       },
       s3: {
@@ -2748,6 +2755,7 @@ const heroes = {
         flat: () => elements.caster_max_hp.value() * 0.08,
         flatTip: () => ({caster_max_hp: 8}),
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        isExtra: true,
         aoe: true
       },
       s3: {
@@ -3766,6 +3774,7 @@ const heroes = {
         rate: 1.1,
         pow: 1,
         enhance_from: 's1',
+        isExtra: true,
         single: true,
       },
       s3: {
@@ -4397,7 +4406,7 @@ const heroes = {
         boost += heroes.landy.skills.s2.enhance[i];
       }
 
-      return 1 + elements.attack_skill_stack_3.value()*boost;
+      return 1 + elements.attack_skill_stack_3.value() * boost;
     },
     skills: {
       s1: {
@@ -4565,6 +4574,38 @@ const heroes = {
         rate: 0.8,
         pow: 0.8,
         enhance: [0.05, 0.05, 0, 0.1, 0.15],
+        aoe: true,
+      }
+    }
+  },
+  lethe: {
+    name: 'Lethe',
+    element: element.ice,
+    classType: classType.warrior,
+    baseAtk: 885,
+    form: [elements.caster_max_hp],
+    skills: {
+      s1: {
+        rate: 1,
+        pow: 1,
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        single: true,
+      },
+      s2: {
+        name: infoLabel('lethe_call_of_the_abyss'),
+        rate: 0.3,
+        pow: 1.3,
+        flat: () => elements.caster_max_hp.value() * 0.22,
+        flatTip: () => ({caster_max_hp: 22}),
+        penetrate: () => 1,
+        noCrit: true,
+        isExtra: true,
+        aoe: true,
+      },
+      s3: {
+        rate: 1,
+        pow: 1.05,
+        enhance: [0.0, 0.1, 0, 0, 0.15],
         aoe: true,
       }
     }
@@ -4805,6 +4846,7 @@ const heroes = {
         rate: 0.6,
         pow: 1,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        isExtra: true,
         aoe: true,
       },
       s3: {
@@ -5589,6 +5631,40 @@ const heroes = {
       }
     }
   },
+  navy_captain_landy: {
+    name: 'Navy Captain Landy',
+    element: element.light,
+    classType: classType.knight,
+    baseAtk: 1134,
+    form: [elements.attack_skill_stack_5],
+    atkUp: () => {
+      return 1 + elements.attack_skill_stack_5.value() * 0.1;
+    },
+    skills: {
+      s1: {
+        rate: 1,
+        pow: 1,
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        single: true,
+      },
+      s2: {
+        name: infoLabel('navy_captain_landy_salvo_fire'),
+        rate: 0.3,
+        pow: 1.3,
+        penetrate: () => 1,
+        noCrit: true,
+        isExtra: true,
+        aoe: true,
+      },
+      s3: {
+        rate: 1,
+        pow: 1.05,
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        penetrate: () => 0.6,
+        aoe: true,
+      }
+    }
+  },
   nemunas: {
     name: 'Nemunas',
     element: element.fire,
@@ -6105,6 +6181,7 @@ const heroes = {
         rate: 0.95,
         pow: 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
+        canExtra: true,
         single: true
       },
       s2: {
@@ -6301,6 +6378,7 @@ const heroes = {
         rate: 1.65,
         pow: 1,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        isExtra: true,
         single: true,
       },
       s3: {
@@ -6970,6 +7048,7 @@ const heroes = {
         pow: 1,
         exEq: () => elements.exclusive_equipment_1.value() ? 0.2 : 0,
         enhance: [0.05, 0, 0.1, 0, 0.15],
+        canExtra: true,
         single: true,
       },
       s2: {
@@ -7073,6 +7152,7 @@ const heroes = {
         flat: () => elements.target_max_hp.value()*0.04,
         flatTip: () => ({ target_max_hp: 4 }),
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        isExtra: true,
         single: true,
       },
       s3: {
@@ -7527,6 +7607,7 @@ const heroes = {
         pow: 1.3,
         mult: () => 1 + elements.caster_speed.value()*0.00075,
         multTip: () => ({ caster_speed: 0.075 }),
+        isExtra: true,
         single: true,
       },
       s3: {
