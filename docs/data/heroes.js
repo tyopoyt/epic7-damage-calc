@@ -6817,6 +6817,7 @@ const heroes = {
     name: 'Seaside Bellona',
     element: element.ice,
     classType: classType.ranger,
+    form: [elements.exclusive_equipment_2],
     baseAtk: 1182,
     skills: {
       s1: {
@@ -6828,6 +6829,7 @@ const heroes = {
       s2: {
         rate: 0.7,
         pow: 1,
+        exEq: () => elements.exclusive_equipment_2.value() ? 0.1 : 0,
         enhance: [0.05, 0.1, 0.15],
         aoe: true,
       },

@@ -1,6 +1,6 @@
 ## Changelog
 
-<strong>Jul 20 2023 Update:</strong> Added Lethe, Prayer of Solitude, and Navy Captain Landy.  Added some missing translations.<br>
+<strong>Jul 20 2023 Update:</strong> Added Lethe, Prayer of Solitude, and Navy Captain Landy.  Added some missing translations and SSB's EE.<br>
 <strong>Jul 7 2023 Update:</strong> Added Ocean Breeze Luluca.<br>
 <strong>Jun 17 2023 Update:</strong> Split Wind Rider's damage to allow caculation of both scenarios and added ML Kayron's soulburn.<br>
 <strong>Jun 8 2023 Update:</strong> Added Requiem Roana. Adjusted Arunka, Little Queen Charlotte, Summer Break Charlotte, and Jack-O from the balance patch.<br>
