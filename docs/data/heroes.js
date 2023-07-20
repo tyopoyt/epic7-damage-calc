@@ -5649,7 +5649,7 @@ const heroes = {
       },
       s2: {
         name: infoLabel('navy_captain_landy_salvo_fire'),
-        rate: 0.3,
+        rate: 0.8,
         pow: 1.3,
         isExtra: true,
         aoe: true,
