@@ -290,7 +290,11 @@ const elements = {
     min: 1000,
     max: 50000,
     default: 10000,
-    value: () => Number(document.getElementById('caster-max-hp').value) * (max_hp_artifacts.includes(currentArtifact?.id) ? currentArtifact.maxHP : 1)
+    value: () => {
+      console.log(max_hp_artifacts)
+      console.log(currentArtifact)
+      Number(document.getElementById('caster-max-hp').value) //* (max_hp_artifacts.includes(currentArtifact?.id) ? currentArtifact.maxHP : 1)
+    }
   },
   caster_hp_pc: {
     ref: 'caster_hp_pc',
