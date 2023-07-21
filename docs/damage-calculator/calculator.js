@@ -217,7 +217,7 @@ const resolve = () => {
         </tr>`);
       }
 
-      if (skill.canExtra && inputValues.artifact === 'prayer_of_solitude') {
+      if (skill.canExtra && extra_attack_artifacts.includes(inputValues.artifact)) {
         const damage = hero.getDamage(skillId, true, true);
         $(table).append(`<tr>
             <td>
