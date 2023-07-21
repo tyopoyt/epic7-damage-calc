@@ -293,7 +293,7 @@ const elements = {
     value: () => {
       console.log(max_hp_artifacts)
       console.log(currentArtifact)
-      Number(document.getElementById('caster-max-hp').value) //* (max_hp_artifacts.includes(currentArtifact?.id) ? currentArtifact.maxHP : 1)
+      return Number(document.getElementById('caster-max-hp').value) //* (max_hp_artifacts.includes(currentArtifact?.id) ? currentArtifact.maxHP : 1)
     }
   },
   caster_hp_pc: {
