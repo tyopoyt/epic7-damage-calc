@@ -26,7 +26,7 @@ let updateRequestTime;
 let page;
 let loadingQueryParams = true;
 
-const buffableParams = ['caster-defense']
+const buffableParams = ['caster-defense', 'caster-speed']
 
 window.addEventListener('load', async () => {
     /*

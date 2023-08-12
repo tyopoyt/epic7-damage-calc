@@ -1,6 +1,6 @@
 ## Changelog
 
-<strong>Aug 12 2023 Update:</strong> Fixed caster defense up query param. Removed ML Landy's unreleased hero disclaimer.<br>
+<strong>Aug 12 2023 Update:</strong> Fixed caster defense up and speed up query param. Removed ML Landy's unreleased hero disclaimer.<br>
 <strong>Jul 20 2023 Update:</strong> Added Lethe, Prayer of Solitude, and Navy Captain Landy.  Added some missing translations and SSB's EE.<br>
 <strong>Jul 7 2023 Update:</strong> Added Ocean Breeze Luluca.<br>
 <strong>Jun 17 2023 Update:</strong> Split Wind Rider's damage to allow caculation of both scenarios and added ML Kayron's soulburn.<br>
