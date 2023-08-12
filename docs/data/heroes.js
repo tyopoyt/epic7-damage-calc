@@ -5632,7 +5632,6 @@ const heroes = {
   },
   navy_captain_landy: {
     name: 'Navy Captain Landy',
-    info: infoLabel('unreleased_hero'),
     element: element.light,
     classType: classType.knight,
     baseAtk: 1134,
