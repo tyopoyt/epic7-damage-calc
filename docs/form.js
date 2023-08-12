@@ -87,7 +87,11 @@ const elements = {
       const defPreset = document.getElementById('def-preset');
       return defPreset.value ? defPreset.options[defPreset.selectedIndex].dataset.hp : 10000
     },
-    value: () => Number(document.getElementById('target-max-hp').value)
+    value: () => {
+      const defPreset = document.getElementById('def-preset');
+      return (defPreset.value === 'caides-13') ? Number(document.getElementById('target-max-hp').value / 2) : Number(document.getElementById('target-max-hp').value);
+    }
+
   },
   target_injuries: {
     ref: 'target_injuries',
@@ -1186,6 +1190,9 @@ window.addEventListener('DOMContentLoaded', () => {
           'event': 'select_preset_def',
           'def_unit': selected.value
         });
+      } else {
+        // To ensure caides damage reduction is removed when switching to manual
+        resolve();
       }
     };
 
