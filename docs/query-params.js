@@ -26,6 +26,8 @@ let updateRequestTime;
 let page;
 let loadingQueryParams = true;
 
+const buffableParams = ['caster-defense']
+
 window.addEventListener('load', async () => {
     /*
      * Timeout just in case, to help avoid a race condition.
@@ -63,10 +65,16 @@ const getInputValues = () => {
         }
     
         (heroes[inputValues.hero]?.form || []).forEach((param) => {
-            const isBoolean = param.type === 'checkbox'
-            const defaultVal =  isBoolean ? param.default || false : param.default;
-            const paramVal = isBoolean ? document.getElementById(param.id)?.checked : Number(document.getElementById(param.id)?.value || defaultVal);
+            let isBoolean = param.type === 'checkbox'
+            let defaultVal =  isBoolean ? param.default || false : param.default;
+            let paramVal = isBoolean ? document.getElementById(param.id)?.checked : Number(document.getElementById(param.id)?.value || defaultVal);
             inputValues[param.id] = paramVal;
+
+            if (buffableParams.includes(param.id)) {
+                buffParam = param.id + '-up';
+                paramVal = document.getElementById(buffParam)?.checked;
+                inputValues[buffParam] = paramVal;
+            }
         });
     
         inputValues['artifact-lvl'] = Number(document.getElementById('artifact-lvl')?.value || '30');
@@ -187,6 +195,15 @@ const loadQueryParams = async () => {
                         const event = new Event('change');
                         element.dispatchEvent(event);
                     }
+                }
+
+                if (buffableParams.includes(heroSpecific.id)) {
+                    buffParam = heroSpecific.id + '-up';
+                    const buffElement = document.getElementById(buffParam);
+                    paramVal = queryParams.get(buffParam);
+                    buffElement.checked = paramVal;
+                    const buffEvent = new Event('change');
+                    buffElement.dispatchEvent(buffEvent);
                 }
             }
 
@@ -331,6 +348,18 @@ const updateQueryParamsWhenStable = async (updateURL=false) => {
                 queryParams.set(heroSpecific.id, inputValues[heroSpecific.id]);
             } else {
                 queryParams.delete(heroSpecific.id);
+            }
+
+            if (buffableParams.includes(heroSpecific.id)) {
+                const buffParam = heroSpecific.id + '-up';
+                const buffableDefault = typeof heroSpecific.default === 'function' ? heroSpecific.default() : heroSpecific.default;
+                const buffableDefaultVal = buffableDefault || false
+
+                if (inputValues[buffParam] !== buffableDefaultVal) {
+                    queryParams.set(buffParam, inputValues[buffParam]);
+                } else {
+                    queryParams.delete(buffParam);
+                }
             }
         }
 
