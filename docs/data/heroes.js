@@ -3734,6 +3734,38 @@ const heroes = {
       }
     }
   },
+  infinite_horizon_achates: {
+    name: 'Infinite Horizon Achates',
+    element: element.light,
+    classType: classType.soul_weaver,
+    info: infoLabel('unreleased_hero'),
+    form: [elements.caster_max_hp],
+    baseAtk: 576,
+    barrierSkills: ['S2', 'S3'],
+    barrier: () => {
+      const scale = [0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.1];
+      let boost = 1.0;
+      for (let i = 0; i < Number(document.getElementById(`molagora-s2`).value); i++) {
+        boost += scale[i];
+      }
+
+      return elements.caster_max_hp.value()*0.18*boost;
+    },
+    barrier2: () => {
+      return elements.caster_max_hp.value()*0.2
+    },
+    skills: {
+      s1: {
+        rate: 1,
+        pow: 1,
+        enhance: [0.05, 0.05, 0, 0.05, 0, 0.05, 0.1],
+        single: true,
+      },
+      s2: {
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.1]
+      },
+    }
+  },
   iseria: {
     name: 'Iseria',
     element: element.earth,
