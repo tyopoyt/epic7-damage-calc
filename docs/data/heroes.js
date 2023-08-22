@@ -3544,10 +3544,10 @@ const heroes = {
     name: 'Hwayoung',
     element: element.fire,
     classType: classType.warrior,
-    info: "<strong>Notice:</strong> Hwayoung's S1 additional damage penetration has been set back to 0.7 in the calculator.  It was presumed" +
-          " to have been removed because it did not show up when the skill data spreadsheet datamined.  However, as of now it is presumed all" +
-          " additional damage of this kind has 0.7 def pen due to other heroes' additional damage penetration similarly being absent in datamines.",
-    baseAtk: 1342,
+    // info: "<strong>Notice:</strong> Hwayoung's S1 additional damage penetration has been set back to 0.7 in the calculator.  It was presumed" +
+    //       " to have been removed because it did not show up when the skill data spreadsheet datamined.  However, as of now it is presumed all" +
+    //       " additional damage of this kind has 0.7 def pen due to other heroes' additional damage penetration similarly being absent in datamines.",
+    baseAtk: 1119,
     form: [elements.caster_has_buff, elements.caster_max_hp, elements.target_max_hp],
     barrier: (hero) => hero.getAtk()*0.45,
     innateAtkUp: () => {
