@@ -72,7 +72,7 @@ const elements = {
     max: 50000,
     default: () => {
       const defPreset = document.getElementById('def-preset');
-      return defPreset.value ? defPreset.options[defPreset.selectedIndex].dataset.hp : 10000
+      return defPreset.value ? defPreset.options[defPreset.selectedIndex].dataset.hp : 10000;
     },
     value: () => Number(document.getElementById('target-current-hp').value)
   },
@@ -85,7 +85,7 @@ const elements = {
     max: 50000,
     default: () => {
       const defPreset = document.getElementById('def-preset');
-      return defPreset.value ? defPreset.options[defPreset.selectedIndex].dataset.hp : 10000
+      return defPreset.value ? defPreset.options[defPreset.selectedIndex].dataset.hp : 10000;
     },
     value: () => {
       const defPreset = document.getElementById('def-preset');
@@ -418,15 +418,15 @@ const elements = {
         }
       }
 
-      casterBuffElement = $('#caster-has-buff')
+      casterBuffElement = $('#caster-has-buff');
       if (casterBuffChecked) {
         casterBuffElement.prop('checked', true);
         casterBuffElement.attr('disabled', true);
       } else {
-        casterBuffElement.removeAttr("disabled");
+        casterBuffElement.removeAttr('disabled');
       }
 
-      return casterBuffElement.prop('checked')
+      return casterBuffElement.prop('checked');
     }
   },
   caster_has_debuff: {
@@ -538,8 +538,8 @@ const elements = {
     label: 'Caster has Immense Power',
     type: 'checkbox',
     value: () => document.getElementById('caster-immense-power')
-        ? document.getElementById('caster-immense-power').checked
-        : false,
+      ? document.getElementById('caster-immense-power').checked
+      : false,
   },
   caster_stealth: {
     ref: 'caster_stealth',
@@ -881,11 +881,6 @@ const slide = (fieldId) => {
   resolve();
 };
 
-const slideMola = (skillId) => {
-  slide(`molagora-${skillId}`);
-  updateMolaBonus(skillId);
-};
-
 const update = (fieldId) => {
   const slider = document.getElementById(`${fieldId}-slide`);
   const inputValue = Number(document.getElementById(fieldId).value);
@@ -924,11 +919,6 @@ const plus = (fieldId) => {
   }
 };
 
-const plusMola = (skillId) => {
-  plus(`molagora-${skillId}`);
-  updateMolaBonus(skillId);
-};
-
 const minus = (fieldId) => {
   const input = document.getElementById(fieldId);
   const min = input.getAttribute('min');
@@ -941,10 +931,23 @@ const minus = (fieldId) => {
   }
 };
 
+// These mola functions are used in HTML Strings so eslint doesn't see it 
+/* eslint-disable no-unused-vars  */
+const slideMola = (skillId) => {
+  slide(`molagora-${skillId}`);
+  updateMolaBonus(skillId);
+};
+
+const plusMola = (skillId) => {
+  plus(`molagora-${skillId}`);
+  updateMolaBonus(skillId);
+};
+
 const minusMola = (skillId) => {
   minus(`molagora-${skillId}`);
   updateMolaBonus(skillId);
 };
+/* eslint-enable */
 
 const resetPreset = (fieldId) => {
   if (fieldId === 'def') {
@@ -959,14 +962,16 @@ const resetPreset = (fieldId) => {
 try {
   document.getElementById('def-pc-up').onchange = () => {
     resetPreset('def-pc-up');
-  }
+  };
   document.getElementById('dmg-reduc').onchange = () => {
     resetPreset('dmg-reduc');
-  }
+  };
   document.getElementById('dmg-trans').onchange = () => {
     resetPreset('dmg-trans');
-  }
-} catch (error) {}
+  };
+} catch (error) {
+  // pass
+}
 
 
 const showHeroInfo = (hero) => {
@@ -1080,8 +1085,8 @@ const refreshArtifactList = (hero) => {
   const artiSelector = document.getElementById('artifact');
   for (const artiOpt of artiSelector.querySelectorAll('option')) {
     if (!artiOpt.value) continue;
-    const artiExclusive = artifacts[artiOpt.value].exclusive
-    const artiHeroExclusive = artifacts[artiOpt.value].hero_exclusive
+    const artiExclusive = artifacts[artiOpt.value].exclusive;
+    const artiHeroExclusive = artifacts[artiOpt.value].hero_exclusive;
     artiOpt.disabled = (artiExclusive && artiExclusive !== hero.classType) || (artiHeroExclusive && !artiHeroExclusive.includes(hero.name));
   }
   if (artiSelector.options[artiSelector.selectedIndex].disabled) {
@@ -1132,21 +1137,21 @@ const buildElement = (elem, parent) => {
 };
 
 const elemIcon = (elem) => {
-  return `<img src='${['jp', 'kr', 'zh', 'zhTW', 'br'].some(locale => window.location.href.includes(locale)) ? '.' : ''}./assets/elements/${elem}.png' width='20', height='20' alt='${elem}' />`
+  return `<img src='${['jp', 'kr', 'zh', 'zhTW', 'br'].some(locale => window.location.href.includes(locale)) ? '.' : ''}./assets/elements/${elem}.png' width='20', height='20' alt='${elem}' />`;
 };
 
 const antiElemIcon = (elem) => {
   switch (elem) {
-    case element.ice: return elemIcon(element.fire);
-    case element.fire: return elemIcon(element.earth);
-    case element.earth: return elemIcon(element.ice);
-    case element.light: return elemIcon(element.dark);
-    case element.dark: return elemIcon(element.light);
+  case element.ice: return elemIcon(element.fire);
+  case element.fire: return elemIcon(element.earth);
+  case element.earth: return elemIcon(element.ice);
+  case element.light: return elemIcon(element.dark);
+  case element.dark: return elemIcon(element.light);
   }
 };
 
 const classIcon = (type) => {
-  return `<img src='${['jp', 'kr', 'zh', 'zhTW', 'br'].some(locale => window.location.href.includes(locale)) ? '.' : ''}./assets/classes/${type.replace('_', '-')}.png' width='18', height='18' alt='${type}' />`
+  return `<img src='${['jp', 'kr', 'zh', 'zhTW', 'br'].some(locale => window.location.href.includes(locale)) ? '.' : ''}./assets/classes/${type.replace('_', '-')}.png' width='18', height='18' alt='${type}' />`;
 };
 
 const dedupeForm = (hero, artifact) => {
@@ -1156,7 +1161,7 @@ const dedupeForm = (hero, artifact) => {
   if (intersect.length > 0) {
     artifact.form = artifact.form.filter(element => !intersect.includes(element.id));
   }
-}
+};
 
 // jQuery's $(() => {}) was not firing at the right time in Firefox, so use standard DOMContentLoaded
 window.addEventListener('DOMContentLoaded', () => {
@@ -1164,14 +1169,14 @@ window.addEventListener('DOMContentLoaded', () => {
     const heroSelector = document.getElementById('hero');
     const artiSelector = document.getElementById('artifact');
     Object.keys(heroes).map((id => {
-      $(heroSelector).append(`<option value="${id}" data-tokens="${heroNicknames(id)}" data-content="${elemIcon(heroes[id].element)}${classIcon(heroes[id].classType)}<span>${heroName(id)}</span>">${heroName(id)}</option>`)
+      $(heroSelector).append(`<option value="${id}" data-tokens="${heroNicknames(id)}" data-content="${elemIcon(heroes[id].element)}${classIcon(heroes[id].classType)}<span>${heroName(id)}</span>">${heroName(id)}</option>`);
     }));
     $(heroSelector).selectpicker('refresh');
 
     $(artiSelector).append(`<option value="">${artifactName('no_proc')}</option>`);
-    $(artiSelector).append(`<option data-divider="true"></option>`);
+    $(artiSelector).append('<option data-divider="true"></option>');
     Object.keys(artifacts).map((id => {
-      $(artiSelector).append(`<option value="${id}">${artifactName(id)}</option>`)
+      $(artiSelector).append(`<option value="${id}">${artifactName(id)}</option>`);
     }));
 
     heroSelector.onchange = () => {
@@ -1202,7 +1207,7 @@ window.addEventListener('DOMContentLoaded', () => {
         const hpInput = document.getElementById(elements.target_max_hp.id);
         if (hpInput) {
           hpInput.value = selected.dataset.hp;
-          update(elements.target_max_hp.id)
+          update(elements.target_max_hp.id);
         }
         window.dataLayer.push({
           'event': 'select_preset_def',
@@ -1270,7 +1275,9 @@ window.addEventListener('DOMContentLoaded', () => {
     refreshArtifactList(hero);
     buildArtifact(artifacts[artiSelector.value]);
     refreshCompareBadge();
-  } catch (e) {}
+  } catch (e) {
+    // pass
+  }
 
   resolve();
   $('[data-toggle="tooltip"]').tooltip();
@@ -1283,34 +1290,35 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+function initTheme() {
+  const darkThemeSelected =
+      localStorage.getItem('dark-switch') !== null &&
+      localStorage.getItem('dark-switch') === 'dark';
+  darkSwitch.checked = darkThemeSelected;
+  darkThemeSelected
+    ? document.body.setAttribute('data-theme', 'dark')
+    : document.body.removeAttribute('data-theme');
+}
+function applyTheme() {
+  if (darkSwitch.checked) {
+    document.body.setAttribute('data-theme', 'dark');
+    localStorage.setItem('dark-switch', 'dark');
+  } else {
+    document.body.removeAttribute('data-theme');
+    localStorage.removeItem('dark-switch');
+  }
+}
+
 (function() {
   let darkSwitch = document.getElementById('dark-switch');
   if (darkSwitch) {
     initTheme();
-    darkSwitch.addEventListener('change', function(event) {
+    darkSwitch.addEventListener('change', () => {
       applyTheme();
       window.dataLayer.push({
         'event': 'toggle_dark_mode',
         'dark_mode': darkSwitch.checked ? 'on' : 'off'
       });
     });
-    function initTheme() {
-      const darkThemeSelected =
-          localStorage.getItem('dark-switch') !== null &&
-          localStorage.getItem('dark-switch') === 'dark';
-      darkSwitch.checked = darkThemeSelected;
-      darkThemeSelected
-          ? document.body.setAttribute('data-theme', 'dark')
-          : document.body.removeAttribute('data-theme');
-    }
-    function applyTheme() {
-      if (darkSwitch.checked) {
-        document.body.setAttribute('data-theme', 'dark');
-        localStorage.setItem('dark-switch', 'dark');
-      } else {
-        document.body.removeAttribute('data-theme');
-        localStorage.removeItem('dark-switch');
-      }
-    }
   }
 })();

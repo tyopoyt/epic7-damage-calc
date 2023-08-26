@@ -85,10 +85,10 @@ const heroes = {
         pow: 1,
         mult: () => {
           switch (elements.nb_targets.value()) {
-            case 3: return 1.2;
-            case 2: return 1.4;
-            case 1: return 1.6;
-            default: return 1;
+          case 3: return 1.2;
+          case 2: return 1.4;
+          case 1: return 1.6;
+          default: return 1;
           }
         },
         multTip: () => ({ per_fewer_target: 20 }),
@@ -595,7 +595,7 @@ const heroes = {
     }
   },
   archdemon_shadow: {
-    name: "Archdemon's Shadow",
+    name: 'Archdemon\'s Shadow',
     element: element.dark,
     classType: classType.mage,
     baseAtk: 1316,
@@ -1154,7 +1154,7 @@ const heroes = {
     baseAtk: 1203,
     innateAtkUp: () => {
       let boost = 0.20;
-      for (let i = 0; i < Number(document.getElementById(`molagora-s2`).value); i++) {
+      for (let i = 0; i < Number(document.getElementById('molagora-s2').value); i++) {
         boost += heroes.beehoo.skills.s2.enhance[i];
       }
       return boost;
@@ -1331,7 +1331,7 @@ const heroes = {
     form: [elements.caster_hp_pc],
     atkUp: () => {
       let boost = 0.0051;
-      for (let i = 0; i < Number(document.getElementById(`molagora-s2`).value); i++) {
+      for (let i = 0; i < Number(document.getElementById('molagora-s2').value); i++) {
         boost += 0.0051 * heroes.blood_blade_karin.skills.s2.enhance[i];
       }
       return 1+(100-elements.caster_hp_pc.value())*boost;
@@ -1575,14 +1575,14 @@ const heroes = {
         pow: 1,
         flat: (soulburn) => {
           if (soulburn) {
-            return elements.caster_max_hp.value() * (elements.caster_hp_pc.value() < 75 ? 0.1 : 0.08)
+            return elements.caster_max_hp.value() * (elements.caster_hp_pc.value() < 75 ? 0.1 : 0.08);
           } else {
-            return elements.caster_max_hp.value() * (elements.caster_hp_pc.value() < 75 ? 0.0625 : 0.05)
+            return elements.caster_max_hp.value() * (elements.caster_hp_pc.value() < 75 ? 0.0625 : 0.05);
           }
         },
         flatTip: (soulburn) => (elements.caster_hp_pc.value() < 75)
-            ? { caster_hp_pc_under_hp_threshold: soulburn ? 10 : 6.25 }
-            : { caster_hp_pc_over_hp_threshold: soulburn ? 8 : 5 },
+          ? { caster_hp_pc_under_hp_threshold: soulburn ? 10 : 6.25 }
+          : { caster_hp_pc_over_hp_threshold: soulburn ? 8 : 5 },
         enhance: [0.05, 0, 0, 0.1, 0, 0.15],
         aoe: true,
       }
@@ -1801,7 +1801,7 @@ const heroes = {
         critDmgBoost: () => 0.2,
         mult: () => {
           let mult = 0;
-          for (let i = 0; i < Number(document.getElementById(`molagora-s2`).value); i++) {
+          for (let i = 0; i < Number(document.getElementById('molagora-s2').value); i++) {
             mult += heroes.challenger_dominiel.skills.s2.enhance[i];
           }
 
@@ -1809,10 +1809,10 @@ const heroes = {
         },
         multTip: () => {
           let mult = 0;
-          for (let i = 0; i < Number(document.getElementById(`molagora-s2`).value); i++) {
+          for (let i = 0; i < Number(document.getElementById('molagora-s2').value); i++) {
             mult += heroes.challenger_dominiel.skills.s2.enhance[i];
           }
-          return { per_crit_hit: (5.4 + (5.4*mult)).toFixed(2) }
+          return { per_crit_hit: (5.4 + (5.4*mult)).toFixed(2) };
         },
         enhance: [0.05, 0.05, 0.05, 0.1, 0.15],
         single: true,
@@ -1897,7 +1897,7 @@ const heroes = {
         pow: 0.9,
         flat: () => elements.caster_max_hp.value()*0.2,
         flatTip: () => ({ caster_max_hp: 20 }),
-        penetrate: () => document.getElementById(`elem-adv`).checked ? 0.4 : 0,
+        penetrate: () => document.getElementById('elem-adv').checked ? 0.4 : 0,
         enhance: [0.05, 0.05, 0.05, 0, 0, 0.1, 0.15],
         single: true,
       }
@@ -1964,10 +1964,10 @@ const heroes = {
         pow: 1,
         mult: () => {
           switch (elements.nb_targets.value()) {
-            case 3: return 1.267;
-            case 2: return 1.534;
-            case 1: return 1.801;
-            default: return 1;
+          case 3: return 1.267;
+          case 2: return 1.534;
+          case 1: return 1.801;
+          default: return 1;
           }
         },
         multTip: () => ({ per_fewer_target: 26.7 }),
@@ -2176,13 +2176,13 @@ const heroes = {
       }
     }
   },
-   closer_charles: {
+  closer_charles: {
     name:  'Closer Charles',
     element: element.dark,
     classType: classType.thief,
     baseAtk: 1228,
     form: [elements.target_hp_pc, elements.caster_perception],
-     skills: {
+    skills: {
       s1: {
         rate: 1,
         pow: 1,
@@ -2245,7 +2245,7 @@ const heroes = {
     form: [elements.target_max_hp, elements.target_hp_pc, elements.attack_skill_stack_5],
     atkUp: () => {
       let boost = 0.1;
-      for (let i = 0; i < Number(document.getElementById(`molagora-s2`).value); i++) {
+      for (let i = 0; i < Number(document.getElementById('molagora-s2').value); i++) {
         boost += heroes.commander_lorina.skills.s2.enhance[i];
       }
 
@@ -2733,7 +2733,7 @@ const heroes = {
     barrier: () => {
       const scale = [0, 0.1, 0, 0.15, 0];
       let boost = 1.0;
-      for (let i = 0; i < Number(document.getElementById(`molagora-s1`).value); i++) {
+      for (let i = 0; i < Number(document.getElementById('molagora-s1').value); i++) {
         boost += scale[i];
       }
 
@@ -3192,7 +3192,7 @@ const heroes = {
       if (!elements.caster_has_debuff.value()) return 1;
 
       let boost = 0.2;
-      for (let i = 0; i < Number(document.getElementById(`molagora-s2`).value); i++) {
+      for (let i = 0; i < Number(document.getElementById('molagora-s2').value); i++) {
         boost += heroes.gloomyrain.skills.s2.enhance[i];
       }
 
@@ -3291,7 +3291,7 @@ const heroes = {
     dot: [dot.bleed],
     innateAtkUp: () => {
       let boost = 0.5;
-      for (let i = 0; i < Number(document.getElementById(`molagora-s2`).value); i++) {
+      for (let i = 0; i < Number(document.getElementById('molagora-s2').value); i++) {
         boost += heroes.gunther.skills.s2.enhance[i];
       }
 
@@ -3399,10 +3399,10 @@ const heroes = {
         pow: 1,
         mult: () => {
           switch (elements.nb_targets.value()) {
-            case 1: return 2.5;
-            case 2: return 2.0;
-            case 3: return 1.5;
-            default: return 1.0;
+          case 1: return 2.5;
+          case 2: return 2.0;
+          case 3: return 1.5;
+          default: return 1.0;
           }
         },
         multTip: () => ({ per_fewer_target: 50 }),
@@ -3552,7 +3552,7 @@ const heroes = {
     barrier: (hero) => hero.getAtk()*0.45,
     innateAtkUp: () => {
       let boost = 0.20;
-      for (let i = 0; i < Number(document.getElementById(`molagora-s2`).value); i++) {
+      for (let i = 0; i < Number(document.getElementById('molagora-s2').value); i++) {
         boost += heroes.hwayoung.skills.s2.enhance[i];
       }
       return boost;
@@ -3573,8 +3573,8 @@ const heroes = {
         rate: 1.25,
         pow: 1,
         penetrate:() => elements.caster_max_hp.value() < elements.target_max_hp.value()
-            ? Math.min((elements.target_max_hp.value() - elements.caster_max_hp.value()) * 0.000091, 1)
-            : 0,
+          ? Math.min((elements.target_max_hp.value() - elements.caster_max_hp.value()) * 0.000091, 1)
+          : 0,
         penetrateTip: () => ({ caster_vs_target_hp_diff: 9.1 }),
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
         single: true,
@@ -3745,14 +3745,14 @@ const heroes = {
     barrier: () => {
       const scale = [0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.1];
       let boost = 1.0;
-      for (let i = 0; i < Number(document.getElementById(`molagora-s2`).value); i++) {
+      for (let i = 0; i < Number(document.getElementById('molagora-s2').value); i++) {
         boost += scale[i];
       }
 
       return elements.caster_max_hp.value()*0.18*boost;
     },
     barrier2: () => {
-      return elements.caster_max_hp.value()*0.2
+      return elements.caster_max_hp.value()*0.2;
     },
     skills: {
       s1: {
@@ -4433,7 +4433,7 @@ const heroes = {
     form: [elements.caster_full_fighting_spirit, elements.attack_skill_stack_3],
     atkUp: () => {
       let boost = 0.15;
-      for (let i = 0; i < Number(document.getElementById(`molagora-s2`).value); i++) {
+      for (let i = 0; i < Number(document.getElementById('molagora-s2').value); i++) {
         boost += heroes.landy.skills.s2.enhance[i];
       }
 
@@ -4810,7 +4810,7 @@ const heroes = {
       s3: {
         rate: 1.5,
         pow: 1,
-        mult: () => document.getElementById(`elem-adv`).checked ? 1.5 : 1,
+        mult: () => document.getElementById('elem-adv').checked ? 1.5 : 1,
         multTip: () => ({ elemental_advantage: 50 }),
         penetrate: () => 0.5,
         enhance: [0.05, 0.05, 0, 0.05, 0.15],
@@ -4820,7 +4820,7 @@ const heroes = {
         name: infoLabel('lqc_s3_splash'),
         rate: 0,
         pow: 0,
-        afterMath: () => document.getElementById(`elem-adv`).checked ? { atkPercent: 1.2, penetrate: 0.7 } : null,
+        afterMath: () => document.getElementById('elem-adv').checked ? { atkPercent: 1.2, penetrate: 0.7 } : null,
         noCrit: true,
         noMiss: true,
       }
@@ -4841,7 +4841,7 @@ const heroes = {
       s3: {
         rate: 1.5,
         pow: 1,
-        mult: () => document.getElementById(`elem-adv`).checked ? 1.3 : 1,
+        mult: () => document.getElementById('elem-adv').checked ? 1.3 : 1,
         multTip: () => ({ elemental_advantage: 30 }),
         penetrate: () => 0.5,
         enhance: [0.05, 0.05, 0, 0.05, 0.15],
@@ -4851,7 +4851,7 @@ const heroes = {
         name: infoLabel('lqc_s3_splash'),
         rate: 0,
         pow: 0,
-        afterMath: () => document.getElementById(`elem-adv`).checked ? { atkPercent: 1.2, penetrate: 0.7 } : null,
+        afterMath: () => document.getElementById('elem-adv').checked ? { atkPercent: 1.2, penetrate: 0.7 } : null,
         noCrit: true,
         noMiss: true,
       }
@@ -4899,7 +4899,7 @@ const heroes = {
     form: [elements.target_max_hp, elements.target_hp_pc, elements.attack_skill_stack_5],
     atkUp: () => {
       let boost = 0.1;
-      for (let i = 0; i < Number(document.getElementById(`molagora-s2`).value); i++) {
+      for (let i = 0; i < Number(document.getElementById('molagora-s2').value); i++) {
         boost += heroes.lorina.skills.s2.enhance[i];
       }
 
@@ -5053,7 +5053,7 @@ const heroes = {
       }
 
       let mult = 1.2;
-      for (let i = 0; i < Number(document.getElementById(`molagora-s2`).value); i++) {
+      for (let i = 0; i < Number(document.getElementById('molagora-s2').value); i++) {
         mult += heroes.luna.skills.s2.enhance[i];
       }
 
@@ -5127,10 +5127,10 @@ const heroes = {
         pow: 0.95,
         mult: () => {
           let extra = 0;
-          for (let i = 0; i < Number(document.getElementById(`molagora-s1`).value); i++) {
+          for (let i = 0; i < Number(document.getElementById('molagora-s1').value); i++) {
             extra += heroes.martial_artist_ken.skills.s1.enhance[i];
           }
-          return (1 + (100-elements.caster_hp_pc.value())*0.004 + extra)
+          return (1 + (100-elements.caster_hp_pc.value())*0.004 + extra);
         },
         multTip: () => ({ caster_lost_hp_pc: 40 }),
         enhance: [0.05, 0.1, 0.15],
@@ -5310,10 +5310,10 @@ const heroes = {
         pow: 0.9,
         mult: () => {
           switch (elements.nb_targets.value()) {
-            case 1: return 1.9;
-            case 2: return 1.6;
-            case 3: return 1.3;
-            default: return 1;
+          case 1: return 1.9;
+          case 2: return 1.6;
+          case 3: return 1.3;
+          default: return 1;
           }
         },
         multTip: () => ({ per_fewer_target: 30 }),
@@ -5326,10 +5326,10 @@ const heroes = {
         pow: 0.9,
         mult: () => {
           switch (elements.nb_targets.value()) {
-            case 1: return 1.9;
-            case 2: return 1.6;
-            case 3: return 1.3;
-            default: return 1;
+          case 1: return 1.9;
+          case 2: return 1.6;
+          case 3: return 1.3;
+          default: return 1;
           }
         },
         multTip: () => ({ per_fewer_target: 30 }),
@@ -5925,7 +5925,7 @@ const heroes = {
     baseAtk: 1075,
     barrier: () => {
       let boost = 1.0;
-      for (let i = 0; i < Number(document.getElementById(`molagora-s3`).value); i++) {
+      for (let i = 0; i < Number(document.getElementById('molagora-s3').value); i++) {
         boost += heroes.peira.skills.s3.enhance[i];
       }
       return 180*boost*60;
@@ -6504,14 +6504,14 @@ const heroes = {
     barrier: () => {
       const scale = [0, 0.05, 0, 0.1, 0, 0.1, 0];
       let boost = 1.0;
-      for (let i = 0; i < Number(document.getElementById(`molagora-s1`).value); i++) {
+      for (let i = 0; i < Number(document.getElementById('molagora-s1').value); i++) {
         boost += scale[i];
       }
 
       return elements.caster_max_hp.value()*0.1*boost;
     },
     barrier2: () => {
-      return elements.caster_max_hp.value()*0.15
+      return elements.caster_max_hp.value()*0.15;
     },
     skills: {
       s1: {
@@ -6614,14 +6614,14 @@ const heroes = {
         pow: 0.9,
         mult: () => {
           switch (elements.nb_targets.value()) {
-            case 3:
-              return 1.2;
-            case 2:
-              return 1.4;
-            case 1:
-              return 1.6;
-            default:
-              return 1;
+          case 3:
+            return 1.2;
+          case 2:
+            return 1.4;
+          case 1:
+            return 1.6;
+          default:
+            return 1;
           }
         },
         multTip: () => ({per_fewer_target: 20}),
@@ -6701,7 +6701,7 @@ const heroes = {
         pow: 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
         penetrate: () => 0.5,
-        mult: () => elements.skill_tree_completed.value() && document.getElementById(`elem-adv`).checked ? 1.2 : 1,
+        mult: () => elements.skill_tree_completed.value() && document.getElementById('elem-adv').checked ? 1.2 : 1,
         multTip: () => ({ skill_tree_elemental: 20 }),
         single: true,
       },
@@ -7277,7 +7277,7 @@ const heroes = {
     form: [elements.target_nb_debuff, elements.dead_people, elements.s3_on_cooldown],
     atkUp: () => {
       let buff = 0.07;
-      for (let i = 0; i < Number(document.getElementById(`molagora-s2`).value); i++) {
+      for (let i = 0; i < Number(document.getElementById('molagora-s2').value); i++) {
         buff += heroes.specter_tenebria.skills.s2.enhance[i];
       }
       return 1 + Math.min(elements.dead_people.value(), 5)*buff;
@@ -7342,10 +7342,10 @@ const heroes = {
         pow: 1,
         mult: () => {
           switch (elements.nb_targets.value()) {
-            case 1: return 1.6;
-            case 2: return 1.4;
-            case 3: return 1.2;
-            default: return 1;
+          case 1: return 1.6;
+          case 2: return 1.4;
+          case 3: return 1.2;
+          default: return 1;
           }
         },
         multTip: () => ({per_fewer_target: 20}),
@@ -7463,7 +7463,7 @@ const heroes = {
     dot: [dot.bomb],
     innateAtkUp: () => {
       let boost = 0.35;
-      for (let i = 0; i < Number(document.getElementById(`molagora-s2`).value); i++) {
+      for (let i = 0; i < Number(document.getElementById('molagora-s2').value); i++) {
         boost += heroes.summertime_iseria.skills.s2.enhance[i];
       }
 
@@ -7528,7 +7528,7 @@ const heroes = {
     form: [elements.attack_skill_stack_10],
     atkUp: () => {
       let boost = 0.025;
-      for (let i = 0; i < Number(document.getElementById(`molagora-s2`).value); i++) {
+      for (let i = 0; i < Number(document.getElementById('molagora-s2').value); i++) {
         boost += heroes.suthan.skills.s2.enhance[i];
       }
       return 1 + (boost * elements.attack_skill_stack_10.value());
@@ -8007,10 +8007,10 @@ const heroes = {
         pow: 1,
         mult: () => {
           switch (elements.nb_targets.value()) {
-            case 3: return 1.2;
-            case 2: return 1.4;
-            case 1: return 1.6;
-            default: return 1;
+          case 3: return 1.2;
+          case 2: return 1.4;
+          case 1: return 1.6;
+          default: return 1;
           }
         },
         multTip: () => ({ per_fewer_target: 20 }),
@@ -8037,10 +8037,10 @@ const heroes = {
       s1: {
         rate: 1,
         pow: 1,
-        mult: () => elements.skill_tree_completed.value() ? (1.1 + (document.getElementById(`elem-adv`).checked ? 0.25 : 0)) : 1,
+        mult: () => elements.skill_tree_completed.value() ? (1.1 + (document.getElementById('elem-adv').checked ? 0.25 : 0)) : 1,
         multTip: () => (elements.skill_tree_completed.value() ? ({
           skill_tree: 10,
-          ...(document.getElementById(`elem-adv`).checked ? { elemental_advantage: 25 } : {}),
+          ...(document.getElementById('elem-adv').checked ? { elemental_advantage: 25 } : {}),
         }) : null),
         enhance: [0.05, 0, 0.05, 0, 0.05, 0.05, 0.1],
         single: true,
@@ -8048,7 +8048,7 @@ const heroes = {
       s2: {
         soulburn: true,
         rate: (soulburn) => soulburn ? 2.2 : 1.5,
-        mult: () => elements.skill_tree_completed.value() && document.getElementById(`elem-adv`).checked ? 1.25 : 1,
+        mult: () => elements.skill_tree_completed.value() && document.getElementById('elem-adv').checked ? 1.25 : 1,
         multTip: () => ({ elemental_advantage: 25 }),
         pow: 0.9,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.1],
@@ -8296,7 +8296,7 @@ const heroes = {
       s3: {
         rate: 2,
         pow: 0.95,
-        penetrate: () => document.getElementById(`target-silenced`).checked ? 0.7 : 0,
+        penetrate: () => document.getElementById('target-silenced').checked ? 0.7 : 0,
         enhance: [0.05, 0.05, 0, 0.05, 0.1, 0.1],
         single: true,
       }
@@ -8374,9 +8374,9 @@ const heroes = {
         mult: () => {
           let mult = 1 + elements.caster_speed.value()*0.00075;
           switch (elements.nb_targets.value()) {
-            case 3: mult += 0.2; break;
-            case 2: mult += 0.4; break;
-            case 1: mult += 0.6; break;
+          case 3: mult += 0.2; break;
+          case 2: mult += 0.4; break;
+          case 1: mult += 0.6; break;
           }
           return mult;
         },
@@ -8390,10 +8390,10 @@ const heroes = {
         pow: 0.8,
         mult: () => {
           switch (elements.nb_targets.value()) {
-            case 3: return 1.2;
-            case 2: return 1.4;
-            case 1: return 1.6;
-            default: return 1;
+          case 3: return 1.2;
+          case 2: return 1.4;
+          case 1: return 1.6;
+          default: return 1;
           }
         },
         multTip: () => ({ per_fewer_target: 20 }),
@@ -8485,15 +8485,15 @@ const heroes = {
         flatTip: () => ({ caster_max_hp: 12 }),
         mult: () => {
           let extra = 0;
-          for (let i = 0; i < Number(document.getElementById(`molagora-s2`).value); i++) {
+          for (let i = 0; i < Number(document.getElementById('molagora-s2').value); i++) {
             extra += heroes.zeno.skills.s2.enhance[i];
           }
 
-          return 1 + elements.non_attack_skill_stack_8.value()*(0.07+extra)
+          return 1 + elements.non_attack_skill_stack_8.value()*(0.07+extra);
         },
         multTip: () => {
           let extra = 0;
-          for (let i = 0; i < Number(document.getElementById(`molagora-s2`).value); i++) {
+          for (let i = 0; i < Number(document.getElementById('molagora-s2').value); i++) {
             extra += heroes.zeno.skills.s2.enhance[i]*100;
           }
 

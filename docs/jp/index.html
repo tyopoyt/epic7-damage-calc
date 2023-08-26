@@ -1,3 +1,5 @@
+<!-- eslint-disable no-irregular-whitespace -->
+<!DOCTYPE html>
 <html id="root" lang="jp">
     <head>
         <script>
@@ -13,19 +15,19 @@
             })(window,document,'script','dataLayer','GTM-M7H68RW');
         </script>
 
-        <meta charset="utf-8" />
-        <meta name="keywords" content="エピックセブン　ダメージ　計算機, エピなな　ダメージ 計算機, Epic Seven ダメージ 計算機" />
-        <meta name="description" content="エピックセブン用ダメージ計算機。英雄のステータスを入力してスキルダメージの計算を行います。" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta charset="utf-8">
+        <meta name="keywords" content="エピックセブン　ダメージ　計算機, エピなな　ダメージ 計算機, Epic Seven ダメージ 計算機">
+        <meta name="description" content="エピックセブン用ダメージ計算機。英雄のステータスを入力してスキルダメージの計算を行います。">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.18/dist/css/bootstrap-select.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icon-css@3.5.0/css/flag-icon.min.css">
-        <link rel="stylesheet" href="../style.css" />
-        <link rel="stylesheet" href="../flags/flags.css" />
+        <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="../flags/flags.css">
         <!-- IE -->
-        <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico" />
+        <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
         <!-- other browsers -->
-        <link rel="icon" type="image/x-icon" href="../favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="../favicon.ico">
 
         <title>エピックセブン　ダメージ計算機</title>
     </head>
@@ -38,11 +40,21 @@
                         日本語 <span class="flag flag-jp"> </span>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="../index.html" lang="en-us">English <span class="flag flag-us"> </span></a>
-                        <a class="dropdown-item" href="../kr/index.html" lang="ko">한국어 <span class="flag flag-kr"> </span></a>
-                        <a class="dropdown-item" href="../zhTW/index.html" lang="zh-tw">繁體中文 <span class="flag flag-tw"> </span></a>
-                        <a class="dropdown-item" href="../zh/index.html" lang="zh-cn">简体中文 <span class="flag flag-cn"> </span></a>
-                        <a class="dropdown-item" href="../br/index.html" lang="pt">Português Brasil <span class="flag flag-br"> </span></a>
+                        <a class="dropdown-item" href="../index.html" lang="en-us">
+                            English <span class="flag flag-us"> </span>
+                        </a>
+                        <a class="dropdown-item" href="../kr/index.html" lang="ko">
+                            한국어 <span class="flag flag-kr"> </span>
+                        </a>
+                        <a class="dropdown-item" href="../zhTW/index.html" lang="zh-tw">
+                            繁體中文 <span class="flag flag-tw"> </span>
+                        </a>
+                        <a class="dropdown-item" href="../zh/index.html" lang="zh-cn">
+                            简体中文 <span class="flag flag-cn"> </span>
+                        </a>
+                        <a class="dropdown-item" href="../br/index.html" lang="pt">
+                            Português Brasil <span class="flag flag-br"> </span>
+                        </a>
                     </div>
                 </li>
             </ul>
@@ -51,7 +63,7 @@
             <ul class="navbar-nav">
                 <!-- <li class="nav-item">
                     <a class="nav-link" href="https://www.e7leaks.com/" target="_blank">e7leaks <i class="fas fa-external-link-alt fa-xs"></i></a>
-                </li> -->
+                    </li> -->
                 <li class="nav-item">
                     <a class="nav-link" href="effectiveness.html">効果発動率計算機</a>
                 </li>
@@ -73,12 +85,12 @@
                 </li>
             </ul>
         </nav>
-<!--        <div class="alert alert-warning alert-dismissible fade show" role="alert">-->
-<!--            <strong>Jan 23, Update:</strong> Added New Hero: Pavel-->
-<!--            <button type="button" class="close" data-dismiss="alert" aria-label="Close">-->
-<!--                <span aria-hidden="true">&times;</span>-->
-<!--            </button>-->
-<!--        </div>-->
+        <!--        <div class="alert alert-warning alert-dismissible fade show" role="alert">-->
+        <!--            <strong>Jan 23, Update:</strong> Added New Hero: Pavel-->
+        <!--            <button type="button" class="close" data-dismiss="alert" aria-label="Close">-->
+        <!--                <span aria-hidden="true">&times;</span>-->
+        <!--            </button>-->
+        <!--        </div>-->
         <div>
             <div class="initial-show spinner-holder">
                 <img src="../assets/icons/loading-spinner.svg" alt="Loading spinner...">
@@ -110,7 +122,9 @@
 
                     <div class="stat-block">
                         <div class="form-group row col-sm-12">
-                            <label for="atk" class="col-md-9 col-form-label form-control-sm"><h5>攻撃力</h5></label>
+                            <label for="atk" class="col-md-9 col-form-label form-control-sm">
+                                <h5>攻撃力</h5>
+                            </label>
                             <div class="input-group input-group-sm col-md-3">
                                 <div class="input-group-prepend">
                                     <button class="btn btn-outline-secondary" type="button" id="atk-minus" onclick="minus('atk')">&minus;</button>
@@ -131,7 +145,9 @@
                             <div class="stat-block">
                                 <div class="form-group row col-sm-12">
                                     <label for="atk-pc-imprint" class="col-md-7 col-form-label form-control-sm">
-                                        <h5>攻撃力%陣形効果 <i class="far fa-question-circle fa-xs text-muted" data-toggle="tooltip" title="自身の攻撃力陣形効果（刻印集中）とチームメンバーの攻撃力陣形効果（刻印展開）の総合を入力。星6完全覚醒英雄ステータスを基準に計算する"></i></h5>
+                                        <h5>
+                                            攻撃力%陣形効果 <i class="far fa-question-circle fa-xs text-muted" data-toggle="tooltip" title="自身の攻撃力陣形効果（刻印集中）とチームメンバーの攻撃力陣形効果（刻印展開）の総合を入力。星6完全覚醒英雄ステータスを基準に計算する"></i>
+                                        </h5>
                                     </label>
                                     <div class="input-group input-group-sm col-md-5">
                                         <div class="input-group-prepend">
@@ -152,7 +168,9 @@
                             <div class="stat-block">
                                 <div class="form-group row col-sm-12">
                                     <label for="atk-pc-up" class="col-md-7 col-form-label form-control-sm">
-                                        <h5>攻撃力%上昇 <i class="far fa-question-circle fa-xs text-muted" data-toggle="tooltip" title="例: ローザ・ハルゲナ, 小さな奇跡のカード, すーぱー水鉄砲 えーす"></i></h5>
+                                        <h5>
+                                            攻撃力%上昇 <i class="far fa-question-circle fa-xs text-muted" data-toggle="tooltip" title="例: ローザ・ハルゲナ, 小さな奇跡のカード, すーぱー水鉄砲 えーす"></i>
+                                        </h5>
                                     </label>
                                     <div class="input-group input-group-sm col-md-5">
                                         <div class="input-group-prepend">
@@ -173,7 +191,9 @@
 
                     <div class="stat-block">
                         <div class="form-group row col-sm-12">
-                            <label for="crit" class="col-md-9 col-form-label form-control-sm"><h5>クリティカル　ダメージ (%)</h5></label>
+                            <label for="crit" class="col-md-9 col-form-label form-control-sm">
+                                <h5>クリティカル　ダメージ (%)</h5>
+                            </label>
                             <div class="input-group input-group-sm col-md-3">
                                 <div class="input-group-prepend">
                                     <button class="btn btn-outline-secondary" type="button" id="crit-minus" onclick="minus('crit')">&minus;</button>
@@ -191,7 +211,11 @@
 
                     <div class="stat-block">
                         <div class="form-group row col-sm-12">
-                            <label for="bonus-damage" class="col-md-9 col-form-label form-control-sm"><h5>ダメージ UP (%) <i class="far fa-question-circle fa-xs text-muted" data-toggle="tooltip" title="例: 弱点共有 , 弱点突破"></i></h5></label>
+                            <label for="bonus-damage" class="col-md-9 col-form-label form-control-sm">
+                                <h5>
+                                    ダメージ UP (%) <i class="far fa-question-circle fa-xs text-muted" data-toggle="tooltip" title="例: 弱点共有 , 弱点突破"></i>
+                                </h5>
+                            </label>
                             <div class="input-group input-group-sm col-md-3">
                                 <div class="input-group-prepend">
                                     <button class="btn btn-outline-secondary" type="button" id="bonus-minus" onclick="minus('bonus-damage')">&minus;</button>
@@ -210,69 +234,71 @@
                     <div class="form-group col-sm-12">
                         <div class="custom-control custom-checkbox custom-control-inline buff-block">
                             <input class="custom-control-input" type="checkbox" id="elem-adv" value="1.1" onchange="resolve()">
-                            <label class="custom-control-label" for="elem-adv"><span id="elem-adv-icon"></span> 有利属性</label>
+                            <label class="custom-control-label" for="elem-adv">
+                                <span id="elem-adv-icon"></span> 有利属性
+                            </label>
                         </div>
 
                         <div class="custom-control custom-checkbox custom-control-inline buff-block">
                             <input class="custom-control-input" type="checkbox" id="atk-down" value="0.5" onchange="resolve()">
                             <label class="custom-control-label" for="atk-down">
-                                <img src="../assets/debuffs/attack-debuff.png" width="20" height="20" /> 攻撃力DOWN
+                                <img src="../assets/debuffs/attack-debuff.png" width="20" height="20" alt="攻撃力DOWN"> 攻撃力DOWN
                             </label>
                         </div>
 
                         <div class="custom-control custom-checkbox custom-control-inline buff-block">
                             <input class="custom-control-input" type="checkbox" id="atk-up" value="1.5" onchange="resolve()">
                             <label class="custom-control-label" for="atk-up">
-                                <img src="../assets/buffs/attack-buff.png" width="20" height="20" /> 攻撃力UP
+                                <img src="../assets/buffs/attack-buff.png" width="20" height="20" alt="攻撃力UP"> 攻撃力UP
                             </label>
                         </div>
 
                         <div class="custom-control custom-checkbox custom-control-inline buff-block">
                             <input class="custom-control-input" type="checkbox" id="atk-up-great" value="1.75" onchange="resolve()">
                             <label class="custom-control-label" for="atk-up-great">
-                                <img src="../assets/buffs/greater-attack-buff.png" width="20" height="20" /> 攻撃力UP (大)
+                                <img src="../assets/buffs/greater-attack-buff.png" width="20" height="20" alt="攻撃力UP (大)"> 攻撃力UP (大)
                             </label>
                         </div>
 
                         <div class="custom-control custom-checkbox custom-control-inline buff-block">
                             <input class="custom-control-input" type="checkbox" id="crit-dmg-up" value="0.5" onchange="resolve()">
                             <label class="custom-control-label" for="crit-dmg-up">
-                                <img src="../assets/buffs/critical-hit-damage-buff.png" width="20" height="20" /> クリティカルダメージUP
+                                <img src="../assets/buffs/critical-hit-damage-buff.png" width="20" height="20" alt="クリティカルダメージUP"> クリティカルダメージUP
                             </label>
                         </div>
 
                         <div class="custom-control custom-checkbox custom-control-inline buff-block">
                             <input class="custom-control-input" type="checkbox" id="vigor" value="1.3" onchange="resolve()">
                             <label class="custom-control-label" for="vigor">
-                                <img src="../assets/buffs/vigor-buff.png" width="20" height="20" /> 覇気
+                                <img src="../assets/buffs/vigor-buff.png" width="20" height="20" alt="覇気"> 覇気
                             </label>
                         </div>
 
                         <div class="custom-control custom-checkbox custom-control-inline buff-block">
                             <input class="custom-control-input" type="checkbox" id="rage-set" value="0.3" onchange="resolve()">
                             <label class="custom-control-label" for="rage-set">
-                                <img src="../assets/sets/rage-set.png" width="20" height="20" /> 憤怒のセット
+                                <img src="../assets/sets/rage-set.png" width="20" height="20" alt="憤怒のセット"> 憤怒のセット
                             </label>
                         </div>
 
                         <div class="custom-control custom-checkbox custom-control-inline buff-block">
                             <input class="custom-control-input" type="checkbox" id="pen-set" value="0.15" onchange="resolve()">
                             <label class="custom-control-label" for="pen-set">
-                                <img src="../assets/sets/penetration-set.png" width="20" height="20" /> 貫通のセット
+                                <img src="../assets/sets/penetration-set.png" width="20" height="20" alt="貫通のセット"> 貫通のセット
                             </label>
                         </div>
 
                         <div class="custom-control custom-checkbox custom-control-inline buff-block">
                             <input class="custom-control-input" type="checkbox" id="torrent-set" value="0.1" onchange="resolve(); torrentSetToggled()">
                             <label class="custom-control-label" for="torrent-set">
-                                <img src="../assets/sets/torrent-set.png" width="20" height="20" /> 激流のセット
+                                <img src="../assets/sets/torrent-set.png" width="20" height="20" alt="激流のセット"> 激流のセット
                             </label>
                         </div>
                     </div>
 
                     <div id="set-num-holder">
                     </div>
-                    <hr />
+                    <hr >
                 </div>
 
                 <div id="artifact-block">
@@ -280,7 +306,9 @@
                     <div id="artifact-info"></div>
                     <div id="artifact-lvl-block" class="stat-block">
                         <div class="form-group row col-sm-12">
-                            <label for="crit" class="col-md-9 col-form-label form-control-sm"><h5>遺物レベル</h5></label>
+                            <label for="crit" class="col-md-9 col-form-label form-control-sm">
+                                <h5>遺物レベル</h5>
+                            </label>
                             <div class="input-group input-group-sm col-md-3">
                                 <div class="input-group-prepend">
                                     <button class="btn btn-outline-secondary" type="button" id="artifact-lvl-minus" onclick="minus('artifact-lvl')">&minus;</button>
@@ -296,7 +324,7 @@
                         </div>
                     </div>
                     <div id="artifact-custom-block"></div>
-                    <hr />
+                    <hr >
                 </div>
 
                 <div class="row">
@@ -364,7 +392,7 @@
                             </optgroup>
                             <optgroup label="ダメージ身代わり">
                                 <option value="ss-bellona" data-trans="30" data-reduc="0" data-defup="0" data-subtext="30%">海辺のヴェローナ (スキル2パッシブ)</option>
-                                <option value="aurius" data-trans="20" data-reduc="0"  data-defup="10" data-subtext="20% (+10% 防御力)">アウリウス (Max)</option>
+                                <option value="aurius" data-trans="20" data-reduc="0" data-defup="10" data-subtext="20% (+10% 防御力)">アウリウス (Max)</option>
                                 <option value="t-crozet" data-trans="40" data-reduc="0" data-defup="0" data-subtext="40%">無法者 クロゼ (スキル2パッシブ)</option>
                                 <option value="eaton" data-trans="30" data-reduc="0" data-defup="0" data-subtext="30%">イートン (スキル2パッシブ)</option>
                             </optgroup>
@@ -376,7 +404,9 @@
                         <div class="col-sm-6 half-left">
                             <div class="stat-block">
                                 <div class="form-group row col-sm-12">
-                                    <label for="def" class="col-md-7 col-form-label form-control-sm"><h5>防御力</h5></label>
+                                    <label for="def" class="col-md-7 col-form-label form-control-sm">
+                                        <h5>防御力</h5>
+                                    </label>
                                     <div class="input-group input-group-sm col-md-5">
                                         <div class="input-group-prepend">
                                             <button class="btn btn-outline-secondary" type="button" id="def-minus" onclick="minus('def')">&minus;</button>
@@ -396,7 +426,9 @@
                             <div class="stat-block">
                                 <div class="form-group row col-sm-12">
                                     <label for="def" class="col-md-7 col-form-label form-control-sm">
-                                        <h5>防御力 % 増加 <i class="far fa-question-circle fa-xs text-muted" data-toggle="tooltip" title="例: アウリウス, 小さな奇跡のカード, 連作【決意に満ちし兵たち】"></i></h5>
+                                        <h5>
+                                            防御力 % 増加 <i class="far fa-question-circle fa-xs text-muted" data-toggle="tooltip" title="例: アウリウス, 小さな奇跡のカード, 連作【決意に満ちし兵たち】"></i>
+                                        </h5>
                                     </label>
                                     <div class="input-group input-group-sm col-md-5">
                                         <div class="input-group-prepend">
@@ -419,7 +451,9 @@
                         <div class="col-sm-6 half-left">
                             <div class="stat-block">
                                 <div class="form-group row col-sm-12">
-                                    <label for="crit" class="col-md-7 col-form-label form-control-sm"><h5>ダメージ軽減 (%)</h5></label>
+                                    <label for="crit" class="col-md-7 col-form-label form-control-sm">
+                                        <h5>ダメージ軽減 (%)</h5>
+                                    </label>
                                     <div class="input-group input-group-sm col-md-5">
                                         <div class="input-group-prepend">
                                             <button class="btn btn-outline-secondary" type="button" id="dmg-reduc-minus" onclick="minus('dmg-reduc')">&minus;</button>
@@ -438,7 +472,9 @@
                         <div class="col-sm-6 half-right">
                             <div class="stat-block">
                                 <div class="form-group row col-sm-12">
-                                    <label for="crit" class="col-md-7 col-form-label form-control-sm"><h5>ダメージ身代わり (%)</h5></label>
+                                    <label for="crit" class="col-md-7 col-form-label form-control-sm">
+                                        <h5>ダメージ身代わり (%)</h5>
+                                    </label>
                                     <div class="input-group input-group-sm col-md-5">
                                         <div class="input-group-prepend">
                                             <button class="btn btn-outline-secondary" type="button" id="dmg-trans-minus" onclick="minus('dmg-trans')">&minus;</button>
@@ -460,39 +496,39 @@
                         <div class="custom-control custom-checkbox custom-control-inline buff-block">
                             <input class="custom-control-input" type="checkbox" id="def-up" value="0.6" onchange="resolve()">
                             <label class="custom-control-label" for="def-up">
-                                <img src="../assets/buffs/defense-buff.png" width="20" height="20" /> 防御力UP
+                                <img src="../assets/buffs/defense-buff.png" width="20" height="20" alt="防御力UP"> 防御力UP
                             </label>
                         </div>
 
                         <div class="custom-control custom-checkbox custom-control-inline buff-block">
                             <input class="custom-control-input" type="checkbox" id="target-vigor" value="0.3" onchange="resolve()">
                             <label class="custom-control-label" for="target-vigor">
-                                <img src="../assets/buffs/vigor-buff.png" width="20" height="20" /> 覇気
+                                <img src="../assets/buffs/vigor-buff.png" width="20" height="20" alt="覇気"> 覇気
                             </label>
                         </div>
 
                         <div class="custom-control custom-checkbox custom-control-inline buff-block">
                             <input class="custom-control-input" type="checkbox" id="def-down" value="-0.7" onchange="resolve()">
                             <label class="custom-control-label" for="def-down">
-                                <img src="../assets/debuffs/defense-debuff.png" width="20" height="20" /> 防御力DOWN
+                                <img src="../assets/debuffs/defense-debuff.png" width="20" height="20" alt="防御力DOWN"> 防御力DOWN
                             </label>
                         </div>
 
                         <div class="custom-control custom-checkbox custom-control-inline buff-block">
                             <input class="custom-control-input" type="checkbox" id="target" value="1.15" onchange="resolve()">
                             <label class="custom-control-label" for="target">
-                                <img src="../assets/debuffs/target-debuff.png" width="20" height="20" /> 標的
+                                <img src="../assets/debuffs/target-debuff.png" width="20" height="20" alt="標的"> 標的
                             </label>
                         </div>
                     </div>
                 </div>
 
-                <hr />
+                <hr >
 
                 <div>
                     <h4>英雄別項目</h4>
                     <div id="custom-block"></div>
-                    <hr />
+                    <hr >
                 </div>
 
 
@@ -506,30 +542,38 @@
                 ダメージ
                 <div class="btn-group" role="group">
                     <button id="compare-add-open" type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#compareAddModal">
-                        <i class="fas fa-save"></i> <span class="d-none d-md-inline">記録</span>
+                        <i class="fas fa-save"></i>
+                        <span class="d-none d-md-inline">記録</span>
                     </button>
                     <button id="compare-open" type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#compareModal">
-                        <i class="fas fa-exchange-alt"></i> <span class="d-none d-md-inline">比較</span>
+                        <i class="fas fa-exchange-alt"></i>
+                        <span class="d-none d-md-inline">比較</span>
                         <span id="compare-pool-size" class="badge badge-light">0</span>
                     </button>
                     <button id="link-share" type="button" class="btn btn-success btn-sm" onclick="copyLinkToClipboard()">
-                        <img class="icon" src="../assets/icons/share-nodes-solid.svg"> <span id="share-button-text" class="d-none d-md-inline">共有</span>
+                        <img class="icon" src="../assets/icons/share-nodes-solid.svg" alt="共有">
+                        <span id="share-button-text" class="d-none d-md-inline">共有</span>
                     </button>
                 </div>
                 <span id="barrier-block" class="badge badge-light float-right">
-                    <img src="../assets/buffs/barrier-buff.png" width="20" height="20" /> <span id="barrier"></span>
+                    <img src="../assets/buffs/barrier-buff.png" width="20" height="20" alt="バリアあ">
+                    <span id="barrier"></span>
                 </span>
                 <span id="bleed-damage-block" class="badge badge-light float-right">
-                    <img src="../assets/debuffs/bleed-debuff.png" width="20" height="20" /> <span id="bleed-damage"></span>
+                    <img src="../assets/debuffs/bleed-debuff.png" width="20" height="20" alt="出血">
+                    <span id="bleed-damage"></span>
                 </span>
                 <span id="burn-damage-block" class="badge badge-light float-right">
-                    <img src="../assets/debuffs/burn-debuff.png" width="20" height="20" /> <span id="burn-damage"></span>
+                    <img src="../assets/debuffs/burn-debuff.png" width="20" height="20" alt="烧伤">
+                    <span id="burn-damage"></span>
                 </span>
                 <span id="bomb-damage-block" class="badge badge-light float-right">
-                    <img src="../assets/debuffs/bomb-debuff.png" width="20" height="20" /> <span id="bomb-damage"></span>
+                    <img src="../assets/debuffs/bomb-debuff.png" width="20" height="20" alt="爆弾">
+                    <span id="bomb-damage"></span>
                 </span>
                 <span id="artifact-dmg-block" class="badge badge-light float-right">
-                    <i class="fas fa-tools"></i> <span id="artifact-dmg"></span>
+                    <i class="fas fa-tools"></i>
+                    <span id="artifact-dmg"></span>
                     <i class="far fa-question-circle fa-xs text-muted" data-toggle="tooltip" title="遺物によるダメージ (以下の表には加算済み)"></i>
                 </span>
             </h4>
@@ -556,9 +600,13 @@
                         <h5 class="text-uppercase">Credits</h5>
                         <p>
                             Discord: tyopoyt#1365<br>
-                            Thanks to the original creator, Maphe<br/>
-                            Thanks for the help: Thunder_God, okloio, haie<br/>
-                            Translation: Rano / TriATK <span class="flag-icon flag-icon-cn"></span> / <i class="fas fa-user-secret"></i> <span class="flag-icon flag-icon-kr"></span> / Tagle <span class="flag-icon flag-icon-jp"></span> / RenanCrimininBR <span class="flag-icon flag-icon-br"></span>
+                            Thanks to the original creator, Maphe<br>
+                            Thanks for the help: Thunder_God, okloio, haie<br>
+                            Translation: Rano / TriATK <span class="flag-icon flag-icon-cn"></span>
+                            / <i class="fas fa-user-secret"></i>
+                            <span class="flag-icon flag-icon-kr"></span>
+                            / Tagle <span class="flag-icon flag-icon-jp"></span>
+                            / RenanCrimininBR <span class="flag-icon flag-icon-br"></span>
                         </p>
                     </div>
                     <hr class="clearfix w-100 d-md-none pb-3">
@@ -635,7 +683,7 @@
                         <div id="damage-comparison-block">
                             <table class="table table-bordered table-sm col-sm-12">
                                 <thead class="table-secondary">
-                                <tr id="damage-header"></tr>
+                                    <tr id="damage-header"></tr>
                                 </thead>
                                 <tbody id="damage-comparison"></tbody>
                             </table>

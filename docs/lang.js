@@ -135,7 +135,7 @@ const i18n = {
       }
     },
     form: {
-      nb_sets: "Number of Sets"
+      nb_sets: 'Number of Sets'
     },
     info: {
       alencia_trample: 'Trample',
@@ -175,7 +175,7 @@ const i18n = {
       adlay: 'アドレー',
       adventurer_ras: '冒険者 ラス',
       ainos: 'アイノス',
-      ainos: 'アイノス 2.0',
+      ainos_2_0: 'アイノス 2.0',
       ains: 'エインズ',
       aither: 'アイテール',
       alencia: 'アレンシア',
@@ -519,7 +519,7 @@ const i18n = {
       torn_sleeve: '破れた着物',
       uberius_tooth: 'ユーベリウスの牙',
       victorious_flag: '勝利の旗',
-      violet_talisman: "紫菫の輝き",
+      violet_talisman: '紫菫の輝き',
       wind_rider: '旋風の操手',
       wings_of_light_and_shadow: '光影の双翼',
     },
@@ -527,7 +527,7 @@ const i18n = {
       link_copied: 'コピーしました!',
       nb_targets: '敵数',
       nb_hits: 'ヒット数',
-      nb_sets: "セット数",
+      nb_sets: 'セット数',
       share: '共有',
       enemy_defeated: '自身は敵を倒しました',
       target_max_hp: 'ターゲットのの生命力上限値',
@@ -635,7 +635,7 @@ const i18n = {
       adlay: '亞迪賴',
       adventurer_ras: '冒險家拉斯',
       ainos: '艾諾斯',
-      ainos: '艾諾斯 2.0',
+      ainos_2_0: '艾諾斯 2.0',
       ains: '艾因茲',
       aither: '埃德勒',
       alencia: '艾蓮西雅',
@@ -1329,7 +1329,7 @@ const i18n = {
       adlay: '亚迪赖',
       adventurer_ras: '冒险家拉斯',
       ainos: '艾诺斯',
-      ainos: '艾诺斯 2.0',
+      ainos_2_0: '艾诺斯 2.0',
       ains: '艾因兹',
       aither: '埃德勒',
       alencia: '艾莲西雅',
@@ -2008,7 +2008,7 @@ const i18n = {
       unreleased_hero: '<strong>注意</strong>：该英雄尚未发布，技能倍数可能会发生变化。',
       victorious_flag: '必须勾选属性克制才能看到效果, 对光暗英雄无效.',
       yoonryoung_slash: '闪光砍击'
-      }
+    }
   },
   kr: {
     heroes: {
@@ -2030,7 +2030,7 @@ const i18n = {
       ae_winter: 'ae-윈터',
       ains: '에인즈',
       ainos: '아이노스',
-      ainos: '아이노스 2.0',
+      ainos_2_0: '아이노스 2.0',
       aither: '아이테르',
       alencia: '알렌시아',
       alexa: '알렉사',
@@ -2319,91 +2319,91 @@ const i18n = {
       zio: '지오',
     },
     nicknames: {
-      adventurer_ras: "모라스",
+      adventurer_ras: '모라스',
       ae_ningning: 'ae닝닝',
       ae_winter: 'ae윈터',
-      alencia: "할매용",
-      all_rounder_wanda: "만다",
+      alencia: '할매용',
+      all_rounder_wanda: '만다',
       ambitious_tywin: '야이윈 야타',
       angel_of_light_angelica: '천젤',
       angelic_montmorancy: '수몽모',
-      apocalypse_ravi: "월라비 화라비",
+      apocalypse_ravi: '월라비 화라비',
       arbiter_vildred: '집빌',
-      armin: "풀밍",
+      armin: '풀밍',
       assassin_cartuja: '암카',
       assassin_cidd: '암시더',
       assassin_coli: '암콜',
       auxiliary_lots: '보랏츠',
-      basar: "개장수",
-      bad_cat_armin: "배아밍 배밍",
+      basar: '개장수',
+      bad_cat_armin: '배아밍 배밍',
       benevolent_romann: '자로만',
-      blaze_dingo: "열딩고",
+      blaze_dingo: '열딩고',
       blood_blade_karin: '혈카',
-      blood_moon_haste: "월헤이 적헤이",
+      blood_moon_haste: '월헤이 적헤이',
       briar_witch_iseria: '월세',
-      captain_rikoris: "선코리스",
-      carmainerose: "불밴시",
-      celestial_mercedes: "외벤츠 외우주",
-      celine: "이모",
-      cermia:"첼미",
+      captain_rikoris: '선코리스',
+      carmainerose: '불밴시',
+      celestial_mercedes: '외벤츠 외우주',
+      celine: '이모',
+      cermia:'첼미',
       challenger_dominiel: '뚀미',
       champion_zerato: '월라토 승라토',
-      chaos_inquisitor: "도추자",
+      chaos_inquisitor: '도추자',
       chaos_sect_axe: '갓끼병',
-      charles: "철수",
+      charles: '철수',
       closer_charles: '종찰스',
-      commander_lorina: "지리나",
-      commander_pavel: "월파벨 사파벨",
-      conqueror_lilias: "지릴리",
-      corvus: "불할배",
+      commander_lorina: '지리나',
+      commander_pavel: '월파벨 사파벨',
+      conqueror_lilias: '지릴리',
+      corvus: '불할배',
       crescent_moon_rin: '초무링 월링',
       crimson_armin: '홍밍',
       dark_corvus: '흑우',
       desert_jewel_basar: '보석바 월사르',
-      destina: "데티",
+      destina: '데티',
       designer_lilibet: '디리벳',
-      elphelt_valentine: "엘펠",
-      elson: "우웅",
+      elphelt_valentine: '엘펠',
+      elson: '우웅',
       fairytale_tenebria: '엘테네 메테네',
       faithless_lidica: '불디카',
       falconer_kluri: '매루리',
       fallen_cecilia: '나세실',
       fighter_maya: '전마야',
-      free_spirit_tieria: "월디에 여디에",
+      free_spirit_tieria: '월디에 여디에',
       general_purrgis: '대퍼 머지스',
-      guider_aither: "금보추",
+      guider_aither: '금보추',
       holiday_yufine: '해피네',
       inferno_khawazu: '광주 팡주',
       jack_o: '잭오',
       judge_kise: '심키세',
-      kayron: "또너야 또일론",
+      kayron: '또너야 또일론',
       kitty_clarissa: '냥클',
-      krau: "우리형",
+      krau: '우리형',
       landy: '청장님',
       last_rider_krau: '배민우 배달의민족 라라우',
-      lilibet: "로리벳",
+      lilibet: '로리벳',
       lionheart_cermia: '사체르 사첼',
-      little_queen_charlotte: "월샬롯",
-      luluca: "륵륵카",
+      little_queen_charlotte: '월샬롯',
+      luluca: '륵륵카',
       maid_chloe: '메클',
       martial_artist_ken: '월켄 무켄 월오독',
-      mascot_hazel: "마이즐",
-      melissa: "라이징스타",
-      mercedes: "벤츠",
-      mistychain: "물밴시",
+      mascot_hazel: '마이즐',
+      melissa: '라이징스타',
+      mercedes: '벤츠',
+      mistychain: '물밴시',
       moon_bunny_dominiel: '달도미',
       operator_sigret: '오크',
-      pearlhorizon: "풀밴시",
+      pearlhorizon: '풀밴시',
       pirate_captain_flan: '갱플랑 해플랑',
-      remnant_violet: "잔비올",
-      researcher_carrot: "연캐롯",
-      righteous_thief_roozid: "의지드",
-      roaming_warrior_leo: "월레오",
-      roana: "맘마줘",
+      remnant_violet: '잔비올',
+      researcher_carrot: '연캐롯',
+      righteous_thief_roozid: '의지드',
+      roaming_warrior_leo: '월레오',
+      roana: '맘마줘',
       sage_baal_and_sezan: '현바알 월바알',
       seaside_bellona: '해로나 해벨',
-      sez: "세한뚜",
-      shadow_rose: "그로제",
+      sez: '세한뚜',
+      shadow_rose: '그로제',
       shooting_star_achates: '슈아카',
       silver_blade_aramintha: '아다민타 월아라 백아라',
       sinful_angelica: '죄젤',
@@ -2412,15 +2412,15 @@ const i18n = {
       summer_break_charlotte: '여샬 물샬 해샬',
       summertime_iseria: '남국 남세',
       sylvan_sage_vivian: '현비',
-      tamarinne: "갤주",
-      taranor_guard: "근부",
-      tempest_surin: "풍수린",
-      tenebria: "짭갤주 불테네",
+      tamarinne: '갤주',
+      taranor_guard: '근부',
+      tempest_surin: '풍수린',
+      tenebria: '짭갤주 불테네',
       troublemaker_crozet: '무로제',
-      vivian: "네네안",
+      vivian: '네네안',
       wanderer_silk: '방실이',
-      watcher_schuri: "주슈리",
-      yufine: "애기용 윾괴비",
+      watcher_schuri: '주슈리',
+      yufine: '애기용 윾괴비',
     },
     artifacts: {
       no_proc: '아티팩트 효과 없음',
@@ -2474,11 +2474,9 @@ const i18n = {
       torn_sleeve: '찢어진 오른 소매',
       uberius_tooth: '유베리우스의 어금니',
       victorious_flag: '승전의 깃발',
-      violet_talisman: "보랏빛 탈리스만",
+      violet_talisman: '보랏빛 탈리스만',
       wind_rider: '윈드라이더',
       wings_of_light_and_shadow: '명암의 쌍익',
-    },
-    info: {
     },
     form: {
       allies_nb_buff: '아군 버프 수',
@@ -2583,7 +2581,7 @@ const i18n = {
         allies_buff: '버프 개수당 +{v}',
         caster_target_atk_diff: '공격력 차이당 {v}%',
         caster_target_spd_diff: '속도 차이당 {v}%',
-        caster_target_spd_diff: '방어력의 차이당 {v}%',
+        caster_target_def_diff: '방어력의 차이당 {v}%',
         caster_defense: '시전자 방어력의 {v}%',
         caster_left_hp_pc: '시전자 남은 체력% {v}%',
         caster_lost_hp: '시전자 남은 체력 {v}%',
@@ -2652,7 +2650,7 @@ const i18n = {
       adventurer_ras: 'Ras Aventureiro',
       ains: 'Ains',
       ainos: 'Ainos',
-      ainos: 'Ainos 2.0',
+      ainos_2_0: 'Ainos 2.0',
       aither: 'Aither',
       alencia: 'Alencia',
       alexa: 'Alexa',
@@ -2943,10 +2941,10 @@ const i18n = {
     nicknames: {
       angel_of_light_angelica: 'AOEL',
       angelic_montmorancy: 'momo',
-      apocalypse_ravi: "Apoc apo ravi",
+      apocalypse_ravi: 'Apoc apo ravi',
       arbiter_vildred: 'Árbitro arb arby',
       challenger_dominiel: 'cdom',
-      conqueror_lilias: "clilias",
+      conqueror_lilias: 'clilias',
       designer_lilibet: 'dlilibete',
       fairytale_tenebria: 'ftene',
       faithless_lidica: 'flidica',
@@ -2954,7 +2952,7 @@ const i18n = {
       krau: 'Krau',
       lionheart_cermia: 'Lermia',
       moon_bunny_dominiel: 'Bdom',
-      remnant_violet: "Riolet rioleto",
+      remnant_violet: 'Riolet rioleto',
       seaside_bellona: 'SSB',
       specimen_sez: 'spez',
       specter_tenebria: 'stene',
@@ -2963,7 +2961,7 @@ const i18n = {
       no_proc: 'Sem Artefato',
       a_little_queens_crown: 'A Coroa da Pequena Rainha',
       a_symbol_of_unity: 'Símbolo da União',
-      an_offer_you_cant_refuse: "Oferta Inegável",
+      an_offer_you_cant_refuse: 'Oferta Inegável',
       air_to_surface_missile_misha: 'Míssil Ar-Terra: MISHA',
       ambrote: 'Ambrota',
       ancient_sheath: 'Bainha Antiga',
@@ -3010,11 +3008,9 @@ const i18n = {
       torn_sleeve: 'Manga Rasgada',
       uberius_tooth: 'Dente de Ulbério',
       victorious_flag: 'Bandeira da Vitória',
-      violet_talisman: "Talismã Purpúrio",
+      violet_talisman: 'Talismã Purpúrio',
       wind_rider: 'Cavaleira do Vento',
       wings_of_light_and_shadow: 'Asas de Luz e Trevas',
-    },
-    info: {
     },
     form: {
       allies_nb_buff: 'Quantidade de Buffs Aliados',
@@ -3178,11 +3174,12 @@ const i18n = {
       unreleased_hero: '<strong>Importante</strong>: Este herói ainda não foi lançado, suas skills e multiplicadores podem mudar.',
       victorious_flag: 'Vantagem Elemental precisa estar ativada para ver os benefícios desse artefato. Não se aplica para heróis luz/trevas.',
       yoonryoung_slash: 'Corte de Luz',
-	    zio_disappear: 'Suma'
+      zio_disappear: 'Suma'
     }
   }
 };
 
+/* eslint-disable no-unused-vars */
 const heroName = (id) => {
   const lang = document.getElementById('root').getAttribute('lang');
   if (lang === 'en') {
@@ -3244,7 +3241,7 @@ const compareSkillLabel = (id) => {
     display += '<i class="far fa-plus-square"></i>';
   }
 
-  return display
+  return display;
 };
 
 const getSkillModTip = (tips) => {
@@ -3260,12 +3257,13 @@ const getSkillModTip = (tips) => {
     output.push((i18n[lang].skills['custom'][key]).replace('{v}', tips[key]));
   }
 
-  return `(${output.join(', ')})`
-}
+  return `(${output.join(', ')})`;
+};
 
 const infoLabel = (key) => {
   let lang = document.getElementById('root').getAttribute('lang');
   if (i18n[lang].info === undefined) lang = 'en';
 
   return i18n[lang].info[key] || i18n['en'].info[key] || key || '';
-}
+};
+/* eslint-enable */

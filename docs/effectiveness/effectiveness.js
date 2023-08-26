@@ -4,8 +4,12 @@ formDefaults = {
   'procChance': 100,
   'eff': 0,
   'effRes': 0,
-}
+};
 
+numberParams = ['hitChance', 'procChance', 'eff', 'effRes'];
+page = 'effectiveness_calc';
+
+/* eslint-disable no-unused-vars */
 const hitChanceInput = document.getElementById('hit-chance');
 const procChanceInput = document.getElementById('effect-chance');
 const effInput = document.getElementById('effectiveness');
@@ -14,9 +18,6 @@ const hitChanceSlide = document.getElementById('hit-chance-slide');
 const procChanceSlide = document.getElementById('effect-chance-slide');
 const effSlide = document.getElementById('effectiveness-slide');
 const effResSlide = document.getElementById('effect-resistance-slide');
-
-numberParams = ['hitChance', 'procChance', 'eff', 'effRes']
-page = 'effectiveness_calc';
 
 const resolve = () => {
   if (loadingQueryParams) {
@@ -40,4 +41,5 @@ const resolve = () => {
   document.getElementById('landing').innerText = Math.round(inflictChance*100).toString();
 
   formUpdated();
-}
+};
+/* eslint-enable */
