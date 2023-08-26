@@ -1299,6 +1299,9 @@ function initTheme() {
     ? document.body.setAttribute('data-theme', 'dark')
     : document.body.removeAttribute('data-theme');
 }
+
+let darkSwitch;
+
 function applyTheme() {
   if (darkSwitch.checked) {
     document.body.setAttribute('data-theme', 'dark');
@@ -1310,7 +1313,7 @@ function applyTheme() {
 }
 
 (function() {
-  let darkSwitch = document.getElementById('dark-switch');
+  darkSwitch = document.getElementById('dark-switch');
   if (darkSwitch) {
     initTheme();
     darkSwitch.addEventListener('change', () => {
