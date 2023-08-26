@@ -16,24 +16,26 @@ formDefaults = {
   'atkPreset': undefined,
   'defPreset': undefined,
   'dmgReducPreset': 'none'
-}
+};
 
 // list artifact first to avoid invalid arti selections
 selectorParams = [
   'artifact', 'hero', 'atkPreset', 'defPreset', 'dmgReducPreset'
-]
+];
 boolParams = [
   'elemAdv', 'atkDown', 'atkUp', 'atkUpGreat', 'critDmgUp', 'vigor', 'rageSet',
   'penSet', 'torrentSet', 'defUp', 'targetVigor', 'defDown', 'target'
-]
+];
 numberParams = [
   'atk', 'atkPcImprint', 'atkPcUp', 'crit', 'bonusDamage', 'torrentSetStack', 'def',
   'defPcUp', 'dmgReduc', 'dmgTrans'
-]
+];
 page = 'dmg_calc';
 
 // regular inputs. This adds a lot of lines, but the dom only needs to be queried once for many inputs.
 // might refactor this later cause it is a bit clunky...
+// These vars are used as globals
+/* eslint-disable no-unused-vars */
 const atkInput = document.getElementById('atk');
 const atkPcImprintInput = document.getElementById('atk-pc-imprint');
 const atkPcUpInput = document.getElementById('atk-pc-up');
@@ -74,9 +76,10 @@ const defSlide = document.getElementById('def-slide');
 const defPcUpSlide = document.getElementById('def-pc-up-slide');
 const dmgReducSlide = document.getElementById('dmg-reduc-slide');
 const dmgTransSlide = document.getElementById('dmg-trans-slide');
+/* eslint-enable */
 
 // declare inputValues up here since it'll be used in multiple places
-let inputValues
+let inputValues;
 
 const dmgConst = 1.871;
 const hitTypes = {
@@ -88,22 +91,22 @@ const hitTypes = {
 const skillTypes = {
   single: 'single',
   aoe: 'aoe',
-}
+};
 let setForms = [];
 
 const getSkillType = (skill) => {
   if (skill.single !== undefined && ((typeof skill.single === 'function') ? skill.single() : skill.single) === true) return skillTypes.single;
   if (skill.aoe !== undefined && ((typeof skill.aoe === 'function') ? skill.aoe() : skill.aoe) === true) return skillTypes.aoe;
   return undefined;
-}
+};
 
-const stackingSets = ['torrent-set']
+const stackingSets = ['torrent-set'];
 const manageSetForms = () => {
   setForms = [];
   for (const set of stackingSets) {
     const elem = document.getElementById(set);
     if (elem.checked) {
-      setForms.push(elements[`${set.replace('-', '_')}_stack`])
+      setForms.push(elements[`${set.replace('-', '_')}_stack`]);
     }
   }
 
@@ -117,7 +120,7 @@ const manageSetForms = () => {
     setNumHolder.style.display = 'block';
     setNumHolder.innerHTML = `<h4>${setLabel}</h4>
                               <div id="set-num-block"></div>
-                              <hr />`
+                              <hr />`;
     const numSetsBlock = document.getElementById('set-num-block');
     numSetsBlock.innerHTML = '';
     for (let elem of setForms) {
@@ -130,8 +133,9 @@ const manageSetForms = () => {
   } else {
     setNumHolder.style.display = 'none';
   }
-}
+};
 
+/* eslint-disable no-unused-vars */
 const torrentSetToggled = () => {
   window.dataLayer.push({
     'event': 'toggle_torrent_set',
@@ -143,7 +147,7 @@ const torrentSetToggled = () => {
     torrentSetStackInput.value = formDefaults.torrentSetStack;
   }
   manageSetForms();
-}
+};
 
 const resolve = () => {
   if (loadingQueryParams) {
@@ -153,8 +157,8 @@ const resolve = () => {
   const artifact = new Artifact(inputValues.artifact);
   const hero = new Hero(inputValues.hero, artifact);
 
-  document.getElementById(`barrier-block`).style.display = 'none';
-  document.getElementById(`artifact-dmg-block`).style.display = 'none';
+  document.getElementById('barrier-block').style.display = 'none';
+  document.getElementById('artifact-dmg-block').style.display = 'none';
   for (const dotType of [dot.bleed, dot.burn, dot.bomb]) {
     document.getElementById(`${dotType}-damage-block`).style.display = 'none';
   }
@@ -165,20 +169,20 @@ const resolve = () => {
   }
 
   if (hero.barrier) {
-    document.getElementById(`barrier-block`).style.display = 'inline-block';
+    document.getElementById('barrier-block').style.display = 'inline-block';
     barrierText = Math.round(hero.getBarrierStrength()).toString();
 
     if (hero.barrier2) {
-      document.getElementById(`barrier`).innerText = `${hero.barrierSkills[0]}: ${barrierText} / ${hero.barrierSkills[1]}: ${Math.round(hero.getBarrier2Strength()).toString()}`;
+      document.getElementById('barrier').innerText = `${hero.barrierSkills[0]}: ${barrierText} / ${hero.barrierSkills[1]}: ${Math.round(hero.getBarrier2Strength()).toString()}`;
     } else {
-      document.getElementById(`barrier`).innerText = barrierText;
+      document.getElementById('barrier').innerText = barrierText;
     }
   }
 
   const artiDmg = hero.getAfterMathArtifactDamage();
   if (artiDmg != null) {
-    document.getElementById(`artifact-dmg-block`).style.display = 'inline-block';
-    document.getElementById(`artifact-dmg`).innerText = Math.round(artiDmg).toString();
+    document.getElementById('artifact-dmg-block').style.display = 'inline-block';
+    document.getElementById('artifact-dmg').innerText = Math.round(artiDmg).toString();
   }
 
   const table = document.getElementById('damage');
@@ -237,9 +241,10 @@ const resolve = () => {
 
   formUpdated(true);
 };
+/* eslint-enable */
 
 const displayDmg = (damage, type) => {
-  return damage[type] !== null ? damage[type] : `<i>${skillLabel('non_applicable')}</i>`
+  return damage[type] !== null ? damage[type] : `<i>${skillLabel('non_applicable')}</i>`;
 };
 
 const getModTooltip = (hero, skillId, soulburn = false) => {
@@ -266,7 +271,7 @@ const getModTooltip = (hero, skillId, soulburn = false) => {
   if (values.extraDmg != null) content += `${skillLabel('extraDmg')}: <span class="float-right">${values.extraDmgTip} <b>${Math.round(values.extraDmg)}</b><br/>`;
   if (values.fixed != null) content += `${skillLabel('fixed')}: <span class="float-right">${values.fixedTip ?? ''} <b>${Math.round(values.fixed)}</b><br/>`;
   return content;
-}
+};
 
 const attackMods = ['atkDown', 'atkUp', 'atkUpGreat', 'vigor'];
 const getGlobalAtkMult = () => {
@@ -289,11 +294,11 @@ const getGlobalDamageMult = (hero, skill) => {
 
   damageMultSets.forEach((set) => {
     mult += inputValues[set] ? battleConstants[set] * (inputValues[`${set}Stack`] || 1) : 0.0;
-  })
+  });
 
   const selected = defPresetSelector.options[defPresetSelector.selectedIndex];
   if (hero.element === selected.dataset.elemExtraDmg) {
-      mult += parseFloat(selected.dataset.extraDmgPc)-1;
+    mult += parseFloat(selected.dataset.extraDmgPc)-1;
   }
 
   if (getSkillType(skill) === skillTypes.single && selected.dataset.singleAtkMult) {
@@ -316,7 +321,9 @@ const getGlobalDefMult = () => {
   return mult;
 };
 
+/* eslint-disable no-unused-vars */
 let currentHero = null;
+/* eslint-enable */
 
 class Hero {
   constructor(id, artifact) {
@@ -362,7 +369,7 @@ class Hero {
       extraDmgTip: skill.extraDmgTip !== undefined ? getSkillModTip(skill.extraDmgTip(soulburn)) : '',
       fixed: skill.fixed !== undefined ? skill.fixed(hitTypes.crit) : null,
       fixedTip: skill.fixedTip !== undefined ? getSkillModTip(skill.fixedTip()) : null,
-    }
+    };
   }
 
   getDamage(skillId, soulburn = false, isExtra = false) {
@@ -516,13 +523,13 @@ class Hero {
 
   getDotDamage(type) {
     switch (type) {
-      case dot.bleed:
-        return this.getAtk() * 0.3 * dmgConst * this.target.defensivePower({ penetrate: () => 0.7 }, true);
-      case dot.burn:
-        return this.getAtk() * 0.6 * dmgConst * (elements.beehoo_passive.value() ? heroConstants.beehooBurnMult : 1) * this.target.defensivePower({ penetrate: () => 0.7 }, true);
-      case dot.bomb:
-        return this.getAtk() * 1.5 * dmgConst * this.target.defensivePower({ penetrate: () => 0.7 }, true);
-      default: return 0;
+    case dot.bleed:
+      return this.getAtk() * 0.3 * dmgConst * this.target.defensivePower({ penetrate: () => 0.7 }, true);
+    case dot.burn:
+      return this.getAtk() * 0.6 * dmgConst * (elements.beehoo_passive.value() ? heroConstants.beehooBurnMult : 1) * this.target.defensivePower({ penetrate: () => 0.7 }, true);
+    case dot.bomb:
+      return this.getAtk() * 1.5 * dmgConst * this.target.defensivePower({ penetrate: () => 0.7 }, true);
+    default: return 0;
     }
   }
 
@@ -558,7 +565,9 @@ class Target {
   }
 }
 
+/* eslint-disable no-unused-vars */
 let currentArtifact = null;
+/* eslint-denable */
 class Artifact {
   constructor(id) {
     this.id = id ? id : undefined;
@@ -605,7 +614,7 @@ class Artifact {
       atkPercent: artifacts[this.id].atkPercent,
       defPercent: artifacts[this.id].defPercent,
       penetrate: artifacts[this.id].penetrate,
-    }
+    };
   }
 
   getAttackBoost() {

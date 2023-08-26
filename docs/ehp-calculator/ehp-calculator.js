@@ -4,8 +4,9 @@ formDefaults = {
   'secondBuildHP': 10000,
   'firstBuildDef': 1000,
   'secondBuildDef': 1000,
-}
+};
 
+/* eslint-disable no-unused-vars */
 const firstBuildHPInput = document.getElementById('first-build-hp');
 const secondBuildHPInput = document.getElementById('second-build-hp');
 const firstBuildHPSlide = document.getElementById('first-build-hp-slide');
@@ -15,8 +16,9 @@ const firstBuildDefInput = document.getElementById('first-build-def');
 const secondBuildDefInput = document.getElementById('second-build-def');
 const firstBuildDefSlide = document.getElementById('first-build-def-slide');
 const secondBuildDefSlide = document.getElementById('second-build-def-slide');
+/* eslint-disable no-unused-vars */
 
-numberParams = ['firstBuildHP', 'secondBuildHP', 'firstBuildDef', 'secondBuildDef']
+numberParams = ['firstBuildHP', 'secondBuildHP', 'firstBuildDef', 'secondBuildDef'];
 page = 'ehp_calc';
 
 const increaseIcon = '<i class="fas fa-angle-double-up"></i>';
@@ -50,7 +52,7 @@ const updateClasses = (first, second) => {
     secondBuildOutput.classList.replace('text-success', 'text-danger');
     secondBuildPct.classList.replace('text-success', 'text-danger');
   }
-}
+};
 
 const resolve = () => {
   if (loadingQueryParams) {
@@ -73,5 +75,5 @@ const resolve = () => {
 
   updateClasses(firstEHP, secondEHP);
 
-  formUpdated()
-}
+  formUpdated();
+};

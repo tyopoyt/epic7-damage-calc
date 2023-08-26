@@ -8,9 +8,10 @@ const artifactDmgType = {
   dot: 'dot'
 };
 
+/* eslint-disable no-unused-vars */
 const extra_attack_artifacts = ['prayer_of_solitude'];
-
-const max_hp_artifacts = ['prayer_of_solitude']
+const max_hp_artifacts = ['prayer_of_solitude'];
+/* eslint-enable */
 
 const artifacts = {
   air_to_surface_missile_misha: {
@@ -38,7 +39,7 @@ const artifacts = {
   },
   an_offer_you_cant_refuse: {
     id: 'an_offer_you_cant_refuse',
-    name: "An Offer You Can't Refuse",
+    name: 'An Offer You Can\'t Refuse',
     scale: [0.1, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2],
     type: artifactDmgType.penetrate,
     exclusive: classType.ranger,
