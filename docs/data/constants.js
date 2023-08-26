@@ -19,3 +19,10 @@ const battleConstants = {
 const heroConstants = {
     'beehooBurnMult': 1.3
 }
+
+// Used for the caster_has_buff field
+const casterBuffs = [
+    'atk-up', 'vigor', 'atk-up-great', 'crit-dmg-up', 'caster-defense-up', 'caster-speed-up',
+    'caster-has-flame-alchemist', 'caster-has-multilayer-barrier', 'caster-invincible',
+    'caster-perception', 'caster-enrage', 'caster-fury', 'caster-stealth'
+]

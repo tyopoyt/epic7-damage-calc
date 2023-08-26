@@ -1,5 +1,6 @@
 ## Changelog
 
+<strong>Aug 26 2023 Update:</strong> Made MLBellona's Caster has buff box auto-check and disable if another buff is checked.<br>
 <strong>Aug 22 2023 Update:</strong> Fixed Hwayoung's base attack. Previous value was including her 20% base increase from passive.<br>
 <strong>Aug 18 2023 Update:</strong> Added Infinite Horizon Achates.<br>
 <strong>Aug 12 2023 Update:</strong> Added Caides HP Scaling damage reduction. Fixed caster defense up and speed up query param. Removed ML Landy's unreleased hero disclaimer.<br>

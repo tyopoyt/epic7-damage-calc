@@ -409,7 +409,25 @@ const elements = {
     id: 'caster-has-buff',
     label: 'Caster has buff',
     type: 'checkbox',
-    value: () => document.getElementById('caster-has-buff').checked
+    value: () => {
+      let casterBuffChecked = false;
+      for (const casterBuff of casterBuffs) {
+        if (document.getElementById(casterBuff)?.checked) {
+          casterBuffChecked = true;
+          break;
+        }
+      }
+
+      casterBuffElement = $('#caster-has-buff')
+      if (casterBuffChecked) {
+        casterBuffElement.prop('checked', true);
+        casterBuffElement.attr('disabled', true);
+      } else {
+        casterBuffElement.removeAttr("disabled");
+      }
+
+      return casterBuffElement.prop('checked')
+    }
   },
   caster_has_debuff: {
     ref: 'caster_has_debuff',
