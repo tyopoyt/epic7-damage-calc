@@ -3738,7 +3738,6 @@ const heroes = {
     name: 'Infinite Horizon Achates',
     element: element.light,
     classType: classType.soul_weaver,
-    info: infoLabel('unreleased_hero'),
     form: [elements.caster_max_hp],
     baseAtk: 576,
     barrierSkills: ['S2', 'S3'],
