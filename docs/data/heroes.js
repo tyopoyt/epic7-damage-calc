@@ -2616,8 +2616,7 @@ const heroes = {
         aoe: true,
       },
       s3: {
-        onlyCrit: true,
-        noCrit: true,
+        onlyMiss: true,
         rate: 2.5,
         pow: 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],

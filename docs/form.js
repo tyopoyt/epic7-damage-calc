@@ -1187,7 +1187,9 @@ window.addEventListener('DOMContentLoaded', () => {
     $(chartSkillSelector).selectpicker('refresh');
 
     chartSkillSelector.onchange = () => {
-      calculateChart(inputValues);
+      if (document.getElementById('damage-chart-container').style.display !== 'none') {
+        calculateChart(inputValues);
+      }
     };
 
     heroSelector.onchange = () => {
@@ -1217,6 +1219,12 @@ window.addEventListener('DOMContentLoaded', () => {
       }));
       $(chartSkillSelector).selectedIndex = 0;
       $(chartSkillSelector).selectpicker('refresh');
+      if ($(chartSkillSelector).find('option').length === 1) {
+        console.log($(chartSkillSelector).parent()[0]);
+        $($(chartSkillSelector).parent()[0]).prop('disabled', 'disabled');
+      } else { 
+        $(chartSkillSelector).parent()[0].prop('disabled', false);
+      }
       chartSkillSelector.onchange();
     };
 

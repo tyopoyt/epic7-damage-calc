@@ -388,9 +388,9 @@ class Hero {
         +(this.artifact.getCritDmgBoost()||0)
         +(elements.caster_perception.value() ? 0.15 : 0);
     return {
-      crit: skill.noCrit ? null : Math.round(hit*critDmg + (skill.fixed !== undefined ? skill.fixed(hitTypes.crit) : 0) + this.getAfterMathDamage(skillId, hitTypes.crit)),
-      crush: skill.noCrit || skill.onlyCrit ? null : Math.round(hit*1.3 + (skill.fixed !== undefined ? skill.fixed(hitTypes.crush) : 0) + this.getAfterMathDamage(skillId, hitTypes.crush)),
-      normal: skill.onlyCrit ? null : Math.round(hit + (skill.fixed !== undefined ? skill.fixed(hitTypes.normal) : 0) + this.getAfterMathDamage(skillId, hitTypes.normal)),
+      crit: skill.noCrit || skill.onlyMiss ? null : Math.round(hit*critDmg + (skill.fixed !== undefined ? skill.fixed(hitTypes.crit) : 0) + this.getAfterMathDamage(skillId, hitTypes.crit)),
+      crush: skill.noCrit || skill.onlyCrit || skill.onlyMiss ? null : Math.round(hit*1.3 + (skill.fixed !== undefined ? skill.fixed(hitTypes.crush) : 0) + this.getAfterMathDamage(skillId, hitTypes.crush)),
+      normal: skill.onlyCrit || skill.onlyMiss ? null : Math.round(hit + (skill.fixed !== undefined ? skill.fixed(hitTypes.normal) : 0) + this.getAfterMathDamage(skillId, hitTypes.normal)),
       miss: skill.noMiss ? null : Math.round(hit*0.75 + (skill.fixed !== undefined ? skill.fixed(hitTypes.miss) : 0) + this.getAfterMathDamage(skillId, hitTypes.miss))
     };
   }
@@ -747,10 +747,7 @@ const calculateChart = (inputValues) => {
     // skill = heroes[hero.id]['s1']
     return;
   }
-  const damageToUse = !skill?.noCrit ? 'crit' : 'normal';
-
-  // TODO: check which to use (crit, normal, miss (dizzy))
-  // curAtk = inputValues.atk
+  const damageToUse = skill.onlyMiss ? 'miss' : (!skill?.noCrit ? 'crit' : 'normal');
   chart.data.labels = [];
 
   // pick different num steps if skill.nocrit
@@ -797,7 +794,6 @@ const calculateChart = (inputValues) => {
 
   hero.crit = inputValues.crit;
   hero.atk = inputValues.atk;
-  console.log(chart.data.datasets);
 
   let filteredDatasets = chart.data.datasets.filter(dataset => dataset.label === 'Defense');
   if (!skill.defenseScaling && filteredDatasets.length) {
