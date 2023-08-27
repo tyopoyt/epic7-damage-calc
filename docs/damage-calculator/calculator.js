@@ -378,8 +378,7 @@ class Hero {
     const critDmgBuff = inputValues.critDmgUp ? battleConstants.critDmgUp : 0.0;
 
     const skill = this.skills[skillId];
-    // const hit = this.offensivePower(skillId, soulburn, this) * this.target.defensivePower(skill); TODO: resolve conflict
-    const hit = this.offensivePower(skillId, soulburn, isExtra) * this.target.defensivePower(skill);
+    const hit = this.offensivePower(skillId, soulburn, isExtra, this) * this.target.defensivePower(skill);
     const critDmg = Math.min((this.crit / 100)+critDmgBuff, 3.5)
         +(skill.critDmgBoost ? skill.critDmgBoost(soulburn) : 0)
         +(this.artifact.getCritDmgBoost()||0)
@@ -424,8 +423,7 @@ class Hero {
     return elements.caster_defense.value();
   }
 
-  // offensivePower(skillId, soulburn, hero) { // TODO: resolve conflict
-  offensivePower(skillId, soulburn, isExtra) {
+  offensivePower(skillId, soulburn, isExtra, hero) {
     const skill = this.skills[skillId];
 
     const rate = (typeof skill.rate === 'function') ? skill.rate(soulburn) : skill.rate;
