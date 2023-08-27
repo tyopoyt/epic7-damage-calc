@@ -240,7 +240,9 @@ const resolve = () => {
   }
 
   formUpdated(true);
-  calculateChart(inputValues);
+  if (document.getElementById('damage-chart-container').style.display !== 'none') {
+    calculateChart(inputValues);
+  }
 };
 /* eslint-enable */
 
@@ -335,6 +337,8 @@ class Hero {
     this.skills = heroes[id].skills;
     this.baseAtk = heroes[id].baseAtk || 0;
     this.baseDef = heroes[id].baseDef || 0;
+    this.baseHP = heroes[id].baseHP || 0;
+    this.baseSpd = heroes[id].baseSpd || 0;
     this.dot = [...(heroes[id].dot || []), ...(artifact?.getDoT() || [])];
     this.atkUp = heroes[id].atkUp;
     this.innateAtkUp = heroes[id].innateAtkUp;
@@ -420,6 +424,19 @@ class Hero {
            + (document.getElementById('vigor').checked ? battleConstants.vigor - 1 : 0)
            + (document.getElementById('caster-fury')?.checked ? battleConstants['caster-fury'] - 1 : 0));
     }
+    return elements.caster_defense.value();
+  }
+
+  getHP() {
+    return this.hp || elements.caster_max_hp.value();
+  }
+
+  getSpd() {
+    // if (this.def) {
+    //   return this.def * (1 + (elements.caster_defense_up.value() ? battleConstants.defUp : 0)
+    //        + (document.getElementById('vigor').checked ? battleConstants.vigor - 1 : 0)
+    //        + (document.getElementById('caster-fury')?.checked ? battleConstants['caster-fury'] - 1 : 0));
+    // }
     return elements.caster_defense.value();
   }
 
@@ -659,8 +676,12 @@ class Artifact {
 }
 
 // Charting
+const pointBackgrounds = ['rgba(199, 129, 16, 0.75)', 'rgba(28, 145, 106, 0.75)', 'rgba(83, 62, 176, 0.75)'];
+const pointOutlines = ['#fcaf32', '#08c988', '#7059d4'];
+const pointStyles = ['circle', 'triangle', 'rect', 'rectRot', 'star'];
+
 const ctx = document.getElementById('damage-chart');
-const chart = new Chart(ctx, {
+const chartDefaults = {
   type: 'line',
   data: {
     labels: [],
@@ -668,18 +689,15 @@ const chart = new Chart(ctx, {
       {
         label: 'Attack',
         data: [],
-        borderWidth: 1
+        borderWidth: 1,
+        pointStyle: pointStyles[0]
       },
       {
         label: 'CDam',
         data: [],
-        borderWidth: 1
-      },
-      // {
-      //   label: 'Defense',
-      //   data: [],
-      //   borderWidth: 1
-      // }
+        borderWidth: 1,
+        pointStyle: pointStyles[1]
+      }
     ]
   },
   options: {
@@ -703,12 +721,14 @@ const chart = new Chart(ctx, {
       }
     }
   }
-});
+};
+let chart = new Chart(ctx, chartDefaults);
 
 const toggleChart = () => {
   const chartContainer = document.getElementById('damage-chart-container');
 
   if (chartContainer.style.display == 'none') {
+    calculateChart(inputValues);
     chartContainer.style.display = 'block';
     document.getElementById('chart-button-text').innerText = 'Hide Chart';
   } else {
@@ -717,6 +737,7 @@ const toggleChart = () => {
   }
 };
 
+// TODO: Handle soulburn damage
 const calculateChart = (inputValues) => {
   const artifact = new Artifact(inputValues.artifact);
   const hero = new Hero(inputValues.hero, artifact);
@@ -778,7 +799,10 @@ const calculateChart = (inputValues) => {
       chart.data.datasets.push({
         label: 'Defense',
         data: [],
-        borderWidth: 1
+        borderWidth: 1,
+        backgroundColor: pointBackgrounds[0],
+        borderColor: pointOutlines[0],
+        pointStyle: pointStyles[2]
       });
     }
     chart.data.datasets[2].data = [];
@@ -799,10 +823,78 @@ const calculateChart = (inputValues) => {
       const finalDam = displayDmg(damage, damageToUse);
   
       chart.data.datasets[2].data.push(finalDam);
-      chart.data.labels[index] += ` vs ${hero.def} Def`; //TODO: handle defup and shit
+      chart.data.labels[index] += ` vs ${hero.def} Def`;
       hero.def += Math.floor(((8/7) / 100) * hero.baseDef); //TODO: deal with anything that might affect this number like innate boosts
       index++;
     }
+  } else if (skill.hpScaling) {
+    if (chart.data.datasets.length !== 3) {
+      chart.data.datasets.push({
+        label: 'HP',
+        data: [],
+        borderWidth: 1,
+        backgroundColor: pointBackgrounds[0],
+        borderColor: pointOutlines[0],
+        pointStyle: pointStyles[2]
+      });
+    }
+    chart.data.datasets[2].data = [];
+    hero.hp = inputValues['caster-max-hp'] - (((numSteps) / intersectionPoint) *  Math.floor((((8/7) / 100) * hero.baseHP)));
+
+    hero.crit = inputValues.crit;
+    hero.atk = inputValues.atk;
+
+    index = 0;
+    while (chart.data.datasets[2].data.length < numSteps) {
+      //TODO: null if below base.  Do for atk also
+      // if (hero.crit < 150) {
+      //   hero.crit += 1;
+      //   chart.data.datasets[1].data.push(null)
+      //   continue;
+      // }
+      const damage = hero.getDamage(selected);
+      const finalDam = displayDmg(damage, damageToUse);
+  
+      chart.data.datasets[2].data.push(finalDam);
+      chart.data.labels[index] += ` vs ${hero.hp} HP`;
+      hero.hp += Math.floor(((8/7) / 100) * hero.baseHP); //TODO: deal with anything that might affect this number like innate boosts
+      index++;
+    }
+  } else if (skill.spdScaling) {
+    if (chart.data.datasets.length !== 3) {
+      chart.data.datasets.push({
+        label: 'Speed',
+        data: [],
+        borderWidth: 1,
+        backgroundColor: pointBackgrounds[0],
+        borderColor: pointOutlines[0],
+        pointStyle: pointStyles[2]
+      });
+    }
+    chart.data.datasets[2].data = [];
+    hero.def = inputValues['caster-defense'] - (((numSteps) / intersectionPoint) *  Math.floor((((4/7) / 100) * hero.baseSpd)));
+
+    hero.crit = inputValues.crit;
+    hero.atk = inputValues.atk;
+
+    index = 0;
+    while (chart.data.datasets[2].data.length < numSteps) {
+      //TODO: null if below base.  Do for atk also
+      // if (hero.crit < 150) {
+      //   hero.crit += 1;
+      //   chart.data.datasets[1].data.push(null)
+      //   continue;
+      // }
+      const damage = hero.getDamage(selected);
+      const finalDam = displayDmg(damage, damageToUse);
+  
+      chart.data.datasets[2].data.push(finalDam);
+      chart.data.labels[index] += ` vs ${hero.def} Spd`;
+      hero.def += Math.floor(((4/7) / 100) * hero.baseSpd); //TODO: deal with anything that might affect this number like innate boosts
+      index++;
+    }
+  } else {
+    chart.data.datasets.splice(2);
   }
   
 

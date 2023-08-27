@@ -1180,12 +1180,15 @@ window.addEventListener('DOMContentLoaded', () => {
       $(artiSelector).append(`<option value="${id}">${artifactName(id)}</option>`);
     }));
 
-    $(chartSkillSelector).append(`<option value="s1" data-content="<span>S1</span>">S1</option>`)
+    // This is a bit clunky but the #1 alphabetical hero changes so rarely it's not much of an issue. So far it only changed from Achates to Abigail.
+    // Unless they release a hero calld Aardvark or something it's not that likely to change again...
+    $(chartSkillSelector).append('<option value="s1" data-content="<span>S1</span>">S1</option>');
+    $(chartSkillSelector).append('<option value="s3" data-content="<span>S3</span>">S3</option>');
     $(chartSkillSelector).selectpicker('refresh');
 
     chartSkillSelector.onchange = () => {
       calculateChart(inputValues);
-    }
+    };
 
     heroSelector.onchange = () => {
       if (currentHero) {
@@ -1205,10 +1208,10 @@ window.addEventListener('DOMContentLoaded', () => {
       });
       refreshCompareBadge();
 
-      $(chartSkillSelector).find('option').remove()
+      $(chartSkillSelector).find('option').remove();
       Object.keys(heroes[currentHero.id].skills).map((id => {
         const skill = heroes[currentHero.id].skills[id];
-        $(chartSkillSelector).append(`<option value="${id}" data-content="<span>${skill.name ? skill.name : skillLabel(id)}</span>">${skill.name ? skill.name : skillLabel(id)}</option>`)
+        $(chartSkillSelector).append(`<option value="${id}" data-content="<span>${skill.name ? skill.name : skillLabel(id)}</span>">${skill.name ? skill.name : skillLabel(id)}</option>`);
       }));
       $(chartSkillSelector).selectedIndex = 0;
       $(chartSkillSelector).selectpicker('refresh');
