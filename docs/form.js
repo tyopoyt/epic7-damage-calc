@@ -72,7 +72,7 @@ const elements = {
     max: 50000,
     default: () => {
       const defPreset = document.getElementById('def-preset');
-      return defPreset.value ? defPreset.options[defPreset.selectedIndex].dataset.hp : 10000
+      return defPreset.value ? defPreset.options[defPreset.selectedIndex].dataset.hp : 10000;
     },
     value: () => Number(document.getElementById('target-current-hp').value)
   },
@@ -85,9 +85,13 @@ const elements = {
     max: 50000,
     default: () => {
       const defPreset = document.getElementById('def-preset');
-      return defPreset.value ? defPreset.options[defPreset.selectedIndex].dataset.hp : 10000
+      return defPreset.value ? defPreset.options[defPreset.selectedIndex].dataset.hp : 10000;
     },
-    value: () => Number(document.getElementById('target-max-hp').value)
+    value: () => {
+      const defPreset = document.getElementById('def-preset');
+      return (defPreset.value === 'caides-13') ? Number(document.getElementById('target-max-hp').value / 2) : Number(document.getElementById('target-max-hp').value);
+    }
+
   },
   target_injuries: {
     ref: 'target_injuries',
@@ -290,7 +294,7 @@ const elements = {
     min: 1000,
     max: 50000,
     default: 10000,
-    value: () => Number(document.getElementById('caster-max-hp').value)
+    value: () => Number(document.getElementById('caster-max-hp').value) * (max_hp_artifacts.includes(currentArtifact?.id) ? artifacts[currentArtifact.id].maxHP : 1)
   },
   caster_hp_pc: {
     ref: 'caster_hp_pc',
@@ -405,7 +409,25 @@ const elements = {
     id: 'caster-has-buff',
     label: 'Caster has buff',
     type: 'checkbox',
-    value: () => document.getElementById('caster-has-buff').checked
+    value: () => {
+      let casterBuffChecked = false;
+      for (const casterBuff of casterBuffs) {
+        if (document.getElementById(casterBuff)?.checked) {
+          casterBuffChecked = true;
+          break;
+        }
+      }
+
+      casterBuffElement = $('#caster-has-buff');
+      if (casterBuffChecked) {
+        casterBuffElement.prop('checked', true);
+        casterBuffElement.attr('disabled', true);
+      } else {
+        casterBuffElement.removeAttr('disabled');
+      }
+
+      return casterBuffElement.prop('checked');
+    }
   },
   caster_has_debuff: {
     ref: 'caster_has_debuff',
@@ -419,7 +441,24 @@ const elements = {
     id: 'caster-has-flame-alchemist',
     label: 'Caster has Flame Alchemist',
     type: 'checkbox',
-    value: () => document.getElementById('caster-has-flame-alchemist').checked
+    value: () => document.getElementById('caster-has-flame-alchemist').checked,
+    icon: './assets/buffs/flame-alchemist-buff.png'
+  },
+  caster_has_multilayer_barrier: {
+    ref: 'caster_has_multilayer_barrier',
+    id: 'caster-has-multilayer-barrier',
+    label: 'Caster has Multilayer Barrier',
+    type: 'checkbox',
+    value: () => document.getElementById('caster-has-multilayer-barrier').checked,
+    icon: './assets/buffs/multilayer-barrier-buff.png'
+  },
+  caster_has_neo_phantom_sword: {
+    ref: 'caster_has_neo_phantom_sword',
+    id: 'caster-has-neo-phantom-sword',
+    label: 'Caster has Neo Phantom Sword',
+    type: 'checkbox',
+    value: () => document.getElementById('caster-has-neo-phantom-sword').checked,
+    icon: './assets/buffs/neo-phantom-sword-buff.png'
   },
   caster_full_focus: {
     ref: 'caster_full_focus',
@@ -499,8 +538,8 @@ const elements = {
     label: 'Caster has Immense Power',
     type: 'checkbox',
     value: () => document.getElementById('caster-immense-power')
-        ? document.getElementById('caster-immense-power').checked
-        : false,
+      ? document.getElementById('caster-immense-power').checked
+      : false,
   },
   caster_stealth: {
     ref: 'caster_stealth',
@@ -821,6 +860,14 @@ const elements = {
     value: () => document.getElementById('beehoo-passive').checked,
     icon: './assets/heroes/beehoo-icon.png'
   },
+  enemy_defeated: {
+    ref: 'enemy_defeated',
+    id: 'enemy-defeated',
+    label: 'Caster defeated an enemy',
+    type: 'checkbox',
+    default: true,
+    value: () => document.getElementById('enemy-defeated').checked
+  },
 };
 
 elements.caster_speed.sub_elements = [elements.caster_speed_up];
@@ -832,11 +879,6 @@ const slide = (fieldId) => {
   document.getElementById(fieldId).value = document.getElementById(`${fieldId}-slide`).value;
   resetPreset(fieldId);
   resolve();
-};
-
-const slideMola = (skillId) => {
-  slide(`molagora-${skillId}`);
-  updateMolaBonus(skillId);
 };
 
 const update = (fieldId) => {
@@ -877,11 +919,6 @@ const plus = (fieldId) => {
   }
 };
 
-const plusMola = (skillId) => {
-  plus(`molagora-${skillId}`);
-  updateMolaBonus(skillId);
-};
-
 const minus = (fieldId) => {
   const input = document.getElementById(fieldId);
   const min = input.getAttribute('min');
@@ -894,10 +931,23 @@ const minus = (fieldId) => {
   }
 };
 
+// These mola functions are used in HTML Strings so eslint doesn't see it 
+/* eslint-disable no-unused-vars  */
+const slideMola = (skillId) => {
+  slide(`molagora-${skillId}`);
+  updateMolaBonus(skillId);
+};
+
+const plusMola = (skillId) => {
+  plus(`molagora-${skillId}`);
+  updateMolaBonus(skillId);
+};
+
 const minusMola = (skillId) => {
   minus(`molagora-${skillId}`);
   updateMolaBonus(skillId);
 };
+/* eslint-enable */
 
 const resetPreset = (fieldId) => {
   if (fieldId === 'def') {
@@ -912,14 +962,16 @@ const resetPreset = (fieldId) => {
 try {
   document.getElementById('def-pc-up').onchange = () => {
     resetPreset('def-pc-up');
-  }
+  };
   document.getElementById('dmg-reduc').onchange = () => {
     resetPreset('dmg-reduc');
-  }
+  };
   document.getElementById('dmg-trans').onchange = () => {
     resetPreset('dmg-trans');
-  }
-} catch (error) {}
+  };
+} catch (error) {
+  // pass
+}
 
 
 const showHeroInfo = (hero) => {
@@ -1033,8 +1085,8 @@ const refreshArtifactList = (hero) => {
   const artiSelector = document.getElementById('artifact');
   for (const artiOpt of artiSelector.querySelectorAll('option')) {
     if (!artiOpt.value) continue;
-    const artiExclusive = artifacts[artiOpt.value].exclusive
-    const artiHeroExclusive = artifacts[artiOpt.value].hero_exclusive
+    const artiExclusive = artifacts[artiOpt.value].exclusive;
+    const artiHeroExclusive = artifacts[artiOpt.value].hero_exclusive;
     artiOpt.disabled = (artiExclusive && artiExclusive !== hero.classType) || (artiHeroExclusive && !artiHeroExclusive.includes(hero.name));
   }
   if (artiSelector.options[artiSelector.selectedIndex].disabled) {
@@ -1085,21 +1137,21 @@ const buildElement = (elem, parent) => {
 };
 
 const elemIcon = (elem) => {
-  return `<img src='${['jp', 'kr', 'zh', 'zhTW', 'br'].some(locale => window.location.href.includes(locale)) ? '.' : ''}./assets/elements/${elem}.png' width='20', height='20' alt='${elem}' />`
+  return `<img src='${['jp', 'kr', 'zh', 'zhTW', 'br'].some(locale => window.location.href.includes(locale)) ? '.' : ''}./assets/elements/${elem}.png' width='20', height='20' alt='${elem}' />`;
 };
 
 const antiElemIcon = (elem) => {
   switch (elem) {
-    case element.ice: return elemIcon(element.fire);
-    case element.fire: return elemIcon(element.earth);
-    case element.earth: return elemIcon(element.ice);
-    case element.light: return elemIcon(element.dark);
-    case element.dark: return elemIcon(element.light);
+  case element.ice: return elemIcon(element.fire);
+  case element.fire: return elemIcon(element.earth);
+  case element.earth: return elemIcon(element.ice);
+  case element.light: return elemIcon(element.dark);
+  case element.dark: return elemIcon(element.light);
   }
 };
 
 const classIcon = (type) => {
-  return `<img src='${['jp', 'kr', 'zh', 'zhTW', 'br'].some(locale => window.location.href.includes(locale)) ? '.' : ''}./assets/classes/${type.replace('_', '-')}.png' width='18', height='18' alt='${type}' />`
+  return `<img src='${['jp', 'kr', 'zh', 'zhTW', 'br'].some(locale => window.location.href.includes(locale)) ? '.' : ''}./assets/classes/${type.replace('_', '-')}.png' width='18', height='18' alt='${type}' />`;
 };
 
 const dedupeForm = (hero, artifact) => {
@@ -1109,7 +1161,7 @@ const dedupeForm = (hero, artifact) => {
   if (intersect.length > 0) {
     artifact.form = artifact.form.filter(element => !intersect.includes(element.id));
   }
-}
+};
 
 // jQuery's $(() => {}) was not firing at the right time in Firefox, so use standard DOMContentLoaded
 window.addEventListener('DOMContentLoaded', () => {
@@ -1118,14 +1170,14 @@ window.addEventListener('DOMContentLoaded', () => {
     const artiSelector = document.getElementById('artifact');
     const chartSkillSelector = document.getElementById('chart-skill');
     Object.keys(heroes).map((id => {
-      $(heroSelector).append(`<option value="${id}" data-tokens="${heroNicknames(id)}" data-content="${elemIcon(heroes[id].element)}${classIcon(heroes[id].classType)}<span>${heroName(id)}</span>">${heroName(id)}</option>`)
+      $(heroSelector).append(`<option value="${id}" data-tokens="${heroNicknames(id)}" data-content="${elemIcon(heroes[id].element)}${classIcon(heroes[id].classType)}<span>${heroName(id)}</span>">${heroName(id)}</option>`);
     }));
     $(heroSelector).selectpicker('refresh');
 
     $(artiSelector).append(`<option value="">${artifactName('no_proc')}</option>`);
-    $(artiSelector).append(`<option data-divider="true"></option>`);
+    $(artiSelector).append('<option data-divider="true"></option>');
     Object.keys(artifacts).map((id => {
-      $(artiSelector).append(`<option value="${id}">${artifactName(id)}</option>`)
+      $(artiSelector).append(`<option value="${id}">${artifactName(id)}</option>`);
     }));
 
     $(chartSkillSelector).append(`<option value="s1" data-content="<span>S1</span>">S1</option>`)
@@ -1172,12 +1224,15 @@ window.addEventListener('DOMContentLoaded', () => {
         const hpInput = document.getElementById(elements.target_max_hp.id);
         if (hpInput) {
           hpInput.value = selected.dataset.hp;
-          update(elements.target_max_hp.id)
+          update(elements.target_max_hp.id);
         }
         window.dataLayer.push({
           'event': 'select_preset_def',
           'def_unit': selected.value
         });
+      } else {
+        // To ensure caides damage reduction is removed when switching to manual
+        resolve();
       }
     };
 
@@ -1228,7 +1283,7 @@ window.addEventListener('DOMContentLoaded', () => {
       window.dataLayer.push({
         'event': 'select_artifact',
         'artifact': artifact.name,
-        'hero': heroes[heroSelector.value]?.name === 'Achates' ? 'None' : heroes[heroSelector.value]?.name || 'None' // Nobody's actually calculating for Achates damage...
+        'hero': heroes[heroSelector.value]?.name || 'None'
       });
     };
 
@@ -1237,7 +1292,9 @@ window.addEventListener('DOMContentLoaded', () => {
     refreshArtifactList(hero);
     buildArtifact(artifacts[artiSelector.value]);
     refreshCompareBadge();
-  } catch (e) {}
+  } catch (e) {
+    // pass
+  }
 
   resolve();
   $('[data-toggle="tooltip"]').tooltip();
@@ -1250,34 +1307,38 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+function initTheme() {
+  const darkThemeSelected =
+      localStorage.getItem('dark-switch') !== null &&
+      localStorage.getItem('dark-switch') === 'dark';
+  darkSwitch.checked = darkThemeSelected;
+  darkThemeSelected
+    ? document.body.setAttribute('data-theme', 'dark')
+    : document.body.removeAttribute('data-theme');
+}
+
+let darkSwitch;
+
+function applyTheme() {
+  if (darkSwitch.checked) {
+    document.body.setAttribute('data-theme', 'dark');
+    localStorage.setItem('dark-switch', 'dark');
+  } else {
+    document.body.removeAttribute('data-theme');
+    localStorage.removeItem('dark-switch');
+  }
+}
+
 (function() {
-  let darkSwitch = document.getElementById('dark-switch');
+  darkSwitch = document.getElementById('dark-switch');
   if (darkSwitch) {
     initTheme();
-    darkSwitch.addEventListener('change', function(event) {
+    darkSwitch.addEventListener('change', () => {
       applyTheme();
       window.dataLayer.push({
         'event': 'toggle_dark_mode',
         'dark_mode': darkSwitch.checked ? 'on' : 'off'
       });
     });
-    function initTheme() {
-      const darkThemeSelected =
-          localStorage.getItem('dark-switch') !== null &&
-          localStorage.getItem('dark-switch') === 'dark';
-      darkSwitch.checked = darkThemeSelected;
-      darkThemeSelected
-          ? document.body.setAttribute('data-theme', 'dark')
-          : document.body.removeAttribute('data-theme');
-    }
-    function applyTheme() {
-      if (darkSwitch.checked) {
-        document.body.setAttribute('data-theme', 'dark');
-        localStorage.setItem('dark-switch', 'dark');
-      } else {
-        document.body.removeAttribute('data-theme');
-        localStorage.removeItem('dark-switch');
-      }
-    }
   }
 })();

@@ -28,6 +28,31 @@ const element = {
 };
 
 const heroes = {
+  abigail: {
+    name: 'Abigail',
+    element: element.fire,
+    classType: classType.warrior,
+    baseAtk: 984,
+    form: [elements.caster_max_hp],
+    skills: {
+      s1: {
+        rate: 0.8,
+        pow: 0.9,
+        flat: () => elements.caster_max_hp.value() * 0.12,
+        flatTip: () => ({caster_max_hp: 12}),
+        enhance: [0.05, 0.05, 0.05, 0, 0.05, 0.05, 0.1],
+        single: true,
+      },
+      s3: {
+        rate: 1.2,
+        pow: 0.95,
+        flat: () => elements.caster_max_hp.value() * 0.2,
+        flatTip: () => ({caster_max_hp: 20}),
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.1],
+        single: true,
+      }
+    }
+  },
   achates: {
     name: 'Achates',
     element: element.fire,
@@ -60,10 +85,10 @@ const heroes = {
         pow: 1,
         mult: () => {
           switch (elements.nb_targets.value()) {
-            case 3: return 1.2;
-            case 2: return 1.4;
-            case 1: return 1.6;
-            default: return 1;
+          case 3: return 1.2;
+          case 2: return 1.4;
+          case 1: return 1.6;
+          default: return 1;
           }
         },
         multTip: () => ({ per_fewer_target: 20 }),
@@ -330,6 +355,7 @@ const heroes = {
         flatTip: () => ({caster_max_hp: 11}),
         exEq: () => elements.exclusive_equipment_2.value() ? 0.2 : 0,
         enhance: [0.05, 0, 0.1, 0, 0.15],
+        isExtra: true,
         single: true,
       },
       s3: {
@@ -569,7 +595,7 @@ const heroes = {
     }
   },
   archdemon_shadow: {
-    name: "Archdemon's Shadow",
+    name: 'Archdemon\'s Shadow',
     element: element.dark,
     classType: classType.mage,
     baseAtk: 1316,
@@ -619,31 +645,31 @@ const heroes = {
       }
     }
   },
-  architect_laika_old: {
-    name: 'Architect Laika (Pre-Balance)',
-    element: element.light,
-    classType: classType.mage,
-    baseAtk: 1306,
-    form: [elements.caster_speed],
-    skills: {
-      s1: {
-        rate: 1,
-        pow: 0.9,
-        enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.15],
-        single: true,
-      },
-      s3: {
-        rate: 0.9,
-        pow: 0.9,
-        penetrate: () => elements.target_has_target.value() ? 0.8 : 0,
-        mult: () => 1 + elements.caster_speed.value() * 0.001125,
-        multTip: () => ({ caster_speed: 0.1125 }),
-        enhance: [0.05, 0.05, 0.05, 0, 0.1, 0.15],
-        noTrans: true,
-        aoe: true,
-      }
-    }
-  },
+  // architect_laika_old: {
+  //   name: 'Architect Laika (Pre-Balance)',
+  //   element: element.light,
+  //   classType: classType.mage,
+  //   baseAtk: 1306,
+  //   form: [elements.caster_speed],
+  //   skills: {
+  //     s1: {
+  //       rate: 1,
+  //       pow: 0.9,
+  //       enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.15],
+  //       single: true,
+  //     },
+  //     s3: {
+  //       rate: 0.9,
+  //       pow: 0.9,
+  //       penetrate: () => elements.target_has_target.value() ? 0.8 : 0,
+  //       mult: () => 1 + elements.caster_speed.value() * 0.001125,
+  //       multTip: () => ({ caster_speed: 0.1125 }),
+  //       enhance: [0.05, 0.05, 0.05, 0, 0.1, 0.15],
+  //       noTrans: true,
+  //       aoe: true,
+  //     }
+  //   }
+  // },
   aria: {
     name: 'Aria',
     element: element.ice,
@@ -714,6 +740,43 @@ const heroes = {
   },
   arunka: {
     name: 'Arunka',
+    element: element.earth,
+    classType: classType.warrior,
+    baseAtk: 1570,
+    form: [elements.target_has_barrier],
+    dot: [dot.bleed],
+    innateAtkUp: () => 0.30,
+    skills: {
+      s1: {
+        rate: 1,
+        pow: 1,
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        single: true,
+        noCrit: true,
+      },
+      s1_bis: {
+        name: infoLabel('arunka_expose'),
+        rate: 1.3,
+        pow: 1.3,
+        // enhance_from: 's1', Presumed not to inherit from s1 mola since the pow is so high already
+        single: true,
+        isExtra: true,
+        noCrit: true,
+      },
+      s3: {
+        rate: 0.9,
+        pow: 1,
+        penetrate: () => 0.7,
+        mult: () => elements.target_has_barrier.value() ? 3.4 : 1,
+        multTip: () => ({ target_has_barrier: 240 }),
+        enhance: [0.05, 0.05, 0, 0.1, 0.1],
+        single: true,
+        noCrit: true,
+      },
+    }
+  },
+  arunka_old: {
+    name: 'Arunka (Pre-Balance)',
     element: element.earth,
     classType: classType.warrior,
     baseAtk: 1570,
@@ -1072,6 +1135,7 @@ const heroes = {
         rate: 0.5,
         pow: 0.95,
         enhance_from: 's1',
+        isExtra: true,
         aoe: true,
       },
       s3: {
@@ -1090,7 +1154,7 @@ const heroes = {
     baseAtk: 1203,
     innateAtkUp: () => {
       let boost = 0.20;
-      for (let i = 0; i < Number(document.getElementById(`molagora-s2`).value); i++) {
+      for (let i = 0; i < Number(document.getElementById('molagora-s2').value); i++) {
         boost += heroes.beehoo.skills.s2.enhance[i];
       }
       return boost;
@@ -1140,7 +1204,6 @@ const heroes = {
         pow: 1.3,
         flat: () => elements.caster_max_hp.value()*0.045,
         flatTip: () => ({ caster_max_hp: 4.5 }),
-        enhance_from: 's1',
         aoe: true,
       },
       s3: {
@@ -1210,6 +1273,36 @@ const heroes = {
       }
     }
   },
+  benimaru: {
+    name: 'Benimaru',
+    element: element.fire,
+    classType: classType.warrior,
+    form: [elements.caster_has_multilayer_barrier],
+    baseAtk: 1177,
+    skills: {
+      s1: {
+        soulburn: true,
+        rate: (soulburn) => soulburn ? 1.7 : 1,
+        pow: 1,
+        mult: () => 1 + (elements.caster_has_multilayer_barrier.value() ? 0.3 : 0),
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        single: true,
+      },
+      s2: {
+        rate: 1.2,
+        pow: 1,
+        penetrate: () => elements.caster_has_multilayer_barrier.value() ? 0.6 : 0.3,
+        isExtra: true,
+        aoe: true,
+      },
+      s3: {
+        rate: 2,
+        pow: 1,
+        enhance: [0.05, 0.05, 0, 0.1, 0.1],
+        single: true,
+      },
+    }
+  },
   blaze_dingo: {
     name: 'Blaze Dingo',
     element: element.light,
@@ -1238,7 +1331,7 @@ const heroes = {
     form: [elements.caster_hp_pc],
     atkUp: () => {
       let boost = 0.0051;
-      for (let i = 0; i < Number(document.getElementById(`molagora-s2`).value); i++) {
+      for (let i = 0; i < Number(document.getElementById('molagora-s2').value); i++) {
         boost += 0.0051 * heroes.blood_blade_karin.skills.s2.enhance[i];
       }
       return 1+(100-elements.caster_hp_pc.value())*boost;
@@ -1482,14 +1575,14 @@ const heroes = {
         pow: 1,
         flat: (soulburn) => {
           if (soulburn) {
-            return elements.caster_max_hp.value() * (elements.caster_hp_pc.value() < 75 ? 0.1 : 0.08)
+            return elements.caster_max_hp.value() * (elements.caster_hp_pc.value() < 75 ? 0.1 : 0.08);
           } else {
-            return elements.caster_max_hp.value() * (elements.caster_hp_pc.value() < 75 ? 0.0625 : 0.05)
+            return elements.caster_max_hp.value() * (elements.caster_hp_pc.value() < 75 ? 0.0625 : 0.05);
           }
         },
         flatTip: (soulburn) => (elements.caster_hp_pc.value() < 75)
-            ? { caster_hp_pc_under_hp_threshold: soulburn ? 10 : 6.25 }
-            : { caster_hp_pc_over_hp_threshold: soulburn ? 8 : 5 },
+          ? { caster_hp_pc_under_hp_threshold: soulburn ? 10 : 6.25 }
+          : { caster_hp_pc_over_hp_threshold: soulburn ? 8 : 5 },
         enhance: [0.05, 0, 0, 0.1, 0, 0.15],
         aoe: true,
       }
@@ -1681,6 +1774,7 @@ const heroes = {
         rate: 1.2,
         pow: 1,
         enhance: [0.05, 0, 0.05, 0, 0.1, 0, 0.1],
+        canExtra: true,
         single: true,
       },
       s3: {
@@ -1707,7 +1801,7 @@ const heroes = {
         critDmgBoost: () => 0.2,
         mult: () => {
           let mult = 0;
-          for (let i = 0; i < Number(document.getElementById(`molagora-s2`).value); i++) {
+          for (let i = 0; i < Number(document.getElementById('molagora-s2').value); i++) {
             mult += heroes.challenger_dominiel.skills.s2.enhance[i];
           }
 
@@ -1715,10 +1809,10 @@ const heroes = {
         },
         multTip: () => {
           let mult = 0;
-          for (let i = 0; i < Number(document.getElementById(`molagora-s2`).value); i++) {
+          for (let i = 0; i < Number(document.getElementById('molagora-s2').value); i++) {
             mult += heroes.challenger_dominiel.skills.s2.enhance[i];
           }
-          return { per_crit_hit: (5.4 + (5.4*mult)).toFixed(2) }
+          return { per_crit_hit: (5.4 + (5.4*mult)).toFixed(2) };
         },
         enhance: [0.05, 0.05, 0.05, 0.1, 0.15],
         single: true,
@@ -1778,9 +1872,7 @@ const heroes = {
     element: element.dark,
     classType: classType.warrior,
     baseAtk: 1144,
-    form: [elements.caster_max_hp, elements.caster_attacked_stack_5],
-    dot: [dot.bleed],
-    atkUp: () => 1 + elements.caster_attacked_stack_5.value()*0.06,
+    form: [elements.caster_max_hp, elements.skill_tree_completed],
     skills: {
       s1: {
         rate: 0.7,
@@ -1793,6 +1885,8 @@ const heroes = {
       s2: {
         rate: 0.7,
         pow: 0.95,
+        mult: () => elements.skill_tree_completed.value() ? 1.1 : 1,
+        multTip: () => (elements.skill_tree_completed.value() ? { skill_tree: 10 } : null),
         flat: () => elements.caster_max_hp.value()*0.08,
         flatTip: () => ({ caster_max_hp: 8 }),
         enhance: [0.05, 0.05, 0.1, 0.15],
@@ -1803,7 +1897,7 @@ const heroes = {
         pow: 0.9,
         flat: () => elements.caster_max_hp.value()*0.2,
         flatTip: () => ({ caster_max_hp: 20 }),
-        penetrate: () => document.getElementById(`elem-adv`).checked ? 0.4 : 0,
+        penetrate: () => document.getElementById('elem-adv').checked ? 0.4 : 0,
         enhance: [0.05, 0.05, 0.05, 0, 0, 0.1, 0.15],
         single: true,
       }
@@ -1870,10 +1964,10 @@ const heroes = {
         pow: 1,
         mult: () => {
           switch (elements.nb_targets.value()) {
-            case 3: return 1.267;
-            case 2: return 1.534;
-            case 1: return 1.801;
-            default: return 1;
+          case 3: return 1.267;
+          case 2: return 1.534;
+          case 1: return 1.801;
+          default: return 1;
           }
         },
         multTip: () => ({ per_fewer_target: 26.7 }),
@@ -1958,6 +2052,7 @@ const heroes = {
         flatTip: () => ({ caster_max_hp: (elements.caster_full_focus.value() ? 15 : 11) }),
         penetrate: () => 0.7,
         enhance: [0.05, 0.1, 0.15],
+        canExtra: true,
         single: true,
       },
       s3: {
@@ -2066,6 +2161,7 @@ const heroes = {
         rate: 0.7,
         pow: 1,
         enhance: [0.05, 0.05, 0.05, 0.1, 0.1],
+        isExtra: true,
         aoe: true,
       },
       s3: {
@@ -2080,13 +2176,13 @@ const heroes = {
       }
     }
   },
-   closer_charles: {
+  closer_charles: {
     name:  'Closer Charles',
     element: element.dark,
     classType: classType.thief,
     baseAtk: 1228,
     form: [elements.target_hp_pc, elements.caster_perception],
-     skills: {
+    skills: {
       s1: {
         rate: 1,
         pow: 1,
@@ -2098,7 +2194,7 @@ const heroes = {
         pow: 1,
         name: 'S1 Demolition',
         mult: () => 1 + (100-elements.target_hp_pc.value())*0.004,
-        multTip: () => ({ tagret_lost_hp_pc: 0.4 }),
+        multTip: () => ({ target_lost_hp_pc: 0.4 }),
         enhance_from: 's1',
         single: true,
       },
@@ -2149,7 +2245,7 @@ const heroes = {
     form: [elements.target_max_hp, elements.target_hp_pc, elements.attack_skill_stack_5],
     atkUp: () => {
       let boost = 0.1;
-      for (let i = 0; i < Number(document.getElementById(`molagora-s2`).value); i++) {
+      for (let i = 0; i < Number(document.getElementById('molagora-s2').value); i++) {
         boost += heroes.commander_lorina.skills.s2.enhance[i];
       }
 
@@ -2637,7 +2733,7 @@ const heroes = {
     barrier: () => {
       const scale = [0, 0.1, 0, 0.15, 0];
       let boost = 1.0;
-      for (let i = 0; i < Number(document.getElementById(`molagora-s1`).value); i++) {
+      for (let i = 0; i < Number(document.getElementById('molagora-s1').value); i++) {
         boost += scale[i];
       }
 
@@ -2658,6 +2754,7 @@ const heroes = {
         flat: () => elements.caster_max_hp.value() * 0.08,
         flatTip: () => ({caster_max_hp: 8}),
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        isExtra: true,
         aoe: true
       },
       s3: {
@@ -3095,7 +3192,7 @@ const heroes = {
       if (!elements.caster_has_debuff.value()) return 1;
 
       let boost = 0.2;
-      for (let i = 0; i < Number(document.getElementById(`molagora-s2`).value); i++) {
+      for (let i = 0; i < Number(document.getElementById('molagora-s2').value); i++) {
         boost += heroes.gloomyrain.skills.s2.enhance[i];
       }
 
@@ -3194,7 +3291,7 @@ const heroes = {
     dot: [dot.bleed],
     innateAtkUp: () => {
       let boost = 0.5;
-      for (let i = 0; i < Number(document.getElementById(`molagora-s2`).value); i++) {
+      for (let i = 0; i < Number(document.getElementById('molagora-s2').value); i++) {
         boost += heroes.gunther.skills.s2.enhance[i];
       }
 
@@ -3302,10 +3399,10 @@ const heroes = {
         pow: 1,
         mult: () => {
           switch (elements.nb_targets.value()) {
-            case 1: return 2.5;
-            case 2: return 2.0;
-            case 3: return 1.5;
-            default: return 1.0;
+          case 1: return 2.5;
+          case 2: return 2.0;
+          case 3: return 1.5;
+          default: return 1.0;
           }
         },
         multTip: () => ({ per_fewer_target: 50 }),
@@ -3447,15 +3544,15 @@ const heroes = {
     name: 'Hwayoung',
     element: element.fire,
     classType: classType.warrior,
-    info: "<strong>Notice:</strong> Hwayoung's S1 additional damage penetration has been set back to 0.7 in the calculator.  It was presumed" +
-          " to have been removed because it did not show up when the skill data spreadsheet datamined.  However, as of now it is presumed all" +
-          " additional damage of this kind has 0.7 def pen due to other heroes' additional damage penetration similarly being absent in datamines.",
-    baseAtk: 1342,
+    // info: "<strong>Notice:</strong> Hwayoung's S1 additional damage penetration has been set back to 0.7 in the calculator.  It was presumed" +
+    //       " to have been removed because it did not show up when the skill data spreadsheet datamined.  However, as of now it is presumed all" +
+    //       " additional damage of this kind has 0.7 def pen due to other heroes' additional damage penetration similarly being absent in datamines.",
+    baseAtk: 1119,
     form: [elements.caster_has_buff, elements.caster_max_hp, elements.target_max_hp],
     barrier: (hero) => hero.getAtk()*0.45,
     innateAtkUp: () => {
       let boost = 0.20;
-      for (let i = 0; i < Number(document.getElementById(`molagora-s2`).value); i++) {
+      for (let i = 0; i < Number(document.getElementById('molagora-s2').value); i++) {
         boost += heroes.hwayoung.skills.s2.enhance[i];
       }
       return boost;
@@ -3476,8 +3573,8 @@ const heroes = {
         rate: 1.25,
         pow: 1,
         penetrate:() => elements.caster_max_hp.value() < elements.target_max_hp.value()
-            ? Math.min((elements.target_max_hp.value() - elements.caster_max_hp.value()) * 0.000091, 1)
-            : 0,
+          ? Math.min((elements.target_max_hp.value() - elements.caster_max_hp.value()) * 0.000091, 1)
+          : 0,
         penetrateTip: () => ({ caster_vs_target_hp_diff: 9.1 }),
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
         single: true,
@@ -3565,8 +3662,8 @@ const heroes = {
         soulburn: true,
         rate: (soulburn) => soulburn ? 1.4 : 1,
         pow: 1,
-        flat: () => elements.caster_max_hp.value() * 0.18,
-        flatTip: () => ({ caster_max_hp: 18 }),
+        flat: (soulburn) => elements.caster_max_hp.value() * (soulburn ? 0.28 : 0.18),
+        flatTip: (soulburn) => ({ caster_max_hp: (soulburn ? 28 : 18) }),
         afterMath: () => ({ injuryPercent: 0.5, penetrate: 0.7 }),
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
         single: true,
@@ -3581,39 +3678,39 @@ const heroes = {
       }
     }
   },
-  ilynav_old: {
-    name: 'Ilynav (Pre-Balance)',
-    element: element.fire,
-    classType: classType.knight,
-    baseAtk: 957,
-    form: [elements.caster_max_hp],
-    skills: {
-      s1: {
-        rate: 0.7,
-        pow: 1,
-        flat: () => elements.caster_max_hp.value()*0.08,
-        flatTip: () => ({ caster_max_hp: 8 }),
-        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
-        single: true,
-      },
-      s2: {
-        rate: 1,
-        pow: 1,
-        flat: () => elements.caster_max_hp.value()*0.18,
-        flatTip: () => ({ caster_max_hp: 18 }),
-        enhance: [0.05, 0.05, 0, 0.1, 0.1],
-        single: true,
-      },
-      s3: {
-        rate: 0.7,
-        pow: 1,
-        flat: () => elements.caster_max_hp.value()*0.12,
-        flatTip: () => ({ caster_max_hp: 12 }),
-        enhance: [0.05, 0.05, 0, 0.1, 0.1],
-        aoe: true,
-      }
-    }
-  },
+  // ilynav_old: {
+  //   name: 'Ilynav (Pre-Balance)',
+  //   element: element.fire,
+  //   classType: classType.knight,
+  //   baseAtk: 957,
+  //   form: [elements.caster_max_hp],
+  //   skills: {
+  //     s1: {
+  //       rate: 0.7,
+  //       pow: 1,
+  //       flat: () => elements.caster_max_hp.value()*0.08,
+  //       flatTip: () => ({ caster_max_hp: 8 }),
+  //       enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+  //       single: true,
+  //     },
+  //     s2: {
+  //       rate: 1,
+  //       pow: 1,
+  //       flat: () => elements.caster_max_hp.value()*0.18,
+  //       flatTip: () => ({ caster_max_hp: 18 }),
+  //       enhance: [0.05, 0.05, 0, 0.1, 0.1],
+  //       single: true,
+  //     },
+  //     s3: {
+  //       rate: 0.7,
+  //       pow: 1,
+  //       flat: () => elements.caster_max_hp.value()*0.12,
+  //       flatTip: () => ({ caster_max_hp: 12 }),
+  //       enhance: [0.05, 0.05, 0, 0.1, 0.1],
+  //       aoe: true,
+  //     }
+  //   }
+  // },
   inferno_khawazu: {
     name: 'Inferno Khawazu',
     element: element.dark,
@@ -3635,6 +3732,37 @@ const heroes = {
         detonation: () => 1.2,
         single: true,
       }
+    }
+  },
+  infinite_horizon_achates: {
+    name: 'Infinite Horizon Achates',
+    element: element.light,
+    classType: classType.soul_weaver,
+    form: [elements.caster_max_hp],
+    baseAtk: 576,
+    barrierSkills: ['S2', 'S3'],
+    barrier: () => {
+      const scale = [0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.1];
+      let boost = 1.0;
+      for (let i = 0; i < Number(document.getElementById('molagora-s2').value); i++) {
+        boost += scale[i];
+      }
+
+      return elements.caster_max_hp.value()*0.18*boost;
+    },
+    barrier2: () => {
+      return elements.caster_max_hp.value()*0.2;
+    },
+    skills: {
+      s1: {
+        rate: 1,
+        pow: 1,
+        enhance: [0.05, 0.05, 0, 0.05, 0, 0.05, 0.1],
+        single: true,
+      },
+      s2: {
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.1]
+      },
     }
   },
   iseria: {
@@ -3660,6 +3788,38 @@ const heroes = {
   },
   jack_o: {
     name: 'Jack-O\'',
+    element: element.fire,
+    classType: classType.warrior,
+    form: [elements.target_has_debuff],
+    baseAtk: 1228,
+    skills: {
+      s1: {
+        rate: 0.75,
+        pow: 1,
+        enhance: [0.05, 0.05, 0, 0.1, 0.1],
+        single: true,
+      },
+      s1_extra: {
+        name: infoLabel('s1_extra_attack'),
+        rate: 1.1,
+        pow: 1,
+        enhance_from: 's1',
+        isExtra: true,
+        single: true,
+      },
+      s3: {
+        rate: 1,
+        pow: 1,
+        mult: () => elements.target_has_debuff.value() ? 1.5 : 1,
+        multTip: () => ({ target_has_debuff: 50 }),
+        penetrate: () => 0.5,
+        enhance: [0.05, 0.05, 0, 0.1, 0.1],
+        single: true,
+      }
+    }
+  },
+  jack_o_old: {
+    name: 'Jack-O\' (Pre-Balance)',
     element: element.fire,
     classType: classType.warrior,
     form: [elements.target_has_debuff],
@@ -4272,11 +4432,11 @@ const heroes = {
     form: [elements.caster_full_fighting_spirit, elements.attack_skill_stack_3],
     atkUp: () => {
       let boost = 0.15;
-      for (let i = 0; i < Number(document.getElementById(`molagora-s2`).value); i++) {
+      for (let i = 0; i < Number(document.getElementById('molagora-s2').value); i++) {
         boost += heroes.landy.skills.s2.enhance[i];
       }
 
-      return 1 + elements.attack_skill_stack_3.value()*boost;
+      return 1 + elements.attack_skill_stack_3.value() * boost;
     },
     skills: {
       s1: {
@@ -4294,6 +4454,39 @@ const heroes = {
         pow: 1,
         penetrate: () => elements.caster_full_fighting_spirit.value() ? 0.5 : 0,
         enhance: [0.05, 0.05, 0, 0.1, 0.1]
+      }
+    }
+  },
+  last_piece_karin: {
+    name: 'Last Piece Karin',
+    element: element.light,
+    classType: classType.thief,
+    baseAtk: 1029,
+    barrier: (hero) => hero.getAtk() * 0.65,
+    form: [elements.caster_speed, elements.target_max_hp, elements.caster_has_neo_phantom_sword],
+    skills: {
+      s1: {
+        soulburn: true,
+        rate: (soulburn) => soulburn ? 1.5 : 0.9,
+        pow: 1,
+        mult: () => 1 + elements.caster_speed.value() * 0.00075,
+        multTip: () => ({ caster_speed: 0.075 }),
+        flat: () => elements.caster_has_neo_phantom_sword.value() ? elements.target_max_hp.value() * 0.2 : 0,
+        flatTip: () => ({ target_max_hp: 20 }),
+        enhance: [0.05, 0, 0.05, 0, 0.1, 0, 0.1],
+        single: true,
+        // noTrans: elements.caster_has_neo_phantom_sword.value() ? true : false
+      },
+      s2: {
+        rate: 1.5,
+        pow: 0.9,
+        mult: () => 1 + elements.caster_speed.value() * 0.0015,
+        multTip: () => ({ caster_speed: 0.15 }),
+        flat: () => elements.caster_has_neo_phantom_sword.value() ? elements.target_max_hp.value() * 0.2 : 0,
+        flatTip: () => ({ target_max_hp: 20 }),
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.1],
+        single: true,
+        // noTrans: elements.caster_has_neo_phantom_sword.value()
       }
     }
   },
@@ -4331,40 +4524,40 @@ const heroes = {
       }
     }
   },
-  last_rider_krau_old: {
-    name: 'Last Rider Krau (Pre-Balance)',
-    element: element.light,
-    classType: classType.knight,
-    baseAtk: 839,
-    form: [elements.caster_max_hp, elements.attack_skill_stack_3],
-    barrier: () => elements.caster_max_hp.value()*0.07,
-    barrierEnhance: 's2',
-    skills: {
-      s1: {
-        rate: 0.7,
-        pow: 1,
-        flat: () => 0.1*elements.caster_max_hp.value(),
-        flatTip: () => ({ caster_max_hp: 10 }),
-        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
-        single: true,
-      },
-      s2: {
-        enhance: [0.05, 0.1, 0.1, 0.1, 0.15]
-      },
-      s3: {
-        noCrit: true,
-        rate: 0.3,
-        pow: 1,
-        flat: () => 0.06*elements.caster_max_hp.value(),
-        flatTip: () => ({ caster_max_hp: 6 }),
-        mult: () => 1 + elements.attack_skill_stack_3.value()*0.2,
-        multTip: () => ({ per_stack: 20 }),
-        penetrate: () => 1.0,
-        enhance: [0.05, 0.05, 0, 0.1, 0.1],
-        aoe: true,
-      }
-    }
-  },
+  // last_rider_krau_old: {
+  //   name: 'Last Rider Krau (Pre-Balance)',
+  //   element: element.light,
+  //   classType: classType.knight,
+  //   baseAtk: 839,
+  //   form: [elements.caster_max_hp, elements.attack_skill_stack_3],
+  //   barrier: () => elements.caster_max_hp.value()*0.07,
+  //   barrierEnhance: 's2',
+  //   skills: {
+  //     s1: {
+  //       rate: 0.7,
+  //       pow: 1,
+  //       flat: () => 0.1*elements.caster_max_hp.value(),
+  //       flatTip: () => ({ caster_max_hp: 10 }),
+  //       enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+  //       single: true,
+  //     },
+  //     s2: {
+  //       enhance: [0.05, 0.1, 0.1, 0.1, 0.15]
+  //     },
+  //     s3: {
+  //       noCrit: true,
+  //       rate: 0.3,
+  //       pow: 1,
+  //       flat: () => 0.06*elements.caster_max_hp.value(),
+  //       flatTip: () => ({ caster_max_hp: 6 }),
+  //       mult: () => 1 + elements.attack_skill_stack_3.value()*0.2,
+  //       multTip: () => ({ per_stack: 20 }),
+  //       penetrate: () => 1.0,
+  //       enhance: [0.05, 0.05, 0, 0.1, 0.1],
+  //       aoe: true,
+  //     }
+  //   }
+  // },
   lena: {
     name: 'Lena',
     element: element.ice,
@@ -4383,7 +4576,7 @@ const heroes = {
         rate: (soulburn) => soulburn ? 1.2 : 1,
         pow: 1,
         mult: () => 1 + (100-elements.target_hp_pc.value())*0.002,
-        multTip: () => ({ tagret_lost_hp_pc: 0.2 }),
+        multTip: () => ({ target_lost_hp_pc: 0.2 }),
         enhance: [0.05, 0.05, 0, 0.05, 0.05, 0.1],
         aoe: true,
       },
@@ -4411,6 +4604,38 @@ const heroes = {
         rate: 0.8,
         pow: 0.8,
         enhance: [0.05, 0.05, 0, 0.1, 0.15],
+        aoe: true,
+      }
+    }
+  },
+  lethe: {
+    name: 'Lethe',
+    element: element.ice,
+    classType: classType.warrior,
+    baseAtk: 885,
+    form: [elements.caster_max_hp],
+    skills: {
+      s1: {
+        rate: 1,
+        pow: 1,
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        single: true,
+      },
+      s2: {
+        name: infoLabel('lethe_call_of_the_abyss'),
+        rate: 0.3,
+        pow: 1.3,
+        flat: () => elements.caster_max_hp.value() * 0.22,
+        flatTip: () => ({caster_max_hp: 22}),
+        penetrate: () => 1,
+        noCrit: true,
+        isExtra: true,
+        aoe: true,
+      },
+      s3: {
+        rate: 1,
+        pow: 1.05,
+        enhance: [0.0, 0.1, 0, 0, 0.15],
         aoe: true,
       }
     }
@@ -4466,31 +4691,31 @@ const heroes = {
       }
     }
   },
-  lilias_old: {
-    name: 'Lilias (Pre-Balance)',
-    element: element.fire,
-    classType: classType.knight,
-    baseAtk: 821,
-    form: [elements.caster_max_hp, elements.highest_ally_attack],
-    skills: {
-      s1: {
-        rate: 0.8,
-        pow: 0.95,
-        flat: () => elements.caster_max_hp.value()*0.12,
-        flatTip: () => ({ caster_max_hp: 12 }),
-        enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.1],
-        single: true,
-      },
-      s3: {
-        rate: 0.9,
-        pow: 1,
-        atk: () =>  elements.highest_ally_attack.value(),
-        noBuff: true,
-        enhance: [0.05, 0.05, 0, 0.05, 0.05, 0.1],
-        aoe: true,
-      }
-    }
-  },
+  // lilias_old: {
+  //   name: 'Lilias (Pre-Balance)',
+  //   element: element.fire,
+  //   classType: classType.knight,
+  //   baseAtk: 821,
+  //   form: [elements.caster_max_hp, elements.highest_ally_attack],
+  //   skills: {
+  //     s1: {
+  //       rate: 0.8,
+  //       pow: 0.95,
+  //       flat: () => elements.caster_max_hp.value()*0.12,
+  //       flatTip: () => ({ caster_max_hp: 12 }),
+  //       enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.1],
+  //       single: true,
+  //     },
+  //     s3: {
+  //       rate: 0.9,
+  //       pow: 1,
+  //       atk: () =>  elements.highest_ally_attack.value(),
+  //       noBuff: true,
+  //       enhance: [0.05, 0.05, 0, 0.05, 0.05, 0.1],
+  //       aoe: true,
+  //     }
+  //   }
+  // },
   lilibet: {
     name: 'Lilibet',
     element: element.earth,
@@ -4587,7 +4812,38 @@ const heroes = {
       s3: {
         rate: 1.5,
         pow: 1,
-        mult: () => document.getElementById(`elem-adv`).checked ? 1.3 : 1,
+        mult: () => document.getElementById('elem-adv').checked ? 1.5 : 1,
+        multTip: () => ({ elemental_advantage: 50 }),
+        penetrate: () => 0.5,
+        enhance: [0.05, 0.05, 0, 0.05, 0.15],
+        single: true,
+      },
+      s3_splash: {
+        name: infoLabel('lqc_s3_splash'),
+        rate: 0,
+        pow: 0,
+        afterMath: () => document.getElementById('elem-adv').checked ? { atkPercent: 1.2, penetrate: 0.7 } : null,
+        noCrit: true,
+        noMiss: true,
+      }
+    }
+  },
+  little_queen_charlotte_old: {
+    name: 'Little Queen Charlotte (Pre-Balance)',
+    element: element.light,
+    classType: classType.warrior,
+    baseAtk: 1119,
+    skills: {
+      s1: {
+        rate: 1.2,
+        pow: 1,
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        single: true,
+      },
+      s3: {
+        rate: 1.5,
+        pow: 1,
+        mult: () => document.getElementById('elem-adv').checked ? 1.3 : 1,
         multTip: () => ({ elemental_advantage: 30 }),
         penetrate: () => 0.5,
         enhance: [0.05, 0.05, 0, 0.05, 0.15],
@@ -4597,7 +4853,7 @@ const heroes = {
         name: infoLabel('lqc_s3_splash'),
         rate: 0,
         pow: 0,
-        afterMath: () => document.getElementById(`elem-adv`).checked ? { atkPercent: 1.2, penetrate: 0.7 } : null,
+        afterMath: () => document.getElementById('elem-adv').checked ? { atkPercent: 1.2, penetrate: 0.7 } : null,
         noCrit: true,
         noMiss: true,
       }
@@ -4623,6 +4879,7 @@ const heroes = {
         rate: 0.6,
         pow: 1,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        isExtra: true,
         aoe: true,
       },
       s3: {
@@ -4644,7 +4901,7 @@ const heroes = {
     form: [elements.target_max_hp, elements.target_hp_pc, elements.attack_skill_stack_5],
     atkUp: () => {
       let boost = 0.1;
-      for (let i = 0; i < Number(document.getElementById(`molagora-s2`).value); i++) {
+      for (let i = 0; i < Number(document.getElementById('molagora-s2').value); i++) {
         boost += heroes.lorina.skills.s2.enhance[i];
       }
 
@@ -4798,7 +5055,7 @@ const heroes = {
       }
 
       let mult = 1.2;
-      for (let i = 0; i < Number(document.getElementById(`molagora-s2`).value); i++) {
+      for (let i = 0; i < Number(document.getElementById('molagora-s2').value); i++) {
         mult += heroes.luna.skills.s2.enhance[i];
       }
 
@@ -4872,10 +5129,10 @@ const heroes = {
         pow: 0.95,
         mult: () => {
           let extra = 0;
-          for (let i = 0; i < Number(document.getElementById(`molagora-s1`).value); i++) {
+          for (let i = 0; i < Number(document.getElementById('molagora-s1').value); i++) {
             extra += heroes.martial_artist_ken.skills.s1.enhance[i];
           }
-          return (1 + (100-elements.caster_hp_pc.value())*0.004 + extra)
+          return (1 + (100-elements.caster_hp_pc.value())*0.004 + extra);
         },
         multTip: () => ({ caster_lost_hp_pc: 40 }),
         enhance: [0.05, 0.1, 0.15],
@@ -5055,10 +5312,10 @@ const heroes = {
         pow: 0.9,
         mult: () => {
           switch (elements.nb_targets.value()) {
-            case 1: return 1.9;
-            case 2: return 1.6;
-            case 3: return 1.3;
-            default: return 1;
+          case 1: return 1.9;
+          case 2: return 1.6;
+          case 3: return 1.3;
+          default: return 1;
           }
         },
         multTip: () => ({ per_fewer_target: 30 }),
@@ -5071,10 +5328,10 @@ const heroes = {
         pow: 0.9,
         mult: () => {
           switch (elements.nb_targets.value()) {
-            case 1: return 1.9;
-            case 2: return 1.6;
-            case 3: return 1.3;
-            default: return 1;
+          case 1: return 1.9;
+          case 2: return 1.6;
+          case 3: return 1.3;
+          default: return 1;
           }
         },
         multTip: () => ({ per_fewer_target: 30 }),
@@ -5407,6 +5664,38 @@ const heroes = {
       }
     }
   },
+  navy_captain_landy: {
+    name: 'Navy Captain Landy',
+    element: element.light,
+    classType: classType.knight,
+    baseAtk: 1134,
+    form: [elements.attack_skill_stack_5],
+    atkUp: () => {
+      return 1 + elements.attack_skill_stack_5.value() * 0.1;
+    },
+    skills: {
+      s1: {
+        rate: 1.1,
+        pow: 1,
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        single: true,
+      },
+      s2: {
+        name: infoLabel('navy_captain_landy_salvo_fire'),
+        rate: 0.8,
+        pow: 1.3,
+        isExtra: true,
+        aoe: true,
+      },
+      s3: {
+        rate: 1,
+        pow: 1.05,
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        penetrate: () => 0.6,
+        aoe: true,
+      }
+    }
+  },
   nemunas: {
     name: 'Nemunas',
     element: element.fire,
@@ -5428,6 +5717,25 @@ const heroes = {
         flatTip: (soulburn) => ({ target_max_hp: soulburn ? 8.5 : 5 }),
         enhance: [0.05, 0.05, 0.05, 0, 0.1, 0.1, 0.15],
         single: true,
+      }
+    }
+  },
+  ocean_breeze_luluca: {
+    name: 'Ocean Breeze Luluca',
+    element: element.earth,
+    classType: classType.soul_weaver,
+    baseAtk: 649,
+    skills: {
+      s1: {
+        rate: 1,
+        pow: 1,
+        enhance: [0.05, 0.05, 0, 0.05, 0, 0.05, 0.1],
+        single: true,
+      },
+      s2: {
+        rate: 1,
+        pow: 1,
+        aoe: true,
       }
     }
   },
@@ -5619,7 +5927,7 @@ const heroes = {
     baseAtk: 1075,
     barrier: () => {
       let boost = 1.0;
-      for (let i = 0; i < Number(document.getElementById(`molagora-s3`).value); i++) {
+      for (let i = 0; i < Number(document.getElementById('molagora-s3').value); i++) {
         boost += heroes.peira.skills.s3.enhance[i];
       }
       return 180*boost*60;
@@ -5904,6 +6212,7 @@ const heroes = {
         rate: 0.95,
         pow: 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
+        canExtra: true,
         single: true
       },
       s2: {
@@ -5938,6 +6247,33 @@ const heroes = {
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
         single: true,
       }
+    }
+  },
+  requiem_roana: {
+    name: 'Requiem Roana',
+    element: element.dark,
+    classType: classType.mage,
+    form: [elements.attack_skill_stack_3],
+    baseAtk: 1316,
+    skills: {
+      s1: {
+        rate: 1,
+        pow: 1,
+        afterMath: (hitType) => hitType !== hitTypes.miss ? ({ atkPercent: 0.5, penetrate: 0.7 }) : null,
+        noCrit: true,
+        enhance: [0.05, 0.05, 0, 0.1, 0.1],
+        single: true,
+      },
+      s3: {
+        rate: 0.3,
+        pow: 1,
+        mult: () => 1 + elements.attack_skill_stack_3.value() * 0.15,
+        multTip: () => ({per_stack: 15}),
+        penetrate: () => 1.0,
+        noCrit: true,
+        enhance: [0.05, 0.05, 0, 0.1, 0.1],
+        aoe: true
+      },
     }
   },
   requiemroar: {
@@ -6072,6 +6408,7 @@ const heroes = {
         rate: 1.65,
         pow: 1,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        isExtra: true,
         single: true,
       },
       s3: {
@@ -6169,14 +6506,14 @@ const heroes = {
     barrier: () => {
       const scale = [0, 0.05, 0, 0.1, 0, 0.1, 0];
       let boost = 1.0;
-      for (let i = 0; i < Number(document.getElementById(`molagora-s1`).value); i++) {
+      for (let i = 0; i < Number(document.getElementById('molagora-s1').value); i++) {
         boost += scale[i];
       }
 
       return elements.caster_max_hp.value()*0.1*boost;
     },
     barrier2: () => {
-      return elements.caster_max_hp.value()*0.15
+      return elements.caster_max_hp.value()*0.15;
     },
     skills: {
       s1: {
@@ -6279,14 +6616,14 @@ const heroes = {
         pow: 0.9,
         mult: () => {
           switch (elements.nb_targets.value()) {
-            case 3:
-              return 1.2;
-            case 2:
-              return 1.4;
-            case 1:
-              return 1.6;
-            default:
-              return 1;
+          case 3:
+            return 1.2;
+          case 2:
+            return 1.4;
+          case 1:
+            return 1.6;
+          default:
+            return 1;
           }
         },
         multTip: () => ({per_fewer_target: 20}),
@@ -6366,7 +6703,7 @@ const heroes = {
         pow: 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
         penetrate: () => 0.5,
-        mult: () => elements.skill_tree_completed.value() && document.getElementById(`elem-adv`).checked ? 1.2 : 1,
+        mult: () => elements.skill_tree_completed.value() && document.getElementById('elem-adv').checked ? 1.2 : 1,
         multTip: () => ({ skill_tree_elemental: 20 }),
         single: true,
       },
@@ -6513,6 +6850,7 @@ const heroes = {
     name: 'Seaside Bellona',
     element: element.ice,
     classType: classType.ranger,
+    form: [elements.exclusive_equipment_2],
     baseAtk: 1182,
     skills: {
       s1: {
@@ -6524,6 +6862,7 @@ const heroes = {
       s2: {
         rate: 0.7,
         pow: 1,
+        exEq: () => elements.exclusive_equipment_2.value() ? 0.1 : 0,
         enhance: [0.05, 0.1, 0.15],
         aoe: true,
       },
@@ -6741,6 +7080,7 @@ const heroes = {
         pow: 1,
         exEq: () => elements.exclusive_equipment_1.value() ? 0.2 : 0,
         enhance: [0.05, 0, 0.1, 0, 0.15],
+        canExtra: true,
         single: true,
       },
       s2: {
@@ -6844,6 +7184,7 @@ const heroes = {
         flat: () => elements.target_max_hp.value()*0.04,
         flatTip: () => ({ target_max_hp: 4 }),
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        isExtra: true,
         single: true,
       },
       s3: {
@@ -6938,7 +7279,7 @@ const heroes = {
     form: [elements.target_nb_debuff, elements.dead_people, elements.s3_on_cooldown],
     atkUp: () => {
       let buff = 0.07;
-      for (let i = 0; i < Number(document.getElementById(`molagora-s2`).value); i++) {
+      for (let i = 0; i < Number(document.getElementById('molagora-s2').value); i++) {
         buff += heroes.specter_tenebria.skills.s2.enhance[i];
       }
       return 1 + Math.min(elements.dead_people.value(), 5)*buff;
@@ -7003,10 +7344,10 @@ const heroes = {
         pow: 1,
         mult: () => {
           switch (elements.nb_targets.value()) {
-            case 1: return 1.6;
-            case 2: return 1.4;
-            case 3: return 1.2;
-            default: return 1;
+          case 1: return 1.6;
+          case 2: return 1.4;
+          case 3: return 1.2;
+          default: return 1;
           }
         },
         multTip: () => ({per_fewer_target: 20}),
@@ -7034,6 +7375,27 @@ const heroes = {
   },
   summer_break_charlotte: {
     name: 'Summer Break Charlotte',
+    element: element.ice,
+    classType: classType.knight,
+    baseAtk: 957,
+    skills: {
+      s1: {
+        rate: 0.9,
+        pow: 1,
+        enhance: [0.05, 0.05, 0, 0.1, 0.1],
+        single: true,
+      },
+      s3: {
+        rate: 1.5,
+        pow: 1,
+        penetrate: () => 0.5,
+        enhance: [0.05, 0.05, 0, 0.1, 0.1],
+        single: true,
+      },
+    }
+  },
+  summer_break_charlotte_old: {
+    name: 'Summer Break Charlotte (Pre-Balance)',
     element: element.ice,
     classType: classType.knight,
     baseAtk: 957,
@@ -7103,7 +7465,7 @@ const heroes = {
     dot: [dot.bomb],
     innateAtkUp: () => {
       let boost = 0.35;
-      for (let i = 0; i < Number(document.getElementById(`molagora-s2`).value); i++) {
+      for (let i = 0; i < Number(document.getElementById('molagora-s2').value); i++) {
         boost += heroes.summertime_iseria.skills.s2.enhance[i];
       }
 
@@ -7168,7 +7530,7 @@ const heroes = {
     form: [elements.attack_skill_stack_10],
     atkUp: () => {
       let boost = 0.025;
-      for (let i = 0; i < Number(document.getElementById(`molagora-s2`).value); i++) {
+      for (let i = 0; i < Number(document.getElementById('molagora-s2').value); i++) {
         boost += heroes.suthan.skills.s2.enhance[i];
       }
       return 1 + (boost * elements.attack_skill_stack_10.value());
@@ -7277,6 +7639,7 @@ const heroes = {
         pow: 1.3,
         mult: () => 1 + elements.caster_speed.value()*0.00075,
         multTip: () => ({ caster_speed: 0.075 }),
+        isExtra: true,
         single: true,
       },
       s3: {
@@ -7512,6 +7875,40 @@ const heroes = {
     }
 
   },
+  twisted_eidolon_kayron: { //TODO: translate when available
+    name: 'Twisted Eidolon Kayron',
+    element: element.light,
+    classType: classType.thief,
+    baseAtk: 1228,
+    barrier: () => elements.caster_max_hp.value() * 0.12,
+    form: [elements.target_hp_pc, elements.caster_enrage, elements.caster_max_hp],
+    skills: {
+      s1: {
+        rate: (soulburn) => soulburn ? 1.7 : 1,
+        pow: 1,
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        mult: () => 1 + (1-(elements.target_hp_pc.value() / 100)) * 0.3,
+        multTip: () => ({ target_lost_hp_pc: 30 }),
+        single: true,
+        soulburn: true
+      },
+      s1_bis: {
+        name: infoLabel('ml_kayron_flash_slash'),
+        rate: 0.85,
+        pow: 1,
+        enhance_from: 's1',
+        aoe: true,
+      },
+      s3: {
+        rate: 0.9,
+        pow: 1,
+        fixed: (hitType) => (hitType !== hitTypes.miss) ? ((elements.caster_enrage.value()) ? 10000 : 2000) : 0,
+        fixedTip: () => ({ caster_rage_flat: 10000 }),
+        enhance: [0.05, 0.05, 0, 0.1, 0.1],
+        aoe: true,
+      },
+    }
+  },
   tywin: {
     name: 'Tywin',
     element: element.ice,
@@ -7538,31 +7935,31 @@ const heroes = {
       }
     }
   },
-  tywin_old: {
-    name: 'Tywin (Pre-Balance)',
-    element: element.ice,
-    classType: classType.knight,
-    baseAtk: 821,
-    form: [elements.caster_max_hp],
-    skills: {
-      s1: {
-        rate: 0.8,
-        pow: 0.95,
-        flat: () => elements.caster_max_hp.value()*0.04,
-        flatTip: () => ({ caster_max_hp: 4 }),
-        enhance: [0.05, 0.05, 0, 0.1, 0, 0.15],
-        single: true,
-      },
-      s3: {
-        rate: 0.5,
-        pow: 0.95,
-        flat: () => elements.caster_max_hp.value()*0.1,
-        flatTip: () => ({ caster_max_hp: 10 }),
-        enhance: [0.05, 0.05, 0, 0, 0, 0.1, 0.15],
-        aoe: true,
-      }
-    }
-  },
+  // tywin_old: {
+  //   name: 'Tywin (Pre-Balance)',
+  //   element: element.ice,
+  //   classType: classType.knight,
+  //   baseAtk: 821,
+  //   form: [elements.caster_max_hp],
+  //   skills: {
+  //     s1: {
+  //       rate: 0.8,
+  //       pow: 0.95,
+  //       flat: () => elements.caster_max_hp.value()*0.04,
+  //       flatTip: () => ({ caster_max_hp: 4 }),
+  //       enhance: [0.05, 0.05, 0, 0.1, 0, 0.15],
+  //       single: true,
+  //     },
+  //     s3: {
+  //       rate: 0.5,
+  //       pow: 0.95,
+  //       flat: () => elements.caster_max_hp.value()*0.1,
+  //       flatTip: () => ({ caster_max_hp: 10 }),
+  //       enhance: [0.05, 0.05, 0, 0, 0, 0.1, 0.15],
+  //       aoe: true,
+  //     }
+  //   }
+  // },
   unbound_knight_arowell: {
     name: 'Unbound Knight Arowell',
     element: element.light,
@@ -7612,10 +8009,10 @@ const heroes = {
         pow: 1,
         mult: () => {
           switch (elements.nb_targets.value()) {
-            case 3: return 1.2;
-            case 2: return 1.4;
-            case 1: return 1.6;
-            default: return 1;
+          case 3: return 1.2;
+          case 2: return 1.4;
+          case 1: return 1.6;
+          default: return 1;
           }
         },
         multTip: () => ({ per_fewer_target: 20 }),
@@ -7642,10 +8039,10 @@ const heroes = {
       s1: {
         rate: 1,
         pow: 1,
-        mult: () => elements.skill_tree_completed.value() ? (1.1 + (document.getElementById(`elem-adv`).checked ? 0.25 : 0)) : 1,
+        mult: () => elements.skill_tree_completed.value() ? (1.1 + (document.getElementById('elem-adv').checked ? 0.25 : 0)) : 1,
         multTip: () => (elements.skill_tree_completed.value() ? ({
           skill_tree: 10,
-          ...(document.getElementById(`elem-adv`).checked ? { elemental_advantage: 25 } : {}),
+          ...(document.getElementById('elem-adv').checked ? { elemental_advantage: 25 } : {}),
         }) : null),
         enhance: [0.05, 0, 0.05, 0, 0.05, 0.05, 0.1],
         single: true,
@@ -7653,7 +8050,7 @@ const heroes = {
       s2: {
         soulburn: true,
         rate: (soulburn) => soulburn ? 2.2 : 1.5,
-        mult: () => elements.skill_tree_completed.value() && document.getElementById(`elem-adv`).checked ? 1.25 : 1,
+        mult: () => elements.skill_tree_completed.value() && document.getElementById('elem-adv').checked ? 1.25 : 1,
         multTip: () => ({ elemental_advantage: 25 }),
         pow: 0.9,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.1],
@@ -7901,7 +8298,7 @@ const heroes = {
       s3: {
         rate: 2,
         pow: 0.95,
-        penetrate: () => document.getElementById(`target-silenced`).checked ? 0.7 : 0,
+        penetrate: () => document.getElementById('target-silenced').checked ? 0.7 : 0,
         enhance: [0.05, 0.05, 0, 0.05, 0.1, 0.1],
         single: true,
       }
@@ -7979,9 +8376,9 @@ const heroes = {
         mult: () => {
           let mult = 1 + elements.caster_speed.value()*0.00075;
           switch (elements.nb_targets.value()) {
-            case 3: mult += 0.2; break;
-            case 2: mult += 0.4; break;
-            case 1: mult += 0.6; break;
+          case 3: mult += 0.2; break;
+          case 2: mult += 0.4; break;
+          case 1: mult += 0.6; break;
           }
           return mult;
         },
@@ -7995,10 +8392,10 @@ const heroes = {
         pow: 0.8,
         mult: () => {
           switch (elements.nb_targets.value()) {
-            case 3: return 1.2;
-            case 2: return 1.4;
-            case 1: return 1.6;
-            default: return 1;
+          case 3: return 1.2;
+          case 2: return 1.4;
+          case 1: return 1.6;
+          default: return 1;
           }
         },
         multTip: () => ({ per_fewer_target: 20 }),
@@ -8090,15 +8487,15 @@ const heroes = {
         flatTip: () => ({ caster_max_hp: 12 }),
         mult: () => {
           let extra = 0;
-          for (let i = 0; i < Number(document.getElementById(`molagora-s2`).value); i++) {
+          for (let i = 0; i < Number(document.getElementById('molagora-s2').value); i++) {
             extra += heroes.zeno.skills.s2.enhance[i];
           }
 
-          return 1 + elements.non_attack_skill_stack_8.value()*(0.07+extra)
+          return 1 + elements.non_attack_skill_stack_8.value()*(0.07+extra);
         },
         multTip: () => {
           let extra = 0;
-          for (let i = 0; i < Number(document.getElementById(`molagora-s2`).value); i++) {
+          for (let i = 0; i < Number(document.getElementById('molagora-s2').value); i++) {
             extra += heroes.zeno.skills.s2.enhance[i]*100;
           }
 

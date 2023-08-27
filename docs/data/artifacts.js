@@ -8,6 +8,11 @@ const artifactDmgType = {
   dot: 'dot'
 };
 
+/* eslint-disable no-unused-vars */
+const extra_attack_artifacts = ['prayer_of_solitude'];
+const max_hp_artifacts = ['prayer_of_solitude'];
+/* eslint-enable */
+
 const artifacts = {
   air_to_surface_missile_misha: {
     id: 'air_to_surface_missile_misha',
@@ -34,7 +39,7 @@ const artifacts = {
   },
   an_offer_you_cant_refuse: {
     id: 'an_offer_you_cant_refuse',
-    name: "An Offer You Can't Refuse",
+    name: 'An Offer You Can\'t Refuse',
     scale: [0.1, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2],
     type: artifactDmgType.penetrate,
     exclusive: classType.ranger,
@@ -148,6 +153,13 @@ const artifacts = {
     exclusive: classType.mage,
     applies: (skill) => getSkillType(skill) === skillTypes.single,
   },
+  golden_rose: {
+    id: 'golden_rose',
+    name: 'Golden Rose',
+    scale: [0.08, 0.088, 0.096, 0.104, 0.112, 0.12, 0.128, 0.136, 0.144, 0.152, 0.16],
+    type: artifactDmgType.damage,
+    exclusive: classType.warrior
+  },
   hell_cutter: {
     id: 'hell_cutter',
     name: 'Hell Cutter',
@@ -229,6 +241,15 @@ const artifacts = {
     type: artifactDmgType.critDmgBoost,
     form: [elements.turn_stack_10],
     value: (artiScale) => elements.turn_stack_10.value() * artiScale
+  },
+  prayer_of_solitude: {
+    id: 'prayer_of_solitude',
+    name: 'Prayer of Solitude',
+    maxHP: 1.1,
+    scale: [0.05, 0.055, 0.06, 0.065, 0.07, 0.075, 0.08, 0.085, 0.09, 0.095, 0.1],
+    value:(artiScale, skill, isExtra) => (skill.isExtra || isExtra) ? artiScale * 2 : artiScale,
+    exclusive: classType.warrior,
+    type: artifactDmgType.damage
   },
   prelude_to_a_new_era: {
     id: 'prelude_to_a_new_era',
@@ -427,8 +448,13 @@ const artifacts = {
     id: 'wind_rider',
     name: 'Wind Rider',
     type: artifactDmgType.attack,
-    scale: [0.3, 0.33, 0.36, 0.39, 0.42, 0.45, 0.48, 0.51, 0.54, 0.57, 0.6],
-    exclusive: classType.thief
+    scale: [0.1, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2],
+    additional: [0.2, 0.22, 0.24, 0.26, 0.28, 0.3, 0.32, 0.34, 0.36, 0.38, 0.4],
+    exclusive: classType.thief,
+    form: [elements.enemy_defeated],
+    value: (input) => {
+      return input + (elements.enemy_defeated.value() ? artifacts.wind_rider.additional[artifacts.wind_rider.scale.indexOf(input)] : 0);
+    }
   },
   wings_of_light_and_shadow: {
     id: 'wings_of_light_and_shadow',

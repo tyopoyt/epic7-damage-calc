@@ -16,24 +16,26 @@ formDefaults = {
   'atkPreset': undefined,
   'defPreset': undefined,
   'dmgReducPreset': 'none'
-}
+};
 
 // list artifact first to avoid invalid arti selections
 selectorParams = [
   'artifact', 'hero', 'atkPreset', 'defPreset', 'dmgReducPreset'
-]
+];
 boolParams = [
   'elemAdv', 'atkDown', 'atkUp', 'atkUpGreat', 'critDmgUp', 'vigor', 'rageSet',
   'penSet', 'torrentSet', 'defUp', 'targetVigor', 'defDown', 'target'
-]
+];
 numberParams = [
   'atk', 'atkPcImprint', 'atkPcUp', 'crit', 'bonusDamage', 'torrentSetStack', 'def',
   'defPcUp', 'dmgReduc', 'dmgTrans'
-]
+];
 page = 'dmg_calc';
 
 // regular inputs. This adds a lot of lines, but the dom only needs to be queried once for many inputs.
 // might refactor this later cause it is a bit clunky...
+// These vars are used as globals
+/* eslint-disable no-unused-vars */
 const atkInput = document.getElementById('atk');
 const atkPcImprintInput = document.getElementById('atk-pc-imprint');
 const atkPcUpInput = document.getElementById('atk-pc-up');
@@ -74,9 +76,10 @@ const defSlide = document.getElementById('def-slide');
 const defPcUpSlide = document.getElementById('def-pc-up-slide');
 const dmgReducSlide = document.getElementById('dmg-reduc-slide');
 const dmgTransSlide = document.getElementById('dmg-trans-slide');
+/* eslint-enable */
 
 // declare inputValues up here since it'll be used in multiple places
-let inputValues
+let inputValues;
 
 const dmgConst = 1.871;
 const hitTypes = {
@@ -88,22 +91,22 @@ const hitTypes = {
 const skillTypes = {
   single: 'single',
   aoe: 'aoe',
-}
+};
 let setForms = [];
 
 const getSkillType = (skill) => {
   if (skill.single !== undefined && ((typeof skill.single === 'function') ? skill.single() : skill.single) === true) return skillTypes.single;
   if (skill.aoe !== undefined && ((typeof skill.aoe === 'function') ? skill.aoe() : skill.aoe) === true) return skillTypes.aoe;
   return undefined;
-}
+};
 
-const stackingSets = ['torrent-set']
+const stackingSets = ['torrent-set'];
 const manageSetForms = () => {
   setForms = [];
   for (const set of stackingSets) {
     const elem = document.getElementById(set);
     if (elem.checked) {
-      setForms.push(elements[`${set.replace('-', '_')}_stack`])
+      setForms.push(elements[`${set.replace('-', '_')}_stack`]);
     }
   }
 
@@ -117,7 +120,7 @@ const manageSetForms = () => {
     setNumHolder.style.display = 'block';
     setNumHolder.innerHTML = `<h4>${setLabel}</h4>
                               <div id="set-num-block"></div>
-                              <hr />`
+                              <hr />`;
     const numSetsBlock = document.getElementById('set-num-block');
     numSetsBlock.innerHTML = '';
     for (let elem of setForms) {
@@ -130,8 +133,9 @@ const manageSetForms = () => {
   } else {
     setNumHolder.style.display = 'none';
   }
-}
+};
 
+/* eslint-disable no-unused-vars */
 const torrentSetToggled = () => {
   window.dataLayer.push({
     'event': 'toggle_torrent_set',
@@ -143,7 +147,7 @@ const torrentSetToggled = () => {
     torrentSetStackInput.value = formDefaults.torrentSetStack;
   }
   manageSetForms();
-}
+};
 
 const resolve = () => {
   if (loadingQueryParams) {
@@ -153,8 +157,8 @@ const resolve = () => {
   const artifact = new Artifact(inputValues.artifact);
   const hero = new Hero(inputValues.hero, artifact);
 
-  document.getElementById(`barrier-block`).style.display = 'none';
-  document.getElementById(`artifact-dmg-block`).style.display = 'none';
+  document.getElementById('barrier-block').style.display = 'none';
+  document.getElementById('artifact-dmg-block').style.display = 'none';
   for (const dotType of [dot.bleed, dot.burn, dot.bomb]) {
     document.getElementById(`${dotType}-damage-block`).style.display = 'none';
   }
@@ -165,20 +169,20 @@ const resolve = () => {
   }
 
   if (hero.barrier) {
-    document.getElementById(`barrier-block`).style.display = 'inline-block';
+    document.getElementById('barrier-block').style.display = 'inline-block';
     barrierText = Math.round(hero.getBarrierStrength()).toString();
 
     if (hero.barrier2) {
-      document.getElementById(`barrier`).innerText = `${hero.barrierSkills[0]}: ${barrierText} / ${hero.barrierSkills[1]}: ${Math.round(hero.getBarrier2Strength()).toString()}`;
+      document.getElementById('barrier').innerText = `${hero.barrierSkills[0]}: ${barrierText} / ${hero.barrierSkills[1]}: ${Math.round(hero.getBarrier2Strength()).toString()}`;
     } else {
-      document.getElementById(`barrier`).innerText = barrierText;
+      document.getElementById('barrier').innerText = barrierText;
     }
   }
 
   const artiDmg = hero.getAfterMathArtifactDamage();
   if (artiDmg != null) {
-    document.getElementById(`artifact-dmg-block`).style.display = 'inline-block';
-    document.getElementById(`artifact-dmg`).innerText = Math.round(artiDmg).toString();
+    document.getElementById('artifact-dmg-block').style.display = 'inline-block';
+    document.getElementById('artifact-dmg').innerText = Math.round(artiDmg).toString();
   }
 
   const table = document.getElementById('damage');
@@ -216,15 +220,32 @@ const resolve = () => {
             <td>${displayDmg(damage, 'miss')}</td>
         </tr>`);
       }
+
+      if (skill.canExtra && extra_attack_artifacts.includes(inputValues.artifact)) {
+        const damage = hero.getDamage(skillId, true, true);
+        $(table).append(`<tr>
+            <td>
+              ${skill.name ? skill.name : skillLabel(skillId, false, true)}
+              <a tabindex="0" class="btn btn-xs btn-light p-1 float-right" data-toggle="popover" title="${skillLabel('mods')}" data-content='${getModTooltip(hero, skillId, true)}' data-html="true" data-placement="top">
+                <i class="fas fa-square-root-alt fa-sm"></i>
+              </a>
+            </td>
+            <td>${displayDmg(damage, 'crit')}</td>
+            <td>${displayDmg(damage, 'crush')}</td>
+            <td>${displayDmg(damage, 'normal')}</td>
+            <td>${displayDmg(damage, 'miss')}</td>
+        </tr>`);
+      }
     }
   }
 
   formUpdated(true);
   calculateChart(inputValues);
 };
+/* eslint-enable */
 
 const displayDmg = (damage, type) => {
-  return damage[type] !== null ? damage[type] : `<i>${skillLabel('non_applicable')}</i>`
+  return damage[type] !== null ? damage[type] : `<i>${skillLabel('non_applicable')}</i>`;
 };
 
 const getModTooltip = (hero, skillId, soulburn = false) => {
@@ -251,7 +272,7 @@ const getModTooltip = (hero, skillId, soulburn = false) => {
   if (values.extraDmg != null) content += `${skillLabel('extraDmg')}: <span class="float-right">${values.extraDmgTip} <b>${Math.round(values.extraDmg)}</b><br/>`;
   if (values.fixed != null) content += `${skillLabel('fixed')}: <span class="float-right">${values.fixedTip ?? ''} <b>${Math.round(values.fixed)}</b><br/>`;
   return content;
-}
+};
 
 const attackMods = ['atkDown', 'atkUp', 'atkUpGreat', 'vigor'];
 const getGlobalAtkMult = () => {
@@ -274,11 +295,11 @@ const getGlobalDamageMult = (hero, skill) => {
 
   damageMultSets.forEach((set) => {
     mult += inputValues[set] ? battleConstants[set] * (inputValues[`${set}Stack`] || 1) : 0.0;
-  })
+  });
 
   const selected = defPresetSelector.options[defPresetSelector.selectedIndex];
   if (hero.element === selected.dataset.elemExtraDmg) {
-      mult += parseFloat(selected.dataset.extraDmgPc)-1;
+    mult += parseFloat(selected.dataset.extraDmgPc)-1;
   }
 
   if (getSkillType(skill) === skillTypes.single && selected.dataset.singleAtkMult) {
@@ -301,7 +322,9 @@ const getGlobalDefMult = () => {
   return mult;
 };
 
+/* eslint-disable no-unused-vars */
 let currentHero = null;
+/* eslint-enable */
 
 class Hero {
   constructor(id, artifact) {
@@ -348,14 +371,15 @@ class Hero {
       extraDmgTip: skill.extraDmgTip !== undefined ? getSkillModTip(skill.extraDmgTip(soulburn)) : '',
       fixed: skill.fixed !== undefined ? skill.fixed(hitTypes.crit) : null,
       fixedTip: skill.fixedTip !== undefined ? getSkillModTip(skill.fixedTip()) : null,
-    }
+    };
   }
 
-  getDamage(skillId, soulburn = false) {
+  getDamage(skillId, soulburn = false, isExtra = false) {
     const critDmgBuff = inputValues.critDmgUp ? battleConstants.critDmgUp : 0.0;
 
     const skill = this.skills[skillId];
-    const hit = this.offensivePower(skillId, soulburn, this) * this.target.defensivePower(skill);
+    // const hit = this.offensivePower(skillId, soulburn, this) * this.target.defensivePower(skill); TODO: resolve conflict
+    const hit = this.offensivePower(skillId, soulburn, isExtra) * this.target.defensivePower(skill);
     const critDmg = Math.min((this.crit / 100)+critDmgBuff, 3.5)
         +(skill.critDmgBoost ? skill.critDmgBoost(soulburn) : 0)
         +(this.artifact.getCritDmgBoost()||0)
@@ -395,12 +419,13 @@ class Hero {
     if (this.def) {
       return this.def * (1 + (elements.caster_defense_up.value() ? battleConstants.defUp : 0)
            + (document.getElementById('vigor').checked ? battleConstants.vigor - 1 : 0)
-           + (document.getElementById('caster-fury')?.checked ? battleConstants['caster-fury'] - 1 : 0))
+           + (document.getElementById('caster-fury')?.checked ? battleConstants['caster-fury'] - 1 : 0));
     }
     return elements.caster_defense.value();
   }
 
-  offensivePower(skillId, soulburn, hero) {
+  // offensivePower(skillId, soulburn, hero) { // TODO: resolve conflict
+  offensivePower(skillId, soulburn, isExtra) {
     const skill = this.skills[skillId];
 
     const rate = (typeof skill.rate === 'function') ? skill.rate(soulburn) : skill.rate;
@@ -418,7 +443,7 @@ class Hero {
     let dmgMod = 1.0
         + getGlobalDamageMult(this, skill)
         + this.bonus / 100
-        + this.artifact.getDamageMultiplier(skill, skillId)
+        + this.artifact.getDamageMultiplier(skill, skillId, isExtra)
         + (skill.mult ? skill.mult(soulburn)-1 : 0);
 
     return ((this.getAtk(skillId)*rate + flatMod)*dmgConst + flatMod2) * pow * skillEnhance * elemAdv * target * dmgMod;
@@ -511,13 +536,13 @@ class Hero {
 
   getDotDamage(type) {
     switch (type) {
-      case dot.bleed:
-        return this.getAtk() * 0.3 * dmgConst * this.target.defensivePower({ penetrate: () => 0.7 }, true);
-      case dot.burn:
-        return this.getAtk() * 0.6 * dmgConst * (elements.beehoo_passive.value() ? heroConstants.beehooBurnMult : 1) * this.target.defensivePower({ penetrate: () => 0.7 }, true);
-      case dot.bomb:
-        return this.getAtk() * 1.5 * dmgConst * this.target.defensivePower({ penetrate: () => 0.7 }, true);
-      default: return 0;
+    case dot.bleed:
+      return this.getAtk() * 0.3 * dmgConst * this.target.defensivePower({ penetrate: () => 0.7 }, true);
+    case dot.burn:
+      return this.getAtk() * 0.6 * dmgConst * (elements.beehoo_passive.value() ? heroConstants.beehooBurnMult : 1) * this.target.defensivePower({ penetrate: () => 0.7 }, true);
+    case dot.bomb:
+      return this.getAtk() * 1.5 * dmgConst * this.target.defensivePower({ penetrate: () => 0.7 }, true);
+    default: return 0;
     }
   }
 
@@ -553,7 +578,9 @@ class Target {
   }
 }
 
+/* eslint-disable no-unused-vars */
 let currentArtifact = null;
+/* eslint-denable */
 class Artifact {
   constructor(id) {
     this.id = id ? id : undefined;
@@ -571,16 +598,16 @@ class Artifact {
 
   getValue() {
     return artifacts[this.id].scale
-        ? artifacts[this.id].scale[Math.floor(document.getElementById('artifact-lvl').value/3)]
-        : artifacts[this.id].value;
+      ? artifacts[this.id].scale[Math.floor(document.getElementById('artifact-lvl').value/3)]
+      : artifacts[this.id].value;
   }
 
-  getDamageMultiplier(skill, skillId) {
+  getDamageMultiplier(skill, skillId, isExtra) {
     if(!this.applies(skill, skillId)) return 0;
     if (this.id === undefined || artifacts[this.id].type !== artifactDmgType.damage) {
       return 0;
     }
-    return typeof artifacts[this.id].value === 'function' ? artifacts[this.id].value(this.getValue()) : this.getValue();
+    return typeof artifacts[this.id].value === 'function' ? artifacts[this.id].value(this.getValue(), skill, isExtra) : this.getValue();
   }
 
   getDefensePenetration(skill) {
@@ -600,7 +627,7 @@ class Artifact {
       atkPercent: artifacts[this.id].atkPercent,
       defPercent: artifacts[this.id].defPercent,
       penetrate: artifacts[this.id].penetrate,
-    }
+    };
   }
 
   getAttackBoost() {
@@ -655,7 +682,7 @@ const chart = new Chart(ctx, {
       //   data: [],
       //   borderWidth: 1
       // }
-   ]
+    ]
   },
   options: {
     maintainAspectRatio: false,
@@ -671,17 +698,17 @@ const chart = new Chart(ctx, {
     },
     plugins: {
       tooltip: {
-          callbacks: {
-              label: (item) =>
-                  `With more ${item.dataset.label}: ${item.formattedValue} damage`,
-          },
+        callbacks: {
+          label: (item) =>
+            `With more ${item.dataset.label}: ${item.formattedValue} damage`,
+        },
       }
     }
   }
 });
 
 const toggleChart = () => {
-  const chartContainer = document.getElementById('damage-chart-container')
+  const chartContainer = document.getElementById('damage-chart-container');
 
   if (chartContainer.style.display == 'none') {
     chartContainer.style.display = 'block';
@@ -690,14 +717,14 @@ const toggleChart = () => {
     chartContainer.style.display = 'none';
     document.getElementById('chart-button-text').innerText = 'Show Chart';
   }
-}
+};
 
 const calculateChart = (inputValues) => {
   const artifact = new Artifact(inputValues.artifact);
   const hero = new Hero(inputValues.hero, artifact);
-  const skillSelect = document.getElementById('chart-skill')
+  const skillSelect = document.getElementById('chart-skill');
   const selected = skillSelect.options[skillSelect.selectedIndex]?.value || 's1';
-  const skill = heroes[hero.id].skills[selected]
+  const skill = heroes[hero.id].skills[selected];
   if (!skill) {
     // skill = heroes[hero.id]['s1']
     return;
@@ -706,7 +733,7 @@ const calculateChart = (inputValues) => {
 
   // TODO: check which to use (crit, normal, miss (dizzy))
   // curAtk = inputValues.atk
-  chart.data.labels = []
+  chart.data.labels = [];
 
   // pick different num steps if skill.nocrit
   const windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
@@ -716,7 +743,7 @@ const calculateChart = (inputValues) => {
   chart.data.datasets[0].data = [];
   chart.data.datasets[1].data = [];
 
-  hero.atk = hero.atk - (((numSteps) / intersectionPoint) *  Math.floor((((8/7) / 100) * hero.baseAtk)))
+  hero.atk = hero.atk - (((numSteps) / intersectionPoint) *  Math.floor((((8/7) / 100) * hero.baseAtk)));
 
   while (chart.data.datasets[0].data.length < numSteps) {
     const damage = hero.getDamage(selected);
@@ -727,24 +754,24 @@ const calculateChart = (inputValues) => {
     hero.atk += Math.floor(((8/7) / 100) * hero.baseAtk); // TODO: deal with innate attack up?
     
   }
-  hero.crit = hero.crit - (numSteps / intersectionPoint)
-  hero.atk = inputValues.atk
+  hero.crit = hero.crit - (numSteps / intersectionPoint);
+  hero.atk = inputValues.atk;
 
   if (damageToUse === 'crit') {
     index = 0;
     while (chart.data.datasets[1].data.length < numSteps && hero.crit < 351) {
       if (hero.crit < 150) {
         hero.crit += 1;
-        chart.data.datasets[1].data.push(null)
+        chart.data.datasets[1].data.push(null);
         continue;
       }
       const damage = hero.getDamage(selected);
-      const finalDam = displayDmg(damage, damageToUse)
+      const finalDam = displayDmg(damage, damageToUse);
   
-      chart.data.datasets[1].data.push(finalDam)
-      chart.data.labels[index] += ` vs ${hero.crit} CDam`
-      hero.crit += 1
-      index++
+      chart.data.datasets[1].data.push(finalDam);
+      chart.data.labels[index] += ` vs ${hero.crit} CDam`;
+      hero.crit += 1;
+      index++;
     }
   }
 
@@ -754,13 +781,13 @@ const calculateChart = (inputValues) => {
         label: 'Defense',
         data: [],
         borderWidth: 1
-      })
+      });
     }
     chart.data.datasets[2].data = [];
-    hero.def = inputValues['caster-defense'] - (((numSteps) / intersectionPoint) *  Math.floor((((8/7) / 100) * hero.baseDef)))
+    hero.def = inputValues['caster-defense'] - (((numSteps) / intersectionPoint) *  Math.floor((((8/7) / 100) * hero.baseDef)));
 
-    hero.crit = inputValues.crit
-    hero.atk = inputValues.atk
+    hero.crit = inputValues.crit;
+    hero.atk = inputValues.atk;
 
     index = 0;
     while (chart.data.datasets[2].data.length < numSteps) {
@@ -771,12 +798,12 @@ const calculateChart = (inputValues) => {
       //   continue;
       // }
       const damage = hero.getDamage(selected);
-      const finalDam = displayDmg(damage, damageToUse)
+      const finalDam = displayDmg(damage, damageToUse);
   
-      chart.data.datasets[2].data.push(finalDam)
-      chart.data.labels[index] += ` vs ${hero.def} Def` //TODO: handle defup and shit
+      chart.data.datasets[2].data.push(finalDam);
+      chart.data.labels[index] += ` vs ${hero.def} Def`; //TODO: handle defup and shit
       hero.def += Math.floor(((8/7) / 100) * hero.baseDef); //TODO: deal with anything that might affect this number like innate boosts
-      index++
+      index++;
     }
   }
   
@@ -795,4 +822,4 @@ const calculateChart = (inputValues) => {
   // console.log(attackDamagePoints)
   // console.log(chartData)
   chart.update();
-}
+};

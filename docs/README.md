@@ -1,5 +1,17 @@
 ## Changelog
 
+<strong>Aug 26 2023 Update:</strong> Made MLBellona's Caster has buff box auto-check and disable if another buff is checked.<br>
+<strong>Aug 22 2023 Update:</strong> Fixed Hwayoung's base attack. Previous value was including her 20% base increase from passive.<br>
+<strong>Aug 18 2023 Update:</strong> Added Infinite Horizon Achates.<br>
+<strong>Aug 12 2023 Update:</strong> Added Caides HP Scaling damage reduction. Fixed caster defense up and speed up query param. Removed ML Landy's unreleased hero disclaimer.<br>
+<strong>Jul 20 2023 Update:</strong> Added Lethe, Prayer of Solitude, and Navy Captain Landy.  Added some missing translations and SSB's EE.<br>
+<strong>Jul 7 2023 Update:</strong> Added Ocean Breeze Luluca.<br>
+<strong>Jun 17 2023 Update:</strong> Split Wind Rider's damage to allow caculation of both scenarios and added ML Kayron's soulburn.<br>
+<strong>Jun 8 2023 Update:</strong> Added Requiem Roana. Adjusted Arunka, Little Queen Charlotte, Summer Break Charlotte, and Jack-O from the balance patch.<br>
+<strong>May 25 2023 Update:</strong> Added Abigail, Golden Rose, and Last Piece Karin.<br>
+<strong>May 15 2023 Update:</strong> Added Benimaru.<br>
+<strong>Apr. 27 2023 Update:</strong> Added Twisted Eidolon Kayron (Unreleased).<br>
+<strong>Apr. 17 2023 Update:</strong> Fixed some errors with Chaos Sect Axe's skills.<br>
 <strong>Apr. 13 2023 Update:</strong> Updated Architect Laika, Last Rider Krau, Lilias, Ilynav, and Tywin for the 4/13 balance patch.<br>
 <strong>Apr. 12 2023 Update:</strong> Added Ainos 2.0 and Shadow Knight Pyllis and added translations for Architect Laika. Updated spreadsheet link. Added some missing translations for Português (BR). Ainos 2.0 and Shadow Knight Pyllis are exactly the same as the regular versions in terms of damage, but they're there now.<br>
 <strong>Mar. 25 2023 Update: Fixed some pows.  Not adding to banner cause it's small.<br>

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const jp = {
   heroes: {
     achates: 'アカテス',
@@ -286,7 +287,7 @@ const jp = {
     time_matter: '流転物質',
     uberius_tooth: 'ユーベリウスの牙',
     victorious_flag: '勝利の旗',
-    violet_talisman: "紫菫の輝き",
+    violet_talisman: '紫菫の輝き',
     wind_rider: '旋風の操手',
     wings_of_light_and_shadow: '光影の双翼',
   },
@@ -297,10 +298,10 @@ const jp = {
     hero: '英雄',
     no_artifact_proc: '遺物効果なし',
     attack: '攻撃力',
-    atk_pc_imprint: "攻撃力%陣形効果",
-    atk_pc_imprint_tooltip: "自身の攻撃力陣形効果（刻印集中）とチームメンバーの攻撃力陣形効果（刻印展開）の総合を入力。星6完全覚醒英雄ステータスを基準に計算する",
-    atk_pc_increase: "攻撃力%上昇",
-    atk_pc_increase_tooltip: "例: 小さな奇跡のカード",
+    atk_pc_imprint: '攻撃力%陣形効果',
+    atk_pc_imprint_tooltip: '自身の攻撃力陣形効果（刻印集中）とチームメンバーの攻撃力陣形効果（刻印展開）の総合を入力。星6完全覚醒英雄ステータスを基準に計算する',
+    atk_pc_increase: '攻撃力%上昇',
+    atk_pc_increase_tooltip: '例: 小さな奇跡のカード',
     critical_damage: 'クリティカル　ダメージ (%)',
     elemental_advantage: '有利属性',
     increased_attack: '攻撃力UP',
@@ -310,7 +311,7 @@ const jp = {
     artifact_level: '遺物レベル',
     target: 'ターゲット',
     defense: '防御力',
-    defense_pc_increase: "防御力 % 増加",
+    defense_pc_increase: '防御力 % 増加',
     increased_defense: '防御力UP',
     decreased_defense: '防御力DOWN',
     target_debuff: '標的',
@@ -324,18 +325,18 @@ const jp = {
     hero_specific: '英雄別項目'
   },
   comparator: {
-    compare_title: "ダメージ比較",
-    save: "記録",
-    compare: "比較",
-    build: "ビルド",
-    build_name: "ビルド名",
-    saving_tooltip: "同キャラに記録したいビルド名が重複した場合、既存のビルドを上書きします",
-    cancel: "取り消し",
-    add_to_pool: "比較対象枠に追加",
-    no_hero_tooltip: "記録したビルドがありません",
-    compare_tooltip: "クリティカルヒットのダメージを比較します。クリティカルヒットのないスキルの場合代わりにノーマルヒットのダメージを比較します",
-    clear_all: "全部消す",
-    close: "閉じる"
+    compare_title: 'ダメージ比較',
+    save: '記録',
+    compare: '比較',
+    build: 'ビルド',
+    build_name: 'ビルド名',
+    saving_tooltip: '同キャラに記録したいビルド名が重複した場合、既存のビルドを上書きします',
+    cancel: '取り消し',
+    add_to_pool: '比較対象枠に追加',
+    no_hero_tooltip: '記録したビルドがありません',
+    compare_tooltip: 'クリティカルヒットのダメージを比較します。クリティカルヒットのないスキルの場合代わりにノーマルヒットのダメージを比較します',
+    clear_all: '全部消す',
+    close: '閉じる'
   },
   presets: {
     manual: '自由入力',

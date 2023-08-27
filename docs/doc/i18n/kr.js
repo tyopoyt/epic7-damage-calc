@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const kr = {
   heroes: {
     achates: '아카테스',
@@ -207,7 +208,7 @@ const kr = {
     tear_of_the_desert: '사막의 눈물',
     time_matter: '시간의 물질',
     uberius_tooth: '유베리우스의 어금니',
-    violet_talisman: "보랏빛 탈리스만",
+    violet_talisman: '보랏빛 탈리스만',
     wind_rider: '윈드라이더',
   },
   index: {
@@ -217,10 +218,10 @@ const kr = {
     hero: '영웅',
     no_artifact_proc: '아티팩트 효과 없음',
     attack: '공격력',
-    atk_pc_imprint: "",
-    atk_pc_imprint_tooltip: "",
-    atk_pc_increase: "",
-    atk_pc_increase_tooltip: "",
+    atk_pc_imprint: '',
+    atk_pc_imprint_tooltip: '',
+    atk_pc_increase: '',
+    atk_pc_increase_tooltip: '',
     critical_damage: '치명 피해 (%)',
     elemental_advantage: '상성 우위',
     increased_attack: '공격력 증가',

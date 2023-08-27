@@ -1,7 +1,7 @@
 const getSavedBuilds = () => {
   const allSets = localStorage.getItem('heroes') ? JSON.parse(localStorage.getItem('heroes')) : {};
   return allSets[document.getElementById('hero').value] || {};
-}
+};
 
 const setDefaultSettingName = () => {
   const artifact = new Artifact(document.getElementById('artifact').value);
@@ -50,21 +50,24 @@ const addToComparePool = () => {
 };
 
 const unhideModalBody = () => {
-  $('.compare-hide').show()
-  $('.compare-show').hide()
-}
+  $('.compare-hide').show();
+  $('.compare-show').hide();
+};
 
 const hideModalBody = () => {
-  $('.compare-hide').hide()
-  $('.compare-show').show()
-}
+  $('.compare-hide').hide();
+  $('.compare-show').show();
+};
 
+// Used in HTML
+/* eslint-disable no-unused-vars */
 const compareClosed = () => {
   // wait for animation to complete so spinner doesn't show up as it's closing
   setTimeout(() => {
     hideModalBody();
   }, 500);
-}
+};
+/* eslint-enable */
 
 const compare = (heroId) => {
   hideModalBody();
@@ -81,7 +84,7 @@ const compare = (heroId) => {
   const headers = document.getElementById('damage-header');
   headers.innerHTML = '<th></th><th>Build</th>';
   for (const skillId of Object.keys(heroSets[Object.keys(heroSets)[0]])) {
-    $(headers).append(`<th class="text-right">${compareSkillLabel(skillId)}</th>`)
+    $(headers).append(`<th class="text-right">${compareSkillLabel(skillId)}</th>`);
   }
 
   const body = document.getElementById('damage-comparison');
@@ -93,7 +96,7 @@ const compare = (heroId) => {
       const output = dmg['crit'] || dmg['normal'] || dmg['miss'] || 0;
       html += `<td class="text-right py-2">${output}</td>`;
     }
-    $(body).append(`<tr>${html}</tr>`)
+    $(body).append(`<tr>${html}</tr>`);
   }
 
   unhideModalBody();
@@ -111,7 +114,7 @@ const clearCompare = (heroId) => {
   delete allSets[heroId];
   localStorage.setItem('heroes', JSON.stringify(allSets));
   refreshCompareBadge();
-}
+};
 
 const clearCompareBuild = (heroId, buildName) => {
   const allSets = localStorage.getItem('heroes') ? JSON.parse(localStorage.getItem('heroes')) : {};
@@ -123,11 +126,11 @@ const clearCompareBuild = (heroId, buildName) => {
   }
   compare(heroId);
   refreshCompareBadge();
-}
+};
 
 const refreshCompareBadge = () => {
   document.getElementById('compare-pool-size').innerText = Object.keys(getSavedBuilds()).length;
-}
+};
 
 $(() => {
   document.getElementById('compare-add-open').onclick = () => {
@@ -137,13 +140,13 @@ $(() => {
   document.getElementById('compare-add').onclick = () => {
     addToComparePool();
     $('#compareAddModal').modal('toggle');
-  }
+  };
 
   document.getElementById('clear-compare').onclick = () => {
     const heroSelector = document.getElementById('hero');
     clearCompare(heroSelector.value);
     compare(heroSelector.value);
-  }
+  };
 
   $('#compareModal').on('shown.bs.modal', () => {
     const heroSelector = document.getElementById('hero');

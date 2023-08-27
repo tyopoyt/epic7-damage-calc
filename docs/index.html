@@ -14,19 +14,19 @@
             })(window,document,'script','dataLayer','GTM-M7H68RW');
         </script>
 
-        <meta charset="utf-8" />
-        <meta name="keywords" content="epic seven damage calculator, epic 7 damage calculator, e7 damage calculator" />
-        <meta name="description" content="Damage Calculator for Epic Seven for every hero in the game. Enter your hero stats to get their damage potential." />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta charset="utf-8">
+        <meta name="keywords" content="epic seven damage calculator, epic 7 damage calculator, e7 damage calculator">
+        <meta name="description" content="Damage Calculator for Epic Seven for every hero in the game. Enter your hero stats to get their damage potential.">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.18/dist/css/bootstrap-select.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icon-css@3.5.0/css/flag-icon.min.css">
-        <link rel="stylesheet" href="style.css" />
-        <link rel="stylesheet" href="flags/flags.css" />
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="flags/flags.css">
         <!-- IE -->
-        <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico" />
+        <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
         <!-- other browsers -->
-        <link rel="icon" type="image/x-icon" href="./favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="./favicon.ico">
 
         <title>Epic7 Damage Calculator</title>
     </head>
@@ -41,11 +41,21 @@
                         English <span class="flag flag-us"> </span>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="./jp/index.html" lang="ja">日本語 <span class="flag flag-jp"> </span></a>
-                        <a class="dropdown-item" href="./kr/index.html" lang="ko">한국어 <span class="flag flag-kr"> </span></a>
-                        <a class="dropdown-item" href="./zhTW/index.html" lang="zh-tw">繁體中文 <span class="flag flag-tw"> </span></a>
-                        <a class="dropdown-item" href="./zh/index.html" lang="zh-cn">简体中文 <span class="flag flag-cn"> </span></a>
-                        <a class="dropdown-item" href="./br/index.html" lang="pt">Português Brasil <span class="flag flag-br"> </span></a>
+                        <a class="dropdown-item" href="./jp/index.html" lang="ja">
+                            日本語 <span class="flag flag-jp"> </span>
+                        </a>
+                        <a class="dropdown-item" href="./kr/index.html" lang="ko">
+                            한국어 <span class="flag flag-kr"> </span>
+                        </a>
+                        <a class="dropdown-item" href="./zhTW/index.html" lang="zh-tw">
+                            繁體中文 <span class="flag flag-tw"> </span>
+                        </a>
+                        <a class="dropdown-item" href="./zh/index.html" lang="zh-cn">
+                            简体中文 <span class="flag flag-cn"> </span>
+                        </a>
+                        <a class="dropdown-item" href="./br/index.html" lang="pt">
+                            Português Brasil <span class="flag flag-br"> </span>
+                        </a>
                     </div>
                 </li>
             </ul>
@@ -54,7 +64,7 @@
             <ul class="navbar-nav">
                 <!-- <li class="nav-item">
                     <a class="nav-link" href="https://www.e7leaks.com/" target="_blank">e7leaks <i class="fas fa-external-link-alt fa-xs"></i></a>
-                </li> -->
+                    </li> -->
                 <li class="nav-item">
                     <a class="nav-link" href="speed-tuner/speed-tuner.html">Speed Tuner (Beta)</a>
                 </li>
@@ -66,7 +76,7 @@
                 </li>
                 <!-- <li class="nav-item">
                     <a class="nav-link" href="ldplayer.html"><b>Play E7 on PC</b></a>
-                </li> -->
+                    </li> -->
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item nav-link">
@@ -86,8 +96,10 @@
             </ul>
         </nav>
         <div class="alert alert-warning alert-dismissible fade show initial-hide fade-in" role="alert">
-            <strong>Apr. 13 2023 Update:</strong> Updated Architect Laika, Last Rider Krau, Lilias, Ilynav, and Tywin for the 4/13 balance patch.<br>
-            <strong>Apr. 12 2023 Update:</strong> Added Ainos 2.0 and Shadow Knight Pyllis and added translations for Architect Laika. Updated spreadsheet link. Added some missing translations for Português (BR). Ainos 2.0 and Shadow Knight Pyllis are exactly the same as the regular versions in terms of damage, but they're there now.<br>
+            <strong>Aug 18 2023 Update:</strong>
+            Added Infinite Horizon Achates.<br>
+            <strong>Aug 12 2023 Update:</strong>
+            Added Caides HP-Scaling damage reduction. Fixed Caster Increased Defense and Caster Increased Speed when sharing damage results.  Let me know if you find any other values that aren't shared properly.<br>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -101,12 +113,12 @@
                     <div class="row">
                         <div class="form-group col-md-4 col-sm-12">
                             <select id="hero" name="hero" class="form-control custom-select selectpicker"
-                                    data-live-search="true" data-size="12">
+                                data-live-search="true" data-size="12">
                             </select>
                         </div>
                         <div class="form-group col-md-4 col-sm-12">
                             <select id="artifact" name="artifact" class="form-control custom-select selectpicker"
-                                    data-live-search="true" data-size="12" data-none-selected-text="Artifact">
+                                data-live-search="true" data-size="12" data-none-selected-text="Artifact">
                             </select>
                         </div>
                         <div class="form-group col-md-4 col-sm-12">
@@ -125,7 +137,9 @@
 
                     <div class="stat-block">
                         <div class="form-group row col-sm-12">
-                            <label for="atk" class="col-md-9 col-form-label form-control-sm"><h5>Attack</h5></label>
+                            <label for="atk" class="col-md-9 col-form-label form-control-sm">
+                                <h5>Attack</h5>
+                            </label>
                             <div class="input-group input-group-sm col-md-3">
                                 <div class="input-group-prepend">
                                     <button class="btn btn-outline-secondary" type="button" id="atk-minus" onclick="minus('atk')">&minus;</button>
@@ -146,7 +160,9 @@
                             <div class="stat-block">
                                 <div class="form-group row col-sm-12">
                                     <label for="atk-pc-imprint" class="col-md-7 col-form-label form-control-sm">
-                                        <h5>Attack % Imprint <i class="far fa-question-circle fa-xs text-muted" data-toggle="tooltip" title="Enter sum of all allies' Attack Imprint Release (Imprint Concentration already included in your hero stats) ; calculation based on 6 star fully awaken hero stats"></i></h5>
+                                        <h5>
+                                            Attack % Imprint <i class="far fa-question-circle fa-xs text-muted" data-toggle="tooltip" title="Enter sum of all allies' Attack Imprint Release (Imprint Concentration already included in your hero stats) ; calculation based on 6 star fully awaken hero stats"></i>
+                                        </h5>
                                     </label>
                                     <div class="input-group input-group-sm col-md-5">
                                         <div class="input-group-prepend">
@@ -167,7 +183,9 @@
                             <div class="stat-block">
                                 <div class="form-group row col-sm-12">
                                     <label for="atk-pc-up" class="col-md-7 col-form-label form-control-sm">
-                                        <h5>Attack % Increase <i class="far fa-question-circle fa-xs text-muted" data-toggle="tooltip" title="Example: Rosa Hargana, Card of Small Miracles, Super Duper Water Gun Shooter"></i></h5>
+                                        <h5>
+                                            Attack % Increase <i class="far fa-question-circle fa-xs text-muted" data-toggle="tooltip" title="Example: Rosa Hargana, Card of Small Miracles, Super Duper Water Gun Shooter"></i>
+                                        </h5>
                                     </label>
                                     <div class="input-group input-group-sm col-md-5">
                                         <div class="input-group-prepend">
@@ -188,7 +206,9 @@
 
                     <div class="stat-block">
                         <div class="form-group row col-sm-12">
-                            <label for="crit" class="col-md-9 col-form-label form-control-sm"><h5>Critical Damage (%)</h5></label>
+                            <label for="crit" class="col-md-9 col-form-label form-control-sm">
+                                <h5>Critical Damage (%)</h5>
+                            </label>
                             <div class="input-group input-group-sm col-md-3">
                                 <div class="input-group-prepend">
                                     <button class="btn btn-outline-secondary" type="button" id="crit-minus" onclick="minus('crit')">&minus;</button>
@@ -206,7 +226,11 @@
 
                     <div class="stat-block">
                         <div class="form-group row col-sm-12">
-                            <label for="bonus-damage" class="col-md-9 col-form-label form-control-sm"><h5>Damage Increase (%) <i class="far fa-question-circle fa-xs text-muted" data-toggle="tooltip" title="Example: Weakness Shared, Exploiting Weak Points"></i></h5></label>
+                            <label for="bonus-damage" class="col-md-9 col-form-label form-control-sm">
+                                <h5>
+                                    Damage Increase (%) <i class="far fa-question-circle fa-xs text-muted" data-toggle="tooltip" title="Example: Weakness Shared, Exploiting Weak Points"></i>
+                                </h5>
+                            </label>
                             <div class="input-group input-group-sm col-md-3">
                                 <div class="input-group-prepend">
                                     <button class="btn btn-outline-secondary" type="button" id="bonus-minus" onclick="minus('bonus-damage')">&minus;</button>
@@ -225,69 +249,71 @@
                     <div class="form-group col-sm-12">
                         <div class="custom-control custom-checkbox custom-control-inline buff-block">
                             <input class="custom-control-input" type="checkbox" id="elem-adv" value="1.1" onchange="resolve()">
-                            <label class="custom-control-label" for="elem-adv"><span id="elem-adv-icon"></span> Elemental Advantage</label>
+                            <label class="custom-control-label" for="elem-adv">
+                                <span id="elem-adv-icon"></span> Elemental Advantage
+                            </label>
                         </div>
 
                         <div class="custom-control custom-checkbox custom-control-inline buff-block">
                             <input class="custom-control-input" type="checkbox" id="atk-down" value="0.5" onchange="resolve()">
                             <label class="custom-control-label" for="atk-down">
-                                <img src="./assets/debuffs/attack-debuff.png" width="20" height="20" /> Decreased Attack
+                                <img src="./assets/debuffs/attack-debuff.png" width="20" height="20" alt="Caster decreased Attack"> Decreased Attack
                             </label>
                         </div>
 
                         <div class="custom-control custom-checkbox custom-control-inline buff-block">
                             <input class="custom-control-input" type="checkbox" id="atk-up" value="1.5" onchange="resolve()">
                             <label class="custom-control-label" for="atk-up">
-                                <img src="./assets/buffs/attack-buff.png" width="20" height="20" /> Increased Attack
+                                <img src="./assets/buffs/attack-buff.png" width="20" height="20" alt="Caster increased Attack"> Increased Attack
                             </label>
                         </div>
 
                         <div class="custom-control custom-checkbox custom-control-inline buff-block">
                             <input class="custom-control-input" type="checkbox" id="atk-up-great" value="1.75" onchange="resolve()">
                             <label class="custom-control-label" for="atk-up-great">
-                                <img src="./assets/buffs/greater-attack-buff.png" width="20" height="20" /> Increased Attack (Great)
+                                <img src="./assets/buffs/greater-attack-buff.png" width="20" height="20" alt="Caster increased Attack (Great)"> Increased Attack (Great)
                             </label>
                         </div>
 
                         <div class="custom-control custom-checkbox custom-control-inline buff-block">
                             <input class="custom-control-input" type="checkbox" id="crit-dmg-up" value="0.5" onchange="resolve()">
                             <label class="custom-control-label" for="crit-dmg-up">
-                                <img src="./assets/buffs/critical-hit-damage-buff.png" width="20" height="20" /> Increased Critical Hit Damage
+                                <img src="./assets/buffs/critical-hit-damage-buff.png" width="20" height="20" alt="Caster increased Critical Hit Damage"> Increased Critical Hit Damage
                             </label>
                         </div>
 
                         <div class="custom-control custom-checkbox custom-control-inline buff-block">
                             <input class="custom-control-input" type="checkbox" id="vigor" value="1.3" onchange="resolve()">
                             <label class="custom-control-label" for="vigor">
-                                <img src="./assets/buffs/vigor-buff.png" width="20" height="20" /> Vigor
+                                <img src="./assets/buffs/vigor-buff.png" width="20" height="20" alt="Caster vigor"> Vigor
                             </label>
                         </div>
 
                         <div class="custom-control custom-checkbox custom-control-inline buff-block">
                             <input class="custom-control-input" type="checkbox" id="rage-set" value="0.3" onchange="resolve()">
                             <label class="custom-control-label" for="rage-set">
-                                <img src="./assets/sets/rage-set.png" width="20" height="20" /> Rage Set Proc
+                                <img src="./assets/sets/rage-set.png" width="20" height="20" alt="Rage Set Proc"> Rage Set Proc
                             </label>
                         </div>
 
                         <div class="custom-control custom-checkbox custom-control-inline buff-block">
                             <input class="custom-control-input" type="checkbox" id="pen-set" value="0.15" onchange="resolve()">
                             <label class="custom-control-label" for="pen-set">
-                                <img src="./assets/sets/penetration-set.png" width="20" height="20" /> Penetration Set
+                                <img src="./assets/sets/penetration-set.png" width="20" height="20" alt="Penetration Set"> Penetration Set
                             </label>
                         </div>
 
                         <div class="custom-control custom-checkbox custom-control-inline buff-block">
                             <input class="custom-control-input" type="checkbox" id="torrent-set" value="0.1" onchange="resolve(); torrentSetToggled()">
                             <label class="custom-control-label" for="torrent-set">
-                                <img src="./assets/sets/torrent-set.png" width="20" height="20" /> Torrent Set
+                                <img src="./assets/sets/torrent-set.png" width="20" height="20" alt="Torrent Set"> Torrent Set
                             </label>
                         </div>
                     </div>
 
                     <div id="set-num-holder">
                     </div>
-                    <hr />
+                    <hr >
                 </div>
 
                 <div id="artifact-block">
@@ -295,7 +321,9 @@
                     <div id="artifact-info"></div>
                     <div id="artifact-lvl-block" class="stat-block">
                         <div class="form-group row col-sm-12">
-                            <label for="artifact-lvl" class="col-md-9 col-form-label form-control-sm"><h5>Level</h5></label>
+                            <label for="artifact-lvl" class="col-md-9 col-form-label form-control-sm">
+                                <h5>Level</h5>
+                            </label>
                             <div class="input-group input-group-sm col-md-3">
                                 <div class="input-group-prepend">
                                     <button class="btn btn-outline-secondary" type="button" id="artifact-lvl-minus" onclick="minus('artifact-lvl')">&minus;</button>
@@ -311,7 +339,7 @@
                         </div>
                     </div>
                     <div id="artifact-custom-block"></div>
-                    <hr />
+                    <hr >
                 </div>
 
                 <div class="row">
@@ -364,21 +392,21 @@
                             </optgroup>
                             <optgroup label="Caides 13">
                                 <option value="converted-symaqus-13" data-def="2698" data-hp="41387" data-subtext="41387 hp/264 spd">Converted Symaqus</option>
-                                <option value="caides-13" data-def="1456" data-hp="226348" data-subtext="226348 hp/180 spd">Caides</option>
+                                <option value="caides-13" data-def="1456" data-hp="226348" data-subtext="226348 hp/180 spd/50% HP-Dmg Reduction">Caides</option>
                             </optgroup>
                             <optgroup label="Earth Expedition">
-<!--                                <option value="earth-exp-1" data-def="807" data-elem-extra-dmg="fire" data-extra-dmg-pc="1.5" data-single-atk-mult="0.3" data-non-single-atk-mult="1.7">Earth Expedition - Level 1</option>-->
-<!--                                <option value="earth-exp-2" data-def="1078" data-elem-extra-dmg="fire" data-extra-dmg-pc="1.5" data-single-atk-mult="0.3" data-non-single-atk-mult="1.7">Earth Expedition - Level 2</option>-->
+                                <!--                                <option value="earth-exp-1" data-def="807" data-elem-extra-dmg="fire" data-extra-dmg-pc="1.5" data-single-atk-mult="0.3" data-non-single-atk-mult="1.7">Earth Expedition - Level 1</option>-->
+                                <!--                                <option value="earth-exp-2" data-def="1078" data-elem-extra-dmg="fire" data-extra-dmg-pc="1.5" data-single-atk-mult="0.3" data-non-single-atk-mult="1.7">Earth Expedition - Level 2</option>-->
                                 <option value="earth-exp-3" data-def="1087" data-elem-extra-dmg="fire" data-extra-dmg-pc="1.5" data-single-atk-mult="0.3" data-non-single-atk-mult="1.7">Earth Expedition - Level 3</option>
                             </optgroup>
                             <optgroup label="Ice Expedition">
-<!--                                <option value="ice-exp-1" data-def="677" data-elem-extra-dmg="earth" data-extra-dmg-pc="1.5">Ice Expedition - Level 1</option>-->
-<!--                                <option value="ice-exp-2" data-def="904" data-elem-extra-dmg="earth" data-extra-dmg-pc="1.5">Ice Expedition - Level 2</option>-->
+                                <!--                                <option value="ice-exp-1" data-def="677" data-elem-extra-dmg="earth" data-extra-dmg-pc="1.5">Ice Expedition - Level 1</option>-->
+                                <!--                                <option value="ice-exp-2" data-def="904" data-elem-extra-dmg="earth" data-extra-dmg-pc="1.5">Ice Expedition - Level 2</option>-->
                                 <option value="ice-exp-3" data-def="905" data-elem-extra-dmg="earth" data-extra-dmg-pc="1.5">Ice Expedition - Level 3</option>
                             </optgroup>
                             <optgroup label="Fire Expedition">
-<!--                                <option value="fire-exp-1" data-def="783" data-elem-extra-dmg="ice" data-extra-dmg-pc="1.5">Fire Expedition - Level 1</option>-->
-<!--                                <option value="fire-exp-2" data-def="1045" data-elem-extra-dmg="ice" data-extra-dmg-pc="1.5">Fire Expedition - Level 2</option>-->
+                                <!--                                <option value="fire-exp-1" data-def="783" data-elem-extra-dmg="ice" data-extra-dmg-pc="1.5">Fire Expedition - Level 1</option>-->
+                                <!--                                <option value="fire-exp-2" data-def="1045" data-elem-extra-dmg="ice" data-extra-dmg-pc="1.5">Fire Expedition - Level 2</option>-->
                                 <option value="fire-exp-3" data-def="1340" data-elem-extra-dmg="ice" data-extra-dmg-pc="1.5">Fire Expedition - Level 3</option>
                             </optgroup>
                             <optgroup label="Light Expedition">
@@ -416,7 +444,9 @@
                         <div class="col-sm-6 half-left">
                             <div class="stat-block">
                                 <div class="form-group row col-sm-12">
-                                    <label for="def" class="col-md-7 col-form-label form-control-sm"><h5>Defense</h5></label>
+                                    <label for="def" class="col-md-7 col-form-label form-control-sm">
+                                        <h5>Defense</h5>
+                                    </label>
                                     <div class="input-group input-group-sm col-md-5">
                                         <div class="input-group-prepend">
                                             <button class="btn btn-outline-secondary" type="button" id="def-minus" onclick="minus('def')">&minus;</button>
@@ -436,7 +466,9 @@
                             <div class="stat-block">
                                 <div class="form-group row col-sm-12">
                                     <label for="def" class="col-md-7 col-form-label form-control-sm">
-                                        <h5>Defense % Increase <i class="far fa-question-circle fa-xs text-muted" data-toggle="tooltip" title="Example: Aurius, Card of Small Miracles, Resolute Soldier Series"></i></h5>
+                                        <h5>
+                                            Defense % Increase <i class="far fa-question-circle fa-xs text-muted" data-toggle="tooltip" title="Example: Aurius, Card of Small Miracles, Resolute Soldier Series"></i>
+                                        </h5>
                                     </label>
                                     <div class="input-group input-group-sm col-md-5">
                                         <div class="input-group-prepend">
@@ -459,7 +491,9 @@
                         <div class="col-sm-6 half-left">
                             <div class="stat-block">
                                 <div class="form-group row col-sm-12">
-                                    <label for="dmg-reduc" class="col-md-7 col-form-label form-control-sm"><h5>Damage Reduction (%)</h5></label>
+                                    <label for="dmg-reduc" class="col-md-7 col-form-label form-control-sm">
+                                        <h5>Damage Reduction (%)</h5>
+                                    </label>
                                     <div class="input-group input-group-sm col-md-5">
                                         <div class="input-group-prepend">
                                             <button class="btn btn-outline-secondary" type="button" id="dmg-reduc-minus" onclick="minus('dmg-reduc')">&minus;</button>
@@ -478,7 +512,9 @@
                         <div class="col-sm-6 half-right">
                             <div class="stat-block">
                                 <div class="form-group row col-sm-12">
-                                    <label for="dmg-trans" class="col-md-7 col-form-label form-control-sm"><h5>Damage Transfer (%)</h5></label>
+                                    <label for="dmg-trans" class="col-md-7 col-form-label form-control-sm">
+                                        <h5>Damage Transfer (%)</h5>
+                                    </label>
                                     <div class="input-group input-group-sm col-md-5">
                                         <div class="input-group-prepend">
                                             <button class="btn btn-outline-secondary" type="button" id="dmg-trans-minus" onclick="minus('dmg-trans')">&minus;</button>
@@ -500,39 +536,39 @@
                         <div class="custom-control custom-checkbox custom-control-inline buff-block">
                             <input class="custom-control-input" type="checkbox" id="def-up" value="0.6" onchange="resolve()">
                             <label class="custom-control-label" for="def-up">
-                                <img src="./assets/buffs/defense-buff.png" width="20" height="20" /> Increased Defense
+                                <img src="./assets/buffs/defense-buff.png" width="20" height="20" alt="Target increased Defense"> Increased Defense
                             </label>
                         </div>
 
                         <div class="custom-control custom-checkbox custom-control-inline buff-block">
                             <input class="custom-control-input" type="checkbox" id="target-vigor" value="0.3" onchange="resolve()">
                             <label class="custom-control-label" for="target-vigor">
-                                <img src="./assets/buffs/vigor-buff.png" width="20" height="20" /> Vigor
+                                <img src="./assets/buffs/vigor-buff.png" width="20" height="20" alt="Target vigor"> Vigor
                             </label>
                         </div>
 
                         <div class="custom-control custom-checkbox custom-control-inline buff-block">
                             <input class="custom-control-input" type="checkbox" id="def-down" value="-0.7" onchange="resolve()">
                             <label class="custom-control-label" for="def-down">
-                                <img src="./assets/debuffs/defense-debuff.png" width="20" height="20" /> Decreased Defense
+                                <img src="./assets/debuffs/defense-debuff.png" width="20" height="20" alt="Target decreased defense"> Decreased Defense
                             </label>
                         </div>
 
                         <div class="custom-control custom-checkbox custom-control-inline buff-block">
                             <input class="custom-control-input" type="checkbox" id="target" value="1.15" onchange="resolve()">
                             <label class="custom-control-label" for="target">
-                                <img src="./assets/debuffs/target-debuff.png" width="20" height="20" /> Target
+                                <img src="./assets/debuffs/target-debuff.png" width="20" height="20" alt="Target has target debuff"> Target
                             </label>
                         </div>
                     </div>
                 </div>
 
-                <hr />
+                <hr >
 
                 <div>
                     <h4>Hero Specific</h4>
                     <div id="custom-block"></div>
-                    <hr />
+                    <hr >
                 </div>
 
 
@@ -551,33 +587,41 @@
                 Damage
                 <div class="btn-group" role="group">
                     <button id="compare-add-open" type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#compareAddModal">
-                        <i class="fas fa-save"></i> <span class="d-none d-md-inline">Save</span>
+                        <i class="fas fa-save"></i>
+                        <span class="d-none d-md-inline">Save</span>
                     </button>
                     <button id="compare-open" type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#compareModal">
-                        <i class="fas fa-exchange-alt"></i> <span class="d-none d-md-inline">Compare</span>
+                        <i class="fas fa-exchange-alt"></i>
+                        <span class="d-none d-md-inline">Compare</span>
                         <span id="compare-pool-size" class="badge badge-light">0</span>
                     </button>
                     <button id="toggle-chart" type="button" class="btn btn-orange btn-sm" onclick="toggleChart()">
                         <img class="icon" src="./assets/icons/line-chart.svg"> <span id="chart-button-text" class="d-none d-md-inline">Show Chart</span>
                     </button>
                     <button id="link-share" type="button" class="btn btn-success btn-sm" onclick="copyLinkToClipboard()">
-                        <img class="icon" src="./assets/icons/share-nodes-solid.svg"> <span id="share-button-text" class="d-none d-md-inline">Share</span>
+                        <img class="icon" src="./assets/icons/share-nodes-solid.svg" alt="Share button">
+                        <span id="share-button-text" class="d-none d-md-inline">Share</span>
                     </button>
                 </div>
                 <span id="barrier-block" class="badge badge-light float-right">
-                    <img src="./assets/buffs/barrier-buff.png" width="20" height="20" /> <span id="barrier"></span>
+                    <img src="./assets/buffs/barrier-buff.png" width="20" height="20" alt="Barrier buff">
+                    <span id="barrier"></span>
                 </span>
                 <span id="bleed-damage-block" class="badge badge-light float-right">
-                    <img src="./assets/debuffs/bleed-debuff.png" width="20" height="20" /> <span id="bleed-damage"></span>
+                    <img src="./assets/debuffs/bleed-debuff.png" width="20" height="20" alt="Bleed debuff">
+                    <span id="bleed-damage"></span>
                 </span>
                 <span id="burn-damage-block" class="badge badge-light float-right">
-                    <img src="./assets/debuffs/burn-debuff.png" width="20" height="20" /> <span id="burn-damage"></span>
+                    <img src="./assets/debuffs/burn-debuff.png" width="20" height="20" alt="Burn debuff">
+                    <span id="burn-damage"></span>
                 </span>
                 <span id="bomb-damage-block" class="badge badge-light float-right">
-                    <img src="./assets/debuffs/bomb-debuff.png" width="20" height="20" /> <span id="bomb-damage"></span>
+                    <img src="./assets/debuffs/bomb-debuff.png" width="20" height="20" alt="Bomb debuff">
+                    <span id="bomb-damage"></span>
                 </span>
                 <span id="artifact-dmg-block" class="badge badge-light float-right">
-                    <i class="fas fa-cocktail"></i> <span id="artifact-dmg"></span>
+                    <i class="fas fa-cocktail"></i>
+                    <span id="artifact-dmg"></span>
                     <i class="far fa-question-circle fa-xs text-muted" data-toggle="tooltip" title="Damage coming from Artifact, already included in the table below"></i>
                 </span>
             </h4>
@@ -608,9 +652,13 @@
                         <h5 class="text-uppercase">Credits</h5>
                         <p>
                             Discord: tyopoyt#1365<br>
-                            Thanks to the original creator, Maphe<br/>
-                            Thanks for the help: Thunder_God, okloio, haie<br/>
-                            Translation: Rano / TriATK <span class="flag-icon flag-icon-cn"></span> / <i class="fas fa-user-secret"></i> <span class="flag-icon flag-icon-kr"></span> / Tagle <span class="flag-icon flag-icon-jp"></span> / RenanCrimininBR <span class="flag-icon flag-icon-br"></span>
+                            Thanks to the original creator, Maphe<br>
+                            Thanks for the help: Thunder_God, okloio, haie<br>
+                            Translation: Rano / TriATK <span class="flag-icon flag-icon-cn"></span>
+                            / <i class="fas fa-user-secret"></i>
+                            <span class="flag-icon flag-icon-kr"></span>
+                            / Tagle <span class="flag-icon flag-icon-jp"></span>
+                            / RenanCrimininBR <span class="flag-icon flag-icon-br"></span>
                         </p>
                     </div>
                     <hr class="clearfix w-100 d-md-none pb-3">
@@ -687,7 +735,7 @@
                         <div id="damage-comparison-block">
                             <table class="table table-bordered table-sm col-sm-12">
                                 <thead class="table-secondary">
-                                <tr id="damage-header"></tr>
+                                    <tr id="damage-header"></tr>
                                 </thead>
                                 <tbody id="damage-comparison"></tbody>
                             </table>
