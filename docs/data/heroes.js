@@ -4486,7 +4486,7 @@ const heroes = {
         flatTip: () => ({ target_max_hp: 20 }),
         enhance: [0.05, 0, 0.05, 0, 0.1, 0, 0.1],
         single: true,
-        // noTrans: elements.caster_has_neo_phantom_sword.value() ? true : false
+        noTrans: elements.caster_has_neo_phantom_sword.value() ? true : false
       },
       s2: {
         rate: 1.5,
@@ -4497,7 +4497,7 @@ const heroes = {
         flatTip: () => ({ target_max_hp: 20 }),
         enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.1],
         single: true,
-        // noTrans: elements.caster_has_neo_phantom_sword.value()
+        noTrans: elements.caster_has_neo_phantom_sword.value()
       }
     }
   },

@@ -525,6 +525,8 @@ const i18n = {
     },
     form: {
       link_copied: 'コピーしました!',
+      show_chart: 'チャートを表示',
+      hide_chart: 'チャートを隠す',
       nb_targets: '敵数',
       nb_hits: 'ヒット数',
       nb_sets: 'セット数',
@@ -1167,6 +1169,8 @@ const i18n = {
     form: {
       allies_nb_buff: '我軍Buff數量',
       link_copied: '鏈接已復制！',
+      show_chart: '顯示圖表',
+      hide_chart: '隱藏圖表',
       nb_targets: '敵人數量',
       nb_hits: '攻擊次數',
       nb_sets: '套裝數',
@@ -1852,6 +1856,8 @@ const i18n = {
     form: {
       allies_nb_buff: '我军Buff数量',
       link_copied: '链接已复制！',
+      show_chart: '显示图表',
+      hide_chart: '隐藏图表',
       nb_targets: '敌人数量',
       nb_hits: '攻击次数',
       nb_sets: '套装数',
@@ -2481,6 +2487,8 @@ const i18n = {
     form: {
       allies_nb_buff: '아군 버프 수',
       link_copied: '링크 복사!',
+      show_chart: '차트 보여줘',
+      hide_chart: '차트 숨기기',
       nb_targets: '대상 수',
       nb_hits: '히트 수',
       nb_sets: '세트 수',
@@ -3016,6 +3024,8 @@ const i18n = {
       allies_nb_buff: 'Quantidade de Buffs Aliados',
       aoe_stack_5: 'Stack de Ataque em Área',
       link_copied: 'Link Copiado!',
+      show_chart: 'Mostrar Gráfico',
+      hide_chart: 'Ocultar Gráfico',
       nb_targets: 'Número de Alvos',
       nb_hits: 'Quantidade de Hits',
       nb_sets: 'Número de Sets',
@@ -3237,7 +3247,7 @@ const compareSkillLabel = (id) => {
 
   if (extra === 'sb') {
     display += '<i class="fas fa-fire"></i>';
-  } else if (extra!== '') {
+  } else if (extra !== '') {
     display += '<i class="far fa-plus-square"></i>';
   }
 

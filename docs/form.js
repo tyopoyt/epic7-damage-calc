@@ -472,7 +472,7 @@ const elements = {
     id: 'caster-has-neo-phantom-sword',
     label: 'Caster has Neo Phantom Sword',
     type: 'checkbox',
-    value: () => document.getElementById('caster-has-neo-phantom-sword').checked,
+    value: () => document.getElementById('caster-has-neo-phantom-sword')?.checked,
     icon: './assets/buffs/neo-phantom-sword-buff.png'
   },
   caster_full_focus: {
@@ -1179,7 +1179,8 @@ const dedupeForm = (hero, artifact) => {
 };
 
 // jQuery's $(() => {}) was not firing at the right time in Firefox, so use standard DOMContentLoaded
-window.addEventListener('DOMContentLoaded', () => {
+// window.addEventListener('DOMContentLoaded', () => {
+buildInitialForm = () => {
   try {
     const heroSelector = document.getElementById('hero');
     const artiSelector = document.getElementById('artifact');
@@ -1327,7 +1328,8 @@ window.addEventListener('DOMContentLoaded', () => {
   dmgBlock.on('blur', '[data-toggle="popover"]', (event) => {
     $(event.target).popover('hide');
   });
-});
+};
+// });
 
 function initTheme() {
   const darkThemeSelected =

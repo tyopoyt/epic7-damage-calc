@@ -30,18 +30,6 @@ let loadingQueryParams = true;
 
 const buffableParams = ['caster-defense', 'caster-speed'];
 
-window.addEventListener('load', async () => {
-  /*
-     * Timeout just in case, to help avoid a race condition.
-     *
-     * In testing, the DOMContentLoaded listener function in form.js takes around 50ms to execute on average.
-     * Maximally, it took 92ms to complete. Timeout for 115ms to ensure form.js is finished before loading queryParams.
-     * Never saw an issue while not using this timeout, but may happen on a slower device.
-     */
-  await new Promise(resolve => {setTimeout(() => {resolve();}, 115);});
-  loadQueryParams();
-});
-
 // get values from the various inputs
 const getInputValues = () => {
   const inputValues = {};
@@ -285,7 +273,7 @@ const formUpdated = () => {
 /*
  * Puts form values in queryParams after debouncing input.
  */ 
-const updateQueryParamsWhenStable = async (updateURL=false) => {
+const updateQueryParamsWhenStable = async (updateURL = false) => {
   // debounce input then update when stable. 1 second if updating URL, else 200ms.
   updateRequestTime = Date.now();
   debounceTime = updateURL ? 1000 : 200;
@@ -439,3 +427,13 @@ const copyLinkToClipboard = () => {
     'shared_params': linkURL.search
   });
 };
+
+/*
+     * Timeout just in case, to help avoid a race condition.
+     *
+     * In testing, the DOMContentLoaded listener function in form.js takes around 50ms to execute on average.
+     * Maximally, it took 92ms to complete. Timeout for 115ms to ensure form.js is finished before loading queryParams.
+     * Never saw an issue while not using this timeout, but may happen on a slower device.
+     */
+// setTimeout(() => {resolve();loadQueryParams();}, 115);
+

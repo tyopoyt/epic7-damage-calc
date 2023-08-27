@@ -151,6 +151,7 @@ const torrentSetToggled = () => {
 
 const resolve = () => {
   if (loadingQueryParams) {
+    loadQueryParams();
     return; // don't resolve until params are loaded
   }
   inputValues = getInputValues(true);
@@ -256,20 +257,20 @@ const getModTooltip = (hero, skillId, soulburn = false) => {
                  ${skillLabel('power')}: <b class="float-right">${values.pow}</b><br/>`;
 
   if (values.mult !== null) {
-    content += `${skillLabel('mult')}: <span class="float-right">${values.multTip} <b>${Math.round(values.mult*100)}%</b></span><br/>`;
+    content += `${skillLabel('mult')}: <span class="float-right">${values.multTip} <b>${Math.round(values.mult * 100)}%</b></span><br/>`;
   }
   if (values.flat !== null) {
     content += `${skillLabel('flat')}: <span class="float-right">${values.flatTip} <b>${Math.round(values.flat)}</b></span><br/>`;
   }
   if (values.critBoost !== null) {
-    content += `${skillLabel('critBoost')}: <span class="float-right">${values.critBoostTip} <b>+${Math.round(values.critBoost*100)}%</b></span><br/>`;
+    content += `${skillLabel('critBoost')}: <span class="float-right">${values.critBoostTip} <b>+${Math.round(values.critBoost * 100)}%</b></span><br/>`;
   }
-  if (values.pen != null) content += `${skillLabel('pen')}: <span class="float-right">${values.penTip} <b>${Math.round(values.pen*100)}%</b></span><br/>`;
-  if (values.detonation != null) content += `${skillLabel('detonation')}: <b class="float-right">+${Math.round(values.detonation*100)}%</b><br/>`;
-  if (values.exEq != null) content += `${skillLabel('exEq')}: <b class="float-right">+${Math.round(values.exEq*100)}%</b><br/>`;
+  if (values.pen != null) content += `${skillLabel('pen')}: <span class="float-right">${values.penTip} <b>${Math.round(values.pen * 100)}%</b></span><br/>`;
+  if (values.detonation != null) content += `${skillLabel('detonation')}: <b class="float-right">+${Math.round(values.detonation * 100)}%</b><br/>`;
+  if (values.exEq != null) content += `${skillLabel('exEq')}: <b class="float-right">+${Math.round(values.exEq * 100)}%</b><br/>`;
   if (values.elemAdv !== null) content += `${skillLabel('elemAdv')}: <i class="fas ${values.elemAdv ? 'fa-check-square' : 'fa-times-circle'} float-right"></i><br/>`;
-  if (values.afterMathFormula !== null) content += `${skillLabel('afterMathFormula')}/${values.afterMathFormula.defPercent ? skillLabel('def_rate') : values.afterMathFormula.injuryPercent ? skillLabel('injury_rate'): skillLabel('att_rate')}: <b class="float-right">${Math.round((values.afterMathFormula.atkPercent || values.afterMathFormula.defPercent || values.afterMathFormula.injuryPercent)*100)}%</b><br/>`;
-  if (values.afterMathFormula !== null) content += `${skillLabel('afterMathFormula')}/${skillLabel('pen')}: <b class="float-right">${Math.round(values.afterMathFormula.penetrate*100)}%</b><br/>`;
+  if (values.afterMathFormula !== null) content += `${skillLabel('afterMathFormula')}/${values.afterMathFormula.defPercent ? skillLabel('def_rate') : values.afterMathFormula.injuryPercent ? skillLabel('injury_rate') : skillLabel('att_rate')}: <b class="float-right">${Math.round((values.afterMathFormula.atkPercent || values.afterMathFormula.defPercent || values.afterMathFormula.injuryPercent) * 100)}%</b><br/>`;
+  if (values.afterMathFormula !== null) content += `${skillLabel('afterMathFormula')}/${skillLabel('pen')}: <b class="float-right">${Math.round(values.afterMathFormula.penetrate * 100)}%</b><br/>`;
   if (values.afterMathDmg !== null) content += `${skillLabel('afterMathDmg')}: <b class="float-right">${Math.round(values.afterMathDmg)}</b><br/>`;
   if (values.extraDmg != null) content += `${skillLabel('extraDmg')}: <span class="float-right">${values.extraDmgTip} <b>${Math.round(values.extraDmg)}</b><br/>`;
   if (values.fixed != null) content += `${skillLabel('fixed')}: <span class="float-right">${values.fixedTip ?? ''} <b>${Math.round(values.fixed)}</b><br/>`;
@@ -301,14 +302,14 @@ const getGlobalDamageMult = (hero, skill) => {
 
   const selected = defPresetSelector.options[defPresetSelector.selectedIndex];
   if (hero.element === selected.dataset.elemExtraDmg) {
-    mult += parseFloat(selected.dataset.extraDmgPc)-1;
+    mult += parseFloat(selected.dataset.extraDmgPc) - 1;
   }
 
   if (getSkillType(skill) === skillTypes.single && selected.dataset.singleAtkMult) {
-    mult += parseFloat(selected.dataset.singleAtkMult)-1;
+    mult += parseFloat(selected.dataset.singleAtkMult) - 1;
   }
   if (getSkillType(skill) !== skillTypes.single && selected.dataset.nonSingleAtkMult) {
-    mult += parseFloat(selected.dataset.nonSingleAtkMult)-1;
+    mult += parseFloat(selected.dataset.nonSingleAtkMult) - 1;
   }
 
   return mult;
@@ -358,7 +359,7 @@ class Hero {
     return {
       rate: (typeof skill.rate === 'function') ? skill.rate(soulburn) : skill.rate,
       pow: (typeof skill.pow === 'function') ? skill.pow(soulburn) : skill.pow,
-      mult: skill.mult ? skill.mult(soulburn, this)-1 : null,
+      mult: skill.mult ? skill.mult(soulburn, this) - 1 : null,
       multTip: skill.multTip !== undefined ? getSkillModTip(skill.multTip(soulburn)) : '',
       flat: skill.flat ? skill.flat(soulburn, this) : null,
       flatTip: skill.flatTip !== undefined ? getSkillModTip(skill.flatTip(soulburn)) : '',
@@ -366,7 +367,7 @@ class Hero {
       critBoostTip: skill.critDmgBoostTip ? getSkillModTip(skill.critDmgBoostTip(soulburn)) : '',
       pen: skill.penetrate ? skill.penetrate() : null,
       penTip: skill.penetrateTip !== undefined ? getSkillModTip(skill.penetrateTip(soulburn)) : '',
-      detonation: skill.detonation !== undefined ? skill.detonation()-1 : null,
+      detonation: skill.detonation !== undefined ? skill.detonation() - 1 : null,
       exEq: skill.exEq !== undefined ? skill.exEq() : null,
       elemAdv: (typeof skill.elemAdv === 'function') ? skill.elemAdv() : null,
       afterMathFormula: skill.afterMath !== undefined ? skill.afterMath(soulburn) : null,
@@ -383,15 +384,15 @@ class Hero {
 
     const skill = this.skills[skillId];
     const hit = this.offensivePower(skillId, soulburn, isExtra, this) * this.target.defensivePower(skill);
-    const critDmg = Math.min((this.crit / 100)+critDmgBuff, 3.5)
-        +(skill.critDmgBoost ? skill.critDmgBoost(soulburn) : 0)
-        +(this.artifact.getCritDmgBoost()||0)
-        +(elements.caster_perception.value() ? 0.15 : 0);
+    const critDmg = Math.min((this.crit / 100) + critDmgBuff, 3.5)
+        + (skill.critDmgBoost ? skill.critDmgBoost(soulburn) : 0)
+        + (this.artifact.getCritDmgBoost() || 0)
+        + (elements.caster_perception.value() ? 0.15 : 0);
     return {
-      crit: skill.noCrit || skill.onlyMiss ? null : Math.round(hit*critDmg + (skill.fixed !== undefined ? skill.fixed(hitTypes.crit) : 0) + this.getAfterMathDamage(skillId, hitTypes.crit)),
-      crush: skill.noCrit || skill.onlyCrit || skill.onlyMiss ? null : Math.round(hit*1.3 + (skill.fixed !== undefined ? skill.fixed(hitTypes.crush) : 0) + this.getAfterMathDamage(skillId, hitTypes.crush)),
+      crit: skill.noCrit || skill.onlyMiss ? null : Math.round(hit * critDmg + (skill.fixed !== undefined ? skill.fixed(hitTypes.crit) : 0) + this.getAfterMathDamage(skillId, hitTypes.crit)),
+      crush: skill.noCrit || skill.onlyCrit || skill.onlyMiss ? null : Math.round(hit * 1.3 + (skill.fixed !== undefined ? skill.fixed(hitTypes.crush) : 0) + this.getAfterMathDamage(skillId, hitTypes.crush)),
       normal: skill.onlyCrit || skill.onlyMiss ? null : Math.round(hit + (skill.fixed !== undefined ? skill.fixed(hitTypes.normal) : 0) + this.getAfterMathDamage(skillId, hitTypes.normal)),
-      miss: skill.noMiss ? null : Math.round(hit*0.75 + (skill.fixed !== undefined ? skill.fixed(hitTypes.miss) : 0) + this.getAfterMathDamage(skillId, hitTypes.miss))
+      miss: skill.noMiss ? null : Math.round(hit * 0.75 + (skill.fixed !== undefined ? skill.fixed(hitTypes.miss) : 0) + this.getAfterMathDamage(skillId, hitTypes.miss))
     };
   }
 
@@ -415,7 +416,7 @@ class Hero {
           + this.artifact.getAttackBoost();
     }
 
-    return (atk+atkImprint)*atkMod;
+    return (atk + atkImprint) * atkMod;
   }
 
   getDef() {
@@ -458,9 +459,9 @@ class Hero {
         + getGlobalDamageMult(this, skill)
         + this.bonus / 100
         + this.artifact.getDamageMultiplier(skill, skillId, isExtra)
-        + (skill.mult ? skill.mult(soulburn, this)-1 : 0);
+        + (skill.mult ? skill.mult(soulburn, this) - 1 : 0);
 
-    return ((this.getAtk(skillId)*rate + flatMod)*dmgConst + flatMod2) * pow * skillEnhance * elemAdv * target * dmgMod;
+    return ((this.getAtk(skillId) * rate + flatMod) * dmgConst + flatMod2) * pow * skillEnhance * elemAdv * target * dmgMod;
   }
 
   getSkillEnhanceMult(skillId) {
@@ -509,11 +510,11 @@ class Hero {
     const skillMultipliers = skill.afterMath ? skill.afterMath(hitType) : null;
     if (skillMultipliers !== null) {
       if (skillMultipliers.atkPercent) {
-        skillDamage = this.getAtk(skillId)*skillMultipliers.atkPercent*dmgConst*this.target.defensivePower({ penetrate: () => skillMultipliers.penetrate }, true);
+        skillDamage = this.getAtk(skillId) * skillMultipliers.atkPercent * dmgConst * this.target.defensivePower({ penetrate: () => skillMultipliers.penetrate }, true);
       } else if (skillMultipliers.defPercent) {
-        skillDamage = elements.caster_defense.value()*skillMultipliers.defPercent*dmgConst*this.target.defensivePower({ penetrate: () => skillMultipliers.penetrate }, true);
+        skillDamage = elements.caster_defense.value() * skillMultipliers.defPercent * dmgConst * this.target.defensivePower({ penetrate: () => skillMultipliers.penetrate }, true);
       } else if (skillMultipliers.injuryPercent) {
-        skillDamage = elements.target_injuries.value()*skillMultipliers.injuryPercent*dmgConst*this.target.defensivePower({ penetrate: () => skillMultipliers.penetrate }, true);
+        skillDamage = elements.target_injuries.value() * skillMultipliers.injuryPercent * dmgConst * this.target.defensivePower({ penetrate: () => skillMultipliers.penetrate }, true);
       }
     }
 
@@ -541,9 +542,9 @@ class Hero {
     const dotTypes = Array.isArray(skill.detonate) ? skill.detonate : [skill.detonate];
     let damage = 0;
 
-    if (dotTypes.includes(dot.bleed)) damage += elements.target_bleed_detonate.value()*skill.detonation()*this.getDotDamage(dot.bleed);
-    if (dotTypes.includes(dot.burn)) damage += elements.target_burn_detonate.value()*skill.detonation()*this.getDotDamage(dot.burn);
-    if (dotTypes.includes(dot.bomb)) damage += elements.target_bomb_detonate.value()*skill.detonation()*this.getDotDamage(dot.bomb);
+    if (dotTypes.includes(dot.bleed)) damage += elements.target_bleed_detonate.value() * skill.detonation() * this.getDotDamage(dot.bleed);
+    if (dotTypes.includes(dot.burn)) damage += elements.target_burn_detonate.value() * skill.detonation() * this.getDotDamage(dot.burn);
+    if (dotTypes.includes(dot.bomb)) damage += elements.target_bomb_detonate.value() * skill.detonation() * this.getDotDamage(dot.bomb);
 
     return damage;
   }
@@ -561,7 +562,7 @@ class Hero {
   }
 
   getBarrierStrength() {
-    return this.barrier(this)*(this.barrierEnhance ? this.getSkillEnhanceMult(this.barrierEnhance) : 1);
+    return this.barrier(this) * (this.barrierEnhance ? this.getSkillEnhanceMult(this.barrierEnhance) : 1);
   }
 
   getBarrier2Strength() {
@@ -582,13 +583,13 @@ class Target {
     const artifact = this.casterArtifact.getDefensePenetration(skill);
     const set = (getSkillType(skill) === skillTypes.single) && inputValues['penSet'] ? battleConstants.penSet : 0;
 
-    return Math.min(1, (1-base) * (1-set) * (1-artifact));
+    return Math.min(1, (1 - base) * (1 - set) * (1 - artifact));
   }
 
   defensivePower(skill, noReduc = false) {
     const dmgReduc = noReduc ? 0 : inputValues['dmgReduc'] / 100;
     const dmgTrans = skill.noTrans === true ? 0 : inputValues.dmgTrans / 100;
-    return ((1-dmgReduc)*(1-dmgTrans))/(((this.def / 300)*this.getPenetration(skill)) + 1);
+    return ((1 - dmgReduc) * (1 - dmgTrans)) / (((this.def / 300) * this.getPenetration(skill)) + 1);
   }
 }
 
@@ -612,7 +613,7 @@ class Artifact {
 
   getValue() {
     return artifacts[this.id].scale
-      ? artifacts[this.id].scale[Math.floor(document.getElementById('artifact-lvl').value/3)]
+      ? artifacts[this.id].scale[Math.floor(document.getElementById('artifact-lvl').value / 3)]
       : artifacts[this.id].value;
   }
 
@@ -725,14 +726,24 @@ let chart = new Chart(ctx, chartDefaults);
 
 const toggleChart = () => {
   const chartContainer = document.getElementById('damage-chart-container');
+  const lang = document.getElementById('root').getAttribute('lang');
+  chartButton = document.getElementById('chart-button-text');
 
   if (chartContainer.style.display == 'none') {
     calculateChart(inputValues);
     chartContainer.style.display = 'block';
-    document.getElementById('chart-button-text').innerText = 'Hide Chart';
+    if (lang === 'en') {
+      chartButton.innerText = 'Hide Chart';
+    } else {
+      chartButton.innerText = i18n[lang].form.hide_chart || 'Hide Chart';
+    }
   } else {
     chartContainer.style.display = 'none';
-    document.getElementById('chart-button-text').innerText = 'Show Chart';
+    if (lang === 'en') {
+      chartButton.innerText = 'Show Chart';
+    } else {
+      chartButton.innerText = i18n[lang].form.show_chart || 'Show Chart';
+    }
   }
 };
 
@@ -758,7 +769,7 @@ const calculateChart = (inputValues) => {
   chart.data.datasets[0].data = [];
   chart.data.datasets[1].data = [];
 
-  const atkStep = Math.max(Math.floor(((8/7) / 100) * hero.baseAtk), 1);
+  const atkStep = Math.max(Math.floor(((8 / 7) / 100) * hero.baseAtk), 1);
 
   hero.atk = hero.atk - (((numSteps) / intersectionPoint) * atkStep);
 
@@ -811,7 +822,7 @@ const calculateChart = (inputValues) => {
   }
 
   if (skill.defenseScaling) {
-    const defStep = Math.max(Math.floor(((8/7) / 100) * hero.baseDef), 1);
+    const defStep = Math.max(Math.floor(((8 / 7) / 100) * hero.baseDef), 1);
     filteredDatasets = chart.data.datasets.filter(dataset => dataset.label === 'Defense');
     if (!filteredDatasets.length) {
       chart.data.datasets.push({
@@ -849,15 +860,13 @@ const calculateChart = (inputValues) => {
       chart.data.datasets[defDataIndex].data.push(finalDam);
       chart.data.labels[index] += ` vs ${hero.def} Def`;
       hero.def += defStep; //TODO: deal with anything that might affect this number like innate boosts
-      // currentHero = hero;
-      console.log(currentHero.def === hero.def);
       index++;
     }
     hero.def = inputValues['caster-defense'];
   }
   
   if (skill.hpScaling) {
-    const hpStep = Math.max(Math.floor(((8/7) / 100) * hero.baseHP), 1);
+    const hpStep = Math.max(Math.floor(((8 / 7) / 100) * hero.baseHP), 1);
     filteredDatasets = chart.data.datasets.filter(dataset => dataset.label === 'HP');
     if (!filteredDatasets.length) {
       chart.data.datasets.push({
@@ -901,7 +910,7 @@ const calculateChart = (inputValues) => {
   }
   
   if (skill.spdScaling) {
-    const spdStep = Math.max(Math.floor(((4/7) / 100) * hero.baseSpd), 1);
+    const spdStep = Math.max(Math.floor(((4 / 7) / 100) * hero.baseSpd), 1);
     filteredDatasets = chart.data.datasets.filter(dataset => dataset.label === 'Speed');
     if (!filteredDatasets.length) {
       chart.data.datasets.push({
