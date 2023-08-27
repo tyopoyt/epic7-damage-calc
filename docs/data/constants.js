@@ -14,7 +14,9 @@ const battleConstants = {
   'defDown': -0.7,
   'targetVigor': 0.3,
   'target': 1.15,
-  'caster-fury': 1.3
+  'caster-fury': 1.3,
+  'spdUp': 1.3, 
+  'casterRage': 1.1
 };
 
 const heroConstants = {

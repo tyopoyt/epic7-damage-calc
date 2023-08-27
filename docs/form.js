@@ -365,7 +365,7 @@ const elements = {
     min: 70,
     max: 350,
     default: 150,
-    value: () => Number(document.getElementById('caster-speed').value)*(elements.caster_speed_up.value() ? 1.3 : 1),
+    value: () => Number(document.getElementById('caster-speed').value)*(elements.caster_speed_up.value() ? battleConstants.spdUp : 1),
   },
   caster_speed_up: {
     ref: 'caster_speed_up',
@@ -1211,7 +1211,9 @@ window.addEventListener('DOMContentLoaded', () => {
       $(chartSkillSelector).find('option').remove();
       Object.keys(heroes[currentHero.id].skills).map((id => {
         const skill = heroes[currentHero.id].skills[id];
-        $(chartSkillSelector).append(`<option value="${id}" data-content="<span>${skill.name ? skill.name : skillLabel(id)}</span>">${skill.name ? skill.name : skillLabel(id)}</option>`);
+        if (skill.rate) {
+          $(chartSkillSelector).append(`<option value="${id}" data-content="<span>${skill.name ? skill.name : skillLabel(id)}</span>">${skill.name ? skill.name : skillLabel(id)}</option>`);
+        }
       }));
       $(chartSkillSelector).selectedIndex = 0;
       $(chartSkillSelector).selectpicker('refresh');

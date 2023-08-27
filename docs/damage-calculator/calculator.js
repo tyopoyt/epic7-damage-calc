@@ -432,12 +432,11 @@ class Hero {
   }
 
   getSpd() {
-    // if (this.def) {
-    //   return this.def * (1 + (elements.caster_defense_up.value() ? battleConstants.defUp : 0)
-    //        + (document.getElementById('vigor').checked ? battleConstants.vigor - 1 : 0)
-    //        + (document.getElementById('caster-fury')?.checked ? battleConstants['caster-fury'] - 1 : 0));
-    // }
-    return elements.caster_defense.value();
+    if (this.spd) {
+      return this.spd * (1 + (elements.caster_speed_up.value() ? battleConstants.spdUp - 1 : 0)
+           + (document.getElementById('caster-enrage')?.checked ? battleConstants['casterRage'] - 1 : 0));
+    }
+    return elements.caster_speed.value();
   }
 
   offensivePower(skillId, soulburn, isExtra, hero) {
@@ -459,7 +458,7 @@ class Hero {
         + getGlobalDamageMult(this, skill)
         + this.bonus / 100
         + this.artifact.getDamageMultiplier(skill, skillId, isExtra)
-        + (skill.mult ? skill.mult(soulburn)-1 : 0);
+        + (skill.mult ? skill.mult(soulburn, this)-1 : 0);
 
     return ((this.getAtk(skillId)*rate + flatMod)*dmgConst + flatMod2) * pow * skillEnhance * elemAdv * target * dmgMod;
   }
@@ -762,7 +761,9 @@ const calculateChart = (inputValues) => {
   chart.data.datasets[0].data = [];
   chart.data.datasets[1].data = [];
 
-  hero.atk = hero.atk - (((numSteps) / intersectionPoint) *  Math.floor((((8/7) / 100) * hero.baseAtk)));
+  const atkStep = Math.max(Math.floor(((8/7) / 100) * hero.baseAtk), 1);
+
+  hero.atk = hero.atk - (((numSteps) / intersectionPoint) * atkStep);
 
   while (chart.data.datasets[0].data.length < numSteps) {
     const damage = hero.getDamage(selected);
@@ -770,7 +771,7 @@ const calculateChart = (inputValues) => {
   
     chart.data.datasets[0].data.push(finalDam);
     chart.data.labels.push(`${hero.atk} Attack`);
-    hero.atk += Math.floor(((8/7) / 100) * hero.baseAtk); // TODO: deal with innate attack up?
+    hero.atk += atkStep; // TODO: deal with innate attack up?
     
   }
   hero.crit = hero.crit - (numSteps / intersectionPoint);
@@ -794,25 +795,52 @@ const calculateChart = (inputValues) => {
     }
   }
 
+  hero.crit = inputValues.crit;
+  hero.atk = inputValues.atk;
+  console.log(chart.data.datasets);
+
+  let filteredDatasets = chart.data.datasets.filter(dataset => dataset.label === 'Defense');
+  if (!skill.defenseScaling && filteredDatasets.length) {
+    chart.data.datasets.splice(chart.data.datasets.indexOf(filteredDatasets[0]), 1);
+  }
+
+  filteredDatasets = chart.data.datasets.filter(dataset => dataset.label === 'HP');
+  if (!skill.hpScaling && filteredDatasets.length) {
+    chart.data.datasets.splice(chart.data.datasets.indexOf(filteredDatasets[0]), 1);
+  }
+
+  filteredDatasets = chart.data.datasets.filter(dataset => dataset.label === 'Speed');
+  if (!skill.spdScaling && filteredDatasets.length) {
+    chart.data.datasets.splice(chart.data.datasets.indexOf(filteredDatasets[0]), 1);
+  }
+
   if (skill.defenseScaling) {
-    if (chart.data.datasets.length !== 3) {
+    const defStep = Math.max(Math.floor(((8/7) / 100) * hero.baseDef), 1);
+    filteredDatasets = chart.data.datasets.filter(dataset => dataset.label === 'Defense');
+    if (!filteredDatasets.length) {
       chart.data.datasets.push({
         label: 'Defense',
         data: [],
         borderWidth: 1,
-        backgroundColor: pointBackgrounds[0],
-        borderColor: pointOutlines[0],
-        pointStyle: pointStyles[2]
+        backgroundColor: pointBackgrounds[chart.data.datasets.length - 2],
+        borderColor: pointOutlines[chart.data.datasets.length - 2],
+        pointStyle: pointStyles[chart.data.datasets.length]
       });
+      filteredDatasets.push(chart.data.datasets[chart.data.datasets.length - 1]);
+    } else {
+      const indexOfDataset = chart.data.datasets.indexOf(filteredDatasets[0]);
+      chart.data.datasets[indexOfDataset].backgroundColor = pointBackgrounds[indexOfDataset - 2];
+      chart.data.datasets[indexOfDataset].borderColor = pointOutlines[indexOfDataset - 2];
+      chart.data.datasets[indexOfDataset].pointStyle = pointStyles[indexOfDataset];
     }
-    chart.data.datasets[2].data = [];
-    hero.def = inputValues['caster-defense'] - (((numSteps) / intersectionPoint) *  Math.floor((((8/7) / 100) * hero.baseDef)));
 
-    hero.crit = inputValues.crit;
-    hero.atk = inputValues.atk;
+    const defDataIndex = chart.data.datasets.indexOf(filteredDatasets[0]);
+
+    chart.data.datasets[defDataIndex].data = [];
+    hero.def = inputValues['caster-defense'] - (((numSteps) / intersectionPoint) *  defStep);
 
     index = 0;
-    while (chart.data.datasets[2].data.length < numSteps) {
+    while (chart.data.datasets[defDataIndex].data.length < numSteps) {
       //TODO: null if below base.  Do for atk also
       // if (hero.crit < 150) {
       //   hero.crit += 1;
@@ -822,30 +850,41 @@ const calculateChart = (inputValues) => {
       const damage = hero.getDamage(selected);
       const finalDam = displayDmg(damage, damageToUse);
   
-      chart.data.datasets[2].data.push(finalDam);
+      chart.data.datasets[defDataIndex].data.push(finalDam);
       chart.data.labels[index] += ` vs ${hero.def} Def`;
-      hero.def += Math.floor(((8/7) / 100) * hero.baseDef); //TODO: deal with anything that might affect this number like innate boosts
+      hero.def += defStep; //TODO: deal with anything that might affect this number like innate boosts
       index++;
     }
-  } else if (skill.hpScaling) {
-    if (chart.data.datasets.length !== 3) {
+    hero.def = inputValues['caster-defense'];
+  }
+  
+  if (skill.hpScaling) {
+    const hpStep = Math.max(Math.floor(((8/7) / 100) * hero.baseHP), 1);
+    filteredDatasets = chart.data.datasets.filter(dataset => dataset.label === 'HP');
+    if (!filteredDatasets.length) {
       chart.data.datasets.push({
         label: 'HP',
         data: [],
         borderWidth: 1,
-        backgroundColor: pointBackgrounds[0],
-        borderColor: pointOutlines[0],
-        pointStyle: pointStyles[2]
+        backgroundColor: pointBackgrounds[chart.data.datasets.length - 2],
+        borderColor: pointOutlines[chart.data.datasets.length - 2],
+        pointStyle: pointStyles[chart.data.datasets.length]
       });
+      filteredDatasets.push(chart.data.datasets[chart.data.datasets.length - 1]);
+    } else {
+      const indexOfDataset = chart.data.datasets.indexOf(filteredDatasets[0]);
+      chart.data.datasets[indexOfDataset].backgroundColor = pointBackgrounds[indexOfDataset - 2];
+      chart.data.datasets[indexOfDataset].borderColor = pointOutlines[indexOfDataset - 2];
+      chart.data.datasets[indexOfDataset].pointStyle = pointStyles[indexOfDataset];
     }
-    chart.data.datasets[2].data = [];
-    hero.hp = inputValues['caster-max-hp'] - (((numSteps) / intersectionPoint) *  Math.floor((((8/7) / 100) * hero.baseHP)));
 
-    hero.crit = inputValues.crit;
-    hero.atk = inputValues.atk;
+    const HPDataIndex = chart.data.datasets.indexOf(filteredDatasets[0]);
+
+    chart.data.datasets[HPDataIndex].data = [];
+    hero.hp = inputValues['caster-max-hp'] - (((numSteps) / intersectionPoint) *  hpStep);
 
     index = 0;
-    while (chart.data.datasets[2].data.length < numSteps) {
+    while (chart.data.datasets[HPDataIndex].data.length < numSteps) {
       //TODO: null if below base.  Do for atk also
       // if (hero.crit < 150) {
       //   hero.crit += 1;
@@ -855,30 +894,41 @@ const calculateChart = (inputValues) => {
       const damage = hero.getDamage(selected);
       const finalDam = displayDmg(damage, damageToUse);
   
-      chart.data.datasets[2].data.push(finalDam);
+      chart.data.datasets[HPDataIndex].data.push(finalDam);
       chart.data.labels[index] += ` vs ${hero.hp} HP`;
-      hero.hp += Math.floor(((8/7) / 100) * hero.baseHP); //TODO: deal with anything that might affect this number like innate boosts
+      hero.hp += hpStep; //TODO: deal with anything that might affect this number like innate boosts
       index++;
     }
-  } else if (skill.spdScaling) {
-    if (chart.data.datasets.length !== 3) {
+    hero.hp = inputValues['caster-max-hp'];
+  }
+  
+  if (skill.spdScaling) {
+    const spdStep = Math.max(Math.floor(((4/7) / 100) * hero.baseSpd), 1);
+    filteredDatasets = chart.data.datasets.filter(dataset => dataset.label === 'Speed');
+    if (!filteredDatasets.length) {
       chart.data.datasets.push({
         label: 'Speed',
         data: [],
         borderWidth: 1,
-        backgroundColor: pointBackgrounds[0],
-        borderColor: pointOutlines[0],
-        pointStyle: pointStyles[2]
+        backgroundColor: pointBackgrounds[chart.data.datasets.length - 2],
+        borderColor: pointOutlines[chart.data.datasets.length - 2],
+        pointStyle: pointStyles[chart.data.datasets.length]
       });
+      filteredDatasets.push(chart.data.datasets[chart.data.datasets.length - 1]);
+    } else {
+      const indexOfDataset = chart.data.datasets.indexOf(filteredDatasets[0]);
+      chart.data.datasets[indexOfDataset].backgroundColor = pointBackgrounds[indexOfDataset - 2];
+      chart.data.datasets[indexOfDataset].borderColor = pointOutlines[indexOfDataset - 2];
+      chart.data.datasets[indexOfDataset].pointStyle = pointStyles[indexOfDataset];
     }
-    chart.data.datasets[2].data = [];
-    hero.def = inputValues['caster-defense'] - (((numSteps) / intersectionPoint) *  Math.floor((((4/7) / 100) * hero.baseSpd)));
 
-    hero.crit = inputValues.crit;
-    hero.atk = inputValues.atk;
+    const spdDataIndex = chart.data.datasets.indexOf(filteredDatasets[0]);
+
+    chart.data.datasets[spdDataIndex].data = [];
+    hero.spd = inputValues['caster-speed'] - (((numSteps) / intersectionPoint) * spdStep);
 
     index = 0;
-    while (chart.data.datasets[2].data.length < numSteps) {
+    while (chart.data.datasets[spdDataIndex].data.length < numSteps) {
       //TODO: null if below base.  Do for atk also
       // if (hero.crit < 150) {
       //   hero.crit += 1;
@@ -888,28 +938,12 @@ const calculateChart = (inputValues) => {
       const damage = hero.getDamage(selected);
       const finalDam = displayDmg(damage, damageToUse);
   
-      chart.data.datasets[2].data.push(finalDam);
-      chart.data.labels[index] += ` vs ${hero.def} Spd`;
-      hero.def += Math.floor(((4/7) / 100) * hero.baseSpd); //TODO: deal with anything that might affect this number like innate boosts
+      chart.data.datasets[spdDataIndex].data.push(finalDam);
+      chart.data.labels[index] += ` vs ${hero.spd} Spd`;
+      hero.spd += spdStep; //TODO: deal with anything that might affect this number like innate boosts
       index++;
     }
-  } else {
-    chart.data.datasets.splice(2);
+    hero.spd = inputValues['caster-speed'];
   }
-  
-
-  // chart.data.datasets[2].data = []
-  // hero.crit = inputValues.crit
-  // console.log(hero) // would need to make defense, hp, other unique scalings? in the hero object and used in calculation
-  // while (chart.data.datasets[2].data.length < 75) {
-  //   const damage = hero.getDamage(selected);
-  //   const finalDam = displayDmg(damage, 'crit')
-  
-  //   chart.data.datasets[2].data.push(finalDam)
-  //   chart.data.labels.push(''/*`${hero.atk} attack`*/)
-  //   hero.atk += Math.floor(0.00875 * hero.baseAtk)
-  // }
-  // console.log(attackDamagePoints)
-  // console.log(chartData)
   chart.update();
 };
