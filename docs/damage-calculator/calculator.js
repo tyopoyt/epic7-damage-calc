@@ -849,6 +849,8 @@ const calculateChart = (inputValues) => {
       chart.data.datasets[defDataIndex].data.push(finalDam);
       chart.data.labels[index] += ` vs ${hero.def} Def`;
       hero.def += defStep; //TODO: deal with anything that might affect this number like innate boosts
+      // currentHero = hero;
+      console.log(currentHero.def === hero.def);
       index++;
     }
     hero.def = inputValues['caster-defense'];

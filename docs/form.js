@@ -36,7 +36,7 @@ const elements = {
       + Number(elements.target_atk_down.value() ? -0.5 : 0)
       + Number(document.getElementById('target-vigor').checked ? 0.3 : 0);
 
-      return Number(document.getElementById('target-attack').value)*atkMod;
+      return Number(document.getElementById('target-attack').value) * atkMod;
     }
   },
   target_atk_up: {
@@ -294,7 +294,12 @@ const elements = {
     min: 1000,
     max: 50000,
     default: 10000,
-    value: () => Number(document.getElementById('caster-max-hp').value) * (max_hp_artifacts.includes(currentArtifact?.id) ? artifacts[currentArtifact.id].maxHP : 1)
+    value: () => {
+      if (currentHero.hp) {
+        return currentHero.getHP();
+      }
+      return Number(document.getElementById('caster-max-hp').value) * (max_hp_artifacts.includes(currentArtifact?.id) ? artifacts[currentArtifact.id].maxHP : 1);
+    }
   },
   caster_hp_pc: {
     ref: 'caster_hp_pc',
@@ -344,10 +349,15 @@ const elements = {
     min: 200,
     max: 5000,
     default: 750,
-    value: () => Number(document.getElementById('caster-defense').value)
-        * (1 + (elements.caster_defense_up.value() ? battleConstants.defUp : 0)
-           + (document.getElementById('vigor').checked ? battleConstants.vigor - 1 : 0)
-           + (document.getElementById('caster-fury')?.checked ? battleConstants['caster-fury'] - 1 : 0)),
+    value: () => {
+      if (currentHero.def) {
+        return currentHero.getDef();
+      }
+      return Number(document.getElementById('caster-defense').value)
+      * (1 + (elements.caster_defense_up.value() ? battleConstants.defUp : 0)
+         + (document.getElementById('vigor').checked ? battleConstants.vigor - 1 : 0)
+         + (document.getElementById('caster-fury')?.checked ? battleConstants['caster-fury'] - 1 : 0));
+    }
   },
   caster_defense_up: {
     ref: 'caster_defense_up',
@@ -365,7 +375,12 @@ const elements = {
     min: 70,
     max: 350,
     default: 150,
-    value: () => Number(document.getElementById('caster-speed').value)*(elements.caster_speed_up.value() ? battleConstants.spdUp : 1),
+    value: () => {
+      if (currentHero.spd) {
+        return currentHero.getSpd();
+      }
+      return Number(document.getElementById('caster-speed').value) * (elements.caster_speed_up.value() ? battleConstants.spdUp : 1);
+    }
   },
   caster_speed_up: {
     ref: 'caster_speed_up',
@@ -902,7 +917,7 @@ const updateMolaBonus = (skillId) => {
   const enhancement = Number(document.getElementById(`molagora-${skillId}`).value);
   let val = 0;
   for (let i = 0; i < enhancement; i++) {
-    val += skill.enhance[i]*100;
+    val += skill.enhance[i] * 100;
   }
   document.getElementById(`molagora-${skillId}-percent`).textContent = val.toString();
 };
@@ -912,7 +927,7 @@ const plus = (fieldId) => {
   const max = input.getAttribute('max');
   const inc = Number(document.getElementById(`${fieldId}-slide`).getAttribute('step') || 1);
   if (max === null || Number(max) > input.value) {
-    input.value = Number(input.value)+inc;
+    input.value = Number(input.value) + inc;
     update(fieldId);
     resetPreset(fieldId);
     resolve();
@@ -924,7 +939,7 @@ const minus = (fieldId) => {
   const min = input.getAttribute('min');
   const inc = Number(document.getElementById(`${fieldId}-slide`).getAttribute('step') || 1);
   if (min === null || Number(min) < input.value) {
-    input.value = Number(input.value)-inc;
+    input.value = Number(input.value) - inc;
     update(fieldId);
     resetPreset(fieldId);
     resolve();
@@ -1102,7 +1117,7 @@ const buildElement = (elem, parent) => {
     $(parent).append(`<div id="${elem.id}-block" class="stat-block">
                         <div class="form-group row col-sm-12">
                             <label for="crit" class="col-md-9 col-form-label form-control-sm">
-                                <h5>${elem.icon ? '<img src="'+ (['jp', 'kr', 'zh', 'zhTW', 'br'].some(locale => window.location.href.includes(locale)) ? '.' : '') + elem.icon+'" width="20" height="20" /> ' : ''}${formLabel(elem.ref)}</h5>
+                                <h5>${elem.icon ? '<img src="' + (['jp', 'kr', 'zh', 'zhTW', 'br'].some(locale => window.location.href.includes(locale)) ? '.' : '') + elem.icon + '" width="20" height="20" /> ' : ''}${formLabel(elem.ref)}</h5>
                             </label>
                             <div class="input-group input-group-sm col-md-3">
                                 <div class="input-group-prepend">
@@ -1123,7 +1138,7 @@ const buildElement = (elem, parent) => {
                               <div class="custom-control custom-checkbox custom-control-inline buff-block">
                                   <input class="custom-control-input" type="checkbox" id="${elem.id}" value="1" onchange="resolve()" ${(typeof elem.default === 'function' ? elem.default() : elem.default === true) ? 'checked' : ''}>
                                   <label class="custom-control-label" for="${elem.id}">
-                                    ${elem.icon ? '<img src="'+ (['jp', 'kr', 'zh', 'zhTW', 'br'].some(locale => window.location.href.includes(locale)) ? '.' : '') + elem.icon +'" width="20" height="20" />' : ''} ${formLabel(elem.ref)}
+                                    ${elem.icon ? '<img src="' + (['jp', 'kr', 'zh', 'zhTW', 'br'].some(locale => window.location.href.includes(locale)) ? '.' : '') + elem.icon + '" width="20" height="20" />' : ''} ${formLabel(elem.ref)}
                                   </label>
                               </div>
                         </div>`);
@@ -1193,7 +1208,7 @@ window.addEventListener('DOMContentLoaded', () => {
     };
 
     heroSelector.onchange = () => {
-      if (currentHero) {
+      if (currentHero) { 
         deleteParams(heroes[currentHero.id].form?.map(element => element.id));
       }
 
@@ -1219,12 +1234,6 @@ window.addEventListener('DOMContentLoaded', () => {
       }));
       $(chartSkillSelector).selectedIndex = 0;
       $(chartSkillSelector).selectpicker('refresh');
-      if ($(chartSkillSelector).find('option').length === 1) {
-        console.log($(chartSkillSelector).parent()[0]);
-        $($(chartSkillSelector).parent()[0]).prop('disabled', 'disabled');
-      } else { 
-        $(chartSkillSelector).parent()[0].prop('disabled', false);
-      }
       chartSkillSelector.onchange();
     };
 
