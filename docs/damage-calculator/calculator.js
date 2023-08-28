@@ -434,7 +434,7 @@ class Hero {
 
   getSpd() {
     if (this.spd) {
-      return this.spd * (1 + (elements.caster_speed_up.value() ? battleConstants.spdUp - 1 : 0)
+      return Math.floor(this.spd) * (1 + (elements.caster_speed_up.value() ? battleConstants.spdUp - 1 : 0)
            + (document.getElementById('caster-enrage')?.checked ? battleConstants['casterRage'] - 1 : 0));
     }
     return elements.caster_speed.value();
@@ -938,7 +938,7 @@ const calculateChart = (inputValues) => {
   }
   
   if (skill.spdScaling) {
-    const spdStep = 1;
+    const spdStep = (4 / 7);
     filteredDatasets = chart.data.datasets.filter(dataset => dataset.label === formLabel('speed'));
     if (!filteredDatasets.length) {
       chart.data.datasets.push({
@@ -974,7 +974,7 @@ const calculateChart = (inputValues) => {
       const finalDam = displayDmg(damage, damageToUse);
   
       chart.data.datasets[spdDataIndex].data.push(finalDam);
-      chart.data.labels[index] += ` vs ${hero.spd} ${formLabel('speed')}`;
+      chart.data.labels[index] += ` vs ${Math.floor(hero.spd)} ${formLabel('speed')}`;
       hero.spd += spdStep; //TODO: deal with anything that might affect this number like innate boosts
       index++;
     }
