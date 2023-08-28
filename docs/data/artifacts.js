@@ -29,7 +29,7 @@ const artifacts = {
     exclusive: classType.warrior,
     form: [elements.target_has_barrier],
     applies: (skill) => getSkillType(skill) === skillTypes.single,
-    value: (artiScale) => artiScale/(elements.target_has_barrier.value() ? 1 : 2),
+    value: (artiScale) => artiScale / (elements.target_has_barrier.value() ? 1 : 2),
   },
   a_symbol_of_unity: {
     id: 'a_symbol_of_unity',
@@ -76,7 +76,7 @@ const artifacts = {
     scale: [0.075, 0.0825, 0.09, 0.0975, 0.105, 0.1125, 0.12, 0.1275, 0.135, 0.1425, 0.15],
     form: [elements.non_attack_skill_stack_3],
     exclusive: classType.warrior,
-    value: (artiScale) => elements.non_attack_skill_stack_3.value()*artiScale
+    value: (artiScale) => elements.non_attack_skill_stack_3.value() * artiScale
   },
   daydream_joker: {
     id: 'daydream_joker',
@@ -100,7 +100,7 @@ const artifacts = {
     scale: [0.05, 0.055, 0.06, 0.065, 0.07, 0.075, 0.08, 0.085, 0.09, 0.095, 0.1],
     form: [elements.single_attack_stack_3],
     exclusive: classType.thief,
-    value: (artiScale) => elements.single_attack_stack_3.value()*artiScale
+    value: (artiScale) => elements.single_attack_stack_3.value() * artiScale
   },
   draco_plate: {
     id: 'draco_plate',
@@ -116,7 +116,7 @@ const artifacts = {
     scale: [0.02, 0.022, 0.024, 0.026, 0.028, 0.03, 0.032, 0.034, 0.036, 0.038, 0.04],
     form: [elements.critical_hit_stack_8],
     exclusive: classType.ranger,
-    value: (artiScale) => elements.critical_hit_stack_8.value()*artiScale
+    value: (artiScale) => elements.critical_hit_stack_8.value() * artiScale
   },
   els_fist: {
     id: 'els_fist',
@@ -127,8 +127,8 @@ const artifacts = {
     exclusive: classType.warrior,
     value: (artiScale) => {
       if (elements.caster_hp_pc.value() < 25) return artiScale;
-      if (elements.caster_hp_pc.value() < 50) return artiScale*2/3;
-      if (elements.caster_hp_pc.value() < 75) return artiScale/3;
+      if (elements.caster_hp_pc.value() < 50) return artiScale * 2 / 3;
+      if (elements.caster_hp_pc.value() < 75) return artiScale / 3;
       return 0.1;
     }
   },
@@ -323,9 +323,9 @@ const artifacts = {
     form: [elements.caster_hp_pc],
     value: (artiScale) => {
       if (elements.caster_hp_pc.value() < 25) return artiScale;
-      if (elements.caster_hp_pc.value() < 50) return artiScale*0.83;
-      if (elements.caster_hp_pc.value() < 75) return artiScale*0.66;
-      return artiScale*0.5;
+      if (elements.caster_hp_pc.value() < 50) return artiScale * 0.83;
+      if (elements.caster_hp_pc.value() < 75) return artiScale * 0.66;
+      return artiScale * 0.5;
     }
   },
   sigurd_scythe: {
@@ -396,7 +396,7 @@ const artifacts = {
     scale: [0.02, 0.022, 0.024, 0.026, 0.028, 0.03, 0.032, 0.034, 0.036, 0.038, 0.04],
     form: [elements.aoe_stack_5],
     exclusive: classType.mage,
-    value: (artiScale) => elements.aoe_stack_5.value()*artiScale
+    value: (artiScale) => elements.aoe_stack_5.value() * artiScale
   },
   time_matter: {
     id: 'time_matter',
@@ -442,7 +442,7 @@ const artifacts = {
     scale: [0.05, 0.055, 0.06, 0.065, 0.07, 0.075, 0.08, 0.085, 0.09, 0.095, 0.1],
     form: [elements.turn_stack_3],
     exclusive: classType.thief,
-    value: (artiScale) => elements.turn_stack_3.value()*artiScale
+    value: (artiScale) => elements.turn_stack_3.value() * artiScale
   },
   wind_rider: {
     id: 'wind_rider',

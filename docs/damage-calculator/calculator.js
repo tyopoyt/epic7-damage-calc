@@ -11,7 +11,7 @@ formDefaults = {
   'defPcUp': 0,
   'dmgReduc': 0,
   'dmgTrans': 0,
-  'hero': 'achates',
+  'hero': 'abigail',
   'artifact': undefined,
   'atkPreset': undefined,
   'defPreset': undefined,
@@ -151,9 +151,9 @@ const torrentSetToggled = () => {
 
 const resolve = () => {
   if (loadingQueryParams) {
-    loadQueryParams();
     return; // don't resolve until params are loaded
   }
+
   inputValues = getInputValues(true);
   const artifact = new Artifact(inputValues.artifact);
   const hero = new Hero(inputValues.hero, artifact);
@@ -730,6 +730,10 @@ const toggleChart = () => {
   chartButton = document.getElementById('chart-button-text');
 
   if (chartContainer.style.display == 'none') {
+    window.dataLayer.push({
+      'event': 'show_chart',
+      'hero': inputValues['hero']
+    });
     calculateChart(inputValues);
     chartContainer.style.display = 'block';
     if (lang === 'en') {

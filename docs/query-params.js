@@ -88,8 +88,12 @@ const loadQueryParams = async () => {
 
   try {
     queryParams = new URLSearchParams(window.location.search);
-
     // Fill form values from queryParams
+    const heroId = queryParams.get('hero');
+    if (heroId) {
+      currentHero = heroes[heroId];
+      currentHero.id = heroId;
+    }
     for (const param of selectorParams) {
       let paramVal = queryParams.get(param);
       if (paramVal && paramVal !== formDefaults[param]) {

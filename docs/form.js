@@ -1047,7 +1047,7 @@ const build = (hero) => {
       updateMolaBonus(id);
     }
   }
-
+  
   document.getElementById('elem-adv-icon').innerHTML = antiElemIcon(hero.element);
 };
 
@@ -1198,8 +1198,15 @@ buildInitialForm = () => {
 
     // This is a bit clunky but the #1 alphabetical hero changes so rarely it's not much of an issue. So far it only changed from Achates to Abigail.
     // Unless they release a hero calld Aardvark or something it's not that likely to change again...
-    $(chartSkillSelector).append('<option value="s1" data-content="<span>S1</span>">S1</option>');
-    $(chartSkillSelector).append('<option value="s3" data-content="<span>S3</span>">S3</option>');
+    const lang = document.getElementById('root').getAttribute('lang');
+    s1Text = 'S1';
+    s3Text = 'S3';
+    if (lang !== 'en') {
+      s1Text = i18n[lang].skills['s1'];
+      s3Text = i18n[lang].skills['s3'];
+    }
+    $(chartSkillSelector).append(`<option value="s1" data-content="<span>${s1Text}</span>">${s1Text}</option>`);
+    $(chartSkillSelector).append(`<option value="s3" data-content="<span>${s3Text}</span>">${s3Text}</option>`);
     $(chartSkillSelector).selectpicker('refresh');
 
     chartSkillSelector.onchange = () => {
@@ -1209,10 +1216,6 @@ buildInitialForm = () => {
     };
 
     heroSelector.onchange = () => {
-      if (currentHero) { 
-        deleteParams(heroes[currentHero.id].form?.map(element => element.id));
-      }
-
       const hero = heroes[heroSelector.value];
       const artifact = { ...artifacts[artiSelector.value] };
       dedupeForm(hero, artifact);
@@ -1220,22 +1223,27 @@ buildInitialForm = () => {
       refreshArtifactList(hero);
       buildArtifact(artifact);
       resolve();
-      window.dataLayer.push({
-        'event': 'select_hero',
-        'hero': hero.name
-      });
-      refreshCompareBadge();
 
-      $(chartSkillSelector).find('option').remove();
-      Object.keys(heroes[currentHero.id].skills).map((id => {
-        const skill = heroes[currentHero.id].skills[id];
-        if (skill.rate) {
-          $(chartSkillSelector).append(`<option value="${id}" data-content="<span>${skill.name ? skill.name : skillLabel(id)}</span>">${skill.name ? skill.name : skillLabel(id)}</option>`);
-        }
-      }));
-      $(chartSkillSelector).selectedIndex = 0;
-      $(chartSkillSelector).selectpicker('refresh');
-      chartSkillSelector.onchange();
+      if (currentHero) {
+        deleteParams(heroes[currentHero.id].form?.map(element => element.id));
+
+        window.dataLayer.push({
+          'event': 'select_hero',
+          'hero': hero.name
+        });
+        refreshCompareBadge();
+  
+        $(chartSkillSelector).find('option').remove();
+        Object.keys(heroes[currentHero.id].skills).map((id => {
+          const skill = heroes[currentHero.id].skills[id];
+          if (skill.rate) {
+            $(chartSkillSelector).append(`<option value="${id}" data-content="<span>${skill.name ? skill.name : skillLabel(id)}</span>">${skill.name ? skill.name : skillLabel(id)}</option>`);
+          }
+        }));
+        $(chartSkillSelector).selectedIndex = 0;
+        $(chartSkillSelector).selectpicker('refresh');
+        chartSkillSelector.onchange();
+      }
     };
 
     const defPresetSelector = document.getElementById('def-preset');
