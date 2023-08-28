@@ -938,7 +938,7 @@ const calculateChart = (inputValues) => {
   }
   
   if (skill.spdScaling) {
-    const spdStep = 2;
+    const spdStep = 1;
     filteredDatasets = chart.data.datasets.filter(dataset => dataset.label === formLabel('speed'));
     if (!filteredDatasets.length) {
       chart.data.datasets.push({
