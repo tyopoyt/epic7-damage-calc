@@ -40,7 +40,7 @@ const heroes = {
         hpScaling: true,
         rate: 0.8,
         pow: 0.9,
-        flat: (soulburn, hero) => hero.getHP() * 0.12,
+        flat: () => elements.caster_max_hp.value() * 0.12,
         flatTip: () => ({caster_max_hp: 12}),
         enhance: [0.05, 0.05, 0.05, 0, 0.05, 0.05, 0.1],
         single: true,
@@ -49,7 +49,7 @@ const heroes = {
         hpScaling: true,
         rate: 1.2,
         pow: 0.95,
-        flat: (soulburn, hero) => hero.getHP() * 0.2,
+        flat: () => elements.caster_max_hp.value() * 0.2,
         flatTip: () => ({caster_max_hp: 20}),
         enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.1],
         single: true,
@@ -134,6 +134,7 @@ const heroes = {
     form: [elements.caster_max_hp, elements.skill_tree_completed],
     skills: {
       s1: {
+        hpScaling: true,
         rate: 0.9,
         pow: 1,
         flat: () => elements.caster_max_hp.value() * 0.04,
@@ -150,6 +151,7 @@ const heroes = {
         single: true,
       },
       s3: {
+        hpScaling: true,
         rate: 0.9,
         pow: 1,
         flat: () => elements.caster_max_hp.value() * 0.04,
@@ -205,7 +207,7 @@ const heroes = {
         defenseScaling: true,
         rate: 0.5,
         pow: 1,
-        flat: (soulburn, hero) => hero.getDef() * 0.5,
+        flat: () => elements.caster_defense.value() * 0.5,
         flatTip: () => ({ caster_defense: 50 }),
         afterMath: (hitType) => (hitType !== hitTypes.miss) ? { defPercent: 1.4, penetrate: 0.7 } : null,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
@@ -346,6 +348,7 @@ const heroes = {
     form: [elements.caster_max_hp, elements.exclusive_equipment_2],
     skills: {
       s1: {
+        hpScaling: true,
         rate: 0.5,
         pow: 1,
         flat: () => elements.caster_max_hp.value() * 0.08,
@@ -354,6 +357,7 @@ const heroes = {
         single: true,
       },
       s2: {
+        hpScaling: true,
         name: infoLabel('alencia_trample'),
         rate: 0.5,
         pow: 1,
@@ -365,6 +369,7 @@ const heroes = {
         single: true,
       },
       s3: {
+        hpScaling: true,
         rate: 0.5,
         pow: 1,
         flat: () => elements.caster_max_hp.value() * 0.15,
@@ -439,6 +444,7 @@ const heroes = {
     form: [elements.caster_max_hp, elements.caster_enrage],
     skills: {
       s1: {
+        hpScaling: true,
         rate: 0.6,
         pow: 1,
         flat: () => elements.caster_max_hp.value() * 0.1,
@@ -447,6 +453,7 @@ const heroes = {
         single: true,
       },
       s3: {
+        hpScaling: true,
         rate: 0.5,
         pow: 1,
         flat: () => elements.caster_max_hp.value() * 0.12,
@@ -522,6 +529,7 @@ const heroes = {
     form: [elements.caster_max_hp, elements.dead_people],
     skills: {
       s1: {
+        hpScaling: true,
         soulburn: true,
         rate: (soulburn) => soulburn ? 2 : 1,
         pow: 0.95,
@@ -531,6 +539,7 @@ const heroes = {
         single: true,
       },
       s3: {
+        hpScaling: true,
         rate: 1.3,
         pow: 0.95,
         flat: () => elements.caster_max_hp.value() * 0.2,
@@ -640,6 +649,7 @@ const heroes = {
         single: true,
       },
       s3: {
+        spdScaling: true,
         rate: 0.95,
         pow: 0.9,
         penetrate: () => elements.target_has_target.value() ? 0.8 : 0,
@@ -685,6 +695,7 @@ const heroes = {
     barrier: () => elements.caster_defense.value() * 1.0,
     skills: {
       s1: {
+        defenseScaling: true,
         rate: 0.7,
         pow: 1,
         flat: () => elements.caster_defense.value() * 0.85,
@@ -692,6 +703,7 @@ const heroes = {
         enhance: [0.05, 0.05, 0, 0.05, 0, 0.05, 0.1],
       },
       s2: {
+        defenseScaling: true,
         rate: 0.7,
         pow: 1.3,
         flat: () => elements.caster_defense.value() * 1.4,
@@ -709,6 +721,7 @@ const heroes = {
     barrier: () => elements.caster_defense.value() * 0.7,
     skills: {
       s1: {
+        defenseScaling: true,
         rate: 0.8,
         pow: 0.9,
         flat: () => elements.caster_defense.value() * 0.6,
@@ -727,6 +740,7 @@ const heroes = {
     barrier: () => elements.caster_max_hp.value() * 0.2,
     skills: {
       s1: {
+        hpScaling: true,
         rate: 0.7,
         pow: 0.95,
         flat: () => elements.caster_max_hp.value() * 0.05,
@@ -735,6 +749,7 @@ const heroes = {
         single: true,
       },
       s3: {
+        hpScaling: true,
         rate: 0.75,
         pow: 0.95,
         flat: () => elements.caster_max_hp.value() * 0.15,
@@ -875,6 +890,7 @@ const heroes = {
     form: [elements.caster_speed, elements.caster_stealth, elements.exclusive_equipment_1],
     skills: {
       s1: {
+        spdScaling: true,
         rate: () => elements.caster_stealth.value() ? 1.2 : 0.9,
         pow: 1,
         mult: () => 1 + elements.caster_speed.value() * 0.00075,
@@ -884,6 +900,7 @@ const heroes = {
         single: true,
       },
       s3: {
+        spdScaling: true,
         soulburn: true,
         rate: (soulburn) => soulburn ? 3 : 1.5,
         pow: 0.8,
@@ -1002,6 +1019,7 @@ const heroes = {
     barrier: () => elements.caster_max_hp.value() * 0.15,
     skills: {
       s1: {
+        hpScaling: true,
         rate: 0.9,
         pow: 1,
         flat: () => elements.caster_max_hp.value() * 0.06,
@@ -1010,6 +1028,7 @@ const heroes = {
         aoe: true,
       },
       s3: {
+        hpScaling: true,
         rate: 1.3,
         pow: 1,
         flat: () => elements.caster_max_hp.value() * 0.16,
@@ -1110,6 +1129,7 @@ const heroes = {
     form: [elements.caster_max_hp],
     skills: {
       s1: {
+        hpScaling: true,
         rate: 0.7,
         pow: 0.9,
         flat: () => elements.caster_max_hp.value() * 0.07,
@@ -1118,6 +1138,7 @@ const heroes = {
         single: true,
       },
       s2: {
+        hpScaling: true,
         rate: 0.8,
         pow: 1,
         flat: () => elements.caster_max_hp.value() * 0.12,
@@ -1200,6 +1221,7 @@ const heroes = {
     baseAtk: 821,
     skills: {
       s1: {
+        hpScaling: true,
         rate: 0.6,
         pow: 1.05,
         flat: () => elements.caster_max_hp.value() * 0.09,
@@ -1208,6 +1230,7 @@ const heroes = {
         aoe: true,
       },
       s1_extra: {
+        hpScaling: true,
         name: 'S1 Incursion',
         rate: 0.6,
         pow: 1.3,
@@ -1216,6 +1239,7 @@ const heroes = {
         aoe: true,
       },
       s3: {
+        hpScaling: true,
         rate: 0.6,
         pow: 1.3,
         flat: () => elements.caster_max_hp.value() * 0.12,
@@ -1374,6 +1398,7 @@ const heroes = {
     barrierEnhance: 's2',
     skills: {
       s1: {
+        hpScaling: true,
         rate: 1,
         pow: 1,
         flat: () => elements.caster_max_hp.value() * 0.12,
@@ -1385,6 +1410,7 @@ const heroes = {
         enhance: [0.05, 0.05, 0.05, 0.1, 0.1, 0.15]
       },
       s3: {
+        hpScaling: true,
         noCrit: true,
         rate: 0.3,
         pow: 1,
@@ -1571,6 +1597,7 @@ const heroes = {
     form: [elements.caster_max_hp, elements.caster_hp_pc],
     skills: {
       s1: {
+        hpScaling: true,
         rate: 0.5,
         pow: 1,
         flat: () => elements.caster_max_hp.value() * 0.06,
@@ -1579,6 +1606,7 @@ const heroes = {
         single: true,
       },
       s3: {
+        hpScaling: true,
         soulburn: true,
         rate: (soulburn) => (elements.caster_hp_pc.value() < 75 ? 1 : 0.6) + (soulburn ? 0.2 : 0),
         pow: 1,
@@ -1605,6 +1633,7 @@ const heroes = {
     form: [elements.caster_max_hp],
     skills: {
       s1: {
+        hpScaling: true,
         rate: 0.7,
         pow: 1,
         flat: () => elements.caster_max_hp.value() * 0.07,
@@ -1613,6 +1642,7 @@ const heroes = {
         single: true,
       },
       s2: {
+        hpScaling: true,
         rate: 0.4,
         pow: 1,
         flat: () => elements.caster_max_hp.value() * 0.06,
@@ -1621,6 +1651,7 @@ const heroes = {
         aoe: true,
       },
       s3: {
+        hpScaling: true,
         rate: 0.6,
         pow: 1.05,
         flat: () => elements.caster_max_hp.value() * 0.12,
@@ -1884,6 +1915,7 @@ const heroes = {
     form: [elements.caster_max_hp, elements.skill_tree_completed],
     skills: {
       s1: {
+        hpScaling: true,
         rate: 0.7,
         pow: 0.95,
         flat: () => elements.caster_max_hp.value() * 0.06,
@@ -1892,6 +1924,7 @@ const heroes = {
         single: true,
       },
       s2: {
+        hpScaling: true,
         rate: 0.7,
         pow: 0.95,
         mult: () => elements.skill_tree_completed.value() ? 1.1 : 1,
@@ -1902,6 +1935,7 @@ const heroes = {
         aoe: true,
       },
       s3: {
+        hpScaling: true,
         rate: 1,
         pow: 0.9,
         flat: () => elements.caster_max_hp.value() * 0.2,
@@ -2047,6 +2081,7 @@ const heroes = {
     form: [elements.caster_max_hp, elements.caster_full_focus],
     skills: {
       s1: {
+        hpScaling: true,
         rate: 0.5,
         pow: 1,
         flat: () => elements.caster_max_hp.value() * 0.1,
@@ -2055,6 +2090,7 @@ const heroes = {
         single: true,
       },
       s2: {
+        hpScaling: true,
         rate: 0.5,
         pow: 1,
         flat: () => elements.caster_max_hp.value() * (elements.caster_full_focus.value() ? 0.15 : 0.11),
@@ -2065,6 +2101,7 @@ const heroes = {
         single: true,
       },
       s3: {
+        hpScaling: true,
         rate: 0.5,
         pow: 1,
         flat: () => elements.caster_max_hp.value() * 0.15,
@@ -2082,6 +2119,7 @@ const heroes = {
     form: [elements.caster_max_hp],
     skills: {
       s1: {
+        hpScaling: true,
         rate: 1.1,
         pow: 1,
         flat: () => elements.caster_max_hp.value() * 0.05,
@@ -2100,6 +2138,7 @@ const heroes = {
     dot: [dot.bleed],
     skills: {
       s1: {
+        hpScaling: true,
         rate: 0.85,
         pow: 0.95,
         flat: () => elements.caster_max_hp.value() * 0.04,
@@ -2108,6 +2147,7 @@ const heroes = {
         single: true,
       },
       s2: {
+        hpScaling: true,
         rate: 0.75,
         pow: 0.95,
         flat: () => elements.caster_max_hp.value() * 0.05,
@@ -2116,6 +2156,7 @@ const heroes = {
         aoe: true,
       },
       s3: {
+        hpScaling: true,
         rate: 1.2,
         pow: 0.9,
         flat: () => elements.caster_max_hp.value() * 0.1,
@@ -2364,6 +2405,7 @@ const heroes = {
     form: [elements.caster_defense, elements.caster_enrage],
     skills: {
       s1: {
+        defenseScaling: true,
         rate: () => elements.caster_enrage.value() ? 0.9 : 0.7,
         pow: 1,
         flat: () => (elements.caster_enrage.value() ? 1.2 : 0.9) * elements.caster_defense.value(),
@@ -2372,6 +2414,7 @@ const heroes = {
         single: true,
       },
       s2: {
+        defenseScaling: true,
         rate: 0.3,
         pow: 0.9,
         flat: () => elements.caster_defense.value() * 0.7,
@@ -2415,6 +2458,7 @@ const heroes = {
     form: [elements.caster_defense],
     skills: {
       s1: {
+        defenseScaling: true,
         rate: 0.8,
         pow: 1,
         flat: () => elements.caster_defense.value() * 0.6,
@@ -2434,6 +2478,7 @@ const heroes = {
     barrierEnhance: 's2',
     skills: {
       s1: {
+        defenseScaling: true,
         rate: 0.6,
         pow: 1.05,
         flat: () => elements.caster_defense.value() * 0.7,
@@ -2445,6 +2490,7 @@ const heroes = {
         enhance: [0.05, 0.05, 0.1, 0.1]
       },
       s3: {
+        defenseScaling: true,
         soulburn: true,
         rate: (soulburn) => soulburn ? 0.75 : 0.5,
         pow: 0.95,
@@ -2463,6 +2509,7 @@ const heroes = {
     form: [elements.caster_max_hp],
     skills: {
       s1: {
+        hpScaling: true,
         rate: 0.7,
         pow: 1,
         flat: () => elements.caster_max_hp.value() * 0.07,
@@ -2471,6 +2518,7 @@ const heroes = {
         single: true,
       },
       s3: {
+        hpScaling: true,
         noCrit: true,
         soulburn: true,
         rate: 0,
@@ -2528,6 +2576,7 @@ const heroes = {
     baseAtk: 975,
     skills: {
       s1: {
+        defenseScaling: true,
         rate: 0.6,
         pow: 1,
         flat: () => elements.caster_defense.value() * 1.0,
@@ -2536,6 +2585,7 @@ const heroes = {
         single: true,
       },
       s3: {
+        defenseScaling: true,
         rate: 0.6,
         pow: 1,
         flat: () => elements.caster_defense.value() * 1.15,
@@ -2697,6 +2747,7 @@ const heroes = {
     barrierEnhance: 's3',
     skills: {
       s1: {
+        hpScaling: true,
         rate: 1.2,
         pow: 1,
         flat: () => elements.caster_max_hp.value() * 0.05,
@@ -2752,6 +2803,7 @@ const heroes = {
     },
     skills: {
       s1: {
+        hpScaling: true,
         rate: 1,
         pow: 1,
         flat: () => elements.caster_max_hp.value() * 0.1,
@@ -2760,6 +2812,7 @@ const heroes = {
         single: true,
       },
       s2: {
+        hpScaling: true,
         rate: 0.7,
         pow: 1,
         flat: () => elements.caster_max_hp.value() * 0.08,
@@ -2769,6 +2822,7 @@ const heroes = {
         aoe: true
       },
       s3: {
+        hpScaling: true,
         rate: 1.2,
         pow: 1,
         flat: () => elements.caster_max_hp.value() * 0.25,
@@ -2809,6 +2863,7 @@ const heroes = {
     baseAtk: 1283,
     skills: {
       s1: {
+        spdScaling: true,
         rate: 0.95,
         pow: 0.9,
         mult: () => 1 + elements.caster_speed.value() * 0.00075,
@@ -2817,6 +2872,7 @@ const heroes = {
         single: true,
       },
       s2: {
+        spdScaling: true,
         rate: 0.7,
         pow: 1.3,
         mult: () => {
@@ -2945,6 +3001,7 @@ const heroes = {
         single: true,
       },
       s3: {
+        hpScaling: true,
         rate: 1.6,
         pow: 1,
         mult: () => elements.caster_max_hp.value() < elements.target_max_hp.value() ? 1 + Math.min((elements.target_max_hp.value() - elements.caster_max_hp.value()) * 0.0001, 0.7) : 1,
@@ -3017,6 +3074,7 @@ const heroes = {
     form: [elements.caster_defense],
     skills: {
       s1: {
+        defenseScaling: true,
         rate: 0.5,
         pow: 0.9,
         flat: () => elements.caster_defense.value() * 0.7,
@@ -3036,6 +3094,7 @@ const heroes = {
     barrierEnhance: 's2',
     skills: {
       s1: {
+        hpScaling: true,
         rate: 0.7,
         pow: 1,
         flat: () => elements.caster_max_hp.value() * 0.07,
@@ -3047,6 +3106,7 @@ const heroes = {
         enhance: [0.05, 0.1, 0.1, 0.1, 0.15]
       },
       s3: {
+        hpScaling: true,
         rate: 0.65,
         pow: 0.95,
         flat: () => elements.caster_max_hp.value() * 0.12,
@@ -3064,6 +3124,7 @@ const heroes = {
     form: [elements.caster_defense, elements.target_hp_pc],
     skills: {
       s1: {
+        defenseScaling: true,
         rate: 0.5,
         pow: 1,
         flat: () => elements.caster_defense.value() * 0.75,
@@ -3072,6 +3133,7 @@ const heroes = {
         single: true,
       },
       s3: {
+        defenseScaling: true,
         rate: 1.7,
         pow: 1,
         flat: () => elements.caster_defense.value() * 1.5,
@@ -3155,6 +3217,7 @@ const heroes = {
     form: [elements.caster_max_hp],
     skills: {
       s1: {
+        hpScaling: true,
         rate: 1,
         pow: 1,
         flat: () => 0.06 * elements.caster_max_hp.value(),
@@ -3163,6 +3226,7 @@ const heroes = {
         single: true,
       },
       s3: {
+        hpScaling: true,
         rate: 0.8,
         pow: 1,
         flat: () => 0.08 * elements.caster_max_hp.value(),
@@ -3337,6 +3401,7 @@ const heroes = {
     form: [elements.caster_speed],
     skills: {
       s1: {
+        spdScaling: true,
         rate: 0.95,
         pow: 0.95,
         mult: () => 1 + elements.caster_speed.value() * 0.00075,
@@ -3345,6 +3410,7 @@ const heroes = {
         single: true,
       },
       s2: {
+        spdScaling: true,
         rate: 1.3,
         pow: 0.85,
         mult: () => 1 + elements.caster_speed.value() * 0.00125,
@@ -3365,6 +3431,7 @@ const heroes = {
     },
     skills: {
       s1: {
+        hpScaling: true,
         rate: 0.7,
         pow: 1,
         fixed: () => 500 + elements.enemy_counters.value() * 1000,
@@ -3374,6 +3441,7 @@ const heroes = {
         single: true,
       },
       s3: {
+        hpScaling: true,
         rate: 0.7,
         pow: 1,
         fixed: () => 500 + elements.enemy_counters.value() * 1000,
@@ -3445,6 +3513,7 @@ const heroes = {
     barrier: () => elements.caster_defense.value() * 0.8,
     skills: {
       s1: {
+        defenseScaling: true,
         rate: 0.7,
         pow: 1,
         flat: () => elements.caster_defense.value() * 0.8,
@@ -3453,6 +3522,7 @@ const heroes = {
         single: true
       },
       s2: {
+        defenseScaling: true,
         rate: 1.2,
         pow: 1,
         flat: () => elements.caster_defense.value(),
@@ -3581,6 +3651,7 @@ const heroes = {
         enhance: [0.01, 0.02, 0.02, 0.02, 0.03],
       },
       s3: {
+        hpScaling: true,
         rate: 1.25,
         pow: 1,
         penetrate:() => elements.caster_max_hp.value() < elements.target_max_hp.value()
@@ -3662,6 +3733,7 @@ const heroes = {
     form: [elements.caster_max_hp, elements.target_injuries],
     skills: {
       s1: {
+        hpScaling: true,
         rate: 0.7,
         pow: 1,
         flat: () => elements.caster_max_hp.value() * 0.1,
@@ -3670,6 +3742,7 @@ const heroes = {
         single: true,
       },
       s2: {
+        hpScaling: true,
         soulburn: true,
         rate: (soulburn) => soulburn ? 1.4 : 1,
         pow: 1,
@@ -3680,6 +3753,7 @@ const heroes = {
         single: true,
       },
       s3: {
+        hpScaling: true,
         rate: 0.7,
         pow: 1,
         flat: () => elements.caster_max_hp.value() * 0.15,
@@ -4020,6 +4094,7 @@ const heroes = {
     baseAtk: 1182,
     skills: {
       s1: {
+        spdScaling: true,
         rate: 0.75,
         pow: 1,
         mult: () => 1 + elements.caster_speed.value() * 0.00075,
@@ -4071,6 +4146,7 @@ const heroes = {
     form: [elements.target_speed, elements.caster_speed, elements.exclusive_equipment_3],
     skills: {
       s1: {
+        spdScaling: true,
         rate: 0.9,
         pow: 1,
         mult: () => 1 + elements.caster_speed.value() * 0.00075,
@@ -4087,6 +4163,7 @@ const heroes = {
         single: true,
       },
       s3: {
+        spdScaling: true,
         rate: 0.8,
         pow: 0.95,
         mult: () => 1 + elements.caster_speed.value() * 0.00075,
@@ -4135,6 +4212,7 @@ const heroes = {
     dot: [dot.burn],
     skills: {
       s1: {
+        hpScaling: true,
         rate: 1,
         pow: 1,
         flat: () => elements.caster_max_hp.value() * 0.1,
@@ -4143,6 +4221,7 @@ const heroes = {
         single: true,
       },
       s2: {
+        hpScaling: true,
         rate: 1.2,
         pow: 1,
         flat: () => elements.caster_max_hp.value() * 0.1,
@@ -4151,6 +4230,7 @@ const heroes = {
         single: true,
       },
       s3: {
+        hpScaling: true,
         rate: 1.5,
         pow: 0.9,
         flat: () => elements.caster_max_hp.value() * 0.3,
@@ -4176,6 +4256,7 @@ const heroes = {
         single: true,
       },
       s2: {
+        spdScaling: true,
         rate: 0.9,
         pow: 1,
         mult: () => 1 + elements.caster_speed.value() * 0.00075,
@@ -4184,6 +4265,7 @@ const heroes = {
         aoe: true,
       },
       s3: {
+        spdScaling: true,
         rate: 1.5,
         pow: 1,
         mult: () => 1 + elements.caster_speed.value() * 0.001125,
@@ -4221,6 +4303,7 @@ const heroes = {
     form: [elements.caster_defense],
     skills: {
       s1: {
+        defenseScaling: true,
         rate: 0.5,
         pow: 1,
         flat: () => elements.caster_defense.value() * 0.7,
@@ -4229,6 +4312,7 @@ const heroes = {
         single: true,
       },
       s3: {
+        defenseScaling: true,
         soulburn: true,
         rate: (soulburn) => soulburn ? 0.5 : 0.4,
         pow: 1,
@@ -4345,6 +4429,7 @@ const heroes = {
     form: [elements.caster_max_hp],
     skills: {
       s1: {
+        hpScaling: true,
         rate: 0.9,
         pow: 0.8,
         flat: () => elements.caster_max_hp.value() * 0.06,
@@ -4372,6 +4457,7 @@ const heroes = {
     barrierEnhance: 's3',
     skills: {
       s1: {
+        hpScaling: true,
         rate: 0.5,
         pow: 0.9,
         flat: () => elements.caster_max_hp.value() * 0.12,
@@ -4392,6 +4478,7 @@ const heroes = {
     form: [elements.caster_defense],
     skills: {
       s1: {
+        defenseScaling: true,
         rate: 0.5,
         pow: 0.9,
         flat: () => elements.caster_defense.value() * 0.7,
@@ -4409,6 +4496,7 @@ const heroes = {
     form: [elements.caster_max_hp, elements.caster_hp],
     skills: {
       s1: {
+        hpScaling: true,
         rate: 0.7,
         pow: 1,
         flat: () => 0.085 * elements.caster_max_hp.value(),
@@ -4417,6 +4505,7 @@ const heroes = {
         single: true,
       },
       s2: {
+        hpScaling: true,
         rate: 0.8,
         pow: 1,
         flat: () => 0.13 * elements.caster_max_hp.value(),
@@ -4425,6 +4514,7 @@ const heroes = {
         single: true,
       },
       s3: {
+        hpScaling: true,
         noCrit: true,
         rate: 0.3,
         pow: 1,
@@ -4477,6 +4567,7 @@ const heroes = {
     form: [elements.caster_speed, elements.target_max_hp, elements.caster_has_neo_phantom_sword],
     skills: {
       s1: {
+        spdScaling: true,
         soulburn: true,
         rate: (soulburn) => soulburn ? 1.5 : 0.9,
         pow: 1,
@@ -4489,6 +4580,7 @@ const heroes = {
         noTrans: elements.caster_has_neo_phantom_sword.value() ? true : false
       },
       s2: {
+        spdScaling: true,
         rate: 1.5,
         pow: 0.9,
         mult: () => 1 + elements.caster_speed.value() * 0.0015,
@@ -4638,6 +4730,7 @@ const heroes = {
         single: true,
       },
       s2: {
+        hpScaling: true,
         name: infoLabel('lethe_call_of_the_abyss'),
         rate: 0.3,
         pow: 1.3,
@@ -4690,6 +4783,7 @@ const heroes = {
     form: [elements.caster_max_hp, elements.highest_ally_attack],
     skills: {
       s1: {
+        hpScaling: true,
         rate: 0.8,
         pow: 0.95,
         flat: () => elements.caster_max_hp.value() * 0.12,
@@ -4796,7 +4890,7 @@ const heroes = {
         soulburn: true,
         rate: (soulburn) => soulburn ? 1 : 0.6,
         pow: 0.9,
-        flat: (soulburn, hero) => hero.getDef() * (soulburn ? 1.6 : 1.0),
+        flat: (soulburn) => elements.caster_defense.value() * (soulburn ? 1.6 : 1.0),
         flatTip: (soulburn) => ({ caster_defense: (soulburn ? 160 : 100) }),
         enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.1],
         single: true,
@@ -4805,7 +4899,7 @@ const heroes = {
         defenseScaling: true,
         rate: 0.3,
         pow: 0.9,
-        flat: (soulburn, hero) => hero.getDef() * 1.35,
+        flat: () => elements.caster_defense.value() * 1.35,
         flatTip: () => ({ caster_defense: 135 }),
         penetrate: () => 0.5,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.1],
@@ -5185,6 +5279,7 @@ const heroes = {
     form: [elements.caster_defense],
     skills: {
       s1: {
+        defenseScaling: true,
         rate: 0.5,
         pow: 0.95,
         flat: () => elements.caster_defense.value() * 0.75,
@@ -5193,6 +5288,7 @@ const heroes = {
         single: true,
       },
       s2: {
+        defenseScaling: true,
         rate: 0.8,
         pow: 1,
         flat: () => elements.caster_defense.value() * 0.8,
@@ -5210,6 +5306,7 @@ const heroes = {
     form: [elements.caster_max_hp],
     skills: {
       s1: {
+        hpScaling: true,
         rate: 1,
         pow: 1,
         flat: () => 0.04 * elements.caster_max_hp.value(),
@@ -5218,6 +5315,7 @@ const heroes = {
         single: true,
       },
       s2: {
+        hpScaling: true,
         rate: 1.5,
         pow: 1,
         flat: () => 0.09 * elements.caster_max_hp.value(),
@@ -5445,6 +5543,7 @@ const heroes = {
     form: [elements.caster_speed],
     skills: {
       s1: {
+        spdScaling: true,
         rate: 0.9,
         pow: 1,
         mult: () => 1 + elements.caster_speed.value() * 0.00075,
@@ -5453,6 +5552,7 @@ const heroes = {
         single: true,
       },
       s3: {
+        spdScaling: true,
         soulburn: true,
         rate: (soulburn) => soulburn ? 2.5 : 1.8,
         pow: 0.85,
@@ -5532,6 +5632,7 @@ const heroes = {
     form: [elements.caster_max_hp, elements.caster_enrage, elements.exclusive_equipment_3],
     skills: {
       s1: {
+        hpScaling: true,
         rate: 0.7,
         pow: 1,
         flat: () => elements.caster_max_hp.value() * 0.08,
@@ -5540,6 +5641,7 @@ const heroes = {
         single: true,
       },
       s3: {
+        hpScaling: true,
         rate: 0.7,
         pow: 1,
         flat: () => elements.caster_max_hp.value() * 0.15,
@@ -5558,6 +5660,7 @@ const heroes = {
     form: [elements.caster_speed],
     skills: {
       s1: {
+        spdScaling: true,
         rate: 0.9,
         pow: 1,
         mult: () => 1 + elements.caster_speed.value() * 0.00075,
@@ -5566,6 +5669,7 @@ const heroes = {
         single: true,
       },
       s3: {
+        spdScaling: true,
         rate: 1.5,
         pow: 1,
         mult: () => 1 + elements.caster_speed.value() * 0.00075,
@@ -5769,6 +5873,7 @@ const heroes = {
         single: true,
       },
       s2: {
+        spdScaling: true,
         rate: 0.75,
         pow: 1,
         mult: () => 1 + elements.caster_speed.value() * 0.00075,
@@ -5778,6 +5883,7 @@ const heroes = {
         single: true,
       },
       s3: {
+        spdScaling: true,
         rate: 1,
         pow: 1.1,
         mult: () => 1 + elements.caster_speed.value() * 0.001125,
@@ -5795,6 +5901,7 @@ const heroes = {
     form: [elements.caster_perception, elements.caster_speed, elements.target_speed],
     skills: {
       s1: {
+        spdScaling: true,
         rate: 0.65,
         pow: 0.9,
         mult: () => 1 + elements.caster_speed.value() * 0.00075,
@@ -5803,6 +5910,7 @@ const heroes = {
         single: true,
       },
       s3: {
+        spdScaling: true,
         rate: 0.7,
         pow: 0.95,
         penetrate: () => {
@@ -5848,6 +5956,7 @@ const heroes = {
     form: [elements.caster_speed],
     skills: {
       s1: {
+        spdScaling: true,
         rate: 0.9,
         pow: 1.1,
         mult: () => 1 + elements.caster_speed.value() * 0.00075,
@@ -5856,6 +5965,7 @@ const heroes = {
         single: true,
       },
       s2: {
+        spdScaling: true,
         rate: 0.8,
         pow: 1,
         mult: () => 1 + elements.caster_speed.value() * 0.001125,
@@ -5864,6 +5974,7 @@ const heroes = {
         aoe: true,
       },
       s3: {
+        spdScaling: true,
         rate: 1.6,
         pow: 1,
         mult: () => 1 + elements.caster_speed.value() * 0.0015,
@@ -5882,6 +5993,7 @@ const heroes = {
     form: [elements.caster_defense, elements.caster_fury],
     skills: {
       s1: {
+        defenseScaling: true,
         rate: 0.5,
         pow: 0.9,
         flat: () => elements.caster_defense.value() * 0.8,
@@ -5890,6 +6002,7 @@ const heroes = {
         single: true,
       },
       s3: {
+        defenseScaling: true,
         rate: 0.5,
         pow: 0.9,
         flat: () => elements.caster_defense.value() * 1.3,
@@ -6049,6 +6162,7 @@ const heroes = {
     form: [elements.caster_max_hp],
     skills: {
       s1: {
+        hpScaling: true,
         rate: 1,
         pow: 1,
         flat: () => elements.caster_max_hp.value() * 0.05,
@@ -6057,6 +6171,7 @@ const heroes = {
         single: true,
       },
       s2: {
+        hpScaling: true,
         name: infoLabel('s2_counter'),
         rate: 0.7,
         pow: 1,
@@ -6066,6 +6181,7 @@ const heroes = {
         aoe: true,
       },
       s3: {
+        hpScaling: true,
         soulburn: true,
         rate: (soulburn) => soulburn ? 1.05 : 0.8,
         pow: 1,
@@ -6085,6 +6201,7 @@ const heroes = {
     barrier: () => elements.caster_defense.value() * (1 + elements.caster_attacked_stack_3.value() * 0.1) * 0.6,
     skills: {
       s1: {
+        defenseScaling: true,
         rate: 0.7,
         pow: 1,
         flat: () => elements.caster_defense.value() * (1 + elements.caster_attacked_stack_3.value() * 0.1) * 0.5,
@@ -6093,6 +6210,7 @@ const heroes = {
         single: true,
       },
       s3: {
+        defenseScaling: true,
         rate: 1.3,
         pow: 0.95,
         flat: () => elements.caster_defense.value() * (1 + elements.caster_attacked_stack_3.value() * 0.1) * 0.7,
@@ -6131,6 +6249,7 @@ const heroes = {
     form: [elements.caster_speed, elements.target_speed],
     skills: {
       s1: {
+        spdScaling: true,
         rate: 0.9,
         pow: 0.9,
         mult: () => 1 + elements.caster_speed.value() * 0.00075,
@@ -6140,6 +6259,7 @@ const heroes = {
         single: true,
       },
       s3: {
+        spdScaling: true,
         rate: 0.8,
         pow: 1,
         mult: () => 1 + elements.caster_speed.value() * 0.00075 + elements.target_speed.value() * 0.0015,
@@ -6157,6 +6277,7 @@ const heroes = {
     form: [elements.caster_max_hp],
     skills: {
       s1: {
+        hpScaling: true,
         rate: 0.9,
         pow: 1,
         flat: () => elements.caster_max_hp.value() * 0.04,
@@ -6171,6 +6292,7 @@ const heroes = {
         single: true,
       },
       s3: {
+        hpScaling: true,
         rate: 0.9,
         pow: 1,
         flat: () => elements.caster_max_hp.value() * 0.04,
@@ -6350,6 +6472,7 @@ const heroes = {
     form: [elements.caster_speed],
     skills: {
       s1: {
+        spdScaling: true,
         rate: 0.8,
         pow: 1,
         mult: () => 1 + elements.caster_speed.value() * 0.00075,
@@ -6358,6 +6481,7 @@ const heroes = {
         single: true,
       },
       s2: {
+        spdScaling: true,
         rate: 1.2,
         pow: 1,
         mult: () => 1 + elements.caster_speed.value() * 0.001125,
@@ -6445,6 +6569,7 @@ const heroes = {
     form: [elements.caster_max_hp],
     skills: {
       s1: {
+        hpScaling: true,
         rate: 0.7,
         pow: 0.9,
         flat: () => elements.caster_max_hp.value() * 0.05,
@@ -6453,6 +6578,7 @@ const heroes = {
         single: true,
       },
       s2: {
+        hpScaling: true,
         rate: 0.7,
         pow: 1,
         flat: () => elements.caster_max_hp.value() * 0.07,
@@ -6577,6 +6703,7 @@ const heroes = {
     form: [elements.caster_speed],
     skills: {
       s1: {
+        spdScaling: true,
         rate: 0.8,
         pow: 1,
         mult: () => 1 + elements.caster_speed.value() * 0.00075,
@@ -6585,6 +6712,7 @@ const heroes = {
         single: true,
       },
       s2: {
+        spdScaling: true,
         rate: 1.2,
         pow: 1,
         mult: () => 1 + elements.caster_speed.value() * 0.001125,
@@ -6603,6 +6731,7 @@ const heroes = {
     barrier: () => elements.caster_defense.value(),
     skills: {
       s1: {
+        defenseScaling: true,
         rate: 0.5,
         pow: 1,
         flat: () => elements.caster_defense.value() * 0.7,
@@ -6657,6 +6786,7 @@ const heroes = {
     barrier: () => elements.caster_max_hp.value() * 0.2,
     skills: {
       s1: {
+        hpScaling: true,
         rate: 0.81,
         pow: 0.95,
         flat: () => elements.caster_max_hp.value() * 0.07,
@@ -6685,6 +6815,7 @@ const heroes = {
         aoe: true,
       },
       s3: {
+        hpScaling: true,
         rate: 0.5,
         pow: 1,
         penetrate: () => 1.0,
@@ -6786,6 +6917,7 @@ const heroes = {
     barrier: () => elements.caster_defense.value() * (1 + elements.caster_attacked_stack_3.value() * 0.1) * 0.6,
     skills: {
       s1: {
+        defenseScaling: true,
         rate: 0.7,
         pow: 1,
         flat: () => elements.caster_defense.value() * (1 + elements.caster_attacked_stack_3.value() * 0.1) * 0.5,
@@ -6794,6 +6926,7 @@ const heroes = {
         single: true,
       },
       s3: {
+        defenseScaling: true,
         rate: 1.3,
         pow: 0.95,
         flat: () => elements.caster_defense.value() * (1 + elements.caster_attacked_stack_3.value() * 0.1) * 0.7,
@@ -6850,6 +6983,7 @@ const heroes = {
     baseAtk: 649,
     skills: {
       s1: {
+        hpScaling: true,
         rate: 0.75,
         pow: 1,
         flat: () => elements.caster_max_hp.value() * 0.025,
@@ -7122,6 +7256,7 @@ const heroes = {
     form: [elements.caster_speed, elements.caster_nb_focus],
     skills: {
       s1: {
+        spdScaling: true,
         rate: () => elements.caster_nb_focus.value() >= 2 ? 1.25 : 0.9,
         pow: 0.9,
         mult: () => 1 + elements.caster_speed.value() * 0.00075,
@@ -7641,6 +7776,7 @@ const heroes = {
     form: [elements.caster_speed, elements.caster_enrage],
     skills: {
       s1: {
+        spdScaling: true,
         soulburn: true,
         rate: (sb) => sb ? 1.65 : 0.98,
         pow: 0.9,
@@ -7650,6 +7786,7 @@ const heroes = {
         single: true,
       },
       s1_extra: {
+        spdScaling: true,
         name: infoLabel('s1_extra_attack'),
         rate: 1.2,
         pow: 1.3,
@@ -7752,6 +7889,7 @@ const heroes = {
     form: [elements.caster_max_hp],
     skills: {
       s1: {
+        hpScaling: true,
         rate: 0.8,
         pow: 1,
         flat: () => elements.caster_max_hp.value() * 0.025,
@@ -7760,6 +7898,7 @@ const heroes = {
         single: true,
       },
       s3: {
+        hpScaling: true,
         soulburn: true,
         rate: (soulburn) => soulburn ? 2.3 : 1.5,
         pow: 0.95,
@@ -7863,6 +8002,7 @@ const heroes = {
         single: true,
       },
       s3: {
+        spdScaling: true,
         rate: 1.6,
         pow: 1,
         mult: () => 1 + elements.caster_speed.value() * 0.0015,
@@ -7881,6 +8021,7 @@ const heroes = {
     barrier: () => elements.caster_max_hp.value() * 0.2,
     skills: {
       s1: {
+        hpScaling: true,
         rate: 1,
         pow: 0.95,
         flat: () => elements.caster_max_hp.value() * 0.04,
@@ -7934,6 +8075,7 @@ const heroes = {
     barrier: () => elements.caster_max_hp.value() * 0.2,
     skills: {
       s1: {
+        hpScaling: true,
         rate: 0.8,
         pow: 0.95,
         flat: () => elements.caster_max_hp.value() * 0.04,
@@ -7942,6 +8084,7 @@ const heroes = {
         single: true,
       },
       s3: {
+        hpScaling: true,
         rate: 0.5,
         pow: 0.95,
         flat: () => elements.caster_max_hp.value() * 0.1,
@@ -7985,6 +8128,7 @@ const heroes = {
     barrier: () => elements.caster_max_hp.value() * 0.2,
     skills: {
       s1: {
+        hpScaling: true,
         rate: 0.7,
         pow: 0.95,
         flat: () => elements.caster_max_hp.value() * 0.05,
@@ -7994,6 +8138,7 @@ const heroes = {
       },
       s3: {
         // rate: 0.75, // This looks like it was just updated on the sheet as well
+        hpScaling: true,
         rate: 0.7,
         pow: 0.95,
         flat: () => elements.caster_max_hp.value() * 0.15,
@@ -8082,6 +8227,7 @@ const heroes = {
     form: [elements.caster_speed, elements.exclusive_equipment_2],
     skills: {
       s1: {
+        spdScaling: true,
         rate: 0.9,
         pow: 0.95,
         mult: () => 1 + elements.caster_speed.value() * 0.00075,
@@ -8095,6 +8241,7 @@ const heroes = {
         aoe: true,
       },
       s3: {
+        spdScaling: true,
         soulburn: true,
         rate: (soulburn) => soulburn ? 1.1 : 0.85,
         pow: 1,
@@ -8358,6 +8505,7 @@ const heroes = {
     barrier: () => elements.caster_max_hp.value() * 0.35,
     skills: {
       s1: {
+        hpScaling: true,
         rate: 0.5,
         pow: 1,
         flat: () => elements.caster_max_hp.value() * 0.1,
@@ -8366,6 +8514,7 @@ const heroes = {
         single: true,
       },
       s3: {
+        hpScaling: true,
         rate: 0.5,
         pow: 1,
         flat: () => 0.31 * Math.max(elements.caster_max_hp.value() - elements.caster_hp.value(), 0),
@@ -8386,6 +8535,7 @@ const heroes = {
     form: [elements.caster_speed, elements.nb_targets, elements.exclusive_equipment_3],
     skills: {
       s1: {
+        spdScaling: true,
         soulburn: true,
         rate: (soulburn) => soulburn ? 0.85 : 0.6,
         pow: 0.8,
@@ -8486,6 +8636,7 @@ const heroes = {
     form: [elements.caster_max_hp, elements.non_attack_skill_stack_8],
     skills: {
       s1: {
+        hpScaling: true,
         rate: 0.5,
         pow: 1,
         flat: () => elements.caster_max_hp.value() * 0.1,
@@ -8497,7 +8648,8 @@ const heroes = {
         enhance: [0.005, 0.005, 0.005, 0.005, 0.01],
       },
       s3: {
-        rate: 0.5,
+        hpScaling: true,
+        ate: 0.5,
         pow: 1,
         flat: () => elements.caster_max_hp.value() * 0.12,
         flatTip: () => ({ caster_max_hp: 12 }),
