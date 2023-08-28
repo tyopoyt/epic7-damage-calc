@@ -1236,7 +1236,8 @@ buildInitialForm = () => {
         $(chartSkillSelector).find('option').remove();
         Object.keys(heroes[currentHero.id].skills).map((id => {
           const skill = heroes[currentHero.id].skills[id];
-          if (skill.rate) {
+          // use != to also catch null
+          if (skill.rate != undefined) {
             $(chartSkillSelector).append(`<option value="${id}" data-content="<span>${skill.name ? skill.name : skillLabel(id)}</span>">${skill.name ? skill.name : skillLabel(id)}</option>`);
           }
         }));

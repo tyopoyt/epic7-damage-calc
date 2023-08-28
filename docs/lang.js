@@ -135,6 +135,14 @@ const i18n = {
       }
     },
     form: {
+      attack: 'Attack',
+      cdam: 'CDam',
+      defense: 'Defense',
+      hp: 'HP',
+      speed: 'Speed',
+      current_stats: 'Current Stats',
+      with_more: 'With more',
+      damage: 'damage',
       nb_sets: 'Number of Sets'
     },
     info: {
@@ -524,9 +532,17 @@ const i18n = {
       wings_of_light_and_shadow: '光影の双翼',
     },
     form: {
+      attack: '攻撃力',
+      cdam: 'クリティカル　ダメージ',
+      defense: '防御力',
+      hp: '生命力上限値',
+      speed: 'スピード',
+      current_stats: '現在の統計',
+      with_more: 'もっと',
+      damage: 'ダメージ',
       link_copied: 'コピーしました!',
-      show_chart: 'チャートを表示',
-      hide_chart: 'チャートを隠す',
+      show_chart: 'グラフを表示',
+      hide_chart: 'グラフを隠す',
       nb_targets: '敵数',
       nb_hits: 'ヒット数',
       nb_sets: 'セット数',
@@ -1167,10 +1183,18 @@ const i18n = {
       wings_of_light_and_shadow: '明暗雙翼',
     },
     form: {
+      attack: '攻擊力',
+      cdam: '暴擊傷害',
+      defense: '防禦力',
+      hp: '最大生命值',
+      speed: '速度',
+      current_stats: '當前統計數據',
+      with_more: '更多的',
+      damage: '傷害計算',
       allies_nb_buff: '我軍Buff數量',
       link_copied: '鏈接已復制！',
-      show_chart: '顯示圖表',
-      hide_chart: '隱藏圖表',
+      show_chart: '顯示圖形',
+      hide_chart: '隱藏圖形',
       nb_targets: '敵人數量',
       nb_hits: '攻擊次數',
       nb_sets: '套裝數',
@@ -1854,10 +1878,18 @@ const i18n = {
       wings_of_light_and_shadow:'明暗双翼',
     },
     form: {
+      attack: '攻击力',
+      cdam: '暴击伤害',
+      defense: '防御力',
+      hp: '最大生命值',
+      speed: '速度',
+      current_stats: '当前统计数据',
+      with_more: '更多的',
+      damage: '伤害计算',
       allies_nb_buff: '我军Buff数量',
       link_copied: '链接已复制！',
-      show_chart: '显示图表',
-      hide_chart: '隐藏图表',
+      show_chart: '显示图形',
+      hide_chart: '隐藏图形',
       nb_targets: '敌人数量',
       nb_hits: '攻击次数',
       nb_sets: '套装数',
@@ -2485,10 +2517,18 @@ const i18n = {
       wings_of_light_and_shadow: '명암의 쌍익',
     },
     form: {
+      attack: '공격력',
+      cdam: '치명 피해',
+      defense: '방어력',
+      hp: '최대 생명력',
+      speed: '속도',
+      current_stats: '현재 통계',
+      with_more: '더',
+      damage: '데미지',
       allies_nb_buff: '아군 버프 수',
       link_copied: '링크 복사!',
-      show_chart: '차트 보여줘',
-      hide_chart: '차트 숨기기',
+      show_chart: '그래프 보여줘',
+      hide_chart: '그래프 숨기기',
       nb_targets: '대상 수',
       nb_hits: '히트 수',
       nb_sets: '세트 수',
@@ -3021,6 +3061,14 @@ const i18n = {
       wings_of_light_and_shadow: 'Asas de Luz e Trevas',
     },
     form: {
+      attack: 'Ataque',
+      cdam: 'Dano Crítico',
+      defense: 'Defesa',
+      hp: 'Vida',
+      speed: 'Speed',
+      current_stats: 'Estatísticas Atuais',
+      with_more: 'Com mais',
+      damage: 'dano',
       allies_nb_buff: 'Quantidade de Buffs Aliados',
       aoe_stack_5: 'Stack de Ataque em Área',
       link_copied: 'Link Copiado!',
@@ -3216,7 +3264,7 @@ const artifactName = (id) => {
 const formLabel = (id) => {
   const lang = document.getElementById('root').getAttribute('lang');
   if (lang === 'en') {
-    return elements[id].label;
+    return elements[id]?.label || i18n['en'].form[id];
   } else {
     return i18n[lang].form[id] || elements[id].label;
   }

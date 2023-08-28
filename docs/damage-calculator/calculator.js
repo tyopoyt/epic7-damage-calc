@@ -687,13 +687,13 @@ const chartDefaults = {
     labels: [],
     datasets: [
       {
-        label: 'Attack',
+        label: formLabel('attack'),
         data: [],
         borderWidth: 1,
         pointStyle: pointStyles[0]
       },
       {
-        label: 'CDam',
+        label: formLabel('cdam'),
         data: [],
         borderWidth: 1,
         pointStyle: pointStyles[1]
@@ -716,8 +716,28 @@ const chartDefaults = {
       tooltip: {
         callbacks: {
           label: (item) =>
-            `With more ${item.dataset.label}: ${item.formattedValue} damage`,
+            `${formLabel('with_more')} ${item.dataset.label}: ${item.formattedValue} ${formLabel('damage')}`,
         },
+      },
+      annotation: {
+        annotations: {
+          currentLine: {
+            type: 'line',
+            xMin: 40,
+            xMax: 40,
+            borderColor: 'rgba(25, 25, 25, 0.75)',
+            borderWidth: 2,
+            label: {
+              display: true,
+              content: formLabel('current_stats'),
+              position: 'start',
+              backgroundColor: 'rgba(25, 25, 25, 0.75)',
+              font: {
+                family: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"'
+              }
+            }
+          }
+        }
       }
     }
   }
@@ -753,6 +773,7 @@ const toggleChart = () => {
 
 // TODO: Handle soulburn damage
 const calculateChart = (inputValues) => {
+  const lang = document.getElementById('root').getAttribute('lang');
   const artifact = new Artifact(inputValues.artifact);
   const hero = new Hero(inputValues.hero, artifact);
   const skillSelect = document.getElementById('chart-skill');
@@ -767,26 +788,29 @@ const calculateChart = (inputValues) => {
 
   // pick different num steps if skill.nocrit
   const windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-  const intersectionPoint = 3; // denominator of fraction, so 3 = intersection 1/3 from the left of chart
-  const numSteps = windowWidth < 768 ? 50 : 120;// Math.max(75, (350 - inputValues.crit) + 1);
+  const intersectionRatio = 3; // denominator of fraction, so 3 = intersection 1/3 from the left of chart
+  const numSteps = windowWidth < 768 ? 50 : 120;
+  const intersectionPoint = numSteps / intersectionRatio;
+  chart.config.options.plugins.annotation.annotations.currentLine.xMin = intersectionPoint;
+  chart.config.options.plugins.annotation.annotations.currentLine.xMax = intersectionPoint;
 
   chart.data.datasets[0].data = [];
   chart.data.datasets[1].data = [];
 
   const atkStep = Math.max(Math.floor(((8 / 7) / 100) * hero.baseAtk), 1);
 
-  hero.atk = hero.atk - (((numSteps) / intersectionPoint) * atkStep);
+  hero.atk = hero.atk - (intersectionPoint * atkStep);
 
   while (chart.data.datasets[0].data.length < numSteps) {
     const damage = hero.getDamage(selected);
     const finalDam = displayDmg(damage, damageToUse);
   
     chart.data.datasets[0].data.push(finalDam);
-    chart.data.labels.push(`${hero.atk} Attack`);
+    chart.data.labels.push(`${hero.atk} ${formLabel('attack')}`);
     hero.atk += atkStep; // TODO: deal with innate attack up?
     
   }
-  hero.crit = hero.crit - (numSteps / intersectionPoint);
+  hero.crit = hero.crit - intersectionPoint;
   hero.atk = inputValues.atk;
 
   if (damageToUse === 'crit') {
@@ -801,7 +825,7 @@ const calculateChart = (inputValues) => {
       const finalDam = displayDmg(damage, damageToUse);
   
       chart.data.datasets[1].data.push(finalDam);
-      chart.data.labels[index] += ` vs ${hero.crit} CDam`;
+      chart.data.labels[index] += ` vs ${hero.crit} ${formLabel('cdam')}`;
       hero.crit += 1;
       index++;
     }
@@ -810,27 +834,27 @@ const calculateChart = (inputValues) => {
   hero.crit = inputValues.crit;
   hero.atk = inputValues.atk;
 
-  let filteredDatasets = chart.data.datasets.filter(dataset => dataset.label === 'Defense');
+  let filteredDatasets = chart.data.datasets.filter(dataset => dataset.label === formLabel('defense'));
   if (!skill.defenseScaling && filteredDatasets.length) {
     chart.data.datasets.splice(chart.data.datasets.indexOf(filteredDatasets[0]), 1);
   }
 
-  filteredDatasets = chart.data.datasets.filter(dataset => dataset.label === 'HP');
+  filteredDatasets = chart.data.datasets.filter(dataset => dataset.label === formLabel('hp'));
   if (!skill.hpScaling && filteredDatasets.length) {
     chart.data.datasets.splice(chart.data.datasets.indexOf(filteredDatasets[0]), 1);
   }
 
-  filteredDatasets = chart.data.datasets.filter(dataset => dataset.label === 'Speed');
+  filteredDatasets = chart.data.datasets.filter(dataset => dataset.label === formLabel('speed'));
   if (!skill.spdScaling && filteredDatasets.length) {
     chart.data.datasets.splice(chart.data.datasets.indexOf(filteredDatasets[0]), 1);
   }
 
   if (skill.defenseScaling) {
     const defStep = Math.max(Math.floor(((8 / 7) / 100) * hero.baseDef), 1);
-    filteredDatasets = chart.data.datasets.filter(dataset => dataset.label === 'Defense');
+    filteredDatasets = chart.data.datasets.filter(dataset => dataset.label === formLabel('defense'));
     if (!filteredDatasets.length) {
       chart.data.datasets.push({
-        label: 'Defense',
+        label: formLabel('defense'),
         data: [],
         borderWidth: 1,
         backgroundColor: pointBackgrounds[chart.data.datasets.length - 2],
@@ -848,7 +872,7 @@ const calculateChart = (inputValues) => {
     const defDataIndex = chart.data.datasets.indexOf(filteredDatasets[0]);
 
     chart.data.datasets[defDataIndex].data = [];
-    hero.def = inputValues['caster-defense'] - (((numSteps) / intersectionPoint) *  defStep);
+    hero.def = inputValues['caster-defense'] - (intersectionPoint *  defStep);
 
     index = 0;
     while (chart.data.datasets[defDataIndex].data.length < numSteps) {
@@ -862,7 +886,7 @@ const calculateChart = (inputValues) => {
       const finalDam = displayDmg(damage, damageToUse);
   
       chart.data.datasets[defDataIndex].data.push(finalDam);
-      chart.data.labels[index] += ` vs ${hero.def} Def`;
+      chart.data.labels[index] += ` vs ${hero.def} ${formLabel('defense')}`;
       hero.def += defStep; //TODO: deal with anything that might affect this number like innate boosts
       index++;
     }
@@ -871,10 +895,10 @@ const calculateChart = (inputValues) => {
   
   if (skill.hpScaling) {
     const hpStep = Math.max(Math.floor(((8 / 7) / 100) * hero.baseHP), 1);
-    filteredDatasets = chart.data.datasets.filter(dataset => dataset.label === 'HP');
+    filteredDatasets = chart.data.datasets.filter(dataset => dataset.label === formLabel('hp'));
     if (!filteredDatasets.length) {
       chart.data.datasets.push({
-        label: 'HP',
+        label: formLabel('hp'),
         data: [],
         borderWidth: 1,
         backgroundColor: pointBackgrounds[chart.data.datasets.length - 2],
@@ -892,7 +916,7 @@ const calculateChart = (inputValues) => {
     const HPDataIndex = chart.data.datasets.indexOf(filteredDatasets[0]);
 
     chart.data.datasets[HPDataIndex].data = [];
-    hero.hp = inputValues['caster-max-hp'] - (((numSteps) / intersectionPoint) *  hpStep);
+    hero.hp = inputValues['caster-max-hp'] - (intersectionPoint *  hpStep);
 
     index = 0;
     while (chart.data.datasets[HPDataIndex].data.length < numSteps) {
@@ -906,7 +930,7 @@ const calculateChart = (inputValues) => {
       const finalDam = displayDmg(damage, damageToUse);
   
       chart.data.datasets[HPDataIndex].data.push(finalDam);
-      chart.data.labels[index] += ` vs ${hero.hp} HP`;
+      chart.data.labels[index] += ` vs ${hero.hp} ${formLabel('hp')}`;
       hero.hp += hpStep; //TODO: deal with anything that might affect this number like innate boosts
       index++;
     }
@@ -915,10 +939,10 @@ const calculateChart = (inputValues) => {
   
   if (skill.spdScaling) {
     const spdStep = Math.max(Math.floor(((4 / 7) / 100) * hero.baseSpd), 1);
-    filteredDatasets = chart.data.datasets.filter(dataset => dataset.label === 'Speed');
+    filteredDatasets = chart.data.datasets.filter(dataset => dataset.label === formLabel('speed'));
     if (!filteredDatasets.length) {
       chart.data.datasets.push({
-        label: 'Speed',
+        label: formLabel('speed'),
         data: [],
         borderWidth: 1,
         backgroundColor: pointBackgrounds[chart.data.datasets.length - 2],
@@ -936,7 +960,7 @@ const calculateChart = (inputValues) => {
     const spdDataIndex = chart.data.datasets.indexOf(filteredDatasets[0]);
 
     chart.data.datasets[spdDataIndex].data = [];
-    hero.spd = inputValues['caster-speed'] - (((numSteps) / intersectionPoint) * spdStep);
+    hero.spd = inputValues['caster-speed'] - (intersectionPoint * spdStep);
 
     index = 0;
     while (chart.data.datasets[spdDataIndex].data.length < numSteps) {
@@ -950,7 +974,7 @@ const calculateChart = (inputValues) => {
       const finalDam = displayDmg(damage, damageToUse);
   
       chart.data.datasets[spdDataIndex].data.push(finalDam);
-      chart.data.labels[index] += ` vs ${hero.spd} Spd`;
+      chart.data.labels[index] += ` vs ${hero.spd} ${formLabel('speed')}`;
       hero.spd += spdStep; //TODO: deal with anything that might affect this number like innate boosts
       index++;
     }
