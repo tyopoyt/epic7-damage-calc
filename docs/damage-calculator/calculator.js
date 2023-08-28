@@ -764,7 +764,7 @@ const toggleChart = () => {
   } else {
     chartContainer.style.display = 'none';
     if (lang === 'en') {
-      chartButton.innerText = 'Show Chart';
+      chartButton.innerText = 'Show Graph';
     } else {
       chartButton.innerText = i18n[lang].form.show_chart || 'Show Graph';
     }
