@@ -757,16 +757,16 @@ const toggleChart = () => {
     calculateChart(inputValues);
     chartContainer.style.display = 'block';
     if (lang === 'en') {
-      chartButton.innerText = 'Hide Chart';
+      chartButton.innerText = 'Hide Graph';
     } else {
-      chartButton.innerText = i18n[lang].form.hide_chart || 'Hide Chart';
+      chartButton.innerText = i18n[lang].form.hide_chart || 'Hide Graph';
     }
   } else {
     chartContainer.style.display = 'none';
     if (lang === 'en') {
       chartButton.innerText = 'Show Chart';
     } else {
-      chartButton.innerText = i18n[lang].form.show_chart || 'Show Chart';
+      chartButton.innerText = i18n[lang].form.show_chart || 'Show Graph';
     }
   }
 };
