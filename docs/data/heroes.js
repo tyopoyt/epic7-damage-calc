@@ -4538,7 +4538,7 @@ const heroes = {
     element: element.ice,
     classType: classType.knight,
     baseAtk: 839,
-    basHP: 6405,
+    baseHP: 6405,
     form: [elements.caster_max_hp, elements.caster_hp],
     skills: {
       s1: {
