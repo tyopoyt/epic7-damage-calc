@@ -727,7 +727,7 @@ const chartDefaults = {
               position: 'start',
               backgroundColor: 'rgba(25, 25, 25, 0.75)',
               font: {
-                family: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"'
+                family: displayConstants['font-family']
               }
             }
           }
@@ -771,6 +771,9 @@ const calculateChart = (inputValues) => {
   const hero = new Hero(inputValues.hero, artifact);
   const skillSelect = document.getElementById('chart-skill');
   let selected = skillSelect.options[skillSelect.selectedIndex]?.value || 's1';
+  let presetHP = defPresetSelector.options[defPresetSelector.selectedIndex].dataset?.hp;
+  const maxDamages = [];
+  const minDamages = [];
 
   const soulburn = selected.endsWith('_soulburn');
   if (soulburn) {
@@ -819,7 +822,7 @@ const calculateChart = (inputValues) => {
   }
 
   if (skill.rate) {
-    const atkStep = Math.max(Math.floor(((8 / 7) / 100) * hero.baseAtk), 1);
+    const atkStep = Math.max(Math.floor(((8 / 7) / 100) * hero.baseAtk * (1 + (hero.innateAtkUp ? hero.innateAtkUp() : 0))), 1);
 
     filteredDatasets = chart.data.datasets.filter(dataset => dataset.label === formLabel('attack'));
     if (!filteredDatasets.length) {
@@ -847,11 +850,18 @@ const calculateChart = (inputValues) => {
     while (chart.data.datasets[atkDataIndex].data.length < numSteps) {
       const damage = hero.getDamage(selected, soulburn);
       const finalDam = displayDmg(damage, damageToUse);
+
+      if (!chart.data.datasets[atkDataIndex].data.length) {
+        minDamages.push(finalDam);
+      }
   
       chart.data.datasets[atkDataIndex].data.push(finalDam);
       chart.data.labels.push(`${hero.atk} ${formLabel('attack')}`);
-      hero.atk += atkStep; // TODO: deal with innate attack up?
-    
+      hero.atk += atkStep;
+
+      if (chart.data.datasets[atkDataIndex].data.length >= numSteps) {
+        maxDamages.push(finalDam);
+      }
     }
     hero.crit = hero.crit - intersectionPoint;
     hero.atk = inputValues.atk;
@@ -881,18 +891,20 @@ const calculateChart = (inputValues) => {
 
     index = 0;
     while (chart.data.datasets[cdamDataIndex].data.length < numSteps && hero.crit < 351) {
-      if (hero.crit < 150) {
-        hero.crit += 1;
-        chart.data.datasets[cdamDataIndex].data.push(null);
-        continue;
-      }
       const damage = hero.getDamage(selected, soulburn);
       const finalDam = displayDmg(damage, damageToUse);
+
+      if (!chart.data.datasets[cdamDataIndex].data.length) {
+        minDamages.push(finalDam);
+      }
   
       chart.data.datasets[cdamDataIndex].data.push(finalDam);
       chart.data.labels[index] = `${chart.data.labels[index] ? chart.data.labels[index] + ' vs ' : ''}${hero.crit} ${formLabel('cdam')}`;
       hero.crit += 1;
       index++;
+      if (chart.data.datasets[cdamDataIndex].data.length >= numSteps || hero.crit >= 351) {
+        maxDamages.push(finalDam);
+      }
     }
   }
 
@@ -925,19 +937,20 @@ const calculateChart = (inputValues) => {
 
     index = 0;
     while (chart.data.datasets[defDataIndex].data.length < numSteps) {
-      //TODO: null if below base.  Do for atk also
-      // if (hero.crit < 150) {
-      //   hero.crit += 1;
-      //   chart.data.datasets[1].data.push(null)
-      //   continue;
-      // }
       const damage = hero.getDamage(selected, soulburn);
       const finalDam = displayDmg(damage, damageToUse);
+
+      if (!chart.data.datasets[defDataIndex].data.length) {
+        minDamages.push(finalDam);
+      }
   
       chart.data.datasets[defDataIndex].data.push(finalDam);
       chart.data.labels[index] = `${chart.data.labels[index] ? chart.data.labels[index] + ' vs ' : ''}${hero.def} ${formLabel('defense')}`;
-      hero.def += defStep; //TODO: deal with anything that might affect this number like innate boosts
+      hero.def += defStep;
       index++;
+      if (chart.data.datasets[defDataIndex].data.length >= numSteps) {
+        maxDamages.push(finalDam);
+      }
     }
     hero.def = inputValues['caster-defense'];
   }
@@ -969,19 +982,20 @@ const calculateChart = (inputValues) => {
 
     index = 0;
     while (chart.data.datasets[HPDataIndex].data.length < numSteps) {
-      //TODO: null if below base.  Do for atk also
-      // if (hero.crit < 150) {
-      //   hero.crit += 1;
-      //   chart.data.datasets[1].data.push(null)
-      //   continue;
-      // }
       const damage = hero.getDamage(selected, soulburn);
       const finalDam = displayDmg(damage, damageToUse);
+
+      if (!chart.data.datasets[HPDataIndex].data.length) {
+        minDamages.push(finalDam);
+      }
   
       chart.data.datasets[HPDataIndex].data.push(finalDam);
       chart.data.labels[index] = `${chart.data.labels[index] ? chart.data.labels[index] + ' vs ' : ''}${hero.hp} ${formLabel('hp')}`;
-      hero.hp += hpStep; //TODO: deal with anything that might affect this number like innate boosts
+      hero.hp += hpStep;
       index++;
+      if (chart.data.datasets[HPDataIndex].data.length >= numSteps) {
+        maxDamages.push(finalDam);
+      }
     }
     hero.hp = inputValues['caster-max-hp'];
   }
@@ -1013,21 +1027,43 @@ const calculateChart = (inputValues) => {
 
     index = 0;
     while (chart.data.datasets[spdDataIndex].data.length < numSteps) {
-      //TODO: null if below base.  Do for atk also
-      // if (hero.crit < 150) {
-      //   hero.crit += 1;
-      //   chart.data.datasets[1].data.push(null)
-      //   continue;
-      // }
       const damage = hero.getDamage(selected, soulburn);
       const finalDam = displayDmg(damage, damageToUse);
+
+      if (!chart.data.datasets[spdDataIndex].data.length) {
+        minDamages.push(finalDam);
+      }
   
       chart.data.datasets[spdDataIndex].data.push(finalDam);
       chart.data.labels[index] = `${chart.data.labels[index] ? chart.data.labels[index] + ' vs ' : ''}${Math.floor(hero.spd)} ${formLabel('speed')}`;
-      hero.spd += spdStep; //TODO: deal with anything that might affect this number like innate boosts
+      hero.spd += spdStep;
       index++;
+      if (chart.data.datasets[spdDataIndex].data.length >= numSteps) {
+        maxDamages.push(finalDam);
+      }
     }
     hero.spd = inputValues['caster-speed'];
+  }
+
+  if (presetHP && presetHP <= Math.max(...maxDamages) * 1.25 && Math.min(...minDamages) <= presetHP * 1.25) {
+    chart.config.options.plugins.annotation.annotations['oneshotLine'] = {
+      type: 'line',
+      yMin: presetHP,
+      yMax: presetHP,
+      borderColor: 'rgba(25, 25, 25, 0.75)',
+      borderWidth: 2,
+      label: {
+        display: true,
+        content: formLabel('oneshot'),
+        position: 'start',
+        backgroundColor: 'rgba(25, 25, 25, 0.75)',
+        font: {
+          family: displayConstants['font-family']
+        }
+      }
+    };
+  } else {
+    delete chart.config.options.plugins.annotation.annotations['oneshotLine'];
   }
   chart.update();
 };

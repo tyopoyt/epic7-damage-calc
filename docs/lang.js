@@ -143,6 +143,7 @@ const i18n = {
       current_stats: 'Current Stats',
       with_more: 'With more',
       damage: 'damage',
+      oneshot: 'Oneshot',
       nb_sets: 'Number of Sets'
     },
     info: {
@@ -540,6 +541,7 @@ const i18n = {
       current_stats: '現在の統計',
       with_more: 'もっと',
       damage: 'ダメージ',
+      oneshot: 'ワンショット',
       link_copied: 'コピーしました!',
       show_chart: 'グラフを表示',
       hide_chart: 'グラフを隠す',
@@ -1191,6 +1193,7 @@ const i18n = {
       current_stats: '當前統計數據',
       with_more: '更多的',
       damage: '傷害計算',
+      oneshot: '一槍', // TODO: find better translation?
       allies_nb_buff: '我軍Buff數量',
       link_copied: '鏈接已復制！',
       show_chart: '顯示圖形',
@@ -1886,6 +1889,7 @@ const i18n = {
       current_stats: '当前统计数据',
       with_more: '更多的',
       damage: '伤害计算',
+      oneshot: '一枪', // TODO: find better translation?
       allies_nb_buff: '我军Buff数量',
       link_copied: '链接已复制！',
       show_chart: '显示图形',
@@ -2525,6 +2529,7 @@ const i18n = {
       current_stats: '현재 통계',
       with_more: '더',
       damage: '데미지',
+      oneshot: '원샷',
       allies_nb_buff: '아군 버프 수',
       link_copied: '링크 복사!',
       show_chart: '그래프 보여줘',
@@ -3069,6 +3074,7 @@ const i18n = {
       current_stats: 'Estatísticas Atuais',
       with_more: 'Com mais',
       damage: 'dano',
+      oneshot: 'Um disparo',
       allies_nb_buff: 'Quantidade de Buffs Aliados',
       aoe_stack_5: 'Stack de Ataque em Área',
       link_copied: 'Link Copiado!',
