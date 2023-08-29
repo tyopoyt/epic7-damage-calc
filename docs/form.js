@@ -1078,7 +1078,7 @@ const buildArtifact = (artifact) => {
     }
   }
 
-  if (!artifact || (!artifact.scale && !artifact.form && !artifact.info)) {
+  if (!artifact || (!artifact.scale && !artifact.form?.length && !artifact.info)) {
     document.getElementById('artifact-block').style.display = 'none';
     return;
   }
@@ -1225,7 +1225,9 @@ buildInitialForm = () => {
       resolve();
 
       if (currentHero) {
-        deleteParams(heroes[currentHero.id].form?.map(element => element.id));
+        if (!loadingQueryParams) {
+          deleteParams(heroes[currentHero.id].form?.map(element => element.id));
+        }
 
         window.dataLayer.push({
           'event': 'select_hero',
@@ -1310,9 +1312,10 @@ buildInitialForm = () => {
     };
 
     artiSelector.onchange = () => {
-      if (currentArtifact?.id) {
+      if (currentArtifact?.id && !loadingQueryParams) {
         deleteParams(artifacts[currentArtifact.id].form?.map(element => element.id));
       }
+
       const hero = heroes[heroSelector.value];
       const artifact = {...artifacts[artiSelector.value]};
       dedupeForm(hero, artifact);

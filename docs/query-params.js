@@ -72,8 +72,14 @@ const getInputValues = () => {
     (artifacts[inputValues.artifact]?.form || []).forEach((param) => {
       const isBoolean = param.type === 'checkbox';
       const defaultVal =  isBoolean ? param.default || false : param.default;
-      const paramVal = isBoolean ? document.getElementById(param.id)?.checked : Number(document.getElementById(param.id)?.value || defaultVal);
+      let paramVal = isBoolean ? document.getElementById(param.id)?.checked : Number(document.getElementById(param.id)?.value || defaultVal);
       inputValues[param.id] = paramVal;
+
+      if (buffableParams.includes(param.id)) {
+        buffParam = param.id + '-up';
+        paramVal = document.getElementById(buffParam)?.checked;
+        inputValues[buffParam] = paramVal;
+      }
     });
   }
   return inputValues;
@@ -151,7 +157,7 @@ const loadQueryParams = async () => {
       for (let i = 1; i < 4; i++ ) {
         let paramVal = queryParams.get(`molagora-s${i}`);
 
-        const defaultVal = heroes[heroElement.value]?.skills[`s${i}`]?.enhance.length;
+        const defaultVal = heroes[heroElement.value]?.skills[`s${i}`]?.enhance?.length;
 
         if (paramVal !== null && defaultVal !== undefined && paramVal !== defaultVal) {
           const element = document.getElementById(`molagora-s${i}`);
@@ -236,6 +242,15 @@ const loadQueryParams = async () => {
             const event = new Event('change');
             element.dispatchEvent(event);
           }
+        }
+        console.log(artiSpecific);
+        if (buffableParams.includes(artiSpecific.id)) {
+          buffParam = artiSpecific.id + '-up';
+          const buffElement = document.getElementById(buffParam);
+          paramVal = queryParams.get(buffParam);
+          buffElement.checked = paramVal;
+          const buffEvent = new Event('change');
+          buffElement.dispatchEvent(buffEvent);
         }
       }
     }
@@ -373,6 +388,18 @@ const updateQueryParamsWhenStable = async (updateURL = false) => {
         queryParams.set(artiSpecific.id, inputValues[artiSpecific.id]);
       } else {
         queryParams.delete(artiSpecific.id);
+      }
+
+      if (buffableParams.includes(artiSpecific.id)) {
+        const buffParam = artiSpecific.id + '-up';
+        const buffableDefault = typeof artiSpecific.default === 'function' ? artiSpecific.default() : artiSpecific.default;
+        const buffableDefaultVal = buffableDefault || false;
+
+        if (inputValues[buffParam] !== buffableDefaultVal) {
+          queryParams.set(buffParam, inputValues[buffParam]);
+        } else {
+          queryParams.delete(buffParam);
+        }
       }
     }
   }
