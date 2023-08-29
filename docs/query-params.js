@@ -282,23 +282,27 @@ const formUpdated = () => {
     if (updateRequestTime) {
       updateRequestTime = Date.now();
     } else if (updateRequestTime === null) {
-      updateQueryParamsWhenStable();
+      debounce('updateQueryParams', updateQueryParamsWhenStable, [false]);
     } else {
       updateRequestTime = null; // don't queue an update on the initial load
     }
   }
 };
 
+const debounceTimers = {};
+const debounce = async (key, callback, args = [], time = 200) => {
+  if (debounceTimers[key]) {
+    clearTimeout(debounceTimers[key]);
+  }
+  debounceTimers[key] = setTimeout(() => {
+    callback(...args);
+  }, time);
+};
+
 /*
  * Puts form values in queryParams after debouncing input.
  */ 
 const updateQueryParamsWhenStable = async (updateURL = false) => {
-  // debounce input then update when stable. 1 second if updating URL, else 200ms.
-  updateRequestTime = Date.now();
-  debounceTime = updateURL ? 1000 : 200;
-  while (Date.now() - updateRequestTime < debounceTime) {
-    await new Promise(r => setTimeout(r, debounceTime));
-  }
 
   const inputValues = getInputValues();
 

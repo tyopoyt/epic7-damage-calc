@@ -1211,6 +1211,7 @@ buildInitialForm = () => {
 
     chartSkillSelector.onchange = () => {
       if (document.getElementById('damage-chart-container').style.display !== 'none') {
+        // This one doesn't need to be debounced because it would be pretty difficult to change the select option quickly
         calculateChart(inputValues);
       }
     };

@@ -242,7 +242,7 @@ const resolve = () => {
 
   formUpdated(true);
   if (document.getElementById('damage-chart-container').style.display !== 'none') {
-    calculateChart(inputValues);
+    debounce('calculateChart', calculateChart, [inputValues], 150);
   }
 };
 /* eslint-enable */
@@ -748,6 +748,7 @@ const toggleChart = () => {
       'event': 'show_chart',
       'hero': inputValues['hero']
     });
+    // This one doesn't really need to be debounced because it doesn't cause any visible lag if you toggle it a lot
     calculateChart(inputValues);
     chartContainer.style.display = 'block';
     if (lang === 'en') {
@@ -765,7 +766,13 @@ const toggleChart = () => {
   }
 };
 
-// TODO: Handle soulburn damage
+const allDamages = {
+  'crit': {},
+  'crush': {},
+  'normal': {},
+  'miss': {}
+};
+
 const calculateChart = (inputValues) => {
   const artifact = new Artifact(inputValues.artifact);
   const hero = new Hero(inputValues.hero, artifact);
@@ -774,6 +781,10 @@ const calculateChart = (inputValues) => {
   let presetHP = defPresetSelector.options[defPresetSelector.selectedIndex].dataset?.hp;
   const maxDamages = [];
   const minDamages = [];
+  Object.keys(allDamages).forEach(key => {
+    allDamages[key] = {};
+  });
+
 
   const soulburn = selected.endsWith('_soulburn');
   if (soulburn) {
@@ -849,11 +860,18 @@ const calculateChart = (inputValues) => {
 
     while (chart.data.datasets[atkDataIndex].data.length < numSteps) {
       const damage = hero.getDamage(selected, soulburn);
-      const finalDam = displayDmg(damage, damageToUse);
+      const finalDam = damage[damageToUse] || 0;
 
       if (!chart.data.datasets[atkDataIndex].data.length) {
         minDamages.push(finalDam);
+        Object.keys(damage).forEach(damageType => {
+          allDamages[damageType]['attack'] = [];
+        });
       }
+
+      Object.keys(damage).forEach(damageType => {
+        allDamages[damageType]['attack'].push(damage[damageType] || 0);
+      });
   
       chart.data.datasets[atkDataIndex].data.push(finalDam);
       chart.data.labels.push(`${hero.atk} ${formLabel('attack')}`);
@@ -892,11 +910,18 @@ const calculateChart = (inputValues) => {
     index = 0;
     while (chart.data.datasets[cdamDataIndex].data.length < numSteps && hero.crit < 351) {
       const damage = hero.getDamage(selected, soulburn);
-      const finalDam = displayDmg(damage, damageToUse);
+      const finalDam = damage[damageToUse] || 0;
 
       if (!chart.data.datasets[cdamDataIndex].data.length) {
         minDamages.push(finalDam);
+        Object.keys(damage).forEach(damageType => {
+          allDamages[damageType]['cdam'] = [];
+        });
       }
+
+      Object.keys(damage).forEach(damageType => {
+        allDamages[damageType]['cdam'].push(damage[damageType] || 0);
+      });
   
       chart.data.datasets[cdamDataIndex].data.push(finalDam);
       chart.data.labels[index] = `${chart.data.labels[index] ? chart.data.labels[index] + ' vs ' : ''}${hero.crit} ${formLabel('cdam')}`;
@@ -938,11 +963,18 @@ const calculateChart = (inputValues) => {
     index = 0;
     while (chart.data.datasets[defDataIndex].data.length < numSteps) {
       const damage = hero.getDamage(selected, soulburn);
-      const finalDam = displayDmg(damage, damageToUse);
+      const finalDam = damage[damageToUse] || 0;
 
       if (!chart.data.datasets[defDataIndex].data.length) {
         minDamages.push(finalDam);
+        Object.keys(damage).forEach(damageType => {
+          allDamages[damageType]['defense'] = [];
+        });
       }
+
+      Object.keys(damage).forEach(damageType => {
+        allDamages[damageType]['defense'].push(damage[damageType] || 0);
+      });
   
       chart.data.datasets[defDataIndex].data.push(finalDam);
       chart.data.labels[index] = `${chart.data.labels[index] ? chart.data.labels[index] + ' vs ' : ''}${hero.def} ${formLabel('defense')}`;
@@ -983,11 +1015,18 @@ const calculateChart = (inputValues) => {
     index = 0;
     while (chart.data.datasets[HPDataIndex].data.length < numSteps) {
       const damage = hero.getDamage(selected, soulburn);
-      const finalDam = displayDmg(damage, damageToUse);
+      const finalDam = damage[damageToUse] || 0;
 
       if (!chart.data.datasets[HPDataIndex].data.length) {
         minDamages.push(finalDam);
+        Object.keys(damage).forEach(damageType => {
+          allDamages[damageType]['hp'] = [];
+        });
       }
+
+      Object.keys(damage).forEach(damageType => {
+        allDamages[damageType]['hp'].push(damage[damageType] || 0);
+      });
   
       chart.data.datasets[HPDataIndex].data.push(finalDam);
       chart.data.labels[index] = `${chart.data.labels[index] ? chart.data.labels[index] + ' vs ' : ''}${hero.hp} ${formLabel('hp')}`;
@@ -1028,11 +1067,18 @@ const calculateChart = (inputValues) => {
     index = 0;
     while (chart.data.datasets[spdDataIndex].data.length < numSteps) {
       const damage = hero.getDamage(selected, soulburn);
-      const finalDam = displayDmg(damage, damageToUse);
+      const finalDam = damage[damageToUse] || 0;
 
       if (!chart.data.datasets[spdDataIndex].data.length) {
         minDamages.push(finalDam);
+        Object.keys(damage).forEach(damageType => {
+          allDamages[damageType]['speed'] = [];
+        });
       }
+
+      Object.keys(damage).forEach(damageType => {
+        allDamages[damageType]['speed'].push(damage[damageType] || 0);
+      });
   
       chart.data.datasets[spdDataIndex].data.push(finalDam);
       chart.data.labels[index] = `${chart.data.labels[index] ? chart.data.labels[index] + ' vs ' : ''}${Math.floor(hero.spd)} ${formLabel('speed')}`;
