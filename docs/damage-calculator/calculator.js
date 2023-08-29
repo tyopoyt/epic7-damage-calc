@@ -606,7 +606,6 @@ class Artifact {
       this.hpScaling = artifacts[this.id]['hpScaling'];
       this.spdScaling = artifacts[this.id]['spdScaling'];
       this.atkPercent = artifacts[this.id]['atkPercent'];
-      this.applies = artifacts[this.id]['applies'];
     }
     currentArtifact = this;
   }
