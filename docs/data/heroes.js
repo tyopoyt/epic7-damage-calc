@@ -2,6 +2,7 @@
  * Notes:
  * aftermath damage is only used when it scales with the caster's attack (hwayoung)
  * fixed damage is used for flat extra damage (rimuru)
+ * flat damage is used for damage scaling with stats other than attack (alencia)
  */
 
 const dot = {
