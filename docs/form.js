@@ -1180,7 +1180,7 @@ const dedupeForm = (hero, artifact) => {
 
 const updateGraphSkillSelect = () => {
   const skillSelect = document.getElementById('chart-skill');
-  const skill = heroes[inputValues.hero]?.skills[skillSelect.options[skillSelect.selectedIndex]?.value || 's1'];
+  const skill = heroes[inputValues.hero]?.skills[skillSelect.options[skillSelect.selectedIndex]?.value.replace('_soulburn', '') || 's1'];
 
   if (skill.onlyMiss) {
     damageToUse = 'miss';

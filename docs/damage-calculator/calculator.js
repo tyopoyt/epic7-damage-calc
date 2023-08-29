@@ -95,8 +95,8 @@ const skillTypes = {
 let setForms = [];
 
 const getSkillType = (skill) => {
-  if (skill.single !== undefined && ((typeof skill.single === 'function') ? skill.single() : skill.single) === true) return skillTypes.single;
-  if (skill.aoe !== undefined && ((typeof skill.aoe === 'function') ? skill.aoe() : skill.aoe) === true) return skillTypes.aoe;
+  if (skill?.single !== undefined && ((typeof skill.single === 'function') ? skill.single() : skill.single) === true) return skillTypes.single;
+  if (skill?.aoe !== undefined && ((typeof skill.aoe === 'function') ? skill.aoe() : skill.aoe) === true) return skillTypes.aoe;
   return undefined;
 };
 
@@ -605,6 +605,8 @@ class Artifact {
       this.defenseScaling = artifacts[this.id]['defenseScaling'];
       this.hpScaling = artifacts[this.id]['hpScaling'];
       this.spdScaling = artifacts[this.id]['spdScaling'];
+      this.atkPercent = artifacts[this.id]['atkPercent'];
+      this.applies = artifacts[this.id]['applies'];
     }
     currentArtifact = this;
   }
@@ -808,9 +810,11 @@ const calculateChart = (inputValues) => {
   const intersectionPoint = numSteps / intersectionRatio;
   chart.config.options.plugins.annotation.annotations.currentLine.xMin = intersectionPoint;
   chart.config.options.plugins.annotation.annotations.currentLine.xMax = intersectionPoint;
+  
+  const artifactApplies = artifact.applies ? artifact.applies(skill, skill.id) : false;
 
   let filteredDatasets = chart.data.datasets.filter(dataset => dataset.label === formLabel('attack'));
-  if (!skill.rate && filteredDatasets.length && !artifact.atkPercent) {
+  if (!skill.rate && filteredDatasets.length && !(artifact.atkPercent && artifactApplies)) {
     chart.data.datasets.splice(chart.data.datasets.indexOf(filteredDatasets[0]), 1);
   }
 
@@ -820,21 +824,21 @@ const calculateChart = (inputValues) => {
   }
 
   filteredDatasets = chart.data.datasets.filter(dataset => dataset.label === formLabel('defense'));
-  if (!skill.defenseScaling && filteredDatasets.length && !artifact.defenseScaling) {
+  if (!skill.defenseScaling && filteredDatasets.length && !(artifact.defenseScaling && artifactApplies)) {
     chart.data.datasets.splice(chart.data.datasets.indexOf(filteredDatasets[0]), 1);
   }
 
   filteredDatasets = chart.data.datasets.filter(dataset => dataset.label === formLabel('hp'));
-  if (!skill.hpScaling && filteredDatasets.length && !artifact.hpScaling) {
+  if (!skill.hpScaling && filteredDatasets.length && !(artifact.hpScaling && artifactApplies)) {
     chart.data.datasets.splice(chart.data.datasets.indexOf(filteredDatasets[0]), 1);
   }
 
   filteredDatasets = chart.data.datasets.filter(dataset => dataset.label === formLabel('speed'));
-  if (!skill.spdScaling && filteredDatasets.length && !artifact.spdScaling) {
+  if (!skill.spdScaling && filteredDatasets.length && !(artifact.spdScaling && artifactApplies)) {
     chart.data.datasets.splice(chart.data.datasets.indexOf(filteredDatasets[0]), 1);
   }
 
-  if (skill.rate) {
+  if (skill.rate || (artifact.atkPercent && artifactApplies)) {
     const atkStep = Math.max(Math.floor(((8 / 7) / 100) * hero.baseAtk * (1 + (hero.innateAtkUp ? hero.innateAtkUp() : 0))), 1);
 
     filteredDatasets = chart.data.datasets.filter(dataset => dataset.label === formLabel('attack'));
@@ -941,7 +945,7 @@ const calculateChart = (inputValues) => {
 
   hero.crit = inputValues.crit;
 
-  if (skill.defenseScaling || artifact.defenseScaling) {
+  if (skill.defenseScaling || (artifact.defenseScaling && artifactApplies)) {
     const defStep = Math.max(Math.floor(((8 / 7) / 100) * hero.baseDef), 1);
     filteredDatasets = chart.data.datasets.filter(dataset => dataset.label === formLabel('defense'));
     if (!filteredDatasets.length) {
@@ -997,7 +1001,7 @@ const calculateChart = (inputValues) => {
     hero.def = inputValues['caster-defense'];
   }
   
-  if (skill.hpScaling || artifact.hpScaling) {
+  if (skill.hpScaling || (artifact.hpScaling && artifactApplies)) {
     const hpStep = Math.max(Math.floor(((8 / 7) / 100) * hero.baseHP), 1);
     filteredDatasets = chart.data.datasets.filter(dataset => dataset.label === formLabel('hp'));
     if (!filteredDatasets.length) {
