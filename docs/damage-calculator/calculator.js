@@ -222,7 +222,7 @@ const resolve = () => {
         </tr>`);
       }
 
-      if (skill.canExtra && extra_attack_artifacts.includes(inputValues.artifact)) {
+      if (skill.canExtra && artifacts[inputValues.artifact].extraAttack) {
         const damage = hero.getDamage(skillId, true, true);
         $(table).append(`<tr>
             <td>
@@ -339,7 +339,6 @@ class Hero {
     this.baseAtk = heroes[id].baseAtk || 0;
     this.baseDef = heroes[id].baseDef || 0;
     this.baseHP = heroes[id].baseHP || 0;
-    this.baseSpd = heroes[id].baseSpd || 0;
     this.dot = [...(heroes[id].dot || []), ...(artifact?.getDoT() || [])];
     this.atkUp = heroes[id].atkUp;
     this.innateAtkUp = heroes[id].innateAtkUp;
@@ -495,7 +494,10 @@ class Hero {
     const detonation = this.getDetonateDamage(skillId);
 
     let artiDamage = this.getAfterMathArtifactDamage(skillId);
-    if (artiDamage === null) artiDamage = 0;
+    if (artiDamage === null) {
+      artiDamage = 0;
+    }
+
 
     const skillDamage = this.getAfterMathSkillDamage(skillId, hitType);
     const skillExtraDmg = skill.extraDmg !== undefined ? Math.round(skill.extraDmg(hitType)) : 0;
@@ -599,6 +601,11 @@ let currentArtifact = null;
 class Artifact {
   constructor(id) {
     this.id = id ? id : undefined;
+    if (id) {
+      this.defenseScaling = artifacts[this.id]['defenseScaling'];
+      this.hpScaling = artifacts[this.id]['hpScaling'];
+      this.spdScaling = artifacts[this.id]['spdScaling'];
+    }
     currentArtifact = this;
   }
 
@@ -773,16 +780,21 @@ const toggleChart = () => {
 
 // TODO: Handle soulburn damage
 const calculateChart = (inputValues) => {
-  const lang = document.getElementById('root').getAttribute('lang');
   const artifact = new Artifact(inputValues.artifact);
   const hero = new Hero(inputValues.hero, artifact);
   const skillSelect = document.getElementById('chart-skill');
-  const selected = skillSelect.options[skillSelect.selectedIndex]?.value || 's1';
+  let selected = skillSelect.options[skillSelect.selectedIndex]?.value || 's1';
+
+  const soulburn = selected.endsWith('_soulburn');
+  if (soulburn) {
+    selected = selected.slice(0, -9);
+  }
   const skill = heroes[hero.id].skills[selected];
   if (!skill) {
     // skill = heroes[hero.id]['s1']
     return;
   }
+
   const damageToUse = skill.onlyMiss ? 'miss' : (!skill?.noCrit ? 'crit' : 'normal');
   chart.data.labels = [];
 
@@ -802,7 +814,7 @@ const calculateChart = (inputValues) => {
   hero.atk = hero.atk - (intersectionPoint * atkStep);
 
   while (chart.data.datasets[0].data.length < numSteps) {
-    const damage = hero.getDamage(selected);
+    const damage = hero.getDamage(selected, soulburn);
     const finalDam = displayDmg(damage, damageToUse);
   
     chart.data.datasets[0].data.push(finalDam);
@@ -821,7 +833,7 @@ const calculateChart = (inputValues) => {
         chart.data.datasets[1].data.push(null);
         continue;
       }
-      const damage = hero.getDamage(selected);
+      const damage = hero.getDamage(selected, soulburn);
       const finalDam = displayDmg(damage, damageToUse);
   
       chart.data.datasets[1].data.push(finalDam);
@@ -835,21 +847,21 @@ const calculateChart = (inputValues) => {
   hero.atk = inputValues.atk;
 
   let filteredDatasets = chart.data.datasets.filter(dataset => dataset.label === formLabel('defense'));
-  if (!skill.defenseScaling && filteredDatasets.length) {
+  if (!skill.defenseScaling && filteredDatasets.length && !artifact.defenseScaling) {
     chart.data.datasets.splice(chart.data.datasets.indexOf(filteredDatasets[0]), 1);
   }
 
   filteredDatasets = chart.data.datasets.filter(dataset => dataset.label === formLabel('hp'));
-  if (!skill.hpScaling && filteredDatasets.length) {
+  if (!skill.hpScaling && filteredDatasets.length && !artifact.hpScaling) {
     chart.data.datasets.splice(chart.data.datasets.indexOf(filteredDatasets[0]), 1);
   }
 
   filteredDatasets = chart.data.datasets.filter(dataset => dataset.label === formLabel('speed'));
-  if (!skill.spdScaling && filteredDatasets.length) {
+  if (!skill.spdScaling && filteredDatasets.length && !artifact.spdScaling) {
     chart.data.datasets.splice(chart.data.datasets.indexOf(filteredDatasets[0]), 1);
   }
 
-  if (skill.defenseScaling) {
+  if (skill.defenseScaling || artifact.defenseScaling) {
     const defStep = Math.max(Math.floor(((8 / 7) / 100) * hero.baseDef), 1);
     filteredDatasets = chart.data.datasets.filter(dataset => dataset.label === formLabel('defense'));
     if (!filteredDatasets.length) {
@@ -882,7 +894,7 @@ const calculateChart = (inputValues) => {
       //   chart.data.datasets[1].data.push(null)
       //   continue;
       // }
-      const damage = hero.getDamage(selected);
+      const damage = hero.getDamage(selected, soulburn);
       const finalDam = displayDmg(damage, damageToUse);
   
       chart.data.datasets[defDataIndex].data.push(finalDam);
@@ -893,7 +905,7 @@ const calculateChart = (inputValues) => {
     hero.def = inputValues['caster-defense'];
   }
   
-  if (skill.hpScaling) {
+  if (skill.hpScaling || artifact.hpScaling) {
     const hpStep = Math.max(Math.floor(((8 / 7) / 100) * hero.baseHP), 1);
     filteredDatasets = chart.data.datasets.filter(dataset => dataset.label === formLabel('hp'));
     if (!filteredDatasets.length) {
@@ -916,7 +928,7 @@ const calculateChart = (inputValues) => {
     const HPDataIndex = chart.data.datasets.indexOf(filteredDatasets[0]);
 
     chart.data.datasets[HPDataIndex].data = [];
-    hero.hp = inputValues['caster-max-hp'] - (intersectionPoint *  hpStep);
+    hero.hp = inputValues['caster-max-hp'] * (artifacts[artifact.id]?.maxHP || 1) - (intersectionPoint *  hpStep);
 
     index = 0;
     while (chart.data.datasets[HPDataIndex].data.length < numSteps) {
@@ -926,7 +938,7 @@ const calculateChart = (inputValues) => {
       //   chart.data.datasets[1].data.push(null)
       //   continue;
       // }
-      const damage = hero.getDamage(selected);
+      const damage = hero.getDamage(selected, soulburn);
       const finalDam = displayDmg(damage, damageToUse);
   
       chart.data.datasets[HPDataIndex].data.push(finalDam);
@@ -937,7 +949,7 @@ const calculateChart = (inputValues) => {
     hero.hp = inputValues['caster-max-hp'];
   }
   
-  if (skill.spdScaling) {
+  if (skill.spdScaling || artifact.spdScaling) {
     const spdStep = (4 / 7);
     filteredDatasets = chart.data.datasets.filter(dataset => dataset.label === formLabel('speed'));
     if (!filteredDatasets.length) {
@@ -970,7 +982,7 @@ const calculateChart = (inputValues) => {
       //   chart.data.datasets[1].data.push(null)
       //   continue;
       // }
-      const damage = hero.getDamage(selected);
+      const damage = hero.getDamage(selected, soulburn);
       const finalDam = displayDmg(damage, damageToUse);
   
       chart.data.datasets[spdDataIndex].data.push(finalDam);

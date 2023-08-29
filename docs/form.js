@@ -298,7 +298,7 @@ const elements = {
       if (currentHero.hp) {
         return currentHero.getHP();
       }
-      return Number(document.getElementById('caster-max-hp').value) * (max_hp_artifacts.includes(currentArtifact?.id) ? artifacts[currentArtifact.id].maxHP : 1);
+      return Number(document.getElementById('caster-max-hp').value) * (artifacts[currentArtifact.id]?.maxHP ? artifacts[currentArtifact.id]?.maxHP : 1);
     }
   },
   caster_hp_pc: {
@@ -1238,7 +1238,13 @@ buildInitialForm = () => {
           const skill = heroes[currentHero.id].skills[id];
           // use != to also catch null
           if (skill.rate != undefined) {
-            $(chartSkillSelector).append(`<option value="${id}" data-content="<span>${skill.name ? skill.name : skillLabel(id)}</span>">${skill.name ? skill.name : skillLabel(id)}</option>`);
+            skillText = skill.name ? skill.name : skillLabel(id);
+            $(chartSkillSelector).append(`<option value="${id}" data-content="<span>${skillText}</span>">${skillText}</option>`);
+          }
+
+          if (skill.soulburn) {
+            skillText = skill.name ? skill.name : skillLabel(id, true);
+            $(chartSkillSelector).append(`<option value="${id}_soulburn" data-content="<span>${skillText}</span>">${skillText}</option>`);
           }
         }));
         $(chartSkillSelector).selectedIndex = 0;
