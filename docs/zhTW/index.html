@@ -554,6 +554,34 @@
         <div id="damage-block" class="initial-hide fade-in">
             <div id="damage-chart-container" style="display: none">
                 <select id="chart-skill" name="chart-skill" class="form-control custom-select selectpicker" data-size="12"></select>
+                <span class="hit-type-radio">
+                    <b>擊類型: </b>
+                    <!-- The onclicks are on the input and label so clicking the padding has no effect -->
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="hitType" id="crit-hit" onclick="setChartHitType('crit')" checked>
+                        <label class="form-check-label" for="crit-hit" onclick="setChartHitType('crit')">
+                            <b>暴擊</b>
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="hitType" id="crush-hit" onclick="setChartHitType('crush')">
+                        <label class="form-check-label" for="crush-hit" onclick="setChartHitType('crush')">
+                            <b>強擊</b>
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="hitType" id="normal-hit" onclick="setChartHitType('normal')">
+                        <label class="form-check-label" for="normal-hit" onclick="setChartHitType('normal')">
+                            <b>普通</b>
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="hitType" id="miss-hit" onclick="setChartHitType('miss')">
+                        <label class="form-check-label" for="miss-hit" onclick="setChartHitType('miss')">
+                            <b>閃避</b>
+                        </label>
+                    </div>
+                </span>
                 <canvas id="damage-chart"></canvas>
                 <br>
             </div>
