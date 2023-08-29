@@ -2044,6 +2044,7 @@ const heroes = {
     classType: classType.warrior,
     baseAtk: 1144,
     baseHP: 4895,
+    baseDef: 543,
     form: [elements.caster_max_hp, elements.skill_tree_completed],
     skills: {
       s1: {
@@ -2182,6 +2183,8 @@ const heroes = {
     element: element.ice,
     classType: classType.warrior,
     baseAtk: 1177,
+    baseHP: 5542,
+    baseDef: 553,
     form: [elements.target_magic_nailed],
     skills: {
       s1: {
@@ -2215,6 +2218,7 @@ const heroes = {
     classType: classType.warrior,
     baseAtk: 966,
     baseHP: 7323,
+    baseDef: 657,
     form: [elements.caster_max_hp, elements.caster_full_focus],
     skills: {
       s1: {
@@ -2274,6 +2278,7 @@ const heroes = {
     classType: classType.warrior,
     baseAtk: 1144,
     baseHP: 4895,
+    baseDef: 543,
     form: [elements.caster_max_hp],
     dot: [dot.bleed],
     skills: {
@@ -2311,6 +2316,8 @@ const heroes = {
     element: element.earth,
     classType: classType.thief,
     baseAtk: 1029,
+    baseHP: 5097,
+    baseDef: 473,
     form: [elements.caster_speed, elements.exclusive_equipment_3],
     skills: {
       s1: {
@@ -2340,6 +2347,8 @@ const heroes = {
     element: element.ice,
     classType: classType.warrior,
     baseAtk: 1252,
+    baseHP: 5219,
+    baseDef: 564,
     form: [elements.caster_enrage, elements.exclusive_equipment_3],
     dot: [dot.bleed],
     skills: {
@@ -2373,6 +2382,8 @@ const heroes = {
     element: element.dark,
     classType: classType.thief,
     baseAtk: 1228,
+    baseHP: 6266,
+    baseDef: 473,
     form: [elements.target_hp_pc, elements.caster_perception],
     skills: {
       s1: {
@@ -2404,6 +2415,8 @@ const heroes = {
     element: element.ice,
     classType: classType.thief,
     baseAtk: 1138,
+    baseHP: 5871,
+    baseDef: 462,
     form: [elements.target_bleed_detonate, elements.target_bomb_detonate],
     dot: [dot.bleed, dot.bomb],
     skills: {
@@ -2434,6 +2447,8 @@ const heroes = {
     element: element.dark,
     classType: classType.warrior,
     baseAtk: 1144,
+    baseHP: 4895,
+    baseDef: 543,
     form: [elements.target_max_hp, elements.target_hp_pc, elements.attack_skill_stack_5],
     atkUp: () => {
       let boost = 0.1;
@@ -2470,6 +2485,8 @@ const heroes = {
     element: element.earth,
     classType: classType.ranger,
     baseAtk: 1182,
+    baseHP: 5299,
+    baseDef: 571,
     skills: {
       s1: {
         rate: 1,
@@ -2491,6 +2508,8 @@ const heroes = {
     classType: classType.ranger,
     form: [elements.target_attack],
     baseAtk: 1327,
+    baseHP: 5138,
+    baseDef: 582,
     skills: {
       s1: {
         rate: 1,
@@ -2527,6 +2546,8 @@ const heroes = {
     element: element.light,
     classType: classType.warrior,
     baseAtk: 885,
+    baseHP: 6149,
+    baseDef: 613,
     skills: {
       s1: {
         rate: 1.2,
@@ -2542,6 +2563,7 @@ const heroes = {
     classType: classType.warrior,
     baseAtk: 903,
     baseDef: 630,
+    baseHP: 6635,
     form: [elements.caster_defense, elements.caster_enrage],
     skills: {
       s1: {
@@ -2569,6 +2591,8 @@ const heroes = {
     element: element.dark,
     classType: classType.thief,
     baseAtk: 1027,
+    baseHP: 5299,
+    baseDef: 469,
     skills: {
       s1: {
         rate: 1,
@@ -2651,6 +2675,7 @@ const heroes = {
     classType: classType.warrior,
     baseAtk: 966,
     baseHP: 7323,
+    baseDef: 657,
     form: [elements.caster_max_hp],
     skills: {
       s1: {
@@ -2681,6 +2706,8 @@ const heroes = {
     element: element.dark,
     classType: classType.soul_weaver,
     baseAtk: 621,
+    baseHP: 6034,
+    baseDef: 775,
     form: [elements.target_injuries],
     skills: {
       s1: {
@@ -2704,6 +2731,8 @@ const heroes = {
     element: element.light,
     classType: classType.soul_weaver,
     baseAtk: 948,
+    baseHP: 4370,
+    baseDef: 652,
     skills: {
       s1: {
         rate: 1.2,
@@ -2720,6 +2749,7 @@ const heroes = {
     form: [elements.caster_defense],
     baseAtk: 975,
     baseDef: 652,
+    baseHP: 7054,
     skills: {
       s1: {
         defenseScaling: true,
@@ -2746,6 +2776,8 @@ const heroes = {
     element: element.earth,
     classType: classType.soul_weaver,
     baseAtk: 621,
+    baseHP: 6034,
+    baseDef: 775,
     skills: {
       s1: {
         rate: 1,
@@ -2760,6 +2792,8 @@ const heroes = {
     element: element.ice,
     classType: classType.soul_weaver,
     baseAtk: 649,
+    baseHP: 5254,
+    baseDef: 694,
     skills: {
       s1: {
         rate: 1,
@@ -2774,6 +2808,8 @@ const heroes = {
     element: element.fire,
     classType: classType.warrior,
     baseAtk: 957,
+    baseHP: 5057,
+    baseDef: 592,
     dot: [dot.bleed, dot.burn],
     skills: {
       s1: {
@@ -2795,6 +2831,8 @@ const heroes = {
     element: element.ice,
     classType: classType.mage,
     baseAtk: 1039,
+    baseHP: 5299,
+    baseDef: 673,
     form: [elements.target_has_debuff],
     skills: {
       s1: {
@@ -2825,6 +2863,8 @@ const heroes = {
     element: element.earth,
     classType: classType.mage,
     baseAtk: 921,
+    baseHP: 4855,
+    baseDef: 631,
     form: [elements.target_max_hp, elements.target_has_sleep],
     skills: {
       s1: {
@@ -2853,6 +2893,8 @@ const heroes = {
     element: element.ice,
     classType: classType.mage,
     baseAtk: 957,
+    baseHP: 5016,
+    baseDef: 645,
     barrier: (hero) => hero.getAtk(),
     skills: {
       s1: {
@@ -2874,6 +2916,8 @@ const heroes = {
     element: element.light,
     classType: classType.soul_weaver,
     baseAtk: 540,
+    baseHP: 5319,
+    baseDef: 705,
     skills: {
       s1: {
         rate: 1,
@@ -2913,6 +2957,8 @@ const heroes = {
     element: element.ice,
     classType: classType.mage,
     baseAtk: 1255,
+    baseHP: 5016,
+    baseDef: 652,
     skills: {
       s1: {
         rate: 1,
@@ -2940,6 +2986,7 @@ const heroes = {
     classType: classType.warrior,
     baseAtk: 984,
     baseHP: 6266,
+    baseDef: 637,
     form: [elements.caster_max_hp, elements.attack_skill_stack_3],
     barrier: () => {
       const scale = [0, 0.1, 0, 0.15, 0];
@@ -2989,6 +3036,8 @@ const heroes = {
     element: element.ice,
     classType: classType.soul_weaver,
     baseAtk: 649,
+    baseHP: 5254,
+    baseDef: 694,
     skills: {
       s1: {
         rate: 1,
@@ -3010,6 +3059,8 @@ const heroes = {
     classType: classType.ranger,
     form: [elements.caster_speed, elements.caster_perception, elements.target_speed],
     baseAtk: 1283,
+    baseHP: 4976,
+    baseDef: 536,
     skills: {
       s1: {
         spdScaling: true,
@@ -3044,6 +3095,8 @@ const heroes = {
     element: element.fire,
     classType: classType.ranger,
     baseAtk: 1003,
+    baseHP: 5704,
+    baseDef: 585,
     form: [elements.target_nb_debuff],
     skills: {
       s1: {
@@ -3073,6 +3126,8 @@ const heroes = {
     element: element.light,
     classType: classType.soul_weaver,
     baseAtk: 540,
+    baseHP: 4900,
+    baseDef: 729,
     skills: {
       s1: {
         rate: 0.9,
@@ -3093,6 +3148,8 @@ const heroes = {
     element: element.ice,
     classType: classType.soul_weaver,
     baseAtk: 649,
+    baseHP: 5254,
+    baseDef: 694,
     form: [elements.caster_max_hp],
     barrier: () => elements.caster_max_hp.value() * 0.15,
     skills: {
@@ -3109,6 +3166,8 @@ const heroes = {
     element: element.ice,
     classType: classType.warrior,
     baseAtk: 1019,
+    baseHP: 5738,
+    baseDef: 571,
     form: [elements.target_hp_pc],
     dot: [dot.bleed],
     skills: {
@@ -3134,6 +3193,7 @@ const heroes = {
     classType: classType.thief,
     baseAtk: 1228,
     baseHP: 6266,
+    baseDef: 473,
     form: [elements.caster_max_hp, elements.target_max_hp],
     barrier: (hero) => hero.getAtk() * 1.2,
     skills: {
@@ -3166,6 +3226,8 @@ const heroes = {
     element: element.ice,
     classType: classType.mage,
     baseAtk: 1039,
+    baseHP: 5299,
+    baseDef: 673,
     form: [elements.target_has_provoke, elements.target_max_hp],
     skills: {
       s1: {
@@ -3195,6 +3257,8 @@ const heroes = {
     element: element.light,
     classType: classType.ranger,
     baseAtk: 1182,
+    baseHP: 5299,
+    baseDef: 571,
     skills: {
       s1: {
         rate: 1,
@@ -3306,6 +3370,8 @@ const heroes = {
     element: element.ice,
     classType: classType.ranger,
     baseAtk: 1003,
+    baseHP: 5704,
+    baseDef: 585,
     skills: {
       s1: {
         rate: 1,
@@ -3320,6 +3386,8 @@ const heroes = {
     element: element.light,
     classType: classType.warrior,
     baseAtk: 957,
+    baseHP: 5057,
+    baseDef: 592,
     skills: {
       s1: {
         rate: 1,
@@ -3348,6 +3416,8 @@ const heroes = {
     element: element.ice,
     classType: classType.ranger,
     baseAtk: 1068,
+    baseHP: 5650,
+    baseDef: 536,
     dot: [dot.burn],
     skills: {
       s1: {
@@ -3371,6 +3441,7 @@ const heroes = {
     classType: classType.warrior,
     baseAtk: 903,
     baseHP: 6635,
+    baseDef: 630,
     form: [elements.caster_max_hp],
     skills: {
       s1: {
@@ -3398,6 +3469,8 @@ const heroes = {
     element: element.earth,
     classType: classType.ranger,
     baseAtk: 920,
+    baseHP: 4855,
+    baseDef: 525,
     skills: {
       s1: {
         rate: 1,
@@ -3420,6 +3493,8 @@ const heroes = {
     classType: classType.mage,
     form: [elements.caster_has_debuff],
     baseAtk: 1199,
+    baseHP: 4491,
+    baseDef: 613,
     atkUp: () => {
       if (!elements.caster_has_debuff.value()) return 1;
 
@@ -3454,6 +3529,8 @@ const heroes = {
     element: element.fire,
     classType: classType.ranger,
     baseAtk: 1005,
+    baseHP: 4693,
+    baseDef: 523,
     skills: {
       s1: {
         rate: 1,
@@ -3474,6 +3551,8 @@ const heroes = {
     element: element.dark,
     classType: classType.warrior,
     baseAtk: 1138,
+    baseHP: 5421,
+    baseDef: 536,
     form: [elements.dual_attack_stack_5, elements.exclusive_equipment_1],
     barrier: (hero) => hero.getAtk() * 0.5,
     atkUp: () => 1 + elements.dual_attack_stack_5.value() * 0.15,
@@ -3493,6 +3572,8 @@ const heroes = {
     element: element.light,
     classType: classType.mage,
     baseAtk: 1252,
+    baseHP: 4612,
+    baseDef: 627,
     barrier: (hero) => hero.getAtk() * 0.6,
     skills: {
       s1: {
@@ -3520,6 +3601,8 @@ const heroes = {
     element: element.light,
     classType: classType.warrior,
     baseAtk: 1426,
+    baseHP: 5517,
+    baseDef: 583,
     dot: [dot.bleed],
     innateAtkUp: () => {
       let boost = 0.5;
@@ -3555,6 +3638,8 @@ const heroes = {
     element: element.fire,
     classType: classType.thief,
     baseAtk: 1081,
+    baseHP: 4572,
+    baseDef: 494,
     form: [elements.caster_speed],
     skills: {
       s1: {
@@ -3616,6 +3701,8 @@ const heroes = {
     element: element.fire,
     classType: classType.thief,
     baseAtk: 1089,
+    baseHP: 5380,
+    baseDef: 511,
     form: [elements.nb_targets, elements.target_bleed_detonate],
     dot: [dot.bleed],
     skills: {
@@ -3654,6 +3741,8 @@ const heroes = {
     element: element.fire,
     classType: classType.soul_weaver,
     baseAtk: 762,
+    baseHP: 4450,
+    baseDef: 662,
     skills: {
       s1: {
         rate: 1,
@@ -3698,6 +3787,8 @@ const heroes = {
     element: element.earth,
     classType: classType.warrior,
     baseAtk: 1000,
+    baseHP: 4895,
+    baseDef: 518,
     skills: {
       s1: {
         rate: 1,
@@ -3718,6 +3809,8 @@ const heroes = {
     element: element.fire,
     classType: classType.warrior,
     baseAtk: 1119,
+    baseHP: 6266,
+    baseDef: 627,
     dot: [dot.burn],
     skills: {
       s1: {
@@ -3739,6 +3832,8 @@ const heroes = {
     element: element.fire,
     classType: classType.thief,
     baseAtk: 1081,
+    baseHP: 4572,
+    baseDef: 494,
     form: [elements.skill_tree_completed],
     skills: {
       s1: {
@@ -3767,6 +3862,8 @@ const heroes = {
     element: element.dark,
     classType: classType.mage,
     baseAtk: 930,
+    baseHP: 4572,
+    baseDef: 585,
     skills: {
       s1: {
         rate: 1,
@@ -3791,6 +3888,7 @@ const heroes = {
     //       " additional damage of this kind has 0.7 def pen due to other heroes' additional damage penetration similarly being absent in datamines.",
     baseAtk: 1119,
     baseHP: 6226,
+    baseDef: 627,
     form: [elements.caster_has_buff, elements.caster_max_hp, elements.target_max_hp],
     barrier: (hero) => hero.getAtk() * 0.45,
     innateAtkUp: () => {
@@ -3871,6 +3969,8 @@ const heroes = {
     element: element.ice,
     classType: classType.ranger,
     baseAtk: 1081,
+    baseHP: 4450,
+    baseDef: 504,
     skills: {
       s1: {
         rate: 1,
@@ -3965,6 +4065,8 @@ const heroes = {
     element: element.dark,
     classType: classType.warrior,
     baseAtk: 1119,
+    baseHP: 6091,
+    baseDef: 594,
     form: [elements.target_burn_detonate],
     dot: [dot.burn],
     skills: {
@@ -3989,6 +4091,8 @@ const heroes = {
     classType: classType.soul_weaver,
     form: [elements.caster_max_hp],
     baseAtk: 576,
+    baseHP: 5165,
+    baseDef: 767,
     barrierSkills: ['S2', 'S3'],
     barrier: () => {
       const scale = [0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.1];
@@ -4019,6 +4123,8 @@ const heroes = {
     element: element.earth,
     classType: classType.ranger,
     baseAtk: 1158,
+    baseHP: 6002,
+    baseDef: 553,
     skills: {
       s1: {
         soulburn: true,
@@ -4041,6 +4147,8 @@ const heroes = {
     classType: classType.warrior,
     form: [elements.target_has_debuff],
     baseAtk: 1228,
+    baseHP: 5784,
+    baseDef: 553,
     skills: {
       s1: {
         rate: 0.75,
@@ -4073,6 +4181,8 @@ const heroes = {
     classType: classType.warrior,
     form: [elements.target_has_debuff],
     baseAtk: 1228,
+    baseHP: 5784,
+    baseDef: 553,
     skills: {
       s1: {
         rate: 0.75,
@@ -4104,6 +4214,8 @@ const heroes = {
     classType: classType.warrior,
     form: [elements.caster_enrage],
     baseAtk: 1144,
+    baseHP: 4895,
+    baseDef: 543,
     skills: {
       s1: {
         rate: 1,
@@ -4127,6 +4239,8 @@ const heroes = {
     element: element.earth,
     classType: classType.soul_weaver,
     baseAtk: 804,
+    baseHP: 3925,
+    baseDef: 599,
     skills: {
       s1: {
         rate: 1,
@@ -4147,6 +4261,8 @@ const heroes = {
     element: element.ice,
     classType: classType.mage,
     baseAtk: 1063,
+    baseHP: 4491,
+    baseDef: 599,
     skills: {
       s1: {
         rate: 1,
@@ -4191,6 +4307,8 @@ const heroes = {
     element: element.light,
     classType: classType.warrior,
     baseAtk: 1039,
+    baseHP: 5340,
+    baseDef: 617,
     form: [elements.nb_targets],
     skills: {
       s1: {
@@ -4220,6 +4338,8 @@ const heroes = {
     element: element.fire,
     classType: classType.thief,
     baseAtk: 848,
+    baseHP: 4289,
+    baseDef: 494,
     skills: {
       s1: {
         rate: 1,
@@ -4235,6 +4355,8 @@ const heroes = {
     classType: classType.warrior,
     form: [elements.caster_perception],
     baseAtk: 1000,
+    baseHP: 4895,
+    baseDef: 518,
     skills: {
       s1: {
         rate: 1,
@@ -4256,6 +4378,8 @@ const heroes = {
     classType: classType.ranger,
     form: [elements.caster_speed],
     baseAtk: 1182,
+    baseHP: 5299,
+    baseDef: 571,
     skills: {
       s1: {
         spdScaling: true,
@@ -4279,6 +4403,8 @@ const heroes = {
     element: element.ice,
     classType: classType.thief,
     baseAtk: 1188,
+    baseHP: 4855,
+    baseDef: 508,
     skills: {
       s1: {
         rate: 1,
@@ -4307,6 +4433,8 @@ const heroes = {
     element: element.fire,
     classType: classType.mage,
     baseAtk: 1306,
+    baseHP: 4248,
+    baseDef: 652,
     form: [elements.target_speed, elements.caster_speed, elements.exclusive_equipment_3],
     skills: {
       s1: {
@@ -4344,6 +4472,8 @@ const heroes = {
     element: element.fire,
     classType: classType.thief,
     baseAtk: 1119,
+    baseHP: 5340,
+    baseDef: 483,
     form: [elements.caster_hp_pc, elements.exclusive_equipment_1, elements.exclusive_equipment_2],
     skills: {
       s1: {
@@ -4373,6 +4503,7 @@ const heroes = {
     classType: classType.warrior,
     baseAtk: 966,
     baseHP: 7323,
+    baseDef: 657,
     form: [elements.caster_max_hp],
     dot: [dot.burn],
     skills: {
@@ -4410,6 +4541,8 @@ const heroes = {
     element: element.fire,
     classType: classType.thief,
     baseAtk: 957,
+    baseHP: 4653,
+    baseDef: 515,
     form: [elements.target_has_debuff, elements.caster_speed],
     dot: [dot.bleed],
     skills: {
@@ -4445,6 +4578,8 @@ const heroes = {
     element: element.fire,
     classType: classType.warrior,
     baseAtk: 1119,
+    baseHP: 4653,
+    baseDef: 515,
     skills: {
       s1: {
         rate: 1,
@@ -4495,6 +4630,8 @@ const heroes = {
     element: element.earth,
     classType: classType.ranger,
     baseAtk: 857,
+    baseHP: 5057,
+    baseDef: 543,
     skills: {
       s1: {
         rate: 1,
@@ -4515,6 +4652,8 @@ const heroes = {
     element: element.ice,
     classType: classType.thief,
     baseAtk: 1283,
+    baseHP: 5138,
+    baseDef: 522,
     barrier: (hero) => hero.getAtk() * 0.65,
     form: [elements.target_has_buff, elements.caster_stealth, elements.caster_hp_pc, elements.exclusive_equipment_2],
     skills: {
@@ -4594,6 +4733,7 @@ const heroes = {
     classType: classType.warrior,
     baseAtk: 957,
     baseHP: 5057,
+    baseDef: 592,
     form: [elements.caster_max_hp],
     skills: {
       s1: {
@@ -4621,6 +4761,7 @@ const heroes = {
     classType: classType.soul_weaver,
     baseAtk: 576,
     baseHP: 5700,
+    baseDef: 743,
     form: [elements.caster_max_hp],
     barrier: () => elements.caster_max_hp.value() * 0.14,
     barrierEnhance: 's3',
@@ -4703,6 +4844,8 @@ const heroes = {
     element: element.earth,
     classType: classType.ranger,
     baseAtk: 1158,
+    baseHP: 6002,
+    baseDef: 553,
     form: [elements.caster_full_fighting_spirit, elements.attack_skill_stack_3],
     atkUp: () => {
       let boost = 0.15;
@@ -4736,6 +4879,8 @@ const heroes = {
     element: element.light,
     classType: classType.thief,
     baseAtk: 1029,
+    baseHP: 5097,
+    baseDef: 473,
     barrier: (hero) => hero.getAtk() * 0.65,
     form: [elements.caster_speed, elements.target_max_hp, elements.caster_has_neo_phantom_sword],
     skills: {
@@ -4844,6 +4989,8 @@ const heroes = {
     element: element.ice,
     classType: classType.warrior,
     baseAtk: 951,
+    baseHP: 5517,
+    baseDef: 583,
     form: [elements.target_hp_pc],
     skills: {
       s1: {
@@ -4868,6 +5015,8 @@ const heroes = {
     element: element.earth,
     classType: classType.ranger,
     baseAtk: 930,
+    baseHP: 5380,
+    baseDef: 564,
     skills: {
       s1: {
         rate: 0.9,
@@ -4895,6 +5044,7 @@ const heroes = {
     classType: classType.warrior,
     baseAtk: 885,
     baseHP: 6149,
+    baseDef: 613,
     form: [elements.caster_max_hp],
     skills: {
       s1: {
@@ -4928,6 +5078,8 @@ const heroes = {
     element: element.fire,
     classType: classType.ranger,
     baseAtk: 1283,
+    baseHP: 4976,
+    baseDef: 536,
     skills: {
       s1: {
         rate: 1,
@@ -5007,6 +5159,8 @@ const heroes = {
     element: element.earth,
     classType: classType.warrior,
     baseAtk: 1119,
+    baseHP: 6266,
+    baseDef: 627,
     form: [elements.exclusive_equipment_1, elements.exclusive_equipment_3],
     dot: [dot.bleed],
     skills: {
@@ -5038,6 +5192,8 @@ const heroes = {
     element: element.earth,
     classType: classType.ranger,
     baseAtk: 1005,
+    baseHP: 4693,
+    baseDef: 532,
     skills: {
       s1: {
         rate: 1,
@@ -5059,6 +5215,7 @@ const heroes = {
     classType: classType.warrior,
     baseAtk: 966,
     baseDef: 668,
+    baseHP: 5663,
     form: [elements.caster_defense],
     skills: {
       s1: {
@@ -5088,6 +5245,8 @@ const heroes = {
     element: element.light,
     classType: classType.warrior,
     baseAtk: 1119,
+    baseHP: 6266,
+    baseDef: 627,
     skills: {
       s1: {
         rate: 1.2,
@@ -5119,6 +5278,8 @@ const heroes = {
     element: element.light,
     classType: classType.warrior,
     baseAtk: 1119,
+    baseHP: 6266,
+    baseDef: 627,
     skills: {
       s1: {
         rate: 1.2,
@@ -5151,6 +5312,8 @@ const heroes = {
     classType: classType.warrior,
     form: [elements.caster_has_buff, elements.attack_skill_stack_5],
     baseAtk: 1208,
+    baseHP: 6488,
+    baseDef: 616,
     atkUp: () => 1 + elements.attack_skill_stack_5.value() * 0.1,
     skills: {
       s1: {
@@ -5184,6 +5347,8 @@ const heroes = {
     element: element.dark,
     classType: classType.warrior,
     baseAtk: 1144,
+    baseHP: 4895,
+    baseDef: 543,
     form: [elements.target_max_hp, elements.target_hp_pc, elements.attack_skill_stack_5],
     atkUp: () => {
       let boost = 0.1;
@@ -5220,6 +5385,8 @@ const heroes = {
     element: element.earth,
     classType: classType.soul_weaver,
     baseAtk: 603,
+    baseHP: 4945,
+    baseDef: 662,
     skills: {
       s1: {
         rate: 1,
@@ -5234,6 +5401,8 @@ const heroes = {
     element: element.ice,
     classType: classType.ranger,
     baseAtk: 993,
+    baseHP: 6002,
+    baseDef: 611,
     skills: {
       s1: {
         rate: 1,
@@ -5254,6 +5423,8 @@ const heroes = {
     element: element.earth,
     classType: classType.soul_weaver,
     baseAtk: 558,
+    baseHP: 4733,
+    baseDef: 661,
     form: [elements.caster_max_hp],
     barrier: () => elements.caster_max_hp.value() * 0.2,
     skills: {
@@ -5276,6 +5447,8 @@ const heroes = {
     element: element.earth,
     classType: classType.mage,
     baseAtk: 1412,
+    baseHP: 4248,
+    baseDef: 645,
     form: [elements.caster_invincible, elements.exclusive_equipment_1, elements.exclusive_equipment_3],
     skills: {
       s1: {
@@ -5306,6 +5479,8 @@ const heroes = {
     element: element.ice,
     classType: classType.mage,
     baseAtk: 1316,
+    baseHP: 4777,
+    baseDef: 715,
     form: [elements.target_hp_pc, elements.s3_stack],
     barrier: (hero) => hero.getAtk() * (1 + elements.s3_stack.value() * 0.2) * 0.375,
     barrierEnhance: 's2',
@@ -5334,6 +5509,8 @@ const heroes = {
     element: element.ice,
     classType: classType.warrior,
     baseAtk: 1119,
+    baseHP: 6266,
+    baseDef: 627,
     form: [elements.caster_hp_above_50pc, elements.nb_hits],
     atkUp: () => {
       if (!elements.caster_hp_above_50pc.value()) {
@@ -5373,6 +5550,8 @@ const heroes = {
     element: element.light,
     classType: classType.soul_weaver,
     baseAtk: 540,
+    baseHP: 5319,
+    baseDef: 705,
     skills: {
       s1: {
         rate: 1,
@@ -5387,6 +5566,8 @@ const heroes = {
     element: element.light,
     classType: classType.soul_weaver,
     baseAtk: 640,
+    baseHP: 5340,
+    baseDef: 720,
     skills: {
       s1: {
         rate: 1,
@@ -5401,6 +5582,8 @@ const heroes = {
     element: element.dark,
     classType: classType.warrior,
     baseAtk: 1359,
+    baseHP: 5542,
+    baseDef: 585,
     form: [elements.caster_hp_pc],
     skills: {
       s1: {
@@ -5438,6 +5621,8 @@ const heroes = {
     element: element.fire,
     classType: classType.soul_weaver,
     baseAtk: 762,
+    baseHP: 4450,
+    baseDef: 662,
     skills: {
       s1: {
         rate: 1,
@@ -5482,6 +5667,7 @@ const heroes = {
     classType: classType.warrior,
     baseAtk: 966,
     baseHP: 7323,
+    baseDef: 657,
     form: [elements.caster_max_hp],
     skills: {
       s1: {
@@ -5509,6 +5695,8 @@ const heroes = {
     element: element.fire,
     classType: classType.warrior,
     baseAtk: 951,
+    baseHP: 5517,
+    baseDef: 583,
     skills: {
       s1: {
         rate: 1,
@@ -5529,6 +5717,8 @@ const heroes = {
     element: element.fire,
     classType: classType.mage,
     baseAtk: 1412,
+    baseHP: 4248,
+    baseDef: 645,
     form: [elements.caster_hp_pc, elements.exclusive_equipment_2],
     skills: {
       s1: {
@@ -5591,6 +5781,8 @@ const heroes = {
     element: element.fire,
     classType: classType.mage,
     baseAtk: 1187,
+    baseHP: 4491,
+    baseDef: 627,
     form: [elements.nb_targets, elements.target_hp_pc, elements.caster_immense_power],
     atkUp: () => elements.caster_immense_power.value() ? 1.15 : 1,
     skills: {
@@ -5647,6 +5839,8 @@ const heroes = {
     element: element.earth,
     classType: classType.warrior,
     baseAtk: 1000,
+    baseHP: 4895,
+    baseDef: 518,
     form: [elements.skill_tree_completed],
     skills: {
       s1: {
@@ -5672,6 +5866,8 @@ const heroes = {
     element: element.earth,
     classType: classType.thief,
     baseAtk: 919,
+    baseHP: 5259,
+    baseDef: 525,
     skills: {
       s1: {
         rate: 1,
@@ -5693,6 +5889,8 @@ const heroes = {
     element: element.fire,
     classType: classType.mage,
     baseAtk: 1359,
+    baseHP: 4895,
+    baseDef: 652,
     skills: {
       s1: {
         rate: 1.1,
@@ -5719,6 +5917,8 @@ const heroes = {
     element: element.light,
     classType: classType.thief,
     baseAtk: 885,
+    baseHP: 4410,
+    baseDef: 501,
     form: [elements.caster_speed],
     skills: {
       s1: {
@@ -5747,6 +5947,8 @@ const heroes = {
     element: element.ice,
     classType: classType.mage,
     baseAtk: 1244,
+    baseHP: 3925,
+    baseDef: 606,
     skills: {
       s1: {
         rate: 1,
@@ -5774,6 +5976,8 @@ const heroes = {
     element: element.ice,
     classType: classType.soul_weaver,
     baseAtk: 540,
+    baseHP: 4900,
+    baseDef: 729,
     skills: {
       s1: {
         rate: 1,
@@ -5788,6 +5992,8 @@ const heroes = {
     element: element.light,
     classType: classType.soul_weaver,
     baseAtk: 649,
+    baseHP: 4572,
+    baseDef: 631,
     form: [elements.caster_max_hp],
     barrier: () => elements.caster_max_hp.value() * 0.21,
     barrierEnhance: 's2',
@@ -5838,6 +6044,8 @@ const heroes = {
     element: element.earth,
     classType: classType.warrior,
     baseAtk: 1000,
+    baseHP: 4895,
+    baseDef: 518,
     form: [elements.caster_speed],
     skills: {
       s1: {
@@ -5865,6 +6073,8 @@ const heroes = {
     element: element.earth,
     classType: classType.warrior,
     baseAtk: 1039,
+    baseHP: 5340,
+    baseDef: 617,
     dot: [dot.bleed],
     skills: {
       s1: {
@@ -5920,6 +6130,8 @@ const heroes = {
     classType: classType.ranger,
     form: [elements.skill_tree_completed],
     baseAtk: 822,
+    baseHP: 4693,
+    baseDef: 561,
     skills: {
       s1: {
         rate: 1,
@@ -5942,6 +6154,8 @@ const heroes = {
     element: element.ice,
     classType: classType.thief,
     baseAtk: 1039,
+    baseHP: 5517,
+    baseDef: 452,
     dot: [dot.bleed],
     skills: {
       s1: {
@@ -6004,6 +6218,8 @@ const heroes = {
     element: element.fire,
     classType: classType.ranger,
     baseAtk: 920,
+    baseHP: 4855,
+    baseDef: 525,
     form: [elements.target_max_hp],
     skills: {
       s1: {
@@ -6028,6 +6244,8 @@ const heroes = {
     element: element.earth,
     classType: classType.soul_weaver,
     baseAtk: 649,
+    baseHP: 5254,
+    baseDef: 694,
     skills: {
       s1: {
         rate: 1,
@@ -6047,6 +6265,8 @@ const heroes = {
     element: element.dark,
     classType: classType.ranger,
     baseAtk: 1079,
+    baseHP: 5502,
+    baseDef: 564,
     form: [elements.target_has_barrier, elements.caster_speed],
     skills: {
       s1: {
@@ -6081,6 +6301,8 @@ const heroes = {
     element: element.earth,
     classType: classType.thief,
     baseAtk: 857,
+    baseHP: 4531,
+    baseDef: 483,
     form: [elements.caster_perception, elements.caster_speed, elements.target_speed],
     skills: {
       s1: {
@@ -6116,6 +6338,8 @@ const heroes = {
     element: element.dark,
     classType: classType.mage,
     baseAtk: 885,
+    baseHP: 4693,
+    baseDef: 617,
     skills: {
       s1: {
         rate: 1,
@@ -6136,6 +6360,8 @@ const heroes = {
     element: element.earth,
     classType: classType.ranger,
     baseAtk: 1283,
+    baseHP: 4976,
+    baseDef: 536,
     form: [elements.caster_speed],
     skills: {
       s1: {
@@ -6174,6 +6400,7 @@ const heroes = {
     classType: classType.ranger,
     baseAtk: 970,
     baseDef: 557,
+    baseHP: 5935,
     form: [elements.caster_defense, elements.caster_fury],
     skills: {
       s1: {
@@ -6210,6 +6437,8 @@ const heroes = {
     element: element.earth,
     classType: classType.mage,
     baseAtk: 921,
+    baseHP: 4855,
+    baseDef: 631,
     form: [elements.target_max_hp, elements.target_has_sleep],
     skills: {
       s1: {
@@ -6238,6 +6467,8 @@ const heroes = {
     element: element.ice,
     classType: classType.thief,
     baseAtk: 1075,
+    baseHP: 5562,
+    baseDef: 487,
     barrier: () => {
       let boost = 1.0;
       for (let i = 0; i < Number(document.getElementById('molagora-s3').value); i++) {
@@ -6268,6 +6499,8 @@ const heroes = {
     element: element.dark,
     classType: classType.thief,
     baseAtk: 1039,
+    baseHP: 5517,
+    baseDef: 452,
     form: [elements.attack_skill_stack_3],
     atkUp: () => 1 + elements.attack_skill_stack_3.value() * 0.15,
     skills: {
@@ -6291,6 +6524,8 @@ const heroes = {
     element: element.dark,
     classType: classType.ranger,
     baseAtk: 1182,
+    baseHP: 5299,
+    baseDef: 571,
     form: [elements.target_burn_detonate, elements.target_bomb_detonate],
     dot: [dot.burn, dot.bomb],
     skills: {
@@ -6317,6 +6552,8 @@ const heroes = {
     element: element.fire,
     classType: classType.mage,
     baseAtk: 1197,
+    baseHP: 4572,
+    baseDef: 683,
     skills: {
       s1: {
         rate: 1,
@@ -6344,6 +6581,7 @@ const heroes = {
     classType: classType.warrior,
     baseAtk: 1119,
     baseHP: 6091,
+    baseDef: 594,
     form: [elements.caster_max_hp],
     skills: {
       s1: {
@@ -6412,6 +6650,8 @@ const heroes = {
     element: element.earth,
     classType: classType.mage,
     baseAtk: 1556,
+    baseHP: 4572,
+    baseDef: 683,
     innateAtkUp: () => 0.3,
     skills: {
       s1: {
@@ -6433,6 +6673,8 @@ const heroes = {
     element: element.ice,
     classType: classType.thief,
     baseAtk: 1119,
+    baseHP: 5380,
+    baseDef: 483,
     form: [elements.caster_speed, elements.target_speed],
     skills: {
       s1: {
@@ -6496,6 +6738,8 @@ const heroes = {
     element: element.fire,
     classType: classType.warrior,
     baseAtk: 966,
+    baseHP: 7323,
+    baseDef: 657,
     form: [elements.attack_skill_stack_5],
     atkUp: () => 1 + elements.attack_skill_stack_5.value() * 0.15,
     skills: {
@@ -6520,6 +6764,8 @@ const heroes = {
     element: element.earth,
     classType: classType.soul_weaver,
     baseAtk: 694,
+    baseHP: 4855,
+    baseDef: 655,
     skills: {
       s1: {
         rate: 0.9,
@@ -6534,6 +6780,8 @@ const heroes = {
     element: element.ice,
     classType: classType.warrior,
     baseAtk: 1208,
+    baseHP: 6488,
+    baseDef: 616,
     skills: {
       s1: {
         rate: 0.95,
@@ -6560,6 +6808,8 @@ const heroes = {
     element: element.dark,
     classType: classType.thief,
     baseAtk: 1283,
+    baseHP: 5138,
+    baseDef: 522,
     skills: {
       s1: {
         rate: 1,
@@ -6582,6 +6832,8 @@ const heroes = {
     classType: classType.mage,
     form: [elements.attack_skill_stack_3],
     baseAtk: 1316,
+    baseHP: 4777,
+    baseDef: 715,
     skills: {
       s1: {
         rate: 1,
@@ -6608,6 +6860,8 @@ const heroes = {
     element: element.dark,
     classType: classType.soul_weaver,
     baseAtk: 842,
+    baseHP: 4046,
+    baseDef: 613,
     skills: {
       s1: {
         rate: 1,
@@ -6629,6 +6883,8 @@ const heroes = {
     element: element.fire,
     classType: classType.mage,
     baseAtk: 1039,
+    baseHP: 3925,
+    baseDef: 606,
     form: [elements.target_burn_detonate],
     dot: [dot.burn],
     barrier: (hero) => hero.getAtk() * 0.6,
@@ -6658,6 +6914,8 @@ const heroes = {
     element: element.earth,
     classType: classType.thief,
     baseAtk: 812,
+    baseHP: 4370,
+    baseDef: 462,
     form: [elements.caster_speed],
     skills: {
       s1: {
@@ -6685,6 +6943,8 @@ const heroes = {
     element: element.light,
     classType: classType.warrior,
     baseAtk: 951,
+    baseHP: 5517,
+    baseDef: 583,
     skills: {
       s1: {
         rate: 1,
@@ -6705,6 +6965,8 @@ const heroes = {
     element: element.ice,
     classType: classType.ranger,
     baseAtk: 822,
+    baseHP: 4693,
+    baseDef: 561,
     skills: {
       s1: {
         rate: 1,
@@ -6725,6 +6987,8 @@ const heroes = {
     element: element.earth,
     classType: classType.warrior,
     baseAtk: 1119,
+    baseHP: 6266,
+    baseDef: 627,
     form: [elements.allies_nb_buff],
     skills: {
       s1: {
@@ -6756,6 +7020,7 @@ const heroes = {
     classType: classType.soul_weaver,
     baseAtk: 594,
     baseHP: 5057,
+    baseDef: 691,
     form: [elements.caster_max_hp],
     skills: {
       s1: {
@@ -6783,6 +7048,8 @@ const heroes = {
     element: element.ice,
     classType: classType.ranger,
     baseAtk: 1003,
+    baseHP: 5704,
+    baseDef: 585,
     skills: {
       s1: {
         rate: 1.15,
@@ -6803,6 +7070,8 @@ const heroes = {
     element: element.dark,
     classType: classType.ranger,
     baseAtk: 1088,
+    baseHP: 5016,
+    baseDef: 553,
     form: [elements.target_has_debuff],
     dot: [dot.bomb],
     skills: {
@@ -6833,6 +7102,8 @@ const heroes = {
     element: element.earth,
     classType: classType.soul_weaver,
     baseAtk: 621,
+    baseHP: 5474,
+    baseDef: 802,
     form: [elements.caster_max_hp],
     barrierSkills: ['S1', 'S3'],
     barrier: () => {
@@ -6861,6 +7132,8 @@ const heroes = {
     element: element.ice,
     classType: classType.mage,
     baseAtk: 1109,
+    baseHP: 4329,
+    baseDef: 655,
     form: [elements.target_has_buff],
     skills: {
       s1: {
@@ -6890,6 +7163,8 @@ const heroes = {
     element: element.earth,
     classType: classType.thief,
     baseAtk: 812,
+    baseHP: 4370,
+    baseDef: 462,
     form: [elements.caster_speed],
     skills: {
       s1: {
@@ -6938,6 +7213,8 @@ const heroes = {
     element: element.fire,
     classType: classType.mage,
     baseAtk: 1412,
+    baseHP: 4248,
+    baseDef: 645,
     form: [elements.caster_has_flame_alchemist, elements.nb_targets],
     atkUp: () => elements.caster_has_flame_alchemist.value() ? 1.2 : 1,
     skills: {
@@ -6975,6 +7252,7 @@ const heroes = {
     classType: classType.soul_weaver,
     baseAtk: 621,
     baseHP: 5474,
+    baseDef: 802,
     form: [elements.caster_max_hp],
     barrier: () => elements.caster_max_hp.value() * 0.2,
     skills: {
@@ -6995,6 +7273,7 @@ const heroes = {
     classType: classType.mage,
     baseAtk: 1039,
     baseHP: 5299,
+    baseDef: 673,
     form: [elements.caster_max_hp, elements.caster_hp],
     skills: {
       s1: {
@@ -7026,6 +7305,8 @@ const heroes = {
     element: element.light,
     classType: classType.thief,
     baseAtk: 1081,
+    baseHP: 4572,
+    baseDef: 494,
     form: [elements.skill_tree_completed],
     skills: {
       s1: {
@@ -7055,6 +7336,8 @@ const heroes = {
     element: element.fire,
     classType: classType.ranger,
     baseAtk: 1068,
+    baseHP: 5650,
+    baseDef: 536,
     skills: {
       s1: {
         rate: 1,
@@ -7140,6 +7423,8 @@ const heroes = {
     classType: classType.mage,
     form: [elements.skill_tree_completed],
     baseAtk: 1063,
+    baseHP: 4491,
+    baseDef: 599,
     skills: {
       s1: {
         rate: 1,
@@ -7162,6 +7447,8 @@ const heroes = {
     element: element.dark,
     classType: classType.soul_weaver,
     baseAtk: 576,
+    baseHP: 5700,
+    baseDef: 743,
     skills: {
       s1: {
         rate: 1,
@@ -7180,6 +7467,7 @@ const heroes = {
     barrierEnhance: 's2',
     baseAtk: 649,
     baseHP: 5254,
+    baseDef: 694,
     skills: {
       s1: {
         hpScaling: true,
@@ -7201,6 +7489,8 @@ const heroes = {
     classType: classType.ranger,
     form: [elements.exclusive_equipment_2],
     baseAtk: 1182,
+    baseHP: 5299,
+    baseDef: 571,
     skills: {
       s1: {
         rate: 1,
@@ -7229,6 +7519,8 @@ const heroes = {
     element: element.ice,
     classType: classType.thief,
     baseAtk: 1081,
+    baseHP: 4572,
+    baseDef: 494,
     form: [elements.skill_tree_completed],
     skills: {
       s1: {
@@ -7260,6 +7552,8 @@ const heroes = {
     element: element.fire,
     classType: classType.mage,
     baseAtk: 1218,
+    baseHP: 4521,
+    baseDef: 683,
     dot: [dot.burn],
     skills: {
       s1: {
@@ -7288,6 +7582,8 @@ const heroes = {
     element: element.ice,
     classType: classType.thief,
     baseAtk: 1228,
+    baseHP: 6266,
+    baseDef: 473,
     form: [elements.target_hp_pc],
     skills: {
       s1: {
@@ -7397,6 +7693,8 @@ const heroes = {
     element: element.earth,
     classType: classType.soul_weaver,
     baseAtk: 640,
+    baseHP: 5340,
+    baseDef: 720,
     form: [elements.caster_max_hp],
     barrier: () => elements.caster_max_hp.value() * 0.1,
     barrierEnhance: 's2',
@@ -7423,6 +7721,8 @@ const heroes = {
     element: element.ice,
     classType: classType.warrior,
     baseAtk: 1228,
+    baseHP: 5784,
+    baseDef: 553,
     form: [elements.target_nb_debuff, elements.exclusive_equipment_1],
     dot: [dot.bleed],
     skills: {
@@ -7454,6 +7754,8 @@ const heroes = {
     element: element.earth,
     classType: classType.ranger,
     baseAtk: 1188,
+    baseHP: 4693,
+    baseDef: 518,
     form: [elements.caster_speed, elements.caster_nb_focus],
     skills: {
       s1: {
@@ -7478,6 +7780,8 @@ const heroes = {
     element: element.light,
     classType: classType.mage,
     baseAtk: 1197,
+    baseHP: 4572,
+    baseDef: 683,
     dot: [dot.burn],
     skills: {
       s1: {
@@ -7506,6 +7810,8 @@ const heroes = {
     element: element.dark,
     classType: classType.soul_weaver,
     baseAtk: 649,
+    baseHP: 4572,
+    baseDef: 631,
     skills: {
       s1: {
         rate: 1,
@@ -7520,6 +7826,8 @@ const heroes = {
     element: element.fire,
     classType: classType.warrior,
     baseAtk: 1177,
+    baseHP: 5542,
+    baseDef: 553,
     form: [elements.target_has_buff, elements.target_max_hp],
     skills: {
       s1: {
@@ -7555,6 +7863,8 @@ const heroes = {
     element: element.light,
     classType: classType.mage,
     baseAtk: 1039,
+    baseHP: 5299,
+    baseDef: 673,
     form: [elements.caster_max_hp],
     barrier: () => elements.caster_max_hp.value() * 0.25,
     skills: {
@@ -7585,6 +7895,8 @@ const heroes = {
     form: [elements.caster_max_hp],
     barrier: () => elements.caster_max_hp.value() * 0.08,
     baseAtk: 540,
+    baseHP: 4900,
+    baseDef: 729,
     skills: {
       s1: {
         rate: 1,
@@ -7599,6 +7911,8 @@ const heroes = {
     element: element.light,
     classType: classType.thief,
     baseAtk: 1228,
+    baseHP: 6266,
+    baseDef: 473,
     form: [elements.target_is_stunned],
     skills: {
       s1: {
@@ -7628,6 +7942,8 @@ const heroes = {
     element: element.dark,
     classType: classType.mage,
     baseAtk: 1197,
+    baseHP: 4572,
+    baseDef: 683,
     form: [elements.target_nb_debuff, elements.dead_people, elements.s3_on_cooldown],
     atkUp: () => {
       let buff = 0.07;
@@ -7661,6 +7977,8 @@ const heroes = {
     element: element.light,
     classType: classType.thief,
     baseAtk: 1158,
+    baseHP: 5016,
+    baseDef: 532,
     skills: {
       s1: {
         rate: 1,
@@ -7683,6 +8001,8 @@ const heroes = {
     element: element.dark,
     classType: classType.warrior,
     baseAtk: 1228,
+    baseHP: 5784,
+    baseDef: 553,
     form: [elements.nb_targets, elements.target_is_highest_max_hp, elements.target_attack],
     skills: {
       s1: {
@@ -7778,6 +8098,8 @@ const heroes = {
     element: element.ice,
     classType: classType.thief,
     baseAtk: 1081,
+    baseHP: 4572,
+    baseDef: 494,
     form: [elements.skill_tree_completed, elements.target_nb_debuff, elements.target_max_hp],
     atkUp: () => elements.skill_tree_completed.value() ? 1.03 : 1,
     skills: {
@@ -7817,6 +8139,8 @@ const heroes = {
     element: element.fire,
     classType: classType.ranger,
     baseAtk: 1203,
+    baseHP: 5704,
+    baseDef: 585,
     form: [elements.target_bomb_detonate],
     dot: [dot.bomb],
     innateAtkUp: () => {
@@ -7854,6 +8178,8 @@ const heroes = {
     element: element.fire,
     classType: classType.thief,
     baseAtk: 1010,
+    baseHP: 5097,
+    baseDef: 497,
     form: [elements.target_nb_bleed],
     dot: [dot.bleed],
     skills: {
@@ -7893,6 +8219,8 @@ const heroes = {
     },
     dot: [dot.burn],
     baseAtk: 1144,
+    baseHP: 4263,
+    baseDef: 652,
     skills: {
       s1: {
         rate: 1,
@@ -7916,6 +8244,8 @@ const heroes = {
     element: element.dark,
     classType: classType.thief,
     baseAtk: 1039,
+    baseHP: 5517,
+    baseDef: 452,
     form: [elements.caster_hp_pc, elements.target_hp_pc],
     skills: {
       s1: {
@@ -7949,6 +8279,8 @@ const heroes = {
     element: element.light,
     classType: classType.mage,
     baseAtk: 1359,
+    baseHP: 4895,
+    baseDef: 652,
     form: [elements.attack_skill_stack_3],
     atkUp: () => 1 + elements.attack_skill_stack_3.value() * 0.15,
     skills: {
@@ -7978,6 +8310,8 @@ const heroes = {
     element: element.ice,
     classType: classType.warrior,
     baseAtk: 1039,
+    baseHP: 5340,
+    baseDef: 617,
     form: [elements.caster_speed, elements.caster_enrage],
     skills: {
       s1: {
@@ -8014,6 +8348,8 @@ const heroes = {
     classType: classType.warrior,
     form: [elements.target_has_provoke],
     baseAtk: 1144,
+    baseHP: 4895,
+    baseDef: 543,
     skills: {
       s1: {
         rate: 1,
@@ -8038,6 +8374,8 @@ const heroes = {
     classType: classType.thief,
     barrier: (hero) => hero.getAtk() * 0.7,
     baseAtk: 903,
+    baseHP: 4895,
+    baseDef: 501,
     skills: {
       s1: {
         rate: 1,
@@ -8058,6 +8396,8 @@ const heroes = {
     element: element.fire,
     classType: classType.soul_weaver,
     baseAtk: 948,
+    baseHP: 4370,
+    baseDef: 652,
     skills: {
       s1: {
         rate: 1,
@@ -8071,6 +8411,8 @@ const heroes = {
     element: element.ice,
     classType: classType.warrior,
     baseAtk: 951,
+    baseHP: 5517,
+    baseDef: 583,
     skills: {
       s1: {
         rate: 1,
@@ -8121,6 +8463,8 @@ const heroes = {
     element: element.light,
     classType: classType.thief,
     baseAtk: 1010,
+    baseHP: 5097,
+    baseDef: 497,
     form: [elements.caster_hp_pc],
     dot: [dot.bleed],
     skills: {
@@ -8148,6 +8492,8 @@ const heroes = {
     element: element.fire,
     classType: classType.mage,
     baseAtk: 1359,
+    baseHP: 4895,
+    baseDef: 652,
     skills: {
       s1: {
         rate: 1.2,
@@ -8175,6 +8521,8 @@ const heroes = {
     element: element.fire,
     classType: classType.warrior,
     baseAtk: 839,
+    baseHP: 5517,
+    baseDef: 591,
     form: [elements.target_max_hp],
     skills: {
       s1: {
@@ -8199,6 +8547,8 @@ const heroes = {
     element: element.dark,
     classType: classType.mage,
     baseAtk: 1228,
+    baseHP: 4370,
+    baseDef: 662,
     form: [elements.caster_speed],
     skills: {
       s1: {
@@ -8246,6 +8596,8 @@ const heroes = {
     element: element.light,
     classType: classType.thief,
     baseAtk: 1228,
+    baseHP: 6266,
+    baseDef: 473,
     barrier: () => elements.caster_max_hp.value() * 0.12,
     form: [elements.target_hp_pc, elements.caster_enrage, elements.caster_max_hp],
     skills: {
@@ -8368,6 +8720,8 @@ const heroes = {
     element: element.earth,
     classType: classType.thief,
     baseAtk: 1081,
+    baseHP: 4572,
+    baseDef: 494,
     form: [elements.nb_targets, elements.skill_tree_completed],
     skills: {
       s1: {
@@ -8408,6 +8762,8 @@ const heroes = {
     element: element.earth,
     classType: classType.ranger,
     baseAtk: 920,
+    baseHP: 4855,
+    baseDef: 525,
     form: [elements.skill_tree_completed],
     skills: {
       s1: {
@@ -8437,6 +8793,8 @@ const heroes = {
     element: element.earth,
     classType: classType.thief,
     baseAtk: 1283,
+    baseHP: 5138,
+    baseDef: 522,
     form: [elements.caster_speed, elements.exclusive_equipment_2],
     skills: {
       s1: {
@@ -8503,6 +8861,8 @@ const heroes = {
     element: element.earth,
     classType: classType.thief,
     baseAtk: 1228,
+    baseHP: 6266,
+    baseDef: 473,
     form: [elements.caster_nb_focus, elements.caster_perception],
     skills: {
       s1: {
@@ -8526,6 +8886,8 @@ const heroes = {
     element: element.earth,
     classType: classType.mage,
     baseAtk: 1228,
+    baseHP: 4378,
+    baseDef: 662,
     skills: {
       s1: {
         rate: 1.2,
@@ -8561,6 +8923,8 @@ const heroes = {
     element: element.dark,
     classType: classType.ranger,
     baseAtk: 1005,
+    baseHP: 4693,
+    baseDef: 532,
     skills: {
       s1: {
         rate: 0.9,
@@ -8583,6 +8947,8 @@ const heroes = {
     element: element.light,
     classType: classType.ranger,
     baseAtk: 930,
+    baseHP: 5380,
+    baseDef: 564,
     skills: {
       s1: {
         rate: 1.2,
@@ -8609,6 +8975,8 @@ const heroes = {
     element: element.light,
     classType: classType.ranger,
     baseAtk: 970,
+    baseHP: 5935,
+    baseDef: 557,
     skills: {
       s1: {
         rate: 1,
@@ -8659,6 +9027,8 @@ const heroes = {
     element: element.earth,
     classType: classType.warrior,
     baseAtk: 1228,
+    baseHP: 5784,
+    baseDef: 553,
     form: [elements.exclusive_equipment_2, elements.target_silenced],
     skills: {
       s1: {
@@ -8749,6 +9119,8 @@ const heroes = {
     element: element.ice,
     classType: classType.ranger,
     baseAtk: 1158,
+    baseHP: 6002,
+    baseDef: 553,
     form: [elements.caster_speed, elements.nb_targets, elements.exclusive_equipment_3],
     skills: {
       s1: {
@@ -8793,6 +9165,8 @@ const heroes = {
     element: element.earth,
     classType: classType.warrior,
     baseAtk: 1177,
+    baseHP: 5542,
+    baseDef: 553,
     form: [elements.target_has_buff],
     skills: {
       s1: {
@@ -8817,6 +9191,8 @@ const heroes = {
     element: element.fire,
     classType: classType.mage,
     baseAtk: 1168,
+    baseHP: 3877,
+    baseDef: 666,
     form: [elements.skill_tree_completed, elements.target_has_buff],
     skills: {
       s1: {
@@ -8851,6 +9227,7 @@ const heroes = {
     classType: classType.mage,
     baseAtk: 1039,
     baseHP: 5299,
+    baseDef: 673,
     form: [elements.caster_max_hp, elements.non_attack_skill_stack_8],
     skills: {
       s1: {
@@ -8897,6 +9274,8 @@ const heroes = {
     element: element.ice,
     classType: classType.mage,
     baseAtk: 1159,
+    baseHP: 4733,
+    baseDef: 627,
     form: [elements.target_has_debuff],
     skills: {
       s1: {
@@ -8928,6 +9307,8 @@ const heroes = {
     classType: classType.mage,
     form: [elements.target_current_hp],
     baseAtk: 1255,
+    baseHP: 5016,
+    baseDef: 652,
     skills: {
       s1: {
         rate: 0.7,
