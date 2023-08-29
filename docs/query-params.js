@@ -243,7 +243,7 @@ const loadQueryParams = async () => {
             element.dispatchEvent(event);
           }
         }
-        console.log(artiSpecific);
+
         if (buffableParams.includes(artiSpecific.id)) {
           buffParam = artiSpecific.id + '-up';
           const buffElement = document.getElementById(buffParam);

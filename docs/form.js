@@ -1117,7 +1117,7 @@ const buildElement = (elem, parent) => {
     $(parent).append(`<div id="${elem.id}-block" class="stat-block">
                         <div class="form-group row col-sm-12">
                             <label for="crit" class="col-md-9 col-form-label form-control-sm">
-                                <h5>${elem.icon ? '<img src="' + (['jp', 'kr', 'zh', 'zhTW', 'br'].some(locale => window.location.href.includes(locale)) ? '.' : '') + elem.icon + '" width="20" height="20" /> ' : ''}${formLabel(elem.ref)}</h5>
+                                <h5>${elem.icon ? '<img src="' + (['jp', 'kr', 'zh', 'zhTW', 'br'].some(locale => window.location.href.includes(`/${locale}`)) ? '.' : '') + elem.icon + '" width="20" height="20" /> ' : ''}${formLabel(elem.ref)}</h5>
                             </label>
                             <div class="input-group input-group-sm col-md-3">
                                 <div class="input-group-prepend">
@@ -1138,7 +1138,7 @@ const buildElement = (elem, parent) => {
                               <div class="custom-control custom-checkbox custom-control-inline buff-block">
                                   <input class="custom-control-input" type="checkbox" id="${elem.id}" value="1" onchange="resolve()" ${(typeof elem.default === 'function' ? elem.default() : elem.default === true) ? 'checked' : ''}>
                                   <label class="custom-control-label" for="${elem.id}">
-                                    ${elem.icon ? '<img src="' + (['jp', 'kr', 'zh', 'zhTW', 'br'].some(locale => window.location.href.includes(locale)) ? '.' : '') + elem.icon + '" width="20" height="20" />' : ''} ${formLabel(elem.ref)}
+                                    ${elem.icon ? '<img src="' + (['jp', 'kr', 'zh', 'zhTW', 'br'].some(locale => window.location.href.includes(`/${locale}`)) ? '.' : '') + elem.icon + '" width="20" height="20" />' : ''} ${formLabel(elem.ref)}
                                   </label>
                               </div>
                         </div>`);
@@ -1152,7 +1152,7 @@ const buildElement = (elem, parent) => {
 };
 
 const elemIcon = (elem) => {
-  return `<img src='${['jp', 'kr', 'zh', 'zhTW', 'br'].some(locale => window.location.href.includes(locale)) ? '.' : ''}./assets/elements/${elem}.png' width='20', height='20' alt='${elem}' />`;
+  return `<img src='${['jp', 'kr', 'zh', 'zhTW', 'br'].some(locale => window.location.href.includes(`/${locale}`)) ? '.' : ''}./assets/elements/${elem}.png' width='20', height='20' alt='${elem}' />`;
 };
 
 const antiElemIcon = (elem) => {
@@ -1166,7 +1166,7 @@ const antiElemIcon = (elem) => {
 };
 
 const classIcon = (type) => {
-  return `<img src='${['jp', 'kr', 'zh', 'zhTW', 'br'].some(locale => window.location.href.includes(locale)) ? '.' : ''}./assets/classes/${type.replace('_', '-')}.png' width='18', height='18' alt='${type}' />`;
+  return `<img src='${['jp', 'kr', 'zh', 'zhTW', 'br'].some(locale => window.location.href.includes(`/${locale}`)) ? '.' : ''}./assets/classes/${type.replace('_', '-')}.png' width='18', height='18' alt='${type}' />`;
 };
 
 const dedupeForm = (hero, artifact) => {
