@@ -773,10 +773,13 @@ const allDamages = {
   'miss': {}
 };
 
+let damageToUse = 'crit';
+let skillSelect;
 const calculateChart = (inputValues) => {
+  updateGraphSkillSelect();
   const artifact = new Artifact(inputValues.artifact);
   const hero = new Hero(inputValues.hero, artifact);
-  const skillSelect = document.getElementById('chart-skill');
+  skillSelect = document.getElementById('chart-skill');
   let selected = skillSelect.options[skillSelect.selectedIndex]?.value || 's1';
   let presetHP = defPresetSelector.options[defPresetSelector.selectedIndex].dataset?.hp;
   const maxDamages = [];
@@ -796,7 +799,6 @@ const calculateChart = (inputValues) => {
     return;
   }
 
-  const damageToUse = skill.onlyMiss ? 'miss' : (!skill?.noCrit ? 'crit' : 'normal');
   chart.data.labels = [];
 
   // pick different num steps if skill.nocrit
@@ -865,12 +867,16 @@ const calculateChart = (inputValues) => {
       if (!chart.data.datasets[atkDataIndex].data.length) {
         minDamages.push(finalDam);
         Object.keys(damage).forEach(damageType => {
-          allDamages[damageType]['attack'] = [];
+          if (damage[damageType] != null) {
+            allDamages[damageType]['attack'] = [];
+          }
         });
       }
 
       Object.keys(damage).forEach(damageType => {
-        allDamages[damageType]['attack'].push(damage[damageType] || 0);
+        if (damage[damageType] != null) {
+          allDamages[damageType]['attack'].push(damage[damageType] || 0);
+        }
       });
   
       chart.data.datasets[atkDataIndex].data.push(finalDam);
@@ -914,14 +920,14 @@ const calculateChart = (inputValues) => {
 
       if (!chart.data.datasets[cdamDataIndex].data.length) {
         minDamages.push(finalDam);
-        Object.keys(damage).forEach(damageType => {
-          allDamages[damageType]['cdam'] = [];
-        });
+        if (damage['crit'] != null) {
+          allDamages['crit']['cdam'] = [];
+        }
       }
 
-      Object.keys(damage).forEach(damageType => {
-        allDamages[damageType]['cdam'].push(damage[damageType] || 0);
-      });
+      if (damage['crit'] != null) {
+        allDamages['crit']['cdam'].push(damage['crit'] || 0);
+      }
   
       chart.data.datasets[cdamDataIndex].data.push(finalDam);
       chart.data.labels[index] = `${chart.data.labels[index] ? chart.data.labels[index] + ' vs ' : ''}${hero.crit} ${formLabel('cdam')}`;
@@ -968,12 +974,16 @@ const calculateChart = (inputValues) => {
       if (!chart.data.datasets[defDataIndex].data.length) {
         minDamages.push(finalDam);
         Object.keys(damage).forEach(damageType => {
-          allDamages[damageType]['defense'] = [];
+          if (damage[damageType] != null) {
+            allDamages[damageType]['defense'] = [];
+          }
         });
       }
 
       Object.keys(damage).forEach(damageType => {
-        allDamages[damageType]['defense'].push(damage[damageType] || 0);
+        if (damage[damageType] != null) {
+          allDamages[damageType]['defense'].push(damage[damageType] || 0);
+        }
       });
   
       chart.data.datasets[defDataIndex].data.push(finalDam);
@@ -1020,12 +1030,16 @@ const calculateChart = (inputValues) => {
       if (!chart.data.datasets[HPDataIndex].data.length) {
         minDamages.push(finalDam);
         Object.keys(damage).forEach(damageType => {
-          allDamages[damageType]['hp'] = [];
+          if (damage[damageType] != null) {
+            allDamages[damageType]['hp'] = [];
+          }
         });
       }
 
       Object.keys(damage).forEach(damageType => {
-        allDamages[damageType]['hp'].push(damage[damageType] || 0);
+        if (damage[damageType] != null) {
+          allDamages[damageType]['hp'].push(damage[damageType] || 0);
+        }
       });
   
       chart.data.datasets[HPDataIndex].data.push(finalDam);
@@ -1072,12 +1086,16 @@ const calculateChart = (inputValues) => {
       if (!chart.data.datasets[spdDataIndex].data.length) {
         minDamages.push(finalDam);
         Object.keys(damage).forEach(damageType => {
-          allDamages[damageType]['speed'] = [];
+          if (damage[damageType] != null) {
+            allDamages[damageType]['speed'] = [];
+          }
         });
       }
 
       Object.keys(damage).forEach(damageType => {
-        allDamages[damageType]['speed'].push(damage[damageType] || 0);
+        if (damage[damageType] != null) {
+          allDamages[damageType]['speed'].push(damage[damageType] || 0);
+        }
       });
   
       chart.data.datasets[spdDataIndex].data.push(finalDam);
@@ -1110,6 +1128,45 @@ const calculateChart = (inputValues) => {
     };
   } else {
     delete chart.config.options.plugins.annotation.annotations['oneshotLine'];
+  }
+  chart.update();
+};
+
+const setChartHitType = (hitType = 'crit') => {
+  // This is probably pretty sloppy but it works...
+  if ($(`#${hitType}-hit`).prop('disabled')) {
+    return;
+  }
+
+  let filteredDatasets;
+  for (const stat of ['attack', 'cdam', 'defense', 'hp', 'speed']) {
+    filteredDatasets = chart.data.datasets.filter(dataset => dataset.label === formLabel(stat));
+    let chartIndex;
+    if (allDamages[hitType][stat]) {
+      if (!filteredDatasets.length) {
+        chart.data.datasets.push({
+          label: formLabel(stat),
+          data: [],
+          borderWidth: 1,
+          backgroundColor: pointBackgrounds[chart.data.datasets.length],
+          borderColor: pointOutlines[chart.data.datasets.length],
+          pointStyle: pointStyles[chart.data.datasets.length]
+        });
+        filteredDatasets.push(chart.data.datasets[chart.data.datasets.length - 1]);
+        chartIndex = chart.data.datasets.indexOf(filteredDatasets[0]);
+      } else {
+        chartIndex = chart.data.datasets.indexOf(filteredDatasets[0]);
+
+        filteredDatasets[0].backgroundColor = pointBackgrounds[chartIndex];
+        filteredDatasets[0].borderColor = pointOutlines[chartIndex];
+        filteredDatasets[0].pointStyle = pointStyles[chartIndex];
+      }
+      chart.data.datasets[chartIndex].data = allDamages[hitType][stat];
+    } else {
+      if (filteredDatasets.length) {
+        chart.data.datasets.splice(chart.data.datasets.indexOf(filteredDatasets[0]), 1);
+      }
+    }
   }
   chart.update();
 };

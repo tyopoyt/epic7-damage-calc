@@ -1178,6 +1178,48 @@ const dedupeForm = (hero, artifact) => {
   }
 };
 
+const updateGraphSkillSelect = () => {
+  const skillSelect = document.getElementById('chart-skill');
+  const skill = heroes[inputValues.hero]?.skills[skillSelect.options[skillSelect.selectedIndex]?.value || 's1'];
+
+  if (skill.onlyMiss) {
+    damageToUse = 'miss';
+    $('#miss-hit').removeAttr('disabled');
+
+    $('#normal-hit').attr('disabled', true);
+    $('#crit-hit').attr('disabled', true);
+    $('#crush-hit').attr('disabled', true);
+  } else if (skill.noCrit) {
+    damageToUse = 'normal';
+    $('#crit-hit').attr('disabled', true);
+    $('#crush-hit').attr('disabled', true);
+
+
+    $('#miss-hit').removeAttr('disabled');
+    $('#normal-hit').removeAttr('disabled');
+  } else if (skill.onlyCrit) {
+    damageToUse = 'crit';
+    $('#crit-hit').removeAttr('disabled');
+    $('#miss-hit').removeAttr('disabled');
+
+    $('#normal-hit').attr('disabled', true);
+    $('#crush-hit').attr('disabled', true);
+  } else {
+    damageToUse = 'crit';
+
+    $('#normal-hit').removeAttr('disabled');
+    $('#crit-hit').removeAttr('disabled');
+    $('#crush-hit').removeAttr('disabled');
+    $('#miss-hit').removeAttr('disabled');
+  }
+
+  if (skill.noMiss) {
+    $('#miss-hit').attr('disabled', true);
+  }
+        
+  $(`#${damageToUse}-hit`).prop('checked', true);
+};
+
 // jQuery's $(() => {}) was not firing at the right time in Firefox, so use standard DOMContentLoaded
 // window.addEventListener('DOMContentLoaded', () => {
 buildInitialForm = () => {
@@ -1212,6 +1254,7 @@ buildInitialForm = () => {
     chartSkillSelector.onchange = () => {
       if (document.getElementById('damage-chart-container').style.display !== 'none') {
         // This one doesn't need to be debounced because it would be pretty difficult to change the select option quickly
+        updateGraphSkillSelect();
         calculateChart(inputValues);
       }
     };
