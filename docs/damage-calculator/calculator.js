@@ -684,6 +684,13 @@ class Artifact {
 }
 
 // Charting
+const statIndices = {
+  'attack': 0,
+  'cdam': 1,
+  'defense': 2,
+  'hp': 3,
+  'speed': 4,
+};
 const pointBackgrounds = ['rgba(23, 119, 212, 0.75)', 'rgba(212, 55, 88,0.75)', 'rgba(199, 129, 16, 0.75)', 'rgba(28, 145, 106, 0.75)', 'rgba(83, 62, 176, 0.75)'];
 const pointOutlines = ['#36a2eb', '#ff6384', '#fcaf32', '#08c988', '#7059d4'];
 const pointStyles = ['circle', 'triangle', 'rect', 'rectRot', 'star'];
@@ -749,6 +756,7 @@ const toggleChart = () => {
       'event': 'show_chart',
       'hero': inputValues['hero']
     });
+    updateGraphSkillSelect();
     // This one doesn't really need to be debounced because it doesn't cause any visible lag if you toggle it a lot
     calculateChart(inputValues);
     chartContainer.style.display = 'block';
@@ -777,7 +785,6 @@ const allDamages = {
 let damageToUse = 'crit';
 let skillSelect;
 const calculateChart = (inputValues) => {
-  updateGraphSkillSelect();
   const artifact = new Artifact(inputValues.artifact);
   const hero = new Hero(inputValues.hero, artifact);
   skillSelect = document.getElementById('chart-skill');
@@ -846,16 +853,16 @@ const calculateChart = (inputValues) => {
         label: formLabel('attack'),
         data: [],
         borderWidth: 1,
-        backgroundColor: pointBackgrounds[chart.data.datasets.length],
-        borderColor: pointOutlines[chart.data.datasets.length],
-        pointStyle: pointStyles[chart.data.datasets.length]
+        backgroundColor: pointBackgrounds[statIndices['attack']],
+        borderColor: pointOutlines[statIndices['attack']],
+        pointStyle: pointStyles[statIndices['attack']]
       });
       filteredDatasets.push(chart.data.datasets[chart.data.datasets.length - 1]);
     } else {
       const indexOfDataset = chart.data.datasets.indexOf(filteredDatasets[0]);
-      chart.data.datasets[indexOfDataset].backgroundColor = pointBackgrounds[indexOfDataset];
-      chart.data.datasets[indexOfDataset].borderColor = pointOutlines[indexOfDataset];
-      chart.data.datasets[indexOfDataset].pointStyle = pointStyles[indexOfDataset];
+      chart.data.datasets[indexOfDataset].backgroundColor = pointBackgrounds[statIndices['attack']];
+      chart.data.datasets[indexOfDataset].borderColor = pointOutlines[statIndices['attack']];
+      chart.data.datasets[indexOfDataset].pointStyle = pointStyles[statIndices['attack']];
     }
 
     const atkDataIndex = chart.data.datasets.indexOf(filteredDatasets[0]);
@@ -901,16 +908,16 @@ const calculateChart = (inputValues) => {
         label: formLabel('cdam'),
         data: [],
         borderWidth: 1,
-        backgroundColor: pointBackgrounds[chart.data.datasets.length],
-        borderColor: pointOutlines[chart.data.datasets.length],
-        pointStyle: pointStyles[chart.data.datasets.length]
+        backgroundColor: pointBackgrounds[statIndices['cdam']],
+        borderColor: pointOutlines[statIndices['cdam']],
+        pointStyle: pointStyles[statIndices['cdam']]
       });
       filteredDatasets.push(chart.data.datasets[chart.data.datasets.length - 1]);
     } else {
       const indexOfDataset = chart.data.datasets.indexOf(filteredDatasets[0]);
-      chart.data.datasets[indexOfDataset].backgroundColor = pointBackgrounds[indexOfDataset];
-      chart.data.datasets[indexOfDataset].borderColor = pointOutlines[indexOfDataset];
-      chart.data.datasets[indexOfDataset].pointStyle = pointStyles[indexOfDataset];
+      chart.data.datasets[indexOfDataset].backgroundColor = pointBackgrounds[statIndices['cdam']];
+      chart.data.datasets[indexOfDataset].borderColor = pointOutlines[statIndices['cdam']];
+      chart.data.datasets[indexOfDataset].pointStyle = pointStyles[statIndices['cdam']];
     }
 
     const cdamDataIndex = chart.data.datasets.indexOf(filteredDatasets[0]);
@@ -952,16 +959,16 @@ const calculateChart = (inputValues) => {
         label: formLabel('defense'),
         data: [],
         borderWidth: 1,
-        backgroundColor: pointBackgrounds[chart.data.datasets.length],
-        borderColor: pointOutlines[chart.data.datasets.length],
-        pointStyle: pointStyles[chart.data.datasets.length]
+        backgroundColor: pointBackgrounds[statIndices['defense']],
+        borderColor: pointOutlines[statIndices['defense']],
+        pointStyle: pointStyles[statIndices['defense']]
       });
       filteredDatasets.push(chart.data.datasets[chart.data.datasets.length - 1]);
     } else {
       const indexOfDataset = chart.data.datasets.indexOf(filteredDatasets[0]);
-      chart.data.datasets[indexOfDataset].backgroundColor = pointBackgrounds[indexOfDataset];
-      chart.data.datasets[indexOfDataset].borderColor = pointOutlines[indexOfDataset];
-      chart.data.datasets[indexOfDataset].pointStyle = pointStyles[indexOfDataset];
+      chart.data.datasets[indexOfDataset].backgroundColor = pointBackgrounds[statIndices['defense']];
+      chart.data.datasets[indexOfDataset].borderColor = pointOutlines[statIndices['defense']];
+      chart.data.datasets[indexOfDataset].pointStyle = pointStyles[statIndices['defense']];
     }
 
     const defDataIndex = chart.data.datasets.indexOf(filteredDatasets[0]);
@@ -1008,16 +1015,16 @@ const calculateChart = (inputValues) => {
         label: formLabel('hp'),
         data: [],
         borderWidth: 1,
-        backgroundColor: pointBackgrounds[chart.data.datasets.length],
-        borderColor: pointOutlines[chart.data.datasets.length],
-        pointStyle: pointStyles[chart.data.datasets.length]
+        backgroundColor: pointBackgrounds[statIndices['hp']],
+        borderColor: pointOutlines[statIndices['hp']],
+        pointStyle: pointStyles[statIndices['hp']]
       });
       filteredDatasets.push(chart.data.datasets[chart.data.datasets.length - 1]);
     } else {
       const indexOfDataset = chart.data.datasets.indexOf(filteredDatasets[0]);
-      chart.data.datasets[indexOfDataset].backgroundColor = pointBackgrounds[indexOfDataset];
-      chart.data.datasets[indexOfDataset].borderColor = pointOutlines[indexOfDataset];
-      chart.data.datasets[indexOfDataset].pointStyle = pointStyles[indexOfDataset];
+      chart.data.datasets[indexOfDataset].backgroundColor = pointBackgrounds[statIndices['hp']];
+      chart.data.datasets[indexOfDataset].borderColor = pointOutlines[statIndices['hp']];
+      chart.data.datasets[indexOfDataset].pointStyle = pointStyles[statIndices['hp']];
     }
 
     const HPDataIndex = chart.data.datasets.indexOf(filteredDatasets[0]);
@@ -1064,16 +1071,16 @@ const calculateChart = (inputValues) => {
         label: formLabel('speed'),
         data: [],
         borderWidth: 1,
-        backgroundColor: pointBackgrounds[chart.data.datasets.length],
-        borderColor: pointOutlines[chart.data.datasets.length],
-        pointStyle: pointStyles[chart.data.datasets.length]
+        backgroundColor: pointBackgrounds[statIndices['speed']],
+        borderColor: pointOutlines[statIndices['speed']],
+        pointStyle: pointStyles[statIndices['speed']]
       });
       filteredDatasets.push(chart.data.datasets[chart.data.datasets.length - 1]);
     } else {
       const indexOfDataset = chart.data.datasets.indexOf(filteredDatasets[0]);
-      chart.data.datasets[indexOfDataset].backgroundColor = pointBackgrounds[indexOfDataset];
-      chart.data.datasets[indexOfDataset].borderColor = pointOutlines[indexOfDataset];
-      chart.data.datasets[indexOfDataset].pointStyle = pointStyles[indexOfDataset];
+      chart.data.datasets[indexOfDataset].backgroundColor = pointBackgrounds[statIndices['speed']];
+      chart.data.datasets[indexOfDataset].borderColor = pointOutlines[statIndices['speed']];
+      chart.data.datasets[indexOfDataset].pointStyle = pointStyles[statIndices['speed']];
     }
 
     const spdDataIndex = chart.data.datasets.indexOf(filteredDatasets[0]);
@@ -1136,6 +1143,7 @@ const calculateChart = (inputValues) => {
 };
 
 const setChartHitType = (hitType = 'crit') => {
+  damageToUse = hitType;
   // This is probably pretty sloppy but it works...
   if ($(`#${hitType}-hit`).prop('disabled')) {
     return;
@@ -1151,18 +1159,18 @@ const setChartHitType = (hitType = 'crit') => {
           label: formLabel(stat),
           data: [],
           borderWidth: 1,
-          backgroundColor: pointBackgrounds[chart.data.datasets.length],
-          borderColor: pointOutlines[chart.data.datasets.length],
-          pointStyle: pointStyles[chart.data.datasets.length]
+          backgroundColor: pointBackgrounds[statIndices[stat]],
+          borderColor: pointOutlines[statIndices[stat]],
+          pointStyle: pointStyles[statIndices[stat]]
         });
         filteredDatasets.push(chart.data.datasets[chart.data.datasets.length - 1]);
         chartIndex = chart.data.datasets.indexOf(filteredDatasets[0]);
       } else {
         chartIndex = chart.data.datasets.indexOf(filteredDatasets[0]);
 
-        filteredDatasets[0].backgroundColor = pointBackgrounds[chartIndex];
-        filteredDatasets[0].borderColor = pointOutlines[chartIndex];
-        filteredDatasets[0].pointStyle = pointStyles[chartIndex];
+        filteredDatasets[0].backgroundColor = pointBackgrounds[statIndices[stat]];
+        filteredDatasets[0].borderColor = pointOutlines[statIndices[stat]];
+        filteredDatasets[0].pointStyle = pointStyles[statIndices[stat]];
       }
       chart.data.datasets[chartIndex].data = allDamages[hitType][stat];
     } else {
