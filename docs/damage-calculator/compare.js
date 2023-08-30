@@ -28,7 +28,7 @@ const addToComparePool = () => {
 
       if (skill.soulburn) {
         const damage = hero.getDamage(skillId, true);
-        dmg[skillId+'_sb'] = {
+        dmg[skillId + '_sb'] = {
           'crit': damage['crit'],
           'normal': damage['normal'],
           'miss': damage['miss'],

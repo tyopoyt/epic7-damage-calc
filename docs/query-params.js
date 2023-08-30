@@ -30,18 +30,6 @@ let loadingQueryParams = true;
 
 const buffableParams = ['caster-defense', 'caster-speed'];
 
-window.addEventListener('load', async () => {
-  /*
-     * Timeout just in case, to help avoid a race condition.
-     *
-     * In testing, the DOMContentLoaded listener function in form.js takes around 50ms to execute on average.
-     * Maximally, it took 92ms to complete. Timeout for 115ms to ensure form.js is finished before loading queryParams.
-     * Never saw an issue while not using this timeout, but may happen on a slower device.
-     */
-  await new Promise(resolve => {setTimeout(() => {resolve();}, 115);});
-  loadQueryParams();
-});
-
 // get values from the various inputs
 const getInputValues = () => {
   const inputValues = {};
@@ -84,8 +72,14 @@ const getInputValues = () => {
     (artifacts[inputValues.artifact]?.form || []).forEach((param) => {
       const isBoolean = param.type === 'checkbox';
       const defaultVal =  isBoolean ? param.default || false : param.default;
-      const paramVal = isBoolean ? document.getElementById(param.id)?.checked : Number(document.getElementById(param.id)?.value || defaultVal);
+      let paramVal = isBoolean ? document.getElementById(param.id)?.checked : Number(document.getElementById(param.id)?.value || defaultVal);
       inputValues[param.id] = paramVal;
+
+      if (buffableParams.includes(param.id)) {
+        buffParam = param.id + '-up';
+        paramVal = document.getElementById(buffParam)?.checked;
+        inputValues[buffParam] = paramVal;
+      }
     });
   }
   return inputValues;
@@ -100,8 +94,12 @@ const loadQueryParams = async () => {
 
   try {
     queryParams = new URLSearchParams(window.location.search);
-
     // Fill form values from queryParams
+    const heroId = queryParams.get('hero');
+    if (heroId) {
+      currentHero = heroes[heroId];
+      currentHero.id = heroId;
+    }
     for (const param of selectorParams) {
       let paramVal = queryParams.get(param);
       if (paramVal && paramVal !== formDefaults[param]) {
@@ -159,7 +157,7 @@ const loadQueryParams = async () => {
       for (let i = 1; i < 4; i++ ) {
         let paramVal = queryParams.get(`molagora-s${i}`);
 
-        const defaultVal = heroes[heroElement.value]?.skills[`s${i}`]?.enhance.length;
+        const defaultVal = heroes[heroElement.value]?.skills[`s${i}`]?.enhance?.length;
 
         if (paramVal !== null && defaultVal !== undefined && paramVal !== defaultVal) {
           const element = document.getElementById(`molagora-s${i}`);
@@ -203,7 +201,7 @@ const loadQueryParams = async () => {
           buffParam = heroSpecific.id + '-up';
           const buffElement = document.getElementById(buffParam);
           paramVal = queryParams.get(buffParam);
-          buffElement.checked = paramVal;
+          buffElement.checked = paramVal.toLowerCase() === 'true';
           const buffEvent = new Event('change');
           buffElement.dispatchEvent(buffEvent);
         }
@@ -245,6 +243,15 @@ const loadQueryParams = async () => {
             element.dispatchEvent(event);
           }
         }
+
+        if (buffableParams.includes(artiSpecific.id)) {
+          buffParam = artiSpecific.id + '-up';
+          const buffElement = document.getElementById(buffParam);
+          paramVal = queryParams.get(buffParam);
+          buffElement.checked = paramVal;
+          const buffEvent = new Event('change');
+          buffElement.dispatchEvent(buffEvent);
+        }
       }
     }
         
@@ -275,23 +282,27 @@ const formUpdated = () => {
     if (updateRequestTime) {
       updateRequestTime = Date.now();
     } else if (updateRequestTime === null) {
-      updateQueryParamsWhenStable();
+      debounce('updateQueryParams', updateQueryParamsWhenStable, [false]);
     } else {
       updateRequestTime = null; // don't queue an update on the initial load
     }
   }
 };
 
+const debounceTimers = {};
+const debounce = async (key, callback, args = [], time = 200) => {
+  if (debounceTimers[key]) {
+    clearTimeout(debounceTimers[key]);
+  }
+  debounceTimers[key] = setTimeout(() => {
+    callback(...args);
+  }, time);
+};
+
 /*
  * Puts form values in queryParams after debouncing input.
  */ 
-const updateQueryParamsWhenStable = async (updateURL=false) => {
-  // debounce input then update when stable. 1 second if updating URL, else 200ms.
-  updateRequestTime = Date.now();
-  debounceTime = updateURL ? 1000 : 200;
-  while (Date.now() - updateRequestTime < debounceTime) {
-    await new Promise(r => setTimeout(r, debounceTime));
-  }
+const updateQueryParamsWhenStable = async (updateURL = false) => {
 
   const inputValues = getInputValues();
 
@@ -381,6 +392,18 @@ const updateQueryParamsWhenStable = async (updateURL=false) => {
         queryParams.set(artiSpecific.id, inputValues[artiSpecific.id]);
       } else {
         queryParams.delete(artiSpecific.id);
+      }
+
+      if (buffableParams.includes(artiSpecific.id)) {
+        const buffParam = artiSpecific.id + '-up';
+        const buffableDefault = typeof artiSpecific.default === 'function' ? artiSpecific.default() : artiSpecific.default;
+        const buffableDefaultVal = buffableDefault || false;
+
+        if (inputValues[buffParam] !== buffableDefaultVal) {
+          queryParams.set(buffParam, inputValues[buffParam]);
+        } else {
+          queryParams.delete(buffParam);
+        }
       }
     }
   }

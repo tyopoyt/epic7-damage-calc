@@ -189,6 +189,43 @@ body .popover {
     margin-right: 0.5rem;
 }
 
+#damage-chart-container {
+    height: 27vh;
+}
+
+#damage-chart-container > canvas {
+    margin-bottom: 4.3rem;
+}
+
+.btn-orange {
+    background-color: #de7715;
+    border-color: #de7715;
+    color: white;
+}
+
+.btn-orange:hover {
+    background-color: #c96d17;
+    border-color: #a95c13;
+    color:white;
+}
+
+.hit-type-radio {
+    margin-top: 5px;
+    margin-left: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.hit-type-radio>.form-check {
+    margin-left: 1rem;
+    display: flex;
+    align-self: center;
+    justify-self: center;
+
+    padding-right: 5px;
+}
+
 /* Dark Theme */
 
 [data-theme="dark"] {

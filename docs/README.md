@@ -1,5 +1,7 @@
 ## Changelog
 
+<strong>Aug 30 2023 Update:</strong> Added Graphs feature.  Click Show Graph to see see a visualization of how increasing (or decreasing) your hero's stats will affect their damage output.<br>
+stats of your hero's stats willa affect their damage output.<br>
 <strong>Aug 26 2023 Update:</strong> Made MLBellona's Caster has buff box auto-check and disable if another buff is checked.<br>
 <strong>Aug 22 2023 Update:</strong> Fixed Hwayoung's base attack. Previous value was including her 20% base increase from passive.<br>
 <strong>Aug 18 2023 Update:</strong> Added Infinite Horizon Achates.<br>
