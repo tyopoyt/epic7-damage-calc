@@ -217,13 +217,32 @@ body .popover {
     align-items: center;
 }
 
-.hit-type-radio>.form-check {
+.hit-type-radio .form-check {
     margin-left: 1rem;
     display: flex;
     align-self: center;
     justify-self: center;
 
     padding-right: 5px;
+}
+
+.radio-holder {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+}
+
+@media (max-width: 767px) {
+    #damage-chart-container > canvas {
+        margin-bottom: 5.8rem;
+    }
+}
+
+@media (max-width: 360px) {
+    #damage-chart-container > canvas {
+        margin-bottom: 6.8rem;
+    }
 }
 
 /* Dark Theme */
