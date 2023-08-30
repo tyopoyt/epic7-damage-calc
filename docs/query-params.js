@@ -201,7 +201,7 @@ const loadQueryParams = async () => {
           buffParam = heroSpecific.id + '-up';
           const buffElement = document.getElementById(buffParam);
           paramVal = queryParams.get(buffParam);
-          buffElement.checked = paramVal;
+          buffElement.checked = paramVal.toLowerCase() === 'true';
           const buffEvent = new Event('change');
           buffElement.dispatchEvent(buffEvent);
         }
@@ -462,13 +462,3 @@ const copyLinkToClipboard = () => {
     'shared_params': linkURL.search
   });
 };
-
-/*
-     * Timeout just in case, to help avoid a race condition.
-     *
-     * In testing, the DOMContentLoaded listener function in form.js takes around 50ms to execute on average.
-     * Maximally, it took 92ms to complete. Timeout for 115ms to ensure form.js is finished before loading queryParams.
-     * Never saw an issue while not using this timeout, but may happen on a slower device.
-     */
-// setTimeout(() => {resolve();loadQueryParams();}, 115);
-
