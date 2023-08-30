@@ -222,7 +222,7 @@ const resolve = () => {
         </tr>`);
       }
 
-      if (skill.canExtra && artifacts[inputValues.artifact].extraAttack) {
+      if (skill.canExtra && artifacts[inputValues.artifact]?.extraAttack) {
         const damage = hero.getDamage(skillId, true, true);
         $(table).append(`<tr>
             <td>
