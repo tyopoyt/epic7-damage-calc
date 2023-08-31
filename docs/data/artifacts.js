@@ -261,6 +261,12 @@ const artifacts = {
     exclusive: classType.ranger,
     applies: (skill) => getSkillType(skill) === skillTypes.aoe,
   },
+  our_beautiful_seasons: {
+    id: 'our_beautiful_seasons',
+    name: 'Our Beautiful Seasons',
+    value: 0.2,
+    type: artifactDmgType.damage
+  },
   radiant_forever: {
     id: 'radiant_forever',
     name: 'Radiant Forever',

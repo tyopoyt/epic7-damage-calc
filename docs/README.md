@@ -1,6 +1,6 @@
 ## Changelog
 
-<strong>Aug 31 2023 Update:</strong> Added Veronica, Brieg, and Urban Shadow Choux. Also updated with the 8/3 balance patch changes.
+<strong>Aug 31 2023 Update:</strong> Added Veronica, Brieg, and Urban Shadow Choux. Also updated with the 8/3 balance patch changes. Also added Our Beautiful Seasons.
 <strong>Aug 30 2023 Update:</strong> Added Graphs feature.  Click Show Graph to see see a visualization of how increasing (or decreasing) your hero's stats will affect their damage output.<br>
 stats of your hero's stats willa affect their damage output.<br>
 <strong>Aug 26 2023 Update:</strong> Made MLBellona's Caster has buff box auto-check and disable if another buff is checked.<br>
