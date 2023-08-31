@@ -754,7 +754,8 @@ const toggleChart = () => {
   if (chartContainer.style.display == 'none') {
     window.dataLayer.push({
       'event': 'show_chart',
-      'hero': inputValues['hero']
+      'hero': inputValues['hero'],
+      'lang': lang
     });
     updateGraphSkillSelect();
     // This one doesn't really need to be debounced because it doesn't cause any visible lag if you toggle it a lot
