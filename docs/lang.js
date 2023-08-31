@@ -93,6 +93,7 @@ const i18n = {
       fixed: 'Fixed Dmg',
       custom: {
         caster_has_buff: 'Caster has Buff: {v}%', // TODO: Translate
+        caster_has_bzzt: 'Caster has Bzzt!: {v}', // TODO: Translate
         caster_target_atk_diff: '{v}% Attack Difference',
         caster_target_spd_diff: '{v}% Speed Difference',
         caster_target_def_diff: '{v}% Defense Difference',

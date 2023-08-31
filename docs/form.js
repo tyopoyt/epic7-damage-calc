@@ -444,6 +444,14 @@ const elements = {
       return casterBuffElement.prop('checked');
     }
   },
+  caster_has_bzzt: {
+    ref: 'caster_has_bzzt',
+    id: 'caster-has-bzzt',
+    label: 'Caster has Bzzt!',
+    type: 'checkbox',
+    value: () => document.getElementById('caster-has-bzzt').checked,
+    icon: './assets/buffs/bzzt-buff.png'
+  },
   caster_has_debuff: {
     ref: 'caster_has_debuff',
     id: 'caster-has-debuff',

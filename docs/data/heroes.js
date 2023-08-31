@@ -8877,6 +8877,40 @@ const heroes = {
       }
     }
   },
+  urban_shadow_choux: {
+    name: 'Urban Shadow Choux', // TODO: translate when available
+    element: element.dark,
+    classType: classType.warrior,
+    baseAtk: 984,
+    baseHP: 6266,
+    baseDef: 637,
+    info: infoLabel('unreleased_hero'),
+    form: [elements.caster_max_hp, elements.caster_has_bzzt, elements.target_injuries],
+    skills: {
+      s1: {
+        soulburn: true,
+        rate: (soulburn) => (soulburn ? 0.8 : 0.5),
+        pow: 1,
+        fixed: () => elements.caster_has_bzzt.value() ? 2000 : 0,
+        fixedTip: () => ({ caster_has_bzzt: 2000 }),
+        flat: (soulburn) => elements.caster_max_hp.value() * (soulburn ? 0.16 : 0.1),
+        flatTip: (soulburn) => ({ caster_max_hp: soulburn ? 16 : 10 }),
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        single: true,
+      },
+      s3: {
+        rate: 0.5,
+        pow: 1,
+        fixed: () => elements.caster_has_bzzt.value() ? 2000 : 0,
+        fixedTip: () => ({ caster_has_bzzt: 2000 }),
+        afterMath: () => ({ injuryPercent: 0.6, penetrate: 0.7 }),
+        flat: () => elements.caster_max_hp.value() * 0.25,
+        flatTip: () => ({ caster_max_hp: 25 }),
+        enhance: [0.05, 0.05, 0, 0.1, 0.1],
+        single: true,
+      },
+    }
+  },
   verdant_adin: {
     name: 'Verdant Adin',
     element: element.earth,
