@@ -1597,6 +1597,7 @@ const heroes = {
     form: [elements.caster_max_hp, elements.caster_perception],
     skills: {
       s1: {
+        hpScaling: true,
         rate: 0.7,
         pow: 1,
         flat: () => elements.caster_max_hp.value() * 0.12,
@@ -1608,6 +1609,7 @@ const heroes = {
         enhance: [0.05, 0.05, 0.05, 0.1, 0.1],
       },
       s3: {
+        hpScaling: true,
         canExtra: true,
         rate: 1,
         pow: 1,
@@ -8888,6 +8890,7 @@ const heroes = {
     form: [elements.caster_max_hp, elements.caster_has_bzzt, elements.target_injuries],
     skills: {
       s1: {
+        hpScaling: true,
         soulburn: true,
         rate: (soulburn) => (soulburn ? 0.8 : 0.5),
         pow: 1,
@@ -8899,6 +8902,7 @@ const heroes = {
         single: true,
       },
       s3: {
+        hpScaling: true,
         rate: 0.5,
         pow: 1,
         fixed: () => elements.caster_has_bzzt.value() ? 2000 : 0,
