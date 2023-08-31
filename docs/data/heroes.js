@@ -1569,6 +1569,57 @@ const heroes = {
   //     }
   //   }
   // },
+  brieg: {
+    name: 'Brieg',
+    element: element.ice,
+    classType: classType.knight,
+    baseAtk: 821,
+    baseHP: 6751,
+    baseDef: 648,
+    barrierSkills: ['S2', 'S2 Soulburn'],
+    barrier: () => {
+      let boost = 1.0;
+      for (let i = 0; i < Number(document.getElementById('molagora-s2').value); i++) {
+        boost += heroes['brieg'].skills.s2.enhance[i];
+      }
+
+      return elements.caster_max_hp.value() * 0.185 * boost;
+    },
+    barrier2: () => {
+      // const scale = [0.05, 0.05, 0.05, 0.1, 0.1];
+      let boost = 1.0;
+      for (let i = 0; i < Number(document.getElementById('molagora-s2').value); i++) {
+        // boost += scale[i];
+        boost += heroes['brieg'].skills.s2.enhance[i];
+      }
+
+      return elements.caster_max_hp.value() * 0.24 * boost;
+    },
+    info: infoLabel('unreleased_hero'),
+    form: [elements.caster_max_hp, elements.caster_perception],
+    skills: {
+      s1: {
+        rate: 0.7,
+        pow: 1,
+        flat: () => elements.caster_max_hp.value() * 0.12,
+        flatTip: () => ({ caster_max_hp: 12 }),
+        enhance: [0.05, 0, 0.1, 0, 0.15],
+        single: true,
+      },
+      s2: {
+        enhance: [0.05, 0.05, 0.05, 0.1, 0.1],
+      },
+      s3: {
+        canExtra: true,
+        rate: 1,
+        pow: 1,
+        flat: () => elements.caster_max_hp.value() * 0.22,
+        flatTip: () => ({ caster_max_hp: 22 }),
+        enhance: [0.05, 0.05, 0, 0.1, 0.1],
+        single: true,
+      },
+    }
+  },
   butcher_corps_inquisitor: {
     name: 'Butcher Corps Inquisitor',
     element: element.fire,
