@@ -256,7 +256,7 @@ const elements = {
     label: 'Bleed effects to Detonate',
     type: 'slider',
     min: 0,
-    max: 30,
+    max: 10,
     default: 0,
     readonly: true,
     value: () => Number(document.getElementById('target-bleed-detonate').value),
@@ -268,7 +268,7 @@ const elements = {
     label: 'Burn effects to Detonate',
     type: 'slider',
     min: 0,
-    max: 30,
+    max: 10,
     default: 0,
     readonly: true,
     value: () => Number(document.getElementById('target-burn-detonate').value),
@@ -280,7 +280,7 @@ const elements = {
     label: 'Bomb effects to Detonate',
     type: 'slider',
     min: 0,
-    max: 15,
+    max: 10,
     default: 0,
     readonly: true,
     value: () => Number(document.getElementById('target-bomb-detonate').value),
@@ -444,6 +444,14 @@ const elements = {
       return casterBuffElement.prop('checked');
     }
   },
+  caster_has_bzzt: {
+    ref: 'caster_has_bzzt',
+    id: 'caster-has-bzzt',
+    label: 'Caster has Bzzt!',
+    type: 'checkbox',
+    value: () => document.getElementById('caster-has-bzzt').checked,
+    icon: './assets/buffs/bzzt-buff.png'
+  },
   caster_has_debuff: {
     ref: 'caster_has_debuff',
     id: 'caster-has-debuff',
@@ -595,6 +603,17 @@ const elements = {
     default: 0,
     readonly: true,
     value: () => Number(document.getElementById('critical-hit-stack-8').value)
+  },
+  critical_hit_stack_6: {
+    ref: 'critical_hit_stack_6',
+    id: 'critical-hit-stack-6',
+    label: 'Critical Hit Stack',
+    type: 'slider',
+    min: 0,
+    max: 6,
+    default: 0,
+    readonly: true,
+    value: () => Number(document.getElementById('critical-hit-stack-6').value)
   },
   non_attack_skill_stack_8: {
     ref: 'non_attack_skill_stack_8',

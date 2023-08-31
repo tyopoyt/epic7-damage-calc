@@ -855,44 +855,44 @@ const heroes = {
       },
     }
   },
-  arunka_old: {
-    name: 'Arunka (Pre-Balance)',
-    element: element.earth,
-    classType: classType.warrior,
-    baseAtk: 1570,
-    baseHP: 6488,
-    baseDef: 616,
-    form: [elements.target_has_barrier],
-    dot: [dot.bleed],
-    innateAtkUp: () => 0.30,
-    skills: {
-      s1: {
-        rate: 1,
-        pow: 1,
-        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
-        single: true,
-        noCrit: true,
-      },
-      s1_bis: {
-        name: infoLabel('arunka_expose'),
-        rate: 1.3,
-        pow: 1.3,
-        // enhance_from: 's1', Presumed not to inherit from s1 mola since the pow is so high already
-        single: true,
-        noCrit: true,
-      },
-      s3: {
-        rate: 0.9,
-        pow: 1,
-        penetrate: () => 0.7,
-        mult: () => elements.target_has_barrier.value() ? 2.2 : 1,
-        multTip: () => ({ target_has_barrier: 120 }),
-        enhance: [0.05, 0.05, 0, 0.1, 0.1],
-        single: true,
-        noCrit: true,
-      },
-    }
-  },
+  // arunka_old: {
+  //   name: 'Arunka (Pre-Balance)',
+  //   element: element.earth,
+  //   classType: classType.warrior,
+  //   baseAtk: 1570,
+  //   baseHP: 6488,
+  //   baseDef: 616,
+  //   form: [elements.target_has_barrier],
+  //   dot: [dot.bleed],
+  //   innateAtkUp: () => 0.30,
+  //   skills: {
+  //     s1: {
+  //       rate: 1,
+  //       pow: 1,
+  //       enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+  //       single: true,
+  //       noCrit: true,
+  //     },
+  //     s1_bis: {
+  //       name: infoLabel('arunka_expose'),
+  //       rate: 1.3,
+  //       pow: 1.3,
+  //       // enhance_from: 's1', Presumed not to inherit from s1 mola since the pow is so high already
+  //       single: true,
+  //       noCrit: true,
+  //     },
+  //     s3: {
+  //       rate: 0.9,
+  //       pow: 1,
+  //       penetrate: () => 0.7,
+  //       mult: () => elements.target_has_barrier.value() ? 2.2 : 1,
+  //       multTip: () => ({ target_has_barrier: 120 }),
+  //       enhance: [0.05, 0.05, 0, 0.1, 0.1],
+  //       single: true,
+  //       noCrit: true,
+  //     },
+  //   }
+  // },
   assassin_cartuja: {
     name: 'Assassin Cartuja',
     element: element.dark,
@@ -1569,6 +1569,55 @@ const heroes = {
   //     }
   //   }
   // },
+  brieg: {
+    name: 'Brieg',
+    element: element.ice,
+    classType: classType.knight,
+    baseAtk: 821,
+    baseHP: 6751,
+    baseDef: 648,
+    barrierSkills: ['S2', 'S2 Soulburn'],
+    barrier: () => {
+      let boost = 1.0;
+      for (let i = 0; i < Number(document.getElementById('molagora-s2').value); i++) {
+        boost += heroes['brieg'].skills.s2.enhance[i];
+      }
+
+      return elements.caster_max_hp.value() * 0.185 * boost;
+    },
+    barrier2: () => {
+      let boost = 1.0;
+      for (let i = 0; i < Number(document.getElementById('molagora-s2').value); i++) {
+        boost += heroes['brieg'].skills.s2.enhance[i];
+      }
+
+      return elements.caster_max_hp.value() * 0.24 * boost;
+    },
+    info: infoLabel('unreleased_hero'),
+    form: [elements.caster_max_hp, elements.caster_perception],
+    skills: {
+      s1: {
+        rate: 0.7,
+        pow: 1,
+        flat: () => elements.caster_max_hp.value() * 0.12,
+        flatTip: () => ({ caster_max_hp: 12 }),
+        enhance: [0.05, 0, 0.1, 0, 0.15],
+        single: true,
+      },
+      s2: {
+        enhance: [0.05, 0.05, 0.05, 0.1, 0.1],
+      },
+      s3: {
+        canExtra: true,
+        rate: 1,
+        pow: 1,
+        flat: () => elements.caster_max_hp.value() * 0.22,
+        flatTip: () => ({ caster_max_hp: 22 }),
+        enhance: [0.05, 0.05, 0, 0.1, 0.1],
+        single: true,
+      },
+    }
+  },
   butcher_corps_inquisitor: {
     name: 'Butcher Corps Inquisitor',
     element: element.fire,
@@ -4176,39 +4225,39 @@ const heroes = {
       }
     }
   },
-  jack_o_old: {
-    name: 'Jack-O\' (Pre-Balance)',
-    element: element.fire,
-    classType: classType.warrior,
-    form: [elements.target_has_debuff],
-    baseAtk: 1228,
-    baseHP: 5784,
-    baseDef: 553,
-    skills: {
-      s1: {
-        rate: 0.75,
-        pow: 1,
-        enhance: [0.05, 0.05, 0, 0.1, 0.1],
-        single: true,
-      },
-      s1_extra: {
-        name: infoLabel('s1_extra_attack'),
-        rate: 1.1,
-        pow: 1,
-        enhance_from: 's1',
-        single: true,
-      },
-      s3: {
-        rate: 0.95,
-        pow: 1,
-        mult: () => elements.target_has_debuff.value() ? 1.3 : 1,
-        multTip: () => ({ target_has_debuff: 30 }),
-        penetrate: () => 0.5,
-        enhance: [0.05, 0.05, 0, 0.1, 0.1],
-        single: true,
-      }
-    }
-  },
+  // jack_o_old: {
+  //   name: 'Jack-O\' (Pre-Balance)',
+  //   element: element.fire,
+  //   classType: classType.warrior,
+  //   form: [elements.target_has_debuff],
+  //   baseAtk: 1228,
+  //   baseHP: 5784,
+  //   baseDef: 553,
+  //   skills: {
+  //     s1: {
+  //       rate: 0.75,
+  //       pow: 1,
+  //       enhance: [0.05, 0.05, 0, 0.1, 0.1],
+  //       single: true,
+  //     },
+  //     s1_extra: {
+  //       name: infoLabel('s1_extra_attack'),
+  //       rate: 1.1,
+  //       pow: 1,
+  //       enhance_from: 's1',
+  //       single: true,
+  //     },
+  //     s3: {
+  //       rate: 0.95,
+  //       pow: 1,
+  //       mult: () => elements.target_has_debuff.value() ? 1.3 : 1,
+  //       multTip: () => ({ target_has_debuff: 30 }),
+  //       penetrate: () => 0.5,
+  //       enhance: [0.05, 0.05, 0, 0.1, 0.1],
+  //       single: true,
+  //     }
+  //   }
+  // },
   januta: {
     name: 'Januta',
     element: element.fire,
@@ -5231,6 +5280,37 @@ const heroes = {
       },
       s3: {
         defenseScaling: true,
+        rate: 0.5,
+        pow: 0.9,
+        flat: () => elements.caster_defense.value() * 1.35,
+        flatTip: () => ({ caster_defense: 135 }),
+        penetrate: () => 0.5,
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.1],
+        aoe: true,
+      },
+    }
+  },
+  lionheart_cermia_old: {
+    name: 'Lionheart Cermia (Pre-Balance)',
+    element: element.light,
+    classType: classType.warrior,
+    baseAtk: 966,
+    baseDef: 668,
+    baseHP: 5663,
+    form: [elements.caster_defense],
+    skills: {
+      s1: {
+        defenseScaling: true,
+        soulburn: true,
+        rate: (soulburn) => soulburn ? 1 : 0.6,
+        pow: 0.9,
+        flat: (soulburn) => elements.caster_defense.value() * (soulburn ? 1.6 : 1.0),
+        flatTip: (soulburn) => ({ caster_defense: (soulburn ? 160 : 100) }),
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.1],
+        single: true,
+      },
+      s3: {
+        defenseScaling: true,
         rate: 0.3,
         pow: 0.9,
         flat: () => elements.caster_defense.value() * 1.35,
@@ -5274,39 +5354,39 @@ const heroes = {
       }
     }
   },
-  little_queen_charlotte_old: {
-    name: 'Little Queen Charlotte (Pre-Balance)',
-    element: element.light,
-    classType: classType.warrior,
-    baseAtk: 1119,
-    baseHP: 6266,
-    baseDef: 627,
-    skills: {
-      s1: {
-        rate: 1.2,
-        pow: 1,
-        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
-        single: true,
-      },
-      s3: {
-        rate: 1.5,
-        pow: 1,
-        mult: () => document.getElementById('elem-adv').checked ? 1.3 : 1,
-        multTip: () => ({ elemental_advantage: 30 }),
-        penetrate: () => 0.5,
-        enhance: [0.05, 0.05, 0, 0.05, 0.15],
-        single: true,
-      },
-      s3_splash: {
-        name: infoLabel('lqc_s3_splash'),
-        rate: 0,
-        pow: 0,
-        afterMath: () => document.getElementById('elem-adv').checked ? { atkPercent: 1.2, penetrate: 0.7 } : null,
-        noCrit: true,
-        noMiss: true,
-      }
-    }
-  },
+  // little_queen_charlotte_old: {
+  //   name: 'Little Queen Charlotte (Pre-Balance)',
+  //   element: element.light,
+  //   classType: classType.warrior,
+  //   baseAtk: 1119,
+  //   baseHP: 6266,
+  //   baseDef: 627,
+  //   skills: {
+  //     s1: {
+  //       rate: 1.2,
+  //       pow: 1,
+  //       enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+  //       single: true,
+  //     },
+  //     s3: {
+  //       rate: 1.5,
+  //       pow: 1,
+  //       mult: () => document.getElementById('elem-adv').checked ? 1.3 : 1,
+  //       multTip: () => ({ elemental_advantage: 30 }),
+  //       penetrate: () => 0.5,
+  //       enhance: [0.05, 0.05, 0, 0.05, 0.15],
+  //       single: true,
+  //     },
+  //     s3_splash: {
+  //       name: infoLabel('lqc_s3_splash'),
+  //       rate: 0,
+  //       pow: 0,
+  //       afterMath: () => document.getElementById('elem-adv').checked ? { atkPercent: 1.2, penetrate: 0.7 } : null,
+  //       noCrit: true,
+  //       noMiss: true,
+  //     }
+  //   }
+  // },
   lone_crescent_bellona: {
     name: 'Lone Crescent Bellona',
     element: element.dark,
@@ -7757,12 +7837,62 @@ const heroes = {
     baseAtk: 1188,
     baseHP: 4693,
     baseDef: 518,
+    form: [elements.caster_speed],
+    skills: {
+      s1: {
+        spdScaling: true,
+        rate: 0.9,
+        pow: 0.9,
+        mult: () => 1 + elements.caster_speed.value() * 0.00075,
+        multTip: () => ({ caster_speed: 0.075 }),
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.1],
+        single: true,
+      },
+      s1_bis: {
+        s1_benefits: true,
+        name: infoLabel('silk_automatic_fire'),
+        spdScaling: true,
+        rate: 1.2,
+        pow: 0.9,
+        penetrate: () =>  0.2,
+        mult: () => 1 + elements.caster_speed.value() * 0.00075,
+        multTip: () => ({ caster_speed: 0.075 }),
+        enhance: [0.05, 0.05, 0, 0.05, 0, 0.1, 0.15],
+        single: true,
+      },
+      s3: {
+        rate: 0.95,
+        pow: 1.05,
+        enhance: [0.1, 0, 0, 0.15],
+        aoe: true,
+      }
+    }
+  },
+  silk_old: {
+    name: 'Silk (Pre-Balance)',
+    element: element.earth,
+    classType: classType.ranger,
+    baseAtk: 1188,
+    baseHP: 4693,
+    baseDef: 518,
     form: [elements.caster_speed, elements.caster_nb_focus],
     skills: {
       s1: {
         spdScaling: true,
-        rate: () => elements.caster_nb_focus.value() >= 2 ? 1.25 : 0.9,
+        rate: 0.9,
         pow: 0.9,
+        mult: () => 1 + elements.caster_speed.value() * 0.00075,
+        multTip: () => ({ caster_speed: 0.075 }),
+        enhance: [0.05, 0.05, 0, 0.05, 0, 0.1, 0.15],
+        single: true,
+      },
+      s1_bis: {
+        s1_benefits: true,
+        name: infoLabel('silk_automatic_fire'),
+        spdScaling: true,
+        rate: 1.25,
+        pow: 0.9,
+        penetrate: () => 0.2,
         mult: () => 1 + elements.caster_speed.value() * 0.00075,
         multTip: () => ({ caster_speed: 0.075 }),
         enhance: [0.05, 0.05, 0, 0.05, 0, 0.1, 0.15],
@@ -8069,31 +8199,31 @@ const heroes = {
       },
     }
   },
-  summer_break_charlotte_old: {
-    name: 'Summer Break Charlotte (Pre-Balance)',
-    element: element.ice,
-    classType: classType.knight,
-    baseAtk: 957,
-    baseHP: 6148,
-    baseDef: 634,
-    form: [elements.target_hp_pc],
-    skills: {
-      s1: {
-        rate: 0.9,
-        pow: 1,
-        enhance: [0.05, 0.05, 0, 0.1, 0.1],
-        single: true,
-      },
-      s3: {
-        rate: 1.8,
-        pow: 1,
-        mult: () => 1 + (100 - elements.target_hp_pc.value()) * 0.0035,
-        multTip: () => ({target_lost_hp_pc: 35}),
-        enhance: [0.05, 0.05, 0, 0.1, 0.1],
-        single: true,
-      },
-    }
-  },
+  // summer_break_charlotte_old: {
+  //   name: 'Summer Break Charlotte (Pre-Balance)',
+  //   element: element.ice,
+  //   classType: classType.knight,
+  //   baseAtk: 957,
+  //   baseHP: 6148,
+  //   baseDef: 634,
+  //   form: [elements.target_hp_pc],
+  //   skills: {
+  //     s1: {
+  //       rate: 0.9,
+  //       pow: 1,
+  //       enhance: [0.05, 0.05, 0, 0.1, 0.1],
+  //       single: true,
+  //     },
+  //     s3: {
+  //       rate: 1.8,
+  //       pow: 1,
+  //       mult: () => 1 + (100 - elements.target_hp_pc.value()) * 0.0035,
+  //       multTip: () => ({target_lost_hp_pc: 35}),
+  //       enhance: [0.05, 0.05, 0, 0.1, 0.1],
+  //       single: true,
+  //     },
+  //   }
+  // },
   summer_disciple_alexa: {
     name: 'Summer\'s Disciple Alexa',
     element: element.ice,
@@ -8503,6 +8633,35 @@ const heroes = {
         single: true,
       },
       s2: {
+        soulburn: true,
+        rate: (soulburn) => soulburn ? 1.05 : 0.8,
+        pow: 1,
+        enhance: [0.05, 0, 0.1, 0, 0.15],
+        aoe: true,
+      },
+      s3: {
+        rate: 1.1,
+        pow: 1.05,
+        enhance: [0.1, 0, 0, 0, 0.15],
+        aoe: true,
+      }
+    }
+  },
+  tenebria_old: {
+    name: 'Tenebria (Pre-Balance)',
+    element: element.fire,
+    classType: classType.mage,
+    baseAtk: 1359,
+    baseHP: 4895,
+    baseDef: 652,
+    skills: {
+      s1: {
+        rate: 1.2,
+        pow: 1,
+        enhance: [0.05, 0, 0.1, 0, 0.15],
+        single: true,
+      },
+      s2: {
         rate: 0.8,
         pow: 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
@@ -8691,7 +8850,9 @@ const heroes = {
     baseHP: 5826,
     baseDef: 672,
     form: [elements.caster_max_hp, elements.skill_tree_completed],
-    barrier: () => elements.caster_max_hp.value() * 0.2,
+    barrierSkills: ['Passive', 'S3'],
+    barrier: () => elements.caster_max_hp.value() * 0.15,
+    barrier2: () => elements.caster_max_hp.value() * 0.2,
     skills: {
       s1: {
         hpScaling: true,
@@ -8714,6 +8875,40 @@ const heroes = {
         enhance: [0.05, 0.05, 0, 0.1, 0, 0.15],
         single: true,
       }
+    }
+  },
+  urban_shadow_choux: {
+    name: 'Urban Shadow Choux', // TODO: translate when available
+    element: element.dark,
+    classType: classType.warrior,
+    baseAtk: 984,
+    baseHP: 6266,
+    baseDef: 637,
+    info: infoLabel('unreleased_hero'),
+    form: [elements.caster_max_hp, elements.caster_has_bzzt, elements.target_injuries],
+    skills: {
+      s1: {
+        soulburn: true,
+        rate: (soulburn) => (soulburn ? 0.8 : 0.5),
+        pow: 1,
+        fixed: () => elements.caster_has_bzzt.value() ? 2000 : 0,
+        fixedTip: () => ({ caster_has_bzzt: 2000 }),
+        flat: (soulburn) => elements.caster_max_hp.value() * (soulburn ? 0.16 : 0.1),
+        flatTip: (soulburn) => ({ caster_max_hp: soulburn ? 16 : 10 }),
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        single: true,
+      },
+      s3: {
+        rate: 0.5,
+        pow: 1,
+        fixed: () => elements.caster_has_bzzt.value() ? 2000 : 0,
+        fixedTip: () => ({ caster_has_bzzt: 2000 }),
+        afterMath: () => ({ injuryPercent: 0.6, penetrate: 0.7 }),
+        flat: () => elements.caster_max_hp.value() * 0.25,
+        flatTip: () => ({ caster_max_hp: 25 }),
+        enhance: [0.05, 0.05, 0, 0.1, 0.1],
+        single: true,
+      },
     }
   },
   verdant_adin: {
@@ -8758,6 +8953,33 @@ const heroes = {
       },
     }
   },
+  veronica: {
+    name: 'Veronica',
+    element: element.fire,
+    classType: classType.ranger,
+    baseAtk: 1188,
+    baseHP: 4693,
+    baseDef: 518,
+    info: infoLabel('unreleased_hero'),
+    form: [elements.target_bomb_detonate],
+    dot: [dot.bomb],
+    skills: {
+      s1: {
+        rate: 0.7,
+        pow: 1,
+        detonate: [dot.bomb],
+        detonation: () => 1,
+        enhance: [0.05, 0, 0.1, 0, 0.15],
+        single: true,
+      },
+      s3: {
+        rate: 0.8,
+        pow: 1,
+        enhance: [0.05, 0.05, 0, 0.1, 0.1],
+        single: true,
+      },
+    }
+  },  
   vigilante_leader_glenn: {
     name: 'Vigilante Leader Glenn',
     element: element.earth,
@@ -9318,6 +9540,7 @@ const heroes = {
         single: true,
       },
       s1_bis: {
+        isExtra: true,
         name: infoLabel('zio_disappear'),
         rate: 1,
         pow: 1,

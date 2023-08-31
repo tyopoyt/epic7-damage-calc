@@ -53,6 +53,7 @@ const i18n = {
       mercedes: 'meru',
       moon_bunny_dominiel: 'bdom b.dom',
       mort: 'mortelix',
+      navy_captain_landy: 'candy',
       operator_sigret: 'opsig op.sig',
       pirate_captain_flan: 'plan',
       remnant_violet: 'riolet',
@@ -92,6 +93,7 @@ const i18n = {
       fixed: 'Fixed Dmg',
       custom: {
         caster_has_buff: 'Caster has Buff: {v}%', // TODO: Translate
+        caster_has_bzzt: 'Caster has Bzzt!: {v}', // TODO: Translate
         caster_target_atk_diff: '{v}% Attack Difference',
         caster_target_spd_diff: '{v}% Speed Difference',
         caster_target_def_diff: '{v}% Defense Difference',
@@ -157,6 +159,7 @@ const i18n = {
       ml_kayron_flash_slash: 'Flash Slash',
       navy_captain_landy_salvo_fire: 'Salvo Fire',
       sez_encroach: 'Encroach',
+      silk_automatic_fire: 'Automatic Fire',
       s1_extra_attack: 'S1 Extra Attack',
       s1_soulburn: 'S1 Soulburn',
       s2_wave_2: 'S2 Wave 2',
@@ -173,10 +176,9 @@ const i18n = {
     heroes: {
       // Unreleased units: (未発表)
       // Pre-Balance versions: (前のバージョン)
-      arunka_old: 'アルンカ (前のバージョン)',
-      little_queen_charlotte_old: '若き女王 シャルロッテ (前のバージョン)',
-      jack_o_old: 'ジャック・オー (前のバージョン)',
-      summer_break_charlotte_old: '夏休みのシャルロッテ (前のバージョン)',
+      lionheart_cermia_old: '獅子王 チェルミア (前のバージョン)',
+      silk_old: 'シルク (前のバージョン)',
+      tenebria_old: 'テネブレア (前のバージョン)',
       // End Pre-Balance
       abigail: 'アビゲイル',
       achates: 'アカテス',
@@ -225,6 +227,7 @@ const i18n = {
       blood_blade_karin: '血剣のカリン',
       blood_moon_haste: '赤月の貴族 ヘイスト',
       briar_witch_iseria:'灰森のイセリア',
+      brieg: 'ブリッグ',
       butcher_corps_inquisitor: 'エクスキューショナー',
       camilla: 'カミラ',
       captain_rikoris: '先遣部隊長 リコリス',
@@ -456,6 +459,7 @@ const i18n = {
       tywin: 'タイウィン',
       unbound_knight_arowell: '自由騎士 アロウェル',
       verdant_adin: '新緑のアーディン',
+      veronica: 'ヴェロニカ',
       vigilante_leader_glenn: '自警団長 グレン',
       vildred: 'ヴィルドレッド',
       violet: 'ヴィオレタ',
@@ -625,7 +629,8 @@ const i18n = {
       alencia_trample: '圧殺',
       arunka_expose: 'えぐり',
       beehoo_incinerate: '焼却',
-      lethe_call_of_the_abyss: '',
+      silk_automatic_fire: 'バーストショット',
+      lethe_call_of_the_abyss: '深淵の呼び声',
       lqc_s3_splash: 'S3 スプラッシュダメージ',
       ml_celine_nimble_sword: '快剣',
       navy_captain_landy_salvo_fire: '一斉射擊',
@@ -644,10 +649,9 @@ const i18n = {
     heroes: {
       // Unreleased units: (未發布)
       // Pre-Balance versions: (以前的版本)
-      arunka_old: '亞露嘉 (以前的版本)',
-      little_queen_charlotte_old: '年輕的女王夏綠蒂 (以前的版本)',
-      jack_o_old: '潔克‧歐 (以前的版本)',
-      summer_break_charlotte_old: '暑假夏綠蒂 (以前的版本)',
+      lionheart_cermia_old: '獅心王潔若米亞 (以前的版本)',
+      silk_old: '席可 (以前的版本)',
+      tenebria_old: '泰妮布里雅 (以前的版本)',
       // End Pre-Balance
       abigail: '雅碧凱',
       achates: '雅卡泰絲',
@@ -696,6 +700,7 @@ const i18n = {
       blood_blade_karin: '血劍卡琳',
       blood_moon_haste: '赤月的貴族海斯特',
       briar_witch_iseria: '灰光森林的伊賽麗亞',
+      brieg: '布里克',
       butcher_corps_inquisitor: '混沌教屠殺追擊者',
       camilla: '卡蜜拉',
       captain_rikoris: '先鋒隊長里科黎司',
@@ -927,6 +932,7 @@ const i18n = {
       tywin: '泰溫',
       unbound_knight_arowell: '自由騎士雅洛薇',
       verdant_adin: '新綠的艾庭',
+      veronica: '貝洛妮卡',
       vigilante_leader_glenn: '自衛隊隊長格倫',
       vildred: '維德瑞',
       violet: '菲奧雷托',
@@ -1331,7 +1337,8 @@ const i18n = {
       alencia_trample: '扼殺',
       arunka_expose: '揭露',
       beehoo_incinerate: '焚燒',
-      lethe_call_of_the_abyss: '',
+      silk_automatic_fire: '連發射擊',
+      lethe_call_of_the_abyss: '深淵的呼喚',
       lqc_s3_splash: 'S3 濺射傷害',
       ml_celine_nimble_sword: '快劍',
       navy_captain_landy_salvo_fire: '全軍射擊',
@@ -1349,10 +1356,9 @@ const i18n = {
     heroes: {
       // Unreleased units: (未发布)
       // Pre-Balance versions: (以前的版本)
-      arunka_old: '亚露嘉 (以前的版本)',
-      little_queen_charlotte_old: '年轻的女王夏绿蒂 (以前的版本)',
-      jack_o_old: '杰克·欧 (以前的版本)',
-      summer_break_charlotte_old: '暑假夏绿蒂 (以前的版本)',
+      lionheart_cermia_old: '狮心王洁若米亚 (以前的版本)',
+      silk_old: '席可 (以前的版本)',
+      tenebria_old: '泰妮布里雅 (以前的版本)',
       // End Pre-Balance
       abigail: '雅碧凱',
       achates: '雅卡泰丝',
@@ -1401,6 +1407,7 @@ const i18n = {
       blood_blade_karin: '血剑卡琳',
       blood_moon_haste: '赤月的贵族海斯特',
       briar_witch_iseria: '灰光森林的伊赛丽亚',
+      brieg: '布里克', // TODO: simplified when available
       butcher_corps_inquisitor: '混沌教屠杀追击者',
       camilla: '卡蜜拉',
       captain_rikoris: '先锋队长里科黎司',
@@ -1632,6 +1639,7 @@ const i18n = {
       tywin: '泰温',
       unbound_knight_arowell: '自由骑士雅洛薇',
       verdant_adin: '新绿的艾庭',
+      veronica: '貝洛妮卡', // TODO: simplified when available
       vigilante_leader_glenn: '自卫队队长格伦',
       vildred: '维德瑞',
       violet: '菲奥雷托',
@@ -2036,8 +2044,9 @@ const i18n = {
     info: {
       alencia_trample: '扼杀',
       arunka_expose: '揭露',
+      silk_automatic_fire: '连发射击',
       beehoo_incinerate: '焚烧',
-      lethe_call_of_the_abyss: '',
+      lethe_call_of_the_abyss: '深渊呼唤',
       lqc_s3_splash: 'S3 溅射伤害',
       ml_celine_nimble_sword: '快剑',
       navy_captain_landy_salvo_fire: '全軍射擊', // TODO: Simplified when available
@@ -2056,10 +2065,9 @@ const i18n = {
     heroes: {
       // Unreleased units: (미공개)
       // Pre-Balance versions: (이전 버전)
-      arunka_old: '아룬카 (이전 버전)',
-      little_queen_charlotte_old: '어린 여왕 샬롯 (이전 버전)',
-      jack_o_old: '잭 오 (이전 버전)',
-      summer_break_charlotte_old: '여름 방학 샬롯 (이전 버전)',
+      lionheart_cermia_old: '사자왕 체르미아 (이전 버전)',
+      silk_old: '실크 (이전 버전)',
+      tenebria_old: '테네브리아 (이전 버전)',
       // End Pre-Balance
       abigail: '아비게일',
       achates: '아카테스',
@@ -2112,6 +2120,7 @@ const i18n = {
       blood_blade_karin: '혈검 카린',
       blood_moon_haste: '적월의 귀족 헤이스트',
       briar_witch_iseria: '잿빛 숲의 이세리아',
+      brieg: '브리그',
       butcher_corps_inquisitor: '카오스교 도살추적자',
       captain_rikoris: '선봉대장 리코리스',
       carmainerose: '카마인로즈',
@@ -2343,6 +2352,7 @@ const i18n = {
       tywin: '타이윈',
       unbound_knight_arowell: '자유기사 아로웰',
       verdant_adin: '신록의 아딘',
+      veronica: '베로니카',
       vigilante_leader_glenn: '자경단장 글렌',
       vildred: '빌트레드',
       violet: '비올레토',
@@ -2672,7 +2682,8 @@ const i18n = {
       alencia_trample: '압살',
       arunka_expose: '파헤치기',
       beehoo_incinerate: '소각',
-      lethe_call_of_the_abyss: '',
+      silk_automatic_fire: '연발 사격',
+      lethe_call_of_the_abyss: '심연의 부름',
       lqc_s3_splash: '스킬 3 스플래시',
       ml_celine_nimble_sword: '쾌검',
       navy_captain_landy_salvo_fire: '일제 사격',
@@ -2691,10 +2702,9 @@ const i18n = {
     heroes: {
       // Unreleased units: (Unidades) (Não Lançadas)
       // Pre-Balance versions: (Versão) (Pré-Balanceamento)
-      arunka_old: 'Arunka (Pré-Balanceamento)',
-      little_queen_charlotte_old: 'Jovem Rainha Charlotte (Pré-Balanceamento)',
-      jack_o_old: 'Jack-O (Pré-Balanceamento)',
-      summer_break_charlotte_old: 'Charlotte Férias de Verão (Pré-Balanceamento)',
+      lionheart_cermia_old: 'Cérmia Coração de Leão (Pré-Balanceamento)',
+      silk_old: 'Seda (Pré-Balanceamento)',
+      tenebria_old: 'Tenébria (Pré-Balanceamento)',
       // End Pre-Balance
       abigail: 'Abigail', // TODO: translate when available
       achates: 'Acates',
@@ -2743,6 +2753,7 @@ const i18n = {
       blood_blade_karin: 'Karin da Lâmina de Sangue',
       blood_moon_haste: 'Presto da Lua de Sangue',
       briar_witch_iseria: 'Bruxa do Espinheiro Iséria',
+      brieg: 'Brieg', //TODO: translate when available
       butcher_corps_inquisitor: 'Inquisidor Açougueiro',
       captain_rikoris: 'Capitão Rikoris',
       carmainerose: 'Carmainerosa',
@@ -2974,6 +2985,7 @@ const i18n = {
       tywin: 'Tywin',
       unbound_knight_arowell: 'Arowell Cavaleira Livre',
       verdant_adin: 'Adine Broto Verdejante',
+      veronica: 'Veronica', // TODO: translate when available
       vigilante_leader_glenn: 'Líder Justiceiro Glenn',
       vildred: 'Vildred',
       violet: 'Purpúrio',
@@ -3225,7 +3237,8 @@ const i18n = {
       alencia_trample: 'Pisotear',
       arunka_expose: 'Carcomere',
       beehoo_incinerate: 'Carbonizar',
-      lethe_call_of_the_abyss: '',
+      silk_automatic_fire: 'Disparo Automático',
+      lethe_call_of_the_abyss: 'Chamado do Abismo',
       lqc_s3_splash: 'S3 Splash',
       ml_celine_nimble_sword: 'Fulgor',
       navy_captain_landy_salvo_fire: 'Salvo Fire', //TODO: Translate when available 
