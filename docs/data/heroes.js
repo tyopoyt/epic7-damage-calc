@@ -1586,10 +1586,8 @@ const heroes = {
       return elements.caster_max_hp.value() * 0.185 * boost;
     },
     barrier2: () => {
-      // const scale = [0.05, 0.05, 0.05, 0.1, 0.1];
       let boost = 1.0;
       for (let i = 0; i < Number(document.getElementById('molagora-s2').value); i++) {
-        // boost += scale[i];
         boost += heroes['brieg'].skills.s2.enhance[i];
       }
 
@@ -7839,7 +7837,7 @@ const heroes = {
     baseAtk: 1188,
     baseHP: 4693,
     baseDef: 518,
-    form: [elements.caster_speed, elements.caster_nb_focus],
+    form: [elements.caster_speed],
     skills: {
       s1: {
         spdScaling: true,
@@ -7847,10 +7845,11 @@ const heroes = {
         pow: 0.9,
         mult: () => 1 + elements.caster_speed.value() * 0.00075,
         multTip: () => ({ caster_speed: 0.075 }),
-        enhance: [0.05, 0.05, 0, 0.05, 0, 0.1, 0.15],
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.1],
         single: true,
       },
       s1_bis: {
+        s1_benefits: true,
         name: infoLabel('silk_automatic_fire'),
         spdScaling: true,
         rate: 1.2,
@@ -7888,6 +7887,7 @@ const heroes = {
         single: true,
       },
       s1_bis: {
+        s1_benefits: true,
         name: infoLabel('silk_automatic_fire'),
         spdScaling: true,
         rate: 1.25,

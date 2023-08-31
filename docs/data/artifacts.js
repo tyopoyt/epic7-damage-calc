@@ -46,14 +46,14 @@ const artifacts = {
     type: artifactDmgType.damage,
     scale: [0.1, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2],
     exclusive: classType.ranger,
-    applies: (_, skillId) => skillId === 's1',
+    applies: (skill, skillId) => skillId === 's1' || skill.s1_benefits,
   },
   ancient_sheath: {
     id: 'ancient_sheath',
     name: 'Ancient Sheath',
     type: artifactDmgType.damage,
     scale: [0.08, 0.088, 0.096, 0.104, 0.112, 0.12, 0.128, 0.136, 0.144, 0.152, 0.16],
-    applies: (_, skillId) => skillId === 's1',
+    applies: (skill, skillId) => skillId === 's1' || skill.s1_benefits,
   },
   black_hand_of_the_goddess: {
     id: 'black_hand_of_the_goddess',
@@ -109,9 +109,9 @@ const artifacts = {
     name: 'Dux Noctis',
     type: artifactDmgType.attack,
     scale: [0.02, 0.022, 0.024, 0.026, 0.028, 0.03, 0.032, 0.034, 0.036, 0.038, 0.04],
-    form: [elements.critical_hit_stack_8],
+    form: [elements.critical_hit_stack_6],
     exclusive: classType.ranger,
-    value: (artiScale) => elements.critical_hit_stack_8.value() * artiScale
+    value: (artiScale) => (artiScale * 3) + (elements.critical_hit_stack_6.value() * artiScale)
   },
   els_fist: {
     id: 'els_fist',
@@ -339,7 +339,7 @@ const artifacts = {
     atkPercent: 0.4,
     penetrate: 0.7,
     exclusive: classType.knight,
-    applies: (_, skillId) => skillId === 's1',
+    applies: (skill, skillId) => skillId === 's1' || skill.s1_benefits,
   },
   spear_of_purification: {
     id: 'spear_of_purification',
