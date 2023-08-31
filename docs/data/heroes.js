@@ -8799,7 +8799,9 @@ const heroes = {
     baseHP: 5826,
     baseDef: 672,
     form: [elements.caster_max_hp, elements.skill_tree_completed],
-    barrier: () => elements.caster_max_hp.value() * 0.2,
+    barrierSkills: ['Passive', 'S3'],
+    barrier: () => elements.caster_max_hp.value() * 0.15,
+    barrier2: () => elements.caster_max_hp.value() * 0.2,
     skills: {
       s1: {
         hpScaling: true,
@@ -8866,6 +8868,33 @@ const heroes = {
       },
     }
   },
+  veronica: {
+    name: 'Veronica',
+    element: element.fire,
+    classType: classType.ranger,
+    baseAtk: 1188,
+    baseHP: 4693,
+    baseDef: 518,
+    info: infoLabel('unreleased_hero'),
+    form: [elements.target_bomb_detonate],
+    dot: [dot.bomb],
+    skills: {
+      s1: {
+        rate: 0.7,
+        pow: 1,
+        detonate: [dot.bomb],
+        detonation: () => 1,
+        enhance: [0.05, 0, 0.1, 0, 0.15],
+        single: true,
+      },
+      s3: {
+        rate: 0.8,
+        pow: 1,
+        enhance: [0.05, 0.05, 0, 0.1, 0.1],
+        single: true,
+      },
+    }
+  },  
   vigilante_leader_glenn: {
     name: 'Vigilante Leader Glenn',
     element: element.earth,
