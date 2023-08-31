@@ -173,10 +173,9 @@ const i18n = {
     heroes: {
       // Unreleased units: (未発表)
       // Pre-Balance versions: (前のバージョン)
-      arunka_old: 'アルンカ (前のバージョン)',
-      little_queen_charlotte_old: '若き女王 シャルロッテ (前のバージョン)',
-      jack_o_old: 'ジャック・オー (前のバージョン)',
-      summer_break_charlotte_old: '夏休みのシャルロッテ (前のバージョン)',
+      lionheart_cermia_old: '獅子王 チェルミア (前のバージョン)',
+      silk_old: 'シルク (前のバージョン)',
+      tenebria_old: 'テネブレア (前のバージョン)',
       // End Pre-Balance
       abigail: 'アビゲイル',
       achates: 'アカテス',
@@ -644,10 +643,9 @@ const i18n = {
     heroes: {
       // Unreleased units: (未發布)
       // Pre-Balance versions: (以前的版本)
-      arunka_old: '亞露嘉 (以前的版本)',
-      little_queen_charlotte_old: '年輕的女王夏綠蒂 (以前的版本)',
-      jack_o_old: '潔克‧歐 (以前的版本)',
-      summer_break_charlotte_old: '暑假夏綠蒂 (以前的版本)',
+      lionheart_cermia_old: '獅心王潔若米亞 (以前的版本)',
+      silk_old: '席可 (以前的版本)',
+      tenebria_old: '泰妮布里雅 (以前的版本)',
       // End Pre-Balance
       abigail: '雅碧凱',
       achates: '雅卡泰絲',
@@ -1349,10 +1347,9 @@ const i18n = {
     heroes: {
       // Unreleased units: (未发布)
       // Pre-Balance versions: (以前的版本)
-      arunka_old: '亚露嘉 (以前的版本)',
-      little_queen_charlotte_old: '年轻的女王夏绿蒂 (以前的版本)',
-      jack_o_old: '杰克·欧 (以前的版本)',
-      summer_break_charlotte_old: '暑假夏绿蒂 (以前的版本)',
+      lionheart_cermia_old: '狮心王洁若米亚 (以前的版本)',
+      silk_old: '席可 (以前的版本)',
+      tenebria_old: '泰妮布里雅 (以前的版本)',
       // End Pre-Balance
       abigail: '雅碧凱',
       achates: '雅卡泰丝',
@@ -2056,10 +2053,9 @@ const i18n = {
     heroes: {
       // Unreleased units: (미공개)
       // Pre-Balance versions: (이전 버전)
-      arunka_old: '아룬카 (이전 버전)',
-      little_queen_charlotte_old: '어린 여왕 샬롯 (이전 버전)',
-      jack_o_old: '잭 오 (이전 버전)',
-      summer_break_charlotte_old: '여름 방학 샬롯 (이전 버전)',
+      lionheart_cermia_old: '사자왕 체르미아 (이전 버전)',
+      silk_old: '실크 (이전 버전)',
+      tenebria_old: '테네브리아 (이전 버전)',
       // End Pre-Balance
       abigail: '아비게일',
       achates: '아카테스',
@@ -2691,10 +2687,9 @@ const i18n = {
     heroes: {
       // Unreleased units: (Unidades) (Não Lançadas)
       // Pre-Balance versions: (Versão) (Pré-Balanceamento)
-      arunka_old: 'Arunka (Pré-Balanceamento)',
-      little_queen_charlotte_old: 'Jovem Rainha Charlotte (Pré-Balanceamento)',
-      jack_o_old: 'Jack-O (Pré-Balanceamento)',
-      summer_break_charlotte_old: 'Charlotte Férias de Verão (Pré-Balanceamento)',
+      lionheart_cermia_old: 'Cérmia Coração de Leão (Pré-Balanceamento)',
+      silk_old: 'Seda (Pré-Balanceamento)',
+      tenebria_old: 'Tenébria (Pré-Balanceamento)',
       // End Pre-Balance
       abigail: 'Abigail', // TODO: translate when available
       achates: 'Acates',
