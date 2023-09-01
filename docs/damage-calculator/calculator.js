@@ -939,7 +939,7 @@ const calculateChart = (inputValues) => {
 
     const atkDataIndex = chart.data.datasets.indexOf(filteredDatasets[0]);
 
-    hero.atk = hero.atk - (intersectionPoint * atkStep);
+    hero.atk = Math.floor(hero.atk - (intersectionPoint * atkStep));
     chart.data.datasets[atkDataIndex].data = [];
 
     while (chart.data.datasets[atkDataIndex].data.length < numSteps) {
@@ -962,18 +962,18 @@ const calculateChart = (inputValues) => {
       });
   
       chart.data.datasets[atkDataIndex].data.push(finalDam);
-      chart.data.labels.push(`${hero.atk} ${formLabel('attack')}`);
+      chart.data.labels.push(`${Math.floor(hero.atk)} ${formLabel('attack')}`);
       hero.atk += atkStep;
 
       if (chart.data.datasets[atkDataIndex].data.length >= numSteps) {
         maxDamages.push(finalDam);
       }
     }
-    hero.crit = hero.crit - intersectionPoint;
     hero.atk = inputValues.atk;
   }
 
   if (damageToUse === 'crit') {
+    hero.crit = Math.floor(hero.crit - intersectionPoint);
     filteredDatasets = chart.data.datasets.filter(dataset => dataset.label === formLabel('cdam'));
     if (!filteredDatasets.length) {
       chart.data.datasets.push({
@@ -1046,7 +1046,7 @@ const calculateChart = (inputValues) => {
     const defDataIndex = chart.data.datasets.indexOf(filteredDatasets[0]);
 
     chart.data.datasets[defDataIndex].data = [];
-    hero.def = inputValues['caster-defense'] - (intersectionPoint *  defStep);
+    hero.def = Math.floor(inputValues['caster-defense'] - (intersectionPoint *  defStep));
 
     index = 0;
     while (chart.data.datasets[defDataIndex].data.length < numSteps) {
@@ -1069,7 +1069,7 @@ const calculateChart = (inputValues) => {
       });
   
       chart.data.datasets[defDataIndex].data.push(finalDam);
-      chart.data.labels[index] = `${chart.data.labels[index] ? chart.data.labels[index] + ' vs ' : ''}${hero.def} ${formLabel('defense')}`;
+      chart.data.labels[index] = `${chart.data.labels[index] ? chart.data.labels[index] + ' vs ' : ''}${Math.floor(hero.def)} ${formLabel('defense')}`;
       hero.def += defStep;
       index++;
       if (chart.data.datasets[defDataIndex].data.length >= numSteps) {
@@ -1102,7 +1102,7 @@ const calculateChart = (inputValues) => {
     const HPDataIndex = chart.data.datasets.indexOf(filteredDatasets[0]);
 
     chart.data.datasets[HPDataIndex].data = [];
-    hero.hp = inputValues['caster-max-hp'] * (artifacts[artifact.id]?.maxHP || 1) - (intersectionPoint *  hpStep);
+    hero.hp = Math.floor(inputValues['caster-max-hp'] * (artifacts[artifact.id]?.maxHP || 1) - (intersectionPoint *  hpStep));
 
     index = 0;
     while (chart.data.datasets[HPDataIndex].data.length < numSteps) {
@@ -1125,7 +1125,7 @@ const calculateChart = (inputValues) => {
       });
   
       chart.data.datasets[HPDataIndex].data.push(finalDam);
-      chart.data.labels[index] = `${chart.data.labels[index] ? chart.data.labels[index] + ' vs ' : ''}${hero.hp} ${formLabel('hp')}`;
+      chart.data.labels[index] = `${chart.data.labels[index] ? chart.data.labels[index] + ' vs ' : ''}${Math.floor(hero.hp)} ${formLabel('hp')}`;
       hero.hp += hpStep;
       index++;
       if (chart.data.datasets[HPDataIndex].data.length >= numSteps) {
@@ -1158,7 +1158,7 @@ const calculateChart = (inputValues) => {
     const spdDataIndex = chart.data.datasets.indexOf(filteredDatasets[0]);
 
     chart.data.datasets[spdDataIndex].data = [];
-    hero.spd = inputValues['caster-speed'] - (intersectionPoint * spdStep);
+    hero.spd = Math.floor(inputValues['caster-speed'] - (intersectionPoint * spdStep));
 
     index = 0;
     while (chart.data.datasets[spdDataIndex].data.length < numSteps) {
