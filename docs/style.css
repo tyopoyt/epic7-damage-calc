@@ -189,8 +189,24 @@ body .popover {
     margin-right: 0.5rem;
 }
 
-#damage-chart-container {
+.canvas-container {
     height: 27vh;
+    position: relative;
+    margin-bottom: -1rem;
+}
+
+.canvas-container > canvas {
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    bottom: 0; 
+}
+
+@media (max-width: 767px) {
+    #canvas-container {
+        height: 44vh;
+    }
 }
 
 #damage-chart-container > canvas {
@@ -238,30 +254,6 @@ body .popover {
     flex-wrap: wrap;
     flex-direction: row;
     align-items: center;
-}
-
-@media (max-width: 991px) {
-    #damage-chart-container > canvas {
-        margin-bottom: 5.8rem;
-    }
-}
-
-@media (max-width: 767px) {
-    #damage-chart-container > canvas {
-        margin-bottom: 6.8rem;
-    }
-}
-
-@media (max-width: 485px) {
-    #damage-chart-container > canvas {
-        margin-bottom: 8.8rem;
-    }
-}
-
-@media (max-width: 429px) {
-    #damage-chart-container > canvas {
-        margin-bottom: 10.8rem;
-    }
 }
 
 .oneshot-holder {
