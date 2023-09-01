@@ -73,6 +73,13 @@ const artifacts = {
     exclusive: classType.warrior,
     value: (artiScale) => elements.non_attack_skill_stack_3.value() * artiScale
   },
+  broken_will_of_the_priest: {
+    id: 'broken_will_of_the_priest',
+    name: 'Broken Will of the Priest',
+    scale: [0.08, 0.088, 0.096, 0.104, 0.112, 0.12, 0.128, 0.136, 0.144, 0.152, 0.16],
+    type: artifactDmgType.penetrate,
+    exclusive: classType.knight
+  },
   daydream_joker: {
     id: 'daydream_joker',
     name: 'Daydream Joker',
