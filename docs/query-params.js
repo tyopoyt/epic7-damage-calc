@@ -43,7 +43,19 @@ const getInputValues = () => {
   });
 
   numberParams.forEach((param) => {
-    inputValues[param] = Number(Function(`"use strict";return ${param}Input`)()?.value || formDefaults[param]);
+    inputValues[param] = Number(Function(`"use strict";return ${param}Input`)()?.value || formDefaults[param] || 0);
+  });
+
+  radioParams.forEach((param) => {
+    for (const option of param.options) {
+      if ($(`#${param.selector.replace('{v}', option)}`).prop('checked')) {
+        inputValues[param.name] = option;
+      }
+    }
+  });
+
+  toggleParams.forEach((param) => {
+    inputValues[param.name] = param.toggledOn();
   });
 
   if (page === 'dmg_calc') {
@@ -137,12 +149,27 @@ const loadQueryParams = async () => {
         continue;
       }
       let paramVal = queryParams.get(param);
-      if (paramVal && paramVal !== formDefaults[param].toString()) {
+      if (paramVal && paramVal !== formDefaults[param]?.toString()) {
         const element = Function(`"use strict";return ${param}Input`)();
         element.value = Number(paramVal);
         Function(`"use strict";return ${param}Slide`)().value = Number(paramVal);
       }
     }
+
+    radioParams.forEach((param) => {
+      let paramVal = queryParams.get(param.name);
+      if (paramVal !== null && paramVal !== formDefaults[param.name]) {
+        param.loadCallback(paramVal);
+      } 
+    });
+  
+    toggleParams.forEach((param) => {
+      let paramVal = queryParams.get(param.name)?.toLowerCase() === 'true';
+
+      if (paramVal && paramVal !== formDefaults[param.name]) {
+        param.loadCallback(paramVal);
+      }
+    });
 
     if (page === 'dmg_calc') {
       // set dmg reduction preset to manual if any of these have a param val
@@ -274,21 +301,6 @@ const loadQueryParams = async () => {
   $('.initial-show').hide();
 };
 
-/*
- * Call this when the form is updated, probably at the end of resolve().
- */
-const formUpdated = () => {
-  if (queryParams) {
-    if (updateRequestTime) {
-      updateRequestTime = Date.now();
-    } else if (updateRequestTime === null) {
-      debounce('updateQueryParams', updateQueryParamsWhenStable, [false]);
-    } else {
-      updateRequestTime = null; // don't queue an update on the initial load
-    }
-  }
-};
-
 const debounceTimers = {};
 const debounce = async (key, callback, args = [], time = 200) => {
   if (debounceTimers[key]) {
@@ -302,7 +314,7 @@ const debounce = async (key, callback, args = [], time = 200) => {
 /*
  * Puts form values in queryParams after debouncing input.
  */ 
-const updateQueryParamsWhenStable = async (updateURL = false) => {
+const updateQueryParams = async (updateURL = false) => {
 
   const inputValues = getInputValues();
 
@@ -335,6 +347,22 @@ const updateQueryParamsWhenStable = async (updateURL = false) => {
       queryParams.delete(param);
     }
   }
+
+  radioParams.forEach(param => {
+    if (inputValues[param.name] !== formDefaults[param.name]) {
+      queryParams.set(param.name, inputValues[param.name]);
+    } else {
+      queryParams.delete(param.name);
+    }
+  });
+
+  toggleParams.forEach(param => {
+    if (inputValues[param.name] !== formDefaults[param.name]) {
+      queryParams.set(param.name, inputValues[param.name]);
+    } else {
+      queryParams.delete(param.name);
+    }
+  });
 
   if (page === 'dmg_calc') {
     const heroElement = document.getElementById('hero');

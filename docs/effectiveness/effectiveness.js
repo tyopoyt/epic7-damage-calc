@@ -40,6 +40,6 @@ const resolve = () => {
   document.getElementById('resist').innerText = Math.round(resistChance * 100).toString();
   document.getElementById('landing').innerText = Math.round(inflictChance * 100).toString();
 
-  formUpdated();
+  debounce('updateQueryParams', updateQueryParams, [false]);
 };
 /* eslint-enable */

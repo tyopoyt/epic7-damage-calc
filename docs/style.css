@@ -209,21 +209,28 @@ body .popover {
     color:white;
 }
 
-.hit-type-radio {
+.input-line {
     margin-top: 5px;
     margin-left: 5px;
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
 }
 
-.hit-type-radio .form-check {
+.input-line .form-check {
     margin-left: 1rem;
     display: flex;
     align-self: center;
     justify-self: center;
 
     padding-right: 5px;
+}
+
+.input-section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .radio-holder {
@@ -233,16 +240,41 @@ body .popover {
     align-items: center;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 991px) {
     #damage-chart-container > canvas {
         margin-bottom: 5.8rem;
     }
 }
 
-@media (max-width: 360px) {
+@media (max-width: 767px) {
     #damage-chart-container > canvas {
         margin-bottom: 6.8rem;
     }
+}
+
+@media (max-width: 485px) {
+    #damage-chart-container > canvas {
+        margin-bottom: 8.8rem;
+    }
+}
+
+@media (max-width: 429px) {
+    #damage-chart-container > canvas {
+        margin-bottom: 10.8rem;
+    }
+}
+
+.oneshot-holder {
+    display: flex;
+    flex-direction: row;
+    line-height: 1.5;
+    align-self: flex-end;
+}
+
+.oneshot-holder #oneshot-target {
+    height: 1.5rem;
+    width: 10rem;
+    margin-left: 5px;
 }
 
 /* Dark Theme */

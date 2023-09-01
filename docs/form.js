@@ -910,7 +910,12 @@ elements.highest_ally_attack.sub_elements = [elements.ally_atk_up, elements.ally
 elements.target_attack.sub_elements = [elements.target_atk_up, elements.target_atk_up_great, elements.target_atk_down];
 
 const slide = (fieldId) => {
-  document.getElementById(fieldId).value = document.getElementById(`${fieldId}-slide`).value;
+  const slideValue = document.getElementById(`${fieldId}-slide`).value;
+  document.getElementById(fieldId).value = slideValue;
+  if (fieldId === 'target-max-hp') {
+    oneshotInput.value = slideValue;
+    debounce('updateOneshotLine', updateOneshotLine);
+  }
   resetPreset(fieldId);
   resolve();
 };
@@ -927,6 +932,12 @@ const update = (fieldId) => {
   } else {
     slider.value = inputValue;
   }
+
+  if (fieldId === 'target-max-hp') {
+    oneshotInput.value = inputValue;
+    debounce('updateOneshotLine', updateOneshotLine);
+  }
+
   resolve();
 };
 
@@ -1133,6 +1144,7 @@ const refreshArtifactList = (hero) => {
 const buildElement = (elem, parent) => {
   if (elem.type === 'slider') {
     //TODO: fix the ugly elem.icon lines
+    const defaultVal = typeof elem.default === 'function' ? elem.default() : elem.default;
     $(parent).append(`<div id="${elem.id}-block" class="stat-block">
                         <div class="form-group row col-sm-12">
                             <label for="crit" class="col-md-9 col-form-label form-control-sm">
@@ -1142,16 +1154,20 @@ const buildElement = (elem, parent) => {
                                 <div class="input-group-prepend">
                                     <button class="btn btn-outline-secondary" type="button" id="${elem.id}-minus" onclick="minus('${elem.id}')">&minus;</button>
                                 </div>
-                                <input type="number" class="form-control text-center" id="${elem.id}" min="${elem.min}" max="${elem.max}" value="${typeof elem.default === 'function' ? elem.default() : elem.default}" ${elem.readonly ? 'readonly' : ''} onkeyup="update('${elem.id}')">
+                                <input type="number" class="form-control text-center" id="${elem.id}" min="${elem.min}" max="${elem.max}" value="${defaultVal}" ${elem.readonly ? 'readonly' : ''} onkeyup="update('${elem.id}')">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button" id="${elem.id}-plus" onclick="plus('${elem.id}')">&plus;</button>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row col-sm-12">
-                            <input type="range" class="custom-range" id="${elem.id}-slide" min="${elem.min}" max="${elem.max}" value="${typeof elem.default === 'function' ? elem.default() : elem.default}" step="${elem.step || 1}" oninput="slide('${elem.id}')">
+                            <input type="range" class="custom-range" id="${elem.id}-slide" min="${elem.min}" max="${elem.max}" value="${defaultVal}" step="${elem.step || 1}" oninput="slide('${elem.id}')">
                         </div>
                     </div>`);
+    if (elem.id === 'target-max-hp') {
+      oneshotInput.value = defaultVal;
+      debounce('updateOneshotLine', updateOneshotLine);
+    }
   } else if (elem.type === 'checkbox') {
     $(parent).append(`<div class="form-group col-sm-12">
                               <div class="custom-control custom-checkbox custom-control-inline buff-block">
@@ -1274,6 +1290,9 @@ buildInitialForm = () => {
       if (document.getElementById('damage-chart-container').style.display !== 'none') {
         // This one doesn't need to be debounced because it would be pretty difficult to change the select option quickly
         updateGraphSkillSelect();
+        if (!loadingQueryParams) {
+          updateQueryParams();
+        }
         calculateChart(inputValues);
       }
     };
@@ -1329,6 +1348,7 @@ buildInitialForm = () => {
           hpInput.value = selected.dataset.hp;
           update(elements.target_max_hp.id);
         }
+        oneshotInput.value = selected.dataset.hp;
         window.dataLayer.push({
           'event': 'select_preset_def',
           'def_unit': selected.value
