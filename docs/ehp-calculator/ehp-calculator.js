@@ -75,5 +75,5 @@ const resolve = () => {
 
   updateClasses(firstEHP, secondEHP);
 
-  formUpdated();
+  debounce('updateQueryParams', updateQueryParams, [false]);
 };

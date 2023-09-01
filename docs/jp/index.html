@@ -540,36 +540,42 @@
         <div id="damage-block" class="initial-hide fade-in">
             <div id="damage-chart-container" style="display: none">
                 <select id="chart-skill" name="chart-skill" class="form-control custom-select selectpicker" data-size="12"></select>
-                <span class="hit-type-radio">
-                    <b>ヒットタイプ: </b>
-                    <div class="radio-holder">
+                <div class="input-line">
+                    <span class="input-section">
+                        <b>ヒットタイプ: </b>
                         <!-- The onclicks are on the input and label so clicking the padding has no effect -->
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="hitType" id="crit-hit" onclick="setChartHitType('crit')" checked>
-                            <label class="form-check-label" for="crit-hit" onclick="setChartHitType('crit')">
-                                <b>クリティカルヒット</b>
-                            </label>
+                        <div class="radio-holder">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="hitType" id="crit-hit" onclick="setChartHitType('crit')" checked>
+                                <label class="form-check-label" for="crit-hit" onclick="setChartHitType('crit')">
+                                    <b>クリティカルヒット</b>
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="hitType" id="crush-hit" onclick="setChartHitType('crush')">
+                                <label class="form-check-label" for="crush-hit" onclick="setChartHitType('crush')">
+                                    <b>クラッシュヒット</b>
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="hitType" id="normal-hit" onclick="setChartHitType('normal')">
+                                <label class="form-check-label" for="normal-hit" onclick="setChartHitType('normal')">
+                                    <b>通常ヒット</b>
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="hitType" id="miss-hit" onclick="setChartHitType('miss')">
+                                <label class="form-check-label" for="miss-hit" onclick="setChartHitType('miss')">
+                                    <b>ミスヒット</b>
+                                </label>
+                            </div>
                         </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="hitType" id="crush-hit" onclick="setChartHitType('crush')">
-                            <label class="form-check-label" for="crush-hit" onclick="setChartHitType('crush')">
-                                <b>クラッシュヒット</b>
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="hitType" id="normal-hit" onclick="setChartHitType('normal')">
-                            <label class="form-check-label" for="normal-hit" onclick="setChartHitType('normal')">
-                                <b>通常ヒット</b>
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="hitType" id="miss-hit" onclick="setChartHitType('miss')">
-                            <label class="form-check-label" for="miss-hit" onclick="setChartHitType('miss')">
-                                <b>ミスヒット</b>
-                            </label>
-                        </div>
-                    </div>
-                </span>
+                    </span>
+                    <span class="oneshot-holder input-section">
+                        <b>ワンショット:</b>
+                        <input type="number" class="form-control text-center" id="oneshot-target" value="0">
+                    </span>
+                </div>
                 <canvas id="damage-chart"></canvas>
                 <br>
             </div>

@@ -15,12 +15,16 @@ formDefaults = {
   'artifact': undefined,
   'atkPreset': undefined,
   'defPreset': undefined,
-  'dmgReducPreset': 'none'
+  'dmgReducPreset': 'none',
+  'chartSkill': 's1',
+  'hitType': 'crit',
+  'showGraph': false,
+  'oneshot': 0
 };
 
 // list artifact first to avoid invalid arti selections
 selectorParams = [
-  'artifact', 'hero', 'atkPreset', 'defPreset', 'dmgReducPreset'
+  'artifact', 'hero', 'atkPreset', 'defPreset', 'dmgReducPreset', 'chartSkill'
 ];
 boolParams = [
   'elemAdv', 'atkDown', 'atkUp', 'atkUpGreat', 'critDmgUp', 'vigor', 'rageSet',
@@ -28,7 +32,28 @@ boolParams = [
 ];
 numberParams = [
   'atk', 'atkPcImprint', 'atkPcUp', 'crit', 'bonusDamage', 'torrentSetStack', 'def',
-  'defPcUp', 'dmgReduc', 'dmgTrans'
+  'defPcUp', 'dmgReduc', 'dmgTrans', 'oneshot'
+];
+toggleParams = [
+  {'name': 'showGraph', 'toggledOn': () => {return document.getElementById('damage-chart-container').style.display !== 'none';},
+    'loadCallback': (value) => {
+      if (value) {
+        const lang = document.getElementById('root').getAttribute('lang');
+        const chartButton = document.getElementById('chart-button-text');
+        document.getElementById('damage-chart-container').style.display = 'block';
+        if (lang === 'en') {
+          chartButton.innerText = 'Hide Graph';
+        } else {
+          chartButton.innerText = i18n[lang].form.hide_chart || 'Hide Graph';
+        }
+      }
+    }}
+];
+radioParams = [
+  {'name': 'hitType', 'options': ['crit', 'crush', 'normal', 'miss'], 'selector': '{v}-hit', 'loadCallback': (value) => {
+    $(`#${value}-hit`).prop('checked', true);
+    setChartHitType(value);
+  }}
 ];
 page = 'dmg_calc';
 
@@ -64,6 +89,7 @@ const artifactSelector = document.getElementById('artifact');
 const atkPresetSelector = document.getElementById('atk-preset');
 const defPresetSelector = document.getElementById('def-preset');
 const dmgReducPresetSelector = document.getElementById('dmg-reduc-preset');
+const chartSkillSelector = document.getElementById('chart-skill');
 
 // slides
 const atkSlide = document.getElementById('atk-slide');
@@ -76,7 +102,15 @@ const defSlide = document.getElementById('def-slide');
 const defPcUpSlide = document.getElementById('def-pc-up-slide');
 const dmgReducSlide = document.getElementById('dmg-reduc-slide');
 const dmgTransSlide = document.getElementById('dmg-trans-slide');
+
+// not really a slide but it's a number input
+const oneshotInput = document.getElementById('oneshot-target');
+const oneshotSlide = document.getElementById('oneshot-target');
 /* eslint-enable */
+
+oneshotInput.oninput = () => {
+  debounce('updateOneshotLine', updateOneshotLine);
+};
 
 // declare inputValues up here since it'll be used in multiple places
 let inputValues;
@@ -240,7 +274,9 @@ const resolve = () => {
     }
   }
 
-  formUpdated(true);
+  if (!loadingQueryParams) {
+    debounce('updateQueryParams', updateQueryParams, [false]);
+  }
   if (document.getElementById('damage-chart-container').style.display !== 'none') {
     debounce('calculateChart', calculateChart, [inputValues], 150);
   }
@@ -774,6 +810,39 @@ const toggleChart = () => {
       chartButton.innerText = i18n[lang].form.show_chart || 'Show Graph';
     }
   }
+  if (!loadingQueryParams) {
+    updateQueryParams();
+  }
+};
+
+updateOneshotLine = () => {
+  let oneshotHP = oneshotInput.value;
+
+  if (oneshotHP) {
+    debounce('updateQueryParams', updateQueryParams, [false]);
+  }
+
+  if (oneshotHP && oneshotHP <= Math.max(...maxDamages) * 1.25 && Math.min(...minDamages) <= oneshotHP * 1.25) {
+    chart.config.options.plugins.annotation.annotations['oneshotLine'] = {
+      type: 'line',
+      yMin: oneshotHP,
+      yMax: oneshotHP,
+      borderColor: 'rgba(25, 25, 25, 0.75)',
+      borderWidth: 2,
+      label: {
+        display: true,
+        content: formLabel('oneshot'),
+        position: 'start',
+        backgroundColor: 'rgba(25, 25, 25, 0.75)',
+        font: {
+          family: displayConstants['font-family']
+        }
+      }
+    };
+  } else {
+    delete chart.config.options.plugins.annotation.annotations['oneshotLine'];
+  }
+  chart.update();
 };
 
 const allDamages = {
@@ -785,14 +854,16 @@ const allDamages = {
 
 let damageToUse = 'crit';
 let skillSelect;
+let maxDamages = [];
+let minDamages = [];
 const calculateChart = (inputValues) => {
   const artifact = new Artifact(inputValues.artifact);
   const hero = new Hero(inputValues.hero, artifact);
   skillSelect = document.getElementById('chart-skill');
   let selected = skillSelect.options[skillSelect.selectedIndex]?.value || 's1';
-  let presetHP = defPresetSelector.options[defPresetSelector.selectedIndex].dataset?.hp;
-  const maxDamages = [];
-  const minDamages = [];
+  // let oneshotHP = defPresetSelector.options[defPresetSelector.selectedIndex].dataset?.hp;
+  maxDamages = [];
+  minDamages = [];
   Object.keys(allDamages).forEach(key => {
     allDamages[key] = {};
   });
@@ -1120,36 +1191,21 @@ const calculateChart = (inputValues) => {
     hero.spd = inputValues['caster-speed'];
   }
 
-  if (presetHP && presetHP <= Math.max(...maxDamages) * 1.25 && Math.min(...minDamages) <= presetHP * 1.25) {
-    chart.config.options.plugins.annotation.annotations['oneshotLine'] = {
-      type: 'line',
-      yMin: presetHP,
-      yMax: presetHP,
-      borderColor: 'rgba(25, 25, 25, 0.75)',
-      borderWidth: 2,
-      label: {
-        display: true,
-        content: formLabel('oneshot'),
-        position: 'start',
-        backgroundColor: 'rgba(25, 25, 25, 0.75)',
-        font: {
-          family: displayConstants['font-family']
-        }
-      }
-    };
-  } else {
-    delete chart.config.options.plugins.annotation.annotations['oneshotLine'];
-  }
-  chart.update();
+  updateOneshotLine();
 };
 
 const setChartHitType = (hitType = 'crit') => {
   damageToUse = hitType;
+  if (!loadingQueryParams) {
+    updateQueryParams();
+  }
   // This is probably pretty sloppy but it works...
   if ($(`#${hitType}-hit`).prop('disabled')) {
     return;
   }
 
+  minDamages = [];
+  maxDamages = [];
   let filteredDatasets;
   for (const stat of ['attack', 'cdam', 'defense', 'hp', 'speed']) {
     filteredDatasets = chart.data.datasets.filter(dataset => dataset.label === formLabel(stat));
@@ -1174,11 +1230,13 @@ const setChartHitType = (hitType = 'crit') => {
         filteredDatasets[0].pointStyle = pointStyles[statIndices[stat]];
       }
       chart.data.datasets[chartIndex].data = allDamages[hitType][stat];
+      maxDamages.push(Math.max(...allDamages[hitType][stat]));
+      minDamages.push(Math.min(...allDamages[hitType][stat]));
     } else {
       if (filteredDatasets.length) {
         chart.data.datasets.splice(chart.data.datasets.indexOf(filteredDatasets[0]), 1);
       }
     }
   }
-  chart.update();
+  updateOneshotLine();
 };

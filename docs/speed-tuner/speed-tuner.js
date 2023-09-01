@@ -218,6 +218,6 @@ const resolve = () => {
   fastSpeedOutput.innerText = formattedFastSpeed;
   recommendationOutput.innerHTML = recommendation;
 
-  formUpdated();
+  debounce('updateQueryParams', updateQueryParams, [false]);
 };
 /* eslint-enable */
