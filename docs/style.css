@@ -170,6 +170,14 @@ body .popover {
     width: 1em;
 }
 
+.navbar-icon {
+    margin-right: 0.5rem;
+}
+
+.navbar-brand {
+    font-weight: 400;
+}
+
 .has-share {
     display: flex;
     justify-content: space-between;
