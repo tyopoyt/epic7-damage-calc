@@ -1,0 +1,54 @@
+import * as _ from 'lodash';
+
+export class Language {
+    name: string;
+    localName: string;
+    code: string;
+    countryCode: string;
+
+    constructor(language: any) {
+        this.name = _.get(language, 'name', 'English');
+        this.localName = _.get(language, 'localName', 'English');
+        this.code = _.get(language, 'code', 'en');
+        this.countryCode = _.get(language, 'countryCode', 'us');
+      }
+}
+
+export const languages: Record<string, Language> = {
+    'us': {
+        name: 'English',
+        localName: 'English',
+        code: 'en',
+        countryCode: 'us'
+    },
+    'jp': {
+        name: 'Japanese',
+        localName: '日本語',
+        code: 'ja',
+        countryCode: 'jp'
+    },
+    'kr': {
+        name: 'Korean',
+        localName: '한국어',
+        code: 'ko',
+        countryCode: 'kr'
+    },
+    'tw': {
+        name: 'Chinese (Traditional)',
+        localName: '繁體中文',
+        code: 'zh-tw',
+        countryCode: 'tw'
+    },
+    'cn': {
+        name: 'Chinese (Simplified)',
+        localName: '简体中文',
+        code: 'zh-cn',
+        countryCode: 'cn'
+    },
+    'br': {
+        name: 'Portuguese',
+        localName: 'Português Brasil',
+        code: 'pt',
+        countryCode: 'br'
+    },
+}
