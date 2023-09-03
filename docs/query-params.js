@@ -22,6 +22,8 @@ let formDefaults;
 let selectorParams = [];
 let numberParams = [];
 let boolParams = [];
+let radioParams = [];
+let toggleParams = [];
 let queryParams;
 let updateRequestTime;
 let page;
