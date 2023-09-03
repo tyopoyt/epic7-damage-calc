@@ -26,20 +26,20 @@ const resolve = () => {
 
   const inputValues = getInputValues();
 
-  const hitChance = inputValues.hitChance/100;
-  const procChance = inputValues.procChance/100;
-  const eff = inputValues.eff/100;
-  const effRes = inputValues.effRes/100;
+  const hitChance = inputValues.hitChance / 100;
+  const procChance = inputValues.procChance / 100;
+  const eff = inputValues.eff / 100;
+  const effRes = inputValues.effRes / 100;
 
   const landChance = Math.max(Math.min(1 + eff - effRes, 0.85), 0);
   const resistChance = 1 - landChance;
 
   const inflictChance = hitChance * procChance * landChance;
 
-  document.getElementById('passing-res').innerText = Math.round(landChance*100).toString();
-  document.getElementById('resist').innerText = Math.round(resistChance*100).toString();
-  document.getElementById('landing').innerText = Math.round(inflictChance*100).toString();
+  document.getElementById('passing-res').innerText = Math.round(landChance * 100).toString();
+  document.getElementById('resist').innerText = Math.round(resistChance * 100).toString();
+  document.getElementById('landing').innerText = Math.round(inflictChance * 100).toString();
 
-  formUpdated();
+  debounce('updateQueryParams', updateQueryParams, [false]);
 };
 /* eslint-enable */

@@ -14,7 +14,9 @@ const battleConstants = {
   'defDown': -0.7,
   'targetVigor': 0.3,
   'target': 1.15,
-  'caster-fury': 1.3
+  'caster-fury': 1.3,
+  'spdUp': 1.3, 
+  'casterRage': 1.1
 };
 
 const heroConstants = {
@@ -27,3 +29,7 @@ const casterBuffs = [
   'caster-has-flame-alchemist', 'caster-has-multilayer-barrier', 'caster-invincible',
   'caster-perception', 'caster-enrage', 'caster-fury', 'caster-stealth'
 ];
+
+const displayConstants = {
+  'font-family': '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"'
+};

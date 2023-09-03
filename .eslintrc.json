@@ -24,7 +24,10 @@
         "semi": [
             "error",
             "always"
-        ], 
+        ],
+        "space-infix-ops": [
+            "error"
+        ],
         // Many globals are used and in some files it would be an excessive amount to annotate, so disable this rule
         "no-undef": "off"
     },

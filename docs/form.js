@@ -36,7 +36,7 @@ const elements = {
       + Number(elements.target_atk_down.value() ? -0.5 : 0)
       + Number(document.getElementById('target-vigor').checked ? 0.3 : 0);
 
-      return Number(document.getElementById('target-attack').value)*atkMod;
+      return Number(document.getElementById('target-attack').value) * atkMod;
     }
   },
   target_atk_up: {
@@ -256,7 +256,7 @@ const elements = {
     label: 'Bleed effects to Detonate',
     type: 'slider',
     min: 0,
-    max: 30,
+    max: 10,
     default: 0,
     readonly: true,
     value: () => Number(document.getElementById('target-bleed-detonate').value),
@@ -268,7 +268,7 @@ const elements = {
     label: 'Burn effects to Detonate',
     type: 'slider',
     min: 0,
-    max: 30,
+    max: 10,
     default: 0,
     readonly: true,
     value: () => Number(document.getElementById('target-burn-detonate').value),
@@ -280,7 +280,7 @@ const elements = {
     label: 'Bomb effects to Detonate',
     type: 'slider',
     min: 0,
-    max: 15,
+    max: 10,
     default: 0,
     readonly: true,
     value: () => Number(document.getElementById('target-bomb-detonate').value),
@@ -294,7 +294,12 @@ const elements = {
     min: 1000,
     max: 50000,
     default: 10000,
-    value: () => Number(document.getElementById('caster-max-hp').value) * (max_hp_artifacts.includes(currentArtifact?.id) ? artifacts[currentArtifact.id].maxHP : 1)
+    value: () => {
+      if (currentHero.hp) {
+        return currentHero.getHP();
+      }
+      return Number(document.getElementById('caster-max-hp').value) * (artifacts[currentArtifact.id]?.maxHP ? artifacts[currentArtifact.id]?.maxHP : 1);
+    }
   },
   caster_hp_pc: {
     ref: 'caster_hp_pc',
@@ -344,10 +349,15 @@ const elements = {
     min: 200,
     max: 5000,
     default: 750,
-    value: () => Number(document.getElementById('caster-defense').value)
-        * (1 + (elements.caster_defense_up.value() ? battleConstants.defUp : 0)
-           + (document.getElementById('vigor').checked ? battleConstants.vigor - 1 : 0)
-           + (document.getElementById('caster-fury')?.checked ? battleConstants['caster-fury'] - 1 : 0)),
+    value: () => {
+      if (currentHero.def) {
+        return currentHero.getDef();
+      }
+      return Number(document.getElementById('caster-defense').value)
+      * (1 + (elements.caster_defense_up.value() ? battleConstants.defUp : 0)
+         + (document.getElementById('vigor').checked ? battleConstants.vigor - 1 : 0)
+         + (document.getElementById('caster-fury')?.checked ? battleConstants['caster-fury'] - 1 : 0));
+    }
   },
   caster_defense_up: {
     ref: 'caster_defense_up',
@@ -365,7 +375,12 @@ const elements = {
     min: 70,
     max: 350,
     default: 150,
-    value: () => Number(document.getElementById('caster-speed').value)*(elements.caster_speed_up.value() ? 1.3 : 1),
+    value: () => {
+      if (currentHero.spd) {
+        return currentHero.getSpd();
+      }
+      return Number(document.getElementById('caster-speed').value) * (elements.caster_speed_up.value() ? battleConstants.spdUp : 1);
+    }
   },
   caster_speed_up: {
     ref: 'caster_speed_up',
@@ -429,6 +444,14 @@ const elements = {
       return casterBuffElement.prop('checked');
     }
   },
+  caster_has_bzzt: {
+    ref: 'caster_has_bzzt',
+    id: 'caster-has-bzzt',
+    label: 'Caster has Bzzt!',
+    type: 'checkbox',
+    value: () => document.getElementById('caster-has-bzzt').checked,
+    icon: './assets/buffs/bzzt-buff.png'
+  },
   caster_has_debuff: {
     ref: 'caster_has_debuff',
     id: 'caster-has-debuff',
@@ -457,7 +480,7 @@ const elements = {
     id: 'caster-has-neo-phantom-sword',
     label: 'Caster has Neo Phantom Sword',
     type: 'checkbox',
-    value: () => document.getElementById('caster-has-neo-phantom-sword').checked,
+    value: () => document.getElementById('caster-has-neo-phantom-sword')?.checked,
     icon: './assets/buffs/neo-phantom-sword-buff.png'
   },
   caster_full_focus: {
@@ -580,6 +603,17 @@ const elements = {
     default: 0,
     readonly: true,
     value: () => Number(document.getElementById('critical-hit-stack-8').value)
+  },
+  critical_hit_stack_6: {
+    ref: 'critical_hit_stack_6',
+    id: 'critical-hit-stack-6',
+    label: 'Critical Hit Stack',
+    type: 'slider',
+    min: 0,
+    max: 6,
+    default: 0,
+    readonly: true,
+    value: () => Number(document.getElementById('critical-hit-stack-6').value)
   },
   non_attack_skill_stack_8: {
     ref: 'non_attack_skill_stack_8',
@@ -876,7 +910,12 @@ elements.highest_ally_attack.sub_elements = [elements.ally_atk_up, elements.ally
 elements.target_attack.sub_elements = [elements.target_atk_up, elements.target_atk_up_great, elements.target_atk_down];
 
 const slide = (fieldId) => {
-  document.getElementById(fieldId).value = document.getElementById(`${fieldId}-slide`).value;
+  const slideValue = document.getElementById(`${fieldId}-slide`).value;
+  document.getElementById(fieldId).value = slideValue;
+  if (fieldId === 'target-max-hp') {
+    oneshotInput.value = slideValue;
+    debounce('updateOneshotLine', updateOneshotLine);
+  }
   resetPreset(fieldId);
   resolve();
 };
@@ -893,6 +932,12 @@ const update = (fieldId) => {
   } else {
     slider.value = inputValue;
   }
+
+  if (fieldId === 'target-max-hp') {
+    oneshotInput.value = inputValue;
+    debounce('updateOneshotLine', updateOneshotLine);
+  }
+
   resolve();
 };
 
@@ -902,7 +947,7 @@ const updateMolaBonus = (skillId) => {
   const enhancement = Number(document.getElementById(`molagora-${skillId}`).value);
   let val = 0;
   for (let i = 0; i < enhancement; i++) {
-    val += skill.enhance[i]*100;
+    val += skill.enhance[i] * 100;
   }
   document.getElementById(`molagora-${skillId}-percent`).textContent = val.toString();
 };
@@ -912,7 +957,7 @@ const plus = (fieldId) => {
   const max = input.getAttribute('max');
   const inc = Number(document.getElementById(`${fieldId}-slide`).getAttribute('step') || 1);
   if (max === null || Number(max) > input.value) {
-    input.value = Number(input.value)+inc;
+    input.value = Number(input.value) + inc;
     update(fieldId);
     resetPreset(fieldId);
     resolve();
@@ -924,7 +969,7 @@ const minus = (fieldId) => {
   const min = input.getAttribute('min');
   const inc = Number(document.getElementById(`${fieldId}-slide`).getAttribute('step') || 1);
   if (min === null || Number(min) < input.value) {
-    input.value = Number(input.value)-inc;
+    input.value = Number(input.value) - inc;
     update(fieldId);
     resetPreset(fieldId);
     resolve();
@@ -1032,7 +1077,7 @@ const build = (hero) => {
       updateMolaBonus(id);
     }
   }
-
+  
   document.getElementById('elem-adv-icon').innerHTML = antiElemIcon(hero.element);
 };
 
@@ -1063,7 +1108,7 @@ const buildArtifact = (artifact) => {
     }
   }
 
-  if (!artifact || (!artifact.scale && !artifact.form && !artifact.info)) {
+  if (!artifact || (!artifact.scale && !artifact.form?.length && !artifact.info)) {
     document.getElementById('artifact-block').style.display = 'none';
     return;
   }
@@ -1099,31 +1144,36 @@ const refreshArtifactList = (hero) => {
 const buildElement = (elem, parent) => {
   if (elem.type === 'slider') {
     //TODO: fix the ugly elem.icon lines
+    const defaultVal = typeof elem.default === 'function' ? elem.default() : elem.default;
     $(parent).append(`<div id="${elem.id}-block" class="stat-block">
                         <div class="form-group row col-sm-12">
                             <label for="crit" class="col-md-9 col-form-label form-control-sm">
-                                <h5>${elem.icon ? '<img src="'+ (['jp', 'kr', 'zh', 'zhTW', 'br'].some(locale => window.location.href.includes(locale)) ? '.' : '') + elem.icon+'" width="20" height="20" /> ' : ''}${formLabel(elem.ref)}</h5>
+                                <h5>${elem.icon ? '<img src="' + (['jp', 'kr', 'zh', 'zhTW', 'br'].some(locale => window.location.href.includes(`/${locale}`)) ? '.' : '') + elem.icon + '" width="20" height="20" /> ' : ''}${formLabel(elem.ref)}</h5>
                             </label>
                             <div class="input-group input-group-sm col-md-3">
                                 <div class="input-group-prepend">
                                     <button class="btn btn-outline-secondary" type="button" id="${elem.id}-minus" onclick="minus('${elem.id}')">&minus;</button>
                                 </div>
-                                <input type="number" class="form-control text-center" id="${elem.id}" min="${elem.min}" max="${elem.max}" value="${typeof elem.default === 'function' ? elem.default() : elem.default}" ${elem.readonly ? 'readonly' : ''} onkeyup="update('${elem.id}')">
+                                <input type="number" class="form-control text-center" id="${elem.id}" min="${elem.min}" max="${elem.max}" value="${defaultVal}" ${elem.readonly ? 'readonly' : ''} onkeyup="update('${elem.id}')">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button" id="${elem.id}-plus" onclick="plus('${elem.id}')">&plus;</button>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row col-sm-12">
-                            <input type="range" class="custom-range" id="${elem.id}-slide" min="${elem.min}" max="${elem.max}" value="${typeof elem.default === 'function' ? elem.default() : elem.default}" step="${elem.step || 1}" oninput="slide('${elem.id}')">
+                            <input type="range" class="custom-range" id="${elem.id}-slide" min="${elem.min}" max="${elem.max}" value="${defaultVal}" step="${elem.step || 1}" oninput="slide('${elem.id}')">
                         </div>
                     </div>`);
+    if (elem.id === 'target-max-hp') {
+      oneshotInput.value = defaultVal;
+      debounce('updateOneshotLine', updateOneshotLine);
+    }
   } else if (elem.type === 'checkbox') {
     $(parent).append(`<div class="form-group col-sm-12">
                               <div class="custom-control custom-checkbox custom-control-inline buff-block">
                                   <input class="custom-control-input" type="checkbox" id="${elem.id}" value="1" onchange="resolve()" ${(typeof elem.default === 'function' ? elem.default() : elem.default === true) ? 'checked' : ''}>
                                   <label class="custom-control-label" for="${elem.id}">
-                                    ${elem.icon ? '<img src="'+ (['jp', 'kr', 'zh', 'zhTW', 'br'].some(locale => window.location.href.includes(locale)) ? '.' : '') + elem.icon +'" width="20" height="20" />' : ''} ${formLabel(elem.ref)}
+                                    ${elem.icon ? '<img src="' + (['jp', 'kr', 'zh', 'zhTW', 'br'].some(locale => window.location.href.includes(`/${locale}`)) ? '.' : '') + elem.icon + '" width="20" height="20" />' : ''} ${formLabel(elem.ref)}
                                   </label>
                               </div>
                         </div>`);
@@ -1137,7 +1187,7 @@ const buildElement = (elem, parent) => {
 };
 
 const elemIcon = (elem) => {
-  return `<img src='${['jp', 'kr', 'zh', 'zhTW', 'br'].some(locale => window.location.href.includes(locale)) ? '.' : ''}./assets/elements/${elem}.png' width='20', height='20' alt='${elem}' />`;
+  return `<img src='${['jp', 'kr', 'zh', 'zhTW', 'br'].some(locale => window.location.href.includes(`/${locale}`)) ? '.' : ''}./assets/elements/${elem}.png' width='20', height='20' alt='${elem}' />`;
 };
 
 const antiElemIcon = (elem) => {
@@ -1151,7 +1201,7 @@ const antiElemIcon = (elem) => {
 };
 
 const classIcon = (type) => {
-  return `<img src='${['jp', 'kr', 'zh', 'zhTW', 'br'].some(locale => window.location.href.includes(locale)) ? '.' : ''}./assets/classes/${type.replace('_', '-')}.png' width='18', height='18' alt='${type}' />`;
+  return `<img src='${['jp', 'kr', 'zh', 'zhTW', 'br'].some(locale => window.location.href.includes(`/${locale}`)) ? '.' : ''}./assets/classes/${type.replace('_', '-')}.png' width='18', height='18' alt='${type}' />`;
 };
 
 const dedupeForm = (hero, artifact) => {
@@ -1163,11 +1213,55 @@ const dedupeForm = (hero, artifact) => {
   }
 };
 
+const updateGraphSkillSelect = () => {
+  const skillSelect = document.getElementById('chart-skill');
+  const skill = heroes[inputValues.hero]?.skills[skillSelect.options[skillSelect.selectedIndex]?.value.replace('_soulburn', '') || 's1'];
+
+  if (skill.onlyMiss) {
+    damageToUse = 'miss';
+    $('#miss-hit').removeAttr('disabled');
+
+    $('#normal-hit').attr('disabled', true);
+    $('#crit-hit').attr('disabled', true);
+    $('#crush-hit').attr('disabled', true);
+  } else if (skill.noCrit) {
+    damageToUse = 'normal';
+    $('#crit-hit').attr('disabled', true);
+    $('#crush-hit').attr('disabled', true);
+
+
+    $('#miss-hit').removeAttr('disabled');
+    $('#normal-hit').removeAttr('disabled');
+  } else if (skill.onlyCrit) {
+    damageToUse = 'crit';
+    $('#crit-hit').removeAttr('disabled');
+    $('#miss-hit').removeAttr('disabled');
+
+    $('#normal-hit').attr('disabled', true);
+    $('#crush-hit').attr('disabled', true);
+  } else {
+    damageToUse = 'crit';
+
+    $('#normal-hit').removeAttr('disabled');
+    $('#crit-hit').removeAttr('disabled');
+    $('#crush-hit').removeAttr('disabled');
+    $('#miss-hit').removeAttr('disabled');
+  }
+
+  if (skill.noMiss) {
+    $('#miss-hit').attr('disabled', true);
+  }
+        
+  $(`#${damageToUse}-hit`).prop('checked', true);
+};
+
 // jQuery's $(() => {}) was not firing at the right time in Firefox, so use standard DOMContentLoaded
-window.addEventListener('DOMContentLoaded', () => {
+// window.addEventListener('DOMContentLoaded', () => {
+buildInitialForm = () => {
   try {
     const heroSelector = document.getElementById('hero');
     const artiSelector = document.getElementById('artifact');
+    const chartSkillSelector = document.getElementById('chart-skill');
     Object.keys(heroes).map((id => {
       $(heroSelector).append(`<option value="${id}" data-tokens="${heroNicknames(id)}" data-content="${elemIcon(heroes[id].element)}${classIcon(heroes[id].classType)}<span>${heroName(id)}</span>">${heroName(id)}</option>`);
     }));
@@ -1179,11 +1273,31 @@ window.addEventListener('DOMContentLoaded', () => {
       $(artiSelector).append(`<option value="${id}">${artifactName(id)}</option>`);
     }));
 
-    heroSelector.onchange = () => {
-      if (currentHero) {
-        deleteParams(heroes[currentHero.id].form?.map(element => element.id));
-      }
+    // This is a bit clunky but the #1 alphabetical hero changes so rarely it's not much of an issue. So far it only changed from Achates to Abigail.
+    // Unless they release a hero calld Aardvark or something it's not that likely to change again...
+    const lang = document.getElementById('root').getAttribute('lang');
+    s1Text = 'S1';
+    s3Text = 'S3';
+    if (lang !== 'en') {
+      s1Text = i18n[lang].skills['s1'];
+      s3Text = i18n[lang].skills['s3'];
+    }
+    $(chartSkillSelector).append(`<option value="s1" data-content="<span>${s1Text}</span>">${s1Text}</option>`);
+    $(chartSkillSelector).append(`<option value="s3" data-content="<span>${s3Text}</span>">${s3Text}</option>`);
+    $(chartSkillSelector).selectpicker('refresh');
 
+    chartSkillSelector.onchange = () => {
+      if (document.getElementById('damage-chart-container').style.display !== 'none') {
+        // This one doesn't need to be debounced because it would be pretty difficult to change the select option quickly
+        updateGraphSkillSelect();
+        if (!loadingQueryParams) {
+          updateQueryParams();
+        }
+        calculateChart(inputValues);
+      }
+    };
+
+    heroSelector.onchange = () => {
       const hero = heroes[heroSelector.value];
       const artifact = { ...artifacts[artiSelector.value] };
       dedupeForm(hero, artifact);
@@ -1191,11 +1305,36 @@ window.addEventListener('DOMContentLoaded', () => {
       refreshArtifactList(hero);
       buildArtifact(artifact);
       resolve();
-      window.dataLayer.push({
-        'event': 'select_hero',
-        'hero': hero.name
-      });
-      refreshCompareBadge();
+
+      if (currentHero) {
+        if (!loadingQueryParams) {
+          deleteParams(heroes[currentHero.id].form?.map(element => element.id));
+        }
+
+        window.dataLayer.push({
+          'event': 'select_hero',
+          'hero': hero.name
+        });
+        refreshCompareBadge();
+  
+        $(chartSkillSelector).find('option').remove();
+        Object.keys(heroes[currentHero.id].skills).map((id => {
+          const skill = heroes[currentHero.id].skills[id];
+          // use != to also catch null
+          if (skill.rate != undefined) {
+            skillText = skill.name ? skill.name : skillLabel(id);
+            $(chartSkillSelector).append(`<option value="${id}" data-content="<span>${skillText}</span>">${skillText}</option>`);
+          }
+
+          if (skill.soulburn) {
+            skillText = skill.name ? skill.name : skillLabel(id, true);
+            $(chartSkillSelector).append(`<option value="${id}_soulburn" data-content="<span>${skillText}</span>">${skillText}</option>`);
+          }
+        }));
+        $(chartSkillSelector).selectedIndex = 0;
+        $(chartSkillSelector).selectpicker('refresh');
+        chartSkillSelector.onchange();
+      }
     };
 
     const defPresetSelector = document.getElementById('def-preset');
@@ -1209,6 +1348,7 @@ window.addEventListener('DOMContentLoaded', () => {
           hpInput.value = selected.dataset.hp;
           update(elements.target_max_hp.id);
         }
+        oneshotInput.value = selected.dataset.hp;
         window.dataLayer.push({
           'event': 'select_preset_def',
           'def_unit': selected.value
@@ -1255,9 +1395,10 @@ window.addEventListener('DOMContentLoaded', () => {
     };
 
     artiSelector.onchange = () => {
-      if (currentArtifact?.id) {
+      if (currentArtifact?.id && !loadingQueryParams) {
         deleteParams(artifacts[currentArtifact.id].form?.map(element => element.id));
       }
+
       const hero = heroes[heroSelector.value];
       const artifact = {...artifacts[artiSelector.value]};
       dedupeForm(hero, artifact);
@@ -1288,7 +1429,8 @@ window.addEventListener('DOMContentLoaded', () => {
   dmgBlock.on('blur', '[data-toggle="popover"]', (event) => {
     $(event.target).popover('hide');
   });
-});
+};
+// });
 
 function initTheme() {
   const darkThemeSelected =

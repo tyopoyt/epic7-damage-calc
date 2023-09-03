@@ -8,11 +8,6 @@ const artifactDmgType = {
   dot: 'dot'
 };
 
-/* eslint-disable no-unused-vars */
-const extra_attack_artifacts = ['prayer_of_solitude'];
-const max_hp_artifacts = ['prayer_of_solitude'];
-/* eslint-enable */
-
 const artifacts = {
   air_to_surface_missile_misha: {
     id: 'air_to_surface_missile_misha',
@@ -29,7 +24,7 @@ const artifacts = {
     exclusive: classType.warrior,
     form: [elements.target_has_barrier],
     applies: (skill) => getSkillType(skill) === skillTypes.single,
-    value: (artiScale) => artiScale/(elements.target_has_barrier.value() ? 1 : 2),
+    value: (artiScale) => artiScale / (elements.target_has_barrier.value() ? 1 : 2),
   },
   a_symbol_of_unity: {
     id: 'a_symbol_of_unity',
@@ -51,14 +46,14 @@ const artifacts = {
     type: artifactDmgType.damage,
     scale: [0.1, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2],
     exclusive: classType.ranger,
-    applies: (_, skillId) => skillId === 's1',
+    applies: (skill, skillId) => skillId === 's1' || skill.s1_benefits,
   },
   ancient_sheath: {
     id: 'ancient_sheath',
     name: 'Ancient Sheath',
     type: artifactDmgType.damage,
     scale: [0.08, 0.088, 0.096, 0.104, 0.112, 0.12, 0.128, 0.136, 0.144, 0.152, 0.16],
-    applies: (_, skillId) => skillId === 's1',
+    applies: (skill, skillId) => skillId === 's1' || skill.s1_benefits,
   },
   black_hand_of_the_goddess: {
     id: 'black_hand_of_the_goddess',
@@ -76,7 +71,14 @@ const artifacts = {
     scale: [0.075, 0.0825, 0.09, 0.0975, 0.105, 0.1125, 0.12, 0.1275, 0.135, 0.1425, 0.15],
     form: [elements.non_attack_skill_stack_3],
     exclusive: classType.warrior,
-    value: (artiScale) => elements.non_attack_skill_stack_3.value()*artiScale
+    value: (artiScale) => elements.non_attack_skill_stack_3.value() * artiScale
+  },
+  broken_will_of_the_priest: {
+    id: 'broken_will_of_the_priest',
+    name: 'Broken Will of the Priest',
+    scale: [0.08, 0.088, 0.096, 0.104, 0.112, 0.12, 0.128, 0.136, 0.144, 0.152, 0.16],
+    type: artifactDmgType.penetrate,
+    exclusive: classType.knight
   },
   daydream_joker: {
     id: 'daydream_joker',
@@ -100,7 +102,7 @@ const artifacts = {
     scale: [0.05, 0.055, 0.06, 0.065, 0.07, 0.075, 0.08, 0.085, 0.09, 0.095, 0.1],
     form: [elements.single_attack_stack_3],
     exclusive: classType.thief,
-    value: (artiScale) => elements.single_attack_stack_3.value()*artiScale
+    value: (artiScale) => elements.single_attack_stack_3.value() * artiScale
   },
   draco_plate: {
     id: 'draco_plate',
@@ -114,9 +116,9 @@ const artifacts = {
     name: 'Dux Noctis',
     type: artifactDmgType.attack,
     scale: [0.02, 0.022, 0.024, 0.026, 0.028, 0.03, 0.032, 0.034, 0.036, 0.038, 0.04],
-    form: [elements.critical_hit_stack_8],
+    form: [elements.critical_hit_stack_6],
     exclusive: classType.ranger,
-    value: (artiScale) => elements.critical_hit_stack_8.value()*artiScale
+    value: (artiScale) => (artiScale * 3) + (elements.critical_hit_stack_6.value() * artiScale)
   },
   els_fist: {
     id: 'els_fist',
@@ -127,8 +129,8 @@ const artifacts = {
     exclusive: classType.warrior,
     value: (artiScale) => {
       if (elements.caster_hp_pc.value() < 25) return artiScale;
-      if (elements.caster_hp_pc.value() < 50) return artiScale*2/3;
-      if (elements.caster_hp_pc.value() < 75) return artiScale/3;
+      if (elements.caster_hp_pc.value() < 50) return artiScale * 2 / 3;
+      if (elements.caster_hp_pc.value() < 75) return artiScale / 3;
       return 0.1;
     }
   },
@@ -245,6 +247,7 @@ const artifacts = {
   prayer_of_solitude: {
     id: 'prayer_of_solitude',
     name: 'Prayer of Solitude',
+    extraAttack: true,
     maxHP: 1.1,
     scale: [0.05, 0.055, 0.06, 0.065, 0.07, 0.075, 0.08, 0.085, 0.09, 0.095, 0.1],
     value:(artiScale, skill, isExtra) => (skill.isExtra || isExtra) ? artiScale * 2 : artiScale,
@@ -264,6 +267,12 @@ const artifacts = {
     type: artifactDmgType.damage,
     exclusive: classType.ranger,
     applies: (skill) => getSkillType(skill) === skillTypes.aoe,
+  },
+  our_beautiful_seasons: {
+    id: 'our_beautiful_seasons',
+    name: 'Our Beautiful Seasons',
+    value: 0.2,
+    type: artifactDmgType.damage
   },
   radiant_forever: {
     id: 'radiant_forever',
@@ -287,6 +296,7 @@ const artifacts = {
     name: 'Rocket Punch Gauntlet',
     type: artifactDmgType.aftermath,
     form: [elements.caster_defense],
+    defenseScaling: true,
     defPercent: 1.0,
     penetrate: 0.7,
     exclusive: classType.knight,
@@ -323,9 +333,9 @@ const artifacts = {
     form: [elements.caster_hp_pc],
     value: (artiScale) => {
       if (elements.caster_hp_pc.value() < 25) return artiScale;
-      if (elements.caster_hp_pc.value() < 50) return artiScale*0.83;
-      if (elements.caster_hp_pc.value() < 75) return artiScale*0.66;
-      return artiScale*0.5;
+      if (elements.caster_hp_pc.value() < 50) return artiScale * 0.83;
+      if (elements.caster_hp_pc.value() < 75) return artiScale * 0.66;
+      return artiScale * 0.5;
     }
   },
   sigurd_scythe: {
@@ -342,7 +352,7 @@ const artifacts = {
     atkPercent: 0.4,
     penetrate: 0.7,
     exclusive: classType.knight,
-    applies: (_, skillId) => skillId === 's1',
+    applies: (skill, skillId) => skillId === 's1' || skill.s1_benefits,
   },
   spear_of_purification: {
     id: 'spear_of_purification',
@@ -396,7 +406,7 @@ const artifacts = {
     scale: [0.02, 0.022, 0.024, 0.026, 0.028, 0.03, 0.032, 0.034, 0.036, 0.038, 0.04],
     form: [elements.aoe_stack_5],
     exclusive: classType.mage,
-    value: (artiScale) => elements.aoe_stack_5.value()*artiScale
+    value: (artiScale) => elements.aoe_stack_5.value() * artiScale
   },
   time_matter: {
     id: 'time_matter',
@@ -442,7 +452,7 @@ const artifacts = {
     scale: [0.05, 0.055, 0.06, 0.065, 0.07, 0.075, 0.08, 0.085, 0.09, 0.095, 0.1],
     form: [elements.turn_stack_3],
     exclusive: classType.thief,
-    value: (artiScale) => elements.turn_stack_3.value()*artiScale
+    value: (artiScale) => elements.turn_stack_3.value() * artiScale
   },
   wind_rider: {
     id: 'wind_rider',

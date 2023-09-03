@@ -31,7 +31,7 @@
 
         <title>エピックセブン　ダメージ計算機</title>
     </head>
-    <body class="container">
+    <body class="container" onload="loadScripts('calculator', true)">
         <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
             <img class="navbar-icon" src="../assets/icons/revive-buff-logo.png" height="30" alt="Revive buff icon">
             <a class="navbar-brand">エピックセブン　ダメージ計算機</a>
@@ -539,6 +539,49 @@
         </div>
 
         <div id="damage-block" class="initial-hide fade-in">
+            <div id="damage-chart-container" style="display: none">
+                <select id="chart-skill" name="chart-skill" class="form-control custom-select selectpicker" data-size="12"></select>
+                <div class="input-line">
+                    <span class="input-section">
+                        <b>ヒットタイプ: </b>
+                        <!-- The onclicks are on the input and label so clicking the padding has no effect -->
+                        <div class="radio-holder">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="hitType" id="crit-hit" onclick="setChartHitType('crit')" checked>
+                                <label class="form-check-label" for="crit-hit" onclick="setChartHitType('crit')">
+                                    <b>クリティカルヒット</b>
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="hitType" id="crush-hit" onclick="setChartHitType('crush')">
+                                <label class="form-check-label" for="crush-hit" onclick="setChartHitType('crush')">
+                                    <b>クラッシュヒット</b>
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="hitType" id="normal-hit" onclick="setChartHitType('normal')">
+                                <label class="form-check-label" for="normal-hit" onclick="setChartHitType('normal')">
+                                    <b>通常ヒット</b>
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="hitType" id="miss-hit" onclick="setChartHitType('miss')">
+                                <label class="form-check-label" for="miss-hit" onclick="setChartHitType('miss')">
+                                    <b>ミスヒット</b>
+                                </label>
+                            </div>
+                        </div>
+                    </span>
+                    <span class="oneshot-holder input-section">
+                        <b>ワンショット:</b>
+                        <input type="number" class="form-control text-center" id="oneshot-target" value="0">
+                    </span>
+                </div>
+                <div class="canvas-container">
+                    <canvas id="damage-chart"></canvas>
+                </div>
+                <br>
+            </div>
             <h4>
                 ダメージ
                 <div class="btn-group" role="group">
@@ -550,6 +593,10 @@
                         <i class="fas fa-exchange-alt"></i>
                         <span class="d-none d-md-inline">比較</span>
                         <span id="compare-pool-size" class="badge badge-light">0</span>
+                    </button>
+                    <button id="toggle-chart" type="button" class="btn btn-orange btn-sm" onclick="toggleChart()">
+                        <img class="icon" src="../assets/icons/line-chart.svg" alt="グラフを表示">
+                        <span id="chart-button-text" class="d-none d-md-inline">グラフを表示</span>
                     </button>
                     <button id="link-share" type="button" class="btn btn-success btn-sm" onclick="copyLinkToClipboard()">
                         <img class="icon" src="../assets/icons/share-nodes-solid.svg" alt="共有">
@@ -703,18 +750,6 @@
             </div>
         </div>
 
-        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.18/dist/js/bootstrap-select.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.1/js/all.min.js"></script>
-        <script src="../lang.js"></script>
-        <script src="../damage-calculator/compare.js"></script>
-        <script src="../form.js"></script>
-        <script src="../data/heroes.js"></script>
-        <script src="../data/artifacts.js"></script>
-        <script src="../data/constants.js"></script>
-        <script defer src="../query-params.js"></script>
-        <script defer src="../damage-calculator/calculator.js"></script>
+        <script src="../initialize.js"></script>
     </body>
 </html>

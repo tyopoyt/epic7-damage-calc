@@ -53,6 +53,7 @@ const i18n = {
       mercedes: 'meru',
       moon_bunny_dominiel: 'bdom b.dom',
       mort: 'mortelix',
+      navy_captain_landy: 'candy',
       operator_sigret: 'opsig op.sig',
       pirate_captain_flan: 'plan',
       remnant_violet: 'riolet',
@@ -92,6 +93,7 @@ const i18n = {
       fixed: 'Fixed Dmg',
       custom: {
         caster_has_buff: 'Caster has Buff: {v}%', // TODO: Translate
+        caster_has_bzzt: 'Caster has Bzzt!: {v}', // TODO: Translate
         caster_target_atk_diff: '{v}% Attack Difference',
         caster_target_spd_diff: '{v}% Speed Difference',
         caster_target_def_diff: '{v}% Defense Difference',
@@ -135,6 +137,15 @@ const i18n = {
       }
     },
     form: {
+      attack: 'Attack',
+      cdam: 'CDam',
+      defense: 'Defense',
+      hp: 'HP',
+      speed: 'Speed',
+      current_stats: 'Current Stats',
+      with_more: 'With more',
+      damage: 'damage',
+      oneshot: 'Oneshot',
       nb_sets: 'Number of Sets'
     },
     info: {
@@ -148,6 +159,7 @@ const i18n = {
       ml_kayron_flash_slash: 'Flash Slash',
       navy_captain_landy_salvo_fire: 'Salvo Fire',
       sez_encroach: 'Encroach',
+      silk_automatic_fire: 'Automatic Fire',
       s1_extra_attack: 'S1 Extra Attack',
       s1_soulburn: 'S1 Soulburn',
       s2_wave_2: 'S2 Wave 2',
@@ -164,10 +176,9 @@ const i18n = {
     heroes: {
       // Unreleased units: (未発表)
       // Pre-Balance versions: (前のバージョン)
-      arunka_old: 'アルンカ (前のバージョン)',
-      little_queen_charlotte_old: '若き女王 シャルロッテ (前のバージョン)',
-      jack_o_old: 'ジャック・オー (前のバージョン)',
-      summer_break_charlotte_old: '夏休みのシャルロッテ (前のバージョン)',
+      lionheart_cermia_old: '獅子王 チェルミア (前のバージョン)',
+      silk_old: 'シルク (前のバージョン)',
+      tenebria_old: 'テネブレア (前のバージョン)',
       // End Pre-Balance
       abigail: 'アビゲイル',
       achates: 'アカテス',
@@ -216,6 +227,7 @@ const i18n = {
       blood_blade_karin: '血剣のカリン',
       blood_moon_haste: '赤月の貴族 ヘイスト',
       briar_witch_iseria:'灰森のイセリア',
+      brieg: 'ブリッグ',
       butcher_corps_inquisitor: 'エクスキューショナー',
       camilla: 'カミラ',
       captain_rikoris: '先遣部隊長 リコリス',
@@ -447,6 +459,7 @@ const i18n = {
       tywin: 'タイウィン',
       unbound_knight_arowell: '自由騎士 アロウェル',
       verdant_adin: '新緑のアーディン',
+      veronica: 'ヴェロニカ',
       vigilante_leader_glenn: '自警団長 グレン',
       vildred: 'ヴィルドレッド',
       violet: 'ヴィオレタ',
@@ -478,6 +491,7 @@ const i18n = {
       ancient_sheath: '古の剣鞘',
       black_hand_of_the_goddess: '女神の闇なる手',
       border_coin: '天命の金貨',
+      broken_will_of_the_high_priest: '壊れた祭司長の意志',
       daydream_joker: '白昼夢の道化師',
       dignus_orb: 'ディグヌスオーブ',
       double_edged_decrescent: '両刃剣デクレッシェンド',
@@ -498,6 +512,7 @@ const i18n = {
       mature_sunglasses: '大人っぽいサングラス',
       merciless_glutton: '無慈悲な暴食者',
       otherworldly_machinery: '異世界の機械',
+      our_beautiful_seasons: '共に歩んできた季節',
       portrait_of_the_saviors: '救世主の肖像画',
       prayer_of_solitude: '孤独の祈り',
       prelude_to_a_new_era: '新時代の幕開け',
@@ -524,7 +539,18 @@ const i18n = {
       wings_of_light_and_shadow: '光影の双翼',
     },
     form: {
+      attack: '攻撃力',
+      cdam: 'クリティカル　ダメージ',
+      defense: '防御力',
+      hp: '生命力上限値',
+      speed: 'スピード',
+      current_stats: '現在の統計',
+      with_more: 'もっと',
+      damage: 'ダメージ',
+      oneshot: 'ワンショット',
       link_copied: 'コピーしました!',
+      show_chart: 'グラフを表示',
+      hide_chart: 'グラフを隠す',
       nb_targets: '敵数',
       nb_hits: 'ヒット数',
       nb_sets: 'セット数',
@@ -605,7 +631,8 @@ const i18n = {
       alencia_trample: '圧殺',
       arunka_expose: 'えぐり',
       beehoo_incinerate: '焼却',
-      lethe_call_of_the_abyss: '',
+      silk_automatic_fire: 'バーストショット',
+      lethe_call_of_the_abyss: '深淵の呼び声',
       lqc_s3_splash: 'S3 スプラッシュダメージ',
       ml_celine_nimble_sword: '快剣',
       navy_captain_landy_salvo_fire: '一斉射擊',
@@ -624,10 +651,9 @@ const i18n = {
     heroes: {
       // Unreleased units: (未發布)
       // Pre-Balance versions: (以前的版本)
-      arunka_old: '亞露嘉 (以前的版本)',
-      little_queen_charlotte_old: '年輕的女王夏綠蒂 (以前的版本)',
-      jack_o_old: '潔克‧歐 (以前的版本)',
-      summer_break_charlotte_old: '暑假夏綠蒂 (以前的版本)',
+      lionheart_cermia_old: '獅心王潔若米亞 (以前的版本)',
+      silk_old: '席可 (以前的版本)',
+      tenebria_old: '泰妮布里雅 (以前的版本)',
       // End Pre-Balance
       abigail: '雅碧凱',
       achates: '雅卡泰絲',
@@ -676,6 +702,7 @@ const i18n = {
       blood_blade_karin: '血劍卡琳',
       blood_moon_haste: '赤月的貴族海斯特',
       briar_witch_iseria: '灰光森林的伊賽麗亞',
+      brieg: '布里克',
       butcher_corps_inquisitor: '混沌教屠殺追擊者',
       camilla: '卡蜜拉',
       captain_rikoris: '先鋒隊長里科黎司',
@@ -907,6 +934,7 @@ const i18n = {
       tywin: '泰溫',
       unbound_knight_arowell: '自由騎士雅洛薇',
       verdant_adin: '新綠的艾庭',
+      veronica: '貝洛妮卡',
       vigilante_leader_glenn: '自衛隊隊長格倫',
       vildred: '維德瑞',
       violet: '菲奧雷托',
@@ -1119,6 +1147,7 @@ const i18n = {
       ancient_sheath: '古代劍鞘',
       black_hand_of_the_goddess: '女神的黑手',
       border_coin: '孤注一擲',
+      broken_will_of_the_high_priest: '殘破的祭司長意志',
       daydream_joker: '白日夢小丑',
       dignus_orb: '尊嚴寶珠',
       double_edged_decrescent: '雙刃下弦月',
@@ -1139,6 +1168,7 @@ const i18n = {
       mature_sunglasses: '成熟的墨鏡',
       merciless_glutton: '無情的大食客',
       otherworldly_machinery: '異界的機械',
+      our_beautiful_seasons: '共度的季節',
       portrait_of_the_saviors: '救援者們的畫像',
       prayer_of_solitude: '孤獨的祈禱',
       prelude_to_a_new_era: '新時代的序幕',
@@ -1165,8 +1195,19 @@ const i18n = {
       wings_of_light_and_shadow: '明暗雙翼',
     },
     form: {
+      attack: '攻擊力',
+      cdam: '暴擊傷害',
+      defense: '防禦力',
+      hp: '最大生命值',
+      speed: '速度',
+      current_stats: '當前統計數據',
+      with_more: '更多的',
+      damage: '傷害計算',
+      oneshot: '一槍', // TODO: find better translation?
       allies_nb_buff: '我軍Buff數量',
       link_copied: '鏈接已復制！',
+      show_chart: '顯示圖形',
+      hide_chart: '隱藏圖形',
       nb_targets: '敵人數量',
       nb_hits: '攻擊次數',
       nb_sets: '套裝數',
@@ -1300,7 +1341,8 @@ const i18n = {
       alencia_trample: '扼殺',
       arunka_expose: '揭露',
       beehoo_incinerate: '焚燒',
-      lethe_call_of_the_abyss: '',
+      silk_automatic_fire: '連發射擊',
+      lethe_call_of_the_abyss: '深淵的呼喚',
       lqc_s3_splash: 'S3 濺射傷害',
       ml_celine_nimble_sword: '快劍',
       navy_captain_landy_salvo_fire: '全軍射擊',
@@ -1318,10 +1360,9 @@ const i18n = {
     heroes: {
       // Unreleased units: (未发布)
       // Pre-Balance versions: (以前的版本)
-      arunka_old: '亚露嘉 (以前的版本)',
-      little_queen_charlotte_old: '年轻的女王夏绿蒂 (以前的版本)',
-      jack_o_old: '杰克·欧 (以前的版本)',
-      summer_break_charlotte_old: '暑假夏绿蒂 (以前的版本)',
+      lionheart_cermia_old: '狮心王洁若米亚 (以前的版本)',
+      silk_old: '席可 (以前的版本)',
+      tenebria_old: '泰妮布里雅 (以前的版本)',
       // End Pre-Balance
       abigail: '雅碧凱',
       achates: '雅卡泰丝',
@@ -1370,6 +1411,7 @@ const i18n = {
       blood_blade_karin: '血剑卡琳',
       blood_moon_haste: '赤月的贵族海斯特',
       briar_witch_iseria: '灰光森林的伊赛丽亚',
+      brieg: '布里克', // TODO: simplified when available
       butcher_corps_inquisitor: '混沌教屠杀追击者',
       camilla: '卡蜜拉',
       captain_rikoris: '先锋队长里科黎司',
@@ -1601,6 +1643,7 @@ const i18n = {
       tywin: '泰温',
       unbound_knight_arowell: '自由骑士雅洛薇',
       verdant_adin: '新绿的艾庭',
+      veronica: '貝洛妮卡', // TODO: simplified when available
       vigilante_leader_glenn: '自卫队队长格伦',
       vildred: '维德瑞',
       violet: '菲奥雷托',
@@ -1804,6 +1847,7 @@ const i18n = {
       ancient_sheath:'古代剑鞘',
       black_hand_of_the_goddess: '女神的黑手',
       border_coin: '孤注一掷',
+      broken_will_of_the_high_priest: '殘破的祭司長意志', //TODO: simplified when available
       daydream_joker: '白日梦小丑',
       dignus_orb: '尊严宝珠',
       double_edged_decrescent:'双刃下弦月',
@@ -1824,6 +1868,7 @@ const i18n = {
       mature_sunglasses: '成熟的墨镜',
       merciless_glutton: '无情的大食客',
       otherworldly_machinery: '异界的机械',
+      our_beautiful_seasons: '共度的季节',
       portrait_of_the_saviors: '救援者们的画像',
       prayer_of_solitude: '孤独祈祷',
       prelude_to_a_new_era: '新时代的序幕',
@@ -1850,8 +1895,19 @@ const i18n = {
       wings_of_light_and_shadow:'明暗双翼',
     },
     form: {
+      attack: '攻击力',
+      cdam: '暴击伤害',
+      defense: '防御力',
+      hp: '最大生命值',
+      speed: '速度',
+      current_stats: '当前统计数据',
+      with_more: '更多的',
+      damage: '伤害计算',
+      oneshot: '一枪', // TODO: find better translation?
       allies_nb_buff: '我军Buff数量',
       link_copied: '链接已复制！',
+      show_chart: '显示图形',
+      hide_chart: '隐藏图形',
       nb_targets: '敌人数量',
       nb_hits: '攻击次数',
       nb_sets: '套装数',
@@ -1994,8 +2050,9 @@ const i18n = {
     info: {
       alencia_trample: '扼杀',
       arunka_expose: '揭露',
+      silk_automatic_fire: '连发射击',
       beehoo_incinerate: '焚烧',
-      lethe_call_of_the_abyss: '',
+      lethe_call_of_the_abyss: '深渊呼唤',
       lqc_s3_splash: 'S3 溅射伤害',
       ml_celine_nimble_sword: '快剑',
       navy_captain_landy_salvo_fire: '全軍射擊', // TODO: Simplified when available
@@ -2014,10 +2071,9 @@ const i18n = {
     heroes: {
       // Unreleased units: (미공개)
       // Pre-Balance versions: (이전 버전)
-      arunka_old: '아룬카 (이전 버전)',
-      little_queen_charlotte_old: '어린 여왕 샬롯 (이전 버전)',
-      jack_o_old: '잭 오 (이전 버전)',
-      summer_break_charlotte_old: '여름 방학 샬롯 (이전 버전)',
+      lionheart_cermia_old: '사자왕 체르미아 (이전 버전)',
+      silk_old: '실크 (이전 버전)',
+      tenebria_old: '테네브리아 (이전 버전)',
       // End Pre-Balance
       abigail: '아비게일',
       achates: '아카테스',
@@ -2070,6 +2126,7 @@ const i18n = {
       blood_blade_karin: '혈검 카린',
       blood_moon_haste: '적월의 귀족 헤이스트',
       briar_witch_iseria: '잿빛 숲의 이세리아',
+      brieg: '브리그',
       butcher_corps_inquisitor: '카오스교 도살추적자',
       captain_rikoris: '선봉대장 리코리스',
       carmainerose: '카마인로즈',
@@ -2301,6 +2358,7 @@ const i18n = {
       tywin: '타이윈',
       unbound_knight_arowell: '자유기사 아로웰',
       verdant_adin: '신록의 아딘',
+      veronica: '베로니카',
       vigilante_leader_glenn: '자경단장 글렌',
       vildred: '빌트레드',
       violet: '비올레토',
@@ -2432,6 +2490,7 @@ const i18n = {
       ancient_sheath: '고대의 검집',
       black_hand_of_the_goddess: '여신의 검은 손',
       border_coin: '경계의 금화',
+      broken_will_of_the_high_priest: '부서진 제사장의 의지',
       daydream_joker: '데이드림 조커',
       dignus_orb: '디그누스 오브',
       double_edged_decrescent: '양날검 디크레센트',
@@ -2452,6 +2511,7 @@ const i18n = {
       mature_sunglasses: '어른스러운 선글라스',
       merciless_glutton: '무자비한 대식가',
       otherworldly_machinery: '이세계의 머서너리',
+      our_beautiful_seasons: '함께한 우리의 계절',
       portrait_of_the_saviors: '구원자의 초상화',
       p_o_s: '포스(P.O.S)',
       prayer_of_solitude: '고독의 기도',
@@ -2479,8 +2539,19 @@ const i18n = {
       wings_of_light_and_shadow: '명암의 쌍익',
     },
     form: {
+      attack: '공격력',
+      cdam: '치명 피해',
+      defense: '방어력',
+      hp: '최대 생명력',
+      speed: '속도',
+      current_stats: '현재 통계',
+      with_more: '더',
+      damage: '데미지',
+      oneshot: '원샷',
       allies_nb_buff: '아군 버프 수',
       link_copied: '링크 복사!',
+      show_chart: '그래프 보여줘',
+      hide_chart: '그래프 숨기기',
       nb_targets: '대상 수',
       nb_hits: '히트 수',
       nb_sets: '세트 수',
@@ -2619,7 +2690,8 @@ const i18n = {
       alencia_trample: '압살',
       arunka_expose: '파헤치기',
       beehoo_incinerate: '소각',
-      lethe_call_of_the_abyss: '',
+      silk_automatic_fire: '연발 사격',
+      lethe_call_of_the_abyss: '심연의 부름',
       lqc_s3_splash: '스킬 3 스플래시',
       ml_celine_nimble_sword: '쾌검',
       navy_captain_landy_salvo_fire: '일제 사격',
@@ -2638,10 +2710,9 @@ const i18n = {
     heroes: {
       // Unreleased units: (Unidades) (Não Lançadas)
       // Pre-Balance versions: (Versão) (Pré-Balanceamento)
-      arunka_old: 'Arunka (Pré-Balanceamento)',
-      little_queen_charlotte_old: 'Jovem Rainha Charlotte (Pré-Balanceamento)',
-      jack_o_old: 'Jack-O (Pré-Balanceamento)',
-      summer_break_charlotte_old: 'Charlotte Férias de Verão (Pré-Balanceamento)',
+      lionheart_cermia_old: 'Cérmia Coração de Leão (Pré-Balanceamento)',
+      silk_old: 'Seda (Pré-Balanceamento)',
+      tenebria_old: 'Tenébria (Pré-Balanceamento)',
       // End Pre-Balance
       abigail: 'Abigail', // TODO: translate when available
       achates: 'Acates',
@@ -2690,6 +2761,7 @@ const i18n = {
       blood_blade_karin: 'Karin da Lâmina de Sangue',
       blood_moon_haste: 'Presto da Lua de Sangue',
       briar_witch_iseria: 'Bruxa do Espinheiro Iséria',
+      brieg: 'Brieg', //TODO: translate when available
       butcher_corps_inquisitor: 'Inquisidor Açougueiro',
       captain_rikoris: 'Capitão Rikoris',
       carmainerose: 'Carmainerosa',
@@ -2921,6 +2993,7 @@ const i18n = {
       tywin: 'Tywin',
       unbound_knight_arowell: 'Arowell Cavaleira Livre',
       verdant_adin: 'Adine Broto Verdejante',
+      veronica: 'Veronica', // TODO: translate when available
       vigilante_leader_glenn: 'Líder Justiceiro Glenn',
       vildred: 'Vildred',
       violet: 'Purpúrio',
@@ -2967,6 +3040,7 @@ const i18n = {
       ancient_sheath: 'Bainha Antiga',
       black_hand_of_the_goddess: 'Mão Negra da Deusa',
       border_coin: 'Moeda Flamejante',
+      broken_will_of_the_high_priest: 'Broken Will of the High Priest', // TODO: translate when available
       daydream_joker: 'Coringa do Devaneio',
       dignus_orb: 'Orbe de Dignus',
       double_edged_decrescent: 'Decrescente de Dois Gumes',
@@ -2987,6 +3061,7 @@ const i18n = {
       mature_sunglasses: 'Óculos de Sol Sérios',
       merciless_glutton: 'Comilão Impiedoso',
       otherworldly_machinery: 'Mecanismo de Outro Mundo',
+      our_beautiful_seasons: 'Nossa Época Juntos',
       portrait_of_the_saviors: 'Retrato dos Salvadores',
       prayer_of_solitude: 'Prece de Solidão',
       prelude_to_a_new_era: 'Prelúdio de uma Nova Era',
@@ -3013,9 +3088,20 @@ const i18n = {
       wings_of_light_and_shadow: 'Asas de Luz e Trevas',
     },
     form: {
+      attack: 'Ataque',
+      cdam: 'Dano Crítico',
+      defense: 'Defesa',
+      hp: 'Vida',
+      speed: 'Speed',
+      current_stats: 'Estatísticas Atuais',
+      with_more: 'Com mais',
+      damage: 'dano',
+      oneshot: 'Um disparo',
       allies_nb_buff: 'Quantidade de Buffs Aliados',
       aoe_stack_5: 'Stack de Ataque em Área',
       link_copied: 'Link Copiado!',
+      show_chart: 'Mostrar Gráfico',
+      hide_chart: 'Ocultar Gráfico',
       nb_targets: 'Número de Alvos',
       nb_hits: 'Quantidade de Hits',
       nb_sets: 'Número de Sets',
@@ -3161,7 +3247,8 @@ const i18n = {
       alencia_trample: 'Pisotear',
       arunka_expose: 'Carcomere',
       beehoo_incinerate: 'Carbonizar',
-      lethe_call_of_the_abyss: '',
+      silk_automatic_fire: 'Disparo Automático',
+      lethe_call_of_the_abyss: 'Chamado do Abismo',
       lqc_s3_splash: 'S3 Splash',
       ml_celine_nimble_sword: 'Fulgor',
       navy_captain_landy_salvo_fire: 'Salvo Fire', //TODO: Translate when available 
@@ -3206,7 +3293,7 @@ const artifactName = (id) => {
 const formLabel = (id) => {
   const lang = document.getElementById('root').getAttribute('lang');
   if (lang === 'en') {
-    return elements[id].label;
+    return elements[id]?.label || i18n['en'].form[id];
   } else {
     return i18n[lang].form[id] || elements[id].label;
   }
@@ -3237,7 +3324,7 @@ const compareSkillLabel = (id) => {
 
   if (extra === 'sb') {
     display += '<i class="fas fa-fire"></i>';
-  } else if (extra!== '') {
+  } else if (extra !== '') {
     display += '<i class="far fa-plus-square"></i>';
   }
 

@@ -197,6 +197,86 @@ body .popover {
     margin-right: 0.5rem;
 }
 
+.canvas-container {
+    height: 27vh;
+    position: relative;
+    margin-bottom: -1rem;
+}
+
+.canvas-container > canvas {
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    bottom: 0; 
+}
+
+@media (max-width: 767px) {
+    #canvas-container {
+        height: 44vh;
+    }
+}
+
+#damage-chart-container > canvas {
+    margin-bottom: 4.3rem;
+}
+
+.btn-orange {
+    background-color: #de7715;
+    border-color: #de7715;
+    color: white;
+}
+
+.btn-orange:hover {
+    background-color: #c96d17;
+    border-color: #a95c13;
+    color:white;
+}
+
+.input-line {
+    margin-top: 5px;
+    margin-left: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.input-line .form-check {
+    margin-left: 1rem;
+    display: flex;
+    align-self: center;
+    justify-self: center;
+
+    padding-right: 5px;
+}
+
+.input-section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.radio-holder {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+}
+
+.oneshot-holder {
+    display: flex;
+    flex-direction: row;
+    line-height: 1.5;
+    align-self: flex-end;
+}
+
+.oneshot-holder #oneshot-target {
+    height: 1.5rem;
+    width: 10rem;
+    margin-left: 5px;
+}
+
 /* Dark Theme */
 
 [data-theme="dark"] {
