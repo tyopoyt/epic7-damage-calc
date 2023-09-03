@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { languages } from './models/languages';
 import { FormControl } from '@angular/forms';
 import { MatSelectChange } from '@angular/material/select';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -9,12 +10,10 @@ import { MatSelectChange } from '@angular/material/select';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'damage-calc';
-  languages = Object.values(languages);
-  languageSelection = new FormControl(languages.us);
 
-  selectLanguage = (event: MatSelectChange) => {
-    console.log(event.value)
-  }
+  constructor (private route: ActivatedRoute, private router: Router) {}
+  
+  ngOnInit() {}
 }

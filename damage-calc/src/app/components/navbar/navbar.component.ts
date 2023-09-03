@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { MatSelectChange } from '@angular/material/select';
+import { ActivatedRoute } from '@angular/router';
+import { languages } from 'src/app/models/languages';
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +11,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  languages = Object.values(languages);
+  languageSelection = new FormControl(languages.us);
 
-  ngOnInit(): void {
+  selectLanguage = (event: MatSelectChange) => {
+    console.log(event.value)
   }
 
+  constructor(
+    private route: ActivatedRoute
+  ) { }
+
+  ngOnInit(): void {}
 }

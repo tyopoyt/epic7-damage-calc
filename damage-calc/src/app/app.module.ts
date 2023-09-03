@@ -8,13 +8,19 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSelectModule } from '@angular/material/select';
 import { FlagComponent } from './components/flag/flag.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { NavbarComponent } from './components/navbar/navbar.component'
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { DamageCalculatorComponent } from './components/damage-calculator/damage-calculator.component';
+import { TranslationComponent } from './pipes/translation/translation.component';
+import { TranslationPipe } from './pipes/translation.pipe'
 
 @NgModule({
   declarations: [
     AppComponent,
     FlagComponent,
-    NavbarComponent
+    NavbarComponent,
+    DamageCalculatorComponent,
+    TranslationComponent,
+    TranslationPipe
   ],
   imports: [
     BrowserModule,

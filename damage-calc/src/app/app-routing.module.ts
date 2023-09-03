@@ -1,11 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
+import { DamageCalculatorComponent } from './components/damage-calculator/damage-calculator.component';
 
 const routes: Routes = [
   {
+    path: '',
+    component: DamageCalculatorComponent
+  },
+  {
     path: ':lang',
-    component: AppComponent
+    component: DamageCalculatorComponent
   },
   {
     path: 'index',
