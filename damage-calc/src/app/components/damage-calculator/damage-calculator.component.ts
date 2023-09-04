@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { languages } from 'src/app/models/languages';
+import { LanguageService } from 'src/app/services/language.service';
 
 @Component({
   selector: 'app-damage-calculator',
@@ -8,15 +10,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class DamageCalculatorComponent implements OnInit {
 
-  constructor (private route: ActivatedRoute, private router: Router) {}
+  constructor (
+    private route: ActivatedRoute,
+    public languageService: LanguageService
+  ) {}
   
   ngOnInit() {
-    this.route.params.subscribe(param => {
-      console.log(param)
-    })
-
-    this.router.events.subscribe(event =>
-      console.log(event))
+    const langParam = this.route.snapshot.paramMap.get('lang') || 'us';
+    this.languageService.setLanguage(languages[langParam])
   }
 
 }

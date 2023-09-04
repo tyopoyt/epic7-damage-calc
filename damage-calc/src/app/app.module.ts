@@ -10,8 +10,7 @@ import { FlagComponent } from './components/flag/flag.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { DamageCalculatorComponent } from './components/damage-calculator/damage-calculator.component';
-import { TranslationComponent } from './pipes/translation/translation.component';
-import { TranslationPipe } from './pipes/translation.pipe'
+import { TranslationPipe } from './pipes/translation.pipe';
 
 @NgModule({
   declarations: [
@@ -19,7 +18,6 @@ import { TranslationPipe } from './pipes/translation.pipe'
     FlagComponent,
     NavbarComponent,
     DamageCalculatorComponent,
-    TranslationComponent,
     TranslationPipe
   ],
   imports: [

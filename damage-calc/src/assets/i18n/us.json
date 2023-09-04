@@ -168,6 +168,10 @@
       "unreleased_hero": "<strong>Notice:</strong> This hero is not yet released, and skill multipliers are subject to change.",
       "victorious_flag": "Elemental advantage must be enabled to see benefits from this artifact; doesn't apply to light and dark heroes",
       "yoonryoung_slash": "Dazzling Slash",
-      "zio_disappear": "Disappear"
+      "zio_disappear": "Disappear",
+      "damage_calculator_title": "Epic 7 Damage Calculator",
+      "ehp_calculator_title": "Epic 7 Effective HP Calculator",
+      "effectiveness_checker_title": "Epic 7 Effect Chance Calculator",
+      "speed_tuner_title": "Epic 7 Speed Tuner"
     }
   }

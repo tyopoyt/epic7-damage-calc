@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { LanguageService } from '../services/language.service';
 import { Language } from '../models/languages';
 
 @Pipe({
@@ -6,8 +7,14 @@ import { Language } from '../models/languages';
 })
 export class TranslationPipe implements PipeTransform {
 
-  transform(value: string, language: Language): string {
-    return value;
+  constructor(private languageService: LanguageService) {}
+
+  transform(value: string, category: string, language: Language): string {
+    try {
+      return this.languageService.translationDict[category][value];
+    } catch {
+      return value;
+    }
   }
 
 }

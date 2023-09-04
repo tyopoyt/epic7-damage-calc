@@ -701,6 +701,8 @@
       "sez_explosion": "濺射傷害",
       "unreleased_hero": "<strong>注意</strong>：該英雄尚未發布，技能倍數可能會發生變化。",
       "victorious_flag": "必須勾選屬性克製才能看到效果, 對光暗英雄無效.",
-      "yoonryoung_slash": "閃光砍擊"
+      "yoonryoung_slash": "閃光砍擊",
+      "damage_calculator_title": "第七史詩 傷害計算器",
+      "effectiveness_checker_title": "第七史詩效果命中與抵抗計算"
     }
   }

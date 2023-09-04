@@ -1,15 +1,24 @@
 <!DOCTYPE html>
-<mat-toolbar>
-    <img class="navbar-icon" src="assets/icons/revive-buff-logo.png" height="30" alt="Revive buff icon">
-    <span>Epic 7 Damage Calculator</span>
-    <mat-form-field>
-        <mat-select [formControl]="languageSelection" (selectionChange)="selectLanguage($event)">
-            <mat-select-trigger>
-                {{languageSelection.value.localName}} <app-flag [country]="languageSelection.value.countryCode"></app-flag>
-            </mat-select-trigger>
-            <mat-option *ngFor="let language of languages" [value]="language">
-                {{language.localName}} <app-flag [country]="language.countryCode"></app-flag>
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
+<mat-toolbar class="flex-between">
+    <span class="neat-container">
+        <img class="navbar-icon" src="assets/icons/revive-buff-logo.png" height="30" alt="Revive buff icon">
+        <span>{{languageService.pageTitles[languageSelection.value.countryCode]["damage_calculator_title"]}}</span>
+        <span class="margin-left">
+            Links will go here...
+        </span>
+    </span>
+    <span>
+        <mat-form-field class="language-picker">
+            <mat-select [formControl]="languageSelection" (selectionChange)="selectLanguage($event)">
+                <mat-select-trigger>
+                    {{languageSelection.value.localName}} <app-flag [country]="languageSelection.value.countryCode"></app-flag>
+                </mat-select-trigger>
+                <mat-option *ngFor="let language of languages" [value]="language">
+                    {{language.localName}} <app-flag [country]="language.countryCode"></app-flag>
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </span>
+    
+    
 </mat-toolbar>

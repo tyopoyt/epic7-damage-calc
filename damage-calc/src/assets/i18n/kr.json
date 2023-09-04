@@ -630,6 +630,8 @@
         "sez_explosion": "컨빅션 폭발",
         "unreleased_hero": "<strong>알림</strong>: 이 영웅은 아직 출시되지 않았으며 스킬 배율이 변경될 수 있습니다.",
         "victorious_flag": "아티팩트의 효과를 보려면 상성 우위가 활성화되어야 합니다; 암/광속성에는 적용되지 않습니다.",
-        "yoonryoung_slash": "섬광베기"
+        "yoonryoung_slash": "섬광베기",
+        "damage_calculator_title": "에픽세븐 데미지 계산기",
+        "effectiveness_checker_title": "에픽세븐 효과적중 확률 계산기"
     }
 }
