@@ -11,6 +11,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { DamageCalculatorComponent } from './components/damage-calculator/damage-calculator.component';
 import { TranslationPipe } from './pipes/translation.pipe';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { MatIconModule } from '@angular/material/icon';
+import { SpeedTunerComponent } from './components/speed-tuner/speed-tuner.component';
+import { EffectivenessCheckerComponent } from './components/effectiveness-checker/effectiveness-checker.component';
+import { EHPCalculatorComponent } from './components/ehp-calculator/ehp-calculator.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +23,11 @@ import { TranslationPipe } from './pipes/translation.pipe';
     FlagComponent,
     NavbarComponent,
     DamageCalculatorComponent,
-    TranslationPipe
+    TranslationPipe,
+    PageNotFoundComponent,
+    SpeedTunerComponent,
+    EffectivenessCheckerComponent,
+    EHPCalculatorComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +35,8 @@ import { TranslationPipe } from './pipes/translation.pipe';
     BrowserAnimationsModule,
     MatToolbarModule,
     MatSelectModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

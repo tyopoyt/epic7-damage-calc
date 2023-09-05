@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { languages } from 'src/app/models/languages';
+import { Languages } from 'src/app/models/languages';
 import { LanguageService } from 'src/app/services/language.service';
 
 @Component({
@@ -17,7 +17,7 @@ export class DamageCalculatorComponent implements OnInit {
   
   ngOnInit() {
     const langParam = this.route.snapshot.paramMap.get('lang') || 'us';
-    this.languageService.setLanguage(languages[langParam])
+    this.languageService.setLanguage(Languages[langParam])
   }
 
 }

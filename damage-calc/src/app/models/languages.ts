@@ -14,7 +14,7 @@ export class Language {
       }
 }
 
-export const languages: Record<string, Language> = {
+export const Languages: Record<string, Language> = {
     'us': {
         name: 'English',
         localName: 'English',
@@ -36,18 +36,18 @@ export const languages: Record<string, Language> = {
     'tw': {
         name: 'Chinese (Traditional)',
         localName: '繁體中文',
-        code: 'zh-tw',
+        code: 'zh',
         countryCode: 'tw'
     },
     'cn': {
         name: 'Chinese (Simplified)',
         localName: '简体中文',
-        code: 'zh-cn',
+        code: 'zh',
         countryCode: 'cn'
     },
     'br': {
         name: 'Portuguese',
-        localName: 'Português Brasil',
+        localName: 'Português (BR)',
         code: 'pt',
         countryCode: 'br'
     },

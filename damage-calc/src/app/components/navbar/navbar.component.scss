@@ -1,3 +1,52 @@
-.language-picker {
-    width: 11.75rem;
+.navbar-picker {
+    align-items: center;
+    align-self: center;
+    display: flex;
+    margin-top: 0.5rem;
+    justify-content: flex-end;
+
+    // justification for ng-deeps: its size won't go large enough without this
+    ::ng-deep.mat-select-value {
+        max-width: max-content !important;
+    }
+    ::ng-deep.mat-form-field-infix {
+        width: fit-content !important;
+    }
+
+    &.language-picker {
+        justify-content: flex-end;
+    }
+}
+
+.icon-holder {
+    height: 50px;
+    color: white;
+}
+
+mat-select.small {
+    width:50%
+}
+
+// ng-deep is deprecated but Google hasn't provided another way to easily remove the underline
+// previously, it could be removed by setting the appearance attribute to an unsupported value but they
+// removed that ability by enforcing the type... so ng-deep it is...
+::ng-deep .mat-form-field-underline {
+    display: none;
+}
+
+.language-trigger {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    line-height: 1.75rem;
+    text-align: right;
+    margin-right: 1px;
+    font-size: medium;
+}
+
+.tool-trigger {
+    justify-content: flex-start;
+    display: flex;
+    line-height: 1.75rem;
+    font-weight: 500;
 }

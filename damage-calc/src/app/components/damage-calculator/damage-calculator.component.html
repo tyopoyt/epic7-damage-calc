@@ -1,15 +1,24 @@
 <!DOCTYPE html>
-<br>
-<br>
-<br>
-<span>{{"s1_extra_attack" | translate:"info":languageService.language.value}}</span>
-<br>
-<span>{{"death_dealer_ray" | translate:"heroes":languageService.language.value}}</span>
-<br>
-<span>{{"current_stats" | translate:"form":languageService.language.value}}</span>
-<br>
-<span>{{"prayer_of_solitude" | translate:"artifacts":languageService.language.value}}</span>
-<br>
-<span>{{"mods" | translate:"skills":languageService.language.value}}</span>
-<br>
+<div id="damage-calc-container">
+    <!-- <div class="form-row">
+        <mat-form-field class="language-picker">
+        <mat-select [formControl]="languageSelection" (selectionChange)="selectLanguage($event)">
+        <mat-select-trigger>
+        {{languageSelection.value.localName}} <app-flag [country]="languageSelection.value.countryCode"></app-flag>
+        </mat-select-trigger>
+        <mat-option *ngFor="let language of languages" [value]="language">
+        {{language.localName}} <app-flag [country]="language.countryCode"></app-flag>
+        </mat-option>
+        </mat-select>
+        </mat-form-field>
+        </div> -->
+    <span>{{"detonation" | translate:"skills":languageService.language.value}}</span>
+    <br>
+    <span>{{"arbiter_vildred" | translate:"heroes":languageService.language.value}}</span>
+    <br>
+    <span>{{"prayer_of_solitude" | translate:"artifacts":languageService.language.value}}</span>
+    <br>
+    <span>{{"lethe_call_of_the_abyss" | translate:"info":languageService.language.value}}</span>
+    <br>
+</div>
 

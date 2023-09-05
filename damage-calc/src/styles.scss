@@ -34,12 +34,90 @@ $damage-calc-theme: mat.define-light-theme((
 @include mat.all-component-themes($damage-calc-theme);
 
 /* You can add global styles to this file, and also import other style files */
+* {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
+}
+html, body {
+  color: #DDDDDD;
+  background-color: rgb(17, 17, 17);
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+  mat-icon {
+    color: #DDDDDD;
+  }
+
+  .navbar {
+    color: #DDDDDD;
+    background-color: rgb(51, 51, 51);
+
+    &.small {
+      padding: 0 0.5rem;
+    }
+  }
+
+  .navbar {
+    position: sticky;
+    top: 0;
+  }
+
+  .navbar-link {
+      color: #BBBBBB;
+      cursor: pointer;
+      &:not(.selected) {
+        font-size: medium;
+      }
+
+      &:hover {
+          color: #DDDDDD;
+      }
+
+      &.selected {
+          color: #DDDDDD;
+      }
+  }
+
+  &.light-theme {
+    color: #212529;
+    background-color: white;
+
+    mat-icon {
+      color: #212529;
+    }
+
+    .navbar {
+      color: rgba(0, 0, 0, 0.87);
+      background-color: whitesmoke;
+    }
+
+    .navbar-link {
+      color: #808080;
+      cursor: pointer;
+      &:not(.selected) {
+        font-size: medium;
+      }
+
+      &:hover {
+          color: #212529;
+      }
+
+      &.selected {
+          color: #212529;
+      }
+  }
+  }
+
+  height: 100%;
+}
+body { 
+  margin: 0;
+}
 
 .navbar-icon {
   margin-right: 0.5rem;
+  height: 2rem;
+
+  &.small {
+    height: 1.5rem;
+  }
 }
 
 .flex-between {
@@ -58,4 +136,38 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .margin-left {
   margin-left: 1rem;
 }
+
+.small-margin-left {
+  margin-left: 0.5rem;
+}
+
+.margin-right {
+  margin-right: 1rem;
+}
+
+.small-margin-right {
+  margin-right: 0.5rem;
+}
+
+.large-margin-right {
+  margin-right: 1.5rem;
+}
+
+.centered-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 64px);
+  justify-content: center;
+  width: 100%;
+}
+
+.small-text {
+  font-size: small;
+}
+
+.medium-text {
+  font-size: medium;
+}
+
 

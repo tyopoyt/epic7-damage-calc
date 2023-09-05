@@ -170,8 +170,12 @@
       "yoonryoung_slash": "Dazzling Slash",
       "zio_disappear": "Disappear",
       "damage_calculator_title": "Epic 7 Damage Calculator",
+      "damage_calculator_nav_title": "Damage Calculator",
       "ehp_calculator_title": "Epic 7 Effective HP Calculator",
+      "ehp_calculator_nav_title": "Effective HP Calculator",
       "effectiveness_checker_title": "Epic 7 Effect Chance Calculator",
-      "speed_tuner_title": "Epic 7 Speed Tuner"
+      "effectiveness_checker_nav_title": "Effect Chance Calculator",
+      "speed_tuner_title": "Epic 7 Speed Tuner",
+      "speed_tuner_nav_title": "Speed Tuner"
     }
   }

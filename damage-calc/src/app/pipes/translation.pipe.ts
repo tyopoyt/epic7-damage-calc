@@ -16,5 +16,4 @@ export class TranslationPipe implements PipeTransform {
       return value;
     }
   }
-
 }
