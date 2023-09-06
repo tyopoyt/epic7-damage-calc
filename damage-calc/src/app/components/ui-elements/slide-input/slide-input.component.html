@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<mat-card>
+    <div class="neat-container flex-column">
+        <div class="slider-row large-text bold-text margin-top">
+            <span *ngIf="!!label; else labelPlaceholder">{{label}}</span>
+            <ng-template #labelPlaceholder>
+                <span></span>
+            </ng-template>
+            <span>Placeholder</span>
+        </div>
+        <mat-slider min="min" max="max" step="step" [value]="value">
+            <input matSliderThumb>
+        </mat-slider>
+    </div>
+</mat-card>

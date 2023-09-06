@@ -33,9 +33,7 @@ $damage-calc-theme: mat.define-light-theme((
 // that you are using.
 @include mat.all-component-themes($damage-calc-theme);
 
-$font-light-color: #DDDDDD;
-$font-dark-color: #212529;
-$e7-buff-color: #06abfe;
+@import "variables";
 
 /* You can add global styles to this file, and also import other style files */
 * {
@@ -43,10 +41,20 @@ $e7-buff-color: #06abfe;
 }
 html, body {
   color: $font-light-color;
-  background-color: rgb(17, 17, 17);
+  background-color: $background-dark-color;
 
-  mat-icon {
-    color: $font-light-color;
+  .mat-card {
+    padding: 0.25rem 0.75rem;
+    background-color: $ui-dark-color;
+    margin: 0.5rem;
+
+    &.cols-2-left {
+      margin-right: 0;
+    }
+
+    .slider-row {
+      color: $font-light-color;
+    }
   }
 
   .mat-select-panel {
@@ -56,7 +64,9 @@ html, body {
       color: $font-light-color;
   
       &.mat-selected:not(.mat-option-disabled) {
-        color: $e7-buff-color;
+        color: whitesmoke;
+        font-weight: bold;
+        background-color: $e7-buff-contrast-color;
       }
     }
   }
@@ -64,6 +74,7 @@ html, body {
   .navbar {
     color: $font-light-color;
     background-color: rgb(51, 51, 51);
+    height: $navbar-height;
 
     &.small {
       padding: 0 0.5rem;
@@ -97,10 +108,14 @@ html, body {
 
   &.light-theme {
     color: $font-dark-color;
-    background-color: white;
+    background-color: white !important;
 
-    mat-icon {
-      color: $font-dark-color;
+    .mat-card {
+      background-color: $ui-light-color;
+  
+      .slider-row {
+        color: $font-dark-color;
+      }
     }
 
     .mat-select-panel {
@@ -160,6 +175,11 @@ body {
   align-items: center;
 }
 
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
 .neat-container {
   display: flex;
   justify-content: flex-start;
@@ -195,6 +215,22 @@ body {
   margin-right: 1.5rem;
 }
 
+.margin-top {
+  margin-top: 1rem;
+}
+
+.tiny-margin-top {
+  margin-top: 0.25rem;
+}
+
+.small-margin-top {
+  margin-top: 0.5rem;
+}
+
+.large-margin-top {
+  margin-top: 1.5rem;
+}
+
 .centered-container {
   align-items: center;
   display: flex;
@@ -210,6 +246,23 @@ body {
 
 .medium-text {
   font-size: medium;
+}
+
+.large-text {
+  font-size: 1.25rem;
+}
+
+.bold-text {
+  font-weight: bold;
+}
+
+.page-container {
+  margin: 0 3vw;
+  align-self: center;
+  width: 94vw; // 100vw - the side margins
+  height: calc(100vh - #{$navbar-height});
+
+  position: absolute;
 }
 
 

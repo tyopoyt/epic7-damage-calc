@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSelectModule } from '@angular/material/select';
-import { FlagComponent } from './components/flag/flag.component';
+import { FlagComponent } from './components/ui-elements/flag/flag.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { DamageCalculatorComponent } from './components/damage-calculator/damage-calculator.component';
@@ -16,6 +16,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { SpeedTunerComponent } from './components/speed-tuner/speed-tuner.component';
 import { EffectivenessCheckerComponent } from './components/effectiveness-checker/effectiveness-checker.component';
 import { EHPCalculatorComponent } from './components/ehp-calculator/ehp-calculator.component';
+import { SlideInputComponent } from './components/ui-elements/slide-input/slide-input.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatSliderModule } from '@angular/material/slider';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,8 @@ import { EHPCalculatorComponent } from './components/ehp-calculator/ehp-calculat
     PageNotFoundComponent,
     SpeedTunerComponent,
     EffectivenessCheckerComponent,
-    EHPCalculatorComponent
+    EHPCalculatorComponent,
+    SlideInputComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +40,9 @@ import { EHPCalculatorComponent } from './components/ehp-calculator/ehp-calculat
     MatToolbarModule,
     MatSelectModule,
     ReactiveFormsModule,
-    MatIconModule
+    MatIconModule,
+    MatCardModule,
+    MatSliderModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,33 @@
+@import '../../../../variables';
+
+.slider-row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+mat-slider {
+    transform: size(2);
+    width: 100%;
+    ::ng-deep.mat-slider-track-fill, ::ng-deep.mat-slider-thumb {
+      background-color: $e7-buff-color !important;
+      border: none;
+    }
+
+    ::ng-deep.mat-slider-track-background {
+      background-color: $e7-buff-color !important;
+      opacity: 0.2;
+    }
+
+    ::ng-deep.mat-slider-track-fill,
+    ::ng-deep.mat-slider-wrapper,
+    ::ng-deep.mat-slider-track-wrapper,
+    ::ng-deep.mat-slider-track-background {
+        height: 0.25rem;
+        border-radius: 10px;
+    }
+
+    // ::ng-deep.mat-slider-thumb {
+    //     background-color: aquamarine !important;
+    // }
+}
