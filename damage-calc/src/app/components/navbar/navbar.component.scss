@@ -16,11 +16,33 @@
     &.language-picker {
         justify-content: flex-end;
     }
+
+    &.tool-picker {
+        ::ng-deep.mat-select-arrow {
+            opacity: 0; 
+        }
+    }
 }
 
 .icon-holder {
     height: 50px;
     color: white;
+}
+
+.menu-icon {
+    height: 1.75rem;
+    margin-top: 0.25rem;
+    filter: invert(100%) sepia(58%) saturate(55%) hue-rotate(260deg) brightness(118%) contrast(73%);
+    align-self: center;
+
+    &.medium-icon {
+        height: 1.25rem;
+    }
+
+    &.small-icon {
+        margin-top: 0.15rem;
+        height: 1rem;
+    }
 }
 
 mat-select.small {

@@ -552,12 +552,12 @@
       "yoonryoung_slash": "Corte de Luz",
       "zio_disappear": "Suma",
       "damage_calculator_title": "Epic 7 Calculadora de Dano",
-      "damage_calculator_nav_title": "Calculadora de Dano",
+      "damage_calculator": "Calculadora de Dano",
       "ehp_calculator_title": "Epic 7 Calculadora de HP Efetivo",
-      "ehp_calculator_nav_title": "Calculadora de HP Efetivo",
+      "ehp_calculator": "Calculadora de HP Efetivo",
       "effectiveness_checker_title": "Epic 7 Calculadora de Chance de Eficácia",
-      "effectiveness_checker_nav_title": "Calculadora de Chance de Eficácia",
+      "effectiveness_checker": "Calculadora de Chance de Eficácia",
       "speed_tuner_title": "Epic 7 Ajustador de Speed",
-      "speed_tuner_nav_title": "Ajustador de Speed"
+      "speed_tuner": "Ajustador de Speed"
     }
 }

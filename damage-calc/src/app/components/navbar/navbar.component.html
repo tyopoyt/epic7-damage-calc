@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <mat-toolbar class="navbar flex-between" [class.small]="screenService.smallScreen.value">
     <span class="neat-container">
-        <img *ngIf="!screenService.microscopicScreen.value || true" class="navbar-icon" [class.small]="screenService.smallScreen.value" src="assets/icons/revive-buff-logo.png" alt="Revive buff icon">
-        <span class="small-margin-right" [class.medium-text]="screenService.smallScreen.value && !screenService.tinyScreen.value" [class.small-text]="screenService.tinyScreen.value">{{languageService.pageTitles[languageSelection.value.countryCode]["epic_7"] || "Epic 7"}}</span>
+        <img *ngIf="!screenService.microscopicScreen.value || true" class="navbar-icon" [class.small]="screenService.smallScreen.value" src="assets/icons/{{toolSelection.value}}_logo.png" alt="Revive buff icon">
+        <span [class.small-margin-right]="!screenService.largeScreen.value && !screenService.tinyScreen.value" [class.tiny-margin-right]="screenService.tinyScreen.value" [class.medium-text]="screenService.smallScreen.value && !screenService.tinyScreen.value" [class.small-text]="screenService.tinyScreen.value">{{languageService.pageTitles[languageSelection.value.countryCode]["epic_7"] || "Epic 7"}}</span>
         <span *ngIf="screenService.largeScreen.value; else smallScreenPageSelect" class="neat-container">
             <span *ngFor="let toolTitle of toolTitles" class="margin-left navbar-link"
                 [class.selected]="toolSelection.value === toolTitle" (click)="selectTool(toolTitle)">
@@ -14,8 +14,14 @@
                 <mat-select [formControl]="toolSelection" (selectionChange)="selectTool($event.value)">
                     <!-- This trigger has the same value but is here for styling purposes -->
                     <mat-select-trigger class="tool-trigger" [class.medium-text]="screenService.smallScreen.value && !screenService.tinyScreen.value" [class.small-text]="screenService.tinyScreen.value">
-                        <span>
+                        <span class="neat-container">
                             {{languageService.pageTitles[languageSelection.value.countryCode][toolSelection.value] || languageService.pageTitles['us'][toolSelection.value]}}
+                            <img class="menu-icon" 
+                                [class.medium-icon]="screenService.smallScreen.value && !screenService.tinyScreen.value"
+                                [class.small-icon]="screenService.tinyScreen.value"
+                                [class.small-margin-left]="!screenService.largeScreen.value && !screenService.tinyScreen.value"
+                                [class.tiny-margin-left]="screenService.tinyScreen.value"
+                                src="assets/icons/menu.svg" alt="Menu icon">
                         </span>
                     </mat-select-trigger>
                     <mat-option *ngFor="let toolTitle of toolTitles" [value]="toolTitle">
