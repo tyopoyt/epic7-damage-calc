@@ -6,10 +6,10 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class ScreenService {
 
-  microscopic = 440
-  tiny = 520;
-  small = 620;
-  medium = 1140;
+  microscopic = 440;
+  tiny = 480;
+  small = 580;
+  medium = 1000;
 
   microscopicScreen: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   tinyScreen: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);

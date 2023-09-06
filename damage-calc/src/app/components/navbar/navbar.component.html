@@ -16,12 +16,10 @@
                     <mat-select-trigger class="tool-trigger" [class.medium-text]="screenService.smallScreen.value && !screenService.tinyScreen.value" [class.small-text]="screenService.tinyScreen.value">
                         <span class="neat-container">
                             {{languageService.pageTitles[languageSelection.value.countryCode][toolSelection.value] || languageService.pageTitles['us'][toolSelection.value]}}
-                            <img class="menu-icon" 
+                            <!-- <img class="menu-icon" 
                                 [class.medium-icon]="screenService.smallScreen.value && !screenService.tinyScreen.value"
                                 [class.small-icon]="screenService.tinyScreen.value"
-                                [class.small-margin-left]="!screenService.largeScreen.value && !screenService.tinyScreen.value"
-                                [class.tiny-margin-left]="screenService.tinyScreen.value"
-                                src="assets/icons/menu.svg" alt="Menu icon">
+                                src="assets/icons/kebab.svg" alt="Menu icon"> -->
                         </span>
                     </mat-select-trigger>
                     <mat-option *ngFor="let toolTitle of toolTitles" [value]="toolTitle">
