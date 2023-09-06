@@ -28,9 +28,9 @@ export class LanguageService {
       damage_calculator_title: 'Epic 7 Damage Calculator',
       damage_calculator: 'Damage Calculator',
       ehp_calculator_title: 'Epic 7 Effective HP Calculator',
-      ehp_calculator: 'Effective HP Calculator',
+      ehp_calculator: 'Effective HP',
       effectiveness_checker_title: 'Epic 7 Effect Chance Calculator',
-      effectiveness_checker: 'Effect Chance Calculator',
+      effectiveness_checker: 'Effect Chance',
       speed_tuner_title: 'Epic 7 Speed Tuner',
       speed_tuner: 'Speed Tuner'
     },

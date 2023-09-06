@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatLegacySelectModule as MatSelectModule } from '@angular/material/legacy-select';
+import { MatSelectModule } from '@angular/material/select';
 import { FlagComponent } from './components/ui-elements/flag/flag.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -17,8 +17,8 @@ import { SpeedTunerComponent } from './components/speed-tuner/speed-tuner.compon
 import { EffectivenessCheckerComponent } from './components/effectiveness-checker/effectiveness-checker.component';
 import { EHPCalculatorComponent } from './components/ehp-calculator/ehp-calculator.component';
 import { SlideInputComponent } from './components/ui-elements/slide-input/slide-input.component';
-import { MatLegacyCardModule as MatCardModule } from '@angular/material/legacy-card';
-import { MatLegacySliderModule as MatSliderModule } from '@angular/material/legacy-slider';
+import { MatCardModule } from '@angular/material/card';
+import { MatSliderModule } from '@angular/material/slider';
 
 @NgModule({
   declarations: [

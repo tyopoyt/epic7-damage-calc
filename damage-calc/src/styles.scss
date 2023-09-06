@@ -14,9 +14,9 @@
 //  If you specify typography styles for the components you use elsewhere, you should delete this line.
 //  If you don't need the default component typographies but still want the hierarchy styles,
 //  you can delete this line and instead use:
-//    `@include mat.legacy-typography-hierarchy(mat.define-legacy-typography-config());`
-@include mat.all-legacy-component-typographies();
-@include mat.legacy-core();
+//    `@include mat.legacy-typography-hierarchy(mat.define-typography-config());`
+@include mat.all-component-typographies();
+@include mat.core();
 
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
@@ -40,7 +40,7 @@ $damage-calc-theme: mat.define-light-theme((
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include mat.all-legacy-component-themes($damage-calc-theme);
+@include mat.all-component-themes($damage-calc-theme);
 
 @import "variables";
 
@@ -52,7 +52,7 @@ html, body {
   color: $font-light-color;
   background-color: $background-dark-color;
 
-  .mat-card {
+  .mat-mdc-card {
     padding: 0.25rem 0.75rem;
     background-color: $ui-dark-color;
     margin: 0.5rem;
@@ -66,16 +66,31 @@ html, body {
     }
   }
 
-  .mat-select-panel {
+  .mat-mdc-select-panel {
     background: #555555;
+    padding: 0 !important;
   
-    .mat-option {
+    .mat-mdc-option {
       color: $font-light-color;
-  
-      &.mat-selected:not(.mat-option-disabled) {
+      padding: 0 0.5rem;
+      /* TODO(mdc-migration): The following rule targets internal classes of option that may no longer apply for the MDC version.*/
+      // &.mat-selected:not(.mat-option-disabled) {
+      .mdc-list-item__primary-text {
         color: whitesmoke;
-        font-weight: bold;
+      }
+
+      &.mdc-list-item--selected:not(.mdc-list-item--disabled) {
         background-color: $e7-buff-contrast-color;
+
+        .mdc-list-item__primary-text {
+          font-weight: bold;
+          color: whitesmoke;
+        }
+
+        // .mat-pseudo-checkbox-checked.mat-pseudo-checkbox-minimal::after,
+        // .mat-primary .mat-pseudo-checkbox-indeterminate.mat-pseudo-checkbox-minimal::after {
+        //   display: none;
+        // }
       }
     }
   }
@@ -83,7 +98,7 @@ html, body {
   .navbar {
     color: $font-light-color;
     background-color: rgb(51, 51, 51);
-    height: $navbar-height;
+    height: $navbar-height !important;
 
     &.small {
       padding: 0 0.5rem;
@@ -119,7 +134,7 @@ html, body {
     color: $font-dark-color;
     background-color: white !important;
 
-    .mat-card {
+    .mat-mdc-card {
       background-color: $ui-light-color;
   
       .slider-row {
@@ -127,12 +142,12 @@ html, body {
       }
     }
 
-    .mat-select-panel {
+    .mat-mdc-select-panel {
       background: white;
     
-      .mat-option {
+      .mat-mdc-option {
         color: $font-dark-color;
-    
+        /* TODO(mdc-migration): The following rule targets internal classes of option that may no longer apply for the MDC version.*/
         &.mat-selected:not(.mat-option-disabled) {
           color: $e7-buff-color;
         }
@@ -174,7 +189,12 @@ body {
   height: 2rem;
 
   &.small {
+    margin-right: 0.25rem;
     height: 1.5rem;
+  }
+
+  &.tiny {
+    height: 1rem;
   }
 }
 

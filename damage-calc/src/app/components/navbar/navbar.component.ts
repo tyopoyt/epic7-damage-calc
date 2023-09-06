@@ -1,7 +1,7 @@
 import { CurrencyPipe, Location } from '@angular/common';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { UntypedFormControl } from '@angular/forms';
-import { MatLegacySelectChange as MatSelectChange } from '@angular/material/legacy-select';
+import { MatSelectChange } from '@angular/material/select';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Languages } from 'src/app/models/languages';
 import { LanguageService } from 'src/app/services/language.service';

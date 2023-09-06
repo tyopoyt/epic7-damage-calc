@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <mat-toolbar class="navbar flex-between" [class.small]="screenService.smallScreen.value">
     <span class="neat-container">
-        <img *ngIf="!screenService.microscopicScreen.value || true" class="navbar-icon" [class.small]="screenService.smallScreen.value" src="assets/icons/{{toolSelection.value}}_logo.png" alt="Revive buff icon">
-        <span [class.small-margin-right]="!screenService.largeScreen.value && !screenService.tinyScreen.value" [class.tiny-margin-right]="screenService.tinyScreen.value" [class.medium-text]="screenService.smallScreen.value && !screenService.tinyScreen.value" [class.small-text]="screenService.tinyScreen.value">{{languageService.pageTitles[languageSelection.value.countryCode]["epic_7"] || "Epic 7"}}</span>
+        <img class="navbar-icon" [class.small]="screenService.smallScreen.value" [class.tiny]="screenService.tinyScreen.value" src="assets/icons/{{toolSelection.value}}_logo.png" alt="Revive buff icon">
+        <span *ngIf="!screenService.microscopicScreen.value" [class.medium-text]="screenService.smallScreen.value && !screenService.tinyScreen.value" [class.small-text]="screenService.tinyScreen.value">{{languageService.pageTitles[languageSelection.value.countryCode]["epic_7"] || "Epic 7"}}</span>
         <span *ngIf="screenService.largeScreen.value; else smallScreenPageSelect" class="neat-container">
             <span *ngFor="let toolTitle of toolTitles" class="margin-left navbar-link"
                 [class.selected]="toolSelection.value === toolTitle" (click)="selectTool(toolTitle)">
@@ -10,8 +10,8 @@
             </span>
         </span>
         <ng-template #smallScreenPageSelect>
-            <mat-form-field class="navbar-picker tool-picker">
-                <mat-select [formControl]="toolSelection" (selectionChange)="selectTool($event.value)">
+            <mat-form-field class="navbar-picker tool-picker" [class.small]="screenService.tinyScreen.value">
+                <mat-select hideSingleSelectionIndicator [formControl]="toolSelection" (selectionChange)="selectTool($event.value)">
                     <!-- This trigger has the same value but is here for styling purposes -->
                     <mat-select-trigger class="tool-trigger" [class.medium-text]="screenService.smallScreen.value && !screenService.tinyScreen.value" [class.small-text]="screenService.tinyScreen.value">
                         <span class="neat-container">
@@ -31,8 +31,8 @@
     </span>
     <!-- TODO: make the nav options become a select box with hamburger menu icon when screen is small -->
     <span>
-        <mat-form-field class="navbar-picker language-picker">
-            <mat-select [formControl]="languageSelection" (selectionChange)="selectLanguage($event)">
+        <mat-form-field class="navbar-picker language-picker" [class.small]="screenService.tinyScreen.value">
+            <mat-select hideSingleSelectionIndicator [formControl]="languageSelection" (selectionChange)="selectLanguage($event)">
                 <mat-select-trigger class="language-trigger">
                     <span *ngIf="!screenService.smallScreen.value || true; else shortenedTrigger" [class.small-text]="screenService.tinyScreen.value">
                         {{languageSelection.value.localName}} <app-flag [country]="languageSelection.value.countryCode"></app-flag>

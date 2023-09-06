@@ -1,3 +1,5 @@
+@import '../../../variables';
+
 .navbar-picker {
     align-items: center;
     align-self: center;
@@ -5,22 +7,81 @@
     margin-top: 0.5rem;
     justify-content: flex-end;
 
-    // justification for ng-deeps: its size won't go large enough without this
-    ::ng-deep.mat-select-value {
-        max-width: max-content !important;
+    ::ng-deep.mat-mdc-form-field-subscript-wrapper {
+        display: none;
     }
+
+    ::ng-deep.mat-mdc-select-value {
+        color: $font-light-color;
+    }
+
+    ::ng-deep.mat-mdc-select-trigger {
+        top: -1.5px
+    }
+
+    ::ng-deep.mat-mdc-select-arrow {
+        // important so it doesn't change color when active
+        color: $font-light-color !important;
+        margin-left: 0.25rem;
+    }
+
+    ::ng-deep.mat-mdc-text-field-wrapper {
+        height: $navbar-height;
+        margin-bottom: 0.5rem;
+        border: none;
+        border-radius: 0;
+        background-color: transparent;
+        // padding: 0 0.5rem;
+
+        .mat-mdc-form-field-focus-overlay {
+            display: none;
+        }
+
+        .mdc-line-ripple {
+            display: none;
+        }
+    }
+
+    &.tool-picker {
+      ::ng-deep.mat-mdc-text-field-wrapper {
+        width: 13.75rem;
+        padding: 0 0 0 0.4rem;
+      }
+
+      &.small {
+        ::ng-deep.mat-mdc-text-field-wrapper {
+            width: 11.5rem;
+            padding-left: 0.3rem;
+          }
+      }
+    }
+
+    &.language-picker {
+        ::ng-deep.mat-mdc-text-field-wrapper {
+            width: 10rem;
+            padding: 0;
+        }
+
+        &.small {
+            ::ng-deep.mat-mdc-text-field-wrapper {
+                width: 8rem;
+            }
+        }
+    }
+
+    // justification for ng-deeps: its size won't go large enough without this
+    /* TODO(mdc-migration): The following rule targets internal classes of select that may no longer apply for the MDC version.*/
+    ::ng-deep.mat-mdc-select-value {
+        // color: $font-light-color;
+        font-size: 1.2rem;
+    }
+    /* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
     ::ng-deep.mat-form-field-infix {
         width: fit-content !important;
     }
 
     &.language-picker {
         justify-content: flex-end;
-    }
-
-    &.tool-picker {
-        ::ng-deep.mat-select-arrow {
-            margin-left: 0.25rem;
-        }
     }
 }
 
@@ -46,6 +107,7 @@
     }
 }
 
+/* TODO(mdc-migration): The following rule targets internal classes of select that may no longer apply for the MDC version.*/
 mat-select.small {
     width:50%
 }
@@ -53,6 +115,7 @@ mat-select.small {
 // ng-deep is deprecated but Google hasn't provided another way to easily remove the underline
 // previously, it could be removed by setting the appearance attribute to an unsupported value but they
 // removed that ability by enforcing the type... so ng-deep it is...
+/* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
 ::ng-deep .mat-form-field-underline {
     display: none;
 }
