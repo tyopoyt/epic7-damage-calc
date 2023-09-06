@@ -1,7 +1,7 @@
 import { DataService } from "../services/data.service";
 import { DoT, Skill } from "./skill";
 
-import  * as _ from 'lodash'
+import  * as _ from 'lodash-es'
 
 export enum ArtifactDamageType {
     damage = 'damage',

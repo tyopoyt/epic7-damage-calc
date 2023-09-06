@@ -1,4 +1,4 @@
-import * as _ from 'lodash'
+import * as _ from 'lodash-es'
 import { LanguageService } from '../services/language.service';
 
 export enum DoT {

@@ -3,7 +3,7 @@ import { Artifact } from "./artifact";
 import { Target } from "./target";
 import { DamageFormData } from "./forms";
 
-import * as _ from 'lodash'
+import * as _ from 'lodash-es'
 import { DamageService } from "../services/damage.service";
 import { DoT, Skill } from "./skill";
 

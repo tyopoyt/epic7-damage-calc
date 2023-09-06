@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Language, Languages } from '../models/languages';
 
-import * as _ from 'lodash'
+import * as _ from 'lodash-es'
 
 @Injectable({
   providedIn: 'root'

@@ -1,6 +1,6 @@
 import { CurrencyPipe, Location } from '@angular/common';
 import { Component, HostListener, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { MatSelectChange } from '@angular/material/select';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Languages } from 'src/app/models/languages';
@@ -17,8 +17,8 @@ export class NavbarComponent implements OnInit {
   languages = Object.values(Languages);
   countries = Object.entries(Languages).map(([key, value]) => value.countryCode)
   toolTitles: string[] = [];
-  languageSelection = new FormControl(Languages.us);
-  toolSelection: FormControl;
+  languageSelection = new UntypedFormControl(Languages.us);
+  toolSelection: UntypedFormControl;
 
   constructor(
     public languageService: LanguageService,
@@ -27,7 +27,7 @@ export class NavbarComponent implements OnInit {
     private router: Router,
     public screenService: ScreenService
   ) {
-    this.toolSelection = new FormControl(this.languageService.toolTitles[0]);
+    this.toolSelection = new UntypedFormControl(this.languageService.toolTitles[0]);
   }
 
   ngOnInit() {
