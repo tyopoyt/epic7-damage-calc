@@ -33,20 +33,36 @@ $damage-calc-theme: mat.define-light-theme((
 // that you are using.
 @include mat.all-component-themes($damage-calc-theme);
 
+$font-light-color: #DDDDDD;
+$font-dark-color: #212529;
+$e7-buff-color: #06abfe;
+
 /* You can add global styles to this file, and also import other style files */
 * {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
 }
 html, body {
-  color: #DDDDDD;
+  color: $font-light-color;
   background-color: rgb(17, 17, 17);
 
   mat-icon {
-    color: #DDDDDD;
+    color: $font-light-color;
+  }
+
+  .mat-select-panel {
+    background: #555555;
+  
+    .mat-option {
+      color: $font-light-color;
+  
+      &.mat-selected:not(.mat-option-disabled) {
+        color: $e7-buff-color;
+      }
+    }
   }
 
   .navbar {
-    color: #DDDDDD;
+    color: $font-light-color;
     background-color: rgb(51, 51, 51);
 
     &.small {
@@ -60,27 +76,43 @@ html, body {
   }
 
   .navbar-link {
-      color: #929292;
-      cursor: pointer;
-      &:not(.selected) {
-        font-size: medium;
-      }
+    transition: all 0.2s ease-in-out;
+    color: #929292;
+    cursor: pointer;
 
-      &:hover {
-          color: #DDDDDD;
-      }
+    width: initial;
 
-      &.selected {
-          color: #DDDDDD;
-      }
+    &:not(.selected) {
+      font-size: medium;
+    }
+
+    &:hover {
+        color: $font-light-color;
+    }
+
+    &.selected {
+        color: $font-light-color;
+    }
   }
 
   &.light-theme {
-    color: #212529;
+    color: $font-dark-color;
     background-color: white;
 
     mat-icon {
-      color: #212529;
+      color: $font-dark-color;
+    }
+
+    .mat-select-panel {
+      background: white;
+    
+      .mat-option {
+        color: $font-dark-color;
+    
+        &.mat-selected:not(.mat-option-disabled) {
+          color: $e7-buff-color;
+        }
+      }
     }
 
     .navbar {
@@ -91,22 +123,24 @@ html, body {
     .navbar-link {
       color: #808080;
       cursor: pointer;
+
       &:not(.selected) {
         font-size: medium;
       }
 
       &:hover {
-          color: #212529;
+          color: $font-dark-color;
       }
 
       &.selected {
-          color: #212529;
+          color: $font-dark-color;
       }
   }
   }
 
   height: 100%;
 }
+
 body { 
   margin: 0;
 }
