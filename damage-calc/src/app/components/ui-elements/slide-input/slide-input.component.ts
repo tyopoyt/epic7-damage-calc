@@ -16,6 +16,7 @@ export class SlideInputComponent implements OnInit {
   @Input() label: string = '';
 
   @Output() change: BehaviorSubject<number> = new BehaviorSubject(this.default);
+  @Output() valueChange: BehaviorSubject<number> = new BehaviorSubject(this.default);
 
   value: number = 0;
 
@@ -26,13 +27,16 @@ export class SlideInputComponent implements OnInit {
   ngOnInit(): void {
     this.value = this.default;
     this.change.next(this.value)
+    this.valueChange.next(this.value)
   }
 
   valueChanged(event: any) {
     this.change.next(Number(event.target.value))
+    this.valueChange.next(Number(event.target.value))
   }
 
   setValue(value: number) {
     this.value = value;
+    this.valueChange.next(this.value)
   }
 }

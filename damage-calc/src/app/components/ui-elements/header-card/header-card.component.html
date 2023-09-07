@@ -1,2 +1,12 @@
 <!DOCTYPE html>
-<mat-card></mat-card>
+<mat-card [class.left]="left" [class.full-width]="fullWidth">
+    <span class="header flex-centered bold-text">
+        {{header}}
+        <img class="icon tiny tiny-margin-left" *ngIf="!!hint" src="assets/icons/help-circle-outline.svg" alt="Hint">
+    </span>
+    <span class="content flex-centered bold-text"
+        [class.green]="color === 'green'" [class.red]="color === 'red'" [class.blue]="color === 'blue'"
+        [class.small-text]="contentSize === 'small'" [class.medium-text]="contentSize === 'medium'" [class.extra-large-text]="contentSize === 'large'">
+        {{content.value}}
+    </span>
+</mat-card>

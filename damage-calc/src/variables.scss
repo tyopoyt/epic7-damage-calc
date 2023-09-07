@@ -1,15 +1,22 @@
 $background-dark-color: #111111;
+$ui-light-color: #f5f5f5;
+$ui-medium-light-color: #DDDDDD; // Same as font-light-color but alias for context
 $ui-medium-color: #666666;
 $ui-medium-dark-color: #454545;
 $ui-dark-color: #333333;
 $ui-darker-color: #272626;
-$ui-light-color: #f5f5f5;
 $font-light-color: #DDDDDD;
 $font-dark-color: #212529;
 $e7-buff-color: #06abfe;
 $e7-buff-color-low-opacity: rgba(6, 171, 254, 0.1);
 $e7-buff-darker-color: #0075af;
 $e7-buff-contrast-color: #008ed5;
+$e7-debuff-color: #ef242d;
+$e7-earth-color: #8ed02b;
+$e7-earth-dark-color: #44d02b;
+$e7-ice-color: #1eacff;
+$e7-fire-color: #e54332;
 $dark-blue-contrast-color: #007bff;
 
 $navbar-height: 3.5rem;
+$gutter: 0.5rem;

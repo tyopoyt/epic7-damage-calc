@@ -1,6 +1,40 @@
+@import '../../../../variables';
+
 mat-card {
     height: 10rem;
     width: 10rem;
+    padding: 0;
 
-    // border-radius: 0.5rem;
+    &.left {
+        margin-left: 0;
+    }
+
+    &.full-width {
+        width: 100%;
+    }
+
+    span.header {
+        height: 2rem;
+        width: 100%;
+        border-radius: 0.5rem 0.5rem 0 0;
+    }
+
+    span.content {
+        padding: 0.25rem 0.75rem;
+        height: calc(100% - 2rem);
+
+        &.green {
+            color: $e7-earth-dark-color;
+        }
+
+        &.blue {
+            color: $e7-buff-color;
+        }
+
+        &.red {
+            color: $e7-debuff-color;
+        }
+    }
+
+    background-color: $ui-medium-dark-color;
 }
