@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
+import { Languages } from 'src/app/models/languages';
+import { LanguageService } from 'src/app/services/language.service';
 import { ScreenService } from 'src/app/services/screen.service';
 
 @Component({
@@ -8,10 +11,6 @@ import { ScreenService } from 'src/app/services/screen.service';
   styleUrls: ['./effectiveness-checker.component.scss']
 })
 export class EffectivenessCheckerComponent implements OnInit {
-
-  landHint = 'This is the chance of landing the effect, aka. pass the resistance check, regardless of the skill effect chance or hit chance';
-  inflictHint = 'This is considering hit chance and skill effect chance';
-  resistHint = 'Chance for the target to resist the effect if they are hit and the skill effect procs';
 
   landText: BehaviorSubject<string> = new BehaviorSubject('85%')
   inflictText: BehaviorSubject<string> = new BehaviorSubject('85%')
@@ -22,9 +21,13 @@ export class EffectivenessCheckerComponent implements OnInit {
   hitChance: number = 100;
   procChance: number = 100;
 
-  constructor(public screenService: ScreenService) { }
+  constructor(public screenService: ScreenService,
+              public languageService: LanguageService,
+              private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    const langParam = this.route.snapshot.paramMap.get('lang') || 'us';
+    this.languageService.setLanguage(Languages[langParam])
   }
 
   resistanceChange(value: number) {

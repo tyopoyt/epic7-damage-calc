@@ -434,7 +434,17 @@
       "all_allies_fire": "味方全員火属性",
       "exclusive_equipment_1": "専用装備 #1",
       "exclusive_equipment_2": "専用装備 #2",
-      "exclusive_equipment_3": "専用装備 #3"
+      "exclusive_equipment_3": "専用装備 #3",
+      "hit_chance": "攻撃の命中率 (%)",
+      "effect_chance": "スキルの効果発動率 (%)",
+      "caster_effectiveness": "術者の効果命中率",
+      "target_resistance": "対象の効果抵抗率",
+      "inflict_effect": "最終発動率",
+      "inflict_effect_hint": "攻撃命中率とスキル効果発動率も考慮した確率",
+      "caster_to_land": "命中率",
+      "caster_to_land_hint": "攻撃が命中し効果が発動したときの発動率 (= 効果命中率と効果抵抗率のみで算出した確率)",
+      "target_to_resist": "抵抗率",
+      "target_to_resist_hint": "攻撃が命中し効果が発動したときの抵抗率"
     },
     "skills": {
       "non_applicable": "-",
@@ -465,8 +475,11 @@
       "sez_explosion": "スプラッシュダメージ",
       "unreleased_hero": "<strong>注意:</strong> このヒーローはまだリリースされておらず、スキル乗数は変更される可能性があります。",
       "victorious_flag": "この古代遺物の効果を得るには\"有利属性\"を有効にする必要があります。なお、光/闇属性の英雄には発動しません。",
-      "yoonryoung_slash": "閃光斬り",
-      "damage_calculator_title": "エピックセブン　ダメージ計算機",
-      "effectiveness_checker_title": "エピックセブン 効果発動率計算機"
+      "yoonryoung_slash": "閃光斬り"
+    },
+    "titles": {
+      "epic_7": "エピックセブン",
+      "damage_calculator": "ダメージ計算機",
+      "effectiveness_checker": "効果発動率計算機"
     }
   }

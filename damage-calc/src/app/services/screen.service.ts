@@ -9,11 +9,13 @@ export class ScreenService {
   microscopic = 445;
   tiny = 480;
   small = 580;
+  mediumSmall = 720;
   medium = 1000;
 
   microscopicScreen: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   tinyScreen: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   smallScreen: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  mediumSmallScreen: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   mediumScreen: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   largeScreen: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
 
@@ -29,6 +31,10 @@ export class ScreenService {
 
   toggleSmallScreen() {
     this.smallScreen.next(!this.smallScreen.value);
+  }
+
+  toggleMediumSmallScreen() {
+    this.mediumSmallScreen.next(!this.mediumSmallScreen.value);
   }
 
   toggleMediumScreen() {

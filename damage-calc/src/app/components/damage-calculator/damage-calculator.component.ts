@@ -19,5 +19,4 @@ export class DamageCalculatorComponent implements OnInit {
     const langParam = this.route.snapshot.paramMap.get('lang') || 'us';
     this.languageService.setLanguage(Languages[langParam])
   }
-
 }

@@ -2,7 +2,7 @@
 
 mat-card {
     height: 10rem;
-    width: 10rem;
+    width: 13.75rem;
     padding: 0;
 
     &.left {
@@ -15,7 +15,8 @@ mat-card {
 
     span.header {
         height: 2rem;
-        width: 100%;
+        width: calc(100% - 1.5rem);
+        padding: 0 0.75rem 0 0.75rem;
         border-radius: 0.5rem 0.5rem 0 0;
     }
 
@@ -34,6 +35,10 @@ mat-card {
         &.red {
             color: $e7-debuff-color;
         }
+    }
+
+    .icon {
+        cursor: help;
     }
 
     background-color: $ui-medium-dark-color;

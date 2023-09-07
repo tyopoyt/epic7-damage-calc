@@ -2,7 +2,7 @@
 <mat-toolbar class="navbar" [class.small]="screenService.smallScreen.value">
     <span class="neat-container absolute-left">
         <img class="navbar-icon" [class.small]="screenService.smallScreen.value" [class.tiny]="screenService.tinyScreen.value" src="assets/icons/{{toolSelection.value}}_logo.png" alt="Revive buff icon">
-        <span *ngIf="!screenService.microscopicScreen.value" [class.medium-text]="screenService.smallScreen.value && !screenService.tinyScreen.value" [class.small-text]="screenService.tinyScreen.value">{{languageService.pageTitles[languageSelection.value.countryCode]["app_title"] || "E7Calc"}}</span>
+        <span *ngIf="!screenService.microscopicScreen.value" [class.medium-text]="screenService.smallScreen.value && !screenService.tinyScreen.value" [class.small-text]="screenService.tinyScreen.value">{{'app_title' | translate:'titles':languageService.language.value}}</span>
     </span>
     <div class="navbar-options">        
         <span class="neat-container">
@@ -10,7 +10,7 @@
                 <span *ngFor="let toolTitle of toolTitles; let i = index" class="margin-left navbar-link"
                     [class.selected]="toolSelection.value === toolTitle" [class.left]="i === 0"
                     (click)="selectTool(toolTitle)">
-                    {{languageService.pageTitles[languageSelection.value.countryCode][toolTitle] || languageService.pageTitles['us'][toolTitle]}}
+                    {{toolTitle | translate:'titles':languageService.language.value}}
                 </span>
             </span>
             <ng-template #smallScreenPageSelect>
@@ -19,11 +19,11 @@
                         <!-- This trigger has the same value but is here for styling purposes -->
                         <mat-select-trigger class="tool-trigger" [class.medium-text]="screenService.smallScreen.value && !screenService.tinyScreen.value" [class.small-text]="screenService.tinyScreen.value">
                             <span class="neat-container">
-                                {{languageService.pageTitles[languageSelection.value.countryCode][toolSelection.value] || languageService.pageTitles['us'][toolSelection.value]}}
+                                {{toolSelection.value | translate:'titles':languageService.language.value}}
                             </span>
                         </mat-select-trigger>
                         <mat-option *ngFor="let toolTitle of toolTitles" [value]="toolTitle">
-                            {{languageService.pageTitles[languageSelection.value.countryCode][toolTitle] || languageService.pageTitles['us'][toolTitle]}}
+                            {{toolSelection.value | translate:'titles':languageService.language.value}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -31,7 +31,8 @@
         </span>
         <!-- TODO: make the nav options become a select box with hamburger menu icon when screen is small -->
     </div>
-    <span class="absolute-right">
+    <!-- Delay rendering language picker until initial language has been determined -->
+    <span *ngIf="languageService.language.value" class="absolute-right">
         <mat-form-field class="navbar-picker language-picker" [class.small]="screenService.tinyScreen.value">
             <mat-select hideSingleSelectionIndicator [formControl]="languageSelection" (selectionChange)="selectLanguage($event)">
                 <mat-select-trigger class="language-trigger">

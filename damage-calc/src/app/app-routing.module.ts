@@ -7,6 +7,7 @@ import { SpeedTunerComponent } from './components/speed-tuner/speed-tuner.compon
 import { EHPCalculatorComponent } from './components/ehp-calculator/ehp-calculator.component';
 
 const routes: Routes = [
+  //TODO: handle old zh urls (zhCN => cn, zhTW => tw)
   {
     path: '',
     component: DamageCalculatorComponent

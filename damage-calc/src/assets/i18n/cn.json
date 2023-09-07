@@ -621,7 +621,17 @@
       "all_allies_fire": "全体我军火属性",
       "exclusive_equipment_1": "专属装备 #1",
       "exclusive_equipment_2": "专属装备 #2",
-      "exclusive_equipment_3": "专属装备 #3"
+      "exclusive_equipment_3": "专属装备 #3",
+      "hit_chance": "攻击命中概率 (%)",
+      "effect_chance": "技能发动概率 (%)",
+      "caster_effectiveness": "施法者效果命中",
+      "target_resistance": "目标效果抵抗",
+      "inflict_effect": "总体技能命中率",
+      "inflict_effect_hint": "此处计算了技能发动概率和攻击命中概率",
+      "caster_to_land": "技能发动后命中率",
+      "caster_to_land_hint": "这是技能发动后命中概率, 也就是计算了目标的效果抵抗但不计算攻击命中概率和技能效果发动概率",
+      "target_to_resist": "技能被抵抗概率",
+      "target_to_resist_hint": "攻击命中并且技能效果发动后目标抵抗的概率"
     },
     "skills": {
       "non_applicable": "无",
@@ -703,8 +713,13 @@
       "sez_explosion": "溅射伤害",
       "unreleased_hero": "<strong>注意</strong>：该英雄尚未发布，技能倍数可能会发生变化。",
       "victorious_flag": "必须勾选属性克制才能看到效果, 对光暗英雄无效.",
-      "yoonryoung_slash": "闪光砍击",
-      "damage_calculator_title": "第七史诗 伤害计算器",
-      "effectiveness_checker_title": "第七史诗效果命中与抵抗计算"
+      "yoonryoung_slash": "闪光砍击"
+      
+    },
+    "titles": {
+      "epic_7": "第七史诗",
+      "damage_calculator": "伤害计算器",
+      "effectiveness_checker_title": "第七史诗效果命中与抵抗计算",
+      "effectiveness_checker": "效果命中与抵抗计算"
     }
   }

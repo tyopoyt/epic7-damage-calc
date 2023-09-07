@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Language, Languages } from '../models/languages';
 
@@ -8,8 +8,9 @@ import * as _ from 'lodash-es'
   providedIn: 'root'
 })
 export class LanguageService {
-  language: BehaviorSubject<Language> = new BehaviorSubject(Languages.us)
+  language: BehaviorSubject<Language | null> = new BehaviorSubject<Language | null>(null)
   translationDict: Record<string, Record<string, string>> = {};
+  englishDict: Record<string, Record<string, string>> = {};
 
   toolTitles: string[] = ['damage_calculator', 'speed_tuner', 'ehp_calculator', 'effectiveness_checker']
   toolTitleToPathMap: Record<string, string> = {
@@ -85,11 +86,18 @@ export class LanguageService {
     })
   }
 
-  async setLanguage(language: Language) {
-    const translationFile = await fetch(`../../assets/i18n/${language.countryCode}.json`);
-    this.translationDict = await translationFile.json();
+  async loadFallbackDict() {
+    const englishFile = await fetch(`../../assets/i18n/us.json`);
+    this.englishDict = await englishFile.json();
+  }
 
-    this.language.next(language);
+  async setLanguage(language: Language) {
+    if (!!language) {
+      const translationFile = await fetch(`../../assets/i18n/${language?.countryCode}.json`);
+      this.translationDict = await translationFile.json();
+  
+      this.language.next(language);
+    }
   }
 
   getSkillModTip = (tips: Record<string, number>) => {

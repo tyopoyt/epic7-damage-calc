@@ -471,7 +471,17 @@
       "all_allies_fire": "Fogo em Todos os Aliados",
       "exclusive_equipment_1": "Equipamento Exclusivo #1",
       "exclusive_equipment_2": "Equipamento Exclusivo #2",
-      "exclusive_equipment_3": "Equipamento Exclusivo #3"
+      "exclusive_equipment_3": "Equipamento Exclusivo #3",
+      "hit_chance": "Chance de Acerto (%)",
+      "effect_chance": "Chance de Efeito da Habilidade (%)",
+      "caster_effectiveness": "Eficácia do Herói",
+      "target_resistance": "Resistência do Alvo",
+      "inflict_effect": "Chance de Infligir Efeito",
+      "inflict_effect_hint": "Está considerando chance de acerto e chance de efeito de habilidade",
+      "caster_to_land": "Chance de Procar Debuff",
+      "caster_to_land_hint": "Esta é a chance de conseguir o efeito, também conhecido como. passar no teste de resistência, independentemente da chance de efeito da habilidade ou chance de acerto.",
+      "target_to_resist": "Chance do Alvo Resistir",
+      "target_to_resist_hint": "Chance para o alvo resistir ao efeito se for atingido e o efeito da habilidade for ativado"
     },
     "skills": {
       "non_applicable": "Não Aplicável",
@@ -550,14 +560,12 @@
       "unreleased_hero": "<strong>Importante</strong>: Este herói ainda não foi lançado, suas skills e multiplicadores podem mudar.",
       "victorious_flag": "Vantagem Elemental precisa estar ativada para ver os benefícios desse artefato. Não se aplica para heróis luz/trevas.",
       "yoonryoung_slash": "Corte de Luz",
-      "zio_disappear": "Suma",
-      "damage_calculator_title": "Epic 7 Calculadora de Dano",
+      "zio_disappear": "Suma"
+    },
+    "titles": {
       "damage_calculator": "Calculadora de Dano",
-      "ehp_calculator_title": "Epic 7 Calculadora de HP Efetivo",
       "ehp_calculator": "Calculadora de HP Efetivo",
-      "effectiveness_checker_title": "Epic 7 Calculadora de Chance de Eficácia",
       "effectiveness_checker": "Calculadora de Chance de Eficácia",
-      "speed_tuner_title": "Epic 7 Ajustador de Speed",
       "speed_tuner": "Ajustador de Speed"
     }
 }

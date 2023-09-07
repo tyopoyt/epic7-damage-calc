@@ -145,7 +145,17 @@
       "with_more": "With more",
       "damage": "damage",
       "oneshot": "Oneshot",
-      "nb_sets": "Number of Sets"
+      "nb_sets": "Number of Sets",
+      "hit_chance": "Hit Chance (%)",
+      "effect_chance": "Skill Effect Chance (%)",
+      "caster_effectiveness": "Caster's Effectiveness",
+      "target_resistance": "Target's Effect Resistance",
+      "inflict_effect": "Inflict Effect",
+      "inflict_effect_hint": "This is the chance of landing the effect, aka. pass the resistance check, regardless of the skill effect chance or hit chance",
+      "caster_to_land": "Caster to Land",
+      "caster_to_land_hint": "This is considering hit chance and skill effect chance",
+      "target_to_resist": "Target to Resist",
+      "target_to_resist_hint": "Chance for the target to resist the effect if they are hit and the skill effect procs"
     },
     "info": {
       "alencia_trample": "Trample",
@@ -168,14 +178,14 @@
       "unreleased_hero": "<strong>Notice:</strong> This hero is not yet released, and skill multipliers are subject to change.",
       "victorious_flag": "Elemental advantage must be enabled to see benefits from this artifact; doesn't apply to light and dark heroes",
       "yoonryoung_slash": "Dazzling Slash",
-      "zio_disappear": "Disappear",
-      "damage_calculator_title": "Epic 7 Damage Calculator",
+      "zio_disappear": "Disappear"
+    },
+    "titles": {
+      "app_title": "E7Calc",
+      "epic_7": "Epic 7",
       "damage_calculator": "Damage Calculator",
-      "ehp_calculator_title": "Epic 7 Effective HP Calculator",
       "ehp_calculator": "Effective HP Calculator",
-      "effectiveness_checker_title": "Epic 7 Effect Chance Calculator",
       "effectiveness_checker": "Effect Chance Calculator",
-      "speed_tuner_title": "Epic 7 Speed Tuner",
       "speed_tuner": "Speed Tuner"
     }
   }

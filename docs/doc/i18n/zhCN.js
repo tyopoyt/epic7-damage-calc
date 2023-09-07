@@ -330,7 +330,7 @@ const zhCN = {
     all_allies_fire: '全体我军火属性',
     exclusive_equipment_1: '专属装备 #1',
     exclusive_equipment_2: '专属装备 #2',
-    exclusive_equipment_3: '专属装备 #3',
+    exclusive_equipment_3: '专属装备 #3'
   },
   skills: {
     non_applicable: '无',

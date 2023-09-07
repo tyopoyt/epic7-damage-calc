@@ -2,7 +2,7 @@
 <mat-card [class.left]="left" [class.full-width]="fullWidth">
     <span class="header flex-centered bold-text">
         {{header}}
-        <img class="icon tiny tiny-margin-left" *ngIf="!!hint" src="assets/icons/help-circle-outline.svg" alt="Hint">
+        <img class="icon tiny tiny-margin-left" *ngIf="!!hint" src="assets/icons/help-circle-outline.svg" alt="Hint" matTooltip="{{hint}}">
     </span>
     <span class="content flex-centered bold-text"
         [class.green]="color === 'green'" [class.red]="color === 'red'" [class.blue]="color === 'blue'"
