@@ -10,7 +10,6 @@ export class SpeedTunerComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(" hi i'm speed tuner")
   }
 
 }

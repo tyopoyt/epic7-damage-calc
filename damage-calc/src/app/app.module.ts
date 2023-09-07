@@ -19,6 +19,11 @@ import { EHPCalculatorComponent } from './components/ehp-calculator/ehp-calculat
 import { SlideInputComponent } from './components/ui-elements/slide-input/slide-input.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatSliderModule } from '@angular/material/slider';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { NumberInputGroupComponent } from './components/ui-elements/number-input-group/number-input-group.component';
+import { MatButtonModule } from '@angular/material/button';
+import { HeaderCardComponent } from './components/ui-elements/header-card/header-card.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +36,9 @@ import { MatSliderModule } from '@angular/material/slider';
     SpeedTunerComponent,
     EffectivenessCheckerComponent,
     EHPCalculatorComponent,
-    SlideInputComponent
+    SlideInputComponent,
+    NumberInputGroupComponent,
+    HeaderCardComponent
   ],
   imports: [
     BrowserModule,
@@ -42,9 +49,12 @@ import { MatSliderModule } from '@angular/material/slider';
     ReactiveFormsModule,
     MatIconModule,
     MatCardModule,
-    MatSliderModule
+    MatSliderModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatButtonModule
   ],
-  providers: [],
+   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

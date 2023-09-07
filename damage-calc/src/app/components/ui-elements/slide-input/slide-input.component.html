@@ -1,16 +1,15 @@
 <!DOCTYPE html>
-<mat-card appearance="outlined">
-    <div class="neat-container flex-column">
-        <div class="slider-row large-text bold-text margin-top">
+<mat-card>
+    <div class="neat-container flex-column relative">
+        <div class="large-text bold-text margin-top flex-wrap" [ngClass]="screenService.smallScreen.value ? 'slider-col' : 'slider-row'">
             <span *ngIf="!!label; else labelPlaceholder">{{label}}</span>
             <ng-template #labelPlaceholder>
                 <span></span>
             </ng-template>
-            <span>Placeholder</span>
+            <app-number-input-group [value]="change" [max]="max" [min]="min" [default]="default" [step]="step" (valueChange)="setValue($event)"></app-number-input-group>
         </div>
-        <mat-slider min="min" max="max" step="step">
-            <input matSliderThumb [value]="value">
-            <!-- <input matSliderThumb> -->
+        <mat-slider min="{{min}}" max="{{max}}" step="{{step}}" (input)="valueChanged($event)">
+            <input matSliderThumb [(value)]="value">
         </mat-slider>
     </div>
 </mat-card>

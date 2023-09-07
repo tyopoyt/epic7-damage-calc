@@ -1,4 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit, Output} from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { ScreenService } from 'src/app/services/screen.service';
 
 @Component({
   selector: 'app-slide-input',
@@ -13,14 +15,24 @@ export class SlideInputComponent implements OnInit {
   @Input() step: number = 1;
   @Input() label: string = '';
 
-  @Output() change: EventEmitter<number> = new EventEmitter();
+  @Output() change: BehaviorSubject<number> = new BehaviorSubject(this.default);
 
   value: number = 0;
 
-  constructor() { }
+  thingy: any = 0;
+
+  constructor(public screenService: ScreenService) { }
 
   ngOnInit(): void {
     this.value = this.default;
-    console.log(this.step)
+    this.change.next(this.value)
+  }
+
+  valueChanged(event: any) {
+    this.change.next(Number(event.target.value))
+  }
+
+  setValue(value: number) {
+    this.value = value;
   }
 }
