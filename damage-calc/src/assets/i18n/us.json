@@ -155,7 +155,15 @@
       "caster_to_land": "Caster to Land",
       "caster_to_land_hint": "This is considering hit chance and skill effect chance",
       "target_to_resist": "Target to Resist",
-      "target_to_resist_hint": "Chance for the target to resist the effect if they are hit and the skill effect procs"
+      "target_to_resist_hint": "Chance for the target to resist the effect if they are hit and the skill effect procs",
+      "first_build_defense": "First Build Defense",
+      "first_build_hp": "First Build HP",
+      "first_build_ehp": "First Build Effective HP",
+      "first_build_ehp_hint": "The first build's Effective HP and the percentage it differs from the second build",
+      "second_build_defense": "Second Build Defense",
+      "second_build_hp": "Second Build HP",
+      "second_build_ehp": "Second Build Effective HP",
+      "second_build_ehp_hint": "The second build's Effective HP and the percentage it differs from the first build"
     },
     "info": {
       "alencia_trample": "Trample",

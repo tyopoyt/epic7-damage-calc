@@ -562,7 +562,15 @@
         "caster_to_land": "효과 적중 확률",
         "caster_to_land_hint": "스킬 효과 확률이나 명중 확률과 관계 없이, 저항을 뚫고 효과가 발생할 확률입니다",
         "target_to_resist": "효과 저항 확률",
-        "target_to_resist_hint": "스킬 효과 확률이나 명중 확률과 관계 없이, 효과를 저항할 확률입니다"
+        "target_to_resist_hint": "스킬 효과 확률이나 명중 확률과 관계 없이, 효과를 저항할 확률입니다",
+        "first_build_defense": "",
+        "first_build_hp": "",
+        "first_build_ehp": "",
+        "first_build_ehp_hint": "",
+        "second_build_defense": "",
+        "second_build_hp": "",
+        "second_build_ehp": "",
+        "second_build_ehp_hint": ""
     },
     "skills": {
         "non_applicable": "해당사항 없음",

@@ -23,13 +23,12 @@
                             </span>
                         </mat-select-trigger>
                         <mat-option *ngFor="let toolTitle of toolTitles" [value]="toolTitle">
-                            {{toolSelection.value | translate:'titles':languageService.language.value}}
+                            {{toolTitle | translate:'titles':languageService.language.value}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
             </ng-template>
         </span>
-        <!-- TODO: make the nav options become a select box with hamburger menu icon when screen is small -->
     </div>
     <!-- Delay rendering language picker until initial language has been determined -->
     <span *ngIf="languageService.language.value" class="absolute-right">

@@ -4,6 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { Languages } from 'src/app/models/languages';
 import { LanguageService } from 'src/app/services/language.service';
 import { ScreenService } from 'src/app/services/screen.service';
+import { HeaderCardComponentColorOption, HeaderCardComponentSizeOption } from '../ui-elements/header-card/header-card.component';
 
 @Component({
   selector: 'app-effectiveness-checker',
@@ -12,9 +13,12 @@ import { ScreenService } from 'src/app/services/screen.service';
 })
 export class EffectivenessCheckerComponent implements OnInit {
 
-  landText: BehaviorSubject<string> = new BehaviorSubject('85%')
-  inflictText: BehaviorSubject<string> = new BehaviorSubject('85%')
-  resistText: BehaviorSubject<string> = new BehaviorSubject('15%')
+  HeaderCardComponentColorOption = HeaderCardComponentColorOption;
+  HeaderCardComponentSizeOption = HeaderCardComponentSizeOption;
+
+  landText: string = '85%';
+  inflictText: string ='85%';
+  resistText: string = '15%';
 
   resistance: number = 0;
   effectiveness: number = 0;
@@ -62,13 +66,11 @@ export class EffectivenessCheckerComponent implements OnInit {
 
     const inflictChance = hitChance * procChance * landChance;
 
-    this.landText.next(`${Math.round(landChance * 100)}%`)
-    this.resistText.next(`${Math.round(resistChance * 100)}%`)
-    this.inflictText.next(`${Math.round(inflictChance * 100)}%`)
+    this.landText = `${Math.round(landChance * 100)}%`
+    this.resistText = `${Math.round(resistChance * 100)}%`
+    this.inflictText = `${Math.round(inflictChance * 100)}%`
 
     //TODO: enable when queryparams work
     // debounce('updateQueryParams', updateQueryParams, [false]);
   };
-
-
 }

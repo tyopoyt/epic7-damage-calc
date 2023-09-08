@@ -481,7 +481,15 @@
       "caster_to_land": "Chance de Procar Debuff",
       "caster_to_land_hint": "Esta é a chance de conseguir o efeito, também conhecido como. passar no teste de resistência, independentemente da chance de efeito da habilidade ou chance de acerto.",
       "target_to_resist": "Chance do Alvo Resistir",
-      "target_to_resist_hint": "Chance para o alvo resistir ao efeito se for atingido e o efeito da habilidade for ativado"
+      "target_to_resist_hint": "Chance para o alvo resistir ao efeito se for atingido e o efeito da habilidade for ativado",
+      "first_build_defense": "Defesa Primeira Build",
+      "first_build_hp": "HP Primeira Build",
+      "first_build_ehp": "HP Efetiva da Primeira Build",
+      "first_build_ehp_hint": "HP efetivo da primeira build e a porcentagem que difere da segunda build",
+      "second_build_defense": "Defesa Segunda Build",
+      "second_build_hp": "HP Segunda Build",
+      "second_build_ehp": "HP Efetiva da Segunda Build",
+      "second_build_ehp_hint": "HP efetivo da segunda build e a porcentagem que difere da primeira build"
     },
     "skills": {
       "non_applicable": "Não Aplicável",

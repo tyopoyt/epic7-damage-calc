@@ -35,6 +35,30 @@ mat-card {
         &.red {
             color: $e7-debuff-color;
         }
+
+        .additional {
+            font-size: $medium-font-size;
+            position: absolute;
+            bottom: $gutter;
+            right: $gutter;
+
+            .additional-icon {
+                height: calc($medium-font-size * 1.25);
+                padding-top: 0.01rem;
+
+                &.green {
+                    filter: $e7-earth-dark-color-filter;
+                }
+
+                &.blue {
+                    filter: $e7-buff-color-filter;
+                }
+        
+                &.red {
+                    filter: $e7-debuff-color-filter;
+                }
+            }
+        }
     }
 
     .icon {

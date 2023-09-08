@@ -631,7 +631,15 @@
       "caster_to_land": "技能發動後命中率",
       "caster_to_land_hint": "這是技能發動後命中機率, 也就是計算了目標的效果抵抗但不計算攻擊命中機率和技能效果發動機率",
       "target_to_resist": "技能被抵抗概率",
-      "target_to_resist_hint": "攻擊命中並且技能效果發動後目標抵抗的機率"
+      "target_to_resist_hint": "攻擊命中並且技能效果發動後目標抵抗的機率",
+      "first_build_defense": "",
+      "first_build_hp": "",
+      "first_build_ehp": "",
+      "first_build_ehp_hint": "",
+      "second_build_defense": "",
+      "second_build_hp": "",
+      "second_build_ehp": "",
+      "second_build_ehp_hint": ""
     },
     "skills": {
       "non_applicable": "無",

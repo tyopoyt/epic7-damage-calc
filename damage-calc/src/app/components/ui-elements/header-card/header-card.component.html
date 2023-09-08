@@ -7,6 +7,11 @@
     <span class="content flex-centered bold-text"
         [class.green]="color === 'green'" [class.red]="color === 'red'" [class.blue]="color === 'blue'"
         [class.small-text]="contentSize === 'small'" [class.medium-text]="contentSize === 'medium'" [class.extra-large-text]="contentSize === 'large'">
-        {{content.value}}
+        {{content}}
+
+        <span *ngIf="!!additional" class="additional neat-container">
+            <img *ngIf="!!additionalIcon" class="additional-icon" [ngClass]="color" src="{{additionalIcon}}" alt="Additional icon">
+            {{additional}}
+        </span>
     </span>
 </mat-card>

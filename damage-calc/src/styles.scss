@@ -48,7 +48,7 @@ html, body {
   background-color: $background-dark-color;
 
   .icon {
-    filter: invert(100%) sepia(58%) saturate(55%) hue-rotate(260deg) brightness(118%) contrast(73%);
+    filter: $font-light-color-filter;
   }
 
   mat-card.mat-mdc-card {
@@ -218,7 +218,7 @@ html, body {
     background-color: white !important;
 
     .icon {
-      filter: invert(5%) sepia(4%) saturate(4667%) hue-rotate(169deg) brightness(93%) contrast(79%);
+      filter: $font-dark-color-filter;
     }
 
     .mat-mdc-unelevated-button:not(:disabled) {
@@ -457,7 +457,13 @@ body {
 
 app-slide-input {
   width: 100%;
-  max-width: 1000px;
+  max-width: 1000px;  
+}
+
+.column-2:not(.full-width-number-input) {
+  app-slide-input app-number-input-group {
+    width: 10rem;
+  }
 }
 
 .full-width {
@@ -480,4 +486,22 @@ app-slide-input {
 
 .right {
   margin-right: 0;
+}
+
+.result-cards {
+  width: 100%;
+}
+
+.column-2 {
+  > * {
+    width: calc(50% - calc(#{$gutter} / 2));
+  }
+
+  > :nth-child(1) {
+    margin-right: calc(#{$gutter} / 2);
+  }
+
+  > :nth-child(2) {
+    margin-left: calc(#{$gutter} / 2);
+  }
 }

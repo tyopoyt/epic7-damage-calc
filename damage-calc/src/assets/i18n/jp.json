@@ -444,7 +444,15 @@
       "caster_to_land": "命中率",
       "caster_to_land_hint": "攻撃が命中し効果が発動したときの発動率 (= 効果命中率と効果抵抗率のみで算出した確率)",
       "target_to_resist": "抵抗率",
-      "target_to_resist_hint": "攻撃が命中し効果が発動したときの抵抗率"
+      "target_to_resist_hint": "攻撃が命中し効果が発動したときの抵抗率",
+      "first_build_defense": "",
+      "first_build_hp": "",
+      "first_build_ehp": "",
+      "first_build_ehp_hint": "",
+      "second_build_defense": "",
+      "second_build_hp": "",
+      "second_build_ehp": "",
+      "second_build_ehp_hint": ""
     },
     "skills": {
       "non_applicable": "-",
@@ -480,6 +488,8 @@
     "titles": {
       "epic_7": "エピックセブン",
       "damage_calculator": "ダメージ計算機",
-      "effectiveness_checker": "効果発動率計算機"
+      "effectiveness_checker": "効果発動率計算機",
+      "ehp_calculator": "実効生命力計算機",
+      "speed_tuner": "スピードチューナー"
     }
   }
