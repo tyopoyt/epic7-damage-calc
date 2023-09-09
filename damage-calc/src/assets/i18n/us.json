@@ -192,8 +192,12 @@
       "app_title": "E7Calc",
       "epic_7": "Epic 7",
       "damage_calculator": "Damage Calculator",
-      "ehp_calculator": "Effective HP Calculator",
-      "effectiveness_checker": "Effect Chance Calculator",
+      "ehp_calculator": "Effective HP",
+      "effectiveness_checker": "Effect Chance",
       "speed_tuner": "Speed Tuner"
+    },
+    "ui": {
+      "dark_mode": "Dark Mode",
+      "donate": "Donate"
     }
   }

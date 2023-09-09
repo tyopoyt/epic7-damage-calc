@@ -729,5 +729,9 @@
       "damage_calculator": "伤害计算器",
       "effectiveness_checker_title": "第七史诗效果命中与抵抗计算",
       "effectiveness_checker": "效果命中与抵抗计算"
+    },
+    "ui": {
+      "dark_mode": "深色模式",
+      "donate": "打赏"
     }
   }

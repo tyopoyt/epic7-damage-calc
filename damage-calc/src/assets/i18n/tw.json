@@ -725,5 +725,9 @@
       "epic_7": "第七史詩",
       "damage_calculator": "傷害計算器",
       "effectiveness_checker": "效果命中與抵抗計算"
+    },
+    "ui": {
+      "dark_mode": "深色模式",
+      "donate": "打賞"
     }
   }

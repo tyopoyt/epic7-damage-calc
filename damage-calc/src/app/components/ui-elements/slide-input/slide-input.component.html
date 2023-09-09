@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <mat-card>
     <div class="neat-container flex-column relative">
-        <div class="large-text bold-text margin-top flex-wrap" [ngClass]="(screenService.smallScreen.value || column) ? 'slider-col' : 'slider-row'">
+        <div class="large-text bold-text margin-top flex-nowrap" [ngClass]="(screenService.smallScreen.value || column) ? 'slider-col' : 'slider-row'">
             <span *ngIf="!!label; else labelPlaceholder">{{label}}</span>
             <ng-template #labelPlaceholder>
                 <span></span>

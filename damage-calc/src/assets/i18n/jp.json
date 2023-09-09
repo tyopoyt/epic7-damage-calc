@@ -491,5 +491,9 @@
       "effectiveness_checker": "効果発動率計算機",
       "ehp_calculator": "実効生命力計算機",
       "speed_tuner": "スピードチューナー"
+    },
+    "ui": {
+      "dark_mode": "ダークモード",
+      "donate": "施す"
     }
   }

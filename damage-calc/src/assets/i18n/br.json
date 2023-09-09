@@ -572,8 +572,12 @@
     },
     "titles": {
       "damage_calculator": "Calculadora de Dano",
-      "ehp_calculator": "Calculadora de HP Efetivo",
-      "effectiveness_checker": "Calculadora de Chance de Eficácia",
+      "ehp_calculator": "HP Efetivo",
+      "effectiveness_checker": "Chance de Eficácia",
       "speed_tuner": "Ajustador de Speed"
+    },
+    "ui": {
+      "dark_mode": "Modo Escuro",
+      "donate": "Doar"
     }
 }

@@ -53,9 +53,12 @@
     }
 }
 
-.icon-holder {
-    height: 50px;
-    color: white;
+.mat-mdc-unelevated-button:not(:disabled) {
+    padding: $gutter;
+}
+
+.webp-icon {
+    margin-right: $gutter-small;
 }
 
 .language-trigger {

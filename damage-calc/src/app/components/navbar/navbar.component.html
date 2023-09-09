@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <mat-toolbar class="navbar" [class.small]="screenService.smallScreen.value">
     <span class="neat-container absolute-left">
-        <img class="navbar-icon" [class.small]="screenService.smallScreen.value" [class.tiny]="screenService.tinyScreen.value" src="assets/icons/{{toolSelection.value}}_logo.png" alt="Revive buff icon">
-        <span *ngIf="!screenService.microscopicScreen.value" [class.medium-text]="screenService.smallScreen.value && !screenService.tinyScreen.value" [class.small-text]="screenService.tinyScreen.value">{{'app_title' | translate:'titles':languageService.language.value}}</span>
+        <img class="navbar-icon" [class.small]="screenService.tinyScreen.value" src="assets/icons/{{toolSelection.value}}_logo.png" alt="Revive buff icon">
+        <span *ngIf="!screenService.microscopicScreen.value" [class.medium-text]="screenService.tinyScreen.value">{{'app_title' | translate:'titles':languageService.language.value}}</span>
     </span>
     <div class="navbar-options">        
         <span class="neat-container">
-            <span *ngIf="screenService.largeScreen.value; else smallScreenPageSelect" class="neat-container">
-                <span *ngFor="let toolTitle of toolTitles; let i = index" class="margin-left navbar-link"
+            <span *ngIf="!screenService.mediumSmallScreen.value; else smallScreenPageSelect" class="neat-container">
+                <span *ngFor="let toolTitle of toolTitles; let i = index" class="navbar-link"
                     [class.selected]="toolSelection.value === toolTitle" [class.left]="i === 0"
+                    [ngClass]="{
+                        'small-text': !screenService.largeScreen.value && !(toolSelection.value === toolTitle),
+                        'medium-text': (screenService.largeScreen.value && !(toolSelection.value === toolTitle)) || (toolSelection.value === toolTitle && !screenService.largeScreen.value),
+                        'margin-left': screenService.largeScreen.value,
+                        'medium-margin-left': !screenService.largeScreen.value
+                    }"
                     (click)="selectTool(toolTitle)">
                     {{toolTitle | translate:'titles':languageService.language.value}}
                 </span>
@@ -17,7 +23,7 @@
                 <mat-form-field class="navbar-picker tool-picker" [class.small]="screenService.tinyScreen.value">
                     <mat-select hideSingleSelectionIndicator [formControl]="toolSelection" (selectionChange)="selectTool($event.value)">
                         <!-- This trigger has the same value but is here for styling purposes -->
-                        <mat-select-trigger class="tool-trigger" [class.medium-text]="screenService.smallScreen.value && !screenService.tinyScreen.value" [class.small-text]="screenService.tinyScreen.value">
+                        <mat-select-trigger class="tool-trigger" [class.medium-text]="screenService.tinyScreen.value">
                             <span class="neat-container">
                                 {{toolSelection.value | translate:'titles':languageService.language.value}}
                             </span>
@@ -31,23 +37,35 @@
         </span>
     </div>
     <!-- Delay rendering language picker until initial language has been determined -->
-    <span *ngIf="languageService.language.value" class="absolute-right">
-        <mat-form-field class="navbar-picker language-picker" [class.small]="screenService.tinyScreen.value">
-            <mat-select hideSingleSelectionIndicator [formControl]="languageSelection" (selectionChange)="selectLanguage($event)">
-                <mat-select-trigger class="language-trigger">
-                    <span *ngIf="!screenService.smallScreen.value || true; else shortenedTrigger" [class.small-text]="screenService.tinyScreen.value">
-                        {{languageSelection.value.localName}} <app-flag [country]="languageSelection.value.countryCode"></app-flag>
-                    </span>
-                    <ng-template #shortenedTrigger>
-                        <span>
-                            {{(languageSelection.value.code | uppercase) + '-' + (languageSelection.value.countryCode | uppercase)}} <app-flag [country]="languageSelection.value.countryCode"></app-flag>
+    <ng-container *ngIf="languageService.language.value">
+        <span *ngIf="screenService.extraLargeScreen.value; else settingsCog" class="absolute-right neat-container">
+            <span *ngIf="screenService.extraLargeScreen.value" class="neat-container icon-holder">
+                <button type="button" class="side-input right" (click)="openKofi()"  mat-flat-button>
+                    <img class="webp-icon" src="assets/icons/ko-fi.webp">
+                    {{'donate' | translate:'ui':languageService.language.value}}
+                </button>
+                <mat-slide-toggle #darkModeSwitch (change)="toggleDarkMode()" [checked]="screenService.theme === Theme.dark">{{'dark_mode' | translate:'ui':languageService.language.value}}</mat-slide-toggle>
+            </span>
+            <mat-form-field class="navbar-picker language-picker" [class.small]="screenService.tinyScreen.value">
+                <mat-select hideSingleSelectionIndicator [formControl]="languageSelection" (selectionChange)="selectLanguage($event)">
+                    <mat-select-trigger class="language-trigger">
+                        <span *ngIf="!screenService.smallScreen.value || true; else shortenedTrigger" [class.small-text]="screenService.tinyScreen.value">
+                            {{languageSelection.value.localName}} <app-flag [country]="languageSelection.value.countryCode"></app-flag>
                         </span>
-                    </ng-template>
-                </mat-select-trigger>
-                <mat-option *ngFor="let language of languages" [value]="language">
-                    {{language.localName}} <app-flag [country]="language.countryCode"></app-flag>
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-    </span>
+                        <ng-template #shortenedTrigger>
+                            <span>
+                                {{(languageSelection.value.code | uppercase) + '-' + (languageSelection.value.countryCode | uppercase)}} <app-flag [country]="languageSelection.value.countryCode"></app-flag>
+                            </span>
+                        </ng-template>
+                    </mat-select-trigger>
+                    <mat-option *ngFor="let language of languages" [value]="language">
+                        {{language.localName}} <app-flag [country]="language.countryCode"></app-flag>
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </span>
+        <ng-template #settingsCog>
+            <img class="icon navbar-icon absolute-right" src="assets/icons/cog.svg" alt="Settings">
+        </ng-template>
+    </ng-container>
 </mat-toolbar>

@@ -51,6 +51,14 @@ html, body {
     filter: $font-light-color-filter;
   }
 
+  .mat-mdc-unelevated-button:not(:disabled) {
+    height: 2rem;
+  }
+
+  .webp-icon {
+    height: 0.85rem;
+  }
+
   mat-card.mat-mdc-card {
     border-radius: 0.5rem;
   }
@@ -182,6 +190,12 @@ html, body {
     height: $navbar-height !important;
     z-index: 9999999;
 
+    span.mdc-button__label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
     &.small {
       padding: 0 0.5rem;
     }
@@ -191,17 +205,66 @@ html, body {
       width: max-content;
       max-width: 1000px;
     }
+
+    .mat-mdc-slide-toggle {
+      padding-bottom: $gutter-small;
+      margin-left: $gutter;
+      .mdc-label {
+        color: $font-light-color;
+        font-size: medium;
+      }
+
+      .mdc-switch {
+        // activated colors
+        --mdc-switch-selected-track-color: #{$e7-buff-darker-color};
+        --mdc-switch-selected-icon-color: #{$font-light-color};
+        --mdc-switch-unselected-icon-color: #{$font-light-color};
+        --mdc-switch-selected-handle-color: #{$e7-buff-color};
+        --mdc-switch-selected-focus-handle-color: #{$e7-buff-color};
+        --mdc-switch-selected-hover-handle-color: #{$e7-buff-medium-color};
+        --mdc-switch-selected-pressed-handle-color: #{$e7-buff-darker-color};
+        --mdc-switch-selected-focus-track-color: #{$e7-buff-darker-color};
+        --mdc-switch-selected-hover-track-color: #{$e7-buff-darker-color};
+        --mdc-switch-selected-pressed-track-color: #{$e7-buff-darker-color};
+
+
+        // deactivated colors
+        --mdc-switch-unselected-focus-handle-color: #{ui-dark-color};
+        --mdc-switch-unselected-focus-track-color: #{$ui-medium-color};
+        --mdc-switch-unselected-handle-color: #{ui-dark-color};
+        --mdc-switch-unselected-hover-handle-color: #{font-dark-color};
+        --mdc-switch-unselected-hover-track-color: #{$ui-medium-color};
+        --mdc-switch-unselected-pressed-handle-color: #{ui-dark-color};
+        --mdc-switch-unselected-pressed-track-color: #{$ui-medium-color};
+        --mdc-switch-handle-surface-color: #{$ui-dark-color};
+        --mdc-switch-unselected-track-color: #{$ui-medium-color};
+
+        // ripple colors
+        --mdc-switch-selected-focus-state-layer-color: #{$ui-dark-color};
+        --mdc-switch-selected-hover-state-layer-color: #{$ui-dark-color};
+        --mdc-switch-selected-pressed-state-layer-color: #{$ui-dark-color};
+
+      }
+    }
   }
 
   .navbar-link {
-    transition: all 0.2s ease-in-out;
+    // transition: all 0.2s ease-in-out;
     color: #929292;
     cursor: pointer;
 
     width: initial;
 
-    &:not(.selected) {
+    &:not(.selected):not(.small-text) {
       font-size: medium;
+    }
+
+    &.small-text {
+      margin-top: 0.35rem;
+    }
+
+    &.medium-text {
+      margin-top: 0.2rem;
     }
 
     &:hover {
@@ -289,6 +352,20 @@ html, body {
     .navbar {
       color: rgba(0, 0, 0, 0.87);
       background-color: whitesmoke;
+
+      .mat-mdc-slide-toggle {
+        .mdc-label {
+          color: $font-dark-color;
+        }
+
+        
+      }
+      // .mdc-switch div.mdc-switch__track::after {
+      //   background: $e7-buff-color !important;
+      //   background-color: $e7-buff-color !important;
+      // }
+
+      
     }
 
     .navbar-link {
@@ -317,8 +394,15 @@ body {
 }
 
 .navbar-icon {
-  margin-right: 0.5rem;
   height: 2rem;
+
+  &:not(.absolute-right) {
+    margin-right: 0.5rem;
+  }
+
+  &.absolute-right {
+    height: 1.75rem;
+  }
 }
 
 .icon, .navbar-icon {
@@ -374,6 +458,10 @@ body {
   margin-left: 0.5rem;
 }
 
+.medium-margin-left {
+  margin-left: 0.75rem;
+}
+
 .margin-right {
   margin-right: 1rem;
 }
@@ -384,6 +472,10 @@ body {
 
 .small-margin-right {
   margin-right: 0.5rem;
+}
+
+.medium-margin-right {
+  margin-right: 0.75rem;
 }
 
 .large-margin-right {

@@ -24,7 +24,8 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { NumberInputGroupComponent } from './components/ui-elements/number-input-group/number-input-group.component';
 import { MatButtonModule } from '@angular/material/button';
 import { HeaderCardComponent } from './components/ui-elements/header-card/header-card.component';
-import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatInputModule,
     MatFormFieldModule,
     MatButtonModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatSlideToggleModule
   ],
    providers: [],
   bootstrap: [AppComponent]

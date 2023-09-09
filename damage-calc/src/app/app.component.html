@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- TODO: add conditional light theme [class.light-theme]="true" -->
-<body *ngIf="!loadingFallback" [class.light-theme]="false">
+<body *ngIf="!loadingFallback" [class.light-theme]="screenService.theme === Theme.light">
     <app-navbar></app-navbar>
     <router-outlet></router-outlet>
 </body>

@@ -656,5 +656,9 @@
         "damage_calculator": "데미지 계산기",
         "effectiveness_checker_title": "에픽세븐 효과적중 확률 계산기",
         "effectiveness_checker": "효과적중 확률 계산기"
+    },
+    "ui": {
+      "dark_mode": "다크 모드",
+      "donate": "기부하기"
     }
 }
