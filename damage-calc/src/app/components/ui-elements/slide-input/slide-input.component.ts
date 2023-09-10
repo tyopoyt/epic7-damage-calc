@@ -15,6 +15,7 @@ export class SlideInputComponent implements OnInit {
   @Input() step: number = 1;
   @Input() label: string = '';
   @Input() column: boolean = false;
+  @Input() hint: string = '';
 
   @Output() change: BehaviorSubject<number> = new BehaviorSubject(this.default);
   @Output() valueChange: BehaviorSubject<number> = new BehaviorSubject(this.default);

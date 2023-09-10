@@ -5,6 +5,7 @@ import { LanguageService } from 'src/app/services/language.service';
 import { ScreenService } from 'src/app/services/screen.service';
 import { HeaderCardComponentColorOption, HeaderCardComponentSizeOption } from '../ui-elements/header-card/header-card.component';
 import { TranslationPipe } from 'src/app/pipes/translation.pipe';
+import { DismissibleColorOption } from '../ui-elements/dismissible/dismissible.component';
 
 @Component({
   selector: 'app-speed-tuner',
@@ -15,6 +16,8 @@ export class SpeedTunerComponent implements OnInit {
 
   HeaderCardComponentColorOption = HeaderCardComponentColorOption;
   HeaderCardComponentSizeOption = HeaderCardComponentSizeOption;
+
+  translationPipe: TranslationPipe = new TranslationPipe(this.languageService);
 
   displayColor: HeaderCardComponentColorOption = HeaderCardComponentColorOption.green;
 
@@ -34,7 +37,7 @@ export class SpeedTunerComponent implements OnInit {
   slowerHeader = 'slower_max_speed'
   fasterHeader = 'faster_min_speed'
 
-  translationPipe: TranslationPipe = new TranslationPipe(this.languageService);
+  DismissibleColorOption = DismissibleColorOption;
 
   constructor(public screenService: ScreenService,
               public languageService: LanguageService,
@@ -44,6 +47,10 @@ export class SpeedTunerComponent implements OnInit {
   ngOnInit(): void {
     const langParam = this.route.snapshot.paramMap.get('lang') || 'us';
     this.languageService.setLanguage(Languages[langParam])
+
+    this.languageService.language.subscribe(() => {
+      this.calculate();
+    })
   }
 
   slowerSpeedChange(value: number) {
@@ -83,6 +90,10 @@ export class SpeedTunerComponent implements OnInit {
     this.calculate();
   }
 
+  translate(key: string) {
+    return this.translationPipe.transform(key, 'form', this.languageService.language.value);
+  }
+
  /*
   * Return whether the units are tuned properly
   *
@@ -112,14 +123,20 @@ export class SpeedTunerComponent implements OnInit {
        * 
        * Take the floor of max speed and ceil of min speed for safety since we can't have fractional speed
        */
-    let slowUnitSpeedReq, fastUnitSpeedReq;
+    let slowUnitSpeedReq, formattedSlowSpeed, fastUnitSpeedReq, formattedFastSpeed;
+    const impossible = this.translate('impossible');    
+
     if (this.fasterPushesSlower) {
       const slowerUnitCR = 1 - ((this.slowerCRPush * (this.stigmaPolitis ? 0.5 : 1)) / 100);
       const fasterUnitCR = 0.95;
       const CRRatio = fasterUnitCR / slowerUnitCR;
 
-      slowUnitSpeedReq = Math.ceil(this.fasterSpeed / CRRatio); // min speed
-      fastUnitSpeedReq =  Math.floor(this.slowerSpeed * CRRatio); // max speed
+      slowUnitSpeedReq = this.fasterSpeed / CRRatio; // min speed
+      fastUnitSpeedReq =  this.slowerSpeed * CRRatio; // max speed
+
+      // set output text to 'Impossible' in edge cases
+      formattedSlowSpeed = slowUnitSpeedReq <= 0 || slowUnitSpeedReq.toString() == 'Infinity' ? impossible : Math.ceil(slowUnitSpeedReq).toString();
+      formattedFastSpeed = fastUnitSpeedReq <= 0 || fastUnitSpeedReq.toString() == 'Infinity' ? impossible : Math.floor(fastUnitSpeedReq).toString();
   
       this.slowerSpeedText = 'Slower Unit Min Speed';
       this.fasterSpeedText = 'Faster Unit Max Speed';
@@ -128,37 +145,39 @@ export class SpeedTunerComponent implements OnInit {
       const fasterUnitCR = this.fasterTurns - ((this.fasterCRPush * (this.stigmaPolitis ? 0.5 : 1)) / 100);
       const CRRatio = fasterUnitCR / slowerUnitCR;
   
-      slowUnitSpeedReq = Math.floor(this.fasterSpeed / CRRatio); // max speed
-      fastUnitSpeedReq =  Math.ceil(this.slowerSpeed * CRRatio); // min speed
+      // set output text to 'Impossible' in edge cases
+      slowUnitSpeedReq = this.fasterSpeed / CRRatio; // max speed
+      fastUnitSpeedReq =  this.slowerSpeed * CRRatio; // min speed
+
+      formattedSlowSpeed = slowUnitSpeedReq <= 0 || slowUnitSpeedReq.toString() == 'Infinity' ? impossible : Math.floor(slowUnitSpeedReq).toString();
+      formattedFastSpeed = fastUnitSpeedReq <= 0 || fastUnitSpeedReq.toString() == 'Infinity' ? impossible : Math.ceil(fastUnitSpeedReq).toString();
   
       this.slowerSpeedText = 'Slower Unit Max Speed';
       this.fasterSpeedText = 'Faster Unit Min Speed';
-    } 
-      
-  
-    // set output text to 'Impossible' in edge cases
-    let formattedSlowSpeed = slowUnitSpeedReq <= 0 || slowUnitSpeedReq.toString() == 'Infinity' ? 'Impossible' : slowUnitSpeedReq.toString();
-    let formattedFastSpeed = fastUnitSpeedReq <= 0 || fastUnitSpeedReq.toString() == 'Infinity' ? 'Impossible' : fastUnitSpeedReq.toString();
-  
+    }   
     // TODO: translate recommendations using this.translationPipe
     // generate recommendation and update styling accordingly
     if (this.slowerSpeed > this.fasterSpeed) {
-      formattedSlowSpeed = 'Impossible';
-      formattedFastSpeed = 'Impossible';
-      this.recommendationText = 'The faster unit\'s speed must be greater than the slower unit\'s speed.';
+      formattedSlowSpeed = impossible;
+      formattedFastSpeed = impossible;
+      this.recommendationText = this.translate('invalid_speed');
       this.recommendationSubText = '';
       this.displayColor = HeaderCardComponentColorOption.red;
     } else if (this.correctTune(slowUnitSpeedReq, fastUnitSpeedReq)) {
-      this.recommendationText = `Units are improperly tuned, and ${this.fasterPushesSlower ? 'the slower unit may not have 100% CR after the faster unit pushes' : 'the desired turn order isn\'t guaranteed'}.`
-      this.recommendationSubText = (formattedSlowSpeed !== 'Impossible' ? `The slower unit needs at least ${Math.abs(this.slowerSpeed - slowUnitSpeedReq)} ${this.fasterPushesSlower ? 'more' : 'less'} speed` : '') +
-                           (!(formattedSlowSpeed === 'Impossible' || formattedFastSpeed === 'Impossible') ? ' OR ' : '') +
-                           (formattedFastSpeed !== 'Impossible' ? `the faster unit needs at least ${Math.abs(fastUnitSpeedReq - this.fasterSpeed)} ${this.fasterPushesSlower ? 'less' : 'more'} speed.` : '');
+      const slowerNeeds = Math.ceil(Math.abs(this.slowerSpeed - slowUnitSpeedReq));
+      const fasterNeeds = Math.ceil(Math.abs(fastUnitSpeedReq - this.fasterSpeed));
+      this.recommendationText = `${this.translate('improperly_tuned')}${this.fasterPushesSlower ? this.translate('improper_cr') : this.translate('improper_order')}${this.translate('full_stop')}`
+      this.recommendationSubText = (formattedSlowSpeed !== impossible ? `${this.translate('slower_unit_needs')}${slowerNeeds}${this.fasterPushesSlower ? this.translate('more') : this.translate('less')}${this.translate('speed_speed_tuner')}` : '') +
+                           (!(formattedSlowSpeed === impossible || formattedFastSpeed === impossible) ? this.translate('_or_') : '') +
+                           (formattedFastSpeed !== impossible ? `${this.translate('faster_unit_needs')}${fasterNeeds}${this.fasterPushesSlower ? this.translate('less') : this.translate('more')}${this.translate('speed_speed_tuner')}${this.translate('full_stop')}` : '');
       this.displayColor = HeaderCardComponentColorOption.red;
     } else {
-      this.recommendationText = `Units are properly tuned, and ${this.fasterPushesSlower ? 'the slower unit will have at least 100% CR after the faster unit pushes' : 'the faster unit will always move before the slower unit'}.`;
+      const slowerPossible = Math.floor(Math.abs(this.slowerSpeed - slowUnitSpeedReq));
+      const fasterPossible = Math.floor(Math.abs(fastUnitSpeedReq - this.fasterSpeed));
+      this.recommendationText = `${this.translate('properly_tuned')}${this.fasterPushesSlower ? this.translate('proper_cr') : this.translate('proper_order')}${this.translate('full_stop')}`;
       if (this.slowerSpeed !== slowUnitSpeedReq || this.fasterSpeed !== fastUnitSpeedReq) {
-        this.recommendationSubText = `The slower unit can have up to ${Math.abs(slowUnitSpeedReq - this.slowerSpeed)} ${this.fasterPushesSlower ? 'less' : 'more'} speed` +
-                                     ` OR the faster unit can have up to ${Math.abs(this.fasterSpeed - fastUnitSpeedReq)} ${this.fasterPushesSlower ? 'more' : 'less'} speed.`;
+        this.recommendationSubText = `${this.translate('slower_unit_possible')}${slowerPossible}${this.fasterPushesSlower ? this.translate('less') : this.translate('more')}${this.translate('speed_speed_tuner')}` +
+                                     `${this.translate('_or_')}${this.translate('faster_unit_possible')}${fasterPossible}${this.fasterPushesSlower ? this.translate('less') : this.translate('more')}${this.translate('speed_speed_tuner')}${this.translate('full_stop')}`;
       }
       this.displayColor = HeaderCardComponentColorOption.green;
     }

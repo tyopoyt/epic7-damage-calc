@@ -2,7 +2,10 @@
 <mat-card>
     <div class="neat-container flex-column relative">
         <div class="large-text bold-text margin-top flex-nowrap" [ngClass]="(screenService.smallScreen.value || column) ? 'slider-col' : 'slider-row'">
-            <span *ngIf="!!label; else labelPlaceholder">{{label}}</span>
+            <span *ngIf="!!label; else labelPlaceholder" class="neat-container">
+                {{label}}
+                <img class="icon tiny tiny-margin-left" *ngIf="!!hint" src="assets/icons/help-circle-outline.svg" alt="Hint" matTooltip="{{hint}}">
+            </span>
             <ng-template #labelPlaceholder>
                 <span></span>
             </ng-template>

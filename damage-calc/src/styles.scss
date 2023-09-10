@@ -60,7 +60,7 @@ html, body {
     height: 2rem;
   }
 
-  .webp-icon, .png-icon {
+  .webp-icon, .png-icon, .svg-icon {
     height: 0.85rem;
 
     &.medium {
@@ -812,7 +812,7 @@ body {
 
   .page-body {
     width: 100%;
-    max-width: 1000px;
+    max-width: 1200px;
   }
 }
 

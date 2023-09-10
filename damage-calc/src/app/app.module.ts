@@ -28,6 +28,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { DismissibleComponent } from './components/ui-elements/dismissible/dismissible.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     EHPCalculatorComponent,
     SlideInputComponent,
     NumberInputGroupComponent,
-    HeaderCardComponent
+    HeaderCardComponent,
+    DismissibleComponent
   ],
   imports: [
     BrowserModule,
