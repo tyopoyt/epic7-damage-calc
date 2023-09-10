@@ -1,7 +1,7 @@
 import { CurrencyPipe, Location } from '@angular/common';
-import { AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { UntypedFormControl } from '@angular/forms';
-import { MatSelectChange } from '@angular/material/select';
+import { MatSelect, MatSelectChange } from '@angular/material/select';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Language, Languages } from 'src/app/models/languages';
 import { LanguageService } from 'src/app/services/language.service';
@@ -15,6 +15,7 @@ import { ScreenService, Theme } from 'src/app/services/screen.service';
 export class NavbarComponent implements OnInit  {
 
   @ViewChild('darkModeSwitch') element: ElementRef | undefined;
+  @ViewChild('smallScreenPageSelect') pageSelect: MatSelect | undefined;
 
   languages = Object.values(Languages);
   countries = Object.entries(Languages).map(([key, value]) => value.countryCode)
@@ -32,7 +33,8 @@ export class NavbarComponent implements OnInit  {
     private _location: Location,
     private route: ActivatedRoute,
     private router: Router,
-    public screenService: ScreenService
+    public screenService: ScreenService,
+    private renderer: Renderer2
   ) {
     this.toolSelection = new UntypedFormControl(this.languageService.toolTitles[0]);
   }
@@ -49,6 +51,17 @@ export class NavbarComponent implements OnInit  {
       }
     })
 
+    // Probably a better way to fix this since it should be the default behavior but I'm not certain what the cause is
+    // It may be z-index related?
+    // this.renderer.listen('document', 'click', (event: MouseEvent) => {
+    //   const targetElement = event.target as HTMLElement;
+    //   const matSelectElement = document.querySelector('.mat-select-panel');
+  
+    //   if (matSelectElement && !matSelectElement.contains(targetElement)) {
+    //     // Close the mat-select when clicking outside
+    //     this.pageSelect?.close();
+    //   }
+    // })
 
     const activePath = window.location.href.split('/')
     let activeTool: string = activePath.pop() || activePath.pop() || 'damage-calculator';

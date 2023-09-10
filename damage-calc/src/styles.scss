@@ -47,9 +47,8 @@ html, body {
   color: $font-light-color;
   background-color: $background-dark-color;
 
-  .mat-mdc-menu-content {
-    // z-index: $popup-z-index;
-    // position: relative;
+  div.mat-mdc-select-panel {
+    max-height: 25rem;
   }
 
   .icon {
@@ -494,13 +493,21 @@ html, body {
     }
 
     div.mat-mdc-select-panel {
-      background: white;
+      background: $ui-medium-light-light-color;
     
       .mat-mdc-option {
         color: $font-dark-color;
 
+        .mdc-list-item__primary-text {
+          color: $font-dark-color;
+        }
+
         &.mdc-list-item--selected:not(.mdc-list-item--disabled) {
           color: $e7-buff-color;
+
+          .mdc-list-item__primary-text {
+            color: whitesmoke;
+          }
         }
       }
     }
