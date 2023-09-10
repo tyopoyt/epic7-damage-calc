@@ -5,6 +5,10 @@ mat-card {
     width: 13.75rem;
     padding: 0;
 
+    &.has-subcontent {
+        height: 15rem;
+    }
+
     &.left {
         margin-left: 0;
     }
@@ -34,6 +38,10 @@ mat-card {
 
         &.red {
             color: $e7-debuff-color;
+        }
+
+        &.normal-weight {
+            font-weight: 500;
         }
 
         .additional {

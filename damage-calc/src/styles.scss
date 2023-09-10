@@ -60,8 +60,12 @@ html, body {
     height: 2rem;
   }
 
-  .webp-icon {
+  .webp-icon, .png-icon {
     height: 0.85rem;
+
+    &.medium {
+      height: 1.25rem;
+    }
   }
 
   .menu-item {
@@ -323,9 +327,10 @@ html, body {
     }
   }
 
-  .mat-mdc-slide-toggle {
+  .mat-mdc-slide-toggle, .mat-mdc-checkbox {
     padding-bottom: $gutter-small;
     margin-left: $gutter;
+
     .mdc-label {
       color: $font-light-color;
       font-size: medium;
@@ -361,6 +366,56 @@ html, body {
       --mdc-switch-selected-hover-state-layer-color: #{$ui-dark-color};
       --mdc-switch-selected-pressed-state-layer-color: #{$ui-dark-color};
 
+    }
+
+    .mdc-checkbox {
+      padding: $gutter;
+
+      .mdc-checkbox__background {
+        top: $gutter;
+        left: $gutter;
+      }
+
+      .mat-mdc-checkbox-touch-target {
+        width: 100%;
+        height: 2rem;
+      }
+
+      input[type=checkbox] {
+        width: 1rem;
+        height: 1rem;
+      }
+
+      --mdc-checkbox-selected-checkmark-color: #{$font-light-color};
+      --mdc-checkbox-selected-focus-icon-color: #{$e7-buff-contrast-color};
+      --mdc-checkbox-selected-hover-icon-color: #{$e7-buff-contrast-color};
+      --mdc-checkbox-selected-icon-color: #{$e7-buff-contrast-color};
+      --mdc-checkbox-selected-pressed-icon-color: #{$e7-buff-contrast-color};
+      --mdc-checkbox-unselected-focus-icon-color: #{$ui-medium-medium-light-color};
+      --mdc-checkbox-unselected-hover-icon-color: #{$ui-medium-medium-light-color};
+      --mdc-checkbox-unselected-icon-color: #{$ui-medium-medium-light-color};
+      --mdc-checkbox-unselected-pressed-icon-color: #{$ui-medium-medium-light-color};
+      --mdc-checkbox-selected-focus-state-layer-color: #{$e7-buff-contrast-color};
+      --mdc-checkbox-selected-hover-state-layer-color: #{$e7-buff-contrast-color};
+      --mdc-checkbox-selected-pressed-state-layer-color: #{$e7-buff-contrast-color};
+      --mdc-checkbox-unselected-focus-state-layer-color: #{$font-light-color};
+      --mdc-checkbox-unselected-hover-state-layer-color: #{$font-light-color};
+      --mdc-checkbox-unselected-pressed-state-layer-color: #{$font-light-color};
+    }
+  }
+
+  .mat-mdc-checkbox {
+    height: 2rem;
+    margin-left: 0;
+
+    .mdc-label {
+      padding-left: 0;
+    }
+
+    .mdc-form-field {
+      background-color: $ui-dark-color;
+      border-radius: $gutter;
+      padding-right: $gutter;
     }
   }
 
@@ -524,10 +579,25 @@ html, body {
       background-color: whitesmoke;
     }
 
-    .mat-mdc-slide-toggle {
+    .mat-mdc-slide-toggle, .mat-mdc-checkbox {
       .mdc-label {
         color: $font-dark-color;
-      }       
+      }
+
+      .mdc-checkbox {
+        --mdc-checkbox-selected-checkmark-color: whitesmoke;
+        --mdc-checkbox-unselected-focus-icon-color: #{$ui-dark-color};
+        --mdc-checkbox-unselected-hover-icon-color: #{$ui-dark-color};
+        --mdc-checkbox-unselected-icon-color: #{$ui-dark-color};
+        --mdc-checkbox-unselected-pressed-icon-color: #{$ui-dark-color};
+        --mdc-checkbox-unselected-focus-state-layer-color: #{$ui-medium-color};
+        --mdc-checkbox-unselected-hover-state-layer-color: #{$ui-medium-color};
+        --mdc-checkbox-unselected-pressed-state-layer-color: #{$ui-medium-color};
+      }
+    }
+
+    .mat-mdc-checkbox .mdc-form-field {
+      background-color: white;
     }
 
     .mat-mdc-menu-item:not([disabled]):hover {
@@ -704,19 +774,23 @@ body {
 }
 
 .small-text {
-  font-size: small;
+  font-size: 0.813rem;
+  line-height: 0.813rem;
 }
 
 .medium-text {
-  font-size: medium;
+  font-size: 1rem;
+  line-height: 1rem;
 }
 
 .large-text {
   font-size: 1.25rem;
+  line-height: 1.25rem;
 }
 
 .extra-large-text {
-  font-size: xx-large;
+  font-size: 2rem;
+  line-height: 2rem;
 }
 
 .bold-text {
@@ -784,8 +858,16 @@ app-slide-input {
 }
 
 .column-2 {
+  position: relative;
+  height: max-content;
+  align-items: flex-start;
+
   > * {
     width: calc(50% - calc(#{$gutter} / 2));
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
   }
 
   > :nth-child(1) {
@@ -799,4 +881,8 @@ app-slide-input {
 
 .pointer {
   cursor: pointer;
+}
+
+.hidden {
+  display: none !important;
 }

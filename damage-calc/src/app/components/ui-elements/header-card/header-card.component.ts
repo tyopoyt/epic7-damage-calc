@@ -24,10 +24,12 @@ export class HeaderCardComponent {
 
   @Input() header: string = '';
   @Input() content: string = '';
+  @Input() subContent: string = '';
   @Input() left: boolean = false;
   @Input() fullWidth: boolean = false;
   @Input() color: HeaderCardComponentColorOption = HeaderCardComponentColorOption.none;
   @Input() contentSize: HeaderCardComponentSizeOption = HeaderCardComponentSizeOption.medium;
+  @Input() normalWeight: boolean = false;
   @Input() hint: string = '';
   @Input() additional: string = '';
   @Input() additionalIcon: string = ''; // file url

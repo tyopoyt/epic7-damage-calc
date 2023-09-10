@@ -27,6 +27,7 @@ import { HeaderCardComponent } from './components/ui-elements/header-card/header
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MatButtonModule,
     MatTooltipModule,
     MatSlideToggleModule,
-    MatMenuModule
+    MatMenuModule,
+    MatCheckboxModule
   ],
    providers: [],
   bootstrap: [AppComponent]
