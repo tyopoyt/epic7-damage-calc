@@ -26,6 +26,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { HeaderCardComponent } from './components/ui-elements/header-card/header-card.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatFormFieldModule,
     MatButtonModule,
     MatTooltipModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatMenuModule
   ],
    providers: [],
   bootstrap: [AppComponent]

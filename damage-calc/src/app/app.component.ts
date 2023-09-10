@@ -32,6 +32,7 @@ export class AppComponent implements OnInit {
     });
 
     this.updateScreenSizeStates(window);
+    this.screenService.initializeTheme();
   }
 
   updateScreenSizeStates(viewWindow: Window) {
@@ -55,14 +56,14 @@ export class AppComponent implements OnInit {
       this.screenService.toggleExtraLargeScreen();
     }
 
-    // TODO: remove this debugging code
-    console.log(`
-    micro:${this.screenService.microscopicScreen.value}
-    tiny:${this.screenService.tinyScreen.value}
-    small:${this.screenService.smallScreen.value}
-    medsmall:${this.screenService.mediumSmallScreen.value}
-    medium:${this.screenService.mediumScreen.value}
-    large:${this.screenService.largeScreen.value}
-    `)
+    // uncomment for responsiveness debugging
+    // console.log(`
+    // micro:${this.screenService.microscopicScreen.value}
+    // tiny:${this.screenService.tinyScreen.value}
+    // small:${this.screenService.smallScreen.value}
+    // medsmall:${this.screenService.mediumSmallScreen.value}
+    // medium:${this.screenService.mediumScreen.value}
+    // large:${this.screenService.largeScreen.value}
+    // `)
   }
 }

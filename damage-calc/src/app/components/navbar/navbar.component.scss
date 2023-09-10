@@ -58,7 +58,12 @@
 }
 
 .webp-icon {
-    margin-right: $gutter-small;
+    margin-right: $gutter;
+    cursor: pointer;
+}
+
+span.menu-item {
+    margin-left: $gutter;
 }
 
 .language-trigger {

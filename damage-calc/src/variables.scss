@@ -1,5 +1,6 @@
 $background-dark-color: #111111;
 $ui-light-color: #f5f5f5;
+$ui-medium-light-light-color: #EEEEEE; // Yes this name is a bit silly but it was made after medium-light and light were already made
 $ui-medium-light-color: #DDDDDD; // Same as font-light-color but alias for context
 $ui-medium-color: #666666;
 $ui-medium-dark-color: #454545;
@@ -26,5 +27,14 @@ $dark-blue-contrast-color: #007bff;
 
 $navbar-height: 3.5rem;
 $medium-font-size: 1rem;
+$gutter-jumbo: 1.5rem;
+$gutter-extra-large: 1rem;
+$gutter-large: 0.75rem;
 $gutter: 0.5rem;
 $gutter-small: 0.25rem;
+$gutter-tiny: 0.125rem;
+
+$language-arrow-top: 0.94rem;
+
+$navabar-z-index: 1200;
+$popup-z-index: 1201;

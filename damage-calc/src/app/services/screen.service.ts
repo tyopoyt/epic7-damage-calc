@@ -1,5 +1,7 @@
-import { HostListener, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+
+import { get } from 'lodash-es'
 
 export enum Theme {
   dark = 'dark',
@@ -29,11 +31,7 @@ export class ScreenService {
   theme: Theme = Theme.dark;
 
 
-  constructor() {
-    console.log('hre')
-    // this.theme ;
-    console.log(this.theme)
-  }
+  constructor() {}
 
   toggleMicroscopicScreen() {
     this.microscopicScreen.next(!this.microscopicScreen.value);
@@ -64,8 +62,21 @@ export class ScreenService {
   }
 
   toggleDarkMode() {
-    // TODO: save to localstorage
-    this.theme = this.theme === Theme.light ? Theme.dark : Theme.light
+    // TODO: Look into indexedDB instead?
+    this.theme = this.theme === Theme.light ? Theme.dark : Theme.light;
+    if (this.theme === Theme.light) {
+      document.querySelector('body.mat-typography')?.classList.add('light-theme');
+      localStorage.e7calcTheme = Theme.light;
+    } else {
+      document.querySelector('body.mat-typography')?.classList.remove('light-theme');
+      localStorage.e7calcTheme = Theme.dark;
+    }
+  }
+
+  initializeTheme() {
+    if (get(Theme, localStorage.e7calcTheme, Theme.dark) === 'light') {
+      this.toggleDarkMode();
+    }
   }
 
   // To support other themes in the future, may not ever use

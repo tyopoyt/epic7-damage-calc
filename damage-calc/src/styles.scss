@@ -47,6 +47,11 @@ html, body {
   color: $font-light-color;
   background-color: $background-dark-color;
 
+  .mat-mdc-menu-content {
+    // z-index: $popup-z-index;
+    // position: relative;
+  }
+
   .icon {
     filter: $font-light-color-filter;
   }
@@ -59,8 +64,46 @@ html, body {
     height: 0.85rem;
   }
 
+  .menu-item {
+    cursor: pointer;
+  }
+
   mat-card.mat-mdc-card {
     border-radius: 0.5rem;
+  }
+
+  .mat-mdc-menu-item:not([disabled]):hover {
+    background-color: $ui-dark-color;
+  }
+
+  div.switch-nested-menu-arrows {
+    button[mat-menu-item] {
+  
+      &.mat-mdc-menu-item-submenu-trigger {
+        .mat-mdc-menu-submenu-icon {
+          right: unset;
+          bottom: unset;
+          left: $gutter;
+          top: $language-arrow-top;
+          transform: rotate(0.5turn);
+          filter: $font-light-color-filter
+        }
+
+        .mat-mdc-menu-item-text {
+          padding-left: $gutter-tiny;
+        }
+      }
+
+      &.language-menu {
+        padding-left: $gutter-jumbo;
+
+        &.mat-mdc-menu-item-submenu-trigger {
+          .mat-mdc-menu-submenu-icon {
+            left: $gutter;
+          }
+        }
+      }
+    }
   }
 
   mat-slider.mat-mdc-slider {
@@ -157,15 +200,14 @@ html, body {
   }
 
   div.mat-mdc-select-panel {
-    background: #555555;
-    background-color: #555555;
+    background-color: $ui-medium-dark-color;
     padding: 0 !important;
   
     .mat-mdc-option {
       color: $font-light-color;
       padding: 0 0.5rem;
       .mdc-list-item__primary-text {
-        color: whitesmoke;
+        color: $font-light-color;
       }
 
       &.mdc-list-item--selected:not(.mdc-list-item--disabled) {
@@ -173,9 +215,146 @@ html, body {
 
         .mdc-list-item__primary-text {
           font-weight: bold;
-          color: whitesmoke;
+          color: $font-light-color;
         }
       }
+    }
+  }
+
+  div.mat-mdc-menu-panel {
+    background-color: $ui-medium-dark-color;
+    padding: 0 !important;
+
+    // Seems to consistently assign the submenu panel id 0
+    &#mat-menu-panel-0 {
+      position: relative;
+
+      .mat-mdc-menu-content {
+        margin-top: 0;
+        height: 15rem;
+        padding: 0;
+
+        > .selected {
+          color: whitesmoke;
+          background-color: $e7-buff-contrast-color;
+
+          .mat-mdc-menu-item-text {
+            font-weight: bold;
+          }
+        }
+      }
+    }
+
+    mat-slide-toggle {
+      margin-left: 0;
+    }
+
+    .mat-mdc-menu-content {
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      height: 5rem;
+      justify-content: space-around;
+      margin-top: $gutter;
+      z-index: $popup-z-index;
+      position: relative;
+
+      > *.mat-mdc-menu-item, > * {
+        padding: $gutter-small $gutter;
+        height: 2.5rem;
+        min-height: unset;
+      }
+
+      > mat-slide-toggle {
+        height: 2rem;
+
+        &:hover {
+          background-color: $ui-dark-color;
+        }
+      }
+
+      .mdc-text-field--no-label:not(.mdc-text-field--outlined):not(.mdc-text-field--textarea) .mat-mdc-form-field-infix {
+        padding: 0;
+      }
+
+      .navbar-picker {
+        margin-top: 0;
+
+        .mat-mdc-form-field-infix {
+          min-height: 10px;
+        }
+
+        .mat-mdc-select-trigger {
+          flex-direction: row-reverse;
+
+          .mat-mdc-select-value-text {
+            margin-right: 0;
+
+            .language-trigger {
+              padding-left: $gutter;
+              justify-content: flex-start;
+            }
+          }
+        }
+        
+      }
+
+      .mat-mdc-text-field-wrapper {
+        height: 2rem;
+        margin: 0;
+      }
+    }
+
+    &.extra-item {
+      .mat-mdc-menu-content {
+        height: 7.5rem;
+      }
+    }
+
+    .mat-mdc-menu-item {
+      color: $font-light-color;
+      padding: 0 $gutter;
+    }
+  }
+
+  .mat-mdc-slide-toggle {
+    padding-bottom: $gutter-small;
+    margin-left: $gutter;
+    .mdc-label {
+      color: $font-light-color;
+      font-size: medium;
+    }
+
+    .mdc-switch {
+      // activated colors
+      --mdc-switch-selected-track-color: #{$e7-buff-darker-color};
+      --mdc-switch-selected-icon-color: #{$font-light-color};
+      --mdc-switch-unselected-icon-color: #{$font-light-color};
+      --mdc-switch-selected-handle-color: #{$e7-buff-color};
+      --mdc-switch-selected-focus-handle-color: #{$e7-buff-color};
+      --mdc-switch-selected-hover-handle-color: #{$e7-buff-medium-color};
+      --mdc-switch-selected-pressed-handle-color: #{$e7-buff-darker-color};
+      --mdc-switch-selected-focus-track-color: #{$e7-buff-darker-color};
+      --mdc-switch-selected-hover-track-color: #{$e7-buff-darker-color};
+      --mdc-switch-selected-pressed-track-color: #{$e7-buff-darker-color};
+
+
+      // deactivated colors
+      --mdc-switch-unselected-focus-handle-color: #{ui-dark-color};
+      --mdc-switch-unselected-focus-track-color: #{$ui-medium-color};
+      --mdc-switch-unselected-handle-color: #{ui-dark-color};
+      --mdc-switch-unselected-hover-handle-color: #{font-dark-color};
+      --mdc-switch-unselected-hover-track-color: #{$ui-medium-color};
+      --mdc-switch-unselected-pressed-handle-color: #{ui-dark-color};
+      --mdc-switch-unselected-pressed-track-color: #{$ui-medium-color};
+      --mdc-switch-handle-surface-color: #{$ui-dark-color};
+      --mdc-switch-unselected-track-color: #{$ui-medium-color};
+
+      // ripple colors
+      --mdc-switch-selected-focus-state-layer-color: #{$ui-dark-color};
+      --mdc-switch-selected-hover-state-layer-color: #{$ui-dark-color};
+      --mdc-switch-selected-pressed-state-layer-color: #{$ui-dark-color};
+
     }
   }
 
@@ -186,9 +365,9 @@ html, body {
     justify-content: center;
 
     color: $font-light-color;
-    background-color: rgb(51, 51, 51);
+    background-color: $ui-dark-color;
     height: $navbar-height !important;
-    z-index: 9999999;
+    z-index: $navabar-z-index;
 
     span.mdc-button__label {
       display: flex;
@@ -204,47 +383,6 @@ html, body {
       display: flex;
       width: max-content;
       max-width: 1000px;
-    }
-
-    .mat-mdc-slide-toggle {
-      padding-bottom: $gutter-small;
-      margin-left: $gutter;
-      .mdc-label {
-        color: $font-light-color;
-        font-size: medium;
-      }
-
-      .mdc-switch {
-        // activated colors
-        --mdc-switch-selected-track-color: #{$e7-buff-darker-color};
-        --mdc-switch-selected-icon-color: #{$font-light-color};
-        --mdc-switch-unselected-icon-color: #{$font-light-color};
-        --mdc-switch-selected-handle-color: #{$e7-buff-color};
-        --mdc-switch-selected-focus-handle-color: #{$e7-buff-color};
-        --mdc-switch-selected-hover-handle-color: #{$e7-buff-medium-color};
-        --mdc-switch-selected-pressed-handle-color: #{$e7-buff-darker-color};
-        --mdc-switch-selected-focus-track-color: #{$e7-buff-darker-color};
-        --mdc-switch-selected-hover-track-color: #{$e7-buff-darker-color};
-        --mdc-switch-selected-pressed-track-color: #{$e7-buff-darker-color};
-
-
-        // deactivated colors
-        --mdc-switch-unselected-focus-handle-color: #{ui-dark-color};
-        --mdc-switch-unselected-focus-track-color: #{$ui-medium-color};
-        --mdc-switch-unselected-handle-color: #{ui-dark-color};
-        --mdc-switch-unselected-hover-handle-color: #{font-dark-color};
-        --mdc-switch-unselected-hover-track-color: #{$ui-medium-color};
-        --mdc-switch-unselected-pressed-handle-color: #{ui-dark-color};
-        --mdc-switch-unselected-pressed-track-color: #{$ui-medium-color};
-        --mdc-switch-handle-surface-color: #{$ui-dark-color};
-        --mdc-switch-unselected-track-color: #{$ui-medium-color};
-
-        // ripple colors
-        --mdc-switch-selected-focus-state-layer-color: #{$ui-dark-color};
-        --mdc-switch-selected-hover-state-layer-color: #{$ui-dark-color};
-        --mdc-switch-selected-pressed-state-layer-color: #{$ui-dark-color};
-
-      }
     }
   }
 
@@ -287,6 +425,24 @@ html, body {
     .mat-mdc-unelevated-button:not(:disabled) {
       background-color: $ui-medium-light-color;
       color: $font-dark-color;
+    }
+
+    div.switch-nested-menu-arrows {
+      button[mat-menu-item] {    
+        &.mat-mdc-menu-item-submenu-trigger {
+          .mat-mdc-menu-submenu-icon {
+            filter: $font-dark-color-filter
+          }
+        }
+      }
+    }
+
+    div.mat-mdc-menu-panel {
+      background-color: $ui-light-color;
+  
+      .mat-mdc-menu-item {
+        color: $font-dark-color;
+      }
     }
 
     mat-slider.mat-mdc-slider {
@@ -350,22 +506,34 @@ html, body {
     }
 
     .navbar {
-      color: rgba(0, 0, 0, 0.87);
+      color: $font-dark-color;
       background-color: whitesmoke;
+    }
 
-      .mat-mdc-slide-toggle {
-        .mdc-label {
-          color: $font-dark-color;
+    .mat-mdc-slide-toggle {
+      .mdc-label {
+        color: $font-dark-color;
+      }       
+    }
+
+    .mat-mdc-menu-item:not([disabled]):hover {
+      background-color: $ui-medium-light-color;
+    }
+
+    div.mat-mdc-menu-panel {
+      background-color: $ui-medium-light-light-color;
+  
+      .mat-mdc-menu-content {
+        > mat-slide-toggle {
+          &:hover {
+            background-color: $ui-medium-light-color;
+          }
         }
-
-        
       }
-      // .mdc-switch div.mdc-switch__track::after {
-      //   background: $e7-buff-color !important;
-      //   background-color: $e7-buff-color !important;
-      // }
-
-      
+  
+      .mat-mdc-menu-item {
+        color: $font-dark-color;
+      }
     }
 
     .navbar-link {
@@ -383,7 +551,7 @@ html, body {
       &.selected {
           color: $font-dark-color;
       }
-  }
+    }
   }
 
   height: 100%;
@@ -395,6 +563,7 @@ body {
 
 .navbar-icon {
   height: 2rem;
+  cursor: pointer;
 
   &:not(.absolute-right) {
     margin-right: 0.5rem;
@@ -577,7 +746,7 @@ app-slide-input {
 }
 
 .right {
-  margin-right: 0;
+  margin-right: 0 !important;
 }
 
 .result-cards {
@@ -596,4 +765,8 @@ app-slide-input {
   > :nth-child(2) {
     margin-left: calc(#{$gutter} / 2);
   }
+}
+
+.pointer {
+  cursor: pointer;
 }

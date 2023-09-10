@@ -3,7 +3,7 @@ import { AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild }
 import { UntypedFormControl } from '@angular/forms';
 import { MatSelectChange } from '@angular/material/select';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Languages } from 'src/app/models/languages';
+import { Language, Languages } from 'src/app/models/languages';
 import { LanguageService } from 'src/app/services/language.service';
 import { ScreenService, Theme } from 'src/app/services/screen.service';
 
@@ -60,16 +60,12 @@ export class NavbarComponent implements OnInit  {
     this.toolSelection.setValue(this.languageService.toolPathToTitleMap[activeTool])
   }
 
-  async setSlideToggleIcons() {
-    await new Promise(resolve => setTimeout(resolve, 100))
-    console.log(await document.querySelector('.mdc-switch__icon--on path'))
+  async setSlideToggleIcons(time = 100) {
+    await new Promise(resolve => setTimeout(resolve, time))
     if (this.element){
       await document.querySelector('.mdc-switch__icon--on path')?.setAttribute('d', this.darkModeIconPath);
       document.querySelector('.mdc-switch__icon--off path')?.setAttribute('d', this.lightModeIconPath);
     }
-
-    console.log(document.querySelector('.mdc-switch__icon--on path'))
-
   }
 
   openKofi() {
@@ -82,9 +78,9 @@ export class NavbarComponent implements OnInit  {
 
   // The navigation here and in selectTool is a bit clunky but ActivatedRoute is only populated for the component that matched the route
   // There's probably a better way to do this but it works and is performant enough so it's fine
-  selectLanguage(event: MatSelectChange) {
-    const newUrl = this.router.createUrlTree([event.value.countryCode]).toString()
-    this.languageService.setLanguage(event.value);
+  selectLanguage(language: Language) {
+    const newUrl = this.router.createUrlTree([language.countryCode]).toString()
+    this.languageService.setLanguage(language);
     this._location.go(`${newUrl}/${this.languageService.toolTitleToPathMap[this.toolSelection.value]}`)
   }
 
