@@ -68,8 +68,8 @@
                 <ng-template #extraItemCogMenu>
                     <img class="icon navbar-icon right" [matMenuTriggerFor]="extraItemMenu" (click)="setSlideToggleIcons(50)" src="assets/icons/cog.svg" alt="Settings">
                     <mat-menu class="switch-nested-menu-arrows extra-item" [class.zzzzzzzzzzzzzzzzzzzzzzzzzz]="screenService.microscopicScreen.value" #extraItemMenu="matMenu">
-                        <button mat-menu-item class="top-menu-item menu-item neat-container" (click)="openKofi()">
-                            <img class="webp-icon" src="assets/icons/ko-fi.webp">
+                        <button mat-menu-item class="top-menu-item menu-item neat-container donate-button" (click)="openKofi()">
+                            <img class="webp-icon extra-item" src="assets/icons/ko-fi.webp">
                             {{'donate' | translate:'ui':languageService.language.value}}
                         </button>
                         <ng-template [ngTemplateOutlet]="darkModeToggle"></ng-template>

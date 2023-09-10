@@ -42,6 +42,7 @@ $damage-calc-theme: mat.define-light-theme((
 
 * {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
+  // font-family:'Courier New', Courier, monospace !important;
 }
 html, body {
   color: $font-light-color;
@@ -223,10 +224,12 @@ html, body {
   div.mat-mdc-menu-panel {
     background-color: $ui-medium-dark-color;
     padding: 0 !important;
+    margin-top: $gutter-small;
 
     // Seems to consistently assign the submenu panel id 0
     &#mat-menu-panel-0 {
       position: relative;
+      margin-top: 0;
 
       .mat-mdc-menu-content {
         margin-top: 0;
@@ -262,6 +265,10 @@ html, body {
         padding: $gutter-small $gutter;
         height: 2.5rem;
         min-height: unset;
+
+        &.donate-button {
+          padding-left: 1.375rem;
+        }
       }
 
       > mat-slide-toggle {
@@ -672,6 +679,22 @@ body {
 
 .large-margin-top {
   margin-top: 1.5rem;
+}
+
+.padding-left {
+  padding-left: 1rem;
+}
+
+.tiny-padding-left {
+  padding-left: 0.25rem;
+}
+
+.small-padding-left {
+  padding-left: 0.5rem;
+}
+
+.medium-padding-left {
+  padding-left: 0.75rem;
 }
 
 .flex-centered {
