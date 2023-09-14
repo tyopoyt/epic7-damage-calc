@@ -1,5 +1,7 @@
 ## Changelog
 
+### <strong>Sept 14 2023:</strong>
+- Added Midnight Gala Lilias.   
 ### <strong>Sept 4 2023:</strong>
 - Overhaul Changelog Markdown
 ### <strong>Aug 31 2023:</strong>
