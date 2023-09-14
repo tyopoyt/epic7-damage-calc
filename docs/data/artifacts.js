@@ -171,6 +171,14 @@ const artifacts = {
     exclusive: classType.warrior,
     value: (artiScale) => elements.turn_stack.value() * artiScale
   },
+  hostess_of_the_banquet: {
+    id: 'hostess_of_the_banquet',
+    name: 'Hostess of the Banquet',
+    scale: [0.08, 0.088, 0.096, 0.104, 0.112, 0.12, 0.128, 0.136, 0.144, 0.152, 0.16],
+    type: artifactDmgType.damage,
+    exclusive: classType.thief,
+    applies: (skill) => getSkillType(skill) === skillTypes.single,
+  },
   ignition_cloth_gloves: {
     id: 'ignition_cloth_gloves',
     name: 'Ignition Cloth Gloves',

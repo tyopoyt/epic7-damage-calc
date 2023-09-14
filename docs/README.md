@@ -1,7 +1,7 @@
 ## Changelog
 
 ### <strong>Sept 14 2023:</strong>
-- Added Midnight Gala Lilias.   
+- Added Midnight Gala Lilias and Hostess of the Banquet.   
 ### <strong>Sept 4 2023:</strong>
 - Overhaul Changelog Markdown
 ### <strong>Aug 31 2023:</strong>
