@@ -2,6 +2,8 @@
 .DS_Store
 /node_modules
 epic7-damage-calc/node_modules
+damage-calc/node_modules
+damage-calc/.angular
 /.vscode
 package-lock.json
 package.json
