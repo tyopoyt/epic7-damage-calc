@@ -2714,7 +2714,7 @@ const i18n = {
       silk_old: 'Seda (Pré-Balanceamento)',
       tenebria_old: 'Tenébria (Pré-Balanceamento)',
       // End Pre-Balance
-      abigail: 'Abigail', // TODO: translate when available
+      abigail: 'Abigail',
       achates: 'Acates',
       adin: 'Adine',
       adlay: 'Adlay',
@@ -2761,7 +2761,7 @@ const i18n = {
       blood_blade_karin: 'Karin da Lâmina de Sangue',
       blood_moon_haste: 'Presto da Lua de Sangue',
       briar_witch_iseria: 'Bruxa do Espinheiro Iséria',
-      brieg: 'Brieg', //TODO: translate when available
+      brieg: 'Brig',
       butcher_corps_inquisitor: 'Inquisidor Açougueiro',
       captain_rikoris: 'Capitão Rikoris',
       carmainerose: 'Carmainerosa',
@@ -2845,7 +2845,7 @@ const i18n = {
       ian: 'Ian',
       ilynav: 'Ilynav',
       inferno_khawazu: 'Khawazu Infernal',
-      infinite_horizon_achates: 'Infinite Horizon Achates', // TODO: translate when available
+      infinite_horizon_achates: 'Acates Horizonte Infinito',
       iseria: 'Iséria',
       jack_o: 'Jack-O',
       januta: 'Januta',
@@ -2909,7 +2909,7 @@ const i18n = {
       mui: 'Mui',
       muse_rima: 'Rima Musa',
       muwi: 'Muwi',
-      navy_captain_landy: 'Navy Captain Landy', //TODO: Translate when available
+      navy_captain_landy: 'Landy Capitã da Marinha',
       nemunas: 'Nemunas',
       ocean_breeze_luluca: 'Luluca Aroma de Mar',
       operator_sigret: 'Operadora Sigret',
@@ -2993,7 +2993,7 @@ const i18n = {
       tywin: 'Tywin',
       unbound_knight_arowell: 'Arowell Cavaleira Livre',
       verdant_adin: 'Adine Broto Verdejante',
-      veronica: 'Veronica', // TODO: translate when available
+      veronica: 'Verônica',
       vigilante_leader_glenn: 'Líder Justiceiro Glenn',
       vildred: 'Vildred',
       violet: 'Purpúrio',
@@ -3040,7 +3040,7 @@ const i18n = {
       ancient_sheath: 'Bainha Antiga',
       black_hand_of_the_goddess: 'Mão Negra da Deusa',
       border_coin: 'Moeda Flamejante',
-      broken_will_of_the_high_priest: 'Broken Will of the High Priest', // TODO: translate when available
+      broken_will_of_the_high_priest: 'Vontade Quebrada do Sacerdote',
       daydream_joker: 'Coringa do Devaneio',
       dignus_orb: 'Orbe de Dignus',
       double_edged_decrescent: 'Decrescente de Dois Gumes',
@@ -3049,8 +3049,8 @@ const i18n = {
       els_fist: 'Punho de El',
       elyha_knife: 'Faca de Elyha',
       exorcist_tonfa: 'Tonfas do Exorcista',
-      golden_rose: 'Golden Roase', // TODO: translate when available
-      frame_of_light: 'Frame of Light', // TODO: translate next time
+      golden_rose: 'Rosa Dourada',
+      frame_of_light: 'Borda de Luz',
       hell_cutter: 'Lâmina do Inferno',
       ignition_cloth_gloves: 'Luva de Ignição',
       iron_fan: 'Leque de Ferro',
@@ -3146,7 +3146,7 @@ const i18n = {
       caster_turn: 'Próprio Turno do Herói',
       caster_has_debuff: 'Tem Debuff no Herói',
       caster_has_flame_alchemist: 'Alquimista das Chamas no Herói',
-      caster_has_neo_phantom_sword: 'Neo Phantom Sword no Herói', // TODO: translate when available
+      caster_has_neo_phantom_sword: 'Lâmina da Ilusão',
       caster_immense_power: 'Herói tem Poder Grandioso',
       caster_full_focus: 'Foco Completo do Herói',
       caster_full_fighting_spirit: 'Espírito de Luta Completo',
@@ -3155,7 +3155,7 @@ const i18n = {
       caster_invincible: 'Herói está Invencível',
       caster_vigor: 'Herói com Vigor',
       caster_enrage: 'Herói está Enfurecido',
-      caster_fury: 'Herói com Fúria', // check when available
+      caster_fury: 'Herói com Fúria',
       caster_stealth: 'Herói com Stealth',
       caster_perception: 'Herói com Percepção',
       critical_hit_stack: 'Stack de Acertos Críticos',
@@ -3251,7 +3251,7 @@ const i18n = {
       lethe_call_of_the_abyss: 'Chamado do Abismo',
       lqc_s3_splash: 'S3 Splash',
       ml_celine_nimble_sword: 'Fulgor',
-      navy_captain_landy_salvo_fire: 'Salvo Fire', //TODO: Translate when available 
+      navy_captain_landy_salvo_fire: 'Salva de Tiros',
       s1_extra_attack: 'S1 Ataque Extra',
       s1_soulburn: 'S1 Soulburn',
       s2_wave_2: 'S2 Onda 2',
