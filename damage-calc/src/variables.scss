@@ -25,6 +25,7 @@ $e7-earth-dark-color-filter: invert(57%) sepia(19%) saturate(1650%) hue-rotate(6
 $e7-ice-color: #1eacff;
 $e7-fire-color: #e54332;
 $e7-unique-effect-color: #d9b75e;
+$white-filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(31deg) brightness(101%) contrast(105%);
 
 $navbar-height: 3.5rem;
 $medium-font-size: 1rem;
@@ -37,5 +38,6 @@ $gutter-tiny: 0.125rem;
 
 $language-arrow-top: 0.94rem;
 
+$damage-block-z-index: 1199;
 $navabar-z-index: 1200;
 $popup-z-index: 1201;

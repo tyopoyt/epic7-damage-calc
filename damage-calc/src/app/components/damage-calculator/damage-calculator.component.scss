@@ -1,0 +1,24 @@
+@import "../../../variables";
+
+.header-block {
+    h1 {
+        font-weight: bold;
+        margin: $gutter-jumbo 0 0;
+    }
+}
+
+.damage-block {
+    position: sticky;
+    bottom: 0;
+    z-index: $damage-block-z-index;
+    mat-card {
+        height: 20rem;
+    }
+}
+
+.credits-block {
+    margin-bottom: $gutter;
+    mat-card {
+        height: 20rem;
+    }
+}

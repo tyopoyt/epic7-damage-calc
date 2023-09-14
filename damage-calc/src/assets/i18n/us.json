@@ -222,7 +222,8 @@
       "victorious_flag": "Elemental advantage must be enabled to see benefits from this artifact; doesn't apply to light and dark heroes",
       "yoonryoung_slash": "Dazzling Slash",
       "zio_disappear": "Disappear",
-      "speed_tuner_instructions": "To use the speed tuner, input the current speed of your slower and/or faster unit, as well as any Combat Readiness increase that will be applied.\nThe tuner will calculate how the units' speeds need to be adjusted to guarantee turn order.\n\nIn Faster Unit Pushes mode, set the speed of the slower and/or faster unit and the CR push to calculate the speed needed for the slower unit to move next."
+      "speed_tuner_instructions": "To use the speed tuner, input the current speed of your slower and/or faster unit, as well as any Combat Readiness increase that will be applied.\nThe tuner will calculate how the units' speeds need to be adjusted to guarantee turn order.\n\nIn Faster Unit Pushes mode, set the speed of the slower and/or faster unit and the CR push to calculate the speed needed for the slower unit to move next.",
+      "damage_calculator_updates": "Aug 31 2023 Update: Added Veronica, Brieg, and Urban Shadow Choux. Also updated with the 8/3 balance patch changes. Also added Our Beautiful Seasons.\n\nAug 30 2023 Update: Added Graphs feature.  Click Show Graph to see see a visualization of how increasing (or decreasing) your hero's stats will affect their damage output."
     },
     "titles": {
       "app_title": "E7Calc",

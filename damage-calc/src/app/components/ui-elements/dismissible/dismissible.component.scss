@@ -4,7 +4,7 @@
     display: flex;
     margin-top: $gutter;
     width: 100%;
-    color: whitesmoke;
+    color: white;
 
 
     .dismissible {
@@ -39,6 +39,8 @@
             position: absolute;
             top: $gutter-large;
             right: $gutter-large;
+
+            filter: $white-filter;
         }
     }
 }
