@@ -5944,6 +5944,36 @@ const heroes = {
       }
     }
   },
+  midnight_gala_lilias: {
+    name: 'Midnight Gala Lilias',
+    element: element.earth,
+    classType: classType.thief,
+    baseAtk: 1208,
+    baseHP: 5178,
+    baseDef: 508,
+    form: [elements.caster_max_hp, elements.target_max_hp],
+    skills: {
+      s1: {
+        onlyCrit: true,
+        rate: 1.1,
+        pow: 1,
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        single: true,
+      },
+      s3: {
+        onlyCrit: true,
+        hpScaling: true,
+        rate: 0.5,
+        pow: 1,
+        penetrate:() => elements.caster_max_hp.value() < elements.target_max_hp.value()
+          ? Math.min((elements.target_max_hp.value() - elements.caster_max_hp.value()) * 0.0000625, 1)
+          : 0,
+        penetrateTip: () => ({ caster_vs_target_hp_diff: 6.25 }),
+        enhance: [0.05, 0.05, 0, 0.1, 0.1],
+        single: true,
+      },
+    }
+  },
   mighty_scout: {
     name: 'Mighty Scout (Mouse)',
     element: element.earth,
