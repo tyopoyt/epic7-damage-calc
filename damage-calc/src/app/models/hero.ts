@@ -6,6 +6,7 @@ import { DamageFormData } from "./forms";
 import * as _ from 'lodash-es'
 import { DamageService } from "../services/damage.service";
 import { DoT, Skill } from "./skill";
+import { LanguageService } from "../services/language.service";
 
 export enum HeroElement {
     fire = 'fire',
@@ -22,7 +23,7 @@ export enum HeroClass {
     soul_weaver = 'soul_weaver',
     warrior = 'warrior'
 }
-
+//TODO: refactor atk to attack and crit to critDamage
 export class Hero {
     id: string;
     element: HeroElement;
@@ -43,8 +44,17 @@ export class Hero {
     barrier?: Function;
     barrier2?: Function;
     barrierEnhance?: string;
-    
-  constructor(id: string, artifact: Artifact, inputValues: DamageFormData, private dataService: DataService, private damageService: DamageService) {
+
+  //TODO make this class not require any services
+  constructor(
+      id: string,
+      artifact: Artifact,
+      inputValues: DamageFormData,
+      private dataService: DataService,
+      private damageService: DamageService,
+      private languageService: LanguageService
+    )
+  {
     this.id = id;
     this.atk = inputValues.attack;
     this.crit = inputValues.critDamage;
@@ -66,25 +76,30 @@ export class Hero {
     this.target = new Target(artifact, this.dataService, this.damageService);
   }
 
-  getDamage(skillId, soulburn = false, isExtra = false) {
-    const critDmgBuff = inputValues.critDmgUp ? battleConstants.critDmgUp : 0.0;
+  getSkillEnhanceMult(skill: Skill) {
+    let mult = 1.0;
 
-    const skill = this.skills[skillId];
-    const hit = this.offensivePower(skillId, soulburn, isExtra, this) * this.target.defensivePower(skill);
-    const critDmg = Math.min((this.crit / 100) + critDmgBuff, 3.5)
-        + (skill.critDmgBoost ? skill.critDmgBoost(soulburn) : 0)
-        + (this.artifact.getCritDmgBoost() || 0)
-        + (elements.caster_perception.value() ? 0.15 : 0);
-    return {
-      crit: skill.noCrit || skill.onlyMiss ? null : Math.round(hit * critDmg + (skill.fixed !== undefined ? skill.fixed(hitTypes.crit) : 0) + this.getAfterMathDamage(skillId, hitTypes.crit)),
-      crush: skill.noCrit || skill.onlyCrit || skill.onlyMiss ? null : Math.round(hit * 1.3 + (skill.fixed !== undefined ? skill.fixed(hitTypes.crush) : 0) + this.getAfterMathDamage(skillId, hitTypes.crush)),
-      normal: skill.onlyCrit || skill.onlyMiss ? null : Math.round(hit + (skill.fixed !== undefined ? skill.fixed(hitTypes.normal) : 0) + this.getAfterMathDamage(skillId, hitTypes.normal)),
-      miss: skill.noMiss ? null : Math.round(hit * 0.75 + (skill.fixed !== undefined ? skill.fixed(hitTypes.miss) : 0) + this.getAfterMathDamage(skillId, hitTypes.miss))
-    };
+    let skillToUse = skill;
+
+    if (!skill.enhance.length && skill.enhanceFrom) {
+      skillToUse = _.get(this.skills, skill.enhanceFrom);
+    }
+
+    if (skillToUse.enhance) {
+      const enhanceLevel =  Number(_.get(this.dataService.damageInputValues, `molagora${skillToUse.id.toUpperCase()}`, '0'));
+      for (let i = 0; i < enhanceLevel; i++) {
+        mult += skillToUse.enhance[i];
+      }
+    }
+
+    mult += skill.exclusiveEquipment();
+
+    return mult;
   }
 
+  //TODO: check if skill will ever come in here undefined/null
   getAtk(skill: Skill) {
-    let atk = (skill !== undefined && skill.atk !== undefined) ? skill.atk() : this.atk;
+    let atk = skill.atk() || this.atk;
 
     if (this.innateAtkUp !== undefined) {
       atk = atk / (1 + this.innateAtkUp());
@@ -92,8 +107,8 @@ export class Hero {
 
     let atkImprint = 0;
     let atkMod = 1;
-    if (skill === undefined || skill.noBuff !== true) {
-      atkImprint = this.baseAtk * (inputValues.atkPcImprint / 100);
+    if (!skill.noBuff) {
+      atkImprint = this.baseAtk * (this.dataService.damageInputValues.attackImprint / 100);
       atkMod = 1
           + this.damageService.getGlobalAtkMult()
           + (this.atkUp !== undefined ? this.atkUp() - 1 : 0)
@@ -123,72 +138,6 @@ export class Hero {
            + (document.getElementById('caster-enrage')?.checked ? battleConstants['casterRage'] - 1 : 0));
     }
     return elements.caster_speed.value();
-  }
-
-  offensivePower(skillId, soulburn, isExtra, hero) {
-    const skill = this.skills[skillId];
-
-    const rate = (typeof skill.rate === 'function') ? skill.rate(soulburn) : skill.rate;
-    const flatMod = skill.flat ? skill.flat(soulburn, hero) : 0;
-    const flatMod2 = this.artifact.getFlatMult() + (skill.flat2 !== undefined ? skill.flat2() : 0);
-
-    const pow = (typeof skill.pow === 'function') ? skill.pow(soulburn) : skill.pow;
-    const skillEnhance = this.getSkillEnhanceMult(skillId);
-    let elemAdv = 1.0;
-    if (inputValues.elemAdv || (typeof skill.elementalAdvantage === 'function') && skill.elementalAdvantage() === true) {
-      elemAdv = battleConstants.elemAdv;
-    }
-    const target = inputValues.target ? battleConstants.target : 1.0;
-
-    let dmgMod = 1.0
-        + getGlobalDamageMult(this, skill)
-        + this.bonus / 100
-        + this.artifact.getDamageMultiplier(skill, skillId, isExtra)
-        + (skill.mult ? skill.mult(soulburn, this) - 1 : 0);
-
-    return ((this.getAtk(skillId) * rate + flatMod) * dmgConst + flatMod2) * pow * skillEnhance * elemAdv * target * dmgMod;
-  }
-
-  getSkillEnhanceMult(skillId) {
-    const skill = this.skills[skillId];
-    let mult = 1.0;
-
-    let enhancementSkillId = skillId;
-    let enhancement = skill.enhance;
-
-    if (!enhancement && skill.enhance_from) {
-      enhancementSkillId = skill.enhance_from;
-      enhancement = this.skills[skill.enhance_from].enhance;
-    }
-
-    if (enhancement) {
-      const enhanceLevel = Number(document.getElementById(`molagora-${enhancementSkillId}`).value);
-      for (let i = 0; i < enhanceLevel; i++) {
-        mult += enhancement[i];
-      }
-    }
-
-    if (skill.exclusiveEquipment !== undefined) {
-      mult += skill.exclusiveEquipment();
-    }
-
-    return mult;
-  }
-
-  getAfterMathDamage(skillId, hitType) {
-    const skill = this.skills[skillId];
-    const detonation = this.getDetonateDamage(skillId);
-
-    let artiDamage = this.getAfterMathArtifactDamage(skillId);
-    if (artiDamage === null) {
-      artiDamage = 0;
-    }
-
-
-    const skillDamage = this.getAfterMathSkillDamage(skillId, hitType);
-    const skillExtraDmg = skill.extraDmg !== undefined ? Math.round(skill.extraDmg(hitType)) : 0;
-
-    return detonation + artiDamage + skillDamage + skillExtraDmg;
   }
 
   getAfterMathSkillDamage(skillId, hitType) {
@@ -222,31 +171,6 @@ export class Hero {
     }
 
     return null;
-  }
-
-  getDetonateDamage(skillId) {
-    const skill = this.skills[skillId];
-
-    const dotTypes = Array.isArray(skill.detonate) ? skill.detonate : [skill.detonate];
-    let damage = 0;
-
-    if (dotTypes.includes(dot.bleed)) damage += elements.target_bleed_detonate.value() * skill.detonation() * this.getDotDamage(dot.bleed);
-    if (dotTypes.includes(dot.burn)) damage += elements.target_burn_detonate.value() * skill.detonation() * this.getDotDamage(dot.burn);
-    if (dotTypes.includes(dot.bomb)) damage += elements.target_bomb_detonate.value() * skill.detonation() * this.getDotDamage(dot.bomb);
-
-    return damage;
-  }
-
-  getDotDamage(type) {
-    switch (type) {
-    case dot.bleed:
-      return this.getAtk() * 0.3 * dmgConst * this.target.defensivePower({ penetrate: () => 0.7 }, true);
-    case dot.burn:
-      return this.getAtk() * 0.6 * dmgConst * (elements.beehoo_passive.value() ? heroConstants.beehooBurnMult : 1) * this.target.defensivePower({ penetrate: () => 0.7 }, true);
-    case dot.bomb:
-      return this.getAtk() * 1.5 * dmgConst * this.target.defensivePower({ penetrate: () => 0.7 }, true);
-    default: return 0;
-    }
   }
 
   getBarrierStrength() {

@@ -1,5 +1,4 @@
 import * as _ from 'lodash-es'
-import { LanguageService } from '../services/language.service';
 
 export enum DoT {
     bleed = 'bleed',
@@ -26,12 +25,15 @@ export class Skill {
     critDmgBoostTip: Function;
     detonation: Function;
     elementalAdvantage: Function;
+    enhance: number[];
+    enhanceFrom: string;
     exclusiveEquipment: Function;
     extraDmg: Function;
     extraDmgTip: Function;
     fixed: Function;
     fixedTip: Function;
     flat: Function;
+    flat2: Function;
     flatTip: Function;
     ignoreDamageTransfer: Function;
     isAOE: Function;
@@ -42,30 +44,49 @@ export class Skill {
     penetrationTip: Function;
     pow: Function;
     rate: Function;
+    atk: Function;
+    noBuff: boolean; //TODO: possible remove this and just use atk (atkToUse)
+    noCrit: boolean;
+    onlyCrit: boolean;
+    onlyMiss: boolean;
+    noMiss: boolean;
+    detonate: DoT[];
 
-    constructor(data: any, private languageService: LanguageService) {
+    // TODO: refactor things like isAOE to be boolean not fxn
+    // TODO: refactor atk to attackToUse
+    constructor(data: any) {
         this.id = _.get(data, 'id', 's1');
-        this.afterMath = _.get(data, 'mult', () => {penetrate: 0 }); //TODO: define a type for this
-        this.critDmgBoost = _.get(data, 'mult', () => 0);
-        this.critDmgBoostTip = _.get(data, 'mult', () => {});
-        this.detonation = _.get(data, 'mult', () => 0);
-        this.elementalAdvantage = _.get(data, 'mult', () => false);
-        this.exclusiveEquipment = _.get(data, 'mult', () => 0);
-        this.extraDmg = _.get(data, 'mult', () => 0);
-        this.extraDmgTip = _.get(data, 'mult', () => {});
-        this.fixed = _.get(data, 'mult', () => 0);
-        this.fixedTip = _.get(data, 'mult', () => {});
-        this.flat = _.get(data, 'mult', (soulburn: boolean) => 0); //TODO: give these appropriate params
-        this.flatTip = _.get(data, 'mult', () => {});
+        this.afterMath = _.get(data, 'afterMath', () => null); //TODO: define a type for this
+        this.critDmgBoost = _.get(data, 'critDmgBoost', () => 0);
+        this.critDmgBoostTip = _.get(data, 'critDmgBoostTip', () => null);
+        this.detonation = _.get(data, 'detonation', () => 0);
+        this.elementalAdvantage = _.get(data, 'elementalAdvantage', () => false);
+        this.enhance = _.get(data, 'enhance', []);
+        this.enhanceFrom = _.get(data, 'enhanceFrom', '');
+        this.exclusiveEquipment = _.get(data, 'exclusiveEquipment', () => 0);
+        this.extraDmg = _.get(data, 'extraDmg', () => 0);
+        this.extraDmgTip = _.get(data, 'extraDmgTip', () => null);
+        this.fixed = _.get(data, 'fixed', () => 0);
+        this.fixedTip = _.get(data, 'fixedTip', () => null);
+        this.flat = _.get(data, 'flat', (soulburn: boolean) => 0); //TODO: give these appropriate params
+        this.flat2 = _.get(data, 'flat2', (soulburn: boolean) => 0); // TODO: remove this if unncessary (only sc alexa has it)
+        this.flatTip = _.get(data, 'flatTip', () => null);
         this.ignoreDamageTransfer = _.get(data, 'ignoreDamageTransfer', () => false);
         this.isAOE = _.get(data, 'aoe', () => false);
         this.isSingle = _.get(data, 'single', () => false);
         this.mult = _.get(data, 'mult', () => 0);
-        this.multTip = _.get(data, 'mult', () => {});
+        this.multTip = _.get(data, 'multTip', () => null);
         this.penetration = _.get(data, 'penetrate', () => 0);
-        this.penetrationTip = _.get(data, 'mult', () => {});
+        this.penetrationTip = _.get(data, 'penetrationTip', () => null);
         this.pow = _.get(data, 'pow', () => 0);
         this.rate = _.get(data, 'rate', () => 0);
+        this.atk = _.get(data, 'atk', () => 0);
+        this.noBuff = _.get(data, 'noBuff', false);
+        this.noCrit = _.get(data, 'noCrit', false);
+        this.onlyCrit = _.get(data, 'onlyCrit', false);
+        this.onlyMiss = _.get(data, 'onlyMiss', false);
+        this.noMiss = _.get(data, 'noMiss', false);
+        this.detonate = _.get(data, 'detonate', null);
     }
 
     //TODO: get rid of this if unused
@@ -74,28 +95,4 @@ export class Skill {
         if (this.isAOE()) return SkillType.aoe;
         return undefined;
     };
-
-    getModifiers(soulburn = false) {
-        return {
-          rate: this.rate(soulburn),
-          pow: this.pow(soulburn),
-          mult: this.mult(soulburn, this) - 1, // TODO: change anything checking for this to be null to check for -1
-          multTip: this.multTip !== undefined ? this.languageService.getSkillModTip(this.multTip(soulburn)) : '',
-          afterMathDmg: this.afterMath !== undefined ? this.getAfterMathSkillDamage(this.id, HitType.crit) : null,
-          afterMathFormula: this.afterMath !== undefined ? this.afterMath(soulburn) : null,
-          critBoost: this.critDmgBoost ? this.critDmgBoost(soulburn) : null,
-          critBoostTip: this.critDmgBoostTip ? getSkillModTip(this.critDmgBoostTip(soulburn)) : '',
-          detonation: this.detonation !== undefined ? this.detonation() - 1 : null,
-          elemAdv: (typeof this.elementalAdvantage === 'function') ? this.elementalAdvantage() : null,
-          exEq: this.exclusiveEquipment !== undefined ? this.exclusiveEquipment() : null,
-          extraDmg: this.extraDmg !== undefined ? this.extraDmg() : null,
-          extraDmgTip: this.extraDmgTip !== undefined ? getSkillModTip(this.extraDmgTip(soulburn)) : '',
-          fixed: this.fixed !== undefined ? this.fixed(hitTypes.crit) : null,
-          fixedTip: this.fixedTip !== undefined ? getSkillModTip(this.fixedTip()) : null,
-          flat: this.flat ? this.flat(soulburn, this) : null,
-          flatTip: this.flatTip !== undefined ? getSkillModTip(this.flatTip(soulburn)) : '',
-          pen: this.penetration ? this.penetration() : null,
-          penTip: this.penetrationTip !== undefined ? getSkillModTip(this.penetrationTip(soulburn)) : '',
-        };
-      }
 }

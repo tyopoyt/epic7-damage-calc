@@ -21,6 +21,7 @@ export class Artifact {
     applies: Function;
     value: Function;
     scale: number[];
+    flat: Function;
 
     constructor(data: any, private dataService: DataService) {
         this.id = _.get(data, 'id', null);
@@ -29,6 +30,7 @@ export class Artifact {
         this.scale = _.get(data, 'scale', null);
         this.applies = _.get(data, 'applies', (skill: Skill) => false);
         this.value = _.get(data, 'value', () => 0); //TODO: add appropriate inputs to these fxns
+        this.flat = _.get(data, 'flat', () => 0);
     }
 
     getDefensePenetration(skill: Skill): number {
@@ -41,5 +43,29 @@ export class Artifact {
 
     getValue(): number {
         return this.scale ? this.scale[Math.floor(this.dataService.damageInputValues.artifactLevel / 3)] : this.value();
+    }
+
+    getFlatMult() {
+        if (this.type !== ArtifactDamageType.flat) {
+            return 0;
+        }
+        return this.flat(this.getValue());
+    }
+
+    getDamageMultiplier(skill: Skill, isExtra: boolean) {
+        if(!this.applies(skill)) return 0;
+        if (this.id === undefined || this.type !== ArtifactDamageType.damage) {
+          return 0;
+        }
+        //TODO: check if this needs to be refactored
+        return typeof this.value === 'function' ? this.value(this.getValue(), skill, isExtra) : this.getValue();
+    }
+
+    getCritDmgBoost() {
+        if (this.id === undefined || this.type !== ArtifactDamageType.critDmgBoost) {
+          return 0;
+        }
+        //TODO: check if this needs to be refactored
+        return this.value ? this.value(this.getValue()) : this.getValue();
     }
 }
