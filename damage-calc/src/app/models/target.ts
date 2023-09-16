@@ -7,9 +7,10 @@ export class Target {
     defense: number;
     casterArtifact: Artifact;
 
+    //TODO: make this class not require any services
     constructor(casterArtifact: Artifact, private dataService: DataService, private damageService: DamageService) {
       const defMult = this.damageService.getGlobalDefMult() + this.dataService.damageInputValues.defensePercentUp / 100;
-      this.defense = this.dataService.damageInputValues.defense * defMult;
+      this.defense = this.dataService.damageInputValues.targetDefense * defMult;
       this.casterArtifact = casterArtifact;
     }
   

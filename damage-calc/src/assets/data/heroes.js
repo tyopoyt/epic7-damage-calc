@@ -4,7 +4,7 @@
  * fixed damage is used for flat extra damage (rimuru)
  * flat damage is used for damage scaling with stats other than attack (alencia)
  */
-
+//TODO: typescriptify this
 const dot = {
   bleed: 'bleed',
   burn: 'burn',

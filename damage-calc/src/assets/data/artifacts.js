@@ -1,4 +1,6 @@
-const artifactDmgType = {
+import { HeroClass } from "src/app/models/hero";
+//TODO: typescriptify this
+export const artifactDmgType = {
   damage: 'damage',
   penetrate: 'penetrate',
   aftermath: 'aftermath',
@@ -8,20 +10,20 @@ const artifactDmgType = {
   dot: 'dot'
 };
 
-const artifacts = {
+export const artifacts = {
   air_to_surface_missile_misha: {
     id: 'air_to_surface_missile_misha',
     name: 'Air-to-Surface Missile: MISHA',
     scale: [0.15, 0.17, 0.18, 0.2, 0.21, 0.23, 0.24, 0.26, 0.27, 0.29, 0.3],
     type: artifactDmgType.critDmgBoost,
-    exclusive: classType.ranger,
+    exclusive: HeroClass.ranger,
   },
   a_little_queens_crown: {
     id: 'a_little_queens_crown',
     name: 'A Little Queen\'s Huge Crown',
     scale: [0.16, 0.176, 0.192, 0.208, 0.224, 0.24, 0.256, 0.272, 0.288, 0.304, 0.32],
     type: artifactDmgType.damage,
-    exclusive: classType.warrior,
+    exclusive: HeroClass.warrior,
     form: [elements.target_has_barrier],
     applies: (skill) => getSkillType(skill) === skillTypes.single,
     value: (artiScale) => artiScale / (elements.target_has_barrier.value() ? 1 : 2),
@@ -37,7 +39,7 @@ const artifacts = {
     name: 'An Offer You Can\'t Refuse',
     scale: [0.1, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2],
     type: artifactDmgType.penetrate,
-    exclusive: classType.ranger,
+    exclusive: HeroClass.ranger,
     applies: (skill) => getSkillType(skill) === skillTypes.single,
   },
   ambrote: {
@@ -45,7 +47,7 @@ const artifacts = {
     name: 'Ambrote',
     type: artifactDmgType.damage,
     scale: [0.1, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2],
-    exclusive: classType.ranger,
+    exclusive: HeroClass.ranger,
     applies: (skill, skillId) => skillId === 's1' || skill.s1_benefits,
   },
   ancient_sheath: {
@@ -60,7 +62,7 @@ const artifacts = {
     name: 'Black Hand of the Goddess',
     scale: [0.12, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2, 0.21, 0.22, 0.24],
     type: artifactDmgType.critDmgBoost,
-    exclusive: classType.mage,
+    exclusive: HeroClass.mage,
     form: [elements.attack_skill_stack_5],
     value: (artiScale) => artiScale - ((artiScale / 10) * elements.attack_skill_stack_5.value()),
   },
@@ -70,7 +72,7 @@ const artifacts = {
     type: artifactDmgType.attack,
     scale: [0.075, 0.0825, 0.09, 0.0975, 0.105, 0.1125, 0.12, 0.1275, 0.135, 0.1425, 0.15],
     form: [elements.non_attack_skill_stack_3],
-    exclusive: classType.warrior,
+    exclusive: HeroClass.warrior,
     value: (artiScale) => elements.non_attack_skill_stack_3.value() * artiScale
   },
   broken_will_of_the_priest: {
@@ -78,7 +80,7 @@ const artifacts = {
     name: 'Broken Will of the Priest',
     scale: [0.08, 0.088, 0.096, 0.104, 0.112, 0.12, 0.128, 0.136, 0.144, 0.152, 0.16],
     type: artifactDmgType.penetrate,
-    exclusive: classType.knight
+    exclusive: HeroClass.knight
   },
   daydream_joker: {
     id: 'daydream_joker',
@@ -93,7 +95,7 @@ const artifacts = {
     name: 'Dignus Orb',
     value: 0.15,
     type: artifactDmgType.damage,
-    exclusive: classType.mage,
+    exclusive: HeroClass.mage,
   },
   double_edged_decrescent: {
     id: 'double_edged_decrescent',
@@ -101,7 +103,7 @@ const artifacts = {
     type: artifactDmgType.attack,
     scale: [0.05, 0.055, 0.06, 0.065, 0.07, 0.075, 0.08, 0.085, 0.09, 0.095, 0.1],
     form: [elements.single_attack_stack_3],
-    exclusive: classType.thief,
+    exclusive: HeroClass.thief,
     value: (artiScale) => elements.single_attack_stack_3.value() * artiScale
   },
   draco_plate: {
@@ -109,7 +111,7 @@ const artifacts = {
     name: 'Draco Plate',
     scale: [0.15, 0.17, 0.18, 0.2, 0.21, 0.23, 0.24, 0.26, 0.27, 0.29, 0.3],
     type: artifactDmgType.critDmgBoost,
-    exclusive: classType.warrior
+    exclusive: HeroClass.warrior
   },
   dux_noctis: {
     id: 'dux_noctis',
@@ -117,7 +119,7 @@ const artifacts = {
     type: artifactDmgType.attack,
     scale: [0.02, 0.022, 0.024, 0.026, 0.028, 0.03, 0.032, 0.034, 0.036, 0.038, 0.04],
     form: [elements.critical_hit_stack_6],
-    exclusive: classType.ranger,
+    exclusive: HeroClass.ranger,
     value: (artiScale) => (artiScale * 3) + (elements.critical_hit_stack_6.value() * artiScale)
   },
   els_fist: {
@@ -126,7 +128,7 @@ const artifacts = {
     type: artifactDmgType.attack,
     scale: [0.25, 0.275, 0.3, 0.325, 0.35, 0.375, 0.4, 0.425, 0.45, 0.475, 0.5],
     form: [elements.caster_hp_pc],
-    exclusive: classType.warrior,
+    exclusive: HeroClass.warrior,
     value: (artiScale) => {
       if (elements.caster_hp_pc.value() < 25) return artiScale;
       if (elements.caster_hp_pc.value() < 50) return artiScale * 2 / 3;
@@ -145,14 +147,14 @@ const artifacts = {
     name: 'Elyha\'s Knife',
     scale: [0.1, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2],
     type: artifactDmgType.penetrate,
-    exclusive: classType.thief
+    exclusive: HeroClass.thief
   },
   frame_of_light: {
     id: 'frame_of_light',
     name: 'Frame of Light',
     scale: [0.08, 0.088, 0.096, 0.104, 0.112, 0.12, 0.128, 0.136, 0.144, 0.152, 0.16],
     type: artifactDmgType.damage,
-    exclusive: classType.mage,
+    exclusive: HeroClass.mage,
     applies: (skill) => getSkillType(skill) === skillTypes.single,
   },
   golden_rose: {
@@ -160,7 +162,7 @@ const artifacts = {
     name: 'Golden Rose',
     scale: [0.08, 0.088, 0.096, 0.104, 0.112, 0.12, 0.128, 0.136, 0.144, 0.152, 0.16],
     type: artifactDmgType.damage,
-    exclusive: classType.warrior
+    exclusive: HeroClass.warrior
   },
   hell_cutter: {
     id: 'hell_cutter',
@@ -168,7 +170,7 @@ const artifacts = {
     type: artifactDmgType.attack,
     scale: [0.02, 0.022, 0.024, 0.026, 0.028, 0.03, 0.032, 0.034, 0.036, 0.038, 0.04],
     form: [elements.turn_stack],
-    exclusive: classType.warrior,
+    exclusive: HeroClass.warrior,
     value: (artiScale) => elements.turn_stack.value() * artiScale
   },
   ignition_cloth_gloves: {
@@ -176,21 +178,21 @@ const artifacts = {
     name: 'Ignition Cloth Gloves',
     type: artifactDmgType.attack,
     scale: [0.07, 0.077, 0.084, 0.091, 0.098, 0.105, 0.112, 0.119, 0.126, 0.133, 0.14],
-    exclusive: classType.mage,
+    exclusive: HeroClass.mage,
   },
   iron_fan: {
     id: 'iron_fan',
     name: 'Iron Fan',
     scale: [0.16, 0.176, 0.192, 0.208, 0.224, 0.24, 0.256, 0.272, 0.288, 0.304, 0.32],
     type: artifactDmgType.damage,
-    exclusive: classType.ranger,
+    exclusive: HeroClass.ranger,
   },
   jack_o_symbol: {
     id: 'jack_o_symbol',
     name: 'Jack-O\'s Symbol',
     scale: [0.12, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2, 0.21, 0.22, 0.24],
     type: artifactDmgType.damage,
-    exclusive: classType.warrior,
+    exclusive: HeroClass.warrior,
     applies: (skill) => (getSkillType(skill) === skillTypes.single) && elements.target_has_debuff.value() !== false,
   },
   junkyard_dog:{
@@ -198,21 +200,21 @@ const artifacts = {
     name: 'Junkyard Dog',
     type: artifactDmgType.dot,
     dot: [dot.burn],
-    exclusive: classType.warrior
+    exclusive: HeroClass.warrior
   },
   kaladra: {
     id: 'kaladra',
     name: 'Kal\'adra',
     scale: [0.15, 0.17, 0.18, 0.2, 0.21, 0.23, 0.24, 0.26, 0.27, 0.28, 0.3],
     type: artifactDmgType.damage,
-    exclusive: classType.mage
+    exclusive: HeroClass.mage
   },
   last_teatime: {
     id: 'last_teatime',
     name: 'Last Teatime',
     scale: [0.07, 0.077, 0.084, 0.091, 0.098, 0.105, 0.112, 0.119, 0.126, 0.133, 0.14],
     type: artifactDmgType.damage,
-    exclusive: classType.mage,
+    exclusive: HeroClass.mage,
     applies: (skill) => getSkillType(skill) === skillTypes.aoe,
   },
   mature_sunglasses: {
@@ -220,14 +222,14 @@ const artifacts = {
     name: 'Mature Sunglasses',
     scale: [0.15, 0.17, 0.18, 0.2, 0.21, 0.23, 0.24, 0.26, 0.27, 0.29, 0.3],
     type: artifactDmgType.critDmgBoost,
-    exclusive: classType.knight
+    exclusive: HeroClass.knight
   },
   merciless_glutton: {
     id: 'merciless_glutton',
     name: 'Merciless Glutton',
     scale: [0.08, 0.088, 0.096, 0.104, 0.112, 0.12, 0.128, 0.136, 0.144, 0.152, 0.16],
     type: artifactDmgType.damage,
-    exclusive: classType.warrior,
+    exclusive: HeroClass.warrior,
     applies: (skill) => getSkillType(skill) === skillTypes.single,
   },
   portrait_of_the_saviors: {
@@ -251,7 +253,7 @@ const artifacts = {
     maxHP: 1.1,
     scale: [0.05, 0.055, 0.06, 0.065, 0.07, 0.075, 0.08, 0.085, 0.09, 0.095, 0.1],
     value:(artiScale, skill, isExtra) => (skill.isExtra || isExtra) ? artiScale * 2 : artiScale,
-    exclusive: classType.warrior,
+    exclusive: HeroClass.warrior,
     type: artifactDmgType.damage
   },
   prelude_to_a_new_era: {
@@ -265,7 +267,7 @@ const artifacts = {
     name: 'Otherworldly Machinery',
     scale: [0.08, 0.088, 0.096, 0.104, 0.112, 0.12, 0.128, 0.136, 0.144, 0.152, 0.16],
     type: artifactDmgType.damage,
-    exclusive: classType.ranger,
+    exclusive: HeroClass.ranger,
     applies: (skill) => getSkillType(skill) === skillTypes.aoe,
   },
   our_beautiful_seasons: {
@@ -279,7 +281,7 @@ const artifacts = {
     name: 'Radiant Forever',
     scale: [0.25, 0.275, 0.3, 0.325, 0.35, 0.375, 0.4, 0.425, 0.45, 0.475, 0.5],
     type: artifactDmgType.damage,
-    exclusive: classType.mage,
+    exclusive: HeroClass.mage,
     applies: (skill) => getSkillType(skill) === skillTypes.aoe
   },
   reingar_special_drink: {
@@ -288,7 +290,7 @@ const artifacts = {
     type: artifactDmgType.aftermath,
     atkPercent: 0.3,
     penetrate: 0.7,
-    exclusive: classType.ranger,
+    exclusive: HeroClass.ranger,
     applies: (skill) => getSkillType(skill) === skillTypes.aoe
   },
   rocket_punch_gauntlet: {
@@ -299,7 +301,7 @@ const artifacts = {
     defenseScaling: true,
     defPercent: 1.0,
     penetrate: 0.7,
-    exclusive: classType.knight,
+    exclusive: HeroClass.knight,
     applies: (skill) => getSkillType(skill) === skillTypes.single,
   },
   samsara_prayer_beads: {
@@ -307,7 +309,7 @@ const artifacts = {
     name: 'Samsara Prayer Beads',
     value: 0.1,
     type: artifactDmgType.damage,
-    exclusive: classType.warrior,
+    exclusive: HeroClass.warrior,
     applies: (skill) => getSkillType(skill) === skillTypes.single,
   },
   scroll_of_shadows: {
@@ -315,13 +317,13 @@ const artifacts = {
     name: 'Scroll of Shadows',
     scale: [0.08, 0.088, 0.096, 0.104, 0.112, 0.12, 0.128, 0.136, 0.144, 0.152, 0.16],
     type: artifactDmgType.damage,
-    exclusive: classType.mage
+    exclusive: HeroClass.mage
   },
   severed_horn_wand: {
     id: 'severed_horn_wand',
     name: 'Severed Horn Wand',
     type: artifactDmgType.attack,
-    exclusive: classType.mage,
+    exclusive: HeroClass.mage,
     value: () => 0.15
   },
   shepherd_of_the_hollow: {
@@ -329,7 +331,7 @@ const artifacts = {
     name: 'Shepherd of the Hollow',
     scale: [0.12, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2, 0.21, 0.22, 0.24],
     type: artifactDmgType.damage,
-    exclusive: classType.thief,
+    exclusive: HeroClass.thief,
     form: [elements.caster_hp_pc],
     value: (artiScale) => {
       if (elements.caster_hp_pc.value() < 25) return artiScale;
@@ -342,7 +344,7 @@ const artifacts = {
     id: 'sigurd_scythe',
     name: 'Sigurd Scythe',
     type: artifactDmgType.attack,
-    exclusive: classType.warrior,
+    exclusive: HeroClass.warrior,
     value: () => 0.25
   },
   spear_of_a_new_dawn: {
@@ -351,7 +353,7 @@ const artifacts = {
     type: artifactDmgType.aftermath,
     atkPercent: 0.4,
     penetrate: 0.7,
-    exclusive: classType.knight,
+    exclusive: HeroClass.knight,
     applies: (skill, skillId) => skillId === 's1' || skill.s1_benefits,
   },
   spear_of_purification: {
@@ -359,14 +361,14 @@ const artifacts = {
     name: 'Spear of Purification',
     type: artifactDmgType.attack,
     scale: [0.1, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2],
-    exclusive: classType.warrior,
+    exclusive: HeroClass.warrior,
   },
   star_of_the_deep_sea:{
     id: 'star_of_the_deep_sea',
     name: 'Star of the Deep Sea',
     type: artifactDmgType.dot,
     dot: [dot.bomb],
-    exclusive: classType.ranger
+    exclusive: HeroClass.ranger
   },
   sword_of_cycling_seasons: {
     id: 'sword_of_cycling_seasons',
@@ -383,14 +385,14 @@ const artifacts = {
     name: 'Sword of Summer Twilight',
     scale: [0.1, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2],
     type: artifactDmgType.penetrate,
-    exclusive: classType.thief,
+    exclusive: HeroClass.thief,
     applies: (skill) => getSkillType(skill) === skillTypes.aoe,
   },
   sword_of_winter_shadow: {
     id: 'sword_of_winter_shadow',
     name: 'Sword of Winter Shadow',
     type: artifactDmgType.attack,
-    exclusive: classType.thief,
+    exclusive: HeroClass.thief,
     value: () => 0.15
   },
   sword_of_the_morning: {
@@ -405,7 +407,7 @@ const artifacts = {
     type: artifactDmgType.attack,
     scale: [0.02, 0.022, 0.024, 0.026, 0.028, 0.03, 0.032, 0.034, 0.036, 0.038, 0.04],
     form: [elements.aoe_stack_5],
-    exclusive: classType.mage,
+    exclusive: HeroClass.mage,
     value: (artiScale) => elements.aoe_stack_5.value() * artiScale
   },
   time_matter: {
@@ -413,7 +415,7 @@ const artifacts = {
     name: 'Time Matter',
     scale: [0.12, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2, 0.21, 0.22, 0.24],
     type: artifactDmgType.damage,
-    exclusive: classType.mage,
+    exclusive: HeroClass.mage,
     value: (artiScale) => (artiScale / 2) + artiScale,
   },
   torn_sleeve:{
@@ -421,7 +423,7 @@ const artifacts = {
     name: 'Torn Sleeve',
     type: artifactDmgType.dot,
     dot: [dot.bleed],
-    exclusive: classType.thief
+    exclusive: HeroClass.thief
   },
   uberius_tooth: {
     id: 'uberius_tooth',
@@ -429,7 +431,7 @@ const artifacts = {
     type: artifactDmgType.aftermath,
     atkPercent: 0.45,
     penetrate: 0.7,
-    exclusive: classType.warrior,
+    exclusive: HeroClass.warrior,
     applies: (skill) => getSkillType(skill) === skillTypes.single,
   },
   victorious_flag: {
@@ -451,7 +453,7 @@ const artifacts = {
     type: artifactDmgType.attack,
     scale: [0.05, 0.055, 0.06, 0.065, 0.07, 0.075, 0.08, 0.085, 0.09, 0.095, 0.1],
     form: [elements.turn_stack_3],
-    exclusive: classType.thief,
+    exclusive: HeroClass.thief,
     value: (artiScale) => elements.turn_stack_3.value() * artiScale
   },
   wind_rider: {
@@ -460,7 +462,7 @@ const artifacts = {
     type: artifactDmgType.attack,
     scale: [0.1, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2],
     additional: [0.2, 0.22, 0.24, 0.26, 0.28, 0.3, 0.32, 0.34, 0.36, 0.38, 0.4],
-    exclusive: classType.thief,
+    exclusive: HeroClass.thief,
     form: [elements.enemy_defeated],
     value: (input) => {
       return input + (elements.enemy_defeated.value() ? artifacts.wind_rider.additional[artifacts.wind_rider.scale.indexOf(input)] : 0);
@@ -471,6 +473,6 @@ const artifacts = {
     name: 'Wings of Light and Shadow',
     scale: [0.1, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2],
     type: artifactDmgType.damage,
-    exclusive: classType.knight,
+    exclusive: HeroClass.knight,
   },
 };

@@ -22,7 +22,11 @@ export class Artifact {
     value: Function;
     scale: number[];
     flat: Function;
+    attackPercent: number;
+    defensePercent: number;
+    penetrate: number;
 
+    //TODO: make this class not require any services
     constructor(data: any, private dataService: DataService) {
         this.id = _.get(data, 'id', null);
         this.dot = _.get(data, 'dot', null);
@@ -31,6 +35,9 @@ export class Artifact {
         this.applies = _.get(data, 'applies', (skill: Skill) => false);
         this.value = _.get(data, 'value', () => 0); //TODO: add appropriate inputs to these fxns
         this.flat = _.get(data, 'flat', () => 0);
+        this.attackPercent = _.get(data, 'attackPercent', 0);
+        this.defensePercent = _.get(data, 'defensePercent', 0);
+        this.penetrate = _.get(data, 'penetrate', 0.7);
     }
 
     getDefensePenetration(skill: Skill): number {
@@ -68,4 +75,24 @@ export class Artifact {
         //TODO: check if this needs to be refactored
         return this.value ? this.value(this.getValue()) : this.getValue();
     }
+
+    getAttackBoost() {
+        if (this.id === undefined || this.type !== ArtifactDamageType.attack) {
+          return 0;
+        }
+        //TODO: check if this needs to be refactored
+        return this.value ? this.value(this.getValue()) : this.getValue();
+    }
+
+    getAfterMathMultipliers(skill: Skill) {
+        if(!this.applies(skill)) return null;
+        if (this.id === undefined || this.type !== ArtifactDamageType.aftermath || (this.attackPercent === undefined && this.defensePercent === undefined) || this.penetrate === undefined) {
+          return null;
+        }
+        return {
+          atkPercent: this.attackPercent,
+          defPercent: this.defensePercent,
+          penetrate: this.penetrate
+        };
+      }
 }

@@ -11,6 +11,7 @@ import * as _ from 'lodash-es';
 })
 export class DamageService {
 
+  // TODO: comment functions
   constructor(private dataService: DataService, private languageService: LanguageService) { }
 
   getGlobalDefMult(): number {
@@ -59,29 +60,13 @@ export class DamageService {
     return mult;
   };
 
-  getAfterMathSkillDamage(skill: Skill, hitType: HitType) {
-    let skillDamage = 0;
-    const skillMultipliers = skill.afterMath();
-    if (skillMultipliers !== null) {
-      if (skillMultipliers.atkPercent) {
-        skillDamage = this.dataService.currentHero.getAtk(skill) * skillMultipliers.atkPercent * this.dataService.battleConstants.dmgConst * this.dataService.currentTarget.defensivePower(new Skill({ penetrate: () => skillMultipliers.penetrate }), true);
-      } else if (skillMultipliers.defPercent) {
-        skillDamage = this.dataService.damageInputValues.casterDefense * skillMultipliers.defPercent * this.dataService.battleConstants.dmgConst * this.dataService.currentTarget.defensivePower(new Skill({ penetrate: () => skillMultipliers.penetrate }), true);
-      } else if (skillMultipliers.injuryPercent) {
-        skillDamage = this.dataService.damageInputValues.targetInjuries * skillMultipliers.injuryPercent * this.dataService.battleConstants.dmgConst * this.dataService.currentTarget.defensivePower(new Skill({ penetrate: () => skillMultipliers.penetrate }), true);
-      }
-    }
-
-    return skillDamage;
-  }
-
   getModifiers(skill: Skill, soulburn = false) {
     return {
       rate: skill.rate(soulburn),
       pow: skill.pow(soulburn),
       mult: skill.mult(soulburn, this) - 1, // TODO: change anything checking for this to be null to check for -1
       multTip: this.languageService.getSkillModTip(skill.multTip(soulburn)),
-      afterMathDmg: this.getAfterMathSkillDamage(skill, HitType.crit),
+      afterMathDmg: this.dataService.currentHero.getAfterMathSkillDamage(skill, HitType.crit, this.dataService.currentArtifact, this.dataService.damageInputValues.targetInjuries),
       afterMathFormula: skill.afterMath(soulburn),
       critBoost: skill.critDmgBoost(soulburn),
       critBoostTip: this.languageService.getSkillModTip(skill.critDmgBoostTip(soulburn)),
@@ -118,18 +103,18 @@ export class DamageService {
         + this.dataService.currentArtifact.getDamageMultiplier(skill, isExtra)
         + (skill.mult ? skill.mult(soulburn, this) - 1 : 0);
 
-    return ((this.dataService.currentHero.getAtk(skill) * rate + flatMod) * this.dataService.battleConstants.dmgConst + flatMod2) * pow * skillEnhance * elemAdv * target * dmgMod;
+    return ((this.dataService.currentHero.getAtk(skill, this.dataService.currentArtifact) * rate + flatMod) * this.dataService.battleConstants.dmgConst + flatMod2) * pow * skillEnhance * elemAdv * target * dmgMod;
   }
 
   // Tthis getAtk is called because of lilias
   getDotDamage(skill: Skill, type: DoT) {
     switch (type) {
     case DoT.bleed:
-      return this.dataService.currentHero.getAtk(skill) * 0.3 * this.dataService.battleConstants.dmgConst * this.dataService.currentTarget.defensivePower(new Skill({ penetrate: () => 0.7 }), true);
+      return this.dataService.currentHero.getAtk(skill, this.dataService.currentArtifact) * 0.3 * this.dataService.battleConstants.dmgConst * this.dataService.currentTarget.defensivePower(new Skill({ penetrate: () => 0.7 }), true);
     case DoT.burn:
-      return this.dataService.currentHero.getAtk(skill) * 0.6 * this.dataService.battleConstants.dmgConst * (this.dataService.damageInputValues.beehooPassive ? this.dataService.heroConstants.beehooBurnMult : 1) * this.dataService.currentTarget.defensivePower(new Skill({ penetrate: () => 0.7 }), true);
+      return this.dataService.currentHero.getAtk(skill, this.dataService.currentArtifact) * 0.6 * this.dataService.battleConstants.dmgConst * (this.dataService.damageInputValues.beehooPassive ? this.dataService.heroConstants.beehooBurnMult : 1) * this.dataService.currentTarget.defensivePower(new Skill({ penetrate: () => 0.7 }), true);
     case DoT.bomb:
-      return this.dataService.currentHero.getAtk(skill) * 1.5 * this.dataService.battleConstants.dmgConst * this.dataService.currentTarget.defensivePower(new Skill({ penetrate: () => 0.7 }), true);
+      return this.dataService.currentHero.getAtk(skill, this.dataService.currentArtifact) * 1.5 * this.dataService.battleConstants.dmgConst * this.dataService.currentTarget.defensivePower(new Skill({ penetrate: () => 0.7 }), true);
     default: return 0;
     }
   }
@@ -150,7 +135,7 @@ export class DamageService {
     let artiDamage: number = this.getAfterMathDamage(skill, hitType) || 0;
 
 
-    const skillDamage = this.getAfterMathSkillDamage(skill, hitType);
+    const skillDamage = this.dataService.currentHero.getAfterMathSkillDamage(skill, HitType.crit, this.dataService.currentArtifact, this.dataService.damageInputValues.targetInjuries);
     const skillExtraDmg = skill.extraDmg !== undefined ? Math.round(skill.extraDmg(hitType)) : 0;
 
     return detonation + artiDamage + skillDamage + skillExtraDmg;

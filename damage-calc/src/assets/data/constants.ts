@@ -1,5 +1,4 @@
-/* eslint-disable no-unused-vars */ // These constants are used elsewhere
-const battleConstants = {
+export const BattleConstants = {
   'dmgConst': 1.871,
   'elemAdv': 1.1,
   'atkDown': 0.5, 
@@ -19,17 +18,17 @@ const battleConstants = {
   'casterRage': 1.1
 };
 
-const heroConstants = {
+export const HeroConstants = {
   'beehooBurnMult': 1.3
 };
 
 // Used for the caster_has_buff field
-const casterBuffs = [
+export const CasterBuffs = [
   'atk-up', 'vigor', 'atk-up-great', 'crit-dmg-up', 'caster-defense-up', 'caster-speed-up',
   'caster-has-flame-alchemist', 'caster-has-multilayer-barrier', 'caster-invincible',
   'caster-perception', 'caster-enrage', 'caster-fury', 'caster-stealth'
 ];
 
-const displayConstants = {
+export const DisplayConstants = {
   'font-family': '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"'
 };
