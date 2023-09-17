@@ -1,5 +1,7 @@
 ## Changelog
 
+### <strong>Sept 17 2023:</strong>
+- Added Lilias's missing barrier.
 ### <strong>Sept 14 2023:</strong>
 - Added Midnight Gala Lilias and Hostess of the Banquet.   
 ### <strong>Sept 4 2023:</strong>

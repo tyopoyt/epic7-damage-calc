@@ -5160,6 +5160,8 @@ const heroes = {
     baseAtk: 821,
     baseHP: 6751,
     baseDef: 648,
+    barrier: () => elements.caster_max_hp.value() * 0.2,
+    barrierEnhance: 's2',
     form: [elements.caster_max_hp, elements.highest_ally_attack],
     skills: {
       s1: {
@@ -5170,6 +5172,9 @@ const heroes = {
         flatTip: () => ({ caster_max_hp: 12 }),
         enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.1],
         single: true,
+      },
+      s2: {
+        enhance: [0.05, 0.1, 0.15]
       },
       s3: {
         rate: 1,
