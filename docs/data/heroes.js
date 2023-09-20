@@ -1593,7 +1593,6 @@ const heroes = {
 
       return elements.caster_max_hp.value() * 0.24 * boost;
     },
-    info: infoLabel('unreleased_hero'),
     form: [elements.caster_max_hp, elements.caster_perception],
     skills: {
       s1: {
@@ -5956,6 +5955,7 @@ const heroes = {
     baseAtk: 1208,
     baseHP: 5178,
     baseDef: 508,
+    info: infoLabel('unreleased_hero'),
     form: [elements.caster_max_hp, elements.target_max_hp],
     skills: {
       s1: {
