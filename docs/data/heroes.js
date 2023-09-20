@@ -8998,7 +8998,6 @@ const heroes = {
     baseAtk: 1188,
     baseHP: 4693,
     baseDef: 518,
-    info: infoLabel('unreleased_hero'),
     form: [elements.target_bomb_detonate],
     dot: [dot.bomb],
     skills: {
