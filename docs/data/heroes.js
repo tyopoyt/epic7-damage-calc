@@ -8921,7 +8921,6 @@ const heroes = {
     baseAtk: 984,
     baseHP: 6266,
     baseDef: 637,
-    info: infoLabel('unreleased_hero'),
     form: [elements.caster_max_hp, elements.caster_has_bzzt, elements.target_injuries],
     skills: {
       s1: {
