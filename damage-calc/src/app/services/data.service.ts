@@ -3,11 +3,12 @@ import { Hero } from '../models/hero';
 import { DamageFormData } from '../models/forms';
 import { Artifact } from '../models/artifact';
 import { Target } from '../models/target';
+import { heroes } from '../../assets/data/heroes.js';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DataService implements OnInit {
+export class DataService {
   heroes: Record<string, Hero> = {};
   artifacts: Record<string, Artifact> = {};
 
@@ -63,17 +64,20 @@ export class DataService implements OnInit {
     'font-family': '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"'
   };
 
-  constructor() { }
+  constructor() {
+    this.initialSetup();
+  }
 
-  async ngOnInit() {
+  async initialSetup() {
     //TODO: these both actually need to be js (ts) since there will be defined functions
 
-    const heroesFile = await fetch(`../../assets/heroes.json`);
-    this.heroes = await heroesFile.json();
+    // const heroesFile = await fetch(`../../assets/data/heroes.js`);
+    // this.heroes = await heroesFile.json();
 
-    const artifactsFile = await fetch(`../../assets/artifacts.json`);
-    this.artifacts = await artifactsFile.json();
-
+    // const artifactsFile = await fetch(`../../assets/artifacts.json`);
+    // this.artifacts = await artifactsFile.json();
+    // this.currentHero
+    console.log('here')
     console.log(this.heroes)
   }
 }

@@ -51,6 +51,9 @@ export class Skill {
     onlyMiss: boolean;
     noMiss: boolean;
     detonate: DoT[];
+    hpScaling: boolean;
+    defenseScaling: boolean;
+    speedScaling: boolean;
 
     // TODO: refactor things like isAOE to be boolean not fxn
     // TODO: refactor atk to attackToUse
@@ -86,6 +89,9 @@ export class Skill {
         this.onlyCrit = _.get(data, 'onlyCrit', false);
         this.onlyMiss = _.get(data, 'onlyMiss', false);
         this.noMiss = _.get(data, 'noMiss', false);
+        this.hpScaling = _.get(data, 'hpScaling', false);
+        this.defenseScaling = _.get(data, 'defenseScaling', false);
+        this.speedScaling = _.get(data, 'speedScaling', false);
         this.detonate = _.get(data, 'detonate', null);
     }
 

@@ -4,6 +4,7 @@ import { Languages } from 'src/app/models/languages';
 import { LanguageService } from 'src/app/services/language.service';
 import { ScreenService } from 'src/app/services/screen.service';
 import { DismissibleColorOption } from '../ui-elements/dismissible/dismissible.component';
+import { DamageService } from 'src/app/services/damage.service';
 
 @Component({
   selector: 'app-damage-calculator',
@@ -13,11 +14,13 @@ import { DismissibleColorOption } from '../ui-elements/dismissible/dismissible.c
 export class DamageCalculatorComponent implements OnInit {
 
   DismissibleColorOption = DismissibleColorOption;
+  damage: number = 0;
 
   constructor (
     private route: ActivatedRoute,
     public languageService: LanguageService,
-    public screenService: ScreenService
+    public screenService: ScreenService,
+    private damageService: DamageService
   ) {}
   
   ngOnInit() {
@@ -26,7 +29,7 @@ export class DamageCalculatorComponent implements OnInit {
   }
 
   attackChange(value: number) {
-
+    this.damageService.updateDamages();
   }
   attackImprintChange(value: number) {
 

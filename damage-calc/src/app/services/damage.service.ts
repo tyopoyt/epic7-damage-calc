@@ -31,7 +31,7 @@ export class DamageService {
       mult += _.get(this.dataService.damageInputValues, mod) ? _.get(this.dataService.battleConstants, mod) - 1 : 0.0;
     });
   
-    if (this.dataService.damageInputValues.casterEnrage) {
+    if (this.dataService.damageInputValues.casterEnraged) {
       mult += 0.1;
     }
   
@@ -103,18 +103,18 @@ export class DamageService {
         + this.dataService.currentArtifact.getDamageMultiplier(skill, isExtra)
         + (skill.mult ? skill.mult(soulburn, this) - 1 : 0);
 
-    return ((this.dataService.currentHero.getAtk(skill, this.dataService.currentArtifact) * rate + flatMod) * this.dataService.battleConstants.dmgConst + flatMod2) * pow * skillEnhance * elemAdv * target * dmgMod;
+    return ((this.dataService.currentHero.getAttack(skill, this.dataService.currentArtifact) * rate + flatMod) * this.dataService.battleConstants.dmgConst + flatMod2) * pow * skillEnhance * elemAdv * target * dmgMod;
   }
 
   // Tthis getAtk is called because of lilias
   getDotDamage(skill: Skill, type: DoT) {
     switch (type) {
     case DoT.bleed:
-      return this.dataService.currentHero.getAtk(skill, this.dataService.currentArtifact) * 0.3 * this.dataService.battleConstants.dmgConst * this.dataService.currentTarget.defensivePower(new Skill({ penetrate: () => 0.7 }), true);
+      return this.dataService.currentHero.getAttack(skill, this.dataService.currentArtifact) * 0.3 * this.dataService.battleConstants.dmgConst * this.dataService.currentTarget.defensivePower(new Skill({ penetrate: () => 0.7 }), true);
     case DoT.burn:
-      return this.dataService.currentHero.getAtk(skill, this.dataService.currentArtifact) * 0.6 * this.dataService.battleConstants.dmgConst * (this.dataService.damageInputValues.beehooPassive ? this.dataService.heroConstants.beehooBurnMult : 1) * this.dataService.currentTarget.defensivePower(new Skill({ penetrate: () => 0.7 }), true);
+      return this.dataService.currentHero.getAttack(skill, this.dataService.currentArtifact) * 0.6 * this.dataService.battleConstants.dmgConst * (this.dataService.damageInputValues.beehooPassive ? this.dataService.heroConstants.beehooBurnMult : 1) * this.dataService.currentTarget.defensivePower(new Skill({ penetrate: () => 0.7 }), true);
     case DoT.bomb:
-      return this.dataService.currentHero.getAtk(skill, this.dataService.currentArtifact) * 1.5 * this.dataService.battleConstants.dmgConst * this.dataService.currentTarget.defensivePower(new Skill({ penetrate: () => 0.7 }), true);
+      return this.dataService.currentHero.getAttack(skill, this.dataService.currentArtifact) * 1.5 * this.dataService.battleConstants.dmgConst * this.dataService.currentTarget.defensivePower(new Skill({ penetrate: () => 0.7 }), true);
     default: return 0;
     }
   }
@@ -154,5 +154,11 @@ export class DamageService {
       normal: skill.onlyCrit || skill.onlyMiss ? null : Math.round(hit + (skill.fixed !== undefined ? skill.fixed(HitType.normal) : 0) + this.getAfterMathDamage(skill, HitType.normal)),
       miss: skill.noMiss ? null : Math.round(hit * 0.75 + (skill.fixed !== undefined ? skill.fixed(HitType.miss) : 0) + this.getAfterMathDamage(skill, HitType.miss))
     };
+  }
+
+  updateDamages() {
+    for (const skill of [1, 2]) {
+      console.log(skill)
+    }
   }
 }

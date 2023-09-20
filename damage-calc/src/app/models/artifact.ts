@@ -1,4 +1,4 @@
-import { DataService } from "../services/data.service";
+import { DamageFormData } from "./forms";
 import { DoT, Skill } from "./skill";
 
 import  * as _ from 'lodash-es'
@@ -25,9 +25,9 @@ export class Artifact {
     attackPercent: number;
     defensePercent: number;
     penetrate: number;
+    level: number;
 
-    //TODO: make this class not require any services
-    constructor(data: any, private dataService: DataService) {
+    constructor(data: any, inputValues: DamageFormData) {
         this.id = _.get(data, 'id', null);
         this.dot = _.get(data, 'dot', null);
         this.type = _.get(data, 'type', null);
@@ -38,6 +38,7 @@ export class Artifact {
         this.attackPercent = _.get(data, 'attackPercent', 0);
         this.defensePercent = _.get(data, 'defensePercent', 0);
         this.penetrate = _.get(data, 'penetrate', 0.7);
+        this.level = inputValues.artifactLevel;
     }
 
     getDefensePenetration(skill: Skill): number {
@@ -49,7 +50,7 @@ export class Artifact {
     }
 
     getValue(): number {
-        return this.scale ? this.scale[Math.floor(this.dataService.damageInputValues.artifactLevel / 3)] : this.value();
+        return this.scale ? this.scale[Math.floor(this.level / 3)] : this.value();
     }
 
     getFlatMult() {

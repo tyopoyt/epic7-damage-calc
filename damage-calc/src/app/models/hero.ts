@@ -1,13 +1,9 @@
-import { DataService } from "../services/data.service";
 import { Artifact } from "./artifact";
 import { Target } from "./target";
 import { DamageFormData } from "./forms";
-
-import * as _ from 'lodash-es'
-import { DamageService } from "../services/damage.service";
 import { DoT, HitType, Skill } from "./skill";
-import { LanguageService } from "../services/language.service";
 import { BattleConstants } from "../../assets/data/constants"
+import * as _ from 'lodash-es'
 
 export enum HeroElement {
     fire = 'fire',
@@ -22,80 +18,93 @@ export enum HeroClass {
     mage = 'mage',
     ranger = 'ranger',
     soul_weaver = 'soul_weaver',
-    warrior = 'warrior'
+    warrior = 'warrior',
+    thief = 'thief'
 }
 //TODO: refactor atk to attack and crit to critDamage
 export class Hero {
-    id: string;
-    element: HeroElement;
-    class: HeroClass;
-    atk: number;
-    crit: number;
-    bonus: number;
-    skills: Record<string, Skill>;
-    baseAtk: number;
-    baseDef: number;
-    baseHP: number;
-    target: Target;
-    artifact?: Artifact;
-    dot?: DoT[];
-    atkUp?: Function;
-    innateAtkUp?: Function;
-    barrierSkills?: string[];
+    // artifact?: Artifact;
+    // atk: number;
+    // attackImprint: number;
+    // attackMultiplier: number;
+    // bonus: number;
+    // crit: number;
+    // defense?: number;
+    // defenseUp: boolean;
+    // enraged?: boolean;
+    // fury: boolean;
+    // hp?: number;
+    // id: string;
+    // molagoras: Record<string, number>;
+    // speed?: number;
+    // speedUp: boolean;
+    // target: Target;
+    // vigor: boolean;
+    attackIncrease?: Function;
     barrier?: Function;
     barrier2?: Function;
-    barrierEnhance?: string;
     barrier2Enhance?: string;
-    defense?: number;
-    hp?: number;
-    defenseUp: boolean;
-    speedUp: boolean;
-    vigor: boolean;
-    fury: boolean;
-    speed?: number;
-    enraged?: boolean;
+    barrierEnhance?: string;
+    barrierSkills?: string[];
+    baseAttack: number;
+    baseDefense: number;
+    baseHP: number;
+    class: HeroClass;
+    dot?: DoT[];
+    element: HeroElement;
+    innateAttackIncrease?: Function;
+    skills: Record<string, Skill>;
+    exclusiveEquipmentMultiplier?: Function;
 
-  //TODO make this class not require any services
   constructor(
-      id: string,
-      artifact: Artifact,
-      inputValues: DamageFormData,
-      private dataService: DataService,
-      private damageService: DamageService,
-      private languageService: LanguageService
+      // id: string,
+      // artifact: Artifact,
+      // inputValues: DamageFormData,
+      heroValues: any,
+      // globalDefenseMultiplier: number,
+      // globalAttackMultiplier: number
     )
   {
-    this.id = id;
-    this.atk = inputValues.attack;
-    this.crit = inputValues.critDamage;
-    this.bonus = inputValues.bonusDamage;
-    this.defense = inputValues.casterDefense;
-    this.speed = inputValues.casterSpeed;
-    this.defenseUp = inputValues.casterDefenseUp;
-    this.speedUp = inputValues.casterSpeedUp;
-    this.vigor = inputValues.casterVigor;
-    this.fury = inputValues.casterFury;
-    this.enraged = inputValues.casterEnrage;
-    this.hp = inputValues.casterHP;
-    this.skills = this.dataService.heroes[id].skills;
-    this.baseAtk = this.dataService.heroes[id].baseAtk || 0;
-    this.baseDef = this.dataService.heroes[id].baseDef || 0;
-    this.baseHP = this.dataService.heroes[id].baseHP || 0;
-    this.dot = [...(this.dataService.heroes[id].dot || []), ...(artifact?.getDoT() || [])];
-    this.atkUp = this.dataService.heroes[id].atkUp;
-    this.innateAtkUp = this.dataService.heroes[id].innateAtkUp;
-    this.element = this.dataService.heroes[id].element;
-    this.barrierSkills = this.dataService.heroes[id].barrierSkills;
-    this.barrier = this.dataService.heroes[id].barrier;
-    this.barrier2 = this.dataService.heroes[id].barrier2;
-    this.barrierEnhance = this.dataService.heroes[id].barrierEnhance;
-    this.barrier2Enhance = this.dataService.heroes[id].barrier2Enhance;
-    this.class = this.dataService.heroes[id].class
-    this.artifact = artifact;
-    this.target = new Target(artifact, this.dataService, this.damageService);
+    //   'S1': _.get(inputValues, 'molagoraS1', 0),
+    //   'S2': _.get(inputValues, 'molagoraS2', 0),
+    //   'S3': _.get(inputValues, 'molagoraS3', 0)
+    // }
+    // this.artifact = artifact;
+    // this.atk = inputValues.attack;
+    // this.attackImprint = inputValues.attackImprint;
+    // this.attackMultiplier = globalAttackMultiplier;
+    // this.bonus = inputValues.bonusDamage;
+    // this.crit = inputValues.critDamage;
+    // this.defense = inputValues.casterDefense;
+    // this.defenseUp = inputValues.casterDefenseUp;
+    // this.enraged = inputValues.casterEnrage;
+    // this.fury = inputValues.casterFury;
+    // this.hp = inputValues.casterMaxHP;
+    // this.id = id;
+    // this.molagoras = {
+    // this.speed = inputValues.casterSpeed;
+    // this.speedUp = inputValues.casterSpeedUp;
+    // this.target = new Target(artifact, inputValues, globalDefenseMultiplier);
+    // this.vigor = inputValues.casterVigor;
+    this.attackIncrease = _.get(heroValues, 'attackIncrease', () => 0);
+    this.barrier = _.get(heroValues, 'barrier', () => 0);
+    this.barrier2 = _.get(heroValues, 'barrier2', () => 0);
+    this.barrier2Enhance = _.get(heroValues, 'barrier2Enhance', '');
+    this.barrierEnhance = _.get(heroValues, 'barrierEnhance', '');
+    this.barrierSkills = _.get(heroValues, 'barrierSkills', []);
+    this.baseAttack = _.get(heroValues, 'baseAttack', 0);
+    this.baseDefense = _.get(heroValues, 'baseDefense', 0);
+    this.baseHP = _.get(heroValues, 'baseHP', 0);
+    this.class = _.get(heroValues, 'class', HeroClass.warrior);
+    // this.dot = [...(heroValues.dot || []), ...(artifact?.getDoT() || [])];
+    this.dot = _.get(heroValues, 'dot', []);
+    this.element = _.get(heroValues, 'element', HeroElement.fire);
+    this.innateAttackIncrease = _.get(heroValues, 'innateAttackIncrease', () => 0);
+    this.exclusiveEquipmentMultiplier = _.get(heroValues, 'exclusiveEquipmentMultiplier', () => 0);
+    this.skills = _.get(heroValues, 'skills', {});
   }
 
-  getSkillEnhanceMult(skill: Skill) {
+  getSkillEnhanceMult(skill: Skill, molagoras: Record<string, number>) {
     let mult = 1.0;
 
     let skillToUse = skill;
@@ -105,7 +114,7 @@ export class Hero {
     }
 
     if (skillToUse.enhance) {
-      const enhanceLevel =  Number(_.get(this.dataService.damageInputValues, `molagora${skillToUse.id.toUpperCase()}`, '0'));
+      const enhanceLevel =  _.get(molagoras, skillToUse.id.toUpperCase(), 0);
       for (let i = 0; i < enhanceLevel; i++) {
         mult += skillToUse.enhance[i];
       }
@@ -116,87 +125,89 @@ export class Hero {
     return mult;
   }
 
-  //TODO: check if skill will ever come in here undefined/null
-  getAtk(skill: Skill, artifact: Artifact): number {
-    let atk = skill.atk() || this.atk;
+  getAttack(artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number, skill: Skill | null = null): number {
+    let atk = skill?.atk() || inputValues.attack;
 
-    if (this.innateAtkUp !== undefined) {
-      atk = atk / (1 + this.innateAtkUp());
+    if (this.innateAttackIncrease !== undefined) {
+      atk = atk / (1 + this.innateAttackIncrease());
     }
 
     let atkImprint = 0;
     let atkMod = 1;
-    if (!skill.noBuff) {
-      atkImprint = this.baseAtk * (this.dataService.damageInputValues.attackImprint / 100);
+    if (!skill?.noBuff) {
+      atkImprint = this.baseAttack * (inputValues.attackImprint / 100);
       atkMod = 1
-          + this.damageService.getGlobalAtkMult()
-          + (this.atkUp !== undefined ? this.atkUp() - 1 : 0)
-          + (this.innateAtkUp !== undefined ? this.innateAtkUp() : 0)
+          + attackMultiplier
+          + (this.attackIncrease !== undefined ? this.attackIncrease() - 1 : 0)
+          + (this.innateAttackIncrease !== undefined ? this.innateAttackIncrease() : 0)
           + artifact.getAttackBoost();
     }
 
     return (atk + atkImprint) * atkMod;
   }
 
-  getDef(): number {
-    if (this.defense) {
-      return this.defense * (1 + (this.defenseUp ? BattleConstants.defUp : 0)
-           + (this.vigor ? BattleConstants.vigor - 1 : 0)
-           + (this.fury ? BattleConstants['caster-fury'] - 1 : 0));
+  getDefense(inputValues: DamageFormData): number {
+    if (inputValues.casterDefense) {
+      return inputValues.casterDefense * (1 + (inputValues.casterDefenseUp ? BattleConstants.defUp : 0)
+           + (inputValues.casterVigor ? BattleConstants.vigor - 1 : 0)
+           + (inputValues.casterFury ? BattleConstants['caster-fury'] - 1 : 0));
+    } else {
+      return 1000;
     }
-    return this.defense || 1000;
   }
 
   // TODO: remove this?
-  getHP(): number {
-    return this.hp || 10000;
+  getHP(inputValues: DamageFormData): number {
+    return inputValues.casterMaxHP || 10000;
   }
 
-  getSpd(): number {
-    if (this.speed) {
-      return Math.floor(this.speed) * (1 + (this.speedUp ? BattleConstants.spdUp - 1 : 0)
-           + (this.enraged ? BattleConstants['casterRage'] - 1 : 0));
+  getSpeed(inputValues: DamageFormData): number {
+    if (inputValues.casterSpeed) {
+      return Math.floor(inputValues.casterSpeed) * (1 + (inputValues.casterSpeedUp ? BattleConstants.spdUp - 1 : 0)
+           + (inputValues.casterEnraged ? BattleConstants['casterRage'] - 1 : 0));
+    } else {
+      return 200;
     }
-    return this.speed || 200;
   }
 
-  getAfterMathSkillDamage(skill: Skill, hitType: HitType, artifact: Artifact, targetInjuries: number = 0) {
+  getAfterMathSkillDamage(skill: Skill, hitType: HitType, artifact: Artifact, targetInjuries: number = 0, inputValues: DamageFormData, attackMultiplier: number, target: Target) {
     let skillDamage = 0;
     const skillMultipliers = skill.afterMath ? skill.afterMath(hitType) : null;
     if (skillMultipliers !== null) {
       if (skillMultipliers.atkPercent) {
-        skillDamage = this.getAtk(skill, artifact) * skillMultipliers.atkPercent * BattleConstants.dmgConst * this.target.defensivePower(new Skill({ penetrate: () => skillMultipliers.penetrate }), true);
+        skillDamage = this.getAttack(skill, artifact, inputValues, attackMultiplier) * skillMultipliers.atkPercent * BattleConstants.dmgConst * target.defensivePower(new Skill({ penetrate: () => skillMultipliers.penetrate }), true);
       } else if (skillMultipliers.defPercent) {
-        skillDamage = this.getDef() * skillMultipliers.defPercent * BattleConstants.dmgConst * this.target.defensivePower(new Skill({ penetrate: () => skillMultipliers.penetrate }), true);
+        skillDamage = this.getDefense(inputValues) * skillMultipliers.defPercent * BattleConstants.dmgConst * target.defensivePower(new Skill({ penetrate: () => skillMultipliers.penetrate }), true);
       } else if (skillMultipliers.injuryPercent) {
-        skillDamage = targetInjuries * skillMultipliers.injuryPercent * BattleConstants.dmgConst * this.target.defensivePower(new Skill({ penetrate: () => skillMultipliers.penetrate }), true);
+        skillDamage = targetInjuries * skillMultipliers.injuryPercent * BattleConstants.dmgConst * target.defensivePower(new Skill({ penetrate: () => skillMultipliers.penetrate }), true);
       }
     }
 
     return skillDamage;
   }
 
-  getAfterMathArtifactDamage(skill: Skill, artifact: Artifact) {
+  // this belongs to hero because it calls getAtk and getDef
+  getAfterMathArtifactDamage(skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number, target: Target) {
 
     const artiMultipliers = artifact.getAfterMathMultipliers(skill);
     if (artiMultipliers !== null) {
       if (artiMultipliers.atkPercent) {
-        return this.getAtk(skill, artifact) * artiMultipliers.atkPercent * BattleConstants.dmgConst * this.target.defensivePower(new Skill({ penetrate: () => artiMultipliers.penetrate }), true);
+        return this.getAttack(skill, artifact, inputValues, attackMultiplier) * artiMultipliers.atkPercent * BattleConstants.dmgConst * target.defensivePower(new Skill({ penetrate: () => artiMultipliers.penetrate }), true);
       } else if (artiMultipliers.defPercent) {
-        return this.getDef() * artiMultipliers.defPercent * BattleConstants.dmgConst * this.target.defensivePower(new Skill({ penetrate: () => artiMultipliers.penetrate }), true);
+        return this.getDefense(inputValues) * artiMultipliers.defPercent * BattleConstants.dmgConst * target.defensivePower(new Skill({ penetrate: () => artiMultipliers.penetrate }), true);
       }
     }
 
     return null;
   }
 
-  getBarrierStrength() {
-    return this.barrier ? (this.barrier(this) * (this.barrierEnhance ? this.getSkillEnhanceMult(_.get(this.skills, this.barrierEnhance, this.skills[0])) : 1)) : 0;
+  getBarrierStrength(molagoras: Record<string, number>) {
+    return this.barrier ? (this.barrier(this) * (this.barrierEnhance ? this.getSkillEnhanceMult(_.get(this.skills, this.barrierEnhance, this.skills[0]), molagoras) : 1)) : 0;
   }
 
-  getBarrier2Strength() {
+  getBarrier2Strength(molagoras: Record<string, number>) {
     //TODO: update this if needed
     // For now only Roana needs this and her barrier does not scale with enhances
-    return this.barrier2 ? (this.barrier2(this) * (this.barrier2Enhance ? this.getSkillEnhanceMult(_.get(this.skills, this.barrier2Enhance, this.skills[0])) : 1)) : 0;
+    return this.barrier2 ? (this.barrier2(this) * (this.barrier2Enhance ? this.getSkillEnhanceMult(_.get(this.skills, this.barrier2Enhance, this.skills[0]), molagoras) : 1)) : 0;
   }
 }

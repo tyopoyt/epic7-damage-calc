@@ -1,5 +1,6 @@
 import { HeroClass } from "src/app/models/hero";
 //TODO: typescriptify this
+//TODO: add ftene artifact
 export const artifactDmgType = {
   damage: 'damage',
   penetrate: 'penetrate',
