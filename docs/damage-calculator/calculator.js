@@ -568,6 +568,8 @@ class Hero {
         return this.getAtk() * artiMultipliers.atkPercent * dmgConst * this.target.defensivePower({ penetrate: () => artiMultipliers.penetrate }, true);
       } else if (artiMultipliers.defPercent) {
         return elements.caster_defense.value() * artiMultipliers.defPercent * dmgConst * this.target.defensivePower({ penetrate: () => artiMultipliers.penetrate }, true);
+      } else if (artiMultipliers.fixedDamage) {
+        return artiMultipliers.fixedDamage
       }
     }
 
@@ -679,12 +681,13 @@ class Artifact {
 
   getAfterMathMultipliers(skill, skillId) {
     if(!this.applies(skill, skillId)) return null;
-    if (this.id === undefined || artifacts[this.id].type !== artifactDmgType.aftermath || (artifacts[this.id].atkPercent === undefined && artifacts[this.id].defPercent === undefined) || artifacts[this.id].penetrate === undefined) {
+    if (this.id === undefined || ![artifactDmgType.aftermath, artifactDmgType.fixedDamage].includes(artifacts[this.id].type) || (artifacts[this.id].atkPercent === undefined && artifacts[this.id].defPercent === undefined && artifacts[this.id].scale === undefined) || artifacts[this.id].penetrate === undefined) {
       return null;
     }
     return {
       atkPercent: artifacts[this.id].atkPercent,
       defPercent: artifacts[this.id].defPercent,
+      fixedDamage: artifacts[this.id].type === artifactDmgType.fixedDamage ? artifacts[this.id].value() : 0,
       penetrate: artifacts[this.id].penetrate,
     };
   }

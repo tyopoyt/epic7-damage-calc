@@ -4,6 +4,7 @@ const artifactDmgType = {
   aftermath: 'aftermath',
   attack: 'attack',
   critDmgBoost: 'crit-dmg-boost',
+  fixedDamage: 'fixedDamage',
   flat: 'flat',
   dot: 'dot'
 };
@@ -146,6 +147,21 @@ const artifacts = {
     scale: [0.1, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2],
     type: artifactDmgType.penetrate,
     exclusive: classType.thief
+  },
+  //TODO: translate and add announcement/changelog
+  fairy_tale_for_a_nightmare: {
+    id: 'fairy_tale_for_a_nightmare',
+    name: 'Fairy Tale for a Nightmare',
+    type: artifactDmgType.fixedDamage,
+    form: [elements.extra_dual_or_counter],
+    penetrate: 1,
+    scale: [750, 825, 900, 975, 1050, 1125, 1200, 1275, 1350, 1425, 1500],
+    exclusive: classType.mage,
+    applies: (skill) => skill.isExtra || elements.extra_dual_or_counter.value(),
+    value: () => {
+      const artiScale = Math.floor(Number(document.getElementById('artifact-lvl')?.value || '30') / 3)
+      return artifacts['fairy_tale_for_a_nightmare'].scale[artiScale];
+    }
   },
   frame_of_light: {
     id: 'frame_of_light',

@@ -1,4 +1,13 @@
 const elements = {
+  extra_dual_or_counter: {
+    ref: 'extra_dual_or_counter',
+    id: 'extra-dual-or-counter',
+    label: 'Extra, Dual, or Counter attack',
+    type: 'checkbox',
+    value: () => {
+      return document.getElementById('extra-dual-or-counter')?.checked
+    }
+  },
   nb_targets: {
     ref: 'nb_targets',
     id: 'nb-targets',

@@ -675,6 +675,7 @@ const heroes = {
         rate: 0.6,
         pow: 1.3,
         aoe: true,
+        isExtra: true
       },
       s3: {
         rate: 1,
@@ -3288,6 +3289,7 @@ const heroes = {
         single: true,
       },
       s2: {
+        isExtra: true,
         rate: 0.8,
         pow: 1,
         extraDmg: (hitType) => hitType !== hitTypes.miss && elements.target_has_provoke.value() ? elements.target_max_hp.value() * 0.1 : 0,
@@ -5161,7 +5163,7 @@ const heroes = {
     baseDef: 648,
     barrier: () => elements.caster_max_hp.value() * 0.2,
     barrierEnhance: 's2',
-    form: [elements.caster_max_hp, elements.highest_ally_attack],
+    form: [elements.caster_max_hp, elements.highest_ally_attack, elements.exclusive_equipment_3],
     skills: {
       s1: {
         hpScaling: true,
@@ -5180,6 +5182,7 @@ const heroes = {
         pow: 1,
         atk: () =>  elements.highest_ally_attack.value(),
         noBuff: true,
+        exEq: () => elements.exclusive_equipment_3.value() ? 0.2 : 0,
         enhance: [0.05, 0.05, 0, 0.05, 0.05, 0.1],
         aoe: true,
       }
