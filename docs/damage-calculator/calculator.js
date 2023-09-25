@@ -313,12 +313,12 @@ const getModTooltip = (hero, skillId, soulburn = false) => {
   return content;
 };
 
-const attackMods = ['atkDown', 'atkUp', 'atkUpGreat', 'vigor'];
+const attackMods = ['atkDown', 'atkUp', 'atkUpGreat', 'vigor', 'caster-has-stars-blessing'];
 const getGlobalAtkMult = () => {
   let mult = 0.0;
 
   attackMods.forEach((mod) => {
-    mult += inputValues[mod] ? battleConstants[mod] - 1 : 0.0;
+    mult += inputValues[mod] ? (battleConstants[mod] - 1) : 0.0;
   });
 
   if (elements.caster_enrage.value()) {
@@ -414,8 +414,10 @@ class Hero {
     };
   }
 
+  //TODO: do perception and stars blessing go beyond cap? probably not
   getDamage(skillId, soulburn = false, isExtra = false) {
-    const critDmgBuff = inputValues.critDmgUp ? battleConstants.critDmgUp : 0.0;
+    let critDmgBuff = inputValues.critDmgUp ? battleConstants.critDmgUp : 0.0;
+    critDmgBuff += inputValues['caster-has-stars-blessing'] ? (battleConstants['caster-has-stars-blessing'] - 1) : 0;
 
     const skill = this.skills[skillId];
     const hit = this.offensivePower(skillId, soulburn, isExtra, this) * this.target.defensivePower(skill);
