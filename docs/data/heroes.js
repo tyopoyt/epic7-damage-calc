@@ -985,7 +985,7 @@ const heroes = {
     baseAtk: 1079,
     baseHP: 5502,
     baseDef: 564,
-    form: [elements.target_has_debuff],
+    form: [elements.target_has_debuff, elements.caster_has_stars_blessing],
     skills: {
       s1: {
         rate: 1,

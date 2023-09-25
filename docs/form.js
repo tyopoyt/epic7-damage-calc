@@ -476,6 +476,14 @@ const elements = {
     value: () => document.getElementById('caster-has-flame-alchemist').checked,
     icon: './assets/buffs/flame-alchemist-buff.png'
   },
+  caster_has_stars_blessing: {
+    ref: 'caster_has_stars_blessing',
+    id: 'caster-has-stars-blessing',
+    label: "Caster has Star's Blessing",
+    type: 'checkbox',
+    value: () => document.getElementById('caster-has-stars-blessing').checked,
+    icon: './assets/buffs/stars-blessing-buff.png'
+  },
   caster_has_multilayer_barrier: {
     ref: 'caster_has_multilayer_barrier',
     id: 'caster-has-multilayer-barrier',
