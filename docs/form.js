@@ -481,6 +481,7 @@ const elements = {
     id: 'caster-has-stars-blessing',
     label: "Caster has Star's Blessing",
     type: 'checkbox',
+    default: true,
     value: () => document.getElementById('caster-has-stars-blessing').checked,
     icon: './assets/buffs/stars-blessing-buff.png'
   },
