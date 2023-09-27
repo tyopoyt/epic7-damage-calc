@@ -391,6 +391,7 @@ class Hero {
 
   getModifiers(skillId, soulburn = false) {
     const skill = this.skills[skillId];
+    const fixed = skill.fixed !== undefined ? skill.fixed(hitTypes.crit) : null
     return {
       rate: (typeof skill.rate === 'function') ? skill.rate(soulburn) : skill.rate,
       pow: (typeof skill.pow === 'function') ? skill.pow(soulburn) : skill.pow,
@@ -410,7 +411,7 @@ class Hero {
       extraDmg: skill.extraDmg !== undefined ? skill.extraDmg() : null,
       extraDmgTip: skill.extraDmgTip !== undefined ? getSkillModTip(skill.extraDmgTip(soulburn)) : '',
       fixed: skill.fixed !== undefined ? skill.fixed(hitTypes.crit) : null,
-      fixedTip: skill.fixedTip !== undefined ? getSkillModTip(skill.fixedTip()) : null,
+      fixedTip: skill.fixedTip !== undefined ? getSkillModTip(skill.fixedTip(fixed || 0)) : null,
     };
   }
 
