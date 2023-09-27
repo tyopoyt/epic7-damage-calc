@@ -6300,6 +6300,34 @@ const heroes = {
       }
     }
   },
+  nahkwol: {
+    name: 'Nahkwol',
+    element: element.fire,
+    classType: classType.ranger,
+    baseAtk: 1003,
+    baseHP: 5704,
+    baseDef: 585,
+    skills: {
+      s1: {
+        rate: 1,
+        pow: 1,
+        enhance: [0.05, 0, 0.1, 0, 0.15],
+        single: true,
+      },
+      s2: {
+        rate: 1.5,
+        pow: 1,
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        single: true,
+      },
+      s3: {
+        rate: 1,
+        pow: 1,
+        enhance: [0.05, 0.05, 0, 0.1, 0.1],
+        aoe: true,
+      }
+    }
+  },
   navy_captain_landy: {
     name: 'Navy Captain Landy',
     element: element.light,
