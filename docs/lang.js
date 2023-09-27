@@ -176,9 +176,11 @@ const i18n = {
     heroes: {
       // Unreleased units: (未発表)
       // Pre-Balance versions: (前のバージョン)
-      lionheart_cermia_old: '獅子王 チェルミア (前のバージョン)',
-      silk_old: 'シルク (前のバージョン)',
-      tenebria_old: 'テネブレア (前のバージョン)',
+      eligos: 'エリコス (前のバージョン)',
+      inferno_khawazu_old: '狂炎のカワズ (前のバージョン)',
+      martial_artist_ken_old: '覇者 ケン (前のバージョン)',
+      moon_bunny_dominiel_old: '月うさぎ ドミニエル (前のバージョン)',
+      twisted_eidolon_kayron_old: '歪みし亡霊 カイロン (前のバージョン)',
       // End Pre-Balance
       abigail: 'アビゲイル',
       achates: 'アカテス',
@@ -376,6 +378,7 @@ const i18n = {
       mui: 'ミュイ',
       muse_rima: 'ミューズ リマ',
       muwi: 'ムーム',
+      nahkwol: 'ナユル',
       navy_captain_landy: '海軍大佐 ランディ',
       nemunas: 'ネムナス',
       ocean_breeze_luluca: '海の香り ルルカ',
@@ -653,9 +656,11 @@ const i18n = {
     heroes: {
       // Unreleased units: (未發布)
       // Pre-Balance versions: (以前的版本)
-      lionheart_cermia_old: '獅心王潔若米亞 (以前的版本)',
-      silk_old: '席可 (以前的版本)',
-      tenebria_old: '泰妮布里雅 (以前的版本)',
+      eligos: '艾利戈斯 (以前的版本)',
+      inferno_khawazu_old: '烈焰的卡瓦朱 (以前的版本)',
+      martial_artist_ken_old: '武鬥家肯恩 (以前的版本)',
+      moon_bunny_dominiel_old: '月兔多米妮爾 (以前的版本)',
+      twisted_eidolon_kayron_old: '扭曲的亡靈凱隆 (以前的版本)',
       // End Pre-Balance
       abigail: '雅碧凱',
       achates: '雅卡泰絲',
@@ -853,6 +858,7 @@ const i18n = {
       mui: '繆伊',
       muse_rima: '繆斯黎瑪',
       muwi: '武蔚',
+      nahkwol: '落月',
       navy_captain_landy: '海軍上校蘭蒂',
       nemunas: '尼姆拉斯',
       ocean_breeze_luluca: '海洋香氣璐璐卡',
@@ -1364,9 +1370,11 @@ const i18n = {
     heroes: {
       // Unreleased units: (未发布)
       // Pre-Balance versions: (以前的版本)
-      lionheart_cermia_old: '狮心王洁若米亚 (以前的版本)',
-      silk_old: '席可 (以前的版本)',
-      tenebria_old: '泰妮布里雅 (以前的版本)',
+      eligos: '艾利戈斯 (以前的版本)',
+      inferno_khawazu_old: '烈焰的卡瓦朱 (以前的版本)',
+      martial_artist_ken_old: '武斗家肯恩 (以前的版本)',
+      moon_bunny_dominiel_old: '月兔多米妮尔 (以前的版本)',
+      twisted_eidolon_kayron_old: '扭曲亡灵凯隆 (以前的版本)',
       // End Pre-Balance
       abigail: '雅碧凱',
       achates: '雅卡泰丝',
@@ -1564,6 +1572,7 @@ const i18n = {
       mui:'缪伊',
       muse_rima: '缪斯黎玛',
       muwi: '武蔚',
+      nahkwol: '落月', //TODO: Simplified when available
       navy_captain_landy: '海軍上校蘭蒂', //TODO: Simplified when available
       nemunas: '尼姆拉斯',
       ocean_breeze_luluca: '',
@@ -2077,9 +2086,11 @@ const i18n = {
     heroes: {
       // Unreleased units: (미공개)
       // Pre-Balance versions: (이전 버전)
-      lionheart_cermia_old: '사자왕 체르미아 (이전 버전)',
-      silk_old: '실크 (이전 버전)',
-      tenebria_old: '테네브리아 (이전 버전)',
+      eligos: '엘리고스 (이전 버전)',
+      inferno_khawazu_old: '광염의 카와주 (이전 버전)',
+      martial_artist_ken_old: '무투가 켄 (이전 버전)',
+      moon_bunny_dominiel_old: '달토끼 도미니엘 (이전 버전)',
+      twisted_eidolon_kayron_old: '뒤틀린 망령 카일론 (이전 버전)',
       // End Pre-Balance
       abigail: '아비게일',
       achates: '아카테스',
@@ -2281,6 +2292,7 @@ const i18n = {
       mui: '뮤이',
       muse_rima: '뮤즈 리마',
       muwi: '무위',
+      nahkwol: '낙월',
       navy_captain_landy: '해군 대령 랑디',
       nemunas: '네무나스',
       ocean_breeze_luluca: '바다 향기 루루카',
@@ -2718,9 +2730,11 @@ const i18n = {
     heroes: {
       // Unreleased units: (Unidades) (Não Lançadas)
       // Pre-Balance versions: (Versão) (Pré-Balanceamento)
-      lionheart_cermia_old: 'Cérmia Coração de Leão (Pré-Balanceamento)',
-      silk_old: 'Seda (Pré-Balanceamento)',
-      tenebria_old: 'Tenébria (Pré-Balanceamento)',
+      eligos: 'Eligós (Pré-Balanceamento)',
+      inferno_khawazu_old: 'Khawazu Infernal (Pré-Balanceamento)',
+      martial_artist_ken_old: 'Artista Marcial Ken (Pré-Balanceamento)',
+      moon_bunny_dominiel_old: 'Dominiel Coelhinha Lunar (Pré-Balanceamento)',
+      twisted_eidolon_kayron_old: 'Espírito Distorcido Kayron (Pré-Balanceamento)',
       // End Pre-Balance
       abigail: 'Abigail',
       achates: 'Acates',
@@ -2918,6 +2932,7 @@ const i18n = {
       mui: 'Mui',
       muse_rima: 'Rima Musa',
       muwi: 'Muwi',
+      nahkwol: 'Nahkwol',
       navy_captain_landy: 'Landy Capitã da Marinha',
       nemunas: 'Nemunas',
       ocean_breeze_luluca: 'Luluca Aroma de Mar',

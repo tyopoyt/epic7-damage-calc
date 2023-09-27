@@ -1234,6 +1234,8 @@ const dedupeForm = (hero, artifact) => {
 const updateGraphSkillSelect = () => {
   const skillSelect = document.getElementById('chart-skill');
   const skill = heroes[inputValues.hero]?.skills[skillSelect.options[skillSelect.selectedIndex]?.value.replace('_soulburn', '') || 's1'];
+  const soulburn = skillSelect.options[skillSelect.selectedIndex]?.value.endsWith('_soulburn');
+  const onlyCrit = typeof(skill.onlyCrit) === 'function' ? skill.onlyCrit(soulburn) : skill.onlyCrit;
 
   if (skill.onlyMiss) {
     damageToUse = 'miss';
@@ -1250,7 +1252,7 @@ const updateGraphSkillSelect = () => {
 
     $('#miss-hit').removeAttr('disabled');
     $('#normal-hit').removeAttr('disabled');
-  } else if (skill.onlyCrit) {
+  } else if (onlyCrit) {
     damageToUse = 'crit';
     $('#crit-hit').removeAttr('disabled');
     $('#miss-hit').removeAttr('disabled');
