@@ -3125,6 +3125,43 @@ const heroes = {
       },
       s2: {
         spdScaling: true,
+        rate: 0.75,
+        pow: 1.3,
+        mult: () => {
+          const spdDiff = (elements.caster_speed.value() - elements.target_speed.value()) * 0.025;
+          return 1 + Math.min(Math.max(0, spdDiff), 2);
+        },
+        multTip: () => ({ caster_target_spd_diff: 0.25 }),
+        single: true,
+      },
+      s3: {
+        rate: 1.5,
+        pow: 1,
+        enhance: [0.05, 0.05, 0, 0, 0, 0.1, 0.1],
+        single: true,
+      }
+    }
+  },
+  eligos_old: {
+    name: 'Eligos (Pre-Balance)',
+    element: element.fire,
+    classType: classType.ranger,
+    form: [elements.caster_speed, elements.caster_perception, elements.target_speed],
+    baseAtk: 1283,
+    baseHP: 4976,
+    baseDef: 536,
+    skills: {
+      s1: {
+        spdScaling: true,
+        rate: 0.95,
+        pow: 0.9,
+        mult: () => 1 + elements.caster_speed.value() * 0.00075,
+        multTip: () => ({ caster_speed: 0.075 }),
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.1],
+        single: true,
+      },
+      s2: {
+        spdScaling: true,
         rate: 0.7,
         pow: 1.3,
         mult: () => {
@@ -4115,6 +4152,31 @@ const heroes = {
   // },
   inferno_khawazu: {
     name: 'Inferno Khawazu',
+    element: element.dark,
+    classType: classType.warrior,
+    baseAtk: 1119,
+    baseHP: 6091,
+    baseDef: 594,
+    form: [elements.target_burn_detonate],
+    dot: [dot.burn],
+    skills: {
+      s1: {
+        rate: 0.95,
+        pow: 1,
+        enhance: [0.05, 0, 0.05, 0, 0.1,  0.1],
+        single: true,
+      },
+      s3: {
+        rate: 0.7,
+        pow: 1,
+        detonate: dot.burn,
+        detonation: () => 1.3,
+        single: true,
+      }
+    }
+  },
+  inferno_khawazu_old: {
+    name: 'Inferno Khawazu (Pre-Balance)',
     element: element.dark,
     classType: classType.warrior,
     baseAtk: 1119,
@@ -5299,37 +5361,37 @@ const heroes = {
       },
     }
   },
-  lionheart_cermia_old: {
-    name: 'Lionheart Cermia (Pre-Balance)',
-    element: element.light,
-    classType: classType.warrior,
-    baseAtk: 966,
-    baseDef: 668,
-    baseHP: 5663,
-    form: [elements.caster_defense],
-    skills: {
-      s1: {
-        defenseScaling: true,
-        soulburn: true,
-        rate: (soulburn) => soulburn ? 1 : 0.6,
-        pow: 0.9,
-        flat: (soulburn) => elements.caster_defense.value() * (soulburn ? 1.6 : 1.0),
-        flatTip: (soulburn) => ({ caster_defense: (soulburn ? 160 : 100) }),
-        enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.1],
-        single: true,
-      },
-      s3: {
-        defenseScaling: true,
-        rate: 0.3,
-        pow: 0.9,
-        flat: () => elements.caster_defense.value() * 1.35,
-        flatTip: () => ({ caster_defense: 135 }),
-        penetrate: () => 0.5,
-        enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.1],
-        aoe: true,
-      },
-    }
-  },
+  // lionheart_cermia_old: {
+  //   name: 'Lionheart Cermia (Pre-Balance)',
+  //   element: element.light,
+  //   classType: classType.warrior,
+  //   baseAtk: 966,
+  //   baseDef: 668,
+  //   baseHP: 5663,
+  //   form: [elements.caster_defense],
+  //   skills: {
+  //     s1: {
+  //       defenseScaling: true,
+  //       soulburn: true,
+  //       rate: (soulburn) => soulburn ? 1 : 0.6,
+  //       pow: 0.9,
+  //       flat: (soulburn) => elements.caster_defense.value() * (soulburn ? 1.6 : 1.0),
+  //       flatTip: (soulburn) => ({ caster_defense: (soulburn ? 160 : 100) }),
+  //       enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.1],
+  //       single: true,
+  //     },
+  //     s3: {
+  //       defenseScaling: true,
+  //       rate: 0.3,
+  //       pow: 0.9,
+  //       flat: () => elements.caster_defense.value() * 1.35,
+  //       flatTip: () => ({ caster_defense: 135 }),
+  //       penetrate: () => 0.5,
+  //       enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.1],
+  //       aoe: true,
+  //     },
+  //   }
+  // },
   little_queen_charlotte: {
     name: 'Little Queen Charlotte',
     element: element.light,
@@ -5669,6 +5731,47 @@ const heroes = {
   },
   martial_artist_ken: {
     name: 'Martial Artist Ken',
+    element: element.dark,
+    classType: classType.warrior,
+    baseAtk: 1359,
+    baseHP: 5542,
+    baseDef: 585,
+    form: [elements.caster_hp_pc],
+    skills: {
+      s1: {
+        rate: (soulburn) => soulburn ? 1.3 : 1,
+        pow: 0.95,
+        enhance: [0.05, 0.05, 0, 0.1, 0, 0.15],
+        single: true,
+        soulburn: true,
+        onlyCrit: (soulburn) => soulburn
+      },
+      s2: {
+        onlyCrit: true,
+        rate: 0.95,
+        pow: 1,
+        mult: () => {
+          let extra = 0;
+          for (let i = 0; i < Number(document.getElementById('molagora-s1').value); i++) {
+            extra += heroes.martial_artist_ken.skills.s1.enhance[i];
+          }
+          return (1 + (100 - elements.caster_hp_pc.value()) * 0.004 + extra);
+        },
+        multTip: () => ({ caster_lost_hp_pc: 40 }),
+        penetrate: () => 0.4,
+        enhance: [0.05, 0.1, 0.15],
+        single: true,
+      },
+      s3: {
+        rate: 1.1,
+        pow: 1,
+        enhance: [0.05, 0, 0, 0.1, 0, 0.15],
+        aoe: true,
+      }
+    }
+  },
+  martial_artist_ken_old: {
+    name: 'Martial Artist Ken (Pre-Balance)',
     element: element.dark,
     classType: classType.warrior,
     baseAtk: 1359,
@@ -6110,6 +6213,24 @@ const heroes = {
   },
   moon_bunny_dominiel: {
     name: 'Moon Bunny Dominiel',
+    element: element.light,
+    classType: classType.soul_weaver,
+    baseAtk: 649,
+    baseHP: 4572,
+    baseDef: 631,
+    form: [elements.caster_max_hp],
+    barrier: () => elements.caster_max_hp.value() * 0.20,
+    skills: {
+      s1: {
+        rate: 1,
+        pow: 0.9,
+        enhance: [0.05, 0, 0.05, 0, 0.1, 0.1],
+        single: true,
+      },
+    }
+  },
+  moon_bunny_dominiel_old: {
+    name: 'Moon Bunny Dominiel (Pre-Balance)',
     element: element.light,
     classType: classType.soul_weaver,
     baseAtk: 649,
@@ -7936,44 +8057,44 @@ const heroes = {
       }
     }
   },
-  silk_old: {
-    name: 'Silk (Pre-Balance)',
-    element: element.earth,
-    classType: classType.ranger,
-    baseAtk: 1188,
-    baseHP: 4693,
-    baseDef: 518,
-    form: [elements.caster_speed, elements.caster_nb_focus],
-    skills: {
-      s1: {
-        spdScaling: true,
-        rate: 0.9,
-        pow: 0.9,
-        mult: () => 1 + elements.caster_speed.value() * 0.00075,
-        multTip: () => ({ caster_speed: 0.075 }),
-        enhance: [0.05, 0.05, 0, 0.05, 0, 0.1, 0.15],
-        single: true,
-      },
-      s1_bis: {
-        s1_benefits: true,
-        name: infoLabel('silk_automatic_fire'),
-        spdScaling: true,
-        rate: 1.25,
-        pow: 0.9,
-        penetrate: () => 0.2,
-        mult: () => 1 + elements.caster_speed.value() * 0.00075,
-        multTip: () => ({ caster_speed: 0.075 }),
-        enhance: [0.05, 0.05, 0, 0.05, 0, 0.1, 0.15],
-        single: true,
-      },
-      s3: {
-        rate: 0.95,
-        pow: 1.05,
-        enhance: [0.1, 0, 0, 0.15],
-        aoe: true,
-      }
-    }
-  },
+  // silk_old: {
+  //   name: 'Silk (Pre-Balance)',
+  //   element: element.earth,
+  //   classType: classType.ranger,
+  //   baseAtk: 1188,
+  //   baseHP: 4693,
+  //   baseDef: 518,
+  //   form: [elements.caster_speed, elements.caster_nb_focus],
+  //   skills: {
+  //     s1: {
+  //       spdScaling: true,
+  //       rate: 0.9,
+  //       pow: 0.9,
+  //       mult: () => 1 + elements.caster_speed.value() * 0.00075,
+  //       multTip: () => ({ caster_speed: 0.075 }),
+  //       enhance: [0.05, 0.05, 0, 0.05, 0, 0.1, 0.15],
+  //       single: true,
+  //     },
+  //     s1_bis: {
+  //       s1_benefits: true,
+  //       name: infoLabel('silk_automatic_fire'),
+  //       spdScaling: true,
+  //       rate: 1.25,
+  //       pow: 0.9,
+  //       penetrate: () => 0.2,
+  //       mult: () => 1 + elements.caster_speed.value() * 0.00075,
+  //       multTip: () => ({ caster_speed: 0.075 }),
+  //       enhance: [0.05, 0.05, 0, 0.05, 0, 0.1, 0.15],
+  //       single: true,
+  //     },
+  //     s3: {
+  //       rate: 0.95,
+  //       pow: 1.05,
+  //       enhance: [0.1, 0, 0, 0.15],
+  //       aoe: true,
+  //     }
+  //   }
+  // },
   silver_blade_aramintha: {
     name: 'Silver Blade Aramintha',
     element: element.light,
@@ -8715,35 +8836,35 @@ const heroes = {
       }
     }
   },
-  tenebria_old: {
-    name: 'Tenebria (Pre-Balance)',
-    element: element.fire,
-    classType: classType.mage,
-    baseAtk: 1359,
-    baseHP: 4895,
-    baseDef: 652,
-    skills: {
-      s1: {
-        rate: 1.2,
-        pow: 1,
-        enhance: [0.05, 0, 0.1, 0, 0.15],
-        single: true,
-      },
-      s2: {
-        rate: 0.8,
-        pow: 1,
-        enhance: [0.05, 0, 0.1, 0, 0.15],
-        aoe: true,
-      },
-      s3: {
-        soulburn: true,
-        rate: (soulburn) => soulburn ? 1.35 : 1.1,
-        pow: 1.05,
-        enhance: [0.1, 0, 0, 0, 0.15],
-        aoe: true,
-      }
-    }
-  },
+  // tenebria_old: {
+  //   name: 'Tenebria (Pre-Balance)',
+  //   element: element.fire,
+  //   classType: classType.mage,
+  //   baseAtk: 1359,
+  //   baseHP: 4895,
+  //   baseDef: 652,
+  //   skills: {
+  //     s1: {
+  //       rate: 1.2,
+  //       pow: 1,
+  //       enhance: [0.05, 0, 0.1, 0, 0.15],
+  //       single: true,
+  //     },
+  //     s2: {
+  //       rate: 0.8,
+  //       pow: 1,
+  //       enhance: [0.05, 0, 0.1, 0, 0.15],
+  //       aoe: true,
+  //     },
+  //     s3: {
+  //       soulburn: true,
+  //       rate: (soulburn) => soulburn ? 1.35 : 1.1,
+  //       pow: 1.05,
+  //       enhance: [0.1, 0, 0, 0, 0.15],
+  //       aoe: true,
+  //     }
+  //   }
+  // },
   tieria: {
     name: 'Tieria',
     element: element.fire,
@@ -8821,6 +8942,44 @@ const heroes = {
   },
   twisted_eidolon_kayron: { //TODO: translate when available
     name: 'Twisted Eidolon Kayron',
+    element: element.light,
+    classType: classType.thief,
+    info: "<strong>Notice:</strong> Twisted Eidolon Kayron's S3 fighting spirit consumption scaling has not been mined yet at the time of this update."
+          + "<br>The calculator will be updated later when this information is available.",
+    baseAtk: 1228,
+    baseHP: 6266,
+    baseDef: 473,
+    barrier: () => elements.caster_max_hp.value() * 0.12,
+    form: [elements.target_hp_pc, elements.caster_enrage, elements.caster_max_hp],
+    skills: {
+      s1: {
+        rate: (soulburn) => soulburn ? 1.7 : 1,
+        pow: 1,
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        mult: () => 1 + (1 - (elements.target_hp_pc.value() / 100)) * 0.3,
+        multTip: () => ({ target_lost_hp_pc: 30 }),
+        single: true,
+        soulburn: true
+      },
+      s1_bis: {
+        name: infoLabel('ml_kayron_flash_slash'),
+        rate: 0.85,
+        pow: 1,
+        enhance_from: 's1',
+        aoe: true,
+      },
+      s3: {
+        rate: 1,
+        pow: 1,
+        fixed: (hitType) => (hitType !== hitTypes.miss) ? ((elements.caster_enrage.value()) ? 10000 : 2000) : 0,
+        fixedTip: () => ({ caster_rage_flat: 10000 }),
+        enhance: [0.05, 0.05, 0, 0.1, 0.1],
+        aoe: true,
+      },
+    }
+  },
+  twisted_eidolon_kayron_old: {
+    name: 'Twisted Eidolon Kayron (Pre-Balance)',
     element: element.light,
     classType: classType.thief,
     baseAtk: 1228,

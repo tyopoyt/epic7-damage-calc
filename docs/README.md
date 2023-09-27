@@ -1,5 +1,7 @@
 ## Changelog
 
+### <strong>Sept 27 2023:</strong>
+- Added Nahkwol. Updated Martial Artist Ken, Eligos, Moon Bunny Dominiel, Inferno Khawazu, and Twisted Eidolon Kayron changes from balance patch.
 ### <strong>Sept 17 2023:</strong>
 - Added Lilias's missing barrier.
 ### <strong>Sept 14 2023:</strong>
