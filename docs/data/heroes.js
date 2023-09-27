@@ -8944,13 +8944,11 @@ const heroes = {
     name: 'Twisted Eidolon Kayron',
     element: element.light,
     classType: classType.thief,
-    info: "<strong>Notice:</strong> Twisted Eidolon Kayron's S3 fighting spirit consumption scaling has not been mined yet at the time of this update."
-          + "<br>The calculator will be updated later when this information is available.",
     baseAtk: 1228,
     baseHP: 6266,
     baseDef: 473,
     barrier: () => elements.caster_max_hp.value() * 0.12,
-    form: [elements.target_hp_pc, elements.caster_max_hp],
+    form: [elements.target_hp_pc, elements.caster_max_hp, elements.caster_fighting_spirit],
     skills: {
       s1: {
         rate: (soulburn) => soulburn ? 1.7 : 1,
@@ -8971,8 +8969,8 @@ const heroes = {
       s3: {
         rate: 1,
         pow: 1,
-        fixed: (hitType) => (hitType !== hitTypes.miss) ? 10000 : 0,
-        fixedTip: () => ({ fixed: 10000 }),
+        fixed: (hitType) => (2000 + ((hitType !== hitTypes.miss) ? Math.min(80 * elements.caster_fighting_spirit.value(), 8000) : 0)),
+        fixedTip: (fixedDamage) => ({ fixed: fixedDamage }),
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
         aoe: true,
       },
