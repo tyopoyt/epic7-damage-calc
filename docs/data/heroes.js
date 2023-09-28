@@ -2539,6 +2539,7 @@ const heroes = {
     baseAtk: 1182,
     baseHP: 5299,
     baseDef: 571,
+    form: [elements.exclusive_equipment_3],
     skills: {
       s1: {
         rate: 1,
@@ -2549,6 +2550,7 @@ const heroes = {
       s3: {
         rate: 1.1,
         pow: 1,
+        exEq: () => elements.exclusive_equipment_3.value() ? 0.1 : 0,
         enhance: [0.05, 0, 0, 0, 0.1, 0.15],
         aoe: true,
       }
