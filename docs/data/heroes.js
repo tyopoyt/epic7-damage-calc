@@ -5753,11 +5753,7 @@ const heroes = {
         rate: 0.95,
         pow: 1,
         mult: () => {
-          let extra = 0;
-          for (let i = 0; i < Number(document.getElementById('molagora-s1').value); i++) {
-            extra += heroes.martial_artist_ken.skills.s1.enhance[i];
-          }
-          return (1 + (100 - elements.caster_hp_pc.value()) * 0.004 + extra);
+          return (1 + (100 - elements.caster_hp_pc.value()) * 0.004);
         },
         multTip: () => ({ caster_lost_hp_pc: 40 }),
         penetrate: () => 0.4,
@@ -6063,7 +6059,6 @@ const heroes = {
     baseAtk: 1208,
     baseHP: 5178,
     baseDef: 508,
-    info: infoLabel('unreleased_hero'),
     form: [elements.caster_max_hp, elements.target_max_hp],
     skills: {
       s1: {
