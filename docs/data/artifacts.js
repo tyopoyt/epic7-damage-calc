@@ -435,10 +435,14 @@ const artifacts = {
   time_matter: {
     id: 'time_matter',
     name: 'Time Matter',
-    scale: [0.12, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2, 0.21, 0.22, 0.24],
+    form: [elements.enemy_defeated],
+    scale: [0.06, 0.66, 0.072, 0.078, 0.084, 0.09, 0.096, 0.102, 0.108, 0.114, 0.12],
+    additional: [0.12, 0.132, 0.144, 0.156, 0.168, 0.18, 0.192, 0.204, 0.216, 0.228, 0.24],
     type: artifactDmgType.damage,
     exclusive: classType.mage,
-    value: (artiScale) => (artiScale / 2) + artiScale,
+    value: (input) => {
+      return input + (elements.enemy_defeated.value() ? artifacts.time_matter.additional[artifacts.time_matter.scale.indexOf(input)] : 0);
+    }
   },
   torn_sleeve:{
     id: 'torn_sleeve',
