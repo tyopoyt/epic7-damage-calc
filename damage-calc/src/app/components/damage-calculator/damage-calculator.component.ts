@@ -30,6 +30,7 @@ export class DamageCalculatorComponent implements OnInit {
 
   attackChange(value: number) {
     this.damageService.updateDamages();
+    this.damage = value
   }
   attackImprintChange(value: number) {
 

@@ -24,7 +24,7 @@ export class DamageService {
     return mult;
   }
 
-  getGlobalAtkMult = () => {
+  getGlobalAttackMult = () => {
     let mult = 0.0;
   
     this.dataService.attackModifiers.forEach((mod) => {
@@ -66,7 +66,7 @@ export class DamageService {
       pow: skill.pow(soulburn),
       mult: skill.mult(soulburn, this) - 1, // TODO: change anything checking for this to be null to check for -1
       multTip: this.languageService.getSkillModTip(skill.multTip(soulburn)),
-      afterMathDmg: this.dataService.currentHero.getAfterMathSkillDamage(skill, HitType.crit, this.dataService.currentArtifact, this.dataService.damageInputValues.targetInjuries),
+      afterMathDmg: this.dataService.currentHero.getAfterMathSkillDamage(skill, HitType.crit, this.dataService.currentArtifact, this.dataService.damageInputValues, this.getGlobalAttackMult(), this.dataService.currentTarget),
       afterMathFormula: skill.afterMath(soulburn),
       critBoost: skill.critDmgBoost(soulburn),
       critBoostTip: this.languageService.getSkillModTip(skill.critDmgBoostTip(soulburn)),
@@ -87,10 +87,10 @@ export class DamageService {
   offensivePower(skill: Skill, soulburn = false, isExtra = false) {
     const rate = (typeof skill.rate === 'function') ? skill.rate(soulburn) : skill.rate;
     const flatMod = skill.flat ? skill.flat(soulburn, this.dataService.currentHero) : 0;
-    const flatMod2 = this.dataService.currentArtifact.getFlatMult() + (skill.flat2());
+    const flatMod2 = this.dataService.currentArtifact.getFlatMult(this.dataService.damageInputValues.artifactLevel) + (skill.flat2());
 
     const pow = (typeof skill.pow === 'function') ? skill.pow(soulburn) : skill.pow;
-    const skillEnhance = this.dataService.currentHero.getSkillEnhanceMult(skill);
+    const skillEnhance = this.dataService.currentHero.getSkillEnhanceMult(skill, this.dataService.molagoras());
     let elemAdv = 1.0;
     if (this.dataService.damageInputValues.elementalAdvantage || (typeof skill.elementalAdvantage === 'function') && skill.elementalAdvantage() === true) {
       elemAdv = this.dataService.battleConstants.elemAdv;
@@ -100,21 +100,21 @@ export class DamageService {
     let dmgMod = 1.0
         + this.getGlobalDamageMult(skill)
         + this.dataService.damageInputValues.bonusDamage / 100
-        + this.dataService.currentArtifact.getDamageMultiplier(skill, isExtra)
+        + this.dataService.currentArtifact.getDamageMultiplier(skill, isExtra, this.dataService.damageInputValues.artifactLevel)
         + (skill.mult ? skill.mult(soulburn, this) - 1 : 0);
 
-    return ((this.dataService.currentHero.getAttack(skill, this.dataService.currentArtifact) * rate + flatMod) * this.dataService.battleConstants.dmgConst + flatMod2) * pow * skillEnhance * elemAdv * target * dmgMod;
+    return ((this.dataService.currentHero.getAttack(this.dataService.currentArtifact, this.dataService.damageInputValues, this.getGlobalAttackMult(), skill) * rate + flatMod) * this.dataService.battleConstants.dmgConst + flatMod2) * pow * skillEnhance * elemAdv * target * dmgMod;
   }
 
   // Tthis getAtk is called because of lilias
   getDotDamage(skill: Skill, type: DoT) {
     switch (type) {
     case DoT.bleed:
-      return this.dataService.currentHero.getAttack(skill, this.dataService.currentArtifact) * 0.3 * this.dataService.battleConstants.dmgConst * this.dataService.currentTarget.defensivePower(new Skill({ penetrate: () => 0.7 }), true);
+      return this.dataService.currentHero.getAttack(this.dataService.currentArtifact, this.dataService.damageInputValues, this.getGlobalAttackMult(), skill) * 0.3 * this.dataService.battleConstants.dmgConst * this.dataService.currentTarget.defensivePower(new Skill({ penetrate: () => 0.7 }), this.dataService.damageInputValues.artifactLevel, true);
     case DoT.burn:
-      return this.dataService.currentHero.getAttack(skill, this.dataService.currentArtifact) * 0.6 * this.dataService.battleConstants.dmgConst * (this.dataService.damageInputValues.beehooPassive ? this.dataService.heroConstants.beehooBurnMult : 1) * this.dataService.currentTarget.defensivePower(new Skill({ penetrate: () => 0.7 }), true);
+      return this.dataService.currentHero.getAttack(this.dataService.currentArtifact, this.dataService.damageInputValues, this.getGlobalAttackMult(), skill) * 0.6 * this.dataService.battleConstants.dmgConst * (this.dataService.damageInputValues.beehooPassive ? this.dataService.heroConstants.beehooBurnMult : 1) * this.dataService.currentTarget.defensivePower(new Skill({ penetrate: () => 0.7 }), this.dataService.damageInputValues.artifactLevel, true);
     case DoT.bomb:
-      return this.dataService.currentHero.getAttack(skill, this.dataService.currentArtifact) * 1.5 * this.dataService.battleConstants.dmgConst * this.dataService.currentTarget.defensivePower(new Skill({ penetrate: () => 0.7 }), true);
+      return this.dataService.currentHero.getAttack(this.dataService.currentArtifact, this.dataService.damageInputValues, this.getGlobalAttackMult(), skill) * 1.5 * this.dataService.battleConstants.dmgConst * this.dataService.currentTarget.defensivePower(new Skill({ penetrate: () => 0.7 }), this.dataService.damageInputValues.artifactLevel, true);
     default: return 0;
     }
   }
@@ -135,7 +135,7 @@ export class DamageService {
     let artiDamage: number = this.getAfterMathDamage(skill, hitType) || 0;
 
 
-    const skillDamage = this.dataService.currentHero.getAfterMathSkillDamage(skill, HitType.crit, this.dataService.currentArtifact, this.dataService.damageInputValues.targetInjuries);
+    const skillDamage = this.dataService.currentHero.getAfterMathSkillDamage(skill, HitType.crit, this.dataService.currentArtifact, this.dataService.damageInputValues, this.getGlobalAttackMult(), this.dataService.currentTarget);
     const skillExtraDmg = skill.extraDmg !== undefined ? Math.round(skill.extraDmg(hitType)) : 0;
 
     return detonation + artiDamage + skillDamage + skillExtraDmg;
@@ -143,10 +143,10 @@ export class DamageService {
 
   getDamage(skill: Skill, soulburn = false, isExtra = false) {
     const critDmgBuff = this.dataService.damageInputValues.critDamageUp ? this.dataService.battleConstants.critDmgUp : 0.0;
-    const hit = this.offensivePower(skill, soulburn, isExtra) * this.dataService.currentTarget.defensivePower(skill);
-    const critDmg = Math.min((this.dataService.currentHero.crit / 100) + critDmgBuff, 3.5)
+    const hit = this.offensivePower(skill, soulburn, isExtra) * this.dataService.currentTarget.defensivePower(skill, this.dataService.damageInputValues.artifactLevel);
+    const critDmg = Math.min((this.dataService.damageInputValues.critDamage / 100) + critDmgBuff, 3.5)
         + (skill.critDmgBoost ? skill.critDmgBoost(soulburn) : 0)
-        + (this.dataService.currentArtifact.getCritDmgBoost() || 0)
+        + (this.dataService.currentArtifact.getCritDmgBoost(this.dataService.damageInputValues.artifactLevel) || 0)
         + (this.dataService.damageInputValues.casterPerception ? this.dataService.battleConstants.perception : 0);
     return {
       crit: skill.noCrit || skill.onlyMiss ? null : Math.round(hit * critDmg + (skill.fixed !== undefined ? skill.fixed(HitType.crit) : 0) + this.getAfterMathDamage(skill, HitType.crit)),

@@ -37,6 +37,7 @@ export class Skill {
     flatTip: Function;
     ignoreDamageTransfer: Function;
     isAOE: Function;
+    isExtra: boolean;
     isSingle: Function;
     mult: Function;
     multTip: Function;
@@ -44,6 +45,7 @@ export class Skill {
     penetrationTip: Function;
     pow: Function;
     rate: Function;
+    s1Benefits: boolean;
     atk: Function;
     noBuff: boolean; //TODO: possible remove this and just use atk (atkToUse)
     noCrit: boolean;
@@ -76,6 +78,7 @@ export class Skill {
         this.flatTip = _.get(data, 'flatTip', () => null);
         this.ignoreDamageTransfer = _.get(data, 'ignoreDamageTransfer', () => false);
         this.isAOE = _.get(data, 'aoe', () => false);
+        this.isExtra = _.get(data, 'isExtra', () => false);
         this.isSingle = _.get(data, 'single', () => false);
         this.mult = _.get(data, 'mult', () => 0);
         this.multTip = _.get(data, 'multTip', () => null);
@@ -85,6 +88,7 @@ export class Skill {
         this.rate = _.get(data, 'rate', () => 0);
         this.atk = _.get(data, 'atk', () => 0);
         this.noBuff = _.get(data, 'noBuff', false);
+        this.s1Benefits = _.get(data, 's1Benefits', false);
         this.noCrit = _.get(data, 'noCrit', false);
         this.onlyCrit = _.get(data, 'onlyCrit', false);
         this.onlyMiss = _.get(data, 'onlyMiss', false);

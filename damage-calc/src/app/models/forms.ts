@@ -2,6 +2,7 @@ import * as _ from 'lodash-es'
 import { DefensePreset, ReductionPreset } from './target-presets';
 //TODO: heroes will replace form with heroSpecific [] and heroSpecificMaximums {}
 export class DamageFormData {
+    AOEStack: number;
     artifactLevel: number;
     attack: number;
     attackImprint: number;
@@ -45,9 +46,11 @@ export class DamageFormData {
     dualAttackStack: number;
     elementalAdvantage: boolean;
     enemyCounterStack: number;
+    enemyDefeated: boolean;
     exclusiveEquipment1: boolean;
     exclusiveEquipment2: boolean;
     exclusiveEquipment3: boolean;
+    heroID: string;
     highestAllyAttack: number;
     molagoraS1: number;
     molagoraS2: number;
@@ -60,6 +63,7 @@ export class DamageFormData {
     penSet: boolean;
     reductionPreset?: ReductionPreset;
     S3OnCooldown: boolean;
+    singleAttackStack: number;
     skill3Stack: number;
     skillTreeCompleted: boolean;
     targetAsleep: boolean;
@@ -86,8 +90,10 @@ export class DamageFormData {
     targetTargeted: boolean;
     torrentSetStack: number;
     totalAllyBuffs: number;
+    turnStack: number;
 
     constructor(data: any) {
+        this.AOEStack = _.get(data, 'AOEStack', 0);
         this.artifactLevel = _.get(data, 'artifactLevel', 0);
         this.attack = _.get(data, 'attack', 2500);
         this.attackImprint = _.get(data, 'attackImprint', 0);
@@ -131,9 +137,11 @@ export class DamageFormData {
         this.dualAttackStack = _.get(data, 'dualAttackStack', 0)
         this.elementalAdvantage = _.get(data, 'elementalAdvantage', false);
         this.enemyCounterStack = _.get(data, 'enemyCounterStack', 0)
+        this.enemyDefeated = _.get(data, 'enemyDefeated', false);
         this.exclusiveEquipment1 = _.get(data, 'exclusiveEquipment1', false);
         this.exclusiveEquipment2 = _.get(data, 'exclusiveEquipment2', false);
         this.exclusiveEquipment3 = _.get(data, 'exclusiveEquipment3', false);
+        this.heroID = _.get(data, 'heroID', 'abigail');
         this.highestAllyAttack = _.get(data, 'highestAllyAttack', 2500);
         this.molagoraS1 = _.get(data, 'molagoraS1', 0);
         this.molagoraS2 = _.get(data, 'molagoraS2', 0);
@@ -146,6 +154,7 @@ export class DamageFormData {
         this.penSet = _.get(data, 'penSet', false);
         this.reductionPreset = _.get(data, 'reductionPreset', null);
         this.S3OnCooldown = _.get(data, 'S3OnCooldown', false);
+        this.singleAttackStack = _.get(data, 'singleAttackStack', 0);
         this.skill3Stack = _.get(data, 'skill3Stack', 0);
         this.skillTreeCompleted = _.get(data, 'skillTreeCompleted', true);
         this.targetAsleep = _.get(data, 'targetAsleep', false);
@@ -172,5 +181,6 @@ export class DamageFormData {
         this.targetTargeted = _.get(data, 'targetTargeted', false);
         this.torrentSetStack = _.get(data, 'torrentSetStack', 0);
         this.totalAllyBuffs = _.get(data, 'totalAllyBuffs', 0);
+        this.turnStack = _.get(data, 'turnStack', 0);
     }
 }

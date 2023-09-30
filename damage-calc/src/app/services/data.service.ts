@@ -5,6 +5,8 @@ import { Artifact } from '../models/artifact';
 import { Target } from '../models/target';
 import { heroes } from '../../assets/data/heroes.js';
 
+import * as _ from 'lodash-es'
+
 @Injectable({
   providedIn: 'root'
 })
@@ -79,5 +81,19 @@ export class DataService {
     // this.currentHero
     console.log('here')
     console.log(this.heroes)
+  }
+
+  molagoras(): Record<string, number> {
+    const molagoras: Record<string, number> = {};
+
+    for (let i = 1; i < 4; i++) {
+      if (_.get(this.currentHero.skills, `s${i}`)) {
+        molagoras[`s${i}`] = this.damageInputValues[`molagoraS${i}` as keyof DamageFormData] as number;
+      }
+    }
+    
+    console.log(molagoras)
+
+    return molagoras;
   }
 }

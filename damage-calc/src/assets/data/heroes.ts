@@ -1883,7 +1883,7 @@ export const heroes: Record<string, Hero> = {
         rate: () => 1,
         pow: () => 1.1,
         enhance: [0.05, 0, 0, 0, 0.15],
-        elemAdv: () => true,
+        elementalAdvantage: () => true,
         aoe: true,
       }),
     }
@@ -2286,7 +2286,7 @@ export const heroes: Record<string, Hero> = {
         mult: (inputValues: DamageFormData) => 1 + inputValues.casterSpeed * 0.0021,
         multTip: () => ({ caster_speed: 0.21 }),
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
-        elemAdv: (inputValues: DamageFormData) => inputValues.casterSpeedUp || inputValues.exclusiveEquipment3,
+        elementalAdvantage: (inputValues: DamageFormData) => inputValues.casterSpeedUp || inputValues.exclusiveEquipment3,
         isSingle: () => true,
       })
     }
@@ -5410,7 +5410,7 @@ export const heroes: Record<string, Hero> = {
         pow: () => 1.05,
         penetrate: () => 0.5,
         enhance: [0.05, 0, 0.1, 0, 0.1],
-        elemAdv: () => true,
+        elementalAdvantage: () => true,
         isSingle: () => true,
       })
     }
@@ -7557,8 +7557,8 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s1_bis: new Skill({
-        s1_benefits: true,
-            spdScaling: true,
+        s1Benefits: true,
+        spdScaling: true,
         rate: () => 1.2,
         pow: () => 0.9,
         penetrate: () =>  0.2,
@@ -7593,8 +7593,8 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s1_bis: new Skill({
-        s1_benefits: true,
-            spdScaling: true,
+        s1Benefits: true,
+        spdScaling: true,
         rate: () => 1.25,
         pow: () => 0.9,
         penetrate: () => 0.2,
