@@ -21,6 +21,7 @@ export enum HitType {
 export class Skill {
     id: string;
     afterMath: Function;
+    canExtra: boolean;
     critDmgBoost: Function;
     critDmgBoostTip: Function;
     detonation: Function;
@@ -56,12 +57,14 @@ export class Skill {
     hpScaling: boolean;
     defenseScaling: boolean;
     speedScaling: boolean;
+    soulburn: boolean;
 
     // TODO: refactor things like isAOE to be boolean not fxn
     // TODO: refactor atk to attackToUse
     constructor(data: any) {
         this.id = _.get(data, 'id', 's1');
         this.afterMath = _.get(data, 'afterMath', () => null); //TODO: define a type for this
+        this.canExtra = _.get(data, 'canExtra', false);
         this.critDmgBoost = _.get(data, 'critDmgBoost', () => 0);
         this.critDmgBoostTip = _.get(data, 'critDmgBoostTip', () => null);
         this.detonation = _.get(data, 'detonation', () => 0);
@@ -80,7 +83,7 @@ export class Skill {
         this.isAOE = _.get(data, 'aoe', () => false);
         this.isExtra = _.get(data, 'isExtra', () => false);
         this.isSingle = _.get(data, 'single', () => false);
-        this.mult = _.get(data, 'mult', () => 0);
+        this.mult = _.get(data, 'mult', () => 1);
         this.multTip = _.get(data, 'multTip', () => null);
         this.penetration = _.get(data, 'penetrate', () => 0);
         this.penetrationTip = _.get(data, 'penetrationTip', () => null);
@@ -96,7 +99,8 @@ export class Skill {
         this.hpScaling = _.get(data, 'hpScaling', false);
         this.defenseScaling = _.get(data, 'defenseScaling', false);
         this.speedScaling = _.get(data, 'speedScaling', false);
-        this.detonate = _.get(data, 'detonate', null);
+        this.detonate = _.get(data, 'detonate', []);
+        this.soulburn = _.get(data, 'soulburn', false);
     }
 
     //TODO: get rid of this if unused

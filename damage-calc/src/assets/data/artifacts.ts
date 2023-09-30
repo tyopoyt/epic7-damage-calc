@@ -3,7 +3,7 @@ import { DamageFormData } from "src/app/models/forms";
 import { HeroClass, HeroElement } from "src/app/models/hero";
 import { DoT, Skill } from "src/app/models/skill";
 import { heroes } from "./heroes";
-//TODO: typescriptify this
+
 //TODO: add ftene artifact
 export const artifactDmgType = {
   damage: 'damage',

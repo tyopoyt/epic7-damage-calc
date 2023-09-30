@@ -1,3 +1,4 @@
+@use '@angular/material' as mat;
 @import "../../../variables";
 
 .header-block {
@@ -12,7 +13,8 @@
     bottom: 0;
     z-index: $damage-block-z-index;
     mat-card {
-        height: 20rem;
+        // height: 20rem;
+        @include mat.elevation(2)
     }
 }
 
@@ -20,5 +22,27 @@
     margin-bottom: $gutter;
     mat-card {
         height: 20rem;
+    }
+}
+
+.mat-mdc-table {
+    .cdk-column-skill {
+        width: 25%;
+    }
+    
+    .cdk-column-crit {
+        width: 18.75%;
+    }
+    
+    .cdk-column-crush {
+        width: 18.75%;
+    }
+    
+    .cdk-column-normal {
+        width: 18.75%;
+    }
+    
+    .cdk-column-miss {
+        width: 18.75%;
     }
 }

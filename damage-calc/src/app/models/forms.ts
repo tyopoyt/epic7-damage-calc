@@ -164,7 +164,7 @@ export class DamageFormData {
         this.targetBurnDetonate = _.get(data, 'targetBurnDetonate', 0);
         this.targetCurrentHP = _.get(data, 'targetCurrentHP', 10000);
         this.targetCurrentHPPercent = _.get(data, 'targetCurrentHPPercent', 100);
-        this.targetDefense = _.get(data, 'defense', 0);
+        this.targetDefense = _.get(data, 'defense', 1000);
         this.targetHasBarrier = _.get(data, 'targetHasBarrier', false);
         this.targetHasBuff = _.get(data, 'targetHasBuff', false);
         this.targetHasDebuff = _.get(data, 'targetHasDebuff', false);

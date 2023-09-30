@@ -195,10 +195,39 @@
         </div>
         <div class="damage-block">
             <mat-card class="left">
-                DAMAGE BLOCK
-                <br>
-                <br>
-                {{damage}}
+                <div class="extra-large-text bold-text small-padding-top">
+                    {{"damage_title" | translate:'form':languageService.language.value}}
+                </div>
+                <table class="margin-top" [class.smaller-padding]="screenService.tinyScreen.value" [class.tiny-padding]="screenService.microscopicScreen.value" mat-table [dataSource]="damages">
+
+                    <ng-container matColumnDef="skill">
+                      <th mat-header-cell *matHeaderCellDef> {{"skill" | translate:'form':languageService.language.value}} </th>
+                      <td mat-cell *matCellDef="let element"> {{element.skill}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="crit">
+                      <th mat-header-cell *matHeaderCellDef> {{"critical_hit" | translate:'form':languageService.language.value}} </th>
+                      <td mat-cell *matCellDef="let element"> {{element.crit}} </td>
+                    </ng-container>
+                  
+                    <ng-container matColumnDef="crush">
+                      <th mat-header-cell *matHeaderCellDef> {{"crushing_hit" | translate:'form':languageService.language.value}} </th>
+                      <td mat-cell *matCellDef="let element"> {{element.crush}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="normal">
+                      <th mat-header-cell *matHeaderCellDef> {{"normal_hit" | translate:'form':languageService.language.value}} </th>
+                      <td mat-cell *matCellDef="let element"> {{element.normal}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="miss">
+                        <th mat-header-cell *matHeaderCellDef> {{"miss" | translate:'form':languageService.language.value}} </th>
+                        <td mat-cell *matCellDef="let element"> {{element.miss}} </td>
+                    </ng-container>
+                  
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                  </table>
             </mat-card>
         </div>
         <div class="credits-block">

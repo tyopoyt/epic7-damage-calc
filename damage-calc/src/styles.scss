@@ -203,6 +203,62 @@ html, body {
     }
   }
 
+  .damage-block {
+    .mat-mdc-card {
+      background-color: $ui-medium-dark-color;
+    }
+  }
+
+  .mat-mdc-table {
+    border-radius: $gutter;
+    margin: $gutter-large 0 $gutter;
+    overflow: hidden;
+
+    &.smaller-padding {
+      .mat-mdc-header-cell, .mat-mdc-cell {
+        padding: 0 0.5rem;
+      }
+    }
+
+    &.tiny-padding {
+      .mat-mdc-header-cell, .mat-mdc-cell {
+        padding: 0 0.125rem;
+      }
+    }
+
+    thead {
+      > tr {
+        font-weight: bold;
+        background-color: $ui-medium-color;
+        color: $font-light-color;
+
+        .mat-mdc-header-cell {
+          border-right: $gutter-tiny solid $ui-dark-color;
+          border-bottom: none;
+        }
+
+        > :nth-child(5) {
+          border-right: none;
+        }
+      }
+    }
+
+    tr {
+      background-color: $ui-dark-color;
+      color: $font-light-color;
+
+      .mat-mdc-cell {
+        display: table-cell;
+        border-bottom: 2px solid $ui-medium-color;
+        border-right: 2px solid $ui-medium-color;
+      }
+
+      > :nth-child(5) {
+        border-right: none;
+      }
+    }
+  }
+
   div.mat-mdc-select-panel {
     background-color: $ui-medium-dark-color;
     padding: 0 !important;
@@ -555,6 +611,12 @@ html, body {
       }
     }
 
+    .damage-block {
+      .mat-mdc-card {
+        background-color: $ui-medium-light-color;
+      }
+    }
+
     div.mat-mdc-select-panel {
       background: $ui-medium-light-light-color;
     
@@ -598,7 +660,7 @@ html, body {
     }
 
     .mat-mdc-checkbox .mdc-form-field {
-      background-color: $ui-medium-light-color;
+      background-color: $ui-medium-light-light-color;
     }
 
     .mat-mdc-menu-item:not([disabled]):hover {
@@ -758,6 +820,14 @@ body {
 
 .padding-left {
   padding-left: 1rem;
+}
+
+.padding-top {
+  padding-top: 1rem;
+}
+
+.small-padding-top {
+  padding-top: 0.25rem;
 }
 
 .tiny-padding-left {

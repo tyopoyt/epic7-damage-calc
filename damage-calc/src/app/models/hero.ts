@@ -23,23 +23,6 @@ export enum HeroClass {
 }
 //TODO: refactor atk to attack and crit to critDamage
 export class Hero {
-    // artifact?: Artifact;
-    // atk: number;
-    // attackImprint: number;
-    // attackMultiplier: number;
-    // bonus: number;
-    // crit: number;
-    // defense?: number;
-    // defenseUp: boolean;
-    // enraged?: boolean;
-    // fury: boolean;
-    // hp?: number;
-    // id: string;
-    // molagoras: Record<string, number>;
-    // speed?: number;
-    // speedUp: boolean;
-    // target: Target;
-    // vigor: boolean;
     attackIncrease?: Function;
     barrier?: Function;
     barrier2?: Function;
@@ -57,36 +40,10 @@ export class Hero {
     exclusiveEquipmentMultiplier?: Function;
 
   constructor(
-      // id: string,
-      // artifact: Artifact,
-      // inputValues: DamageFormData,
       heroValues: any,
-      // globalDefenseMultiplier: number,
-      // globalAttackMultiplier: number
     )
   {
-    //   'S1': _.get(inputValues, 'molagoraS1', 0),
-    //   'S2': _.get(inputValues, 'molagoraS2', 0),
-    //   'S3': _.get(inputValues, 'molagoraS3', 0)
-    // }
-    // this.artifact = artifact;
-    // this.atk = inputValues.attack;
-    // this.attackImprint = inputValues.attackImprint;
-    // this.attackMultiplier = globalAttackMultiplier;
-    // this.bonus = inputValues.bonusDamage;
-    // this.crit = inputValues.critDamage;
-    // this.defense = inputValues.casterDefense;
-    // this.defenseUp = inputValues.casterDefenseUp;
-    // this.enraged = inputValues.casterEnrage;
-    // this.fury = inputValues.casterFury;
-    // this.hp = inputValues.casterMaxHP;
-    // this.id = id;
-    // this.molagoras = {
-    // this.speed = inputValues.casterSpeed;
-    // this.speedUp = inputValues.casterSpeedUp;
-    // this.target = new Target(artifact, inputValues, globalDefenseMultiplier);
-    // this.vigor = inputValues.casterVigor;
-    this.attackIncrease = _.get(heroValues, 'attackIncrease', () => 0);
+    this.attackIncrease = _.get(heroValues, 'attackIncrease', () => 1);
     this.barrier = _.get(heroValues, 'barrier', () => 0);
     this.barrier2 = _.get(heroValues, 'barrier2', () => 0);
     this.barrier2Enhance = _.get(heroValues, 'barrier2Enhance', '');
@@ -198,6 +155,7 @@ export class Hero {
       }
     }
 
+    // TODO: should this return 0 instead?
     return null;
   }
 

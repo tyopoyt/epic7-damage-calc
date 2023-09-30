@@ -1,25 +1,26 @@
-import { Injectable, OnInit } from '@angular/core';
+import { EventEmitter, Injectable, OnInit } from '@angular/core';
 import { Hero } from '../models/hero';
 import { DamageFormData } from '../models/forms';
 import { Artifact } from '../models/artifact';
 import { Target } from '../models/target';
-import { heroes } from '../../assets/data/heroes.js';
+import { heroes } from '../../assets/data/heroes';
 
 import * as _ from 'lodash-es'
+import { BehaviorSubject } from 'rxjs';
+import { DamageService } from './damage.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-  heroes: Record<string, Hero> = {};
-  artifacts: Record<string, Artifact> = {};
+  // TODO: make sure these all have correct initial values when queryparams are implemented
+  damageInputValues: DamageFormData = new DamageFormData({});
+  damageInputChanged: EventEmitter<void> = new EventEmitter();
 
   // TODO: update the defaults here when possible
-  currentHero: Hero = {} as Hero;
-  currentArtifact: Artifact = {} as Artifact;
-  currentTarget: Target = {} as Target;
-
-  damageInputValues: DamageFormData = new DamageFormData({});
+  currentHero: Hero = heroes.crescent_moon_rin;  // Default to abigail when more things are working
+  currentArtifact: Artifact = new Artifact({});
+  currentTarget: Target = new Target(this.currentArtifact, this.damageInputValues, 1);  
 
   // TODO: refactor these to be more readable
   battleConstants: Record<string, number> = {
@@ -71,16 +72,13 @@ export class DataService {
   }
 
   async initialSetup() {
-    //TODO: these both actually need to be js (ts) since there will be defined functions
+  }
 
-    // const heroesFile = await fetch(`../../assets/data/heroes.js`);
-    // this.heroes = await heroesFile.json();
-
-    // const artifactsFile = await fetch(`../../assets/artifacts.json`);
-    // this.artifacts = await artifactsFile.json();
-    // this.currentHero
-    console.log('here')
-    console.log(this.heroes)
+  updateDamageInputValues(updates: Record<string, any>) {
+    for (const [field, data] of Object.entries(updates)) {
+      this.setProperty(this.damageInputValues, field as keyof DamageFormData, data);
+    }
+    this.damageInputChanged.emit();
   }
 
   molagoras(): Record<string, number> {
@@ -92,8 +90,13 @@ export class DataService {
       }
     }
     
-    console.log(molagoras)
+    console.log('molas:', molagoras)
 
     return molagoras;
+  }
+
+  // Helper function to update the value of a form input
+  setProperty<T, K extends keyof T>(object: T, property: K, value: any) {
+    object[property] = value; 
   }
 }

@@ -198,7 +198,13 @@
       "_or_": " OR",
       "slower_unit_possible": "The slower unit can have up to ",
       "faster_unit_possible": " the faster unit can have up to ",
-      "full_stop": "."
+      "full_stop": ".",
+      "damage_title": "Damage",
+      "skill": "Skill",
+      "critical_hit": "Critical Hit",
+      "crushing_hit": "Crushing Hit",
+      "normal_hit": "Normal Hit",
+      "miss": "Miss"
     },
     "info": {
       "alencia_trample": "Trample",
