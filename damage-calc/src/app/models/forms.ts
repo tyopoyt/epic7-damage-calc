@@ -6,9 +6,10 @@ export class DamageFormData {
     artifactLevel: number;
     attack: number;
     attackImprint: number;
-    attackIncrease: number;
+    attackIncreasePercent: number;
     beehooPassive: boolean;
     damageIncrease: number;
+    decreasedAttack: boolean;
     casterAboveHalfHP: boolean;
     casterAttackedStack: number;
     casterAttackStack: number;
@@ -37,7 +38,7 @@ export class DamageFormData {
     casterSpeedUp: boolean;
     casterVigor: boolean;
     critDamage: number;
-    critDamageUp: boolean;
+    increasedCritDamage: boolean;
     criticalHitStack: number;
     damageReduction: number;
     damageTransfer: number
@@ -52,6 +53,8 @@ export class DamageFormData {
     exclusiveEquipment3: boolean;
     heroID: string;
     highestAllyAttack: number;
+    increasedAttack: boolean;
+    increasedAttackGreat: boolean;
     molagoraS1: number;
     molagoraS2: number;
     molagoraS3: number;
@@ -60,7 +63,8 @@ export class DamageFormData {
     numberOfDeaths: number;
     numberOfHits: number;
     numberOfTargets: number;
-    penSet: boolean;
+    penetrationSet: boolean;
+    rageSet?: boolean;
     reductionPreset?: ReductionPreset;
     S3OnCooldown: boolean;
     singleAttackStack: number;
@@ -98,9 +102,10 @@ export class DamageFormData {
         this.artifactLevel = _.get(data, 'artifactLevel', 0);
         this.attack = _.get(data, 'attack', 2500);
         this.attackImprint = _.get(data, 'attackImprint', 0);
-        this.attackIncrease = _.get(data, 'attackIncrease', 0);
+        this.attackIncreasePercent = _.get(data, 'attackIncreasePercent', 0);
         this.beehooPassive = _.get(data, 'beehooPassive', false);
         this.damageIncrease = _.get(data, 'damageIncrease', 0);
+        this.decreasedAttack = _.get(data, 'decreasedAttack', false);
         this.casterAboveHalfHP = _.get(data, 'casterAboveHalfHP', true);
         this.casterAttackedStack = _.get(data, 'casterAttackedStack', 0);
         this.casterAttackStack = _.get(data, 'casterAttackStack', 0);
@@ -129,7 +134,7 @@ export class DamageFormData {
         this.casterSpeedUp = _.get(data, 'casterSpeedUp', false);
         this.casterVigor = _.get(data, 'casterVigor', false);
         this.critDamage = _.get(data, 'critDamage', 250);
-        this.critDamageUp = _.get(data, 'critDamageUp', false);
+        this.increasedCritDamage = _.get(data, 'increasedCritDamage', false);
         this.criticalHitStack = _.get(data, 'criticalHitStack', 0)
         this.damageReduction = _.get(data, 'damageReduction', 0);
         this.damageTransfer = _.get(data, 'damageTransfer', 0);
@@ -144,6 +149,8 @@ export class DamageFormData {
         this.exclusiveEquipment3 = _.get(data, 'exclusiveEquipment3', false);
         this.heroID = _.get(data, 'heroID', 'abigail');
         this.highestAllyAttack = _.get(data, 'highestAllyAttack', 2500);
+        this.increasedAttack = _.get(data, 'increasedAttack', false);
+        this.increasedAttackGreat = _.get(data, 'increasedAttackGreat', false);
         this.molagoraS1 = _.get(data, 'molagoraS1', 0);
         this.molagoraS2 = _.get(data, 'molagoraS2', 0);
         this.molagoraS3 = _.get(data, 'molagoraS3', 0);
@@ -152,7 +159,8 @@ export class DamageFormData {
         this.numberOfDeaths = _.get(data, 'numberOfDeaths', 0);
         this.numberOfHits = _.get(data, 'numberOfHits', 1);
         this.numberOfTargets = _.get(data, 'numberOfTargets', 0);
-        this.penSet = _.get(data, 'penSet', false);
+        this.penetrationSet = _.get(data, 'penetrationSet', false);
+        this.rageSet = _.get(data, 'rageSet', false);
         this.reductionPreset = _.get(data, 'reductionPreset', null);
         this.S3OnCooldown = _.get(data, 'S3OnCooldown', false);
         this.singleAttackStack = _.get(data, 'singleAttackStack', 0);

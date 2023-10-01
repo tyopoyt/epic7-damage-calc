@@ -21,29 +21,7 @@ export class DataService {
   // TODO: update the defaults here when possible
   currentHero: Hero = heroes.crescent_moon_rin;  // Default to abigail when more things are working
   currentArtifact: Artifact = artifacts.a_symbol_of_unity;
-  currentTarget: Target = new Target(this.currentArtifact);  
-
-  // TODO: refactor these to be more readable
-  battleConstants: Record<string, number> = {
-    'dmgConst': 1.871,
-    'elemAdv': 1.1,
-    'atkDown': 0.5, 
-    'atkUp': 1.5, 
-    'atkUpGreat': 1.75, 
-    'vigor': 1.3,
-    'critDmgUp': 0.5,
-    'rageSet': 0.3,
-    'torrentSet': 0.1,
-    'penSet': 0.15,
-    'defUp': 0.6,
-    'defDown': -0.7,
-    'targetVigor': 0.3,
-    'target': 1.15,
-    'caster-fury': 1.3,
-    'spdUp': 1.3, 
-    'casterRage': 1.1,
-    'perception': 0.15
-  };
+  currentTarget: Target = new Target(this.currentArtifact);
   
   heroConstants: Record<string, number> = {
     'beehooBurnMult': 1.3
@@ -57,7 +35,7 @@ export class DataService {
   ];
 
   attackModifiers = [
-    'atkDown', 'atkUp', 'atkUpGreat', 'vigor'
+    'decreasedAttack', 'increasedAttack', 'increasedAttackGreat', 'casterVigor'
   ]
   
   damageMultSets = [

@@ -889,7 +889,7 @@ const calculateChart = (inputValues) => {
   chart.config.options.plugins.annotation.annotations.currentLine.xMin = intersectionPoint;
   chart.config.options.plugins.annotation.annotations.currentLine.xMax = intersectionPoint;
   
-  const artifactApplies = artifact.applies ? artifact.applies(skill, skill.id) : false;
+  const artifactApplies = artifact.applies ? artifact.applies(skill) : false;
 
   let filteredDatasets = chart.data.datasets.filter(dataset => dataset.label === formLabel('attack'));
   if (!skill.rate && filteredDatasets.length && !(artifact.atkPercent && artifactApplies)) {

@@ -4,6 +4,7 @@ import { Language, Languages } from '../models/languages';
 
 import * as _ from 'lodash-es'
 
+//TODO: check if elementalAdvantage under skills can be removed in each lang file
 @Injectable({
   providedIn: 'root'
 })

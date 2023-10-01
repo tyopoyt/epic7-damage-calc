@@ -60,6 +60,7 @@ export const artifacts = {
     name: 'Ancient Sheath',
     type: artifactDmgType.damage,
     scale: [0.08, 0.088, 0.096, 0.104, 0.112, 0.12, 0.128, 0.136, 0.144, 0.152, 0.16],
+    // TODO: check s1_soulburn and s1_extra
     applies: (skill: Skill) => skill.id === 's1' || skill.s1Benefits,
   }),
   black_hand_of_the_goddess: new Artifact({

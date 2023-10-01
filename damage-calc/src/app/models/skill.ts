@@ -42,8 +42,8 @@ export class Skill {
     isSingle: Function;
     mult: Function;
     multTip: Function;
-    penetration: Function;
-    penetrationTip: Function;
+    penetrate: Function;
+    penetrateTip: Function;
     pow: Function;
     rate: Function;
     s1Benefits: boolean;
@@ -82,11 +82,11 @@ export class Skill {
         this.ignoreDamageTransfer = _.get(data, 'ignoreDamageTransfer', () => false);
         this.isAOE = _.get(data, 'aoe', () => false);
         this.isExtra = _.get(data, 'isExtra', () => false);
-        this.isSingle = _.get(data, 'single', () => false);
+        this.isSingle = _.get(data, 'isSingle', () => false);
         this.mult = _.get(data, 'mult', () => 1);
         this.multTip = _.get(data, 'multTip', () => null);
-        this.penetration = _.get(data, 'penetrate', () => 0);
-        this.penetrationTip = _.get(data, 'penetrationTip', () => null);
+        this.penetrate = _.get(data, 'penetrate', () => 0);
+        this.penetrateTip = _.get(data, 'penetrateTip', () => null);
         this.pow = _.get(data, 'pow', () => 0);
         this.rate = _.get(data, 'rate', () => 0);
         this.atk = _.get(data, 'atk', () => 0);

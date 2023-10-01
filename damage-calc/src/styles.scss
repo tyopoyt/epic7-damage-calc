@@ -281,6 +281,11 @@ html, body {
     }
   }
 
+  .mat-mdc-tooltip .mdc-tooltip__surface {
+    color: $font-light-color;
+    background-color: $ui-darker-color;
+  }
+
   div.mat-mdc-menu-panel {
     background-color: $ui-medium-dark-color;
     padding: 0 !important;
@@ -543,6 +548,11 @@ html, body {
     .mat-mdc-unelevated-button:not(:disabled) {
       background-color: $ui-medium-medium-light-light-color;
       color: $font-dark-color;
+    }
+
+    .mat-mdc-tooltip .mdc-tooltip__surface {
+      color: white;
+      background-color: $ui-medium-dark-color;
     }
 
     div.switch-nested-menu-arrows {

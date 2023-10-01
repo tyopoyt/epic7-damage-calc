@@ -523,7 +523,23 @@
       "speed_speed_tuner": " de velocidade",
       "_or_": " OU ",
       "slower_unit_possible": "A unidade mais lenta pode ter até ",
-      "faster_unit_possible": "a unidade mais rápida pode ter até "
+      "faster_unit_possible": "a unidade mais rápida pode ter até ",
+      "attack_imprint": "",
+      "attack_imprint_hint": "",
+      "attack_increase": "",
+      "attack_increase_hint": "",
+      "crit_damage": "",
+      "damage_increase": "",
+      "damage_increase_hint": "",
+      "elemental_advantage": "Vantagem Elemental",
+      "decreased_attack": "",
+      "increased_attack": "",
+      "increased_attack_great": "",
+      "increased_crit_damage": "",
+      "vigor": "",
+      "rage_set": "",
+      "penetration_set": "",
+      "torrent_set": ""
     },
     "skills": {
       "non_applicable": "Não Aplicável",
@@ -543,7 +559,7 @@
       "pen": "Penetração",
       "detonation": "Detonação",
       "exEq": "Equipamento Exclusivo",
-      "elemAdv": "Vantagem Elemental",
+      "elemental_advantage": "Vantagem Elemental",
       "fixed": "Dano Fixo",
       "custom": {
         "all_fire": "{v}% Time de Fogo",

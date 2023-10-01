@@ -27,6 +27,14 @@ export class DamageCalculatorComponent implements OnInit {
   
   displayedColumns: string[] = ['skill', 'crit', 'crush', 'normal', 'miss']
   damages: DamageRow[] = [];
+  
+  get inputValues() {
+    return this.dataService.damageInputValues;
+  }
+
+  get hero() {
+    return this.dataService.currentHero;
+  }
 
   constructor (
     private route: ActivatedRoute,
@@ -49,7 +57,8 @@ export class DamageCalculatorComponent implements OnInit {
     })
   }
 
-  numberInputChange(field: string, value: number) {
+  // TODO: don't call this initially for every input, only once
+  inputChange(field: string, value: number | boolean) {
     this.dataService.updateDamageInputValues({[field]: value});
     console.log({[field]: value})
   }

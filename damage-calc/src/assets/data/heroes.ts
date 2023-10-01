@@ -20,6 +20,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_max_hp],
     skills: {
       s1: new Skill({
+        id: 's1',
         hpScaling: true,
         rate: () => 0.8,
         pow: () => 0.9,
@@ -29,6 +30,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         hpScaling: true,
         rate: () => 1.2,
         pow: () => 0.95,
@@ -47,6 +49,7 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 662,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 0.95,
         enhance: [0.05, 0, 0.1, 0, 0.15],
@@ -63,12 +66,14 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.nb_targets],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 0.95,
         enhance: [0.05, 0.05, 0.05, 0.1, 0.1],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 0.8,
         pow: () => 1,
         mult: (inputValues: DamageFormData) => {
@@ -84,6 +89,7 @@ export const heroes: Record<string, Hero> = {
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.8,
         pow: () => 1.05,
         enhance: [0.1, 0, 0, 0, 0.15],
@@ -99,12 +105,14 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 606,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
@@ -121,6 +129,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_max_hp, elements.skill_tree_completed],
     skills: {
       s1: new Skill({
+        id: 's1',
         hpScaling: true,
         rate: () => 0.9,
         pow: () => 1,
@@ -132,12 +141,14 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 1.5,
         pow: () => 1,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         hpScaling: true,
         rate: () => 0.9,
         pow: () => 1,
@@ -157,6 +168,7 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 652,
     skills: {
       s1: new Skill({
+        id: 's1',
         mult: (inputValues: DamageFormData) => 1 + inputValues.targetCurrentHPPercent * 0.002,
         multTip: () => ({ target_current_hp: 0.2 }),
         soulburn: true,
@@ -166,6 +178,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: 2,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
@@ -183,6 +196,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_defense],
     skills: {
       s1: new Skill({
+        id: 's1',
         defenseScaling: true,
         rate: () => 0.5,
         pow: () => 1,
@@ -192,6 +206,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         defenseScaling: true,
         rate: () => 0.5,
         pow: () => 1,
@@ -211,12 +226,14 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 634,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 1.5,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
@@ -233,12 +250,14 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.attack_skill_stack_3],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.05, 0, 0.05, 0.1],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 0.8,
         pow: () => 0.95,
         fixed: (hitType: HitType, inputValues: DamageFormData) => (hitType === HitType.crit) ? 5000 * (inputValues.casterAttackStack + 1)  : 0,
@@ -256,12 +275,14 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 599,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1,
         pow: () => 1,
         aoe: true,
@@ -276,12 +297,14 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 599,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 0.9,
         pow: () => 1,
         aoe: true,
@@ -296,19 +319,22 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 583,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 0.7,
         pow: () => 1,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
         isSingle: () => true,
       }),
       s1_crit: new Skill({
+        id: 's1_crit',
         onlyCrit: true,
-            rate: () => 1,
+        rate: () => 1,
         pow: () => 1,
         enhance_from: 's1',
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 1.8 : 1.5,
         pow: () => 1,
@@ -326,6 +352,7 @@ export const heroes: Record<string, Hero> = {
     barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number) => hero.getAttack(artifact, inputValues, attackMultiplier),
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1.05,
         enhance: [0.1, 0, 0, 0.15],
@@ -342,6 +369,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_max_hp, elements.exclusive_equipment_2],
     skills: {
       s1: new Skill({
+        id: 's1',
         hpScaling: true,
         rate: () => 0.5,
         pow: () => 1,
@@ -351,6 +379,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         hpScaling: true,
             rate: () => 0.5,
         pow: () => 1,
@@ -362,6 +391,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         hpScaling: true,
         rate: () => 0.5,
         pow: () => 1,
@@ -381,23 +411,27 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.target_nb_debuff],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.1, 0.15],
         isSingle: () => true,
       }),
       s1_extra: new Skill({
+        id: 's1_extra',
             rate: () => 0.75,
         pow: () => 1,
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0, 0.1, 0, 0.15],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.5,
         pow: () => 0.9,
         mult: (inputValues: DamageFormData) => 1 + inputValues.targetNumberOfDebuffs * 0.15,
@@ -415,6 +449,7 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 532,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 0.9,
         pow: () => 0.95,
         mult: (inputValues: DamageFormData) => inputValues.targetTargeted ? 1.35 : 1,
@@ -423,6 +458,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.8,
         pow: () => 0.9,
         enhance: [0.05, 0.05, 0, 0, 0.15, 0.15],
@@ -439,6 +475,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_max_hp, elements.caster_enrage],
     skills: {
       s1: new Skill({
+        id: 's1',
         hpScaling: true,
         rate: () => 0.6,
         pow: () => 1,
@@ -448,6 +485,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         hpScaling: true,
         rate: () => 0.5,
         pow: () => 1,
@@ -466,6 +504,7 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 655,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.05, 0, 0.05, 0.1],
@@ -481,6 +520,7 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 645,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.1, 0, 0.1, 0, 0.1],
@@ -496,6 +536,7 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 729,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.1, 0, 0, 0.15],
@@ -513,6 +554,7 @@ export const heroes: Record<string, Hero> = {
     barrier: (inputValues: DamageFormData) => inputValues.casterMaxHP * 0.15,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
@@ -529,6 +571,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_max_hp, elements.dead_people],
     skills: {
       s1: new Skill({
+        id: 's1',
         hpScaling: true,
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 2 : 1,
@@ -539,6 +582,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         hpScaling: true,
         rate: () => 1.3,
         pow: () => 0.95,
@@ -562,6 +606,7 @@ export const heroes: Record<string, Hero> = {
     barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number) => hero.getAttack(artifact, inputValues, attackMultiplier) * 1.2,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1.05,
         detonate: [DoT.burn],
@@ -570,12 +615,14 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 0.9,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0.15],
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0, 0, 0.1, 0.1],
@@ -592,11 +639,13 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_full_focus],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 0.975,
         pow: () => 1,
         enhance: [0.05, 0, 0.05, 0, 0.1, 0.1]
       }),
       s3: new Skill({
+        id: 's3',
         soulburn: true,
         rate: (soulburn: boolean, inputValues: DamageFormData) => {
           if (inputValues.casterFullFocus) {
@@ -620,17 +669,20 @@ export const heroes: Record<string, Hero> = {
     dot: [DoT.burn],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 0.6,
         pow: () => 1.3,
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
@@ -647,12 +699,14 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_speed],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 0.9,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.15],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         spdScaling: true,
         rate: () => 0.95,
         pow: () => 0.9,
@@ -700,6 +754,7 @@ export const heroes: Record<string, Hero> = {
     barrier: (inputValues: DamageFormData) => inputValues.casterDefense * 1.0,
     skills: {
       s1: new Skill({
+        id: 's1',
         defenseScaling: true,
         rate: () => 0.7,
         pow: () => 1,
@@ -708,6 +763,7 @@ export const heroes: Record<string, Hero> = {
         enhance: [0.05, 0.05, 0, 0.05, 0, 0.05, 0.1],
       }),
       s2: new Skill({
+        id: 's2',
         defenseScaling: true,
         rate: () => 0.7,
         pow: () => 1.3,
@@ -727,6 +783,7 @@ export const heroes: Record<string, Hero> = {
     barrier: (inputValues: DamageFormData) => inputValues.casterDefense * 0.7,
     skills: {
       s1: new Skill({
+        id: 's1',
         defenseScaling: true,
         rate: () => 0.8,
         pow: () => 0.9,
@@ -747,6 +804,7 @@ export const heroes: Record<string, Hero> = {
     barrier: (inputValues: DamageFormData) => inputValues.casterMaxHP * 0.2,
     skills: {
       s1: new Skill({
+        id: 's1',
         hpScaling: true,
         rate: () => 0.7,
         pow: () => 0.95,
@@ -756,6 +814,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         hpScaling: true,
         rate: () => 0.75,
         pow: () => 0.95,
@@ -777,6 +836,7 @@ export const heroes: Record<string, Hero> = {
     innateAttackIncrease: () => 0.30,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
@@ -784,6 +844,7 @@ export const heroes: Record<string, Hero> = {
         noCrit: true,
       }),
       s1_bis: new Skill({
+        id: 's1_bis',
             rate: () => 1.3,
         pow: () => 1.3,
         // enhance_from: 's1', Presumed not to inherit from s1 mola since the pow is so high already
@@ -792,6 +853,7 @@ export const heroes: Record<string, Hero> = {
         noCrit: true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 0.9,
         pow: () => 1,
         penetrate: () => 0.7,
@@ -849,12 +911,14 @@ export const heroes: Record<string, Hero> = {
     dot: [DoT.bleed],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.5,
         pow: () => 0.95,
         enhance: [0.05, 0.05, 0, 0.1, 0.15],
@@ -871,6 +935,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_speed, elements.target_speed],
     skills: {
       s1: new Skill({
+        id: 's1',
         spdScaling: true,
         rate: () => 0.9,
         pow: () => 1,
@@ -880,6 +945,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         spdScaling: true,
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 2 : 1.5,
@@ -900,6 +966,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_speed, elements.caster_stealth, elements.exclusive_equipment_1],
     skills: {
       s1: new Skill({
+        id: 's1',
         spdScaling: true,
         rate: (inputValues: DamageFormData) => inputValues.casterHasStealth ? 1.2 : 0.9,
         pow: () => 1,
@@ -910,6 +977,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         spdScaling: true,
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 3 : 1.5,
@@ -930,6 +998,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.target_has_debuff],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 0.9,
         mult: (inputValues: DamageFormData) => inputValues.targetHasDebuff ? 1.2 : 1,
@@ -938,6 +1007,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.1,
         pow: () => 0.9,
         enhance: [0.05, 0.05, 0, 0.05, 0.05, 0.1, 0.1],
@@ -953,12 +1023,14 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 610,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 0.8,
         enhance: [0.05, 0.05, 0.05, 0.1, 0.1, 0.15],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 1 : 0.8,
         pow: () => 1,
@@ -975,18 +1047,21 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 571,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1.05,
         enhance: [0, 0.1, 0, 0.15, 0],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 1.5,
         pow: () => 1.05,
         enhance: [0.1, 0, 0, 0, 0.15],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 0.9,
         pow: () => 1,
         enhance: [0.05, 0, 0, 0.1, 0.15],
@@ -1003,11 +1078,13 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.target_nb_debuff],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.15, 0, 0.15]
       }),
       s2: new Skill({
+        id: 's2',
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 1.35 : 1.1,
         pow: () => 0.9,
@@ -1017,6 +1094,7 @@ export const heroes: Record<string, Hero> = {
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 0.8,
         pow: () => 1,
         enhance: [0.05, 0, 0, 0, 0.1, 0.15],
@@ -1034,6 +1112,7 @@ export const heroes: Record<string, Hero> = {
     barrier: (inputValues: DamageFormData) => inputValues.casterMaxHP * 0.15,
     skills: {
       s1: new Skill({
+        id: 's1',
         hpScaling: true,
         rate: () => 0.9,
         pow: () => 1,
@@ -1043,6 +1122,7 @@ export const heroes: Record<string, Hero> = {
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         hpScaling: true,
         rate: () => 1.3,
         pow: () => 1,
@@ -1089,18 +1169,21 @@ export const heroes: Record<string, Hero> = {
     dot: [DoT.bleed],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 1.2,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 1.85 : 1.6,
         pow: () => 1,
@@ -1119,18 +1202,21 @@ export const heroes: Record<string, Hero> = {
     class: HeroClass.mage,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0, 0.1, 0.15],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 0.9,
         pow: () => 1,
         enhance: [0.05, 0, 0, 0.1, 0.15],
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 0.9,
         pow: () => 0.9,
         enhance: [0.05, 0.1, 0, 0.1, 0.15],
@@ -1147,6 +1233,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_max_hp],
     skills: {
       s1: new Skill({
+        id: 's1',
         hpScaling: true,
         rate: () => 0.7,
         pow: () => 0.9,
@@ -1156,6 +1243,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         hpScaling: true,
         rate: () => 0.8,
         pow: () => 1,
@@ -1174,19 +1262,22 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 518,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 0.8,
         pow: () => 0.95,
         enhance: [0.05, 0.05, 0.05, 0.1, 0.1],
         isSingle: () => true,
       }),
       s1_rock_smash: new Skill({
-            rate: () => 0.5,
+        id: 's1_rock_smash',
+        rate: () => 0.5,
         pow: () => 0.95,
         enhance_from: 's1',
         isExtra: true,
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.5,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
@@ -1211,6 +1302,7 @@ export const heroes: Record<string, Hero> = {
     dot: [DoT.burn],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 0.9,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.1],
@@ -1218,7 +1310,8 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s1_bis: new Skill({
-            rate: () => 1.2,
+        id: 's1_bis',
+        rate: () => 1.2,
         pow: () => 0.9,
         enhance_from: 's1',
         detonate: DoT.burn,
@@ -1227,6 +1320,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         enhance: [0.01, 0.01, 0.01, 0.01, 0.02, 0.02, 0.02],
       }),
     }
@@ -1240,6 +1334,7 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 648,
     skills: {
       s1: new Skill({
+        id: 's1',
         hpScaling: true,
         rate: () => 0.6,
         pow: () => 1.05,
@@ -1249,14 +1344,16 @@ export const heroes: Record<string, Hero> = {
         aoe: true,
       }),
       s1_extra: new Skill({
+        id: 's1_extra',
         hpScaling: true,
-            rate: () => 0.6,
+        rate: () => 0.6,
         pow: () => 1.3,
         flat: (inputValues: DamageFormData) => inputValues.casterMaxHP * 0.045,
         flatTip: () => ({ caster_max_hp: 4.5 }),
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         hpScaling: true,
         rate: () => 0.6,
         pow: () => 1.3,
@@ -1275,6 +1372,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.target_max_hp, elements.nb_targets],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 0.95,
         flat: (inputValues: DamageFormData) => inputValues.targetMaxHP * 0.04,
@@ -1283,6 +1381,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 0.8,
         pow: () => 0.95,
         mult: (inputValues: DamageFormData) => inputValues.numberOfTargets > 1 ? 1 + (inputValues.numberOfTargets - 1) * 0.1 : 1,
@@ -1291,6 +1390,7 @@ export const heroes: Record<string, Hero> = {
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 1.2 : 0.95,
         pow: () => 1,
@@ -1307,17 +1407,20 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 645,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 0.8,
         pow: () => 0.9,
         enhance: [0.05, 0.05, 0.05, 0.1, 0.15],
         isSingle: () => true,
       }),
       mana_burst: new Skill({
-            rate: () => 0.5,
+        id: 'mana_burst',
+        rate: () => 0.5,
         pow: () => 1,
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 0.9,
         pow: () => 1.1,
         enhance: [0.05, 0, 0, 0, 0.15],
@@ -1334,6 +1437,7 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 553,
     skills: {
       s1: new Skill({
+        id: 's1',
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 1.7 : 1,
         pow: () => 1,
@@ -1342,6 +1446,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 1.2,
         pow: () => 1,
         penetrate: (inputValues: DamageFormData) => inputValues.casterHasMultilayerBarrier ? 0.6 : 0.3,
@@ -1349,6 +1454,7 @@ export const heroes: Record<string, Hero> = {
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: 2,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
@@ -1364,12 +1470,14 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 627,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1.5,
         pow: () => 0.95,
         enhance: [0.05, 0.05, 0.05, 0.1, 0.1],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 1.2,
         pow: () => 0.95,
         enhance: [0.05, 0.05, 0.05, 0.1, 0.1],
@@ -1393,15 +1501,18 @@ export const heroes: Record<string, Hero> = {
     },
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         enhance: [0.05, 0.1, 0.1, 0.1, 0.15]
       }),
       s3: new Skill({
+        id: 's3',
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 1.45 : 1.2,
         pow: () => 0.95,
@@ -1421,6 +1532,7 @@ export const heroes: Record<string, Hero> = {
     barrierEnhance: 's2',
     skills: {
       s1: new Skill({
+        id: 's1',
         hpScaling: true,
         rate: () => 1,
         pow: () => 1,
@@ -1430,9 +1542,11 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         enhance: [0.05, 0.05, 0.05, 0.1, 0.1, 0.15]
       }),
       s3: new Skill({
+        id: 's3',
         hpScaling: true,
         noCrit: true,
         rate: () => 0.3,
@@ -1453,6 +1567,7 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 571,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 0.85,
         pow: () => 1,
         afterMath: (hitType: HitType) => (hitType !== HitType.miss) ? { atkPercent: 0.3, penetrate: () => 0.7 } : null,
@@ -1460,6 +1575,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 0.95,
         pow: () => 1.1,
         afterMath: (hitType: HitType) => (hitType !== HitType.miss) ? { atkPercent: 0.3, penetrate: () => 0.7 } : null,
@@ -1517,6 +1633,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_max_hp, elements.caster_perception],
     skills: {
       s1: new Skill({
+        id: 's1',
         hpScaling: true,
         rate: () => 0.7,
         pow: () => 1,
@@ -1526,9 +1643,11 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         enhance: [0.05, 0.05, 0.05, 0.1, 0.1],
       }),
       s3: new Skill({
+        id: 's3',
         hpScaling: true,
         canExtra: true,
         rate: () => 1,
@@ -1549,12 +1668,14 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_hp_pc],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0, 0, 0.15],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 2.2 : 1.5,
         pow: () => 0.85,
@@ -1574,12 +1695,14 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.target_hp_pc],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0.05, 0, 0.1, 0, 0.1],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.5,
         pow: () => 0.95,
         enhance: [0.05, 0.05, 0.05, 0, 0.05, 0.05, 0.1],
@@ -1597,12 +1720,14 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 583,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.05, 0, 0.15],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 0.9,
         pow: () => 1,
         enhance: [0.05, 0, 0.05, 0, 0.1, 0, 0.1],
@@ -1618,18 +1743,21 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 666,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.1, 0, 0, 0.15],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 1.5,
         pow: () => 1.05,
         enhance: [0.1, 0, 0, 0, 0.15],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.5,
         pow: () => 0.95,
         enhance: [0.05, 0.05, 0, 0.1, 0.15],
@@ -1649,6 +1777,7 @@ export const heroes: Record<string, Hero> = {
     barrierEnhance: 's2',
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 0.95,
         detonate: DoT.burn,
@@ -1657,9 +1786,11 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         enhance: [0.15, 0.15]
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0, 0, 0.1, 0, 0.15],
@@ -1676,6 +1807,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_max_hp, elements.caster_hp_pc],
     skills: {
       s1: new Skill({
+        id: 's1',
         hpScaling: true,
         rate: () => 0.5,
         pow: () => 1,
@@ -1685,6 +1817,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         hpScaling: true,
         soulburn: true,
         rate: (soulburn: boolean, inputValues: DamageFormData) => (inputValues.casterCurrentHPPercent < 75 ? 1 : 0.6) + (soulburn ? 0.2 : 0),
@@ -1713,6 +1846,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_max_hp],
     skills: {
       s1: new Skill({
+        id: 's1',
         hpScaling: true,
         rate: () => 0.7,
         pow: () => 1,
@@ -1722,6 +1856,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         hpScaling: true,
         rate: () => 0.4,
         pow: () => 1,
@@ -1731,6 +1866,7 @@ export const heroes: Record<string, Hero> = {
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         hpScaling: true,
         rate: () => 0.6,
         pow: () => 1.05,
@@ -1749,12 +1885,14 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 494,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0, 0.1, 0.1],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 1.25 : 1,
         pow: () => 0.9,
@@ -1772,12 +1910,14 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.target_max_hp],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.1, 0, 0, 0.15],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 0.9,
         pow: () => 0.9,
         flat: (inputValues: DamageFormData) => inputValues.targetMaxHP * 0.04,
@@ -1786,6 +1926,7 @@ export const heroes: Record<string, Hero> = {
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.2,
         pow: () => 0.8,
         enhance: [0.1, 0.1, 0, 0.15, 0.15],
@@ -1803,6 +1944,7 @@ export const heroes: Record<string, Hero> = {
     barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number) => hero.getAttack(artifact, inputValues, attackMultiplier) * 0.5,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         critDmgBoost: () => 0.2,
@@ -1810,6 +1952,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 1.4,
         pow: () => 1,
         exclusiveEquipmentMultiplier: (inputValues: DamageFormData) => inputValues.exclusiveEquipment2 ? 0.1 : 0,
@@ -1817,6 +1960,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 2.5 : 1.8,
         pow: () => 1,
@@ -1868,18 +2012,21 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 603,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 1.5,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1,
         pow: () => 1.1,
         enhance: [0.05, 0, 0, 0, 0.15],
@@ -1896,6 +2043,7 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 585,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1.2,
         pow: () => 1,
         enhance: [0.05, 0, 0.05, 0, 0.1, 0, 0.1],
@@ -1903,6 +2051,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 1.65 : 1.15,
         pow: () => 0.9,
@@ -1921,6 +2070,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.critical_hit_stack],
     skills: {
       s1: new Skill({
+        id: 's1',
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 2.5 : 1,
         pow: (soulburn: boolean) => soulburn ? 1 : 0.9,
@@ -1944,6 +2094,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
       })
     }
@@ -1956,11 +2107,13 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 627,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 0.95,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.1]
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0, 0, 0.1, 0.15],
@@ -1977,6 +2130,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_hp_pc, elements.skill_tree_completed],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         mult: (inputValues: DamageFormData) => 1 + (inputValues.skillTreeCompleted ? 0.05 : 0),
@@ -1985,6 +2139,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 2.2 : 1.5,
         pow: () => 0.85,
@@ -2004,6 +2159,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_max_hp, elements.skill_tree_completed],
     skills: {
       s1: new Skill({
+        id: 's1',
         hpScaling: true,
         rate: () => 0.7,
         pow: () => 0.95,
@@ -2013,6 +2169,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         hpScaling: true,
         rate: () => 0.7,
         pow: () => 0.95,
@@ -2024,6 +2181,7 @@ export const heroes: Record<string, Hero> = {
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         hpScaling: true,
         rate: () => 1,
         pow: () => 0.9,
@@ -2080,6 +2238,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_nb_buff, elements.nb_targets, elements.exclusive_equipment_2],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         exclusiveEquipmentMultiplier: (inputValues: DamageFormData) => inputValues.exclusiveEquipment2 ? 0.1 : 0,
@@ -2087,12 +2246,14 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: (inputValues: DamageFormData) => 1.5 + inputValues.casterNumberOfBuffs * 0.07,
         pow: () => 1,
         enhance: [0.1, 0, 0.1, 0, 0.1],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.2,
         pow: () => 1,
         mult: (inputValues: DamageFormData) => {
@@ -2117,6 +2278,7 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 662,
     skills: {
       s1: new Skill({
+        id: 's1',
         onlyCrit: true,
         rate: () => 0.9,
         pow: () => 1,
@@ -2124,6 +2286,7 @@ export const heroes: Record<string, Hero> = {
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         onlyCrit: true,
         rate: () => 1.4,
         pow: () => 0.9,
@@ -2141,6 +2304,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.target_magic_nailed],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 0.9,
         mult: (inputValues: DamageFormData) => inputValues.targetMagicNailed ? 1.3 : 1,
@@ -2149,12 +2313,14 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 1.2,
         pow: () => 0.9,
         enhance: [0.05, 0.05, 0.1, 0.1, 0.1],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 3 : 1.7,
         pow: () => 0.8,
@@ -2174,6 +2340,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_max_hp, elements.caster_full_focus],
     skills: {
       s1: new Skill({
+        id: 's1',
         hpScaling: true,
         rate: () => 0.5,
         pow: () => 1,
@@ -2183,6 +2350,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         hpScaling: true,
         rate: () => 0.5,
         pow: () => 1,
@@ -2194,6 +2362,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         hpScaling: true,
         rate: () => 0.5,
         pow: () => 1,
@@ -2213,6 +2382,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_max_hp],
     skills: {
       s1: new Skill({
+        id: 's1',
         hpScaling: true,
         rate: () => 1.1,
         pow: () => 1,
@@ -2233,6 +2403,7 @@ export const heroes: Record<string, Hero> = {
     dot: [DoT.bleed],
     skills: {
       s1: new Skill({
+        id: 's1',
         hpScaling: true,
         rate: () => 0.85,
         pow: () => 0.95,
@@ -2242,6 +2413,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         hpScaling: true,
         rate: () => 0.75,
         pow: () => 0.95,
@@ -2251,6 +2423,7 @@ export const heroes: Record<string, Hero> = {
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         hpScaling: true,
         rate: () => 1.2,
         pow: () => 0.9,
@@ -2270,6 +2443,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_speed, elements.exclusive_equipment_3],
     skills: {
       s1: new Skill({
+        id: 's1',
         spdScaling: true,
         rate: (inputValues: DamageFormData) => inputValues.casterSpeedUp ? 1.5 : 0.9,
         pow: (inputValues: DamageFormData) => inputValues.casterSpeedUp ? 0.9 : 0.95,
@@ -2279,6 +2453,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         spdScaling: true,
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 2.2 : 1.6,
@@ -2301,12 +2476,14 @@ export const heroes: Record<string, Hero> = {
     dot: [DoT.bleed],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 0.7,
         pow: () => 1,
         enhance: [0.05, 0.05, 0.05, 0.1, 0.1],
@@ -2314,6 +2491,7 @@ export const heroes: Record<string, Hero> = {
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 1.05 : 0.8,
         pow: () => 1,
@@ -2334,12 +2512,14 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.target_hp_pc, elements.caster_perception],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
         isSingle: () => true,
       }),
       s1_alt: new Skill({
+        id: 's1_alt',
         rate: () => 1.2,
         pow: () => 1,
         mult: (inputValues: DamageFormData) => 1 + (100 - inputValues.targetCurrentHPPercent) * 0.004,
@@ -2348,6 +2528,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 1.25 : 1,
         pow: () => 1,
@@ -2366,12 +2547,14 @@ export const heroes: Record<string, Hero> = {
     dot: [DoT.bleed, DoT.bomb],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 0.8,
         pow: () => 0.9,
         enhance: [0.05, 0.05, 0.05, 0.1, 0.1],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 0.8,
         pow: () => 0.9,
         detonate: [DoT.bleed, DoT.bomb],
@@ -2380,6 +2563,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 0.3,
         pow: () => 0.9,
         enhance: [0.05, 0.1, 0, 0.1, 0.15],
@@ -2404,6 +2588,7 @@ export const heroes: Record<string, Hero> = {
     },
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 0.9,
         flat: (inputValues: DamageFormData) => inputValues.targetMaxHP * 0.02,
@@ -2412,9 +2597,11 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         enhance: [0.005, 0.005, 0.01, 0.01, 0.02]
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.5,
         pow: () => 0.95,
         mult: (inputValues: DamageFormData) => 1 + (100 - inputValues.targetCurrentHPPercent) * 0.005,
@@ -2432,12 +2619,14 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 571,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0.05, 0, 0.1, 0.1],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.1,
         pow: () => 1,
         enhance: [0.05, 0, 0, 0, 0.1, 0.15],
@@ -2454,18 +2643,21 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 582,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 0.75,
         pow: () => 1,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 0.75,
         pow: () => 1,
         penetrate: (inputValues: DamageFormData, casterAttack: number) => {
@@ -2490,6 +2682,7 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 613,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1.2,
         pow: () => 0.95,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.1],
@@ -2506,6 +2699,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_defense, elements.caster_enrage],
     skills: {
       s1: new Skill({
+        id: 's1',
         defenseScaling: true,
         rate: (inputValues: DamageFormData) => inputValues.casterEnraged ? 0.9 : 0.7,
         pow: () => 1,
@@ -2515,6 +2709,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         defenseScaling: true,
         rate: () => 0.3,
         pow: () => 0.9,
@@ -2533,18 +2728,21 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 469,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 1.1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.6,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
@@ -2561,6 +2759,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_defense],
     skills: {
       s1: new Skill({
+        id: 's1',
         defenseScaling: true,
         rate: () => 0.8,
         pow: () => 1,
@@ -2582,6 +2781,7 @@ export const heroes: Record<string, Hero> = {
     barrierEnhance: 's2',
     skills: {
       s1: new Skill({
+        id: 's1',
         defenseScaling: true,
         rate: () => 0.6,
         pow: () => 1.05,
@@ -2591,9 +2791,11 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         enhance: [0.05, 0.05, 0.1, 0.1]
       }),
       s3: new Skill({
+        id: 's3',
         defenseScaling: true,
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 0.75 : 0.5,
@@ -2614,6 +2816,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_max_hp],
     skills: {
       s1: new Skill({
+        id: 's1',
         hpScaling: true,
         rate: () => 0.7,
         pow: () => 1,
@@ -2623,6 +2826,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         hpScaling: true,
         noCrit: true,
         soulburn: true,
@@ -2645,6 +2849,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.target_injuries],
     skills: {
       s1: new Skill({
+        id: 's1',
         //TODO: add venom detonate
         rate: () => 1,
         pow: () => 1,
@@ -2652,6 +2857,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         noCrit: true,
         noMiss: true,
         rate: () => 0,
@@ -2669,6 +2875,7 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 652,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1.2,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
@@ -2685,6 +2892,7 @@ export const heroes: Record<string, Hero> = {
     baseHP: 7054,
     skills: {
       s1: new Skill({
+        id: 's1',
         defenseScaling: true,
         rate: () => 0.6,
         pow: () => 1,
@@ -2694,6 +2902,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         defenseScaling: true,
         rate: () => 0.6,
         pow: () => 1,
@@ -2712,6 +2921,7 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 775,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.05, 0, 0.15],
@@ -2727,6 +2937,7 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 694,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 0.95,
         enhance: [0.05, 0, 0.05, 0.05, 0, 0.1, 0.1],
@@ -2743,12 +2954,14 @@ export const heroes: Record<string, Hero> = {
     dot: [DoT.bleed, DoT.burn],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0, 0.1, 0.1],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 0.8,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0, 0, 0.1, 0.1],
@@ -2765,6 +2978,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.target_has_debuff],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 0.7,
         pow: () => 1,
         mult: (inputValues: DamageFormData) => inputValues.targetHasDebuff ? 1.3 : 1.0,
@@ -2773,12 +2987,14 @@ export const heroes: Record<string, Hero> = {
         aoe: true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         onlyMiss: true,
         rate: 2.5,
         pow: () => 1,
@@ -2796,17 +3012,20 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.target_max_hp, elements.target_has_sleep],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0.05, 0, 0.1, 0.1],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 0.6,
         pow: () => 1,
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.5,
         pow: () => 0.9,
         extraDmg: (inputValues: DamageFormData) => inputValues.targetAsleep ? inputValues.targetMaxHP * 0.3 : 0,
@@ -2825,12 +3044,14 @@ export const heroes: Record<string, Hero> = {
     barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number) => hero.getAttack(artifact, inputValues, attackMultiplier),
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0, 0.1, 0.1],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 0.75,
         pow: () => 0.95,
         enhance: [0.05, 0.05, 0, 0, 0, 0.1, 0.15],
@@ -2846,6 +3067,7 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 705,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.1, 0, 0, 0.15],
@@ -2864,6 +3086,7 @@ export const heroes: Record<string, Hero> = {
     barrierEnhance: 's3',
     skills: {
       s1: new Skill({
+        id: 's1',
         hpScaling: true,
         rate: () => 1.2,
         pow: () => 1,
@@ -2873,6 +3096,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         enhance: [0.05, 0.1, 0, 0.1, 0.15]
       })
     }
@@ -2885,18 +3109,21 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 652,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 0.9,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
         aoe: true
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.05,
         pow: () => 1.1,
         enhance: [0.05, 0, 0, 0, 0.15],
@@ -2922,6 +3149,7 @@ export const heroes: Record<string, Hero> = {
     },
     skills: {
       s1: new Skill({
+        id: 's1',
         hpScaling: true,
         rate: () => 1,
         pow: () => 1,
@@ -2931,6 +3159,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         hpScaling: true,
         rate: () => 0.7,
         pow: () => 1,
@@ -2941,6 +3170,7 @@ export const heroes: Record<string, Hero> = {
         aoe: true
       }),
       s3: new Skill({
+        id: 's3',
         hpScaling: true,
         rate: () => 1.2,
         pow: () => 1,
@@ -2962,12 +3192,14 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 694,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0.1, 0.1],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 0.9,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0.15],
@@ -2984,6 +3216,7 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 536,
     skills: {
       s1: new Skill({
+        id: 's1',
         spdScaling: true,
         rate: () => 0.95,
         pow: () => 0.9,
@@ -2993,6 +3226,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         spdScaling: true,
         rate: () => 0.7,
         pow: () => 1.3,
@@ -3004,6 +3238,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.5,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0, 0, 0.1, 0.1],
@@ -3020,12 +3255,14 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.target_nb_debuff],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1.1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 1,
         pow: () => 1,
         mult: (inputValues: DamageFormData) => 1 + (inputValues.targetNumberOfDebuffs * 0.2),
@@ -3034,6 +3271,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.1,
         pow: () => 1.1,
         enhance: [0.05, 0, 0, 0, 0.15],
@@ -3049,12 +3287,14 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 729,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 0.9,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0, 0.1],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 0.7,
         pow: () => 0.9,
         enhance: [0.05, 0.05, 0.05, 0, 0, 0.1, 0.15],
@@ -3072,6 +3312,7 @@ export const heroes: Record<string, Hero> = {
     barrier: (inputValues: DamageFormData) => inputValues.casterMaxHP * 0.15,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 0.95,
         pow: () => 1,
         enhance: [0.05, 0, 0.05, 0.05, 0, 0.1, 0.1],
@@ -3089,6 +3330,7 @@ export const heroes: Record<string, Hero> = {
     dot: [DoT.bleed],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         mult: (inputValues: DamageFormData) => 1 + (100 - inputValues.targetCurrentHPPercent) * 0.005,
@@ -3097,6 +3339,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 1.5,
         pow: () => 1.05,
         enhance: [0.1, 0, 0, 0, 0.15],
@@ -3114,12 +3357,14 @@ export const heroes: Record<string, Hero> = {
     barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number) => hero.getAttack(artifact, inputValues, attackMultiplier) * 1.2,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 2 : 1.4,
         pow: () => 1,
@@ -3127,6 +3372,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         hpScaling: true,
         rate: () => 1.6,
         pow: () => 1,
@@ -3146,12 +3392,14 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.target_has_provoke, elements.target_max_hp],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 0.8,
         pow: () => 1,
         extraDmg: (hitType: HitType, inputValues: DamageFormData) => hitType !== HitType.miss && inputValues.targetProvoked ? inputValues.targetMaxHP * 0.1 : 0,
@@ -3160,6 +3408,7 @@ export const heroes: Record<string, Hero> = {
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.10],
@@ -3175,18 +3424,21 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 571,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 0.9,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.4,
         pow: () => 0.95,
         enhance: [0.05, 0.05, 0, 0.1, 0.15],
@@ -3203,6 +3455,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_defense],
     skills: {
       s1: new Skill({
+        id: 's1',
         defenseScaling: true,
         rate: () => 0.5,
         pow: () => 0.9,
@@ -3224,6 +3477,7 @@ export const heroes: Record<string, Hero> = {
     barrierEnhance: 's2',
     skills: {
       s1: new Skill({
+        id: 's1',
         hpScaling: true,
         rate: () => 0.7,
         pow: () => 1,
@@ -3233,9 +3487,11 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         enhance: [0.05, 0.1, 0.1, 0.1, 0.15]
       }),
       s3: new Skill({
+        id: 's3',
         hpScaling: true,
         rate: () => 0.65,
         pow: () => 0.95,
@@ -3255,6 +3511,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_defense, elements.target_hp_pc],
     skills: {
       s1: new Skill({
+        id: 's1',
         defenseScaling: true,
         rate: () => 0.5,
         pow: () => 1,
@@ -3264,6 +3521,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         defenseScaling: true,
         rate: () => 1.7,
         pow: () => 1,
@@ -3284,6 +3542,7 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 585,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0.05, 0, 0.1, 0, 0.1],
@@ -3299,6 +3558,7 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 592,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         critDmgBoost: () => 0.2,
@@ -3306,12 +3566,14 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0.1, 0.1],
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 2.5 : 1.8,
         pow: () => 0.9,
@@ -3329,12 +3591,14 @@ export const heroes: Record<string, Hero> = {
     dot: [DoT.burn],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.05, 0.05, 0, 0.1],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 1.95 : 1.65,
         pow: () => 1,
@@ -3352,6 +3616,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_max_hp],
     skills: {
       s1: new Skill({
+        id: 's1',
         hpScaling: true,
         rate: () => 1,
         pow: () => 1,
@@ -3361,6 +3626,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         hpScaling: true,
         rate: () => 0.8,
         pow: () => 1,
@@ -3379,12 +3645,14 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 525,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0.05, 0, 0.05, 0.05, 0.1],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 2.2 : 1.5,
         pow: () => 0.9,
@@ -3412,15 +3680,18 @@ export const heroes: Record<string, Hero> = {
     },
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 0.95,
         enhance: [0.05, 0.05, 0.1, 0, 0, 0.15],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         enhance: [0.05, 0.05, 0.1],
       }),
       s3: new Skill({
+        id: 's3',
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 0.95 : 0.7,
         pow: () => 1,
@@ -3437,12 +3708,14 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 523,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0.05, 0, 0.1, 0, 0.1],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 1.65,
         pow: () => 0.95,
         enhance: [0.05, 0, 0.05, 0, 0.1, 0, 0.15],
@@ -3461,6 +3734,7 @@ export const heroes: Record<string, Hero> = {
     attackIncrease: (inputValues: DamageFormData) => 1 + inputValues.dualAttackStack * 0.15,
     skills: {
       s1: new Skill({
+        id: 's1',
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 1.8 : 1.1,
         pow: () => 1,
@@ -3479,18 +3753,21 @@ export const heroes: Record<string, Hero> = {
     barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number) => hero.getAttack(artifact, inputValues, attackMultiplier) * 0.6,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.1, 0, 0, 0.15],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 1.5,
         pow: () => 0.9,
         enhance: [0.05, 0.05, 0.1, 0.1, 0.1],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.8,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
@@ -3515,6 +3792,7 @@ export const heroes: Record<string, Hero> = {
     },
     skills: {
       s1: new Skill({
+        id: 's1',
         noCrit: true,
         rate: () => 1,
         pow: () => 0.85,
@@ -3522,9 +3800,11 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         enhance: [0.05, 0.05, 0.05, 0.05, 0.05],
       }),
       s3: new Skill({
+        id: 's3',
         noCrit: true,
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 2.9 : 2.2,
@@ -3543,6 +3823,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_speed],
     skills: {
       s1: new Skill({
+        id: 's1',
         spdScaling: true,
         rate: () => 0.95,
         pow: () => 0.95,
@@ -3552,6 +3833,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         spdScaling: true,
         rate: () => 1.3,
         pow: () => 0.85,
@@ -3574,6 +3856,7 @@ export const heroes: Record<string, Hero> = {
     },
     skills: {
       s1: new Skill({
+        id: 's1',
         hpScaling: true,
         rate: () => 0.7,
         pow: () => 1,
@@ -3584,6 +3867,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         hpScaling: true,
         rate: () => 0.7,
         pow: () => 1,
@@ -3605,12 +3889,14 @@ export const heroes: Record<string, Hero> = {
     dot: [DoT.bleed],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 2 : 1.5,
         pow: () => 1,
@@ -3618,6 +3904,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.2,
         pow: () => 1,
         mult: (inputValues: DamageFormData) => {
@@ -3642,6 +3929,7 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 662,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1.05,
         enhance: [0.1, 0, 0, 0.15],
@@ -3659,6 +3947,7 @@ export const heroes: Record<string, Hero> = {
     barrier: (inputValues: DamageFormData) => inputValues.casterDefense * 0.8,
     skills: {
       s1: new Skill({
+        id: 's1',
         defenseScaling: true,
         rate: () => 0.7,
         pow: () => 1,
@@ -3668,6 +3957,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true
       }),
       s2: new Skill({
+        id: 's2',
         defenseScaling: true,
         rate: () => 1.2,
         pow: () => 1,
@@ -3686,12 +3976,14 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 518,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0.05, 0, 0.1, 0, 0.1],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 1.55,
         pow: () => 0.95,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.1],
@@ -3708,12 +4000,14 @@ export const heroes: Record<string, Hero> = {
     dot: [DoT.burn],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 0.8,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.05, 0.15],
@@ -3730,6 +4024,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.skill_tree_completed],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 0.95,
         mult: (inputValues: DamageFormData) => inputValues.skillTreeCompleted ? 1.1 : 1,
@@ -3738,11 +4033,13 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 0.8,
         pow: () => 1,
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.8,
         pow: () => 1.05,
         enhance: [0.1, 0.1, 0, 0.15, 0.15],
@@ -3758,12 +4055,14 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 585,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 0.9,
         enhance: [0.05, 0.05, 0.1, 0, 0, 0.15],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 0.9,
         pow: () => 1,
         enhance: [0.05, 0, 0, 0, 0.1, 0.15],
@@ -3791,6 +4090,7 @@ export const heroes: Record<string, Hero> = {
     },
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 0.8,
         pow: () => 1,
         afterMath: (hitType: HitType, inputValues: DamageFormData) => inputValues.casterHasBuff && hitType !== HitType.miss ? ({ atkPercent: 0.25, penetrate: () => 0.7 }) : null,
@@ -3799,9 +4099,11 @@ export const heroes: Record<string, Hero> = {
         noCrit: true,
       }),
       s2: new Skill({
+        id: 's2',
         enhance: [0.01, 0.02, 0.02, 0.02, 0.03],
       }),
       s3: new Skill({
+        id: 's3',
         hpScaling: true,
         rate: () => 1.25,
         pow: () => 1,
@@ -3863,12 +4165,14 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 504,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0.05, 0, 0.1, 0, 0.1],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 1.15 : 0.9,
         pow: () => 1,
@@ -3886,6 +4190,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_max_hp, elements.target_injuries],
     skills: {
       s1: new Skill({
+        id: 's1',
         hpScaling: true,
         rate: () => 0.7,
         pow: () => 1,
@@ -3895,6 +4200,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         hpScaling: true,
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 1.4 : 1,
@@ -3906,6 +4212,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         hpScaling: true,
         rate: () => 0.7,
         pow: () => 1,
@@ -3959,12 +4266,14 @@ export const heroes: Record<string, Hero> = {
     dot: [DoT.burn],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 0.95,
         pow: () => 1,
         enhance: [0.05, 0, 0.05, 0, 0.1,  0.1],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 0.7,
         pow: () => 1,
         detonate: DoT.burn,
@@ -3995,12 +4304,14 @@ export const heroes: Record<string, Hero> = {
     },
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.05, 0, 0.05, 0.1],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.1]
       }),
     }
@@ -4013,6 +4324,7 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 553,
     skills: {
       s1: new Skill({
+        id: 's1',
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 2 : 1,
         pow: () => 0.95,
@@ -4020,6 +4332,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: 2,
         pow: () => 0.9,
         enhance: [0.05, 0.05, 0, 0.1, 0.1, 0.1],
@@ -4036,19 +4349,22 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 553,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 0.75,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
         isSingle: () => true,
       }),
       s1_extra: new Skill({
-            rate: () => 1.1,
+        id: 's1_extra',
+        rate: () => 1.1,
         pow: () => 1,
         enhance_from: 's1',
         isExtra: true,
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1,
         pow: () => 1,
         mult: (inputValues: DamageFormData) => inputValues.targetHasDebuff ? 1.5 : 1,
@@ -4100,6 +4416,7 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 543,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         mult: (inputValues: DamageFormData) => inputValues.casterEnraged ? 1.3 : 1,
@@ -4108,6 +4425,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 2.2 : 1.5,
         pow: () => 1,
@@ -4124,12 +4442,14 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 599,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1.05,
         enhance: [0.1, 0, 0, 0.15],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 0.9,
         pow: () => 0.9,
         enhance: [0.05, 0.05, 0.05, 0, 0.05, 0.1, 0.1],
@@ -4145,12 +4465,14 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 599,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 0.95,
         enhance: [0.05, 0.05, 0.1, 0.15],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 0.85,
         pow: () => 0.95,
         enhance: [0.05, 0.05, 0, 0, 0.1, 0, 0.15],
@@ -4191,18 +4513,21 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.nb_targets],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.15, 0, 0, 0.15],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0.1, 0.1],
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1,
         pow: () => 1,
         mult: (inputValues: DamageFormData) => 1 + (inputValues.numberOfTargets - 1) * 0.1,
@@ -4220,6 +4545,7 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 494,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
@@ -4236,12 +4562,14 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 518,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1,
         pow: () => 1.1,
         enhance: [0.05, 0, 0.05, 0, 0.1],
@@ -4258,6 +4586,7 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 571,
     skills: {
       s1: new Skill({
+        id: 's1',
         spdScaling: true,
         rate: () => 0.75,
         pow: () => 1,
@@ -4267,6 +4596,7 @@ export const heroes: Record<string, Hero> = {
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0, 0.1, 0.15],
@@ -4282,18 +4612,21 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 508,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 0.95,
         enhance: [0.05, 0.1, 0.1, 0.1],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 1,
         pow: () => 0.9,
         enhance: [0.05, 0.1, 0.1, 0.1],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 2.3 : 1.6,
         pow: () => 0.85,
@@ -4312,6 +4645,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.target_speed, elements.caster_speed, elements.exclusive_equipment_3],
     skills: {
       s1: new Skill({
+        id: 's1',
         spdScaling: true,
         rate: () => 0.9,
         pow: () => 1,
@@ -4321,6 +4655,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 1.4,
         pow: () => 1,
         mult: (inputValues: DamageFormData) => 1 + inputValues.targetSpeed * 0.003,
@@ -4329,6 +4664,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         spdScaling: true,
         rate: () => 0.8,
         pow: () => 0.95,
@@ -4350,6 +4686,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_hp_pc, elements.exclusive_equipment_1, elements.exclusive_equipment_2],
     skills: {
       s1: new Skill({
+        id: 's1',
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 1.35 : 0.85,
         pow: () => 1,
@@ -4360,6 +4697,7 @@ export const heroes: Record<string, Hero> = {
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.7,
         pow: () => 0.9,
         mult: (inputValues: DamageFormData) => 1 + (100 - inputValues.casterCurrentHPPercent) * 0.003,
@@ -4380,6 +4718,7 @@ export const heroes: Record<string, Hero> = {
     dot: [DoT.burn],
     skills: {
       s1: new Skill({
+        id: 's1',
         hpScaling: true,
         rate: () => 1,
         pow: () => 1,
@@ -4389,6 +4728,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         hpScaling: true,
         rate: () => 1.2,
         pow: () => 1,
@@ -4398,6 +4738,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         hpScaling: true,
         rate: () => 1.5,
         pow: () => 0.9,
@@ -4418,6 +4759,7 @@ export const heroes: Record<string, Hero> = {
     dot: [DoT.bleed],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         afterMath: (inputValues: DamageFormData) => inputValues.targetHasDebuff ? { atkPercent: 0.6, penetrate: () => 0.7 } : null,
@@ -4425,6 +4767,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         spdScaling: true,
         rate: () => 0.9,
         pow: () => 1,
@@ -4434,6 +4777,7 @@ export const heroes: Record<string, Hero> = {
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         spdScaling: true,
         rate: () => 1.5,
         pow: () => 1,
@@ -4452,12 +4796,14 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 515,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0.05, 0, 0.1, 0, 0.1],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.5,
         pow: () => 0.9,
         enhance: [0.05, 0.05, 0.05, 0, 0.05, 0.1, 0.1],
@@ -4474,6 +4820,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_defense],
     skills: {
       s1: new Skill({
+        id: 's1',
         defenseScaling: true,
         rate: () => 0.5,
         pow: () => 1,
@@ -4483,6 +4830,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         defenseScaling: true,
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 0.5 : 0.4,
@@ -4502,12 +4850,14 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 543,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 0.9,
         enhance: [0.05, 0.05, 0, 0.05, 0, 0.1, 0.15],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 0.7,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.05, 0.05],
@@ -4525,6 +4875,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.target_has_buff, elements.caster_stealth, elements.caster_hp_pc, elements.exclusive_equipment_2],
     skills: {
       s1: new Skill({
+        id: 's1',
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 1.4 : 1.1,
         pow: () => 1,
@@ -4538,6 +4889,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 0.9,
         pow: () => 1,
         penetrate: (inputValues: DamageFormData) => inputValues.casterHasStealth ? 0.6 : 0.3,
@@ -4546,6 +4898,7 @@ export const heroes: Record<string, Hero> = {
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.6,
         pow: () => 1,
         mult: (inputValues: DamageFormData) => 1 + inputValues.casterCurrentHPPercent * 0.0035,
@@ -4603,6 +4956,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_max_hp],
     skills: {
       s1: new Skill({
+        id: 's1',
         hpScaling: true,
         rate: () => 0.9,
         pow: () => 0.8,
@@ -4613,6 +4967,7 @@ export const heroes: Record<string, Hero> = {
 
       }),
       s2: new Skill({
+        id: 's2',
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 1.05 : 0.8,
         pow: () => 0.95,
@@ -4632,6 +4987,7 @@ export const heroes: Record<string, Hero> = {
     barrierEnhance: 's3',
     skills: {
       s1: new Skill({
+        id: 's1',
         hpScaling: true,
         rate: () => 0.5,
         pow: () => 0.9,
@@ -4641,6 +4997,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         enhance: [0.05, 0.1, 0.15]
       }),
     }
@@ -4654,6 +5011,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_defense],
     skills: {
       s1: new Skill({
+        id: 's1',
         defenseScaling: true,
         rate: () => 0.5,
         pow: () => 0.9,
@@ -4673,6 +5031,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_max_hp, elements.caster_hp],
     skills: {
       s1: new Skill({
+        id: 's1',
         hpScaling: true,
         rate: () => 0.7,
         pow: () => 1,
@@ -4682,6 +5041,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         hpScaling: true,
         rate: () => 0.8,
         pow: () => 1,
@@ -4691,6 +5051,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         hpScaling: true,
         noCrit: true,
         rate: () => 0.3,
@@ -4719,15 +5080,18 @@ export const heroes: Record<string, Hero> = {
     },
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1.1,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         enhance: [0.005, 0.005, 0.01, 0.01, 0.02]
       }),
       s3: new Skill({
+        id: 's3',
         aoe: true,
         rate: () => 0.9,
         pow: () => 1,
@@ -4746,6 +5110,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_speed, elements.target_max_hp, elements.caster_has_neo_phantom_sword],
     skills: {
       s1: new Skill({
+        id: 's1',
         spdScaling: true,
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 1.5 : 0.9,
@@ -4759,6 +5124,7 @@ export const heroes: Record<string, Hero> = {
         noTrans: (inputValues: DamageFormData) => inputValues.casterHasNeoPhantomSword ? true : false
       }),
       s2: new Skill({
+        id: 's2',
         spdScaling: true,
         rate: () => 1.5,
         pow: () => 0.9,
@@ -4783,6 +5149,7 @@ export const heroes: Record<string, Hero> = {
     barrierEnhance: 's2',
     skills: {
       s1: new Skill({
+        id: 's1',
         hpScaling: true,
         rate: () => 0.7,
         pow: () => 1,
@@ -4792,9 +5159,11 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         enhance: [0.05, 0.1, 0.1, 0.1, 0.15]
       }),
       s3: new Skill({
+        id: 's3',
         hpScaling: true,
         spdScaling: true,
         noCrit: true,
@@ -4853,12 +5222,14 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.target_hp_pc],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1.15,
         pow: () => 1,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.1],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 1.2 : 1,
         pow: () => 1,
@@ -4877,18 +5248,21 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 564,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 0.9,
         pow: () => 1,
         enhance: [0.05, 0, 0, 0.1, 0.15],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 1.35,
         pow: () => 1.05,
         enhance: [0.1, 0, 0, 0, 0.15],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 0.8,
         pow: () => 0.8,
         enhance: [0.05, 0.05, 0, 0.1, 0.15],
@@ -4905,12 +5279,14 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_max_hp],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         hpScaling: true,
             rate: () => 0.3,
         pow: () => 1.3,
@@ -4922,6 +5298,7 @@ export const heroes: Record<string, Hero> = {
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1,
         pow: () => 1.05,
         enhance: [0.0, 0.1, 0, 0, 0.15],
@@ -4937,18 +5314,21 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 536,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 0.7,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.6,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
@@ -4965,6 +5345,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_max_hp, elements.highest_ally_attack],
     skills: {
       s1: new Skill({
+        id: 's1',
         hpScaling: true,
         rate: () => 0.8,
         pow: () => 0.95,
@@ -4974,6 +5355,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1,
         pow: () => 1,
         atk: (inputValues: DamageFormData) => inputValues.highestAllyAttack,
@@ -5018,6 +5400,7 @@ export const heroes: Record<string, Hero> = {
     dot: [DoT.bleed],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         exclusiveEquipmentMultiplier: (inputValues: DamageFormData) => inputValues.exclusiveEquipment1 ? 0.2 : 0,
@@ -5025,12 +5408,14 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 1.5,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 2.6 : 2,
         pow: () => 0.95,
@@ -5048,12 +5433,14 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 532,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0.05, 0, 0.05, 0.05, 0.1,],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.9,
         pow: () => 0.95,
         enhance: [0.05, 0.05, 0, 0, 0, 0.1, 0.15],
@@ -5070,6 +5457,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_defense],
     skills: {
       s1: new Skill({
+        id: 's1',
         defenseScaling: true,
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 1 : 0.6,
@@ -5080,6 +5468,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         defenseScaling: true,
         rate: () => 0.5,
         pow: () => 0.9,
@@ -5100,6 +5489,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_defense],
     skills: {
       s1: new Skill({
+        id: 's1',
         defenseScaling: true,
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 1 : 0.6,
@@ -5110,6 +5500,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         defenseScaling: true,
         rate: () => 0.3,
         pow: () => 0.9,
@@ -5129,12 +5520,14 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 627,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1.2,
         pow: () => 1,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.5,
         pow: () => 1,
         mult: (inputValues: DamageFormData) => inputValues.elementalAdvantage ? 1.5 : 1,
@@ -5144,7 +5537,8 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3_splash: new Skill({
-            rate: () => 0,
+        id: 's3_splash',
+        rate: () => 0,
         pow: () => 0,
         afterMath: (inputValues: DamageFormData) => inputValues.elementalAdvantage ? { atkPercent: 1.2, penetrate: () => 0.7 } : null,
         noCrit: true,
@@ -5194,6 +5588,7 @@ export const heroes: Record<string, Hero> = {
     attackIncrease: (inputValues: DamageFormData) => 1 + inputValues.casterAttackStack * 0.1,
     skills: {
       s1: new Skill({
+        id: 's1',
         onlyCrit: true,
         rate: () => 0.9,
         pow: () => 0.95,
@@ -5201,6 +5596,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         onlyCrit: true,
         rate: () => 0.6,
         pow: () => 1,
@@ -5209,6 +5605,7 @@ export const heroes: Record<string, Hero> = {
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         onlyCrit: true,
         rate: () => 1.5,
         pow: () => 1,
@@ -5236,6 +5633,7 @@ export const heroes: Record<string, Hero> = {
     },
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 0.9,
         flat: (inputValues: DamageFormData) => inputValues.targetMaxHP * 0.02,
@@ -5244,9 +5642,11 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         enhance: [0.005, 0.005, 0.01, 0.01, 0.02]
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.5,
         pow: () => 0.95,
         mult: (inputValues: DamageFormData) => 1 + (100 - inputValues.targetCurrentHPPercent) * 0.005,
@@ -5264,6 +5664,7 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 662,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0, 0.1, 0.15],
@@ -5279,12 +5680,14 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 611,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 0.95,
         enhance: [0.05, 0.05, 0, 0.05, 0, 0.1, 0.1],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 1.5,
         pow: () => 0.9,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.1],
@@ -5302,12 +5705,14 @@ export const heroes: Record<string, Hero> = {
     barrier: (inputValues: DamageFormData) => inputValues.casterMaxHP * 0.2,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 0.95,
         enhance: [0.05, 0.05, 0, 0.05, 0, 0.1, 0.1],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 0.9,
         pow: () => 0.95,
         enhance: [0.05, 0.05, 0, 0.05, 0, 0.1, 0.1],
@@ -5324,12 +5729,14 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_invincible, elements.exclusive_equipment_1, elements.exclusive_equipment_3],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 1.65,
         pow: () => 1.05,
         exclusiveEquipmentMultiplier: (inputValues: DamageFormData) => inputValues.exclusiveEquipment1 ? 0.1 : 0,
@@ -5337,6 +5744,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 0.9,
         pow: () => 0.95,
         penetrate: (inputValues: DamageFormData) => inputValues.casterInvincible ? 0.6 : 0.3,
@@ -5358,6 +5766,7 @@ export const heroes: Record<string, Hero> = {
     attackIncrease: (inputValues: DamageFormData) => 1 + inputValues.skill3Stack * 0.2,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         mult: (inputValues: DamageFormData) => 1 + (1 - (inputValues.targetCurrentHPPercent / 100)) * 0.2,
@@ -5365,9 +5774,11 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         enhance: [0.05, 0.05, 0, 0.05, 0.1]
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 0.9,
         pow: () => 1.05,
         enhance: [0.1, 0, 0, 0, 0.15],
@@ -5396,6 +5807,7 @@ export const heroes: Record<string, Hero> = {
     },
     skills: {
       s1: new Skill({
+        id: 's1',
         soulburn: true,
         rate: (soulburn: boolean, inputValues: DamageFormData) => (soulburn ? 3 : inputValues.numberOfHits) * 0.7,
         pow: () => 0.95,
@@ -5403,9 +5815,11 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         enhance: [0.01, 0.02, 0.02, 0.02, 0.03]
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.1,
         pow: () => 1.05,
         penetrate: () => 0.5,
@@ -5423,6 +5837,7 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 705,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.1, 0, 0, 0.15],
@@ -5438,6 +5853,7 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 720,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0.05, 0, 0.1, 0, 0.1],
@@ -5454,12 +5870,14 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_hp_pc],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 0.95,
         enhance: [0.05, 0.05, 0, 0.1, 0, 0.15],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         onlyCrit: true,
         rate: () => 1.2,
         pow: () => 0.95,
@@ -5475,6 +5893,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 1.1 : 0.9,
         pow: () => 1,
@@ -5491,6 +5910,7 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 662,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1.05,
         enhance: [0.1, 0, 0, 0.15],
@@ -5507,6 +5927,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_defense],
     skills: {
       s1: new Skill({
+        id: 's1',
         defenseScaling: true,
         rate: () => 0.5,
         pow: () => 0.95,
@@ -5516,6 +5937,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         defenseScaling: true,
         rate: () => 0.8,
         pow: () => 1,
@@ -5535,6 +5957,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_max_hp],
     skills: {
       s1: new Skill({
+        id: 's1',
         hpScaling: true,
         rate: () => 1,
         pow: () => 1,
@@ -5544,6 +5967,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         hpScaling: true,
         rate: () => 1.5,
         pow: () => 1,
@@ -5562,12 +5986,14 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 583,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.1, 0, 0.1, 0, 0.1],
         isSingle: () => true
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
@@ -5584,6 +6010,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_hp_pc, elements.exclusive_equipment_2],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1.1,
         mult: (inputValues: DamageFormData) => 1 + (100 - inputValues.casterCurrentHPPercent) * 0.0035,
@@ -5592,6 +6019,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 1.5,
         pow: () => 0.95,
         mult: (inputValues: DamageFormData) => 1 + (100 - inputValues.casterCurrentHPPercent) * 0.003,
@@ -5601,6 +6029,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.2,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
@@ -5648,11 +6077,13 @@ export const heroes: Record<string, Hero> = {
     attackIncrease: (inputValues: DamageFormData) => inputValues.casterHasImmensePower ? 1.15 : 1,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 0.8,
         pow: () => 0.95,
         enhance: [0.05, 0.05, 0.05, 0.1, 0.1]
       }),
       s2: new Skill({
+        id: 's2',
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 0.9 : 0.7,
         pow: () => 0.9,
@@ -5669,7 +6100,8 @@ export const heroes: Record<string, Hero> = {
         aoe: true,
       }),
       s2_bis: new Skill({
-            rate: () => 0.35,
+        id: 's2_bis',
+        rate: () => 0.35,
         pow: () => 0.9,
         mult: (inputValues: DamageFormData) => {
           switch (inputValues.numberOfTargets) {
@@ -5684,6 +6116,7 @@ export const heroes: Record<string, Hero> = {
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.15,
         pow: () => 0.95,
         critDmgBoost: () => 0.2,
@@ -5703,6 +6136,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.skill_tree_completed],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         mult: (inputValues: DamageFormData) => 1 + (inputValues.skillTreeCompleted ? 0.1 : 0),
@@ -5711,6 +6145,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 1.55,
         pow: () => 0.95,
         mult: (inputValues: DamageFormData) => 1 + (inputValues.skillTreeCompleted ? 0.05 : 0),
@@ -5728,12 +6163,14 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 525,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 1.35,
         pow: () => 1,
         penetrate: () => 0.7,
@@ -5750,17 +6187,20 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 652,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1.1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 1,
         pow: () => 1,
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.7,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
@@ -5778,6 +6218,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_speed],
     skills: {
       s1: new Skill({
+        id: 's1',
         spdScaling: true,
         rate: () => 0.9,
         pow: () => 1,
@@ -5787,6 +6228,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         spdScaling: true,
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 2.5 : 1.8,
@@ -5806,18 +6248,21 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 606,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.1, 0, 0, 0.15],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 1.3,
         pow: () => 1.05,
         enhance: [0.1, 0, 0, 0, 0.15],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 2.2 : 1.5,
         pow: () => 1,
@@ -5834,6 +6279,7 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 729,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.1, 0, 0, 0.15],
@@ -5852,12 +6298,14 @@ export const heroes: Record<string, Hero> = {
     barrierEnhance: 's2',
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 0.9,
         enhance: [0.05, 0, 0.05, 0, 0.1, 0.1],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         enhance: [0.05, 0.05, 0.05, 0.1, 0.1, 0.1]
       }),
     }
@@ -5871,6 +6319,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_max_hp, elements.caster_enrage, elements.exclusive_equipment_3],
     skills: {
       s1: new Skill({
+        id: 's1',
         hpScaling: true,
         rate: () => 0.7,
         pow: () => 1,
@@ -5880,6 +6329,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         hpScaling: true,
         rate: () => 0.7,
         pow: () => 1,
@@ -5900,6 +6350,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_speed],
     skills: {
       s1: new Skill({
+        id: 's1',
         spdScaling: true,
         rate: () => 0.9,
         pow: () => 1,
@@ -5909,6 +6360,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         spdScaling: true,
         rate: () => 1.5,
         pow: () => 1,
@@ -5928,18 +6380,21 @@ export const heroes: Record<string, Hero> = {
     dot: [DoT.bleed],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 0.7,
         pow: () => 1,
         enhance: [0.05, 0, 0, 0.1, 0.15],
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1,
         pow: () => 0.95,
         enhance: [0.05, 0.05, 0, 0.1, 0.15],
@@ -5983,6 +6438,7 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 561,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 0.8,
         mult: (inputValues: DamageFormData) => 1 + (inputValues.skillTreeCompleted ? 0.05 : 0),
@@ -5991,6 +6447,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 1.3,
         pow: () => 0.95,
         enhance: [0.05, 0.05, 0, 0, 0, 0.1, 0.15],
@@ -6007,18 +6464,21 @@ export const heroes: Record<string, Hero> = {
     dot: [DoT.bleed],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 0.8,
         pow: () => 1,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 1.25 : 1,
         pow: () => 1.1,
@@ -6039,18 +6499,21 @@ export const heroes: Record<string, Hero> = {
     },
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1.1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
             rate: () => 0.8,
         pow: () => 1.3,
         isExtra: true,
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1,
         pow: () => 1.05,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
@@ -6068,12 +6531,14 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.target_max_hp],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 0.95,
         enhance: [0.05, 0.05, 0, 0, 0.1, 0.15],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 1.7 : 1,
         pow: () => 0.8,
@@ -6092,12 +6557,14 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 694,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.05, 0, 0.05, 0.1],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 1,
         pow: () => 1,
         aoe: true,
@@ -6113,12 +6580,14 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.target_has_barrier, elements.caster_speed],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         spdScaling: true,
         rate: () => 0.75,
         pow: () => 1,
@@ -6129,6 +6598,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         spdScaling: true,
         rate: () => 1,
         pow: () => 1.1,
@@ -6148,6 +6618,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_perception, elements.caster_speed, elements.target_speed],
     skills: {
       s1: new Skill({
+        id: 's1',
         spdScaling: true,
         rate: () => 0.65,
         pow: () => 0.9,
@@ -6157,6 +6628,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         spdScaling: true,
         rate: () => 0.7,
         pow: () => 0.95,
@@ -6183,12 +6655,14 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 617,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.8,
         pow: () => 1,
         enhance: [0.1, 0, 0, 0, 0.15],
@@ -6205,6 +6679,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_speed],
     skills: {
       s1: new Skill({
+        id: 's1',
         spdScaling: true,
         rate: () => 0.9,
         pow: () => 1.1,
@@ -6214,6 +6689,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         spdScaling: true,
         rate: () => 0.8,
         pow: () => 1,
@@ -6223,6 +6699,7 @@ export const heroes: Record<string, Hero> = {
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         spdScaling: true,
         rate: () => 1.6,
         pow: () => 1,
@@ -6243,6 +6720,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_defense, elements.caster_fury],
     skills: {
       s1: new Skill({
+        id: 's1',
         defenseScaling: true,
         rate: () => 0.5,
         pow: () => 0.9,
@@ -6252,6 +6730,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         defenseScaling: true,
         rate: () => 0.5,
         pow: () => 0.9,
@@ -6280,17 +6759,20 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.target_max_hp, elements.target_has_sleep],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0.05, 0, 0.1, 0.1],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 0.6,
         pow: () => 1,
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.5,
         pow: () => 0.9,
         extraDmg: (inputValues: DamageFormData) => inputValues.targetAsleep ? inputValues.targetMaxHP * 0.2 : 0,
@@ -6315,18 +6797,21 @@ export const heroes: Record<string, Hero> = {
     },
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
       })
     }
@@ -6341,6 +6826,7 @@ export const heroes: Record<string, Hero> = {
     attackIncrease: (inputValues: DamageFormData) => 1 + inputValues.casterAttackStack * 0.15,
     skills: {
       s1: new Skill({
+        id: 's1',
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 1.6 : 1,
         pow: () => 1,
@@ -6348,6 +6834,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.8,
         pow: () => 1.2,
         enhance: [0, 0.1, 0, 0, 0],
@@ -6365,6 +6852,7 @@ export const heroes: Record<string, Hero> = {
     dot: [DoT.burn, DoT.bomb],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 0.7,
         pow: () => 0.95,
         detonate: [DoT.burn, DoT.bomb],
@@ -6374,6 +6862,7 @@ export const heroes: Record<string, Hero> = {
         noCrit: true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 0.8,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.05, 0.05, 0.1],
@@ -6390,18 +6879,21 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 683,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 0.9,
         pow: () => 1,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1,
         pow: () => 1.1,
         enhance: [0.05, 0, 0, 0, 0.15],
@@ -6418,6 +6910,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_max_hp],
     skills: {
       s1: new Skill({
+        id: 's1',
         hpScaling: true,
         rate: () => 1,
         pow: () => 1,
@@ -6427,6 +6920,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         hpScaling: true,
             rate: () => 0.7,
         pow: () => 1,
@@ -6436,6 +6930,7 @@ export const heroes: Record<string, Hero> = {
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         hpScaling: true,
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 1.05 : 0.8,
@@ -6457,6 +6952,7 @@ export const heroes: Record<string, Hero> = {
     barrier: (inputValues: DamageFormData) => inputValues.casterDefense * (1 + inputValues.casterAttackedStack * 0.1) * 0.6,
     skills: {
       s1: new Skill({
+        id: 's1',
         defenseScaling: true,
         rate: () => 0.7,
         pow: () => 1,
@@ -6466,6 +6962,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         defenseScaling: true,
         rate: () => 1.3,
         pow: () => 0.95,
@@ -6485,12 +6982,14 @@ export const heroes: Record<string, Hero> = {
     innateAttackIncrease: () => 0.3,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
         // add soulburn aoe condition?
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.8, 
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
@@ -6507,6 +7006,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_speed, elements.target_speed],
     skills: {
       s1: new Skill({
+        id: 's1',
         spdScaling: true,
         rate: () => 0.9,
         pow: () => 0.9,
@@ -6517,6 +7017,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         spdScaling: true,
         rate: () => 0.8,
         pow: () => 1,
@@ -6536,6 +7037,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_max_hp],
     skills: {
       s1: new Skill({
+        id: 's1',
         hpScaling: true,
         rate: () => 0.9,
         pow: () => 1,
@@ -6545,12 +7047,14 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 1.5,
         pow: () => 1,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         hpScaling: true,
         rate: () => 0.9,
         pow: () => 1,
@@ -6571,6 +7075,7 @@ export const heroes: Record<string, Hero> = {
     attackIncrease: (inputValues: DamageFormData) => 1 + inputValues.casterAttackStack * 0.15,
     skills: {
       s1: new Skill({
+        id: 's1',
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 2.5 : 1,
         pow: () => 1,
@@ -6578,6 +7083,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 0.85,
         pow: () => 0.95,
         penetrate: () => 0.5,
@@ -6594,6 +7100,7 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 655,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 0.9,
         pow: () => 1,
         enhance: [0.05, 0.1, 0.15],
@@ -6609,6 +7116,7 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 616,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 0.95,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
@@ -6616,11 +7124,13 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 0.5, 
         pow: () => 1,
         aoe: true
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1, 
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
@@ -6636,12 +7146,14 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 522,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.3,
         pow: () => 1,
         penetrate: () => 0.5,
@@ -6659,6 +7171,7 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 715,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         afterMath: (hitType: HitType) => hitType !== HitType.miss ? ({ atkPercent: 0.5, penetrate: () => 0.7 }) : null,
@@ -6667,6 +7180,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 0.3,
         pow: () => 1,
         mult: (inputValues: DamageFormData) => 1 + inputValues.casterAttackStack * 0.15,
@@ -6686,12 +7200,14 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 613,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 2.7 : 1.8,
         pow: () => 1,
@@ -6712,6 +7228,7 @@ export const heroes: Record<string, Hero> = {
     barrierEnhance: 's2',
     skills: {
       s1: new Skill({
+        id: 's1',
         pow: () => 0.95,
         rate: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0, 0.15],
@@ -6720,9 +7237,11 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         enhance: [0.15, 0.15]
       }),
       s3: new Skill({
+        id: 's3',
         pow: () => 1,
         rate: () => 1,
         enhance: [0.05, 0, 0, 0, 0.1, 0, 0.15],
@@ -6739,6 +7258,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_speed],
     skills: {
       s1: new Skill({
+        id: 's1',
         spdScaling: true,
         rate: () => 0.8,
         pow: () => 1,
@@ -6748,6 +7268,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         spdScaling: true,
         rate: () => 1.2,
         pow: () => 1,
@@ -6766,12 +7287,14 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 583,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.05, 0, 0.15],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 0.9,
         pow: () => 1,
         enhance: [0.05, 0, 0.05, 0, 0.1, 0, 0.1],
@@ -6787,12 +7310,14 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 561,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 0.8,
         enhance: [0.05, 0.05, 0.05, 0.1, 0.1, 0.15],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 1.3,
         pow: () => 0.95,
         enhance: [0.05, 0.05, 0, 0, 0, 0.1, 0.15],
@@ -6809,12 +7334,14 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.allies_nb_buff],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1.1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 1.65,
         pow: () => 1,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
@@ -6822,6 +7349,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.8,
         pow: () => 1,
         fixed: (hitType: HitType, inputValues: DamageFormData) => (hitType !== HitType.miss) ? Math.min(5000 + (inputValues.totalAllyBuffs * 625), 10000) : 0,
@@ -6840,6 +7368,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_max_hp],
     skills: {
       s1: new Skill({
+        id: 's1',
         hpScaling: true,
         rate: () => 0.7,
         pow: () => 0.9,
@@ -6849,6 +7378,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         hpScaling: true,
         rate: () => 0.7,
         pow: () => 1,
@@ -6867,12 +7397,14 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 585,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1.15,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: 2,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
@@ -6890,6 +7422,7 @@ export const heroes: Record<string, Hero> = {
     dot: [DoT.bomb],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         mult: (inputValues: DamageFormData) => inputValues.targetHasDebuff ? 1.1 : 1,
@@ -6898,12 +7431,14 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 1.2,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 0.8,
         pow: () => 1.1,
         enhance: [0.05, 0, 0, 0, 0.15],
@@ -6933,6 +7468,7 @@ export const heroes: Record<string, Hero> = {
     },
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0.05, 0, 0.1, 0, 0.1],
@@ -6949,18 +7485,21 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.target_has_buff],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 0.7,
         pow: () => 1,
         enhance: [0.05, 0, 0, 0.1, 0.15],
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 0.9,
         pow: () => 0.85,
         mult: (inputValues: DamageFormData) => inputValues.targetHasBuff ? 1.3 : 1,
@@ -6979,6 +7518,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_speed],
     skills: {
       s1: new Skill({
+        id: 's1',
         spdScaling: true,
         rate: () => 0.8,
         pow: () => 1,
@@ -6988,6 +7528,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         spdScaling: true,
         rate: () => 1.2,
         pow: () => 1,
@@ -7008,6 +7549,7 @@ export const heroes: Record<string, Hero> = {
     barrier: (inputValues: DamageFormData) => inputValues.casterDefense,
     skills: {
       s1: new Skill({
+        id: 's1',
         defenseScaling: true,
         rate: () => 0.5,
         pow: () => 1,
@@ -7028,6 +7570,7 @@ export const heroes: Record<string, Hero> = {
     attackIncrease: (inputValues: DamageFormData) => inputValues.casterHasFlameAlchemist ? 1.2 : 1,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 0.8,
         pow: () => 1,
         penetrate: (inputValues: DamageFormData) => inputValues.casterHasFlameAlchemist ? 0.5 : 0,
@@ -7035,6 +7578,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.2,
         pow: () => 0.9,
         mult: (inputValues: DamageFormData) => {
@@ -7065,6 +7609,7 @@ export const heroes: Record<string, Hero> = {
     barrier: (inputValues: DamageFormData) => inputValues.casterMaxHP * 0.2,
     skills: {
       s1: new Skill({
+        id: 's1',
         hpScaling: true,
         rate: () => 0.81,
         pow: () => 0.95,
@@ -7084,17 +7629,20 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_max_hp, elements.caster_hp],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1.1,
         enhance: [0.05, 0, 0.05, 0, 0.1],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 0.85,
         pow: () => 1.3,
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         hpScaling: true,
         rate: () => 0.5,
         pow: () => 1,
@@ -7116,17 +7664,20 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.skill_tree_completed],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 0.7,
         pow: () => 1.3,
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
@@ -7145,12 +7696,14 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 536,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
@@ -7168,6 +7721,7 @@ export const heroes: Record<string, Hero> = {
     barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number) => hero.getAttack(artifact, inputValues, attackMultiplier) * 0.25,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 0.95,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
@@ -7175,6 +7729,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 0,
         pow: () => 0,
         afterMath: () => ({ atkPercent: 0.45, penetrate: () => 0.7 }),
@@ -7183,6 +7738,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.5,
         pow: () => 1.1,
         enhance: [0.05, 0, 0, 0, 0.15],
@@ -7201,6 +7757,7 @@ export const heroes: Record<string, Hero> = {
     barrier: (inputValues: DamageFormData) => inputValues.casterDefense * (1 + inputValues.casterAttackedStack * 0.1) * 0.6,
     skills: {
       s1: new Skill({
+        id: 's1',
         defenseScaling: true,
         rate: () => 0.7,
         pow: () => 1,
@@ -7210,6 +7767,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         defenseScaling: true,
         rate: () => 1.3,
         pow: () => 0.95,
@@ -7229,12 +7787,14 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 599,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 0.95,
         enhance: [0.05, 0.05, 0.1, 0.15],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 0.85,
         pow: () => 0.95,
         mult: (inputValues: DamageFormData) => inputValues.skillTreeCompleted ? 1.05 : 1,
@@ -7252,6 +7812,7 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 743,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 0.95,
         enhance: [0.05, 0.1, 0, 0, 0.1, 0.1],
@@ -7270,6 +7831,7 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 694,
     skills: {
       s1: new Skill({
+        id: 's1',
         hpScaling: true,
         rate: () => 0.75,
         pow: () => 1,
@@ -7279,6 +7841,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         enhance: [0.1, 0.1, 0, 0.1, 0.1]
       }),
     }
@@ -7292,12 +7855,14 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 571,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0.05, 0, 0.1, 0.1],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 0.7,
         pow: () => 1,
         exclusiveEquipmentMultiplier: (inputValues: DamageFormData) => inputValues.exclusiveEquipment2 ? 0.1 : 0,
@@ -7305,6 +7870,7 @@ export const heroes: Record<string, Hero> = {
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1,
         pow: () => 1,
         critDmgBoost: () => 0.2,
@@ -7322,6 +7888,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.skill_tree_completed],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 0.85,
         pow: () => 1.05,
         mult: (inputValues: DamageFormData) => inputValues.skillTreeCompleted ? 1.1 : 1,
@@ -7330,6 +7897,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 0.6,
         pow: () => 1,
         mult: (inputValues: DamageFormData) => inputValues.skillTreeCompleted ? 1.1 : 1,
@@ -7338,6 +7906,7 @@ export const heroes: Record<string, Hero> = {
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.3,
         pow: () => 1.05,
         enhance: [0.1, 0, 0, 0, 0.15],
@@ -7354,12 +7923,14 @@ export const heroes: Record<string, Hero> = {
     dot: [DoT.burn],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 2 : 1.5,
         pow: () => 1.05,
@@ -7367,6 +7938,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.8,
         pow: () => 1.05,
         enhance: [0.1, 0, 0, 0, 0.15],
@@ -7383,13 +7955,15 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.target_hp_pc],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 0.95,
         enhance: [0.05, 0.05, 0.05, 0.1, 0.1],
         isSingle: () => true,
       }),
       s1_bis: new Skill({
-            rate: () => 0.5,
+        id: 's1_bis',
+        rate: () => 0.5,
         pow: () => 1,
         mult: (inputValues: DamageFormData) => 1 + (100 - inputValues.targetCurrentHPPercent) * 0.003,
         multTip: () => ({ target_lost_hp_pc: 0.3 }),
@@ -7397,6 +7971,7 @@ export const heroes: Record<string, Hero> = {
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 3.2 : 2.0,
         pow: () => 0.95,
@@ -7406,7 +7981,8 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       explosion: new Skill({ // TODO: change this to be aftermath on s3 with an input for enemy killed?
-            rate: () => 0,
+        id: 'explosion',
+        rate: () => 0,
         pow: () => 0,
         afterMath: () => ({ atkPercent: 1.5, penetrate: () => 0.7 }),
         noCrit: true,
@@ -7461,18 +8037,21 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 610,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.1, 0, 0, 0.15],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 1.5,
         pow: () => 0.9,
         enhance: [0.05, 0.05, 0.1, 0.1, 0.1],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.05,
         pow: () => 0.8,
         enhance: [0.1, 0.1, 0, 0.15, 0.15],
@@ -7491,15 +8070,18 @@ export const heroes: Record<string, Hero> = {
     barrierEnhance: 's2',
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
@@ -7517,6 +8099,7 @@ export const heroes: Record<string, Hero> = {
     dot: [DoT.bleed],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         exclusiveEquipmentMultiplier: (inputValues: DamageFormData) => inputValues.exclusiveEquipment1 ? 0.2 : 0,
@@ -7525,12 +8108,14 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 1.25,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.7,
         pow: () => 0.8,
         enhance: [0.1, 0.1, 0, 0.15, 0.15],
@@ -7548,6 +8133,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_speed],
     skills: {
       s1: new Skill({
+        id: 's1',
         spdScaling: true,
         rate: () => 0.9,
         pow: () => 0.9,
@@ -7557,6 +8143,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s1_bis: new Skill({
+        id: 's1_bis',
         s1Benefits: true,
         spdScaling: true,
         rate: () => 1.2,
@@ -7568,6 +8155,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 0.95,
         pow: () => 1.05,
         enhance: [0.1, 0, 0, 0.15],
@@ -7584,6 +8172,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_speed, elements.caster_nb_focus],
     skills: {
       s1: new Skill({
+        id: 's1',
         spdScaling: true,
         rate: () => 0.9,
         pow: () => 0.9,
@@ -7593,6 +8182,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s1_bis: new Skill({
+        id: 's1_bis',
         s1Benefits: true,
         spdScaling: true,
         rate: () => 1.25,
@@ -7604,6 +8194,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 0.95,
         pow: () => 1.05,
         enhance: [0.1, 0, 0, 0.15],
@@ -7620,18 +8211,21 @@ export const heroes: Record<string, Hero> = {
     dot: [DoT.burn],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
         isSingle: () => true,
       }),
       s1_extra: new Skill({
+        id: 's1_extra',
             rate: () => 0.5,
         pow: () => 1.3,
         enhance_from: 's1',
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 0.9,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
@@ -7647,6 +8241,7 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 631,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 0.95,
         enhance: [0.05, 0.05, 0, 0.05, 0, 0.1, 0.1],
@@ -7663,6 +8258,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.target_has_buff, elements.target_max_hp],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         mult: (inputValues: DamageFormData) => inputValues.targetHasBuff ? 1 : 1.2,
@@ -7671,6 +8267,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 0.7,
         pow: () => 1,
         flat: (inputValues: DamageFormData) => inputValues.targetMaxHP * 0.04,
@@ -7680,6 +8277,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.6,
         pow: () => 1,
         flat: (inputValues: DamageFormData) => inputValues.targetMaxHP * 0.05,
@@ -7700,17 +8298,20 @@ export const heroes: Record<string, Hero> = {
     barrier: (inputValues: DamageFormData) => inputValues.casterMaxHP * 0.25,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 0.7,
         pow: () => 1,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
         isSingle: () => true,
       }),
       s1_extra: new Skill({
+        id: 's1_extra',
             rate: () => 0.8,
         pow: () => 1.3,
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.8,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
@@ -7728,6 +8329,7 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 729,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
@@ -7744,12 +8346,14 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.target_is_stunned],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 1.15 : 0.9,
         pow: () => 1,
@@ -7757,6 +8361,7 @@ export const heroes: Record<string, Hero> = {
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.5,
         pow: () => 1,
         penetrate: (inputValues: DamageFormData) => inputValues.targetStunned ? 1.0 : 0.3,
@@ -7781,15 +8386,18 @@ export const heroes: Record<string, Hero> = {
     },
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1.2,
         pow: () => 1,
         enhance: [0.05, 0, 0.05, 0, 0.05, 0.15],
         single: (inputValues: DamageFormData) => !inputValues.S3OnCooldown,
       }),
       s2: new Skill({
+        id: 's2',
         enhance: [0.005, 0.01, 0.015],
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.8,
         pow: () => 0.95,
         mult: (inputValues: DamageFormData) => 1 + inputValues.targetNumberOfDebuffs * 0.2,
@@ -7807,12 +8415,14 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 532,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 0.9,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.1],
         isSingle: () => true,
       }),
       s1_bis: new Skill({
+        id: 's1_bis',
             rate: () => 1.3,
         pow: () => 0.9,
         penetrate: () => 0.35,
@@ -7830,12 +8440,14 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.nb_targets, elements.target_is_highest_max_hp, elements.target_attack],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 0.9,
         pow: () => 1,
         mult: (inputValues: DamageFormData) => {
@@ -7851,6 +8463,7 @@ export const heroes: Record<string, Hero> = {
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 0.95,
         pow: () => 1,
         penetrate: (inputValues: DamageFormData, heroAttack: number) => {
@@ -7876,12 +8489,14 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 634,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 0.9,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.5,
         pow: () => 1,
         penetrate: () => 0.5,
@@ -7925,17 +8540,20 @@ export const heroes: Record<string, Hero> = {
     attackIncrease: (inputValues: DamageFormData) => inputValues.skillTreeCompleted ? 1.03 : 1,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.1, 0.15],
         isSingle: () => true,
       }),
       s1_extra: new Skill({
+        id: 's1_extra',
             rate: () => 0.75,
         pow: () => 1,
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 1,
         pow: () => 1,
         mult: (inputValues: DamageFormData) => 1 + (inputValues.skillTreeCompleted ? 0.1 : 0),
@@ -7944,6 +8562,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.5,
         pow: () => 0.9,
         mult: (inputValues: DamageFormData) => 1 + inputValues.targetNumberOfDebuffs * 0.15,
@@ -7972,6 +8591,7 @@ export const heroes: Record<string, Hero> = {
     },
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
@@ -7979,9 +8599,11 @@ export const heroes: Record<string, Hero> = {
         noCrit: true,
       }),
       s2: new Skill({
+        id: 's2',
         enhance: [0.02, 0.02, 0.03, 0.03, 0.05],
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.2,
         pow: () => 1,
         detonate: DoT.bomb,
@@ -8002,18 +8624,21 @@ export const heroes: Record<string, Hero> = {
     dot: [DoT.bleed],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 0.9,
         enhance: [0.05, 0.05, 0.1, 0.1, 0.1],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 1.4,
         pow: () => 1,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.8,
         pow: () => 0.8,
         mult: (inputValues: DamageFormData) => inputValues.targetNumberOfBleeds > 0 ? 1.25 + (Math.min(inputValues.targetNumberOfBleeds, 5) - 1) * 0.25 : 1,
@@ -8040,15 +8665,18 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 652,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         enhance: [0.005, 0.005, 0.005, 0.005, 0.005],
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.5,
         pow: () => 0.9,
         enhance: [0.05, 0.05, 0.05, 0.1, 0.15],
@@ -8065,12 +8693,14 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_hp_pc, elements.target_hp_pc],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 0.95,
         enhance: [0.05, 0.05, 0.1, 0.15],
         isSingle: () => true,
       }),
       s1_extra: new Skill({
+        id: 's1_extra',
             rate: () => 0.7,
         pow: () => 1,
         enhance_from: 's1',
@@ -8079,6 +8709,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 1 : 0.8,
         pow: () => 0.8,
@@ -8099,18 +8730,22 @@ export const heroes: Record<string, Hero> = {
     attackIncrease: (inputValues: DamageFormData) => 1 + inputValues.casterAttackStack * 0.15,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
         isSingle: () => true,
       }),
+      // Separate skill because it goes AOE
       s1_soulburn: new Skill({
-            rate: () => 1,
+        id: 's1_soulburn',
+        rate: () => 1,
         pow: () => 1,
         enhance_from: 's1',
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
@@ -8127,6 +8762,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_speed, elements.caster_enrage],
     skills: {
       s1: new Skill({
+        id: 's1',
         spdScaling: true,
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 1.65 : 0.98,
@@ -8137,6 +8773,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s1_extra: new Skill({
+        id: 's1_extra',
         spdScaling: true,
             rate: () => 1.2,
         pow: () => 1.3,
@@ -8146,6 +8783,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1,
         pow: () => 0.9,
         enhance: [0.05, 0.05, 0, 0.05, 0.05, 0.1, 0.1],
@@ -8162,12 +8800,14 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 543,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 1.8 : 1.5,
         pow: () => 0.9,
@@ -8187,12 +8827,14 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 501,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0.05, 0, 0.05, 0.05, 0.1,],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.5,
         pow: () => 1,
         enhance: [0.05, 0, 0, 0, 0.05, 0.1, 0.15],
@@ -8208,6 +8850,7 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 652,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 0.75,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1, 0.1, 0.15]
@@ -8222,12 +8865,14 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 583,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.8,
         pow: () => 1,
         enhance: [0.05, 0, 0, 0.1, 0.15],
@@ -8244,6 +8889,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_max_hp],
     skills: {
       s1: new Skill({
+        id: 's1',
         hpScaling: true,
         rate: () => 0.8,
         pow: () => 1,
@@ -8253,6 +8899,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         hpScaling: true,
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 2.3 : 1.5,
@@ -8274,6 +8921,7 @@ export const heroes: Record<string, Hero> = {
     dot: [DoT.bleed],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         mult: (inputValues: DamageFormData) => 1 + (100 - inputValues.casterCurrentHPPercent) * 0.0015,
@@ -8282,6 +8930,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 1.25 : 1,
         pow: () => 1.05,
@@ -8300,12 +8949,14 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 652,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1.2,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 1.05 : 0.8,
         pow: () => 1,
@@ -8313,6 +8964,7 @@ export const heroes: Record<string, Hero> = {
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.1,
         pow: () => 1.05,
         enhance: [0.1, 0, 0, 0, 0.15],
@@ -8328,18 +8980,21 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 652,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1.2,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 0.8,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 1.35 : 1.1,
         pow: () => 1.05,
@@ -8357,12 +9012,14 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.target_max_hp],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1.05,
         enhance: [0.1, 0, 0.15, 0],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 1.8 : 1.2,
         pow: () => 0.9,
@@ -8382,6 +9039,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_speed],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
@@ -8389,6 +9047,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         spdScaling: true,
         rate: () => 1.6,
         pow: () => 1,
@@ -8409,6 +9068,7 @@ export const heroes: Record<string, Hero> = {
     barrier: (inputValues: DamageFormData) => inputValues.casterMaxHP * 0.2,
     skills: {
       s1: new Skill({
+        id: 's1',
         hpScaling: true,
         rate: () => 1,
         pow: () => 0.95,
@@ -8429,6 +9089,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.target_hp_pc, elements.caster_enrage, elements.caster_max_hp],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: (soulburn: boolean) => soulburn ? 1.7 : 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
@@ -8438,12 +9099,14 @@ export const heroes: Record<string, Hero> = {
         soulburn: true
       }),
       s1_bis: new Skill({
+        id: 's1_bis',
             rate: () => 0.85,
         pow: () => 1,
         enhance_from: 's1',
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 0.9,
         pow: () => 1,
         fixed: (hitType: HitType, inputValues: DamageFormData) => (hitType !== HitType.miss) ? ((inputValues.casterEnraged) ? 10000 : 2000) : 0,
@@ -8463,6 +9126,7 @@ export const heroes: Record<string, Hero> = {
     barrier: (inputValues: DamageFormData) => inputValues.casterMaxHP * 0.2,
     skills: {
       s1: new Skill({
+        id: 's1',
         hpScaling: true,
         rate: () => 0.8,
         pow: () => 0.95,
@@ -8472,6 +9136,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         hpScaling: true,
         rate: () => 0.5,
         pow: () => 0.95,
@@ -8519,6 +9184,7 @@ export const heroes: Record<string, Hero> = {
     barrier2: (inputValues: DamageFormData) => inputValues.casterMaxHP * 0.2,
     skills: {
       s1: new Skill({
+        id: 's1',
         hpScaling: true,
         rate: () => 0.7,
         pow: () => 0.95,
@@ -8528,6 +9194,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         // rate: () => 0.75, // This looks like it was just updated on the sheet as well
         hpScaling: true,
         rate: () => 0.7,
@@ -8551,6 +9218,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_max_hp, elements.caster_has_bzzt, elements.target_injuries],
     skills: {
       s1: new Skill({
+        id: 's1',
         hpScaling: true,
         soulburn: true,
         rate: (soulburn: boolean) => (soulburn ? 0.8 : 0.5),
@@ -8563,6 +9231,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         hpScaling: true,
         rate: () => 0.5,
         pow: () => 1,
@@ -8585,6 +9254,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.nb_targets, elements.skill_tree_completed],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 0.95,
         mult: (inputValues: DamageFormData) => inputValues.skillTreeCompleted ? 1.1 : 1,
@@ -8593,6 +9263,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 0.8,
         pow: () => 1,
         mult: (inputValues: DamageFormData) => {
@@ -8608,6 +9279,7 @@ export const heroes: Record<string, Hero> = {
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.8,
         pow: () => 1.05,
         mult: (inputValues: DamageFormData) => inputValues.skillTreeCompleted ? 1.1 : 1,
@@ -8627,6 +9299,7 @@ export const heroes: Record<string, Hero> = {
     dot: [DoT.bomb],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 0.7,
         pow: () => 1,
         detonate: [DoT.bomb],
@@ -8635,6 +9308,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 0.8,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
@@ -8651,6 +9325,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.skill_tree_completed],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         mult: (inputValues: DamageFormData) => inputValues.skillTreeCompleted ? (1.1 + (inputValues.elementalAdvantage ? 0.25 : 0)) : 1,
@@ -8662,6 +9337,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 2.2 : 1.5,
         mult: (inputValues: DamageFormData) => inputValues.skillTreeCompleted && inputValues.elementalAdvantage ? 1.25 : 1,
@@ -8681,6 +9357,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_speed, elements.exclusive_equipment_2],
     skills: {
       s1: new Skill({
+        id: 's1',
         spdScaling: true,
         rate: () => 0.9,
         pow: () => 0.95,
@@ -8689,12 +9366,14 @@ export const heroes: Record<string, Hero> = {
         enhance: [0.05, 0.05, 0.05, 0.1, 0.1]
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 0.7,
         pow: () => 1,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         spdScaling: true,
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 1.1 : 0.85,
@@ -8748,12 +9427,14 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_nb_focus, elements.caster_perception],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 0.9,
         enhance: [0.05, 0.05, 0, 0.05, 0.05, 0.1, 0.1],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.5,
         pow: () => 0.9,
         mult: (inputValues: DamageFormData) => 1 + inputValues.casterFocus * 0.15,
@@ -8771,12 +9452,14 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 662,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1.2,
         pow: () => 1,
         enhance: [0.05, 0, 0.05, 0, 0.05, 0.05, 0.1],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 1.3 : 1.05,
         pow: () => 0.9,
@@ -8784,13 +9467,15 @@ export const heroes: Record<string, Hero> = {
         aoe: true,
       }),
       s2_wave_2: new Skill({
-            rate: () => 0.55,
+        id: 's2_wave_2',
+        rate: () => 0.55,
         pow: () => 0.9,
         enhance_from: 's2',
         aoe: true,
       }),
       s2_wave_3: new Skill({
-            rate: () => 0.3,
+        id: 's2_wave_3',
+        rate: () => 0.3,
         pow: () => 0.9,
         enhance_from: 's2',
         aoe: true,
@@ -8805,6 +9490,7 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 532,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 0.9,
         pow: () => 0.95,
         mult: (inputValues: DamageFormData) => inputValues.targetTargeted ? 1.35 : 1,
@@ -8813,6 +9499,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.8,
         pow: () => 0.9,
         enhance: [0.05, 0.05, 0, 0, 0.15, 0.15],
@@ -8828,18 +9515,21 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 564,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1.2,
         pow: () => 1,
         enhance: [0.05, 0.1, 0, 0, 0.15],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 1.3,
         pow: () => 0.9,
         enhance: [0.05, 0.05, 0.1, 0.1, 0.1],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: 2,
         pow: () => 0.8,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
@@ -8855,18 +9545,21 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 557,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 0.7,
         pow: () => 1.05,
         enhance: [0.1, 0, 0, 0, 0.15],
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 0.8,
         pow: () => 0.95,
         enhance: [0.05, 0.05, 0, 0.1, 0.15],
@@ -8883,12 +9576,14 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 596,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 0.8,
         pow: () => 0.95,
         enhance: [0.05, 0.05, 0, 0.05, 0, 0.1, 0.1],
         isSingle: () => true,
       }),
       s1_bis: new Skill({
+        id: 's1_bis',
             rate: () => 0.5,
         pow: () => 1,
         enhance_from: 's1',
@@ -8905,6 +9600,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.exclusive_equipment_2, elements.target_silenced],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         exclusiveEquipmentMultiplier: (inputValues: DamageFormData) => inputValues.exclusiveEquipment2 ? 0.3 : 0,
@@ -8912,11 +9608,13 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 0.9,
         pow: () => 1,
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: 2,
         pow: () => 0.95,
         penetrate: (inputValues: DamageFormData) => inputValues.targetSilenced ? 0.7 : 0,
@@ -8964,6 +9662,7 @@ export const heroes: Record<string, Hero> = {
     barrier: (inputValues: DamageFormData) => inputValues.casterMaxHP * 0.35,
     skills: {
       s1: new Skill({
+        id: 's1',
         hpScaling: true,
         rate: () => 0.5,
         pow: () => 1,
@@ -8973,6 +9672,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         hpScaling: true,
         rate: () => 0.5,
         pow: () => 1,
@@ -8995,6 +9695,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_speed, elements.nb_targets, elements.exclusive_equipment_3],
     skills: {
       s1: new Skill({
+        id: 's1',
         spdScaling: true,
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 0.85 : 0.6,
@@ -9013,6 +9714,7 @@ export const heroes: Record<string, Hero> = {
         aoe: true,
       }),
       s3: new Skill({
+        id: 's3',
         onlyCrit: true,
         rate: () => 1.5,
         pow: () => 0.8,
@@ -9040,6 +9742,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.target_has_buff],
     skills: {
       s1: new Skill({
+        id: 's1',
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 1.8 : 1.1,
         pow: () => 1,
@@ -9049,6 +9752,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.9,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
@@ -9065,6 +9769,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.skill_tree_completed, elements.target_has_buff],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         mult: (inputValues: DamageFormData) => inputValues.skillTreeCompleted && !inputValues.targetHasBuff ? 1.1 : 1,
@@ -9073,6 +9778,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 1.5,
         pow: () => 1.05,
         mult: (inputValues: DamageFormData) => inputValues.skillTreeCompleted && !inputValues.targetHasBuff ? 1.1 : 1,
@@ -9081,6 +9787,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.5,
         pow: () => 0.95,
         mult: (inputValues: DamageFormData) => inputValues.skillTreeCompleted && !inputValues.targetHasBuff ? 1.1 : 1,
@@ -9099,6 +9806,7 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.caster_max_hp, elements.non_attack_skill_stack_8],
     skills: {
       s1: new Skill({
+        id: 's1',
         hpScaling: true,
         rate: () => 0.5,
         pow: () => 1,
@@ -9108,9 +9816,11 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         enhance: [0.005, 0.005, 0.005, 0.005, 0.01],
       }),
       s3: new Skill({
+        id: 's3',
         hpScaling: true,
         ate: 0.5,
         pow: () => 1,
@@ -9146,12 +9856,14 @@ export const heroes: Record<string, Hero> = {
     // form: [elements.target_has_debuff],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1.05,
         pow: () => 1,
         enhance: [0.05, 0.1, 0, 0.15],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 2 : 1.5,
         pow: () => 0.95,
@@ -9161,6 +9873,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0, 0, 0.1, 0.1],
@@ -9177,12 +9890,14 @@ export const heroes: Record<string, Hero> = {
     baseDefense: 652,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 0.7,
         pow: () => 1,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
         isSingle: () => true,
       }),
       s1_bis: new Skill({
+        id: 's1_bis',
         isExtra: true,
             rate: () => 1,
         pow: () => 1,
@@ -9191,6 +9906,7 @@ export const heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 0.2,
         pow: () => 1,
         flat: (inputValues: DamageFormData) => inputValues.targetCurrentHP * 0.1875,

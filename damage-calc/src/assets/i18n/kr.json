@@ -605,7 +605,23 @@
         "_or_": "",
         "slower_unit_possible": "",
         "faster_unit_possible": "",
-        "full_stop": ""
+        "full_stop": "",
+        "attack_imprint": "",
+        "attack_imprint_hint": "",
+        "attack_increase": "",
+        "attack_increase_hint": "",
+        "crit_damage": "",
+        "damage_increase": "",
+        "damage_increase_hint": "",
+        "elemental_advantage": "유리속성",
+        "decreased_attack": "",
+        "increased_attack": "",
+        "increased_attack_great": "",
+        "increased_crit_damage": "",
+        "vigor": "",
+        "rage_set": "",
+        "penetration_set": "",
+        "torrent_set": ""
     },
     "skills": {
         "non_applicable": "해당사항 없음",
@@ -625,7 +641,7 @@
         "pen": "방어력 관통",
         "detonation": "격폭",
         "exEq": "전용장비",
-        "elemAdv": "유리속성",
+        "elemental_advantage": "유리속성",
         "fixed": "고정데미지",
         "custom": {
         "all_fire": "전원 화염속성 {v}%",
