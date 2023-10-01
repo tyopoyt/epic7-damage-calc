@@ -53,7 +53,7 @@ export class DamageService {
       mult += 0.1;
     }
   
-    return mult + (this.damageForm.attackPercentUp / 100);
+    return mult + (this.damageForm.attackIncrease / 100);
   };
 
   getGlobalDamageMult = (skill: Skill) => {
@@ -84,7 +84,7 @@ export class DamageService {
       pow: skill.pow(soulburn),
       mult: skill.mult(soulburn, this) - 1, // TODO: change anything checking for this to be null to check for -1
       multTip: this.languageService.getSkillModTip(skill.multTip(soulburn)),
-      afterMathDmg: this.dataService.currentHero.getAfterMathSkillDamage(skill, HitType.crit, this.dataService.currentArtifact, this.damageForm, this.getGlobalAttackMult(), this.dataService.currentTarget),
+      afterMathDmg: this.dataService.currentHero.getAfterMathSkillDamage(skill, HitType.crit, this.dataService.currentArtifact, this.damageForm, this.getGlobalAttackMult(), this.getGlobalDefMult(), this.dataService.currentTarget),
       afterMathFormula: skill.afterMath(soulburn),
       critBoost: skill.critDmgBoost(soulburn),
       critBoostTip: this.languageService.getSkillModTip(skill.critDmgBoostTip(soulburn)),
@@ -118,7 +118,7 @@ export class DamageService {
 
     let dmgMod = 1.0
         + this.getGlobalDamageMult(skill)
-        + this.damageForm.bonusDamage / 100
+        + this.damageForm.damageIncrease / 100
         + this.dataService.currentArtifact.getDamageMultiplier(skill, isExtra, this.damageForm.artifactLevel)
         + (skill.mult ? skill.mult(soulburn, this) - 1 : 0); // TODO: 'this' is certainly the wrong thing to pass here
 
@@ -129,11 +129,11 @@ export class DamageService {
   getDotDamage(skill: Skill, type: DoT) {
     switch (type) {
     case DoT.bleed:
-      return this.dataService.currentHero.getAttack(this.dataService.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill) * 0.3 * this.dataService.battleConstants.dmgConst * this.dataService.currentTarget.defensivePower(new Skill({ penetrate: () => 0.7 }), this.damageForm.artifactLevel, true);
+      return this.dataService.currentHero.getAttack(this.dataService.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill) * 0.3 * this.dataService.battleConstants.dmgConst * this.dataService.currentTarget.defensivePower(new Skill({ penetrate: () => 0.7 }), this.damageForm, this.getGlobalDefMult(), true);
     case DoT.burn:
-      return this.dataService.currentHero.getAttack(this.dataService.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill) * 0.6 * this.dataService.battleConstants.dmgConst * (this.damageForm.beehooPassive ? this.dataService.heroConstants.beehooBurnMult : 1) * this.dataService.currentTarget.defensivePower(new Skill({ penetrate: () => 0.7 }), this.damageForm.artifactLevel, true);
+      return this.dataService.currentHero.getAttack(this.dataService.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill) * 0.6 * this.dataService.battleConstants.dmgConst * (this.damageForm.beehooPassive ? this.dataService.heroConstants.beehooBurnMult : 1) * this.dataService.currentTarget.defensivePower(new Skill({ penetrate: () => 0.7 }), this.damageForm, this.getGlobalDefMult(), true);
     case DoT.bomb:
-      return this.dataService.currentHero.getAttack(this.dataService.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill) * 1.5 * this.dataService.battleConstants.dmgConst * this.dataService.currentTarget.defensivePower(new Skill({ penetrate: () => 0.7 }), this.damageForm.artifactLevel, true);
+      return this.dataService.currentHero.getAttack(this.dataService.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill) * 1.5 * this.dataService.battleConstants.dmgConst * this.dataService.currentTarget.defensivePower(new Skill({ penetrate: () => 0.7 }), this.damageForm, this.getGlobalDefMult(), true);
     default: return 0;
     }
   }
@@ -152,10 +152,10 @@ export class DamageService {
     const detonation = this.getDetonateDamage(skill);
 
     // let artiDamage: number = this.getArtifactAfterMathDamage(skill, hitType) || 0;
-    let artiDamage: number = this.dataService.currentHero.getAfterMathArtifactDamage(skill, this.dataService.currentArtifact, this.damageForm, this.getGlobalAttackMult(), this.dataService.currentTarget) || 0;
+    let artiDamage: number = this.dataService.currentHero.getAfterMathArtifactDamage(skill, this.dataService.currentArtifact, this.damageForm, this.getGlobalAttackMult(), this.getGlobalDefMult(), this.dataService.currentTarget) || 0;
 
 
-    const skillDamage = this.dataService.currentHero.getAfterMathSkillDamage(skill, HitType.crit, this.dataService.currentArtifact, this.damageForm, this.getGlobalAttackMult(), this.dataService.currentTarget);
+    const skillDamage = this.dataService.currentHero.getAfterMathSkillDamage(skill, HitType.crit, this.dataService.currentArtifact, this.damageForm, this.getGlobalAttackMult(), this.getGlobalDefMult(), this.dataService.currentTarget);
     const skillExtraDmg = skill.extraDmg !== undefined ? Math.round(skill.extraDmg(hitType)) : 0;
 
     return detonation + artiDamage + skillDamage + skillExtraDmg;
@@ -163,7 +163,7 @@ export class DamageService {
 
   getDamage(skill: Skill, soulburn = false, isExtra = false): Damages {
     const critDmgBuff = this.damageForm.critDamageUp ? this.dataService.battleConstants.critDmgUp : 0.0;
-    const hit = this.offensivePower(skill, soulburn, isExtra) * this.dataService.currentTarget.defensivePower(skill, this.damageForm.artifactLevel);
+    const hit = this.offensivePower(skill, soulburn, isExtra) * this.dataService.currentTarget.defensivePower(skill, this.damageForm, this.getGlobalDefMult());
     const critDmg = Math.min((this.damageForm.critDamage / 100) + critDmgBuff, 3.5)
         + (skill.critDmgBoost ? skill.critDmgBoost(soulburn) : 0)
         + (this.dataService.currentArtifact.getCritDmgBoost(this.damageForm.artifactLevel) || 0)

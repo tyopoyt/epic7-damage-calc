@@ -6,9 +6,9 @@ export class DamageFormData {
     artifactLevel: number;
     attack: number;
     attackImprint: number;
-    attackPercentUp: number;
+    attackIncrease: number;
     beehooPassive: boolean;
-    bonusDamage: number;
+    damageIncrease: number;
     casterAboveHalfHP: boolean;
     casterAttackedStack: number;
     casterAttackStack: number;
@@ -74,6 +74,7 @@ export class DamageFormData {
     targetCurrentHP: number;
     targetCurrentHPPercent: number;
     targetDefense: number;
+    targetDefenseIncrease: number;
     targetHasBarrier: boolean;
     targetHasBuff: boolean;
     targetHasDebuff: boolean;
@@ -97,9 +98,9 @@ export class DamageFormData {
         this.artifactLevel = _.get(data, 'artifactLevel', 0);
         this.attack = _.get(data, 'attack', 2500);
         this.attackImprint = _.get(data, 'attackImprint', 0);
-        this.attackPercentUp = _.get(data, 'attackPercentUp', 0);
+        this.attackIncrease = _.get(data, 'attackIncrease', 0);
         this.beehooPassive = _.get(data, 'beehooPassive', false);
-        this.bonusDamage = _.get(data, 'bonusDamage', 0);
+        this.damageIncrease = _.get(data, 'damageIncrease', 0);
         this.casterAboveHalfHP = _.get(data, 'casterAboveHalfHP', true);
         this.casterAttackedStack = _.get(data, 'casterAttackedStack', 0);
         this.casterAttackStack = _.get(data, 'casterAttackStack', 0);
@@ -108,7 +109,7 @@ export class DamageFormData {
         this.casterDebuffed = _.get(data, 'casterDebuffed', false);
         this.casterDefense = _.get(data, 'casterDefense', 1000);
         this.casterDefenseUp = _.get(data, 'casterDefenseUp', false);
-        this.casterEnraged = _.get(data, 'casterEnrage', false);
+        this.casterEnraged = _.get(data, 'casterEnraged', false);
         this.casterFocus = _.get(data, 'casterFocus', 0);
         this.casterFullFightingSpirit = _.get(data, 'casterFullFightingSpirit', false);
         this.casterFullFocus = _.get(data, 'casterFullFocus', false);
@@ -128,7 +129,7 @@ export class DamageFormData {
         this.casterSpeedUp = _.get(data, 'casterSpeedUp', false);
         this.casterVigor = _.get(data, 'casterVigor', false);
         this.critDamage = _.get(data, 'critDamage', 250);
-        this.critDamageUp = _.get(data, 'critDamage', false);
+        this.critDamageUp = _.get(data, 'critDamageUp', false);
         this.criticalHitStack = _.get(data, 'criticalHitStack', 0)
         this.damageReduction = _.get(data, 'damageReduction', 0);
         this.damageTransfer = _.get(data, 'damageTransfer', 0);
@@ -147,7 +148,7 @@ export class DamageFormData {
         this.molagoraS2 = _.get(data, 'molagoraS2', 0);
         this.molagoraS3 = _.get(data, 'molagoraS3', 0);
         this.nonAttackSkillStack = _.get(data, 'nonAttackSkillStack', 0);
-        this.nonCasterAttackStack = _.get(data, 'nonCasterAttackStack', 10000);
+        this.nonCasterAttackStack = _.get(data, 'nonCasterAttackStack', 0);
         this.numberOfDeaths = _.get(data, 'numberOfDeaths', 0);
         this.numberOfHits = _.get(data, 'numberOfHits', 1);
         this.numberOfTargets = _.get(data, 'numberOfTargets', 0);
@@ -164,7 +165,8 @@ export class DamageFormData {
         this.targetBurnDetonate = _.get(data, 'targetBurnDetonate', 0);
         this.targetCurrentHP = _.get(data, 'targetCurrentHP', 10000);
         this.targetCurrentHPPercent = _.get(data, 'targetCurrentHPPercent', 100);
-        this.targetDefense = _.get(data, 'defense', 1000);
+        this.targetDefense = _.get(data, 'targetDefense', 1000);
+        this.targetDefenseIncrease = _.get(data, 'targetDefenseIncrease', 0);
         this.targetHasBarrier = _.get(data, 'targetHasBarrier', false);
         this.targetHasBuff = _.get(data, 'targetHasBuff', false);
         this.targetHasDebuff = _.get(data, 'targetHasDebuff', false);

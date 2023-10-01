@@ -237,7 +237,7 @@ html, body {
           border-bottom: none;
         }
 
-        > :nth-child(5) {
+        > :last-child {
           border-right: none;
         }
       }
@@ -253,7 +253,7 @@ html, body {
         border-right: 2px solid $ui-medium-color;
       }
 
-      > :nth-child(5) {
+      > :last-child {
         border-right: none;
       }
     }
@@ -534,14 +534,14 @@ html, body {
 
   &.light-theme {
     color: $font-dark-color;
-    background-color: white !important;
+    background-color: whitesmoke !important;
 
     .icon {
       filter: $font-dark-color-filter;
     }
 
     .mat-mdc-unelevated-button:not(:disabled) {
-      background-color: $ui-medium-light-color;
+      background-color: $ui-medium-medium-light-light-color;
       color: $font-dark-color;
     }
 
@@ -585,7 +585,7 @@ html, body {
 
       &.number-input-field {
         .mat-mdc-text-field-wrapper {
-          background-color: white;
+          background-color: whitesmoke;
         }
       }
 
@@ -617,6 +617,44 @@ html, body {
       }
     }
 
+    .mat-mdc-table {  
+      thead {
+        > tr {
+          background-color: $ui-medium-medium-light-light-color;
+  
+          .mat-mdc-header-cell {
+            border-right: $gutter-tiny solid $ui-light-color;
+          }
+  
+          > :last-child {
+            border-right: none;
+          }
+        }
+      }
+  
+      tr {
+        background-color: $ui-light-color;
+        color: $font-dark-color;
+  
+        .mat-mdc-cell {
+          border-bottom: 2px solid $ui-medium-medium-light-light-color;
+          border-right: 2px solid $ui-medium-medium-light-light-color;
+        }
+  
+        > :last-child {
+          border-right: none;
+        }
+      }
+
+      tbody {
+        > :last-child {
+          .mat-mdc-cell {
+            border-bottom: none;
+          }
+        }
+      }
+    }
+
     div.mat-mdc-select-panel {
       background: $ui-medium-light-light-color;
     
@@ -639,7 +677,7 @@ html, body {
 
     .navbar {
       color: $font-dark-color;
-      background-color: whitesmoke;
+      background-color: $ui-light-color;
     }
 
     .mat-mdc-slide-toggle, .mat-mdc-checkbox {
@@ -660,7 +698,7 @@ html, body {
     }
 
     .mat-mdc-checkbox .mdc-form-field {
-      background-color: $ui-medium-light-light-color;
+      background-color: $ui-light-color;
     }
 
     .mat-mdc-menu-item:not([disabled]):hover {

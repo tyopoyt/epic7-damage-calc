@@ -49,39 +49,11 @@ export class DamageCalculatorComponent implements OnInit {
     })
   }
 
-  attackChange(value: number) {
-    this.dataService.updateDamageInputValues({'attack': value});
+  numberInputChange(field: string, value: number) {
+    this.dataService.updateDamageInputValues({[field]: value});
+    console.log({[field]: value})
   }
-  attackImprintChange(value: number) {
 
-  }
-  attackIncreaseChange(value: number) {
-
-  }
-  critDamageChange(value: number) {
-
-  }
-  damageIncreaseChange(value: number) {
-
-  }
-  artifactLevelChange(value: number) {
-
-  }
-  targetDefenseChange(value: number) {
-
-  }
-  targetDefenseIncreaseChange(value: number) {
-
-  }
-  damageReductionChange(value: number) {
-
-  }
-  damageTransferChange(value: number) {
-
-  }
-  casterMaxHPChange(value: number) {
-
-  }
   molagoraChange(value: number) {
 
   }

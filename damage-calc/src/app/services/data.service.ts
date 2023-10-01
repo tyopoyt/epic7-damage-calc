@@ -8,6 +8,7 @@ import { heroes } from '../../assets/data/heroes';
 import * as _ from 'lodash-es'
 import { BehaviorSubject } from 'rxjs';
 import { DamageService } from './damage.service';
+import { artifacts } from 'src/assets/data/artifacts';
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +20,8 @@ export class DataService {
 
   // TODO: update the defaults here when possible
   currentHero: Hero = heroes.crescent_moon_rin;  // Default to abigail when more things are working
-  currentArtifact: Artifact = new Artifact({});
-  currentTarget: Target = new Target(this.currentArtifact, this.damageInputValues, 1);  
+  currentArtifact: Artifact = artifacts.a_symbol_of_unity;
+  currentTarget: Target = new Target(this.currentArtifact);  
 
   // TODO: refactor these to be more readable
   battleConstants: Record<string, number> = {
@@ -90,7 +91,7 @@ export class DataService {
       }
     }
     
-    console.log('molas:', molagoras)
+    // console.log('molas:', molagoras)
 
     return molagoras;
   }
