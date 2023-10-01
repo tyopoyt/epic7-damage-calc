@@ -44,55 +44,56 @@
             <!-- <mat-checkbox class="small-margin-top" (click)="toggleStigmaPolitis()" [checked]="this.stigmaPolitis"> -->
             <mat-checkbox class="small-margin-top" [checked]="inputValues.elementalAdvantage" (change)="inputChange('elementalAdvantage', $event.checked)">
                 <span class="neat-container">
-                    <!-- <img class="png-icon medium tiny-margin-right" src="assets/debuffs/stigma-debuff.png"> -->
+                    <img class="png-icon medium tiny-margin-right" src="assets/debuffs/stigma-debuff.png">
                     {{'elemental_advantage' | translate:'form':languageService.language.value}}
                 </span>
             </mat-checkbox>
             <mat-checkbox class="small-margin-top" [checked]="inputValues.decreasedAttack" (change)="inputChange('decreasedAttack', $event.checked)">
                 <span class="neat-container">
-                    <!-- <img class="png-icon medium tiny-margin-right" src="assets/debuffs/stigma-debuff.png"> -->
+                    <img class="png-icon medium tiny-margin-right" src="assets/debuffs/attack-debuff.png">
                     {{'decreased_attack' | translate:'form':languageService.language.value}}
                 </span>
             </mat-checkbox>
             <mat-checkbox class="small-margin-top" [checked]="inputValues.increasedAttack" (change)="inputChange('increasedAttack', $event.checked)">
                 <span class="neat-container">
-                    <!-- <img class="png-icon medium tiny-margin-right" src="assets/debuffs/stigma-debuff.png"> -->
+                    <img class="png-icon medium tiny-margin-right" src="assets/buffs/attack-buff.png">
                     {{'increased_attack' | translate:'form':languageService.language.value}}
                 </span>
             </mat-checkbox>
             <mat-checkbox class="small-margin-top" [checked]="inputValues.increasedAttackGreat" (change)="inputChange('increasedAttackGreat', $event.checked)">
                 <span class="neat-container">
-                    <!-- <img class="png-icon medium tiny-margin-right" src="assets/debuffs/stigma-debuff.png"> -->
+                    <img class="png-icon medium tiny-margin-right" src="assets/buffs/greater-attack-buff.png">
                     {{'increased_attack_great' | translate:'form':languageService.language.value}}
                 </span>
             </mat-checkbox>
             <mat-checkbox class="small-margin-top" [checked]="inputValues.increasedCritDamage" (change)="inputChange('increasedCritDamage', $event.checked)">
                 <span class="neat-container">
-                    <!-- <img class="png-icon medium tiny-margin-right" src="assets/debuffs/stigma-debuff.png"> -->
+                    <img class="png-icon medium tiny-margin-right" src="assets/buffs/critical-hit-damage-buff.png">
                     {{'increased_crit_damage' | translate:'form':languageService.language.value}}
                 </span>
             </mat-checkbox>
             <mat-checkbox class="small-margin-top" [checked]="inputValues.casterVigor" (change)="inputChange('casterVigor', $event.checked)">
                 <span class="neat-container">
-                    <!-- <img class="png-icon medium tiny-margin-right" src="assets/debuffs/stigma-debuff.png"> -->
+                    <img class="png-icon medium tiny-margin-right" src="assets/buffs/vigor-buff.png">
                     {{'vigor' | translate:'form':languageService.language.value}}
                 </span>
             </mat-checkbox>
+            <!-- TODO: edit set pngs to have no margin -->
             <mat-checkbox class="small-margin-top" [checked]="inputValues.rageSet" (change)="inputChange('rageSet', $event.checked)">
                 <span class="neat-container">
-                    <!-- <img class="png-icon medium tiny-margin-right" src="assets/debuffs/stigma-debuff.png"> -->
+                    <img class="png-icon medium tiny-margin-right" src="assets/sets/rage-set.png">
                     {{'rage_set' | translate:'form':languageService.language.value}}
                 </span>
             </mat-checkbox>
             <mat-checkbox class="small-margin-top" [checked]="inputValues.penetrationSet" (change)="inputChange('penetrationSet', $event.checked)">
                 <span class="neat-container">
-                    <!-- <img class="png-icon medium tiny-margin-right" src="assets/debuffs/stigma-debuff.png"> -->
+                    <img class="png-icon medium tiny-margin-right" src="assets/sets/penetration-set.png">
                     {{'penetration_set' | translate:'form':languageService.language.value}}
                 </span>
             </mat-checkbox>
             <mat-checkbox class="small-margin-top" [checked]="!!inputValues.torrentSetStack" (change)="inputChange('torrentSetStack', ($event.checked ? 1 : 0))">
                 <span class="neat-container">
-                    <!-- <img class="png-icon medium tiny-margin-right" src="assets/debuffs/stigma-debuff.png"> -->
+                    <img class="png-icon medium tiny-margin-right" src="assets/sets/torrent-set.png">
                     {{'torrent_set' | translate:'form':languageService.language.value}}
                 </span>
             </mat-checkbox>
@@ -143,27 +144,27 @@
             </div>
             <div class="checkbox-holder">
                 <!-- <mat-checkbox class="small-margin-top" (click)="toggleStigmaPolitis()" [checked]="this.stigmaPolitis"> -->
-                <mat-checkbox class="small-margin-top">
+                <mat-checkbox class="small-margin-top" [checked]="inputValues.targetDefenseUp" (change)="inputChange('targetDefenseUp', $event.checked)">
                     <span class="neat-container">
-                        <!-- <img class="png-icon medium tiny-margin-right" src="assets/debuffs/stigma-debuff.png"> -->
+                        <img class="png-icon medium tiny-margin-right" src="assets/buffs/defense-buff.png">
                         {{'increased_defense' | translate:'form':languageService.language.value}}
                     </span>
                 </mat-checkbox>
-                <mat-checkbox class="small-margin-top">
+                <mat-checkbox class="small-margin-top" [checked]="inputValues.targetVigor" (change)="inputChange('targetVigor', $event.checked)">
                     <span class="neat-container">
-                        <!-- <img class="png-icon medium tiny-margin-right" src="assets/debuffs/stigma-debuff.png"> -->
+                        <img class="png-icon medium tiny-margin-right" src="assets/buffs/vigor-buff.png">
                         {{'vigor' | translate:'form':languageService.language.value}}
                     </span>
                 </mat-checkbox>
-                <mat-checkbox class="small-margin-top">
+                <mat-checkbox class="small-margin-top" [checked]="inputValues.targetDefenseDown" (change)="inputChange('targetDefenseDown', $event.checked)">
                     <span class="neat-container">
-                        <!-- <img class="png-icon medium tiny-margin-right" src="assets/debuffs/stigma-debuff.png"> -->
+                        <img class="png-icon medium tiny-margin-right" src="assets/debuffs/defense-debuff.png">
                         {{'decreased_defense' | translate:'form':languageService.language.value}}
                     </span>
                 </mat-checkbox>
-                <mat-checkbox class="small-margin-top">
+                <mat-checkbox class="small-margin-top" [checked]="inputValues.targetTargeted" (change)="inputChange('targetTargeted', $event.checked)">
                     <span class="neat-container">
-                        <!-- <img class="png-icon medium tiny-margin-right" src="assets/debuffs/stigma-debuff.png"> -->
+                        <img class="png-icon medium tiny-margin-right" src="assets/debuffs/target-debuff.png">
                         {{'target' | translate:'form':languageService.language.value}}
                     </span>
                 </mat-checkbox>

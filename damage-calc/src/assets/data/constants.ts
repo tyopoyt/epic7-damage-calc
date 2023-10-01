@@ -1,4 +1,5 @@
 // TODO: refactor these to be more readable
+// TODO: don't have separate entries for target and caster for the same condition
 export const BattleConstants: Record<string, number> = {
   'dmgConst': 1.871,
   'elementalAdvantage': 1.1,
@@ -10,8 +11,8 @@ export const BattleConstants: Record<string, number> = {
   'rageSet': 0.3,
   'torrentSet': 0.1,
   'penetrationSet': 0.15,
-  'defUp': 0.6,
-  'defDown': -0.7,
+  'targetDefenseUp': 0.6,
+  'targetDefenseDown': -0.7,
   'targetVigor': 0.3,
   'target': 1.15,
   'caster-fury': 1.3,

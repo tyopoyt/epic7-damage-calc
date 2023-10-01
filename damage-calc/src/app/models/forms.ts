@@ -79,6 +79,8 @@ export class DamageFormData {
     targetCurrentHPPercent: number;
     targetDefense: number;
     targetDefenseIncrease: number;
+    targetDefenseDown: boolean;
+    targetDefenseUp: boolean;
     targetHasBarrier: boolean;
     targetHasBuff: boolean;
     targetHasDebuff: boolean;
@@ -90,6 +92,7 @@ export class DamageFormData {
     targetNumberOfDebuffs: number;
     targetProvoked: boolean;
     targetSilenced: boolean;
+    targetVigor: boolean;
     targetSpeed: number;
     targetStunned: boolean;
     targetTargeted: boolean;
@@ -175,6 +178,8 @@ export class DamageFormData {
         this.targetCurrentHPPercent = _.get(data, 'targetCurrentHPPercent', 100);
         this.targetDefense = _.get(data, 'targetDefense', 1000);
         this.targetDefenseIncrease = _.get(data, 'targetDefenseIncrease', 0);
+        this.targetDefenseDown = _.get(data, 'targetDefenseDown', false);
+        this.targetDefenseUp = _.get(data, 'targetDefenseUp', false);
         this.targetHasBarrier = _.get(data, 'targetHasBarrier', false);
         this.targetHasBuff = _.get(data, 'targetHasBuff', false);
         this.targetHasDebuff = _.get(data, 'targetHasDebuff', false);
@@ -189,6 +194,7 @@ export class DamageFormData {
         this.targetSpeed = _.get(data, 'targetSpeed', 150);
         this.targetStunned = _.get(data, 'targetStunned', false);
         this.targetTargeted = _.get(data, 'targetTargeted', false);
+        this.targetVigor = _.get(data, 'targetVigor', false);
         this.torrentSetStack = _.get(data, 'torrentSetStack', 0);
         this.totalAllyBuffs = _.get(data, 'totalAllyBuffs', 0);
         this.turnStack = _.get(data, 'turnStack', 0);
