@@ -10,7 +10,7 @@ import { DamageFormData } from "src/app/models/forms";
 import { Hero, HeroClass, HeroElement } from "src/app/models/hero";
 import { DoT, HitType, Skill } from "src/app/models/skill";
 
-export const heroes: Record<string, Hero> = {
+export const Heroes: Record<string, Hero> = {
   abigail: new Hero({
     element: HeroElement.fire,
     class: HeroClass.warrior,
@@ -1295,7 +1295,7 @@ export const heroes: Record<string, Hero> = {
     innateAttackIncrease: (molagoras: Record<string, number>) => {
       let boost = 0.20;
       for (let i = 0; i < molagoras['S2']; i++) {
-        boost += heroes.beehoo.skills.s2.enhance[i];
+        boost += Heroes.beehoo.skills.s2.enhance[i];
       }
       return boost;
     },
@@ -1495,7 +1495,7 @@ export const heroes: Record<string, Hero> = {
     attackIncrease: (molagoras: Record<string, number>, inputValues: DamageFormData) => {
       let boost = 0.0051;
       for (let i = 0; i < molagoras['S2']; i++) {
-        boost += 0.0051 * heroes.blood_blade_karin.skills.s2.enhance[i];
+        boost += 0.0051 * Heroes.blood_blade_karin.skills.s2.enhance[i];
       }
       return 1 + (100 - inputValues.casterCurrentHPPercent) * boost;
     },
@@ -1617,7 +1617,7 @@ export const heroes: Record<string, Hero> = {
     barrier: (molagoras: Record<string, number>, inputValues: DamageFormData) => {
       let boost = 1.0;
       for (let i = 0; i < molagoras['S2']; i++) {
-        boost += heroes['brieg'].skills.s2.enhance[i];
+        boost += Heroes['brieg'].skills.s2.enhance[i];
       }
 
       return inputValues.casterMaxHP * 0.185 * boost;
@@ -1625,7 +1625,7 @@ export const heroes: Record<string, Hero> = {
     barrier2: (molagoras: Record<string, number>, inputValues: DamageFormData) => {
       let boost = 1.0;
       for (let i = 0; i < molagoras['S2']; i++) {
-        boost += heroes['brieg'].skills.s2.enhance[i];
+        boost += Heroes['brieg'].skills.s2.enhance[i];
       }
 
       return inputValues.casterMaxHP * 0.24 * boost;
@@ -2078,7 +2078,7 @@ export const heroes: Record<string, Hero> = {
         mult: (molagoras: Record<string, number>, inputValues: DamageFormData) => {
           let mult = 0;
           for (let i = 0; i < molagoras['S2']; i++) {
-            mult += heroes.challenger_dominiel.skills.s2.enhance[i];
+            mult += Heroes.challenger_dominiel.skills.s2.enhance[i];
           }
 
           return 1 + (inputValues.criticalHitStack * (0.054 + (0.054 * mult)));
@@ -2086,7 +2086,7 @@ export const heroes: Record<string, Hero> = {
         multTip: (molagoras: Record<string, number>) => {
           let mult = 0;
           for (let i = 0; i < molagoras['S2']; i++) {
-            mult += heroes.challenger_dominiel.skills.s2.enhance[i];
+            mult += Heroes.challenger_dominiel.skills.s2.enhance[i];
           }
           return { per_crit_hit: (5.4 + (5.4 * mult)).toFixed(2) };
         },
@@ -2581,7 +2581,7 @@ export const heroes: Record<string, Hero> = {
     attackIncrease: (molagoras: Record<string, number>, inputValues: DamageFormData) => {
       let boost = 0.1;
       for (let i = 0; i < molagoras['S2']; i++) {
-        boost += heroes.commander_lorina.skills.s2.enhance[i];
+        boost += Heroes.commander_lorina.skills.s2.enhance[i];
       }
 
       return 1 + inputValues.casterAttackStack * boost;
@@ -3673,7 +3673,7 @@ export const heroes: Record<string, Hero> = {
 
       let boost = 0.2;
       for (let i = 0; i < molagoras['S2']; i++) {
-        boost += heroes.gloomyrain.skills.s2.enhance[i];
+        boost += Heroes.gloomyrain.skills.s2.enhance[i];
       }
 
       return 1 + boost;
@@ -3785,7 +3785,7 @@ export const heroes: Record<string, Hero> = {
     innateAttackIncrease: (molagoras: Record<string, number>) => {
       let boost = 0.5;
       for (let i = 0; i < molagoras['S2']; i++) {
-        boost += heroes.gunther.skills.s2.enhance[i];
+        boost += Heroes.gunther.skills.s2.enhance[i];
       }
 
       return boost;
@@ -4084,7 +4084,7 @@ export const heroes: Record<string, Hero> = {
     innateAttackIncrease: (molagoras: Record<string, number>) => {
       let boost = 0.20;
       for (let i = 0; i < molagoras['S2']; i++) {
-        boost += heroes.hwayoung.skills.s2.enhance[i];
+        boost += Heroes.hwayoung.skills.s2.enhance[i];
       }
       return boost;
     },
@@ -5073,7 +5073,7 @@ export const heroes: Record<string, Hero> = {
     attackIncrease: (molagoras: Record<string, number>, inputValues: DamageFormData) => {
       let boost = 0.15;
       for (let i = 0; i < molagoras['S2']; i++) {
-        boost += heroes.landy.skills.s2.enhance[i];
+        boost += Heroes.landy.skills.s2.enhance[i];
       }
 
       return 1 + inputValues.casterAttackStack * boost;
@@ -5626,7 +5626,7 @@ export const heroes: Record<string, Hero> = {
     attackIncrease: (molagoras: Record<string, number>, inputValues: DamageFormData) => {
       let boost = 0.1;
       for (let i = 0; i < molagoras['S2']; i++) {
-        boost += heroes.lorina.skills.s2.enhance[i];
+        boost += Heroes.lorina.skills.s2.enhance[i];
       }
 
       return 1 + inputValues.casterAttackStack * boost;
@@ -5800,7 +5800,7 @@ export const heroes: Record<string, Hero> = {
 
       let mult = 1.2;
       for (let i = 0; i < molagoras['S2']; i++) {
-        mult += heroes.luna.skills.s2.enhance[i];
+        mult += Heroes.luna.skills.s2.enhance[i];
       }
 
       return mult;
@@ -5884,7 +5884,7 @@ export const heroes: Record<string, Hero> = {
         mult: (molagoras: Record<string, number>, inputValues: DamageFormData) => {
           let extra = 0;
           for (let i = 0; i < molagoras['S1']; i++) {
-            extra += heroes.martial_artist_ken.skills.s1.enhance[i];
+            extra += Heroes.martial_artist_ken.skills.s1.enhance[i];
           }
           return (1 + (100 - inputValues.casterCurrentHPPercent) * 0.004 + extra);
         },
@@ -6791,7 +6791,7 @@ export const heroes: Record<string, Hero> = {
     barrier: (molagoras: Record<string, number>) => {
       let boost = 1.0;
       for (let i = 0; i < molagoras['S3']; i++) {
-        boost += heroes.peira.skills.s3.enhance[i];
+        boost += Heroes.peira.skills.s3.enhance[i];
       }
       return 180 * boost * 60;
     },
@@ -8380,7 +8380,7 @@ export const heroes: Record<string, Hero> = {
     attackIncrease: (molagoras: Record<string, number>, inputValues: DamageFormData) => {
       let buff = 0.07;
       for (let i = 0; i < molagoras['S2']; i++) {
-        buff += heroes.specter_tenebria.skills.s2.enhance[i];
+        buff += Heroes.specter_tenebria.skills.s2.enhance[i];
       }
       return 1 + Math.min(inputValues.numberOfDeaths, 5) * buff;
     },
@@ -8584,7 +8584,7 @@ export const heroes: Record<string, Hero> = {
     innateAttackIncrease: (molagoras: Record<string, number>) => {
       let boost = 0.35;
       for (let i = 0; i < molagoras['S2']; i++) {
-        boost += heroes.summertime_iseria.skills.s2.enhance[i];
+        boost += Heroes.summertime_iseria.skills.s2.enhance[i];
       }
 
       return boost;
@@ -8655,7 +8655,7 @@ export const heroes: Record<string, Hero> = {
     attackIncrease: (molagoras: Record<string, number>, inputValues: DamageFormData) => {
       let boost = 0.025;
       for (let i = 0; i < molagoras['S2']; i++) {
-        boost += heroes.suthan.skills.s2.enhance[i];
+        boost += Heroes.suthan.skills.s2.enhance[i];
       }
       return 1 + (boost * inputValues.casterAttackStack);
     },
@@ -9829,7 +9829,7 @@ export const heroes: Record<string, Hero> = {
         mult: (molagoras: Record<string, number>, inputValues: DamageFormData) => {
           let extra = 0;
           for (let i = 0; i < molagoras['S2']; i++) {
-            extra += heroes.zeno.skills.s2.enhance[i];
+            extra += Heroes.zeno.skills.s2.enhance[i];
           }
 
           return 1 + inputValues.nonCasterAttackStack * (0.07 + extra);
@@ -9837,7 +9837,7 @@ export const heroes: Record<string, Hero> = {
         multTip: (molagoras: Record<string, number>) => {
           let extra = 0;
           for (let i = 0; i < molagoras['S2']; i++) {
-            extra += heroes.zeno.skills.s2.enhance[i] * 100;
+            extra += Heroes.zeno.skills.s2.enhance[i] * 100;
           }
 
           return { per_stack: 7 + extra };

@@ -9,36 +9,41 @@ import { ScreenService } from 'src/app/services/screen.service';
 })
 export class SlideInputComponent implements OnInit {
 
-  @Input() max: number = 10000;
-  @Input() min: number = 0;
+  @Input() max = 10000;
+  @Input() min = 0;
   @Input() default: number = this.min;
-  @Input() step: number = 1;
-  @Input() label: string = '';
-  @Input() column: boolean = false;
-  @Input() hint: string = '';
+  @Input() step = 1;
+  @Input() label = '';
+  @Input() column = false;
+  @Input() row = false;
+  @Input() hint = '';
 
-  @Output() change: BehaviorSubject<number> = new BehaviorSubject(this.default);
+  @Output() slideValue: BehaviorSubject<number> = new BehaviorSubject(this.default);
   @Output() valueChange: BehaviorSubject<number> = new BehaviorSubject(this.default);
 
-  value: number = 0;
-
-  thingy: any = 0;
+  value = 0;
 
   constructor(public screenService: ScreenService) { }
 
   ngOnInit(): void {
     this.value = this.default;
-    this.change.next(this.value)
+    this.slideValue.next(this.value)
     this.valueChange.next(this.value)
   }
 
   valueChanged(event: any) {
-    this.change.next(Number(event.target.value))
+    this.slideValue.next(Number(event.target.value))
     this.valueChange.next(Number(event.target.value))
   }
 
   setValue(value: number) {
     this.value = value;
     this.valueChange.next(this.value)
+  }
+
+  overrideValue(value: number) {
+    this.value = value;
+    this.slideValue.next(value)
+    this.valueChange.next(value)
   }
 }

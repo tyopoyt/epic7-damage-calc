@@ -31,24 +31,21 @@
                     </mat-option>
                 </mat-select>
             </mat-form-field><mat-form-field class="example-full-width neat-container">
-                <mat-select [formControl]="heroControl" placeholder="Hero" #singleSelect (selectionChange)="selectHero($event.value)">
-                    <mat-option>
-                        <ngx-mat-select-search [formControl]="heroFilterControl" placeholderLabel="Find hero" noEntriesFoundLabel="No matching heroes found"></ngx-mat-select-search>
-                    </mat-option>
-                    <mat-option *ngFor="let hero of filteredHeroes" [value]="hero[0]">
-                        {{hero[0] | translate:'heroes':languageService.language.value}}
+                <mat-select [formControl]="attackPresetControl" placeholder="" #singleSelect>
+                    <mat-option *ngFor="let attackPreset of attackPresets" [value]="attackPreset[0]">
+                        {{attackPreset[0] | translate:'form':languageService.language.value}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
         </div>
         <div class="neat-container full-width">
-            <app-slide-input
+            <app-slide-input #attackSlider
                 [label]="'attack' | translate:'form':languageService.language.value"
                 [max]="10000" [min]="200" [default]="2500" (valueChange)="inputChange('attack', $event)"
-                [column]="!screenService.largeScreen.value">
+                [column]="screenService.mediumScreen.value">
             </app-slide-input>
         </div>
-        <div class="neat-container full-width" [class.column-2]="!screenService.mediumSmallScreen.value" [class.full-width-number-input]="!screenService.largeScreen.value">
+        <div class="neat-container full-width" [class.column-2]="!screenService.mediumSmallScreen.value" [class.full-width-number-input]="!screenService.mediumScreen.value">
             <div [class.full-width]="screenService.mediumSmallScreen.value">
                 <app-slide-input
                     [label]="'attack_imprint' | translate:'form':languageService.language.value"
@@ -65,17 +62,17 @@
             </div>
         </div>
         <div class="neat-container full-width">
-            <app-slide-input
+            <app-slide-input #critDamageSlider
                 [label]="'crit_damage' | translate:'form':languageService.language.value"
                 [max]="350" [min]="150" [default]="250" (valueChange)="inputChange('critDamage', $event)"
-                [column]="!screenService.largeScreen.value">
+                [column]="screenService.mediumScreen.value">
             </app-slide-input>
         </div>
         <div class="neat-container full-width">
             <app-slide-input
                 [label]="'damage_increase' | translate:'form':languageService.language.value"
                 [max]="100" [min]="0" [default]="0" (valueChange)="inputChange('damageIncrease', $event)"
-                [column]="!screenService.largeScreen.value" [hint]="'damage_increase_hint' | translate:'form':languageService.language.value">
+                [column]="screenService.mediumScreen.value" [hint]="'damage_increase_hint' | translate:'form':languageService.language.value">
             </app-slide-input>
         </div>
         <div class="checkbox-holder">
@@ -143,41 +140,41 @@
                 <app-slide-input
                     [label]="'level' | translate:'form':languageService.language.value"
                     [max]="30" [min]="0" [default]="30" (valueChange)="inputChange('artifactLevel', $event)"
-                    [column]="!screenService.largeScreen.value">
+                    [column]="screenService.mediumScreen.value">
                 </app-slide-input>
             </div>
         </div>
         <div class="target-block header-block">
             <h1>Target</h1>
-            <div class="neat-container full-width" [class.column-2]="!screenService.mediumSmallScreen.value" [class.full-width-number-input]="!screenService.largeScreen.value">
+            <div class="neat-container full-width" [class.column-2]="!screenService.mediumSmallScreen.value" [class.full-width-number-input]="!screenService.mediumScreen.value">
                 <div [class.full-width]="screenService.mediumSmallScreen.value">
                     <app-slide-input
                         [label]="'defense' | translate:'form':languageService.language.value"
                         [max]="5000" [min]="200" [default]="1000" (valueChange)="inputChange('targetDefense', $event)"
-                        [column]="!screenService.largeScreen.value">
+                        [column]="screenService.mediumScreen.value">
                     </app-slide-input>
                 </div>
                 <div [class.full-width]="screenService.mediumSmallScreen.value">
                     <app-slide-input
                         [label]="'defense_increase' | translate:'form':languageService.language.value"
                         [max]="20" [min]="0" [default]="0" (valueChange)="inputChange('targetDefenseIncrease', $event)"
-                        [column]="!screenService.largeScreen.value" [hint]="'defense_increase_hint' | translate:'form':languageService.language.value">
+                        [column]="screenService.mediumScreen.value" [hint]="'defense_increase_hint' | translate:'form':languageService.language.value">
                     </app-slide-input>
                 </div>
             </div>
-            <div class="neat-container full-width" [class.column-2]="!screenService.mediumSmallScreen.value" [class.full-width-number-input]="!screenService.largeScreen.value">
+            <div class="neat-container full-width" [class.column-2]="!screenService.mediumSmallScreen.value" [class.full-width-number-input]="!screenService.mediumScreen.value">
                 <div [class.full-width]="screenService.mediumSmallScreen.value">
                     <app-slide-input
                         [label]="'damage_reduction' | translate:'form':languageService.language.value"
                         [max]="100" [min]="0" [default]="0" (valueChange)="inputChange('damageReduction', $event)"
-                        [column]="!screenService.largeScreen.value">
+                        [column]="screenService.mediumScreen.value">
                     </app-slide-input>
                 </div>
                 <div [class.full-width]="screenService.mediumSmallScreen.value">
                     <app-slide-input
                         [label]="'damage_transfer' | translate:'form':languageService.language.value"
                         [max]="100" [min]="0" [default]="0" (valueChange)="inputChange('damageTransfer', $event)"
-                        [column]="!screenService.largeScreen.value">
+                        [column]="screenService.mediumScreen.value">
                     </app-slide-input>
                 </div>
             </div>
@@ -215,7 +212,7 @@
                 <app-slide-input
                     [label]="'caster_max_hp' | translate:'form':languageService.language.value"
                     [max]="50000" [min]="1000" [default]="10000" (valueChange)="inputChange('casterMaxHP', $event)"
-                    [column]="!screenService.largeScreen.value">
+                    [column]="screenService.mediumScreen.value">
                 </app-slide-input>
             </div>
         </div>
@@ -226,7 +223,7 @@
                     <app-slide-input *ngIf="skill.enhance?.length"
                         [label]="skill.id | translate:'skills':languageService.language.value"
                         [max]="skill.enhance.length" [min]="0" [default]="skill.enhance.length" (valueChange)="inputChange('molagora' + skill.id, $event)"
-                        [column]="!screenService.largeScreen.value">
+                        [column]="screenService.mediumScreen.value">
                     </app-slide-input>
                 </div>
             </div>

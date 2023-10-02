@@ -309,7 +309,7 @@
   },
   "artifacts": {
     "no_proc": "No Artifact Proc",
-    "a_little_queens_crown": "A Little Queen's Crown",
+    "a_little_queens_crown": "A Little Queen's Huge Crown",
     "a_symbol_of_unity": "A Symbol of Unity",
     "an_offer_you_cant_refuse": "An Offer You Can't Refuse",
     "air_to_surface_missile_misha": "Air-to-Surface Missle: MISHA",
@@ -590,7 +590,7 @@
     "decreased_attack": "Decreased Attack",
     "increased_attack": "Increased Attack",
     "increased_attack_great": "Increased Attack (Great)",
-    "increased_crit_damage": "Increased Critical Hit Damage",
+    "increased_crit_damage": "Increased Crit Damage",
     "vigor": "Vigor",
     "rage_set": "Rage Set Proc",
     "penetration_set": "Penetration Set",
@@ -601,7 +601,12 @@
     "defense_increase": "Defense % Increase",
     "defense_increase_hint": "Example: Aurius, Card of Small Miracles, Resolute Soldier Series",
     "damage_reduction": "Damage Reduction (%)",
-    "damage_transfer": "Damage Transfer (%)"
+    "damage_transfer": "Damage Transfer (%)",
+    "manual": "Manual",
+    "starter_gear": "Starter Gear",
+    "all_in_attack": "All in Attack",
+    "all_in_crit_damage": "All in Crit Damage",
+    "elite_balanced": "Elite Balanced"
   },
   "info": {
     "alencia_trample": "Trample",

@@ -2,7 +2,7 @@ import { Artifact } from "src/app/models/artifact";
 import { DamageFormData } from "src/app/models/forms";
 import { HeroClass, HeroElement } from "src/app/models/hero";
 import { DoT, Skill } from "src/app/models/skill";
-import { heroes } from "./heroes";
+import { Heroes } from "./heroes";
 
 //TODO: add ftene artifact
 export const artifactDmgType = {
@@ -15,7 +15,7 @@ export const artifactDmgType = {
   dot: 'dot'
 };
 
-export const artifacts: Record<string, Artifact> = {
+export const Artifacts: Record<string, Artifact> = {
   no_proc: new Artifact({}),
   air_to_surface_missile_misha: new Artifact({
     id: 'air_to_surface_missile_misha',
@@ -449,7 +449,7 @@ export const artifacts: Record<string, Artifact> = {
     type: artifactDmgType.damage,
     // info: infoLabel('victorious_flag'),
     applies: (skill: Skill, inputValues: DamageFormData) => {
-      const hero = heroes[inputValues.heroID];
+      const hero = Heroes[inputValues.heroID];
       if (hero.element === HeroElement.dark || hero.element === HeroElement.light) return false;
 
       return (inputValues.elementalAdvantage || skill.elementalAdvantage(inputValues));
@@ -473,7 +473,7 @@ export const artifacts: Record<string, Artifact> = {
     exclusive: HeroClass.thief,
     // form: [inputValues.enemy_defeated],
     value: (artiScale: number, inputValues: DamageFormData) => {
-      return artiScale + (inputValues.enemyDefeated ? artifacts.wind_rider.additional[artifacts.wind_rider.scale.indexOf(artiScale)] : 0);
+      return artiScale + (inputValues.enemyDefeated ? Artifacts.wind_rider.additional[Artifacts.wind_rider.scale.indexOf(artiScale)] : 0);
     }
   }),
   wings_of_light_and_shadow: new Artifact({

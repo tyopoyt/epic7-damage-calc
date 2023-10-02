@@ -43,6 +43,9 @@ $damage-calc-theme: mat.define-light-theme((
 * {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
   // font-family:'Courier New', Courier, monospace !important;
+  .material-icons {
+    font-family: 'Material Icons' !important;
+  }
 }
 html, body {
   color: $font-light-color;
@@ -194,6 +197,12 @@ html, body {
       &.mat-mdc-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-mdc-text-field-wrapper {
         background-color: $ui-dark-color;
         padding: 0 $gutter;
+      }
+    }
+
+    app-number-input-group {
+      mat-form-field {
+        border-radius: 0;
       }
     }
   

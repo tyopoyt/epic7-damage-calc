@@ -3,12 +3,12 @@ import { Hero, HeroElement } from '../models/hero';
 import { DamageFormData } from '../models/forms';
 import { Artifact } from '../models/artifact';
 import { Target } from '../models/target';
-import { heroes } from '../../assets/data/heroes';
+import { Heroes } from '../../assets/data/heroes';
 
 import * as _ from 'lodash-es'
 import { BehaviorSubject } from 'rxjs';
 import { DamageService } from './damage.service';
-import { artifacts } from 'src/assets/data/artifacts';
+import { Artifacts } from 'src/assets/data/artifacts';
 
 @Injectable({
   providedIn: 'root'
@@ -19,11 +19,11 @@ export class DataService {
   damageInputChanged: EventEmitter<void> = new EventEmitter();
 
   // TODO: update the defaults here when possible
-  currentHeroID = 'arbiter_vildred'
-  currentHero: Hero = heroes.arbiter_vildred;  // Default to abigail when more things are working
-  currentArtifactID = 'no_proc'
-  currentArtifact: Artifact = artifacts.no_proc;
-  currentTarget: Target = new Target(this.currentArtifact);
+  currentHeroID = new BehaviorSubject<string>('arbiter_vildred')
+  currentHero = new BehaviorSubject<Hero>(Heroes.arbiter_vildred);  // Default to abigail when more things are working
+  currentArtifactID = new BehaviorSubject<string>('no_proc')
+  currentArtifact = new BehaviorSubject<Artifact>(Artifacts.no_proc);
+  currentTarget: Target = new Target(this.currentArtifact.value);
   
   heroConstants: Record<string, number> = {
     'beehooBurnMult': 1.3
@@ -73,20 +73,24 @@ export class DataService {
   }
 
   updateSelectedHero(hero: string) {
-    this.currentHeroID = hero;
-    this.currentHero = heroes[hero];
+    this.currentHeroID.next(hero);
+    this.currentHero.next(Heroes[hero]);
+
+    if (this.currentArtifact.value.exclusive && this.currentArtifact.value.exclusive !== this.currentHero.value.class) {
+      this.updateSelectedArtifact(Artifacts.no_proc.id)
+    }
   }
 
   updateSelectedArtifact(artifact: string) {
-    this.currentArtifactID = artifact;
-    this.currentArtifact = artifacts[artifact];
+    this.currentArtifactID.next(artifact);
+    this.currentArtifact.next(Artifacts[artifact]);
   }
 
   molagoras(): Record<string, number> {
     const molagoras: Record<string, number> = {};
 
     for (let i = 1; i < 4; i++) {
-      if (_.get(this.currentHero.skills, `s${i}`)) {
+      if (_.get(this.currentHero.value.skills, `s${i}`)) {
         molagoras[`s${i}`] = this.damageInputValues[`molagoras${i}` as keyof DamageFormData] as number;
       }
     }
@@ -94,7 +98,7 @@ export class DataService {
     return molagoras;
   }
 
-  advantageousElement(hero: Hero = this.currentHero) {
+  advantageousElement(hero: Hero = this.currentHero.value) {
     return this.advantageousElementMap[hero.element];
   }
 

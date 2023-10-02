@@ -1,19 +1,21 @@
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Languages } from 'src/app/models/languages';
+import { AttackPreset, AttackPresets } from 'src/app/models/attack-presets';
 import { LanguageService } from 'src/app/services/language.service';
 import { ScreenService } from 'src/app/services/screen.service';
 import { DismissibleColorOption } from '../ui-elements/dismissible/dismissible.component';
 import { DamageService } from 'src/app/services/damage.service';
 import { DataService } from 'src/app/services/data.service';
-import { heroes } from 'src/assets/data/heroes';
+import { Heroes } from 'src/assets/data/heroes';
 import { Hero } from 'src/app/models/hero';
 import { TranslationPipe } from 'src/app/pipes/translation.pipe';
 import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import * as _ from 'lodash-es';
-import { artifacts } from 'src/assets/data/artifacts';
+import { Artifacts } from 'src/assets/data/artifacts';
 import { Artifact } from 'src/app/models/artifact';
+import { SlideInputComponent } from '../ui-elements/slide-input/slide-input.component';
 
 export interface DamageRow {
   skill: string;
@@ -30,8 +32,13 @@ export interface DamageRow {
 })
 export class DamageCalculatorComponent implements OnInit, OnDestroy {
 
+  @ViewChild('attackSlider') attackSlider: SlideInputComponent | null = null;
+  @ViewChild('critDamageSlider') critDamageSlider: SlideInputComponent | null = null;
+
   heroSearchSubscription: Subscription;
   artifactSearchSubscription: Subscription;
+  attackPresetSubscription: Subscription;
+  currentArtifactSubscription: Subscription;
 
   DismissibleColorOption = DismissibleColorOption;
   
@@ -39,7 +46,7 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
   damages: DamageRow[] = [];
 
   // All hero entries
-  heroes: [string, Hero][] = Object.entries(heroes);
+  heroes: [string, Hero][] = Object.entries(Heroes);
   // Hero entries displayed in select box after a search filter
   filteredHeroes: [string, Hero][] = _.cloneDeep(this.heroes);
   // controls for hero selection
@@ -47,12 +54,17 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
   public heroFilterControl: FormControl<string | null>;
 
   // All artifact entries
-  artifacts: [string, Artifact][] = Object.entries(artifacts);
+  artifacts: [string, Artifact][] = Object.entries(Artifacts);
   // Hero entries displayed in select box after a search filter
   filteredArtifacts: [string, Artifact][] = _.cloneDeep(this.artifacts);
   // controls for hero selection
   public artifactControl: FormControl<string | null>;
   public artifactFilterControl: FormControl<string | null>;
+
+  // All attack preset entries
+  attackPresets: [string, AttackPreset][] = Object.entries(AttackPresets);
+  // controls for hero selection
+  public attackPresetControl: FormControl<string | null>;
 
   translationPipe: TranslationPipe;
   
@@ -61,15 +73,15 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
   }
 
   get hero() {
-    return this.dataService.currentHero;
+    return this.dataService.currentHero.value;
   }
 
   get heroID() {
-    return this.dataService.currentHeroID;
+    return this.dataService.currentHeroID.value;
   }
 
   get artifact() {
-    return this.dataService.currentArtifact;
+    return this.dataService.currentArtifact.value;
   }
 
   get skills() {
@@ -88,11 +100,13 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
     public dataService: DataService
   ) {
     this.translationPipe = new TranslationPipe(this.languageService);
-    this.heroControl = new FormControl<string | null>(this.dataService.currentHeroID)
+    this.heroControl = new FormControl<string | null>(this.dataService.currentHeroID.value)
     this.heroFilterControl = new FormControl<string | null>('')
     
-    this.artifactControl = new FormControl<string | null>(this.dataService.currentArtifactID)
+    this.artifactControl = new FormControl<string | null>(this.dataService.currentArtifactID.value)
     this.artifactFilterControl = new FormControl<string | null>('')
+
+    this.attackPresetControl = new FormControl<string | null>(AttackPresets.manual.id)
 
     this.heroSearchSubscription = this.heroFilterControl.valueChanges
       .subscribe(() => {
@@ -103,6 +117,21 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
       .subscribe(() => {
         this.filterArtifacts();
     });
+
+    this.attackPresetSubscription = this.attackPresetControl.valueChanges
+      .subscribe(() => {
+        const preset = AttackPresets[this.attackPresetControl.value || 'manual']
+        if (preset.attack && this.attackSlider) {
+          this.attackSlider.overrideValue(preset.attack);
+        }
+        if (preset.critDamage && this.critDamageSlider) {
+          this.critDamageSlider.overrideValue(preset.critDamage);
+        }
+    });
+
+    this.currentArtifactSubscription = this.dataService.currentArtifactID.subscribe((id) => {
+      this.artifactControl.setValue(id)
+    })
   }
   
   ngOnInit() {
@@ -122,15 +151,27 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
     if (this.heroSearchSubscription) {
       this.heroSearchSubscription.unsubscribe();
     }
+    if (this.artifactSearchSubscription) {
+      this.artifactSearchSubscription.unsubscribe();
+    }
+    if (this.attackPresetSubscription) {
+      this.attackPresetSubscription.unsubscribe();
+    }
+    if (this.currentArtifactSubscription) {
+      this.currentArtifactSubscription.unsubscribe();
+    }
   }
 
   // TODO: don't call this initially for every input, only once
   inputChange(field: string, value: number | boolean) {
     this.dataService.updateDamageInputValues({[field]: value});
-  }
-
-  molagoraChange(value: number) {
-    return;
+  
+    // Check if attack preset needs to be reset
+    if (this.attackPresetControl.value !== AttackPresets.manual.id) {
+      if (_.get(AttackPresets[this.attackPresetControl.value || AttackPresets.manual.id], field, null) !== value) {
+        this.attackPresetControl.setValue(AttackPresets.manual.id);
+      }
+    }
   }
 
   selectHero(hero: string) {
