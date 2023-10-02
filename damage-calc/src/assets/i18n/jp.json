@@ -3,6 +3,7 @@
       "lionheart_cermia_old": "獅子王 チェルミア (前のバージョン)",
       "silk_old": "シルク (前のバージョン)",
       "tenebria_old": "テネブレア (前のバージョン)",
+
       "abigail": "アビゲイル",
       "achates": "アカテス",
       "adin": "アーディン",
@@ -503,7 +504,14 @@
       "vigor": "",
       "rage_set": "",
       "penetration_set": "",
-      "torrent_set": ""
+      "torrent_set": "",
+      "increased_defense": "",
+      "decreased_defense": "",
+      "target": "",
+      "defense_increase": "",
+      "defense_increase_hint": "",
+      "damage_reduction": "",
+      "damage_transfer": ""
     },
     "skills": {
       "non_applicable": "-",

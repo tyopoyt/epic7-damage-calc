@@ -110,6 +110,31 @@ html, body {
     }
   }
 
+  // TODO: get the slider thumb hover indicators not to be clipped
+  .multi-slide {
+    border-radius: $gutter;
+    overflow: hidden;
+    margin-top: $gutter;
+    box-shadow: var(--mdc-elevated-card-container-elevation);
+    background-color: $ui-dark-color;
+
+    .mat-mdc-card {
+      margin-top: 0;
+      border-radius: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+      box-shadow: none;
+
+      .slider-row {
+        margin-top: 0;
+      }
+    }
+
+    > :first-child {
+      margin-top: $gutter-large;
+    }
+  }
+
   mat-slider.mat-mdc-slider {
     .mdc-slider__thumb {
       --mat-mdc-slider-focus-ripple-color: #{$e7-buff-color-low-opacity};
@@ -553,6 +578,10 @@ html, body {
     .mat-mdc-tooltip .mdc-tooltip__surface {
       color: white;
       background-color: $ui-medium-dark-color;
+    }
+
+    .multi-slide {
+      background-color: $ui-light-color;
     }
 
     div.switch-nested-menu-arrows {
@@ -1041,10 +1070,90 @@ app-slide-input {
   }
 }
 
+.column-3 {
+  position: relative;
+  height: 2.5rem;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  > * {
+    width: calc(33.3% - calc(#{$gutter} * (2/3)));
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
+  }
+
+  > :nth-child(1) {
+    margin-right: calc(#{$gutter} / 2);
+  }
+
+  > :nth-child(2) {
+    margin: 0 calc(#{$gutter} / 2);
+  }
+
+  > :nth-child(3) {
+    margin-left: calc(#{$gutter} / 2);
+  }
+}
+
 .pointer {
   cursor: pointer;
 }
 
 .hidden {
   display: none !important;
+}
+
+.select-icon {
+  position: absolute;
+  bottom: calc(#{$gutter} + #{$gutter-tiny});
+
+  &-2 {
+    position: absolute;
+    left: calc(1.25rem + #{$gutter-tiny});
+    bottom: calc(#{$gutter} + #{$gutter-tiny});
+  }
+}
+
+.select-option-icon {
+  position: absolute;
+  bottom: calc(#{$gutter} + #{$gutter-tiny});
+  left: 0;
+
+  &-2 {
+    position: absolute;
+    left: 1.25rem;
+    bottom: calc(#{$gutter} + #{$gutter-tiny});
+  }
+}
+
+.page-container {
+  mat-form-field {
+    border-radius: $gutter;
+    overflow: hidden;
+    .mdc-text-field--no-label:not(.mdc-text-field--outlined):not(.mdc-text-field--textarea) .mat-mdc-form-field-infix {
+      min-height: 10px;
+      height: 2.5rem;
+      padding: $gutter 0;
+    }
+    &.mat-mdc-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-mdc-text-field-wrapper {
+      background-color: $ui-dark-color;
+      padding: 0 $gutter;
+    }
+  }
+
+  .has-icons {
+    &.mat-mdc-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-mdc-text-field-wrapper .mat-mdc-select-value-text {
+      padding-left: calc(2.5rem + (2 * #{$gutter-small}));
+    }
+  }
+}
+
+html div.mat-mdc-select-panel .mat-mdc-option, body div.mat-mdc-select-panel .mat-mdc-option {
+  min-height: 10px;
+  height: 2.5rem;
+  &.has-icons {
+    padding-left: calc(2.5rem + (2 * #{$gutter-small}));
+  }
 }

@@ -1,5 +1,5 @@
 import { EventEmitter, Injectable, OnInit } from '@angular/core';
-import { Hero } from '../models/hero';
+import { Hero, HeroElement } from '../models/hero';
 import { DamageFormData } from '../models/forms';
 import { Artifact } from '../models/artifact';
 import { Target } from '../models/target';
@@ -19,7 +19,8 @@ export class DataService {
   damageInputChanged: EventEmitter<void> = new EventEmitter();
 
   // TODO: update the defaults here when possible
-  currentHero: Hero = heroes.crescent_moon_rin;  // Default to abigail when more things are working
+  currentHeroID: string = 'arbiter_vildred'
+  currentHero: Hero = heroes.arbiter_vildred;  // Default to abigail when more things are working
   currentArtifact: Artifact = artifacts.a_symbol_of_unity;
   currentTarget: Target = new Target(this.currentArtifact);
   
@@ -46,6 +47,14 @@ export class DataService {
     'font-family': '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"'
   };
 
+  advantageousElementMap = {
+    [HeroElement.fire]: HeroElement.earth,
+    [HeroElement.ice]: HeroElement.fire,
+    [HeroElement.earth]: HeroElement.ice,
+    [HeroElement.dark]: HeroElement.light,
+    [HeroElement.light]: HeroElement.dark,
+  }
+
   constructor() {
     this.initialSetup();
   }
@@ -60,18 +69,24 @@ export class DataService {
     this.damageInputChanged.emit();
   }
 
+  updateSelectedHero(hero: string) {
+    this.currentHero = heroes[hero];
+  }
+
   molagoras(): Record<string, number> {
     const molagoras: Record<string, number> = {};
 
     for (let i = 1; i < 4; i++) {
       if (_.get(this.currentHero.skills, `s${i}`)) {
-        molagoras[`s${i}`] = this.damageInputValues[`molagoraS${i}` as keyof DamageFormData] as number;
+        molagoras[`s${i}`] = this.damageInputValues[`molagoras${i}` as keyof DamageFormData] as number;
       }
     }
-    
-    // console.log('molas:', molagoras)
 
     return molagoras;
+  }
+
+  advantageousElement(hero: Hero = this.currentHero) {
+    return this.advantageousElementMap[hero.element];
   }
 
   // Helper function to update the value of a form input

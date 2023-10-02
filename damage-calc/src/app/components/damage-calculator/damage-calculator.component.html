@@ -2,6 +2,50 @@
 <div class="page-container sticky-bottom">
     <span class="page-body">
         <app-dismissible [content]="'damage_calculator_updates' | translate:'info':languageService.language.value" [color]="DismissibleColorOption.info"></app-dismissible>
+        <!-- TODO: go to one column on small screens  -->
+        <div class="autocomplete-container full-width neat-container column-3">
+            <mat-form-field class="example-full-width neat-container has-icons">
+                <img class="png-icon medium tiny-margin-right select-icon" src="assets/elements/{{hero.element}}.png">
+                <img class="png-icon medium tiny-margin-right select-icon-2" src="assets/classes/{{hero.class}}.png">
+                <mat-select [formControl]="heroControl" placeholder="Hero" #singleSelect (selectionChange)="selectHero($event.value)">
+                    <mat-option>
+                        <ngx-mat-select-search [formControl]="heroFilterControl" placeholderLabel="Find hero" noEntriesFoundLabel="No matching heroes found"></ngx-mat-select-search>
+                    </mat-option>
+                    <mat-option *ngFor="let hero of filteredHeroes" class="has-icons" [value]="hero[0]">
+                        <img class="png-icon medium tiny-margin-right select-option-icon" src="assets/elements/{{hero[1].element}}.png">
+                        <img class="png-icon medium tiny-margin-right select-option-icon-2" src="assets/classes/{{hero[1].class}}.png">
+                        {{hero[0] | translate:'heroes':languageService.language.value}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="example-full-width neat-container has-icons">
+                <img class="png-icon medium tiny-margin-right select-icon" src="assets/elements/{{hero.element}}.png">
+                <img class="png-icon medium tiny-margin-right select-icon-2" src="assets/classes/{{hero.class}}.png">
+                <mat-select [formControl]="heroControl" placeholder="Hero" #singleSelect (selectionChange)="selectHero($event.value)">
+                    <mat-option>
+                        <ngx-mat-select-search [formControl]="heroFilterControl" placeholderLabel="Find hero" noEntriesFoundLabel="No matching heroes found"></ngx-mat-select-search>
+                    </mat-option>
+                    <mat-option *ngFor="let hero of filteredHeroes" class="has-icons" [value]="hero[0]">
+                        <img class="png-icon medium tiny-margin-right select-option-icon" src="assets/elements/{{hero[1].element}}.png">
+                        <img class="png-icon medium tiny-margin-right select-option-icon-2" src="assets/classes/{{hero[1].class}}.png">
+                        {{hero[0] | translate:'heroes':languageService.language.value}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field><mat-form-field class="example-full-width neat-container has-icons">
+                <img class="png-icon medium tiny-margin-right select-icon" src="assets/elements/{{hero.element}}.png">
+                <img class="png-icon medium tiny-margin-right select-icon-2" src="assets/classes/{{hero.class}}.png">
+                <mat-select [formControl]="heroControl" placeholder="Hero" #singleSelect (selectionChange)="selectHero($event.value)">
+                    <mat-option>
+                        <ngx-mat-select-search [formControl]="heroFilterControl" placeholderLabel="Find hero" noEntriesFoundLabel="No matching heroes found"></ngx-mat-select-search>
+                    </mat-option>
+                    <mat-option *ngFor="let hero of filteredHeroes" class="has-icons" [value]="hero[0]">
+                        <img class="png-icon medium tiny-margin-right select-option-icon" src="assets/elements/{{hero[1].element}}.png">
+                        <img class="png-icon medium tiny-margin-right select-option-icon-2" src="assets/classes/{{hero[1].class}}.png">
+                        {{hero[0] | translate:'heroes':languageService.language.value}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
         <div class="neat-container full-width">
             <app-slide-input
                 [label]="'attack' | translate:'form':languageService.language.value"
@@ -44,7 +88,7 @@
             <!-- <mat-checkbox class="small-margin-top" (click)="toggleStigmaPolitis()" [checked]="this.stigmaPolitis"> -->
             <mat-checkbox class="small-margin-top" [checked]="inputValues.elementalAdvantage" (change)="inputChange('elementalAdvantage', $event.checked)">
                 <span class="neat-container">
-                    <img class="png-icon medium tiny-margin-right" src="assets/debuffs/stigma-debuff.png">
+                    <img class="png-icon medium tiny-margin-right" src="assets/elements/{{advantageousElement}}.png">
                     {{'elemental_advantage' | translate:'form':languageService.language.value}}
                 </span>
             </mat-checkbox>
@@ -182,12 +226,14 @@
         </div>
         <div class="skill-enhance-block header-block">
             <h1>Skill Enhance</h1>
-            <div class="neat-container full-width">
-                <app-slide-input
-                    [label]="'s1' | translate:'skills':languageService.language.value"
-                    [max]="7" [min]="0" [default]="7" (valueChange)="molagoraChange($event)"
-                    [column]="!screenService.largeScreen.value">
-                </app-slide-input>
+            <div class="multi-slide">
+                <div *ngFor="let skill of skills" class="neat-container full-width">
+                    <app-slide-input *ngIf="skill.enhance?.length"
+                        [label]="skill.id | translate:'skills':languageService.language.value"
+                        [max]="skill.enhance.length" [min]="0" [default]="skill.enhance.length" (valueChange)="inputChange('molagora' + skill.id, $event)"
+                        [column]="!screenService.largeScreen.value">
+                    </app-slide-input>
+                </div>
             </div>
         </div>
         <div class="damage-block">
@@ -199,27 +245,27 @@
 
                     <ng-container matColumnDef="skill">
                       <th mat-header-cell *matHeaderCellDef> {{"skill" | translate:'form':languageService.language.value}} </th>
-                      <td mat-cell *matCellDef="let element"> {{element.skill}} </td>
+                      <td mat-cell *matCellDef="let element"> {{element.skill | translate:'skills':languageService.language.value}} </td>
                     </ng-container>
 
                     <ng-container matColumnDef="crit">
                       <th mat-header-cell *matHeaderCellDef> {{"critical_hit" | translate:'form':languageService.language.value}} </th>
-                      <td mat-cell *matCellDef="let element"> {{element.crit}} </td>
+                      <td mat-cell *matCellDef="let element"> {{element.crit != null ? element.crit : 'non_applicable' | translate:'skills':languageService.language.value}} </td>
                     </ng-container>
                   
                     <ng-container matColumnDef="crush">
                       <th mat-header-cell *matHeaderCellDef> {{"crushing_hit" | translate:'form':languageService.language.value}} </th>
-                      <td mat-cell *matCellDef="let element"> {{element.crush}} </td>
+                      <td mat-cell *matCellDef="let element"> {{element.crush != null ? element.crush : 'non_applicable' | translate:'skills':languageService.language.value}} </td>
                     </ng-container>
 
                     <ng-container matColumnDef="normal">
                       <th mat-header-cell *matHeaderCellDef> {{"normal_hit" | translate:'form':languageService.language.value}} </th>
-                      <td mat-cell *matCellDef="let element"> {{element.normal}} </td>
+                      <td mat-cell *matCellDef="let element"> {{element.normal != null ? element.normal : 'non_applicable' | translate:'skills':languageService.language.value}} </td>
                     </ng-container>
 
                     <ng-container matColumnDef="miss">
                         <th mat-header-cell *matHeaderCellDef> {{"miss" | translate:'form':languageService.language.value}} </th>
-                        <td mat-cell *matCellDef="let element"> {{element.miss}} </td>
+                        <td mat-cell *matCellDef="let element"> {{element.miss != null ? element.miss : 'non_applicable' | translate:'skills':languageService.language.value}} </td>
                     </ng-container>
                   
                     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

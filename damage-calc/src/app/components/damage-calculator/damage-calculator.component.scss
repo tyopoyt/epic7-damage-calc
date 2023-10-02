@@ -13,9 +13,17 @@
     bottom: 0;
     z-index: $damage-block-z-index;
     mat-card {
-        // height: 20rem;
-        @include mat.elevation(2)
+        // TODO: maybe remove elevation if scrolled to below the card?
+        @include mat.elevation(5)
     }
+}
+
+.autocomplete-container {
+    margin-top: $gutter;
+}
+
+.multi-slide {
+    @include mat.elevation(1)
 }
 
 .credits-block {

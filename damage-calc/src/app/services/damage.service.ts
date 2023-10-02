@@ -104,7 +104,7 @@ export class DamageService {
   }
 
   offensivePower(skill: Skill, soulburn = false, isExtra = false) {
-    const rate = (typeof skill.rate === 'function') ? skill.rate(soulburn) : skill.rate;
+    const rate = skill.rate(soulburn, this.damageForm);
     const flatMod = skill.flat ? skill.flat(soulburn, this.dataService.currentHero) : 0;
     //TODO: rename this
     const flatMod2 = this.dataService.currentArtifact.getFlatMult(this.damageForm.artifactLevel) + (skill.flat2());

@@ -1,10 +1,4 @@
-import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BrowserModule } from '@angular/platform-browser';
-import { DismissibleComponent } from './components/ui-elements/dismissible/dismissible.component';
-import { FlagComponent } from './components/ui-elements/flag/flag.component';
-import { HeaderCardComponent } from './components/ui-elements/header-card/header-card.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -20,10 +14,18 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
+import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
 import { DamageCalculatorComponent } from './components/damage-calculator/damage-calculator.component';
+import { DismissibleComponent } from './components/ui-elements/dismissible/dismissible.component';
 import { EffectivenessCheckerComponent } from './components/effectiveness-checker/effectiveness-checker.component';
 import { EHPCalculatorComponent } from './components/ehp-calculator/ehp-calculator.component';
+import { FlagComponent } from './components/ui-elements/flag/flag.component';
+import { HeaderCardComponent } from './components/ui-elements/header-card/header-card.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { NumberInputGroupComponent } from './components/ui-elements/number-input-group/number-input-group.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
@@ -52,6 +54,7 @@ import { TranslationPipe } from './pipes/translation.pipe';
     AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule,
+    MatAutocompleteModule,
     MatButtonModule,
     MatCardModule,
     MatCheckboxModule,
@@ -65,6 +68,7 @@ import { TranslationPipe } from './pipes/translation.pipe';
     MatTableModule,
     MatToolbarModule,
     MatTooltipModule,
+    NgxMatSelectSearchModule,
     ReactiveFormsModule
   ],
    providers: [],

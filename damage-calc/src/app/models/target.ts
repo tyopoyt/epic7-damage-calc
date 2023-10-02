@@ -19,7 +19,6 @@ export class Target {
       const base = skill && skill.penetrate ? skill.penetrate() : 0;
       const artifact = this.casterArtifact.getDefensePenetration(skill, inputValues.artifactLevel);
       const set = (skill.isSingle()) && inputValues.penetrationSet ? BattleConstants.penetrationSet : 0;
-      console.log(skill)
   
       return Math.min(1, (1 - base) * (1 - set) * (1 - artifact));
     }

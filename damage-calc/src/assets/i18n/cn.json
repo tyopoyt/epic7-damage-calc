@@ -3,6 +3,7 @@
       "lionheart_cermia_old": "狮心王洁若米亚 (以前的版本)",
       "silk_old": "席可 (以前的版本)",
       "tenebria_old": "泰妮布里雅 (以前的版本)",
+
       "abigail": "雅碧凱",
       "achates": "雅卡泰丝",
       "adin": "艾庭",
@@ -690,7 +691,14 @@
       "vigor": "",
       "rage_set": "",
       "penetration_set": "",
-      "torrent_set": ""
+      "torrent_set": "",
+      "increased_defense": "",
+      "decreased_defense": "",
+      "target": "",
+      "defense_increase": "",
+      "defense_increase_hint": "",
+      "damage_reduction": "",
+      "damage_transfer": ""
     },
     "skills": {
       "non_applicable": "无",

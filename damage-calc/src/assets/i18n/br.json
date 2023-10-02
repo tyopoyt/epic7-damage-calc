@@ -3,6 +3,7 @@
       "lionheart_cermia_old": "Cérmia Coração de Leão (Pré-Balanceamento)",
       "silk_old": "Seda (Pré-Balanceamento)",
       "tenebria_old": "Tenébria (Pré-Balanceamento)",
+
       "abigail": "Abigail",
       "achates": "Acates",
       "adin": "Adine",
@@ -539,7 +540,14 @@
       "vigor": "",
       "rage_set": "",
       "penetration_set": "",
-      "torrent_set": ""
+      "torrent_set": "",
+      "increased_defense": "",
+      "decreased_defense": "",
+      "target": "",
+      "defense_increase": "",
+      "defense_increase_hint": "",
+      "damage_reduction": "",
+      "damage_transfer": ""
     },
     "skills": {
       "non_applicable": "Não Aplicável",

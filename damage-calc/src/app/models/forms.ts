@@ -55,9 +55,9 @@ export class DamageFormData {
     highestAllyAttack: number;
     increasedAttack: boolean;
     increasedAttackGreat: boolean;
-    molagoraS1: number;
-    molagoraS2: number;
-    molagoraS3: number;
+    molagoras1: number;
+    molagoras2: number;
+    molagoras3: number;
     nonAttackSkillStack: number;
     nonCasterAttackStack: number;
     numberOfDeaths: number;
@@ -154,9 +154,9 @@ export class DamageFormData {
         this.highestAllyAttack = _.get(data, 'highestAllyAttack', 2500);
         this.increasedAttack = _.get(data, 'increasedAttack', false);
         this.increasedAttackGreat = _.get(data, 'increasedAttackGreat', false);
-        this.molagoraS1 = _.get(data, 'molagoraS1', 0);
-        this.molagoraS2 = _.get(data, 'molagoraS2', 0);
-        this.molagoraS3 = _.get(data, 'molagoraS3', 0);
+        this.molagoras1 = _.get(data, 'molagoraS1', 0);
+        this.molagoras2 = _.get(data, 'molagoraS2', 0);
+        this.molagoras3 = _.get(data, 'molagoraS3', 0);
         this.nonAttackSkillStack = _.get(data, 'nonAttackSkillStack', 0);
         this.nonCasterAttackStack = _.get(data, 'nonCasterAttackStack', 0);
         this.numberOfDeaths = _.get(data, 'numberOfDeaths', 0);

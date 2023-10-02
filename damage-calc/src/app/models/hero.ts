@@ -71,7 +71,7 @@ export class Hero {
     }
 
     if (skillToUse.enhance) {
-      const enhanceLevel =  _.get(molagoras, skillToUse.id.toUpperCase(), 0);
+      const enhanceLevel =  _.get(molagoras, skillToUse.id, 0);
       for (let i = 0; i < enhanceLevel; i++) {
         mult += skillToUse.enhance[i];
       }

@@ -14,7 +14,7 @@ import { ScreenService, Theme } from 'src/app/services/screen.service';
 })
 export class NavbarComponent implements OnInit  {
 
-  @ViewChild('darkModeSwitch') element: ElementRef | undefined;
+  @ViewChild('darkModeSwitch') darkModeSwitch: ElementRef | undefined;
   @ViewChild('smallScreenPageSelect') pageSelect: MatSelect | undefined;
 
   languages = Object.values(Languages);
@@ -75,7 +75,7 @@ export class NavbarComponent implements OnInit  {
 
   async setSlideToggleIcons(time = 100) {
     await new Promise(resolve => setTimeout(resolve, time))
-    if (this.element){
+    if (this.darkModeSwitch){
       await document.querySelector('.mdc-switch__icon--on path')?.setAttribute('d', this.darkModeIconPath);
       document.querySelector('.mdc-switch__icon--off path')?.setAttribute('d', this.lightModeIconPath);
     }
