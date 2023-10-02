@@ -76,8 +76,17 @@ html, body {
     border-radius: 0.5rem;
   }
 
-  .mat-mdc-menu-item:not([disabled]):hover {
+  .mat-mdc-menu-item:not([disabled]):hover, .mat-mdc-option:not([disabled]):hover {
     background-color: $ui-dark-color;
+  }
+
+  .mat-mdc-option:not([disabled]).mdc-list-item--selected {
+    color: white;
+    background-color: $e7-buff-contrast-color;
+
+    .mdc-list-item__primary-text {
+      font-weight: bold;
+    }
   }
 
   div.switch-nested-menu-arrows {
@@ -154,6 +163,50 @@ html, body {
     .mdc-slider__track--inactive {
       background-color: $e7-buff-darker-color !important;
       opacity: 0.2;
+    }
+  }
+
+  ngx-mat-select-search {
+    input.mat-select-search-input {
+      // important because some id is filled and used in the selector
+      background-color: $ui-medium-color !important;
+      color: $font-light-color !important;
+    }
+    ::placeholder {
+      color: $font-light-color;
+      opacity: 1; /* Firefox */
+    }
+    
+    ::-ms-input-placeholder { /* Edge 12 -18 */
+      color: $font-light-color;
+    }
+  }
+
+  .page-container {
+    mat-form-field {
+      border-radius: $gutter;
+      overflow: hidden;
+      .mdc-text-field--no-label:not(.mdc-text-field--outlined):not(.mdc-text-field--textarea) .mat-mdc-form-field-infix {
+        min-height: 10px;
+        height: 2.5rem;
+        padding: $gutter 0;
+      }
+      &.mat-mdc-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-mdc-text-field-wrapper {
+        background-color: $ui-dark-color;
+        padding: 0 $gutter;
+      }
+    }
+  
+    .has-icons {
+      &.mat-mdc-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-mdc-text-field-wrapper .mat-mdc-select-value-text {
+        padding-left: calc(2.5rem + (2 * #{$gutter-small}));
+      }
+    }
+
+    .has-icon {
+      &.mat-mdc-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-mdc-text-field-wrapper .mat-mdc-select-value-text {
+        padding-left: calc(1.25rem + #{$gutter-small});
+      }
     }
   }
 
@@ -300,7 +353,7 @@ html, body {
 
         .mdc-list-item__primary-text {
           font-weight: bold;
-          color: $font-light-color;
+          color: white;
         }
       }
     }
@@ -594,6 +647,30 @@ html, body {
       }
     }
 
+    ngx-mat-select-search {
+      input.mat-select-search-input {
+        // important because some id is filled and used in the selector
+        background-color: $ui-medium-light-color !important;
+        color: $font-dark-color !important;
+      }
+      ::placeholder {
+        color: $font-dark-color;
+        opacity: 1; /* Firefox */
+      }
+      
+      ::-ms-input-placeholder { /* Edge 12 -18 */
+        color: $font-dark-color;
+      }
+    }
+
+    .page-container {
+      mat-form-field {
+        &.mat-mdc-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-mdc-text-field-wrapper {
+          background-color: $ui-light-color;
+        }
+      }
+    }
+
     div.mat-mdc-menu-panel {
       background-color: $ui-light-color;
   
@@ -740,7 +817,7 @@ html, body {
       background-color: $ui-light-color;
     }
 
-    .mat-mdc-menu-item:not([disabled]):hover {
+    .mat-mdc-menu-item:not([disabled]):hover, .mat-mdc-option:not([disabled]):hover {
       background-color: $ui-medium-light-color;
     }
 
@@ -1119,34 +1196,12 @@ app-slide-input {
 .select-option-icon {
   position: absolute;
   bottom: calc(#{$gutter} + #{$gutter-tiny});
-  left: 0;
+  left: $gutter;
 
   &-2 {
     position: absolute;
-    left: 1.25rem;
+    left: calc(#{$gutter} + 1.25rem);
     bottom: calc(#{$gutter} + #{$gutter-tiny});
-  }
-}
-
-.page-container {
-  mat-form-field {
-    border-radius: $gutter;
-    overflow: hidden;
-    .mdc-text-field--no-label:not(.mdc-text-field--outlined):not(.mdc-text-field--textarea) .mat-mdc-form-field-infix {
-      min-height: 10px;
-      height: 2.5rem;
-      padding: $gutter 0;
-    }
-    &.mat-mdc-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-mdc-text-field-wrapper {
-      background-color: $ui-dark-color;
-      padding: 0 $gutter;
-    }
-  }
-
-  .has-icons {
-    &.mat-mdc-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-mdc-text-field-wrapper .mat-mdc-select-value-text {
-      padding-left: calc(2.5rem + (2 * #{$gutter-small}));
-    }
   }
 }
 
@@ -1154,6 +1209,14 @@ html div.mat-mdc-select-panel .mat-mdc-option, body div.mat-mdc-select-panel .ma
   min-height: 10px;
   height: 2.5rem;
   &.has-icons {
-    padding-left: calc(2.5rem + (2 * #{$gutter-small}));
+    padding-left: calc(2.5rem + (2 * #{$gutter}));
   }
+
+  &.has-icon {
+    padding-left: calc(1.25rem + #{$gutter-large});
+  }
+}
+
+mat-pseudo-checkbox {
+  display: none !important;
 }

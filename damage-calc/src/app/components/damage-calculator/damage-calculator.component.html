@@ -5,42 +5,37 @@
         <!-- TODO: go to one column on small screens  -->
         <div class="autocomplete-container full-width neat-container column-3">
             <mat-form-field class="example-full-width neat-container has-icons">
-                <img class="png-icon medium tiny-margin-right select-icon" src="assets/elements/{{hero.element}}.png">
-                <img class="png-icon medium tiny-margin-right select-icon-2" src="assets/classes/{{hero.class}}.png">
-                <mat-select [formControl]="heroControl" placeholder="Hero" #singleSelect (selectionChange)="selectHero($event.value)">
+                <img class="png-icon medium tiny-margin-right select-icon" src="assets/elements/{{hero.element}}.png" alt="{{hero.element}}">
+                <img class="png-icon medium tiny-margin-right select-icon-2" src="assets/classes/{{hero.class}}.png" alt="{{hero.class}}">
+                <mat-select [formControl]="heroControl" placeholder="" #singleSelect (selectionChange)="selectHero($event.value)">
                     <mat-option>
-                        <ngx-mat-select-search [formControl]="heroFilterControl" placeholderLabel="Find hero" noEntriesFoundLabel="No matching heroes found"></ngx-mat-select-search>
+                        <!-- TODO: finish styling: fix clear button.  Set light mode colors for select box and this search field -->
+                        <ngx-mat-select-search [formControl]="heroFilterControl" placeholderLabel="Find hero..." noEntriesFoundLabel="No matching heroes found"></ngx-mat-select-search>
                     </mat-option>
                     <mat-option *ngFor="let hero of filteredHeroes" class="has-icons" [value]="hero[0]">
-                        <img class="png-icon medium tiny-margin-right select-option-icon" src="assets/elements/{{hero[1].element}}.png">
-                        <img class="png-icon medium tiny-margin-right select-option-icon-2" src="assets/classes/{{hero[1].class}}.png">
+                        <img class="png-icon medium tiny-margin-right select-option-icon" src="assets/elements/{{hero[1].element}}.png" alt="{{hero[1].element}}">
+                        <img class="png-icon medium tiny-margin-right select-option-icon-2" src="assets/classes/{{hero[1].class}}.png" alt="{{hero[1].class}}">
                         {{hero[0] | translate:'heroes':languageService.language.value}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
-            <mat-form-field class="example-full-width neat-container has-icons">
-                <img class="png-icon medium tiny-margin-right select-icon" src="assets/elements/{{hero.element}}.png">
-                <img class="png-icon medium tiny-margin-right select-icon-2" src="assets/classes/{{hero.class}}.png">
-                <mat-select [formControl]="heroControl" placeholder="Hero" #singleSelect (selectionChange)="selectHero($event.value)">
+            <mat-form-field class="example-full-width neat-container has-icon">
+                <img class="png-icon medium tiny-margin-right select-icon" src=" assets/{{artifact.heroExclusive.length ? 'heroes' : 'classes'}}/{{artifact.heroExclusive.length ? artifact.heroExclusive[0] + '-icon' : artifact.exclusive}}.png" alt="{{artifact.exclusive}}">
+                <mat-select [formControl]="artifactControl" placeholder="" #singleSelect (selectionChange)="selectArtifact($event.value)">
                     <mat-option>
-                        <ngx-mat-select-search [formControl]="heroFilterControl" placeholderLabel="Find hero" noEntriesFoundLabel="No matching heroes found"></ngx-mat-select-search>
+                        <ngx-mat-select-search [formControl]="artifactFilterControl" placeholderLabel="Find artifact..." noEntriesFoundLabel="No matching artifacts found"></ngx-mat-select-search>
                     </mat-option>
-                    <mat-option *ngFor="let hero of filteredHeroes" class="has-icons" [value]="hero[0]">
-                        <img class="png-icon medium tiny-margin-right select-option-icon" src="assets/elements/{{hero[1].element}}.png">
-                        <img class="png-icon medium tiny-margin-right select-option-icon-2" src="assets/classes/{{hero[1].class}}.png">
-                        {{hero[0] | translate:'heroes':languageService.language.value}}
+                    <mat-option *ngFor="let artifact of filteredArtifacts" class="has-icon" [value]="artifact[0]" [disabled]="(artifact[1].exclusive !== 'common' && artifact[1].exclusive !== hero.class) || (!!artifact[1].heroExclusive.length && !(artifact[1].heroExclusive.includes(heroID)))">
+                        <img class="png-icon medium tiny-margin-right select-option-icon" src=" assets/{{artifact[1].heroExclusive.length ? 'heroes' : 'classes'}}/{{artifact[1].heroExclusive.length ? artifact[1].heroExclusive[0] + '-icon' : artifact[1].exclusive}}.png" alt="{{artifact[1].exclusive}}">
+                        {{artifact[0] | translate:'artifacts':languageService.language.value}}
                     </mat-option>
                 </mat-select>
-            </mat-form-field><mat-form-field class="example-full-width neat-container has-icons">
-                <img class="png-icon medium tiny-margin-right select-icon" src="assets/elements/{{hero.element}}.png">
-                <img class="png-icon medium tiny-margin-right select-icon-2" src="assets/classes/{{hero.class}}.png">
+            </mat-form-field><mat-form-field class="example-full-width neat-container">
                 <mat-select [formControl]="heroControl" placeholder="Hero" #singleSelect (selectionChange)="selectHero($event.value)">
                     <mat-option>
                         <ngx-mat-select-search [formControl]="heroFilterControl" placeholderLabel="Find hero" noEntriesFoundLabel="No matching heroes found"></ngx-mat-select-search>
                     </mat-option>
-                    <mat-option *ngFor="let hero of filteredHeroes" class="has-icons" [value]="hero[0]">
-                        <img class="png-icon medium tiny-margin-right select-option-icon" src="assets/elements/{{hero[1].element}}.png">
-                        <img class="png-icon medium tiny-margin-right select-option-icon-2" src="assets/classes/{{hero[1].class}}.png">
+                    <mat-option *ngFor="let hero of filteredHeroes" [value]="hero[0]">
                         {{hero[0] | translate:'heroes':languageService.language.value}}
                     </mat-option>
                 </mat-select>
@@ -88,56 +83,56 @@
             <!-- <mat-checkbox class="small-margin-top" (click)="toggleStigmaPolitis()" [checked]="this.stigmaPolitis"> -->
             <mat-checkbox class="small-margin-top" [checked]="inputValues.elementalAdvantage" (change)="inputChange('elementalAdvantage', $event.checked)">
                 <span class="neat-container">
-                    <img class="png-icon medium tiny-margin-right" src="assets/elements/{{advantageousElement}}.png">
+                    <img class="png-icon medium tiny-margin-right" src="assets/elements/{{advantageousElement}}.png" alt="{{advantageousElement}}">
                     {{'elemental_advantage' | translate:'form':languageService.language.value}}
                 </span>
             </mat-checkbox>
             <mat-checkbox class="small-margin-top" [checked]="inputValues.decreasedAttack" (change)="inputChange('decreasedAttack', $event.checked)">
                 <span class="neat-container">
-                    <img class="png-icon medium tiny-margin-right" src="assets/debuffs/attack-debuff.png">
+                    <img class="png-icon medium tiny-margin-right" src="assets/debuffs/attack-debuff.png" alt="Attack break">
                     {{'decreased_attack' | translate:'form':languageService.language.value}}
                 </span>
             </mat-checkbox>
             <mat-checkbox class="small-margin-top" [checked]="inputValues.increasedAttack" (change)="inputChange('increasedAttack', $event.checked)">
                 <span class="neat-container">
-                    <img class="png-icon medium tiny-margin-right" src="assets/buffs/attack-buff.png">
+                    <img class="png-icon medium tiny-margin-right" src="assets/buffs/attack-buff.png" alt="Attack buff">
                     {{'increased_attack' | translate:'form':languageService.language.value}}
                 </span>
             </mat-checkbox>
             <mat-checkbox class="small-margin-top" [checked]="inputValues.increasedAttackGreat" (change)="inputChange('increasedAttackGreat', $event.checked)">
                 <span class="neat-container">
-                    <img class="png-icon medium tiny-margin-right" src="assets/buffs/greater-attack-buff.png">
+                    <img class="png-icon medium tiny-margin-right" src="assets/buffs/greater-attack-buff.png" alt="Greater attack buff">
                     {{'increased_attack_great' | translate:'form':languageService.language.value}}
                 </span>
             </mat-checkbox>
             <mat-checkbox class="small-margin-top" [checked]="inputValues.increasedCritDamage" (change)="inputChange('increasedCritDamage', $event.checked)">
                 <span class="neat-container">
-                    <img class="png-icon medium tiny-margin-right" src="assets/buffs/critical-hit-damage-buff.png">
+                    <img class="png-icon medium tiny-margin-right" src="assets/buffs/critical-hit-damage-buff.png" alt="Crit damage buff">
                     {{'increased_crit_damage' | translate:'form':languageService.language.value}}
                 </span>
             </mat-checkbox>
             <mat-checkbox class="small-margin-top" [checked]="inputValues.casterVigor" (change)="inputChange('casterVigor', $event.checked)">
                 <span class="neat-container">
-                    <img class="png-icon medium tiny-margin-right" src="assets/buffs/vigor-buff.png">
+                    <img class="png-icon medium tiny-margin-right" src="assets/buffs/vigor-buff.png" alt="vigor buff">
                     {{'vigor' | translate:'form':languageService.language.value}}
                 </span>
             </mat-checkbox>
             <!-- TODO: edit set pngs to have no margin -->
             <mat-checkbox class="small-margin-top" [checked]="inputValues.rageSet" (change)="inputChange('rageSet', $event.checked)">
                 <span class="neat-container">
-                    <img class="png-icon medium tiny-margin-right" src="assets/sets/rage-set.png">
+                    <img class="png-icon medium tiny-margin-right" src="assets/sets/rage-set.png" alt="Rage set">
                     {{'rage_set' | translate:'form':languageService.language.value}}
                 </span>
             </mat-checkbox>
             <mat-checkbox class="small-margin-top" [checked]="inputValues.penetrationSet" (change)="inputChange('penetrationSet', $event.checked)">
                 <span class="neat-container">
-                    <img class="png-icon medium tiny-margin-right" src="assets/sets/penetration-set.png">
+                    <img class="png-icon medium tiny-margin-right" src="assets/sets/penetration-set.png" alt="Penetration set">
                     {{'penetration_set' | translate:'form':languageService.language.value}}
                 </span>
             </mat-checkbox>
             <mat-checkbox class="small-margin-top" [checked]="!!inputValues.torrentSetStack" (change)="inputChange('torrentSetStack', ($event.checked ? 1 : 0))">
                 <span class="neat-container">
-                    <img class="png-icon medium tiny-margin-right" src="assets/sets/torrent-set.png">
+                    <img class="png-icon medium tiny-margin-right" src="assets/sets/torrent-set.png" alt="Torrent set">
                     {{'torrent_set' | translate:'form':languageService.language.value}}
                 </span>
             </mat-checkbox>
@@ -190,25 +185,25 @@
                 <!-- <mat-checkbox class="small-margin-top" (click)="toggleStigmaPolitis()" [checked]="this.stigmaPolitis"> -->
                 <mat-checkbox class="small-margin-top" [checked]="inputValues.targetDefenseUp" (change)="inputChange('targetDefenseUp', $event.checked)">
                     <span class="neat-container">
-                        <img class="png-icon medium tiny-margin-right" src="assets/buffs/defense-buff.png">
+                        <img class="png-icon medium tiny-margin-right" src="assets/buffs/defense-buff.png" alt="Defense Buff">
                         {{'increased_defense' | translate:'form':languageService.language.value}}
                     </span>
                 </mat-checkbox>
                 <mat-checkbox class="small-margin-top" [checked]="inputValues.targetVigor" (change)="inputChange('targetVigor', $event.checked)">
                     <span class="neat-container">
-                        <img class="png-icon medium tiny-margin-right" src="assets/buffs/vigor-buff.png">
+                        <img class="png-icon medium tiny-margin-right" src="assets/buffs/vigor-buff.png" alt="Vigor Buff">
                         {{'vigor' | translate:'form':languageService.language.value}}
                     </span>
                 </mat-checkbox>
                 <mat-checkbox class="small-margin-top" [checked]="inputValues.targetDefenseDown" (change)="inputChange('targetDefenseDown', $event.checked)">
                     <span class="neat-container">
-                        <img class="png-icon medium tiny-margin-right" src="assets/debuffs/defense-debuff.png">
+                        <img class="png-icon medium tiny-margin-right" src="assets/debuffs/defense-debuff.png" alt="Defense break">
                         {{'decreased_defense' | translate:'form':languageService.language.value}}
                     </span>
                 </mat-checkbox>
                 <mat-checkbox class="small-margin-top" [checked]="inputValues.targetTargeted" (change)="inputChange('targetTargeted', $event.checked)">
                     <span class="neat-container">
-                        <img class="png-icon medium tiny-margin-right" src="assets/debuffs/target-debuff.png">
+                        <img class="png-icon medium tiny-margin-right" src="assets/debuffs/target-debuff.png" alt="Target debuff">
                         {{'target' | translate:'form':languageService.language.value}}
                     </span>
                 </mat-checkbox>
@@ -250,6 +245,8 @@
 
                     <ng-container matColumnDef="crit">
                       <th mat-header-cell *matHeaderCellDef> {{"critical_hit" | translate:'form':languageService.language.value}} </th>
+                      <!-- Intentionally using != instead of !== here to catch null and undefined -->
+                      <!-- eslint-disable @angular-eslint/template/eqeqeq -->
                       <td mat-cell *matCellDef="let element"> {{element.crit != null ? element.crit : 'non_applicable' | translate:'skills':languageService.language.value}} </td>
                     </ng-container>
                   
@@ -267,6 +264,7 @@
                         <th mat-header-cell *matHeaderCellDef> {{"miss" | translate:'form':languageService.language.value}} </th>
                         <td mat-cell *matCellDef="let element"> {{element.miss != null ? element.miss : 'non_applicable' | translate:'skills':languageService.language.value}} </td>
                     </ng-container>
+                    <!-- eslint-enable -->
                   
                     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

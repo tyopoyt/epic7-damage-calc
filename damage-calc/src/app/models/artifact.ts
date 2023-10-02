@@ -1,4 +1,5 @@
 import { DamageFormData } from "./forms";
+import { HeroClass } from "./hero";
 import { DoT, Skill } from "./skill";
 
 import  * as _ from 'lodash-es'
@@ -11,12 +12,13 @@ export enum ArtifactDamageType {
     critDmgBoost = 'crit-dmg-boost',
     flat = 'flat',
     dot = 'dot'
-
 }
 
 export class Artifact {
     id: string;
     dot: DoT[];
+    exclusive: HeroClass;
+    heroExclusive: string[];
     type: ArtifactDamageType;
     applies: Function; // Pass Skill
     value: Function; // Pass Skill and DamageFormData (and optionally isExtra)
@@ -27,9 +29,12 @@ export class Artifact {
     defensePercent: number;
     penetrate: number;
 
+
     constructor(data: any) {
-        this.id = _.get(data, 'id', null);
+        this.id = _.get(data, 'id', 'no_proc');
         this.dot = _.get(data, 'dot', null);
+        this.exclusive = _.get(data, 'exclusive', HeroClass.common)
+        this.heroExclusive = _.get(data, 'heroExclusive', [])
         this.type = _.get(data, 'type', null);
         this.scale = _.get(data, 'scale', null);
         this.additional = _.get(data, 'additional', null);

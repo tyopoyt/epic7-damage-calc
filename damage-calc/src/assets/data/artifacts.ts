@@ -15,7 +15,8 @@ export const artifactDmgType = {
   dot: 'dot'
 };
 
-export const artifacts = {
+export const artifacts: Record<string, Artifact> = {
+  no_proc: new Artifact({}),
   air_to_surface_missile_misha: new Artifact({
     id: 'air_to_surface_missile_misha',
     name: 'Air-to-Surface Missile: MISHA',
@@ -81,9 +82,9 @@ export const artifacts = {
     exclusive: HeroClass.warrior,
     value: (artiScale: number, inputValues: DamageFormData) => inputValues.nonAttackSkillStack * artiScale
   }),
-  broken_will_of_the_priest: new Artifact({
-    id: 'broken_will_of_the_priest',
-    name: 'Broken Will of the Priest',
+  broken_will_of_the_high_priest: new Artifact({
+    id: 'broken_will_of_the_high_priest',
+    name: 'Broken Will of the High Priest',
     scale: [0.08, 0.088, 0.096, 0.104, 0.112, 0.12, 0.128, 0.136, 0.144, 0.152, 0.16],
     type: artifactDmgType.penetrate,
     exclusive: HeroClass.knight
@@ -382,7 +383,7 @@ export const artifacts = {
     value: 0.25,
     type: artifactDmgType.damage,
     //TODO: refactor hero_exclusive to work with this
-    hero_exclusive: ['savior_adin', 'adin', 'holy_flame_adin', 'serene_purity_adin', 'verdant_adin'],
+    heroExclusive: ['adin', 'savior_adin', 'holy_flame_adin', 'serene_purity_adin', 'verdant_adin'],
     applies: (skill: Skill, inputValues: DamageFormData) => {
       return inputValues.elementalAdvantage || skill.elementalAdvantage(inputValues);
     },

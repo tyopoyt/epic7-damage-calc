@@ -19,9 +19,10 @@ export class DataService {
   damageInputChanged: EventEmitter<void> = new EventEmitter();
 
   // TODO: update the defaults here when possible
-  currentHeroID: string = 'arbiter_vildred'
+  currentHeroID = 'arbiter_vildred'
   currentHero: Hero = heroes.arbiter_vildred;  // Default to abigail when more things are working
-  currentArtifact: Artifact = artifacts.a_symbol_of_unity;
+  currentArtifactID = 'no_proc'
+  currentArtifact: Artifact = artifacts.no_proc;
   currentTarget: Target = new Target(this.currentArtifact);
   
   heroConstants: Record<string, number> = {
@@ -59,7 +60,9 @@ export class DataService {
     this.initialSetup();
   }
 
+  // TODO: remove this if no longer needed
   async initialSetup() {
+    return;
   }
 
   updateDamageInputValues(updates: Record<string, any>) {
@@ -70,7 +73,13 @@ export class DataService {
   }
 
   updateSelectedHero(hero: string) {
+    this.currentHeroID = hero;
     this.currentHero = heroes[hero];
+  }
+
+  updateSelectedArtifact(artifact: string) {
+    this.currentArtifactID = artifact;
+    this.currentArtifact = artifacts[artifact];
   }
 
   molagoras(): Record<string, number> {

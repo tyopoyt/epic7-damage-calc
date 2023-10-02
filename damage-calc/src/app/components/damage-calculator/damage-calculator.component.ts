@@ -12,6 +12,8 @@ import { TranslationPipe } from 'src/app/pipes/translation.pipe';
 import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import * as _ from 'lodash-es';
+import { artifacts } from 'src/assets/data/artifacts';
+import { Artifact } from 'src/app/models/artifact';
 
 export interface DamageRow {
   skill: string;
@@ -28,20 +30,29 @@ export interface DamageRow {
 })
 export class DamageCalculatorComponent implements OnInit, OnDestroy {
 
-  @ViewChild('heroAutocomplete') heroAutocomplete: FormControl | undefined;
-
-  searchSubscription: Subscription;
+  heroSearchSubscription: Subscription;
+  artifactSearchSubscription: Subscription;
 
   DismissibleColorOption = DismissibleColorOption;
   
   displayedColumns: string[] = ['skill', 'crit', 'crush', 'normal', 'miss']
   damages: DamageRow[] = [];
 
+  // All hero entries
   heroes: [string, Hero][] = Object.entries(heroes);
+  // Hero entries displayed in select box after a search filter
   filteredHeroes: [string, Hero][] = _.cloneDeep(this.heroes);
-
+  // controls for hero selection
   public heroControl: FormControl<string | null>;
   public heroFilterControl: FormControl<string | null>;
+
+  // All artifact entries
+  artifacts: [string, Artifact][] = Object.entries(artifacts);
+  // Hero entries displayed in select box after a search filter
+  filteredArtifacts: [string, Artifact][] = _.cloneDeep(this.artifacts);
+  // controls for hero selection
+  public artifactControl: FormControl<string | null>;
+  public artifactFilterControl: FormControl<string | null>;
 
   translationPipe: TranslationPipe;
   
@@ -51,6 +62,14 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
 
   get hero() {
     return this.dataService.currentHero;
+  }
+
+  get heroID() {
+    return this.dataService.currentHeroID;
+  }
+
+  get artifact() {
+    return this.dataService.currentArtifact;
   }
 
   get skills() {
@@ -71,10 +90,18 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
     this.translationPipe = new TranslationPipe(this.languageService);
     this.heroControl = new FormControl<string | null>(this.dataService.currentHeroID)
     this.heroFilterControl = new FormControl<string | null>('')
+    
+    this.artifactControl = new FormControl<string | null>(this.dataService.currentArtifactID)
+    this.artifactFilterControl = new FormControl<string | null>('')
 
-    this.searchSubscription = this.heroFilterControl.valueChanges
+    this.heroSearchSubscription = this.heroFilterControl.valueChanges
       .subscribe(() => {
         this.filterHeroes();
+    });
+
+    this.artifactSearchSubscription = this.artifactFilterControl.valueChanges
+      .subscribe(() => {
+        this.filterArtifacts();
     });
   }
   
@@ -92,8 +119,8 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.searchSubscription) {
-      this.searchSubscription.unsubscribe();
+    if (this.heroSearchSubscription) {
+      this.heroSearchSubscription.unsubscribe();
     }
   }
 
@@ -103,23 +130,35 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
   }
 
   molagoraChange(value: number) {
-
+    return;
   }
 
   selectHero(hero: string) {
     this.dataService.updateSelectedHero(hero);
   }
 
-  currentHeroName = (selectedHero: string): string => {
-    return this.translationPipe.transform(selectedHero, 'heroes', this.languageService.language.value);
+  selectArtifact(artifact: string) {
+    this.dataService.updateSelectedArtifact(artifact);
   }
 
   filterHeroes() {
     this.filteredHeroes = this.heroes.filter((hero) => {
       const heroName = this.translationPipe.transform(hero[0], 'heroes', this.languageService.language.value).toLowerCase();
       const searchValue = this.heroFilterControl.value?.toLowerCase() || '';
-      if (this.heroFilterControl.value) {
+      if (searchValue) {
         return heroName.includes(searchValue) || _.get(this.languageService.translationDict.nicknames, hero[0], '').includes(searchValue)
+      } else {
+        return true;
+      }
+    })
+  }
+
+  filterArtifacts() {
+    this.filteredArtifacts = this.artifacts.filter((artifact) => {
+      const artifactName = this.translationPipe.transform(artifact[0], 'artifacts', this.languageService.language.value).toLowerCase();
+      const searchValue = this.artifactFilterControl.value?.toLowerCase() || '';
+      if (searchValue) {
+        return artifactName.includes(searchValue) || _.get(this.languageService.translationDict.nicknames, artifact[0], '').includes(searchValue)
       } else {
         return true;
       }

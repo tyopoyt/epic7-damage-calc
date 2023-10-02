@@ -14,8 +14,8 @@ export enum DismissibleColorOption {
 export class DismissibleComponent {
 
   @Input() color: DismissibleColorOption = DismissibleColorOption.info;
-  @Input() content: string = '';
-  @Input() title: string = '';
+  @Input() content = '';
+  @Input() title = '';
   // @Output() hide: EventEmitter<null> = new EventEmitter();
 
   constructor (private element: ElementRef) {}

@@ -14,6 +14,7 @@ export enum HeroElement {
 }
 
 export enum HeroClass {
+    common = 'common',
     knight = 'knight',
     mage = 'mage',
     ranger = 'ranger',
