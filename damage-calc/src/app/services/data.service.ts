@@ -23,7 +23,7 @@ export class DataService {
   currentHero = new BehaviorSubject<Hero>(Heroes.arbiter_vildred);  // Default to abigail when more things are working
   currentArtifactID = new BehaviorSubject<string>('no_proc')
   currentArtifact = new BehaviorSubject<Artifact>(Artifacts.no_proc);
-  currentTarget: Target = new Target(this.currentArtifact.value);
+  currentTarget: Target = new Target();
   
   heroConstants: Record<string, number> = {
     'beehooBurnMult': 1.3

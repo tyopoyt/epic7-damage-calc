@@ -643,6 +643,9 @@
   },
   "ui": {
     "dark_mode": "Dark Mode",
-    "donate": "Donate"
+    "donate": "Donate",
+    "credits": "Credits",
+    "contribute": "Contribute",
+    "references": "References"
   }
 }

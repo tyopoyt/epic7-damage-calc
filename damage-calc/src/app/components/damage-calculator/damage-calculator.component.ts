@@ -8,7 +8,7 @@ import { DismissibleColorOption } from '../ui-elements/dismissible/dismissible.c
 import { DamageService } from 'src/app/services/damage.service';
 import { DataService } from 'src/app/services/data.service';
 import { Heroes } from 'src/assets/data/heroes';
-import { Hero } from 'src/app/models/hero';
+import { Hero, HeroElement } from 'src/app/models/hero';
 import { TranslationPipe } from 'src/app/pipes/translation.pipe';
 import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
@@ -184,14 +184,28 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
 
   filterHeroes() {
     this.filteredHeroes = this.heroes.filter((hero) => {
-      const heroName = this.translationPipe.transform(hero[0], 'heroes', this.languageService.language.value).toLowerCase();
-      const searchValue = this.heroFilterControl.value?.toLowerCase() || '';
-      if (searchValue) {
-        return heroName.includes(searchValue) || _.get(this.languageService.translationDict.nicknames, hero[0], '').includes(searchValue)
+      const searchValues = (this.heroFilterControl.value?.toLowerCase() || '').split(',');
+      if (searchValues.length) {
+        let matches = true;
+        for (const searchValue of searchValues) {
+          if (!this.heroMatches(hero[0], searchValue)) {
+            matches = false;
+          }
+        }
+        return matches;
       } else {
         return true;
       }
     })
+  }
+
+  heroMatches(heroName: string, searchTerm: string): boolean {
+    const scrubbed = searchTerm.replace(/ /g,'');
+    const heroLocalizedName = this.translationPipe.transform(heroName, 'heroes', this.languageService.language.value).toLowerCase();
+    return heroLocalizedName.replace(/ /g,'').includes(scrubbed)
+           || _.get(this.languageService.translationDict.nicknames, heroName, '').replace(/ /g,'').includes(scrubbed)
+           || Heroes[heroName].element == scrubbed
+           || Heroes[heroName].class == scrubbed;
   }
 
   filterArtifacts() {
@@ -205,5 +219,4 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
       }
     })
   }
-
 }

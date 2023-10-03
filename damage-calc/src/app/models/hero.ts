@@ -54,12 +54,15 @@ export class Hero {
     this.baseDefense = _.get(heroValues, 'baseDefense', 0);
     this.baseHP = _.get(heroValues, 'baseHP', 0);
     this.class = _.get(heroValues, 'class', HeroClass.warrior);
-    // this.dot = [...(heroValues.dot || []), ...(artifact?.getDoT() || [])];
     this.dot = _.get(heroValues, 'dot', []);
     this.element = _.get(heroValues, 'element', HeroElement.fire);
     this.innateAttackIncrease = _.get(heroValues, 'innateAttackIncrease', () => 0);
     this.exclusiveEquipmentMultiplier = _.get(heroValues, 'exclusiveEquipmentMultiplier', () => 0);
     this.skills = _.get(heroValues, 'skills', {});
+  }
+
+  getDoT(artifact: Artifact) {
+    return [...(this.dot || []), ...artifact.getDoT()];
   }
 
   getSkillEnhanceMult(skill: Skill, molagoras: Record<string, number>) {
@@ -83,7 +86,7 @@ export class Hero {
     return mult;
   }
 
-  getAttack(artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number, skill: Skill | null = null): number {
+  getAttack(artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number, skill: Skill, isExtra = false): number {
     let atk = skill?.atk() || inputValues.attack;
 
     if (this.innateAttackIncrease !== undefined) {
@@ -98,7 +101,7 @@ export class Hero {
           + attackMultiplier
           + (this.attackIncrease !== undefined ? this.attackIncrease() - 1 : 0)
           + (this.innateAttackIncrease !== undefined ? this.innateAttackIncrease() : 0)
-          + artifact.getAttackBoost(inputValues.artifactLevel);
+          + artifact.getAttackBoost(inputValues.artifactLevel, inputValues, skill, isExtra);
     }
 
     return (atk + atkImprint) * atkMod;
@@ -128,16 +131,16 @@ export class Hero {
     }
   }
 
-  getAfterMathSkillDamage(skill: Skill, hitType: HitType, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number, defenseMultiplier: number, target: Target) {
+  getAfterMathSkillDamage(skill: Skill, hitType: HitType, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number, defenseMultiplier: number, target: Target, isExtra = false) {
     let skillDamage = 0;
     const skillMultipliers = skill.afterMath ? skill.afterMath(hitType) : null;
     if (skillMultipliers !== null) {
       if (skillMultipliers.atkPercent) {
-        skillDamage = this.getAttack(artifact, inputValues, attackMultiplier) * skillMultipliers.atkPercent * BattleConstants.dmgConst * target.defensivePower(new Skill({ penetrate: () => skillMultipliers.penetrate }), inputValues, defenseMultiplier, true);
+        skillDamage = this.getAttack(artifact, inputValues, attackMultiplier, skill, isExtra) * skillMultipliers.atkPercent * BattleConstants.dmgConst * target.defensivePower(new Skill({ penetrate: () => skillMultipliers.penetrate }), inputValues, defenseMultiplier, artifact, true);
       } else if (skillMultipliers.defPercent) {
-        skillDamage = this.getDefense(inputValues) * skillMultipliers.defPercent * BattleConstants.dmgConst * target.defensivePower(new Skill({ penetrate: () => skillMultipliers.penetrate }), inputValues, defenseMultiplier, true);
+        skillDamage = this.getDefense(inputValues) * skillMultipliers.defPercent * BattleConstants.dmgConst * target.defensivePower(new Skill({ penetrate: () => skillMultipliers.penetrate }), inputValues, defenseMultiplier, artifact, true);
       } else if (skillMultipliers.injuryPercent) {
-        skillDamage = inputValues.targetInjuries * skillMultipliers.injuryPercent * BattleConstants.dmgConst * target.defensivePower(new Skill({ penetrate: () => skillMultipliers.penetrate }), inputValues, defenseMultiplier, true);
+        skillDamage = inputValues.targetInjuries * skillMultipliers.injuryPercent * BattleConstants.dmgConst * target.defensivePower(new Skill({ penetrate: () => skillMultipliers.penetrate }), inputValues, defenseMultiplier, artifact, true);
       }
     }
 
@@ -145,14 +148,14 @@ export class Hero {
   }
 
   // this belongs to hero because it calls getAtk and getDef
-  getAfterMathArtifactDamage(skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number, defenseMultiplier: number, target: Target) {
+  getAfterMathArtifactDamage(skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number, defenseMultiplier: number, target: Target, isExtra = false) {
 
     const artiMultipliers = artifact.getAfterMathMultipliers(skill);
     if (artiMultipliers !== null) {
       if (artiMultipliers.atkPercent) {
-        return this.getAttack(artifact, inputValues, attackMultiplier) * artiMultipliers.atkPercent * BattleConstants.dmgConst * target.defensivePower(new Skill({ penetrate: () => artiMultipliers.penetrate }), inputValues, defenseMultiplier, true);
+        return this.getAttack(artifact, inputValues, attackMultiplier, skill, isExtra) * artiMultipliers.atkPercent * BattleConstants.dmgConst * target.defensivePower(new Skill({ penetrate: () => artiMultipliers.penetrate }), inputValues, defenseMultiplier, artifact, true);
       } else if (artiMultipliers.defPercent) {
-        return this.getDefense(inputValues) * artiMultipliers.defPercent * BattleConstants.dmgConst * target.defensivePower(new Skill({ penetrate: () => artiMultipliers.penetrate }), inputValues, defenseMultiplier, true);
+        return this.getDefense(inputValues) * artiMultipliers.defPercent * BattleConstants.dmgConst * target.defensivePower(new Skill({ penetrate: () => artiMultipliers.penetrate }), inputValues, defenseMultiplier, artifact, true);
       }
     }
 

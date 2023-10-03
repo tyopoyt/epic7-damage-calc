@@ -3,7 +3,7 @@
     <span class="page-body">
         <app-dismissible [content]="'damage_calculator_updates' | translate:'info':languageService.language.value" [color]="DismissibleColorOption.info"></app-dismissible>
         <!-- TODO: go to one column on small screens  -->
-        <div class="autocomplete-container full-width neat-container column-3">
+        <div class="filter-select-container full-width neat-container" [ngClass]="!screenService.mediumSmallScreen.value ? 'column-3' : 'flex-column'">
             <mat-form-field class="example-full-width neat-container has-icons">
                 <img class="png-icon medium tiny-margin-right select-icon" src="assets/elements/{{hero.element}}.png" alt="{{hero.element}}">
                 <img class="png-icon medium tiny-margin-right select-icon-2" src="assets/classes/{{hero.class}}.png" alt="{{hero.class}}">
@@ -233,7 +233,7 @@
                 <div class="extra-large-text bold-text small-padding-top">
                     {{"damage_title" | translate:'form':languageService.language.value}}
                 </div>
-                <table class="margin-top" [class.smaller-padding]="screenService.tinyScreen.value" [class.tiny-padding]="screenService.microscopicScreen.value" mat-table [dataSource]="damages">
+                <table class="margin-top" [class.smaller-padding]="screenService.tinyScreen.value" [class.tiny-padding]="screenService.tinyScreen.value" mat-table [dataSource]="damages">
 
                     <ng-container matColumnDef="skill">
                       <th mat-header-cell *matHeaderCellDef> {{"skill" | translate:'form':languageService.language.value}} </th>
@@ -269,7 +269,32 @@
             </mat-card>
         </div>
         <div class="credits-block">
-            <mat-card class="left">CREDITS</mat-card>
+            <mat-card class="left" [class.content-height]="!screenService.largeScreen.value">
+                <div class="full-height" [ngClass]="screenService.largeScreen.value ? 'column-3' : 'column'">
+                    <div class="credit-column">
+                        <h2>{{'credits' | translate:'ui':languageService.language.value}}</h2>
+                        <p>
+                            Discord: tyopoyt#1365<br>
+                            Thanks to the original creator, Maphe<br>
+                            Thanks for the help: Thunder_God, okloio, haie<br>
+                            Translation: Rano / TriATK <app-flag [country]="'cn'"></app-flag>
+                            / <span class="icon-line"><img class="icon tiny tiny-margin-left tiny-margin-right svg-icon" src="assets/icons/incognito.svg" alt="Anonymous"></span>
+                            <app-flag [country]="'kr'"></app-flag>
+                            / Tagle <app-flag [country]="'jp'"></app-flag>
+                            / RenanCrimininBR <app-flag [country]="'br'"></app-flag>
+                        </p>
+                    </div>
+                    <div class="credit-column">
+                        <h2>{{'references' | translate:'ui':languageService.language.value}}</h2>
+                        <a class="icon-line" href="https://docs.google.com/spreadsheets/d/e/2PACX-1vRWZw_BeIhf32W9UIyPuyrr1VDeBuX6p1Nzxov4-5Pkt5DplChLovysSDN83mGVbsZ0XgYs2FICuRXA/pubhtml" target="_blank">Multiplier Spreadsheet <img class="icon tiny tiny-margin-left svg-icon link" src="assets/icons/open-in-new.svg" alt="Open link in new tab"></a>
+                        <a class="icon-line" href="https://epic7x.com" target="_blank">Epic 7x <img class="icon tiny tiny-margin-left svg-icon link" src="assets/icons/open-in-new.svg" alt="Open link in new tab"></a>
+                    </div>
+                    <div class="credit-column">
+                        <h2 class="text-uppercase">{{'contribute' | translate:'ui':languageService.language.value}}</h2>
+                        <a class="icon-line" href="https://github.com/tyopoyt/epic7-damage-calc/issues" target="_blank">Raise a bug <img class="icon tiny tiny-margin-left svg-icon link" src="assets/icons/open-in-new.svg" alt="Open link in new tab"></a>
+                    </div>
+                </div>
+            </mat-card>
         </div>
     </span>
 </div>

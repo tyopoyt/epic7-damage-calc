@@ -21,7 +21,7 @@ export class Artifact {
     heroExclusive: string[];
     type: ArtifactDamageType;
     applies: Function; // Pass Skill
-    value: Function; // Pass Skill and DamageFormData (and optionally isExtra)
+    value: (artiScale: number, inputValues: DamageFormData, skill: Skill, isExtra: boolean) => number; // Pass Skill and DamageFormData (and optionally isExtra)
     scale: number[];
     additional: number[];
     flat: Function;
@@ -38,56 +38,58 @@ export class Artifact {
         this.type = _.get(data, 'type', null);
         this.scale = _.get(data, 'scale', null);
         this.additional = _.get(data, 'additional', null);
-        this.applies = _.get(data, 'applies', (skill: Skill) => false);
-        this.value = _.get(data, 'value', () => 0); //TODO: add appropriate inputs to these fxns
-        this.flat = _.get(data, 'flat', () => 0);
+        this.applies = _.get(data, 'applies', () => true);
+        this.value = _.get(data, 'value', (artifactScale: number) => artifactScale);
+        this.flat = _.get(data, 'flat', () => 0); //TODO: add appropriate inputs to these fxns
         this.attackPercent = _.get(data, 'attackPercent', 0);
         this.defensePercent = _.get(data, 'defensePercent', 0);
         this.penetrate = _.get(data, 'penetrate', 0.7);
     }
 
-    getDefensePenetration(skill: Skill, level: number): number {
-        return (this.id && this.applies(skill) && this.type === ArtifactDamageType.penetrate) ? this.getValue(level) : 0;
+    getDefensePenetration(level: number, inputValues: DamageFormData, skill: Skill, isExtra = false): number {
+      if (!(this.id && this.applies(skill) && this.type === ArtifactDamageType.penetrate)) {
+        return 0;
+      }
+      return this.value(this.getScale(level), inputValues, skill, isExtra);
     }
 
-    getDoT(): DoT[] | null {
-        return (this.id && this.type === ArtifactDamageType.dot) ? this.dot : null;
+    getScale(level: number): number {
+      return this.scale ? this.scale[Math.floor(level / 3)] : 0;
     }
 
-    getValue(level: number): number {
-        return this.scale ? this.scale[Math.floor(level / 3)] : this.value();
+    getDoT(): DoT[] {
+      console.log((this.id && this.type === ArtifactDamageType.dot) ? this.dot : [])
+      return (this.id && this.type === ArtifactDamageType.dot) ? this.dot : [];
     }
 
-    getFlatMult(level: number) {
+    getFlatMult(level: number, inputValues: DamageFormData, skill: Skill, isExtra = false) {
         if (this.type !== ArtifactDamageType.flat) {
             return 0;
         }
-        return this.flat(this.getValue(level));
+        return this.flat(this.value(this.getScale(level), inputValues, skill, isExtra));
     }
 
-    getDamageMultiplier(skill: Skill, isExtra: boolean, level: number) {
-        if(!this.applies(skill)) return 0;
-        if (this.id === undefined || this.type !== ArtifactDamageType.damage) {
-          return 0;
-        }
-        //TODO: check if this needs to be refactored
-        return typeof this.value === 'function' ? this.value(this.getValue(level), skill, isExtra) : this.getValue(level);
+    getDamageMultiplier(level: number, inputValues: DamageFormData, skill: Skill, isExtra = false) {
+      if(!this.applies(skill)) return 0;
+      if (this.id === undefined || this.type !== ArtifactDamageType.damage) {
+        return 0;
+      }
+
+      return this.value(this.getScale(level), inputValues, skill, isExtra);
     }
 
-    getCritDmgBoost(level: number) {
+    getCritDmgBoost(level: number, inputValues: DamageFormData, skill: Skill, isExtra = false) {
         if (this.id === undefined || this.type !== ArtifactDamageType.critDmgBoost) {
           return 0;
         }
-        //TODO: check if this needs to be refactored
-        return this.value ? this.value(this.getValue(level)) : this.getValue(level);
+        return this.value(this.getScale(level), inputValues, skill, isExtra);
     }
 
-    getAttackBoost(level: number) {
+    getAttackBoost(level: number, inputValues: DamageFormData, skill: Skill, isExtra = false) {
         if (this.id === undefined || this.type !== ArtifactDamageType.attack) {
           return 0;
         }
-        //TODO: check if this needs to be refactored
-        return this.value ? this.value(this.getValue(level)) : this.getValue(level);
+        return this.value(this.getScale(level), inputValues, skill, isExtra);
     }
 
     getAfterMathMultipliers(skill: Skill) {
