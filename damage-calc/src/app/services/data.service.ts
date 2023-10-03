@@ -1,5 +1,5 @@
 import { EventEmitter, Injectable, OnInit } from '@angular/core';
-import { Hero, HeroElement } from '../models/hero';
+import { Hero, HeroClass, HeroElement } from '../models/hero';
 import { DamageFormData } from '../models/forms';
 import { Artifact } from '../models/artifact';
 import { Target } from '../models/target';
@@ -76,7 +76,7 @@ export class DataService {
     this.currentHeroID.next(hero);
     this.currentHero.next(Heroes[hero]);
 
-    if (this.currentArtifact.value.exclusive && this.currentArtifact.value.exclusive !== this.currentHero.value.class) {
+    if (this.currentArtifact.value.exclusive !== HeroClass.common && this.currentArtifact.value.exclusive !== this.currentHero.value.class) {
       this.updateSelectedArtifact(Artifacts.no_proc.id)
     }
   }

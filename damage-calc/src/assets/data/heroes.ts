@@ -179,7 +179,7 @@ export const Heroes: Record<string, Hero> = {
       }),
       s3: new Skill({
         id: 's3',
-        rate: 2,
+        rate: () => 2,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
         isSingle: () => true,
@@ -212,7 +212,7 @@ export const Heroes: Record<string, Hero> = {
         pow: () => 1,
         flat: (inputValues: DamageFormData) => inputValues.casterDefense * 0.5,
         flatTip: () => ({ caster_defense: 50 }),
-        afterMath: (hitType: HitType) => (hitType !== HitType.miss) ? { defPercent: 1.4, penetrate: () => 0.7 } : null,
+        afterMath: (hitType: HitType) => (hitType !== HitType.miss) ? { defensePercent: 1.4, penetrate: () => 0.7 } : null,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
         isSingle: () => true,
       }),
@@ -1570,7 +1570,7 @@ export const Heroes: Record<string, Hero> = {
         id: 's1',
         rate: () => 0.85,
         pow: () => 1,
-        afterMath: (hitType: HitType) => (hitType !== HitType.miss) ? { atkPercent: 0.3, penetrate: () => 0.7 } : null,
+        afterMath: (hitType: HitType) => (hitType !== HitType.miss) ? { attackPercent: 0.3, penetrate: () => 0.7 } : null,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
         isSingle: () => true,
       }),
@@ -1578,7 +1578,7 @@ export const Heroes: Record<string, Hero> = {
         id: 's3',
         rate: () => 0.95,
         pow: () => 1.1,
-        afterMath: (hitType: HitType) => (hitType !== HitType.miss) ? { atkPercent: 0.3, penetrate: () => 0.7 } : null,
+        afterMath: (hitType: HitType) => (hitType !== HitType.miss) ? { attackPercent: 0.3, penetrate: () => 0.7 } : null,
         enhance: [0.05, 0, 0, 0, 0.15],
         aoe: true,
       })
@@ -1593,7 +1593,7 @@ export const Heroes: Record<string, Hero> = {
   //     s1: new Skill({
   //       rate: () => 0.85,
   //       pow: () => 1,
-  //       afterMath: (hitType: HitType) => (hitType !== HitType.miss) ? { atkPercent: 0.3, penetrate: () => 0.7 } : null,
+  //       afterMath: (hitType: HitType) => (hitType !== HitType.miss) ? { attackPercent: 0.3, penetrate: () => 0.7 } : null,
   //       enhance: [0.05, 0.05, 0, 0.1, 0.1],
   //       isSingle: () => true,
   //     },
@@ -1601,7 +1601,7 @@ export const Heroes: Record<string, Hero> = {
   //       soulburn: true,
   //       rate: (soulburn: boolean) => soulburn ? 1.2 : 0.95,
   //       pow: () => 1.1,
-  //       afterMath: (hitType: HitType) => (hitType !== HitType.miss) ? { atkPercent: 0.3, penetrate: () => 0.7 } : null,
+  //       afterMath: (hitType: HitType) => (hitType !== HitType.miss) ? { attackPercent: 0.3, penetrate: () => 0.7 } : null,
   //       enhance: [0.05, 0, 0, 0, 0.15],
   //       aoe: true,
   //     }
@@ -4093,7 +4093,7 @@ export const Heroes: Record<string, Hero> = {
         id: 's1',
         rate: () => 0.8,
         pow: () => 1,
-        afterMath: (hitType: HitType, inputValues: DamageFormData) => inputValues.casterHasBuff && hitType !== HitType.miss ? ({ atkPercent: 0.25, penetrate: () => 0.7 }) : null,
+        afterMath: (hitType: HitType, inputValues: DamageFormData) => inputValues.casterHasBuff && hitType !== HitType.miss ? ({ attackPercent: 0.25, penetrate: () => 0.7 }) : null,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
         isSingle: () => true,
         noCrit: true,
@@ -4135,7 +4135,7 @@ export const Heroes: Record<string, Hero> = {
   //     s1: new Skill({
   //       rate: () => 0.6,
   //       pow: () => 1,
-  //       afterMath: (inputValues: DamageFormData) => inputValues.casterHasBuff ? ({ atkPercent: 0.5, penetrate: () => 0.7 }) : null,
+  //       afterMath: (inputValues: DamageFormData) => inputValues.casterHasBuff ? ({ attackPercent: 0.5, penetrate: () => 0.7 }) : null,
   //       enhance: [0.05, 0, 0.1, 0, 0.15],
   //       isSingle: () => true,
   //       noCrit: true,
@@ -4762,7 +4762,7 @@ export const Heroes: Record<string, Hero> = {
         id: 's1',
         rate: () => 1,
         pow: () => 1,
-        afterMath: (inputValues: DamageFormData) => inputValues.targetHasDebuff ? { atkPercent: 0.6, penetrate: () => 0.7 } : null,
+        afterMath: (inputValues: DamageFormData) => inputValues.targetHasDebuff ? { attackPercent: 0.6, penetrate: () => 0.7 } : null,
         enhance: [0.05, 0, 0.1, 0, 0.15],
         isSingle: () => true,
       }),
@@ -5540,7 +5540,7 @@ export const Heroes: Record<string, Hero> = {
         id: 's3_splash',
         rate: () => 0,
         pow: () => 0,
-        afterMath: (inputValues: DamageFormData) => inputValues.elementalAdvantage ? { atkPercent: 1.2, penetrate: () => 0.7 } : null,
+        afterMath: (inputValues: DamageFormData) => inputValues.elementalAdvantage ? { attackPercent: 1.2, penetrate: () => 0.7 } : null,
         noCrit: true,
         noMiss: true,
       })
@@ -5572,7 +5572,7 @@ export const Heroes: Record<string, Hero> = {
   //     s3_splash: {
   //     //       rate: () => 0,
   //       pow: () => 0,
-  //       afterMath: () => elementalAdvantage ? { atkPercent: 1.2, penetrate: () => 0.7 } : null,
+  //       afterMath: () => elementalAdvantage ? { attackPercent: 1.2, penetrate: () => 0.7 } : null,
   //       noCrit: true,
   //       noMiss: true,
   //     }
@@ -7174,7 +7174,7 @@ export const Heroes: Record<string, Hero> = {
         id: 's1',
         rate: () => 1,
         pow: () => 1,
-        afterMath: (hitType: HitType) => hitType !== HitType.miss ? ({ atkPercent: 0.5, penetrate: () => 0.7 }) : null,
+        afterMath: (hitType: HitType) => hitType !== HitType.miss ? ({ attackPercent: 0.5, penetrate: () => 0.7 }) : null,
         noCrit: true,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
         isSingle: () => true,
@@ -7732,7 +7732,7 @@ export const Heroes: Record<string, Hero> = {
         id: 's2',
         rate: () => 0,
         pow: () => 0,
-        afterMath: () => ({ atkPercent: 0.45, penetrate: () => 0.7 }),
+        afterMath: () => ({ attackPercent: 0.45, penetrate: () => 0.7 }),
         noCrit: true,
         noMiss: true,
         isSingle: () => true,
@@ -7984,7 +7984,7 @@ export const Heroes: Record<string, Hero> = {
         id: 'explosion',
         rate: () => 0,
         pow: () => 0,
-        afterMath: () => ({ atkPercent: 1.5, penetrate: () => 0.7 }),
+        afterMath: () => ({ attackPercent: 1.5, penetrate: () => 0.7 }),
         noCrit: true,
         noMiss: true,
       })
@@ -8023,7 +8023,7 @@ export const Heroes: Record<string, Hero> = {
   //     explosion: {
   //     //       rate: () => 0,
   //       pow: () => 0,
-  //       afterMath: () => ({ atkPercent: 1.5, penetrate: () => 0.7 }),
+  //       afterMath: () => ({ attackPercent: 1.5, penetrate: () => 0.7 }),
   //       noCrit: true,
   //       noMiss: true,
   //     }
@@ -8282,7 +8282,7 @@ export const Heroes: Record<string, Hero> = {
         pow: () => 1,
         flat: (inputValues: DamageFormData) => inputValues.targetMaxHP * 0.05,
         flatTip: () => ({ target_max_hp: 5 }),
-        afterMath: () => ({ atkPercent: 0.4, penetrate: () => 0.7 }),
+        afterMath: () => ({ attackPercent: 0.4, penetrate: () => 0.7 }),
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
         isSingle: () => true,
       })

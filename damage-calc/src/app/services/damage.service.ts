@@ -8,6 +8,7 @@ import * as _ from 'lodash-es';
 import { BehaviorSubject } from 'rxjs';
 import { BattleConstants } from 'src/assets/data/constants';
 
+//TODO: all google analytics events
 export interface Damages {
   crit: number | null;
   crush: number | null;
@@ -162,11 +163,7 @@ export class DamageService {
 
   getAfterMathDamage(skill: Skill, hitType: HitType) {
     const detonation = this.getDetonateDamage(skill);
-
-    // let artiDamage: number = this.getArtifactAfterMathDamage(skill, hitType) || 0;
     const artiDamage: number = this.currentHero.getAfterMathArtifactDamage(skill, this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), this.getGlobalDefenseMult(), this.dataService.currentTarget) || 0;
-
-
     const skillDamage = this.currentHero.getAfterMathSkillDamage(skill, HitType.crit, this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), this.getGlobalDefenseMult(), this.dataService.currentTarget);
     const skillExtraDmg = skill.extraDmg !== undefined ? Math.round(skill.extraDmg(hitType)) : 0;
 
@@ -190,7 +187,6 @@ export class DamageService {
 
   // TODO: ensure this isn't called more than needed.  Once per skill per input change, and only once on page load (or maybe twice with queryparams)
   updateDamages() {
-    console.log(this.currentHero.getDoT(this.currentArtifact))
     const newDamages: Record<string, Damages> = {}
     for (const [skillID, skill] of Object.entries(this.currentHero.skills)) {
       newDamages[skillID] = this.getDamage(skill, false, false)

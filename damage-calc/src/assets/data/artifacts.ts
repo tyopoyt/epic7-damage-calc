@@ -12,7 +12,7 @@ export const Artifacts: Record<string, Artifact> = {
     id: 'air_to_surface_missile_misha',
     name: 'Air-to-Surface Missile: MISHA',
     scale: [0.15, 0.17, 0.18, 0.2, 0.21, 0.23, 0.24, 0.26, 0.27, 0.29, 0.3],
-    type: ArtifactDamageType.critDmgBoost,
+    type: ArtifactDamageType.critDamageBoost,
     exclusive: HeroClass.ranger,
   }),
   a_little_queens_crown: new Artifact({
@@ -59,7 +59,7 @@ export const Artifacts: Record<string, Artifact> = {
     id: 'black_hand_of_the_goddess',
     name: 'Black Hand of the Goddess',
     scale: [0.12, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2, 0.21, 0.22, 0.24],
-    type: ArtifactDamageType.critDmgBoost,
+    type: ArtifactDamageType.critDamageBoost,
     exclusive: HeroClass.mage,
     // form: [inputValues.attack_skill_stack_5],
     value: (artiScale: number, inputValues: DamageFormData) => artiScale - ((artiScale / 10) * inputValues.casterAttackStack),
@@ -108,7 +108,7 @@ export const Artifacts: Record<string, Artifact> = {
     id: 'draco_plate',
     name: 'Draco Plate',
     scale: [0.15, 0.17, 0.18, 0.2, 0.21, 0.23, 0.24, 0.26, 0.27, 0.29, 0.3],
-    type: ArtifactDamageType.critDmgBoost,
+    type: ArtifactDamageType.critDamageBoost,
     exclusive: HeroClass.warrior
   }),
   dux_noctis: new Artifact({
@@ -213,13 +213,13 @@ export const Artifacts: Record<string, Artifact> = {
     scale: [0.07, 0.077, 0.084, 0.091, 0.098, 0.105, 0.112, 0.119, 0.126, 0.133, 0.14],
     type: ArtifactDamageType.damage,
     exclusive: HeroClass.mage,
-    applies: (skill: Skill, inputValues: DamageFormData) => skill.isAOE(),
+    applies: (skill: Skill) => skill.isAOE(),
   }),
   mature_sunglasses: new Artifact({
     id: 'mature_sunglasses',
     name: 'Mature Sunglasses',
     scale: [0.15, 0.17, 0.18, 0.2, 0.21, 0.23, 0.24, 0.26, 0.27, 0.29, 0.3],
-    type: ArtifactDamageType.critDmgBoost,
+    type: ArtifactDamageType.critDamageBoost,
     exclusive: HeroClass.knight
   }),
   merciless_glutton: new Artifact({
@@ -240,7 +240,7 @@ export const Artifacts: Record<string, Artifact> = {
     id: 'p_o_s',
     name: 'P.O.S',
     scale: [0.01, 0.011, 0.012, 0.013, 0.014, 0.015, 0.016, 0.017, 0.018, 0.019, 0.02],
-    type: ArtifactDamageType.critDmgBoost,
+    type: ArtifactDamageType.critDamageBoost,
     // form: [inputValues.turn_stack_10],
     value: (artiScale: number, inputValues: DamageFormData) => inputValues.turnStack * artiScale
   }),
@@ -286,7 +286,7 @@ export const Artifacts: Record<string, Artifact> = {
     id: 'reingar_special_drink',
     name: 'Reingar\'s Special Drink',
     type: ArtifactDamageType.aftermath,
-    atkPercent: 0.3,
+    attackPercent: 0.3,
     penetrate: 0.7,
     exclusive: HeroClass.ranger,
     applies: (skill: Skill) => skill.isAOE()
@@ -297,7 +297,7 @@ export const Artifacts: Record<string, Artifact> = {
     type: ArtifactDamageType.aftermath,
     // form: [inputValues.caster_defense],
     defenseScaling: true,
-    defPercent: 1.0,
+    defensePercent: 1.0,
     penetrate: 0.7,
     exclusive: HeroClass.knight,
     applies: (skill: Skill) => skill.isSingle(),
@@ -349,7 +349,7 @@ export const Artifacts: Record<string, Artifact> = {
     id: 'spear_of_a_new_dawn',
     name: 'Spear of a New Dawn',
     type: ArtifactDamageType.aftermath,
-    atkPercent: 0.4,
+    attackPercent: 0.4,
     penetrate: 0.7,
     exclusive: HeroClass.knight,
     applies: (skill: Skill) => skill.id === 's1' || skill.s1Benefits,
@@ -428,7 +428,7 @@ export const Artifacts: Record<string, Artifact> = {
     id: 'uberius_tooth',
     name: 'Uberius\'s Tooth',
     type: ArtifactDamageType.aftermath,
-    atkPercent: 0.45,
+    attackPercent: 0.45,
     penetrate: 0.7,
     exclusive: HeroClass.warrior,
     applies: (skill: Skill) => skill.isSingle(),

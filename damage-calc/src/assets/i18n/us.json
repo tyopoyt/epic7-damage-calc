@@ -345,6 +345,8 @@
     "prelude_to_a_new_era": "Prelude to a New Era",
     "radiant_forever": "Radiant Forever",
     "reingar_special_drink": "Reingar Special Drink",
+    "rocket_punch_gauntlet": "Rocket Punch Gauntlet",
+    "samsara_prayer_beads": "Samsara Prayer Beads",
     "scroll_of_shadows": "Scroll of Shadows",
     "severed_horn_wand": "Severed Horn Wand",
     "shepherd_of_the_hollow": "Shepherd of the Hollow",
@@ -422,6 +424,7 @@
     "navy_captain_landy": "candy",
     "operator_sigret": "opsig op.sig",
     "pirate_captain_flan": "plan",
+    "p_o_s": "pos",
     "remnant_violet": "riolet",
     "rimuru": "slime",
     "sage_baal_and_sezan": "ml.baal mlbaal sbs",
@@ -606,7 +609,8 @@
     "starter_gear": "Starter Gear",
     "all_in_attack": "All in Attack",
     "all_in_crit_damage": "All in Crit Damage",
-    "elite_balanced": "Elite Balanced"
+    "elite_balanced": "Elite Balanced",
+    "level": "Level"
   },
   "info": {
     "alencia_trample": "Trample",

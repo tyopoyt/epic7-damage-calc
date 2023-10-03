@@ -70,7 +70,7 @@ html, body {
   }
 
   // firefox doesn't support webkit scrollbar so this is pretty much all the customization :(
-  scrollbar-color: $e7-buff-color $ui-medium-color;
+  scrollbar-color: $e7-buff-darker-color $ui-medium-color;
 
   div.mat-mdc-select-panel {
     max-height: 25rem;
@@ -648,6 +648,25 @@ html, body {
   &.light-theme {
     color: $font-dark-color;
     background-color: whitesmoke !important;
+
+    ::-webkit-scrollbar {
+      width: 0.6rem;
+    }
+      
+    ::-webkit-scrollbar-track {
+        background: $ui-medium-light-color;
+    }
+      
+    ::-webkit-scrollbar-thumb {
+        background: $e7-buff-contrast-color;
+    }
+  
+    ::-webkit-scrollbar-thumb:hover {
+        background: $e7-buff-color;
+    }
+  
+    // firefox doesn't support webkit scrollbar so this is pretty much all the customization :(
+    scrollbar-color: $e7-buff-contrast-color $ui-medium-light-color;
 
     .icon {
       filter: $font-dark-color-filter;
