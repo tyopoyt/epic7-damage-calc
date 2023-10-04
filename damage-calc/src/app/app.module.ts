@@ -32,6 +32,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { SlideInputComponent } from './components/ui-elements/slide-input/slide-input.component';
 import { SpeedTunerComponent } from './components/speed-tuner/speed-tuner.component';
 import { TranslationPipe } from './pipes/translation.pipe';
+import { TypeofPipe } from './pipes/typeof.pipe';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { TranslationPipe } from './pipes/translation.pipe';
     PageNotFoundComponent,
     SlideInputComponent,
     SpeedTunerComponent,
-    TranslationPipe
+    TranslationPipe,
+    TypeofPipe
   ],
   imports: [
     AppRoutingModule,

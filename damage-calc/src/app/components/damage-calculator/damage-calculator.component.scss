@@ -109,6 +109,7 @@
         font-size: 1.1rem;
         text-decoration: none;
         margin-bottom: $gutter-small;
+        width: max-content;
     }
 }
 
@@ -133,3 +134,11 @@
         width: 18.75%;
     }
 }
+
+.preset-hint {
+    font-size: small;
+    color: $font-light-color;
+    margin: 0 0 0 $gutter-small;
+    padding-top: $gutter-tiny;
+}
+

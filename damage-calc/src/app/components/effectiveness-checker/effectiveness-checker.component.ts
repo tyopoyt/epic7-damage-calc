@@ -16,14 +16,14 @@ export class EffectivenessCheckerComponent implements OnInit {
   HeaderCardComponentColorOption = HeaderCardComponentColorOption;
   HeaderCardComponentSizeOption = HeaderCardComponentSizeOption;
 
-  landText: string = '85%';
-  inflictText: string ='85%';
-  resistText: string = '15%';
+  landText = '85%';
+  inflictText ='85%';
+  resistText = '15%';
 
-  resistance: number = 0;
-  effectiveness: number = 0;
-  hitChance: number = 100;
-  procChance: number = 100;
+  resistance = 0;
+  effectiveness = 0;
+  hitChance = 100;
+  procChance = 100;
 
   constructor(public screenService: ScreenService,
               public languageService: LanguageService,
@@ -70,7 +70,7 @@ export class EffectivenessCheckerComponent implements OnInit {
     this.resistText = `${Math.round(resistChance * 100)}%`
     this.inflictText = `${Math.round(inflictChance * 100)}%`
 
-    //TODO: enable when queryparams work
+    //TODO: enable when queryparams work?
     // debounce('updateQueryParams', updateQueryParams, [false]);
-  };
+  }
 }

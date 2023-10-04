@@ -1,4 +1,5 @@
 import * as _ from 'lodash-es'
+import { DamageFormData } from './forms';
 
 export enum DoT {
     bleed = 'bleed',
@@ -16,7 +17,7 @@ export enum HitType {
     crush = 'crush',
     normal = 'normal',
     miss = 'miss'
-  };
+  }
 
 export class Skill {
     id: string;
@@ -25,7 +26,7 @@ export class Skill {
     critDmgBoost: Function;
     critDmgBoostTip: Function;
     detonation: Function;
-    elementalAdvantage: Function;
+    elementalAdvantage: (inputValues: DamageFormData) => boolean;
     enhance: number[];
     enhanceFrom: string;
     exclusiveEquipment: Function;
@@ -33,19 +34,19 @@ export class Skill {
     extraDmgTip: Function;
     fixed: Function;
     fixedTip: Function;
-    flat: Function;
+    flat: (soulburn: boolean, inputValues: DamageFormData) => number;
     flat2: Function;
     flatTip: Function;
     ignoreDamageTransfer: Function;
     isAOE: Function;
     isExtra: boolean;
     isSingle: Function;
-    mult: Function;
+    mult: (soulburn: boolean, inputValues: DamageFormData) => number;
     multTip: Function;
-    penetrate: Function;
+    penetrate: (soulburn: boolean, inputValues: DamageFormData) => number;
     penetrateTip: Function;
-    pow: Function;
-    rate: Function;
+    pow: (soulburn: boolean, inputValues: DamageFormData) => number;
+    rate: (soulburn: boolean, inputValues: DamageFormData) => number;
     s1Benefits: boolean;
     atk: Function;
     noBuff: boolean; //TODO: possible remove this and just use atk (atkToUse)
@@ -68,7 +69,7 @@ export class Skill {
         this.critDmgBoost = _.get(data, 'critDmgBoost', () => 0);
         this.critDmgBoostTip = _.get(data, 'critDmgBoostTip', () => null);
         this.detonation = _.get(data, 'detonation', () => 0);
-        this.elementalAdvantage = _.get(data, 'elementalAdvantage', () => false);
+        this.elementalAdvantage = _.get(data, 'elementalAdvantage', (inputValues: DamageFormData) => inputValues.elementalAdvantage);
         this.enhance = _.get(data, 'enhance', []);
         this.enhanceFrom = _.get(data, 'enhanceFrom', '');
         this.exclusiveEquipment = _.get(data, 'exclusiveEquipment', () => 0);
@@ -76,8 +77,8 @@ export class Skill {
         this.extraDmgTip = _.get(data, 'extraDmgTip', () => null);
         this.fixed = _.get(data, 'fixed', () => 0);
         this.fixedTip = _.get(data, 'fixedTip', () => null);
-        this.flat = _.get(data, 'flat', (soulburn: boolean) => 0); //TODO: give these appropriate params
-        this.flat2 = _.get(data, 'flat2', (soulburn: boolean) => 0); // TODO: remove this if unncessary (only sc alexa has it)
+        this.flat = _.get(data, 'flat', () => 0); //TODO: give these appropriate params
+        this.flat2 = _.get(data, 'flat2', () => 0); // TODO: remove this if unncessary (only sc alexa has it)
         this.flatTip = _.get(data, 'flatTip', () => null);
         this.ignoreDamageTransfer = _.get(data, 'ignoreDamageTransfer', () => false);
         this.isAOE = _.get(data, 'aoe', () => false);

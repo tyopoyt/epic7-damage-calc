@@ -1,7 +1,253 @@
 import * as _ from 'lodash-es'
 import { DefensePreset, ReductionPreset } from './target-presets';
+import { BattleConstants } from 'src/assets/data/constants';
+
+// The | null here is to suppress a warning when using ?. in the html to check for a value in FormDefaults
+export const FormDefaults: Record<string, {max?: number, min?: number, defaultValue?: number, default?: boolean, step?: number} | null> = {
+    casterMaxHP: {
+        max: 50000,
+        min: 1000,
+        defaultValue: 10000
+    },
+    numberOfTargets: {
+        max: 9,
+        min: 1,
+        defaultValue: 4
+    },
+    numberOfHits: {
+        max: 3,
+        min: 1,
+        defaultValue: 1
+    },
+    targetAttack: {
+        max: 10000,
+        min: 200,
+        defaultValue: 2000
+    },
+    targetAttackUp: {
+        default: false
+    },
+    targetAttackUpGreat: {
+        default: false
+    },
+    targetAttackDown: {
+        default: false
+    },
+    targetCurrentHP: {
+        max: 50000,
+        min: 1000,
+        // TODO: update this default if target preset is selected. Either here or in damage calc component
+        defaultValue: 10000
+    },
+    targetMaxHP: {
+        max: 50000,
+        min: 1000,
+        // TODO: update this default if target preset is selected. Either here or in damage calc component
+        // TODO: this used to be how caides hp % dmg reduction worked, make caides work again
+        defaultValue: 10000
+    },
+    targetInjuries: {
+        max: 50000,
+        min: 0,
+        defaultValue: 0
+    },
+    targetIsHighestMaxHP: {
+        default: false
+    },
+    targetCurrentHPPercent: {
+        max: 100,
+        min: 1,
+        defaultValue: 100
+    },
+    // TODO: this seems to be a duplicate, remove it if so
+    // targetCurrentHP: {
+    //     max: 50000,
+    //     min: 1000,
+    //     defaultValue: 10000
+    // },
+    targetSpeed: {
+        max: 350,
+        min: 70,
+        defaultValue: 150
+    },
+    targetNumberOfBuffs: {
+        max: 10,
+        min: 0,
+        defaultValue: 0
+    },
+    targetNumberOfDebuffs: {
+        max: 10,
+        min: 0,
+        defaultValue: 0
+    },
+    // TODO: assume false if not defined here
+    // targetHasBuff: {
+    //     default: false
+    // },
+    // targetHasDebuff: {
+    //     default: false
+    // },
+    // targetHasBleed: {
+    //     default: false
+    // },
+    // targetAsleep: {
+    //     default: false
+    // },
+    // targetProvoked: {
+    //     default: false
+    // },
+    // targetTargeted: {
+    //     default: false
+    // },
+    // targetStunned: {
+    //     default: false
+    // },
+    // targetSilenced: {
+    //     default: false
+    // },
+    // targetHasBarrier: {
+    //     default: false
+    // },
+    targetNumberOfBleeds: {
+        max: 10,
+        min: 0,
+        defaultValue: 0
+    },
+    targetBleedDetonate: {
+        max: 10,
+        min: 0,
+        defaultValue: 0
+    },
+    targetBurnDetonate: {
+        max: 10,
+        min: 0,
+        defaultValue: 0
+    },
+    targetBombDetonate: {
+        max: 10,
+        min: 0,
+        defaultValue: 0
+    },
+    casterCurrentHPPercent: {
+        max: 100,
+        min: 1,
+        defaultValue: 100
+    },
+    casterCurrentHP: {
+        max: 50000,
+        min: 1000,
+        defaultValue: 10000
+    },
+    casterAboveHalfHP: {
+        default: true
+    },
+    casterDefense: {
+        max: 5000,
+        min: 200,
+        defaultValue: 750
+    },
+    casterSpeed: {
+        max: 350,
+        min: 70,
+        defaultValue: 150
+    },
+    casterNumberOfBuffs: {
+        max: 10,
+        min: 0,
+        defaultValue: 0
+    },
+    casterTurn: {
+        default: true
+    },
+    // TODO: default of casterHasBuff depending on other buff boxes
+    // TODO: caster has bzzt (and other unique buffs from passive) default to true? Check on queryparams stuff w/ that
+    casterFocus: {
+        max: 5,
+        min: 0,
+        defaultValue: 0
+    },
+    casterFightingSpirit: {
+        max: 100,
+        min: 0,
+        defaultValue: 0,
+        step: 5
+    },
+    criticalHitStack: {
+        max: 50,
+        min: 0,
+        defaultValue: 0
+    },
+    nonAttackSkillStack: {
+        max: 10,
+        min: 0,
+        defaultValue: 0
+    },
+    singleAttackStack: {
+        max: 3,
+        min: 0,
+        defaultValue: 0
+    },
+    dualAttackStack: {
+        max: 5,
+        min: 0,
+        defaultValue: 0
+    },
+    attackSkillStack: {
+        max: 3,
+        min: 0,
+        defaultValue: 0
+    },
+    turnStack: {
+        max: 20,
+        min: 0,
+        defaultValue: 0
+    },
+    aoeStack: {
+        max: 5,
+        min: 0,
+        defaultValue: 0
+    },
+    casterAttackedStack: {
+        max: 3,
+        min: 0,
+        defaultValue: 0
+    },
+    deadPeople: {
+        max: 8,
+        min: 0,
+        defaultValue: 0
+    },
+    enemyCounters: {
+        max: 4,
+        min: 0,
+        defaultValue: 0
+    },
+    highestAllyAttack: {
+        max: 10000,
+        min: 200,
+        defaultValue: 4000
+    },
+    s3OnCooldown: {
+        default: true
+    },
+    s3Stack: {
+        max: 3,
+        min: 0,
+        defaultValue: 0
+    },
+    torrentSetStack: {
+        max: 3,
+        min: 1,
+        defaultValue: 1
+    },
+    enemyDefeated: {
+        default: true
+    },
+}
+
 //TODO: heroes will replace form with heroSpecific [] and heroSpecificMaximums {}
 export class DamageFormData {
+    [key: string]: string | number | boolean | DefensePreset | ReductionPreset | undefined | (() => number),
     AOEStack: number;
     artifactLevel: number;
     attack: number;
@@ -18,6 +264,7 @@ export class DamageFormData {
     casterDebuffed: boolean;
     casterDefense: number;
     casterDefenseUp: boolean;
+    casterDefenseDown: boolean;
     casterEnraged: boolean;
     casterFocus: number;
     casterFullFightingSpirit: boolean;
@@ -36,6 +283,7 @@ export class DamageFormData {
     casterPerception: boolean;
     casterSpeed: number;
     casterSpeedUp: boolean;
+    casterSpeedDown: boolean;
     casterVigor: boolean;
     critDamage: number;
     increasedCritDamage: boolean;
@@ -53,8 +301,8 @@ export class DamageFormData {
     exclusiveEquipment3: boolean;
     heroID: string;
     highestAllyAttack: number;
-    increasedAttack: boolean;
-    increasedAttackGreat: boolean;
+    attackUp: boolean;
+    attackUpGreat: boolean;
     molagoras1: number;
     molagoras2: number;
     molagoras3: number;
@@ -64,7 +312,7 @@ export class DamageFormData {
     numberOfHits: number;
     numberOfTargets: number;
     penetrationSet: boolean;
-    rageSet?: boolean;
+    rageSet: boolean;
     reductionPreset?: ReductionPreset;
     S3OnCooldown: boolean;
     singleAttackStack: number;
@@ -81,6 +329,8 @@ export class DamageFormData {
     targetDefenseIncrease: number;
     targetDefenseDown: boolean;
     targetDefenseUp: boolean;
+    targetEnraged: boolean;
+    targetFury: boolean;
     targetHasBarrier: boolean;
     targetHasBuff: boolean;
     targetHasDebuff: boolean;
@@ -94,6 +344,8 @@ export class DamageFormData {
     targetSilenced: boolean;
     targetVigor: boolean;
     targetSpeed: number;
+    targetSpeedUp: boolean;
+    targetSpeedDown: boolean;
     targetStunned: boolean;
     targetTargeted: boolean;
     torrentSetStack: number;
@@ -117,6 +369,7 @@ export class DamageFormData {
         this.casterDebuffed = _.get(data, 'casterDebuffed', false);
         this.casterDefense = _.get(data, 'casterDefense', 1000);
         this.casterDefenseUp = _.get(data, 'casterDefenseUp', false);
+        this.casterDefenseDown = _.get(data, 'casterDefenseDown', false);
         this.casterEnraged = _.get(data, 'casterEnraged', false);
         this.casterFocus = _.get(data, 'casterFocus', 0);
         this.casterFullFightingSpirit = _.get(data, 'casterFullFightingSpirit', false);
@@ -135,6 +388,7 @@ export class DamageFormData {
         this.casterPerception = _.get(data, 'casterPerception', false);
         this.casterSpeed = _.get(data, 'casterSpeed', 150);
         this.casterSpeedUp = _.get(data, 'casterSpeedUp', false);
+        this.casterSpeedDown = _.get(data, 'casterSpeedDown', false);
         this.casterVigor = _.get(data, 'casterVigor', false);
         this.critDamage = _.get(data, 'critDamage', 250);
         this.increasedCritDamage = _.get(data, 'increasedCritDamage', false);
@@ -152,8 +406,8 @@ export class DamageFormData {
         this.exclusiveEquipment3 = _.get(data, 'exclusiveEquipment3', false);
         this.heroID = _.get(data, 'heroID', 'abigail');
         this.highestAllyAttack = _.get(data, 'highestAllyAttack', 2500);
-        this.increasedAttack = _.get(data, 'increasedAttack', false);
-        this.increasedAttackGreat = _.get(data, 'increasedAttackGreat', false);
+        this.attackUp = _.get(data, 'attackUp', false);
+        this.attackUpGreat = _.get(data, 'attackUpGreat', false);
         this.molagoras1 = _.get(data, 'molagoraS1', 0);
         this.molagoras2 = _.get(data, 'molagoraS2', 0);
         this.molagoras3 = _.get(data, 'molagoraS3', 0);
@@ -180,6 +434,8 @@ export class DamageFormData {
         this.targetDefenseIncrease = _.get(data, 'targetDefenseIncrease', 0);
         this.targetDefenseDown = _.get(data, 'targetDefenseDown', false);
         this.targetDefenseUp = _.get(data, 'targetDefenseUp', false);
+        this.targetEnraged = _.get(data, 'targetEnraged', false);
+        this.targetFury = _.get(data, 'targetFury', false);
         this.targetHasBarrier = _.get(data, 'targetHasBarrier', false);
         this.targetHasBuff = _.get(data, 'targetHasBuff', false);
         this.targetHasDebuff = _.get(data, 'targetHasDebuff', false);
@@ -192,11 +448,40 @@ export class DamageFormData {
         this.targetProvoked = _.get(data, 'targetProvoked', false);
         this.targetSilenced = _.get(data, 'targetSilenced', false);
         this.targetSpeed = _.get(data, 'targetSpeed', 150);
+        this.targetSpeedUp = _.get(data, 'targetSpeedUp', false);
+        this.targetSpeedDown = _.get(data, 'targetSpeedDown', false);
         this.targetStunned = _.get(data, 'targetStunned', false);
         this.targetTargeted = _.get(data, 'targetTargeted', false);
         this.targetVigor = _.get(data, 'targetVigor', false);
         this.torrentSetStack = _.get(data, 'torrentSetStack', 0);
         this.totalAllyBuffs = _.get(data, 'totalAllyBuffs', 0);
         this.turnStack = _.get(data, 'turnStack', 0);
+    }
+
+    casterFinalSpeed = () => {
+        return Math.floor(this.casterSpeed * (1 + (this.casterSpeedUp ? BattleConstants.spdUp - 1 : 0)
+           + (this.casterSpeedDown ? 1 - BattleConstants.spdUp : 0)
+           + (this.casterEnraged ? BattleConstants.casterRage - 1 : 0)));
+    }
+
+    targetFinalSpeed = () => {
+        return Math.floor(this.targetSpeed * (1 + (this.targetSpeedUp ? BattleConstants.spdUp - 1 : 0)
+           + (this.targetSpeedDown ? 1 - BattleConstants.spdUp : 0)
+           + (this.targetEnraged ? BattleConstants.targetRage - 1 : 0)));
+    }
+
+    // TODO: Make sure the targetdefense... get replaced when constants are renamed
+    casterFinalDefense = () => {
+        return Math.floor(this.casterDefense * (1 + (this.casterDefenseUp ? BattleConstants.targetDefenseUp : 0)
+           + (this.casterDefenseDown ? BattleConstants.targetDefenseDown : 0)
+           + (this.casterVigor ? BattleConstants.casterVigor - 1 : 0)
+           + (this.casterFury ? BattleConstants['caster-fury'] - 1 : 0)));
+    }
+    // TODO: add indomitable for peacemaker
+    targetFinalDefense = () => {
+        return Math.floor(this.targetDefense * (1 + (this.targetDefenseUp ? BattleConstants.targetDefenseUp : 0)
+           + (this.targetDefenseDown ? BattleConstants.targetDefenseDown : 0)
+           + (this.targetVigor ? BattleConstants.casterVigor - 1 : 0)
+           + (this.targetFury ? BattleConstants['caster-fury'] - 1 : 0)));
     }
 }

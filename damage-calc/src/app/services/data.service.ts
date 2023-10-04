@@ -1,4 +1,4 @@
-import { EventEmitter, Injectable, OnInit } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { Hero, HeroClass, HeroElement } from '../models/hero';
 import { DamageFormData } from '../models/forms';
 import { Artifact } from '../models/artifact';
@@ -7,7 +7,6 @@ import { Heroes } from '../../assets/data/heroes';
 
 import * as _ from 'lodash-es'
 import { BehaviorSubject } from 'rxjs';
-import { DamageService } from './damage.service';
 import { Artifacts } from 'src/assets/data/artifacts';
 
 @Injectable({
@@ -19,8 +18,8 @@ export class DataService {
   damageInputChanged: EventEmitter<void> = new EventEmitter();
 
   // TODO: update the defaults here when possible
-  currentHeroID = new BehaviorSubject<string>('arbiter_vildred')
-  currentHero = new BehaviorSubject<Hero>(Heroes.arbiter_vildred);  // Default to abigail when more things are working
+  currentHeroID = new BehaviorSubject<string>('abigail')
+  currentHero = new BehaviorSubject<Hero>(Heroes.abigail);  // Default to abigail when more things are working
   currentArtifactID = new BehaviorSubject<string>('no_proc')
   currentArtifact = new BehaviorSubject<Artifact>(Artifacts.no_proc);
   currentTarget: Target = new Target();
@@ -37,7 +36,7 @@ export class DataService {
   ];
 
   attackModifiers = [
-    'decreasedAttack', 'increasedAttack', 'increasedAttackGreat', 'casterVigor'
+    'decreasedAttack', 'attackUp', 'attackUpGreat', 'casterVigor'
   ]
   
   damageMultSets = [
@@ -47,6 +46,10 @@ export class DataService {
   displayConstants = {
     'font-family': '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"'
   };
+
+  buffModifiedSpecific = [
+    'casterSpeed', 'targetSpeed', 'casterDefense', 'targetDefense', 'targetAttack'
+  ]
 
   advantageousElementMap = {
     [HeroElement.fire]: HeroElement.earth,

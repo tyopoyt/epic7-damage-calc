@@ -76,6 +76,12 @@ html, body {
     max-height: 25rem;
   }
 
+  .sticky-top {
+    position: sticky;
+    top: $gutter;
+    z-index: $navabar-z-index;
+  }
+
   .icon {
     filter: $font-light-color-filter;
   }
@@ -108,8 +114,10 @@ html, body {
     color: white;
     background-color: $e7-buff-contrast-color;
 
-    .mdc-list-item__primary-text {
+    html div.mat-mdc-select-panel .mat-mdc-option .mdc-list-item__primary-text, body div.mat-mdc-select-panel .mat-mdc-option .mdc-list-item__primary-text {
       font-weight: bold;
+      display: flex;
+      flex-direction: row;
     }
   }
 
@@ -385,6 +393,12 @@ html, body {
           font-weight: bold;
           color: white;
         }
+      }
+    }
+
+    .mat-mdc-option:focus.mdc-list-item, .mat-mdc-option.mat-mdc-option-active.mdc-list-item {
+      &:not(.mdc-list-item--selected) {
+        background-color: $ui-dark-color;
       }
     }
   }
@@ -838,6 +852,12 @@ html, body {
           }
         }
       }
+
+      .mat-mdc-option:focus.mdc-list-item, .mat-mdc-option.mat-mdc-option-active.mdc-list-item {
+        &:not(.mdc-list-item--selected) {
+          background-color: $ui-medium-light-color;
+        }
+      }
     }
 
     .navbar {
@@ -957,6 +977,11 @@ body {
 .flex-column {
   display: flex;
   flex-direction: column;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
 }
 
 .flex-nowrap {

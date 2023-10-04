@@ -21,18 +21,18 @@ export class SpeedTunerComponent implements OnInit {
 
   displayColor: HeaderCardComponentColorOption = HeaderCardComponentColorOption.green;
 
-  slowerSpeed: number = 200;
-  fasterSpeed: number = 220;
-  slowerCRPush: number = 0;
-  fasterCRPush: number = 0;
-  fasterTurns: number = 1;
-  fasterPushesSlower: boolean = false;
-  stigmaPolitis: boolean = false;
+  slowerSpeed = 200;
+  fasterSpeed = 220;
+  slowerCRPush = 0;
+  fasterCRPush = 0;
+  fasterTurns = 1;
+  fasterPushesSlower = false;
+  stigmaPolitis = false;
 
-  slowerSpeedText: string = '209';
-  fasterSpeedText: string = '211';
-  recommendationText: string = 'Units are properly tuned, and the faster unit will always move before the slower unit.';
-  recommendationSubText: string = 'The slower unit can have up to 9 more speed OR the faster unit can have up to 9 less speed.';
+  slowerSpeedText = '209';
+  fasterSpeedText = '211';
+  recommendationText = 'Units are properly tuned, and the faster unit will always move before the slower unit.';
+  recommendationSubText = 'The slower unit can have up to 9 more speed OR the faster unit can have up to 9 less speed.';
 
   slowerHeader = 'slower_max_speed'
   fasterHeader = 'faster_min_speed'
@@ -155,7 +155,7 @@ export class SpeedTunerComponent implements OnInit {
       this.slowerSpeedText = 'Slower Unit Max Speed';
       this.fasterSpeedText = 'Faster Unit Min Speed';
     }   
-    // TODO: translate recommendations using this.translationPipe
+
     // generate recommendation and update styling accordingly
     if (this.slowerSpeed > this.fasterSpeed) {
       formattedSlowSpeed = impossible;
@@ -185,8 +185,8 @@ export class SpeedTunerComponent implements OnInit {
     this.slowerSpeedText = formattedSlowSpeed;
     this.fasterSpeedText = formattedFastSpeed;
   
-    //TODO: enable when queryparams work
+    //TODO: enable when queryparams work?
     // debounce('updateQueryParams', updateQueryParams, [false]);
-  };
+  }
 
 }

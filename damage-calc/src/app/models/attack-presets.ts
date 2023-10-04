@@ -28,7 +28,7 @@ export const AttackPresets: Record<string, AttackPreset> = {
 }
 
 export class AttackPreset {
-    id: string; // TODO: remove if unused
+    id: string;
     attack?: number;
     critDamage?: number;
 

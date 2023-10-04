@@ -19,18 +19,18 @@ export class EHPCalculatorComponent implements OnInit {
   higherIcon = 'assets/icons/chevron-double-up.svg';
   lowerIcon = 'assets/icons/chevron-double-down.svg';
 
-  firstEHP: string = '43333';
-  secondEHP: string = '43333';
+  firstEHP = '43333';
+  secondEHP = '43333';
 
-  firstRelativePercent: string = '';
-  secondRelativePercent: string = '';
-  firstRelativeIcon: string = '';
-  secondRelativeIcon: string = '';
+  firstRelativePercent = '';
+  secondRelativePercent = '';
+  firstRelativeIcon = '';
+  secondRelativeIcon = '';
 
-  firstDefense: number = 1000;
-  firstHP: number = 10000;
-  secondDefense: number = 1000;
-  secondHP: number = 10000;
+  firstDefense = 1000;
+  firstHP = 10000;
+  secondDefense = 1000;
+  secondHP = 10000;
 
   firstColor: HeaderCardComponentColorOption = HeaderCardComponentColorOption.blue;
   secondColor: HeaderCardComponentColorOption = HeaderCardComponentColorOption.blue; 
@@ -92,7 +92,7 @@ export class EHPCalculatorComponent implements OnInit {
       this.secondRelativeIcon = '';
     }
 
-    //TODO: enable when queryparams work
+    //TODO: enable when queryparams work?
     // debounce('updateQueryParams', updateQueryParams, [false]);
-  };
+  }
 }

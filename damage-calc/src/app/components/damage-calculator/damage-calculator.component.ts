@@ -8,7 +8,7 @@ import { DismissibleColorOption } from '../ui-elements/dismissible/dismissible.c
 import { DamageService } from 'src/app/services/damage.service';
 import { DataService } from 'src/app/services/data.service';
 import { Heroes } from 'src/assets/data/heroes';
-import { Hero, HeroElement } from 'src/app/models/hero';
+import { Hero } from 'src/app/models/hero';
 import { TranslationPipe } from 'src/app/pipes/translation.pipe';
 import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
@@ -16,6 +16,7 @@ import * as _ from 'lodash-es';
 import { Artifacts } from 'src/assets/data/artifacts';
 import { Artifact } from 'src/app/models/artifact';
 import { SlideInputComponent } from '../ui-elements/slide-input/slide-input.component';
+import { DamageFormData, FormDefaults } from 'src/app/models/forms';
 
 export interface DamageRow {
   skill: string;
@@ -35,15 +36,22 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
   @ViewChild('attackSlider') attackSlider: SlideInputComponent | null = null;
   @ViewChild('critDamageSlider') critDamageSlider: SlideInputComponent | null = null;
 
+  formDefaults = FormDefaults;
+
   heroSearchSubscription: Subscription;
   artifactSearchSubscription: Subscription;
   attackPresetSubscription: Subscription;
   currentArtifactSubscription: Subscription;
+  currentHeroSubscription: Subscription;
 
   DismissibleColorOption = DismissibleColorOption;
   
   displayedColumns: string[] = ['skill', 'crit', 'crush', 'normal', 'miss']
   damages: DamageRow[] = [];
+
+  heroSpecificNumberInputs: string[] = [];
+  heroSpecificBooleanInputs: string[] = [];
+  heroSpecificMaximums: Record<string, number> = {};
 
   // All hero entries
   heroes: [string, Hero][] = Object.entries(Heroes);
@@ -132,6 +140,29 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
     this.currentArtifactSubscription = this.dataService.currentArtifactID.subscribe((id) => {
       this.artifactControl.setValue(id)
     })
+
+    this.currentHeroSubscription = this.dataService.currentHero.subscribe((hero) => {
+      this.heroSpecificBooleanInputs = hero.heroSpecific.filter((input) => {
+        return typeof this.inputValues[input as keyof DamageFormData] === 'boolean';
+      });
+
+      this.heroSpecificNumberInputs = hero.heroSpecific.filter((input) => {
+        if (this.dataService.buffModifiedSpecific.includes(input)) {
+          console.log(input)
+          this.heroSpecificBooleanInputs.push(`${input}Up`);
+          this.heroSpecificBooleanInputs.push(`${input}Down`);
+
+          if (input === 'targetAttack') {
+            this.heroSpecificBooleanInputs.push(`${input}UpGreat`)
+          }
+
+          if (input === 'targetSpeed') {
+            this.heroSpecificBooleanInputs.push('targetEnraged')
+          }
+        }
+        return typeof this.inputValues[input as keyof DamageFormData] === 'number';
+      });
+    })
   }
   
   ngOnInit() {
@@ -159,6 +190,9 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
     }
     if (this.currentArtifactSubscription) {
       this.currentArtifactSubscription.unsubscribe();
+    }
+    if (this.currentHeroSubscription) {
+      this.currentHeroSubscription.unsubscribe();
     }
   }
 

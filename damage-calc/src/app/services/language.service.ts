@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { Language, Languages } from '../models/languages';
 
 import * as _ from 'lodash-es'
+import { debounce } from '../utils/utils';
 
 // TODO: check if elementalAdvantage under skills can be removed in each lang file.
 @Injectable({
@@ -12,6 +13,9 @@ export class LanguageService {
   language: BehaviorSubject<Language | null> = new BehaviorSubject<Language | null>(null)
   translationDict: Record<string, Record<string, string>> = {};
   englishDict: Record<string, Record<string, string>> = {};
+  customDict: Record<string, Record<string, string>> = {};
+
+  sameLanguageCount = 0;
 
   toolTitles: string[] = ['damage_calculator', 'speed_tuner', 'ehp_calculator', 'effectiveness_checker']
   toolTitleToPathMap: Record<string, string> = {
@@ -35,12 +39,60 @@ export class LanguageService {
   }
 
   async setLanguage(language: Language) {
-    if (!!language) {
+    if (language) {
       const translationFile = await fetch(`../../assets/i18n/${language?.countryCode}.json`);
       this.translationDict = await translationFile.json();
   
+      if (this.language.value === language) {
+        this.sameLanguageCount++;
+        debounce('clearSameLanguageCount', () => {this.sameLanguageCount = 0}, [], 4000)
+        if (this.sameLanguageCount >= 3) {
+          this.sameLanguageCount = 0;
+          if (confirm('Are you sure you want to load a local translation file for testing?\nIf there are any errors with your file you can refresh the page to reset.')) {
+            this.getTranslationFile();
+            return
+          }
+        }
+      } else {
+        this.sameLanguageCount = 0;
+      }
+
       this.language.next(language);
     }
+  }
+
+  getTranslationFile() {
+    const input: HTMLInputElement = document.createElement('input');
+    input.type = 'file';
+
+    input.onchange = e => {    
+      const fileInput: HTMLInputElement | null = (e.target as HTMLInputElement);
+      if (fileInput.files) {
+        const file: File | null = fileInput.files[0];
+
+        const reader = new FileReader();
+        reader.readAsText(file,'UTF-8');
+
+        reader.onload = async readerEvent => {
+            const content = readerEvent.target?.result;
+            this.translationDict = await JSON.parse(content as string);
+            this.loadCustomLanguage();
+        }
+      }
+    }
+
+    input.click();
+  }
+
+  loadCustomLanguage() {
+    this.language.next(
+      {
+        name: 'English',
+        localName: 'English',
+        code: 'en',
+        countryCode: 'us'
+      }
+    )
   }
 
   getSkillModTip = (tips: Record<string, number>) => {

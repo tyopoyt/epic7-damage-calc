@@ -9,8 +9,8 @@
                 <img class="png-icon medium tiny-margin-right select-icon-2" src="assets/classes/{{hero.class}}.png" alt="{{hero.class}}">
                 <mat-select [formControl]="heroControl" placeholder="" #singleSelect (selectionChange)="selectHero($event.value)">
                     <mat-option>
-                        <!-- TODO: finish styling: fix clear button.  Set light mode colors for select box and this search field -->
-                        <ngx-mat-select-search [formControl]="heroFilterControl" placeholderLabel="Find hero..." noEntriesFoundLabel="No matching heroes found"></ngx-mat-select-search>
+                        <!-- TODO: finish styling: Set light mode colors for select box and this search field -->
+                        <ngx-mat-select-search spellcheck="false" [formControl]="heroFilterControl" placeholderLabel="Find hero..." noEntriesFoundLabel="No matching heroes found"></ngx-mat-select-search>
                     </mat-option>
                     <mat-option *ngFor="let hero of filteredHeroes" class="has-icons" [value]="hero[0]">
                         <img class="png-icon medium tiny-margin-right select-option-icon" src="assets/elements/{{hero[1].element}}.png" alt="{{hero[1].element}}">
@@ -23,7 +23,7 @@
                 <img class="png-icon medium tiny-margin-right select-icon" src=" assets/{{artifact.heroExclusive.length ? 'heroes' : 'classes'}}/{{artifact.heroExclusive.length ? artifact.heroExclusive[0] + '-icon' : artifact.exclusive}}.png" alt="{{artifact.exclusive}}">
                 <mat-select [formControl]="artifactControl" placeholder="" #singleSelect (selectionChange)="selectArtifact($event.value)">
                     <mat-option>
-                        <ngx-mat-select-search [formControl]="artifactFilterControl" placeholderLabel="Find artifact..." noEntriesFoundLabel="No matching artifacts found"></ngx-mat-select-search>
+                        <ngx-mat-select-search spellcheck="false" [formControl]="artifactFilterControl" placeholderLabel="Find artifact..." noEntriesFoundLabel="No matching artifacts found"></ngx-mat-select-search>
                     </mat-option>
                     <mat-option *ngFor="let artifact of filteredArtifacts" class="has-icon" [value]="artifact[0]" [disabled]="(artifact[1].exclusive !== 'common' && artifact[1].exclusive !== hero.class) || (!!artifact[1].heroExclusive.length && !(artifact[1].heroExclusive.includes(heroID)))">
                         <img class="png-icon medium tiny-margin-right select-option-icon" src=" assets/{{artifact[1].heroExclusive.length ? 'heroes' : 'classes'}}/{{artifact[1].heroExclusive.length ? artifact[1].heroExclusive[0] + '-icon' : artifact[1].exclusive}}.png" alt="{{artifact[1].exclusive}}">
@@ -33,7 +33,7 @@
             </mat-form-field><mat-form-field class="example-full-width neat-container">
                 <mat-select [formControl]="attackPresetControl" placeholder="" #singleSelect>
                     <mat-option *ngFor="let attackPreset of attackPresets" [value]="attackPreset[0]">
-                        {{attackPreset[0] | translate:'form':languageService.language.value}}
+                        <span class="flex-row neat-container">{{attackPreset[0] | translate:'form':languageService.language.value}}<p *ngIf="attackPreset[1].attack && attackPreset[1].critDamage" class="preset-hint"> ({{attackPreset[1].attack}}atk/{{attackPreset[1].critDamage}}%cdam)</p></span>
                     </mat-option>
                 </mat-select>
             </mat-form-field>
@@ -76,8 +76,6 @@
             </app-slide-input>
         </div>
         <div class="checkbox-holder">
-            <!-- TODO: add icons to the checkboxes -->
-            <!-- <mat-checkbox class="small-margin-top" (click)="toggleStigmaPolitis()" [checked]="this.stigmaPolitis"> -->
             <mat-checkbox class="small-margin-top" [checked]="inputValues.elementalAdvantage" (change)="inputChange('elementalAdvantage', $event.checked)">
                 <span class="neat-container">
                     <img class="png-icon medium tiny-margin-right" src="assets/elements/{{advantageousElement}}.png" alt="{{advantageousElement}}">
@@ -90,13 +88,13 @@
                     {{'decreased_attack' | translate:'form':languageService.language.value}}
                 </span>
             </mat-checkbox>
-            <mat-checkbox class="small-margin-top" [checked]="inputValues.increasedAttack" (change)="inputChange('increasedAttack', $event.checked)">
+            <mat-checkbox class="small-margin-top" [checked]="inputValues.attackUp" (change)="inputChange('attackUp', $event.checked)">
                 <span class="neat-container">
                     <img class="png-icon medium tiny-margin-right" src="assets/buffs/attack-buff.png" alt="Attack buff">
                     {{'increased_attack' | translate:'form':languageService.language.value}}
                 </span>
             </mat-checkbox>
-            <mat-checkbox class="small-margin-top" [checked]="inputValues.increasedAttackGreat" (change)="inputChange('increasedAttackGreat', $event.checked)">
+            <mat-checkbox class="small-margin-top" [checked]="inputValues.attackUpGreat" (change)="inputChange('attackUpGreat', $event.checked)">
                 <span class="neat-container">
                     <img class="png-icon medium tiny-margin-right" src="assets/buffs/greater-attack-buff.png" alt="Greater attack buff">
                     {{'increased_attack_great' | translate:'form':languageService.language.value}}
@@ -134,8 +132,8 @@
                 </span>
             </mat-checkbox>
         </div>
-        <div class="artifact-block header-block">
-            <h1>Artifact</h1>
+        <div *ngIf="artifact.id !== 'no_proc' && artifact.scale" class="artifact-block header-block">
+            <h1>{{'artifact' | translate:'ui':languageService.language.value}}</h1>
             <div class="neat-container full-width">
                 <app-slide-input
                     [label]="'level' | translate:'form':languageService.language.value"
@@ -206,14 +204,31 @@
                 </mat-checkbox>
             </div>
         </div>
-        <div class="hero-specific-block header-block">
+        <div *ngIf="hero.heroSpecific.length" class="hero-specific-block header-block">
             <h1>Hero Specific</h1>
             <div class="neat-container full-width">
-                <app-slide-input
-                    [label]="'caster_max_hp' | translate:'form':languageService.language.value"
-                    [max]="50000" [min]="1000" [default]="10000" (valueChange)="inputChange('casterMaxHP', $event)"
-                    [column]="screenService.mediumScreen.value">
-                </app-slide-input>
+                <div *ngFor="let input of heroSpecificNumberInputs" class="full-width">
+                    <app-slide-input
+                        [label]="input | translate:'form':languageService.language.value"
+                        [max]="heroSpecificMaximums[input] || formDefaults[input]?.max || 10000"
+                        [min]="formDefaults[input]?.min || 0" [step]="formDefaults[input]?.step || 1"
+                        [default]="formDefaults[input]?.defaultValue || 5000"
+                        (valueChange)="inputChange(input, $event)"
+                        [column]="screenService.mediumScreen.value">
+                    </app-slide-input>
+                </div>
+                <div class="checkbox-holder">
+                    <!-- TODO: add icons for buffs -->
+                    <!-- TODO: add icons for EEs -->
+                    <mat-checkbox *ngFor="let input of heroSpecificBooleanInputs"
+                        class="small-margin-top" [checked]="!!inputValues[input]"
+                        (change)="inputChange(input, $event.checked)">
+                        <span class="neat-container">
+                            <!-- <img class="png-icon medium tiny-margin-right" src="assets/elements/{{advantageousElement}}.png" alt="{{advantageousElement}}"> -->
+                            {{input | translate:'form':languageService.language.value}}
+                        </span>
+                    </mat-checkbox>
+                </div>
             </div>
         </div>
         <div class="skill-enhance-block header-block">
@@ -229,6 +244,8 @@
             </div>
         </div>
         <div class="damage-block">
+            <!-- TODO: DoTs, Artifact damage block, barriers, multiplier fxn breakdown button -->
+            <!-- TODO: Add healing? -->
             <mat-card class="left">
                 <div class="extra-large-text bold-text small-padding-top">
                     {{"damage_title" | translate:'form':languageService.language.value}}
@@ -274,7 +291,7 @@
                     <div class="credit-column">
                         <h2>{{'credits' | translate:'ui':languageService.language.value}}</h2>
                         <p>
-                            Discord: tyopoyt#1365<br>
+                            Discord: @tyopoyt<br>
                             Thanks to the original creator, Maphe<br>
                             Thanks for the help: Thunder_God, okloio, haie<br>
                             Translation: Rano / TriATK <app-flag [country]="'cn'"></app-flag>
