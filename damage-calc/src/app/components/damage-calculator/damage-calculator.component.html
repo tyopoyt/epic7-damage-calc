@@ -226,6 +226,7 @@
                         <span class="neat-container">
                             <!-- <img class="png-icon medium tiny-margin-right" src="assets/elements/{{advantageousElement}}.png" alt="{{advantageousElement}}"> -->
                             {{input | translate:'form':languageService.language.value}}
+                            <img class="icon tiny tiny-margin-left" *ngIf="formDefaults[input]?.hint" src="assets/icons/help-circle-outline.svg" alt="Hint" matTooltip="{{formDefaults[input]?.hint}}">
                         </span>
                     </mat-checkbox>
                 </div>
@@ -250,7 +251,7 @@
                 <div class="extra-large-text bold-text small-padding-top">
                     {{"damage_title" | translate:'form':languageService.language.value}}
                 </div>
-                <table class="margin-top" [class.smaller-padding]="screenService.tinyScreen.value" [class.tiny-padding]="screenService.tinyScreen.value" mat-table [dataSource]="damages">
+                <table class="margin-top" [class.tiny-padding]="screenService.smallScreen.value" mat-table [dataSource]="damageData">
 
                     <ng-container matColumnDef="skill">
                       <th mat-header-cell *matHeaderCellDef> {{"skill" | translate:'form':languageService.language.value}} </th>
@@ -280,8 +281,8 @@
                     </ng-container>
                     <!-- eslint-enable -->
                   
-                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns" [class.large-text]="!screenService.smallScreen.value"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;" [class.large-text]="!screenService.smallScreen.value"></tr>
                   </table>
             </mat-card>
         </div>

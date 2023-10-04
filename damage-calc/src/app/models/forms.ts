@@ -1,9 +1,10 @@
 import * as _ from 'lodash-es'
 import { DefensePreset, ReductionPreset } from './target-presets';
 import { BattleConstants } from 'src/assets/data/constants';
+import { Artifact } from './artifact';
 
 // The | null here is to suppress a warning when using ?. in the html to check for a value in FormDefaults
-export const FormDefaults: Record<string, {max?: number, min?: number, defaultValue?: number, default?: boolean, step?: number} | null> = {
+export const FormDefaults: Record<string, {max?: number, min?: number, defaultValue?: number, default?: boolean, step?: number, hint?: string} | null> = {
     casterMaxHP: {
         max: 50000,
         min: 1000,
@@ -243,11 +244,15 @@ export const FormDefaults: Record<string, {max?: number, min?: number, defaultVa
     enemyDefeated: {
         default: true
     },
+    inBattleHP: {
+        default: false,
+        hint: 'inBattleHPHint'
+    }
 }
 
 //TODO: heroes will replace form with heroSpecific [] and heroSpecificMaximums {}
 export class DamageFormData {
-    [key: string]: string | number | boolean | DefensePreset | ReductionPreset | undefined | (() => number),
+    [key: string]: string | number | boolean | DefensePreset | ReductionPreset | undefined | ((artifact: Artifact) => number),
     AOEStack: number;
     artifactLevel: number;
     attack: number;
@@ -301,6 +306,7 @@ export class DamageFormData {
     exclusiveEquipment3: boolean;
     heroID: string;
     highestAllyAttack: number;
+    inBattleHP: boolean;
     attackUp: boolean;
     attackUpGreat: boolean;
     molagoras1: number;
@@ -406,6 +412,7 @@ export class DamageFormData {
         this.exclusiveEquipment3 = _.get(data, 'exclusiveEquipment3', false);
         this.heroID = _.get(data, 'heroID', 'abigail');
         this.highestAllyAttack = _.get(data, 'highestAllyAttack', 2500);
+        this.inBattleHP = _.get(data, 'inBattleHP', false);
         this.attackUp = _.get(data, 'attackUp', false);
         this.attackUpGreat = _.get(data, 'attackUpGreat', false);
         this.molagoras1 = _.get(data, 'molagoraS1', 0);
@@ -483,5 +490,9 @@ export class DamageFormData {
            + (this.targetDefenseDown ? BattleConstants.targetDefenseDown : 0)
            + (this.targetVigor ? BattleConstants.casterVigor - 1 : 0)
            + (this.targetFury ? BattleConstants['caster-fury'] - 1 : 0)));
+    }
+
+    casterFinalMaxHP = (artifact: Artifact) => {
+        return this.casterMaxHP * (this.inBattleHP ? 1: artifact.maxHP);
     }
 }

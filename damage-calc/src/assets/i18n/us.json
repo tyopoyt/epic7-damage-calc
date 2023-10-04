@@ -610,7 +610,8 @@
     "all_in_attack": "All in Attack",
     "all_in_crit_damage": "All in Crit Dmg",
     "elite_balanced": "Elite Balanced",
-    "level": "Level"
+    "level": "Level",
+    "inBattleHPHint": "Check this box ONLY if you are using the caster's final HP value displayed in an active battle instead of the value on the hero's stat page."
   },
   "info": {
     "alencia_trample": "Trample",

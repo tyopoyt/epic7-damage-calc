@@ -5,7 +5,7 @@ import { AttackPreset, AttackPresets } from 'src/app/models/attack-presets';
 import { LanguageService } from 'src/app/services/language.service';
 import { ScreenService } from 'src/app/services/screen.service';
 import { DismissibleColorOption } from '../ui-elements/dismissible/dismissible.component';
-import { DamageService } from 'src/app/services/damage.service';
+import { DamageRow, DamageService } from 'src/app/services/damage.service';
 import { DataService } from 'src/app/services/data.service';
 import { Heroes } from 'src/assets/data/heroes';
 import { Hero } from 'src/app/models/hero';
@@ -17,14 +17,7 @@ import { Artifacts } from 'src/assets/data/artifacts';
 import { Artifact } from 'src/app/models/artifact';
 import { SlideInputComponent } from '../ui-elements/slide-input/slide-input.component';
 import { DamageFormData, FormDefaults } from 'src/app/models/forms';
-
-export interface DamageRow {
-  skill: string;
-  crit: number | null;
-  crush: number | null;
-  normal: number | null;
-  miss: number | null;
-}
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-damage-calculator',
@@ -38,6 +31,7 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
 
   formDefaults = FormDefaults;
 
+  damageSubscription: Subscription;
   heroSearchSubscription: Subscription;
   artifactSearchSubscription: Subscription;
   attackPresetSubscription: Subscription;
@@ -47,7 +41,7 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
   DismissibleColorOption = DismissibleColorOption;
   
   displayedColumns: string[] = ['skill', 'crit', 'crush', 'normal', 'miss']
-  damages: DamageRow[] = [];
+  damageData = new MatTableDataSource<DamageRow>() //DamageRow[] = [];
 
   heroSpecificNumberInputs: string[] = [];
   heroSpecificBooleanInputs: string[] = [];
@@ -116,6 +110,10 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
 
     this.attackPresetControl = new FormControl<string | null>(AttackPresets.manual.id)
 
+    this.damageSubscription = this.damageService.damages.subscribe((skillDamages: DamageRow[]) => {
+      this.damageData.data = skillDamages;
+    });
+
     this.heroSearchSubscription = this.heroFilterControl.valueChanges
       .subscribe(() => {
         this.filterHeroes();
@@ -138,44 +136,18 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
     });
 
     this.currentArtifactSubscription = this.dataService.currentArtifactID.subscribe((id) => {
-      this.artifactControl.setValue(id)
+      this.artifactControl.setValue(id);
+      this.updateFormInputs();
     })
 
-    this.currentHeroSubscription = this.dataService.currentHero.subscribe((hero) => {
-      this.heroSpecificBooleanInputs = hero.heroSpecific.filter((input) => {
-        return typeof this.inputValues[input as keyof DamageFormData] === 'boolean';
-      });
-
-      this.heroSpecificNumberInputs = hero.heroSpecific.filter((input) => {
-        if (this.dataService.buffModifiedSpecific.includes(input)) {
-          console.log(input)
-          this.heroSpecificBooleanInputs.push(`${input}Up`);
-          this.heroSpecificBooleanInputs.push(`${input}Down`);
-
-          if (input === 'targetAttack') {
-            this.heroSpecificBooleanInputs.push(`${input}UpGreat`)
-          }
-
-          if (input === 'targetSpeed') {
-            this.heroSpecificBooleanInputs.push('targetEnraged')
-          }
-        }
-        return typeof this.inputValues[input as keyof DamageFormData] === 'number';
-      });
+    this.currentHeroSubscription = this.dataService.currentHero.subscribe(() => {
+      this.updateFormInputs();
     })
   }
   
   ngOnInit() {
     const langParam = this.route.snapshot.paramMap.get('lang') || 'us';
-    this.languageService.setLanguage(Languages[langParam])
-
-    this.damageService.damages.subscribe((skillDamages) => {
-      const newDamages: DamageRow[] = [];
-      for (const [skill, damages] of Object.entries(skillDamages)) {
-        newDamages.push({'skill': skill, 'crit': damages.crit, 'crush': damages.crush, 'normal': damages.normal, 'miss': damages.miss})
-      }
-      this.damages = newDamages;
-    })
+    this.languageService.setLanguage(Languages[langParam]);
   }
 
   ngOnDestroy(): void {
@@ -194,6 +166,40 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
     if (this.currentHeroSubscription) {
       this.currentHeroSubscription.unsubscribe();
     }
+  }
+
+  updateFormInputs() {
+    this.heroSpecificBooleanInputs = this.hero.heroSpecific.filter((input) => {
+      return typeof this.inputValues[input as keyof DamageFormData] === 'boolean';
+    });
+
+    this.heroSpecificNumberInputs = this.hero.heroSpecific.filter((input) => {
+      if (this.dataService.buffModifiedSpecific.includes(input)) {
+        this.heroSpecificBooleanInputs.push(`${input}Up`);
+        this.heroSpecificBooleanInputs.push(`${input}Down`);
+
+        if (input === 'targetAttack') {
+          this.heroSpecificBooleanInputs.push(`${input}UpGreat`)
+        }
+
+        if (input === 'targetSpeed') {
+          this.heroSpecificBooleanInputs.push('targetEnraged')
+        }
+      }
+      this.addAddtionalBooleanInputs()
+      return typeof this.inputValues[input as keyof DamageFormData] === 'number';
+    });
+  }
+
+  addAddtionalBooleanInputs() {
+    if (this.heroSpecificNumberInputs.includes('casterMaxHP') && this.dataService.HPIncreaseArtifacts.includes(this.dataService.currentArtifactID.value)) {
+      this.heroSpecificBooleanInputs.push('inBattleHP');
+    }
+    this.dedupeForm();
+  }
+
+  dedupeForm() {
+    this.heroSpecificBooleanInputs =[...(new Set(this.heroSpecificBooleanInputs))]
   }
 
   // TODO: don't call this initially for every input, only once

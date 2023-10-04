@@ -403,6 +403,10 @@ html, body {
     }
   }
 
+  .cdk-overlay-container {
+    z-index: $popup-z-index;
+  }
+
   .mat-mdc-tooltip .mdc-tooltip__surface {
     color: $font-light-color;
     background-color: $ui-darker-color;
@@ -1087,8 +1091,8 @@ body {
 }
 
 .large-text {
-  font-size: 1.25rem;
-  line-height: 1.25rem;
+  font-size: 1.25rem !important;
+  line-height: 1.25rem !important;
 }
 
 .extra-large-text {

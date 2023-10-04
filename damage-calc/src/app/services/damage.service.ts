@@ -9,7 +9,8 @@ import { BehaviorSubject } from 'rxjs';
 import { BattleConstants } from 'src/assets/data/constants';
 
 //TODO: all google analytics events
-export interface Damages {
+export interface DamageRow {
+  skill: string;
   crit: number | null;
   crush: number | null;
   normal: number | null;
@@ -21,7 +22,7 @@ export interface Damages {
 })
 export class DamageService {
 
-  damages: BehaviorSubject<Record<string, Damages>> = new BehaviorSubject({});
+  damages: BehaviorSubject<DamageRow[]> = new BehaviorSubject([] as DamageRow[]);
 
   get damageForm() {
     return this.dataService.damageInputValues;
@@ -92,35 +93,36 @@ export class DamageService {
     return mult;
   }
 
+  // TODO: Does this need to know about hit type?
   getModifiers(skill: Skill, soulburn = false) {
     return {
       rate: skill.rate(soulburn, this.damageForm),
       pow: skill.pow(soulburn, this.damageForm),
-      mult: skill.mult(soulburn, this.damageForm) - 1, // TODO: change anything checking for this to be null to check for -1
+      mult: skill.mult(soulburn, this.damageForm, this.currentArtifact) - 1, // TODO: change anything checking for this to be null to check for -1
       multTip: this.languageService.getSkillModTip(skill.multTip(soulburn)),
       afterMathDmg: this.currentHero.getAfterMathSkillDamage(skill, HitType.crit, this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), this.getGlobalDefenseMult(), this.dataService.currentTarget),
-      afterMathFormula: skill.afterMath(soulburn),
+      afterMathFormula: skill.afterMath(HitType.crit, this.damageForm),
       critBoost: skill.critDmgBoost(soulburn),
       critBoostTip: this.languageService.getSkillModTip(skill.critDmgBoostTip(soulburn)),
       detonation: skill.detonation() - 1,
       elementalAdvantage: skill.elementalAdvantage(this.damageForm),
       exEq: skill.exclusiveEquipment(),
-      extraDmg: skill.extraDmg(),
+      extraDmg: skill.extraDmg(HitType.crit, this.damageForm),
       extraDmgTip: this.languageService.getSkillModTip(skill.extraDmgTip(soulburn)),
-      fixed: skill.fixed(HitType.crit),
+      fixed: skill.fixed(HitType.crit, this.damageForm),
       fixedTip: this.languageService.getSkillModTip(skill.fixedTip()),
-      flat: skill.flat(soulburn, this.damageForm),
+      flat: skill.flat(soulburn, this.damageForm, this.currentArtifact),
       flatTip: this.languageService.getSkillModTip(skill.flatTip(soulburn)),
-      pen: skill.penetrate(soulburn, this.damageForm),
+      pen: skill.penetrate(soulburn, this.damageForm, this.currentArtifact),
       penTip: this.languageService.getSkillModTip(skill.penetrateTip(soulburn)),
     };
   }
 
   offensivePower(skill: Skill, soulburn = false, isExtra = false) {
     const rate = skill.rate(soulburn, this.damageForm);
-    const flatMod = skill.flat(soulburn, this.damageForm);
+    const flatMod = skill.flat(soulburn, this.damageForm, this.currentArtifact);
     //TODO: rename this
-    const flatMod2 = this.currentArtifact.getFlatMult(this.damageForm.artifactLevel, this.damageForm, skill, isExtra) + (skill.flat2());
+    const flatMod2 = this.currentArtifact.getFlatMult(this.damageForm.artifactLevel, this.damageForm, skill, isExtra) + (skill.flat2(this.damageForm));
 
     const pow = (typeof skill.pow === 'function') ? skill.pow(soulburn, this.damageForm) : skill.pow;
     const skillEnhance = this.currentHero.getSkillEnhanceMult(skill, this.dataService.molagoras());
@@ -129,15 +131,16 @@ export class DamageService {
       elementalAdvantage = BattleConstants.elementalAdvantage;
     }
     const target = this.damageForm.targetTargeted ? BattleConstants.target : 1.0;
+
     const dmgMod = 1.0
         + this.getGlobalDamageMult(skill)
         + this.damageForm.damageIncrease / 100
         + this.currentArtifact.getDamageMultiplier(this.damageForm.artifactLevel, this.damageForm, skill, isExtra)
-        + (skill.mult ? skill.mult(soulburn, this.damageForm) - 1 : 0); // TODO: 'this' is certainly the wrong thing to pass here
+        + (skill.mult ? skill.mult(soulburn, this.damageForm, this.currentArtifact) - 1 : 0); // TODO: 'this' is certainly the wrong thing to pass here
     return ((this.currentHero.getAttack(this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill, isExtra) * rate + flatMod) * BattleConstants.dmgConst + flatMod2) * pow * skillEnhance * elementalAdvantage * target * dmgMod;
   }
 
-  // Tthis getAtk is called because of lilias
+  // This getAtk is called because of lilias
   getDotDamage(skill: Skill, type: DoT) {
     switch (type) {
     case DoT.bleed:
@@ -164,13 +167,12 @@ export class DamageService {
     const detonation = this.getDetonateDamage(skill);
     const artiDamage: number = this.currentHero.getAfterMathArtifactDamage(skill, this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), this.getGlobalDefenseMult(), this.dataService.currentTarget) || 0;
     const skillDamage = this.currentHero.getAfterMathSkillDamage(skill, hitType, this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), this.getGlobalDefenseMult(), this.dataService.currentTarget);
-    const skillExtraDmg = skill.extraDmg !== undefined ? Math.round(skill.extraDmg(hitType)) : 0;
-    console.log(skillDamage)
+    const skillExtraDmg = skill.extraDmg !== undefined ? Math.round(skill.extraDmg(hitType, this.damageForm)) : 0;
     return detonation + artiDamage + skillDamage + skillExtraDmg;
   }
 
   // TODO: ensure this is called only once per skill when something changes (hero, input, etc.)
-  getDamage(skill: Skill, soulburn = false, isExtra = false): Damages {
+  getDamage(skill: Skill, soulburn = false, isExtra = false): DamageRow {
     const critDmgBuff = this.damageForm.increasedCritDamage ? BattleConstants.increasedCritDamage : 0.0;
     const hit = this.offensivePower(skill, soulburn, isExtra) * this.dataService.currentTarget.defensivePower(skill, this.damageForm, this.getGlobalDefenseMult(), this.currentArtifact, soulburn);
     const critDmg = Math.min((this.damageForm.critDamage / 100) + critDmgBuff, 3.5)
@@ -178,28 +180,29 @@ export class DamageService {
         + (this.currentArtifact.getCritDmgBoost(this.damageForm.artifactLevel, this.damageForm, skill, isExtra) || 0)
         + (this.damageForm.casterPerception ? BattleConstants.perception : 0);
     return {
-      crit: skill.noCrit || skill.onlyMiss ? null : Math.round(hit * critDmg + (skill.fixed !== undefined ? skill.fixed(HitType.crit) : 0) + this.getAfterMathDamage(skill, HitType.crit)),
-      crush: skill.noCrit || skill.onlyCrit || skill.onlyMiss ? null : Math.round(hit * 1.3 + (skill.fixed !== undefined ? skill.fixed(HitType.crush) : 0) + this.getAfterMathDamage(skill, HitType.crush)),
-      normal: skill.onlyCrit || skill.onlyMiss ? null : Math.round(hit + (skill.fixed !== undefined ? skill.fixed(HitType.normal) : 0) + this.getAfterMathDamage(skill, HitType.normal)),
-      miss: skill.noMiss ? null : Math.round(hit * 0.75 + (skill.fixed !== undefined ? skill.fixed(HitType.miss) : 0) + this.getAfterMathDamage(skill, HitType.miss))
+      skill: skill.id + (soulburn ? '_soulburn' : (isExtra ? '_extra' : '')),
+      crit: skill.noCrit || skill.onlyMiss ? null : Math.round(hit * critDmg + (skill.fixed !== undefined ? skill.fixed(HitType.crit, this.damageForm) : 0) + this.getAfterMathDamage(skill, HitType.crit)),
+      crush: skill.noCrit || skill.onlyCrit || skill.onlyMiss ? null : Math.round(hit * 1.3 + (skill.fixed !== undefined ? skill.fixed(HitType.crush, this.damageForm) : 0) + this.getAfterMathDamage(skill, HitType.crush)),
+      normal: skill.onlyCrit || skill.onlyMiss ? null : Math.round(hit + (skill.fixed !== undefined ? skill.fixed(HitType.normal, this.damageForm) : 0) + this.getAfterMathDamage(skill, HitType.normal)),
+      miss: skill.noMiss ? null : Math.round(hit * 0.75 + (skill.fixed !== undefined ? skill.fixed(HitType.miss, this.damageForm) : 0) + this.getAfterMathDamage(skill, HitType.miss))
     };
   }
 
   // TODO: ensure this isn't called more than needed.  Once per skill per input change, and only once on page load (or maybe twice with queryparams)
   updateDamages() {
-    const newDamages: Record<string, Damages> = {}
-    for (const [skillID, skill] of Object.entries(this.currentHero.skills)) {
-      newDamages[skillID] = this.getDamage(skill, false, false)
+    const newDamages: DamageRow[] = []
+    for (const skill of Object.values(this.currentHero.skills)) {
+      newDamages.push(this.getDamage(skill, false, false));
 
       if (skill.soulburn) {
-        newDamages[`${skillID}_soulburn`] = this.getDamage(skill, true, false)
+        newDamages.push(this.getDamage(skill, true, false));
       }
 
       if (skill.canExtra) {
-        newDamages[`${skillID}_extra`] = this.getDamage(skill, false, true)
+      newDamages.push(this.getDamage(skill, false, true));
       }
     }
 
-    this.damages.next(newDamages)
+    this.damages.next(newDamages);
   }
 }

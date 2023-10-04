@@ -1,5 +1,6 @@
 import * as _ from 'lodash-es'
 import { DamageFormData } from './forms';
+import { Artifact } from './artifact';
 
 export enum DoT {
     bleed = 'bleed',
@@ -17,11 +18,18 @@ export enum HitType {
     crush = 'crush',
     normal = 'normal',
     miss = 'miss'
-  }
+}
+
+export class AftermathSkill {
+    defensePercent?: number
+    attackPercent?: number
+    injuryPercent?: number
+    penetrate = 0.7
+}
 
 export class Skill {
     id: string;
-    afterMath: Function;
+    afterMath: (hitType: HitType, inputValues: DamageFormData) => AftermathSkill;
     canExtra: boolean;
     critDmgBoost: Function;
     critDmgBoostTip: Function;
@@ -30,20 +38,20 @@ export class Skill {
     enhance: number[];
     enhanceFrom: string;
     exclusiveEquipment: Function;
-    extraDmg: Function;
+    extraDmg: (hitType: HitType, inputValues: DamageFormData) => number;
     extraDmgTip: Function;
-    fixed: Function;
+    fixed: (hitType: HitType, inputValues: DamageFormData) => number;
     fixedTip: Function;
-    flat: (soulburn: boolean, inputValues: DamageFormData) => number;
+    flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => number;
     flat2: Function;
     flatTip: Function;
     ignoreDamageTransfer: Function;
     isAOE: Function;
     isExtra: boolean;
     isSingle: Function;
-    mult: (soulburn: boolean, inputValues: DamageFormData) => number;
+    mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => number;
     multTip: Function;
-    penetrate: (soulburn: boolean, inputValues: DamageFormData) => number;
+    penetrate: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => number;
     penetrateTip: Function;
     pow: (soulburn: boolean, inputValues: DamageFormData) => number;
     rate: (soulburn: boolean, inputValues: DamageFormData) => number;
@@ -82,7 +90,7 @@ export class Skill {
         this.flatTip = _.get(data, 'flatTip', () => null);
         this.ignoreDamageTransfer = _.get(data, 'ignoreDamageTransfer', () => false);
         this.isAOE = _.get(data, 'aoe', () => false);
-        this.isExtra = _.get(data, 'isExtra', () => false);
+        this.isExtra = _.get(data, 'isExtra', false);
         this.isSingle = _.get(data, 'isSingle', () => false);
         this.mult = _.get(data, 'mult', () => 1);
         this.multTip = _.get(data, 'multTip', () => null);

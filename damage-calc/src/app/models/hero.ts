@@ -24,9 +24,9 @@ export enum HeroClass {
 }
 //TODO: refactor atk to attack and crit to critDamage
 export class Hero {
-    attackIncrease?: Function;
-    barrier?: Function;
-    barrier2?: Function;
+    attackIncrease: (inputValues: DamageFormData) => number;
+    barrier: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => number;
+    barrier2: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => number;
     barrier2Enhance?: string;
     barrierEnhance?: string;
     barrierSkills?: string[];
@@ -38,7 +38,7 @@ export class Hero {
     element: HeroElement;
     heroSpecific: string[];
     heroSpecificMaximums: Record<string, number>;
-    innateAttackIncrease?: Function;
+    innateAttackIncrease?: (inputValues: DamageFormData) => number;
     skills: Record<string, Skill>;
     exclusiveEquipmentMultiplier?: Function;
 
@@ -91,10 +91,11 @@ export class Hero {
   }
 
   getAttack(artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number, skill: Skill, isExtra = false): number {
-    let atk = skill?.atk() || inputValues.attack;
+    let atk = skill?.atk(inputValues) || inputValues.attack;
 
+    // TODO: check if this is innateAttackIncrease val is added twice?
     if (this.innateAttackIncrease !== undefined) {
-      atk = atk / (1 + this.innateAttackIncrease());
+      atk = atk / (1 + this.innateAttackIncrease(inputValues));
     }
 
     let atkImprint = 0;
@@ -103,8 +104,8 @@ export class Hero {
       atkImprint = this.baseAttack * (inputValues.attackImprint / 100);
       atkMod = 1
           + attackMultiplier
-          + (this.attackIncrease !== undefined ? this.attackIncrease() - 1 : 0)
-          + (this.innateAttackIncrease !== undefined ? this.innateAttackIncrease() : 0)
+          + (this.attackIncrease !== undefined ? this.attackIncrease(inputValues) - 1 : 0)
+          + (this.innateAttackIncrease !== undefined ? this.innateAttackIncrease(inputValues) : 0)
           + artifact.getAttackBoost(inputValues.artifactLevel, inputValues, skill, isExtra);
     }
 
@@ -117,7 +118,6 @@ export class Hero {
   }
 
   getSpeed(inputValues: DamageFormData): number {
-    console.log(inputValues)
       return Math.floor(inputValues.casterSpeed) * (1 + (inputValues.casterSpeedUp ? BattleConstants.spdUp - 1 : 0)
            + (inputValues.casterSpeedDown ? 1 - BattleConstants.spdUp : 0)
            + (inputValues.casterEnraged ? BattleConstants['casterRage'] - 1 : 0));
@@ -125,16 +125,14 @@ export class Hero {
 
   getAfterMathSkillDamage(skill: Skill, hitType: HitType, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number, defenseMultiplier: number, target: Target, isExtra = false) {
     let skillDamage = 0;
-    const skillMultipliers = skill.afterMath(hitType);
-    console.log(hitType)
+    const skillMultipliers = skill.afterMath(hitType, inputValues);
     if (skillMultipliers !== null) {
       if (skillMultipliers.attackPercent) {
-        skillDamage = this.getAttack(artifact, inputValues, attackMultiplier, skill, isExtra) * skillMultipliers.attackPercent * BattleConstants.dmgConst * target.defensivePower(new Skill({ penetrate: () => skillMultipliers.penetrate() }), inputValues, defenseMultiplier, artifact, true);
+        skillDamage = this.getAttack(artifact, inputValues, attackMultiplier, skill, isExtra) * skillMultipliers.attackPercent * BattleConstants.dmgConst * target.defensivePower(new Skill({ penetrate: () => skillMultipliers.penetrate }), inputValues, defenseMultiplier, artifact, true);
       } else if (skillMultipliers.defensePercent) {
-        console.log(target.defensivePower(new Skill({ penetrate: () => skillMultipliers.penetrate() }), inputValues, defenseMultiplier, artifact, true))
-        skillDamage = inputValues.casterFinalDefense() * skillMultipliers.defensePercent * BattleConstants.dmgConst * target.defensivePower(new Skill({ penetrate: () => skillMultipliers.penetrate() }), inputValues, defenseMultiplier, artifact, true);
+        skillDamage = inputValues.casterFinalDefense() * skillMultipliers.defensePercent * BattleConstants.dmgConst * target.defensivePower(new Skill({ penetrate: () => skillMultipliers.penetrate }), inputValues, defenseMultiplier, artifact, true);
       } else if (skillMultipliers.injuryPercent) {
-        skillDamage = inputValues.targetInjuries * skillMultipliers.injuryPercent * BattleConstants.dmgConst * target.defensivePower(new Skill({ penetrate: () => skillMultipliers.penetrate() }), inputValues, defenseMultiplier, artifact, true);
+        skillDamage = inputValues.targetInjuries * skillMultipliers.injuryPercent * BattleConstants.dmgConst * target.defensivePower(new Skill({ penetrate: () => skillMultipliers.penetrate }), inputValues, defenseMultiplier, artifact, true);
       }
     }
     return skillDamage;
@@ -155,13 +153,13 @@ export class Hero {
     return null;
   }
 
-  getBarrierStrength(molagoras: Record<string, number>) {
-    return this.barrier ? (this.barrier(this) * (this.barrierEnhance ? this.getSkillEnhanceMult(_.get(this.skills, this.barrierEnhance, this.skills[0]), molagoras) : 1)) : 0;
+  getBarrierStrength(molagoras: any, soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) {
+    return this.barrier ? (this.barrier(soulburn, inputValues, artifact) * (this.barrierEnhance ? this.getSkillEnhanceMult(_.get(this.skills, this.barrierEnhance, this.skills[0]), molagoras) : 1)) : 0;
   }
 
-  getBarrier2Strength(molagoras: Record<string, number>) {
+  getBarrier2Strength(molagoras: any, soulburn: boolean, inputValues:DamageFormData, artifact: Artifact) {
     //TODO: update this if needed
     // For now only Roana needs this and her barrier does not scale with enhances
-    return this.barrier2 ? (this.barrier2(this) * (this.barrier2Enhance ? this.getSkillEnhanceMult(_.get(this.skills, this.barrier2Enhance, this.skills[0]), molagoras) : 1)) : 0;
+    return this.barrier2 ? (this.barrier2(soulburn, inputValues, artifact) * (this.barrier2Enhance ? this.getSkillEnhanceMult(_.get(this.skills, this.barrier2Enhance, this.skills[0]), molagoras) : 1)) : 0;
   }
 }

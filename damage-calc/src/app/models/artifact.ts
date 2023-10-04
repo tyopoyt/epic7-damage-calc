@@ -24,6 +24,7 @@ export class Artifact {
     value: (artiScale: number, inputValues: DamageFormData, skill: Skill, isExtra: boolean) => number; // Pass Skill and DamageFormData (and optionally isExtra)
     scale: number[];
     additional: number[];
+    maxHP: number;
     flat: (artiScale: number, inputValues: DamageFormData) => number;
     attackPercent: number;
     defensePercent: number;
@@ -38,6 +39,7 @@ export class Artifact {
         this.type = _.get(data, 'type', null);
         this.scale = _.get(data, 'scale', null);
         this.additional = _.get(data, 'additional', null);
+        this.maxHP = _.get(data, 'maxHP', 1);
         this.applies = _.get(data, 'applies', () => true);
         this.value = _.get(data, 'value', (artifactScale: number) => artifactScale);
         this.flat = _.get(data, 'flat', () => 0); //TODO: add appropriate inputs to these fxns

@@ -51,6 +51,10 @@ export class DataService {
     'casterSpeed', 'targetSpeed', 'casterDefense', 'targetDefense', 'targetAttack'
   ]
 
+  HPIncreaseArtifacts = [
+    'prayer_of_solitude'
+  ]
+
   advantageousElementMap = {
     [HeroElement.fire]: HeroElement.earth,
     [HeroElement.ice]: HeroElement.fire,
