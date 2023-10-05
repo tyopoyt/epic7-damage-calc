@@ -212,7 +212,7 @@
                         [label]="input | translate:'form':languageService.language.value"
                         [max]="heroSpecificMaximums[input] || formDefaults[input]?.max || 10000"
                         [min]="formDefaults[input]?.min || 0" [step]="formDefaults[input]?.step || 1"
-                        [default]="formDefaults[input]?.defaultValue || 5000"
+                        [default]="formDefaults[input]?.defaultValue || 0"
                         (valueChange)="inputChange(input, $event)"
                         [column]="screenService.mediumScreen.value">
                     </app-slide-input>

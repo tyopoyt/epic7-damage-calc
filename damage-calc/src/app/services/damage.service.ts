@@ -125,7 +125,7 @@ export class DamageService {
     const flatMod2 = this.currentArtifact.getFlatMult(this.damageForm.artifactLevel, this.damageForm, skill, isExtra) + (skill.flat2(this.damageForm));
 
     const pow = (typeof skill.pow === 'function') ? skill.pow(soulburn, this.damageForm) : skill.pow;
-    const skillEnhance = this.currentHero.getSkillEnhanceMult(skill, this.dataService.molagoras());
+    const skillEnhance = this.currentHero.getSkillEnhanceMult(skill, this.damageForm);
     let elementalAdvantage = 1.0;
     if (this.damageForm.elementalAdvantage || (typeof skill.elementalAdvantage === 'function') && skill.elementalAdvantage(this.damageForm) === true) {
       elementalAdvantage = BattleConstants.elementalAdvantage;

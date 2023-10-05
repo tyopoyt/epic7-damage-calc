@@ -69,7 +69,7 @@ export class Hero {
     return [...(this.dot || []), ...artifact.getDoT()];
   }
 
-  getSkillEnhanceMult(skill: Skill, molagoras: Record<string, number>) {
+  getSkillEnhanceMult(skill: Skill, inputValues: DamageFormData) {
     let mult = 1.0;
 
     let skillToUse = skill;
@@ -78,15 +78,14 @@ export class Hero {
       skillToUse = _.get(this.skills, skill.enhanceFrom);
     }
 
-    if (skillToUse.enhance) {
-      const enhanceLevel =  _.get(molagoras, skillToUse.id, 0);
+    if (skillToUse.enhance.length) {
+      const enhanceLevel =  inputValues[`molagoras${skillToUse.id[1]}`] as number;
       for (let i = 0; i < enhanceLevel; i++) {
         mult += skillToUse.enhance[i];
       }
     }
 
     mult += skill.exclusiveEquipment();
-
     return mult;
   }
 

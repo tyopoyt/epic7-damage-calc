@@ -24,7 +24,14 @@ export class AftermathSkill {
     defensePercent?: number
     attackPercent?: number
     injuryPercent?: number
-    penetrate = 0.7
+    penetrate: number
+    
+    constructor(data: any) {
+        this.defensePercent = data.defensePercent;
+        this.attackPercent = data.attackPercent;
+        this.injuryPercent = data.injuryPercent;
+        this.penetrate = data.penetrate || 0.7;
+    }
 }
 
 export class Skill {

@@ -8,7 +8,7 @@
 import { Artifact } from "src/app/models/artifact";
 import { DamageFormData } from "src/app/models/forms";
 import { Hero, HeroClass, HeroElement } from "src/app/models/hero";
-import { DoT, HitType, Skill } from "src/app/models/skill";
+import { AftermathSkill, DoT, HitType, Skill } from "src/app/models/skill";
 
 export const Heroes: Record<string, Hero> = {
   abigail: new Hero({
@@ -212,7 +212,7 @@ export const Heroes: Record<string, Hero> = {
         pow: () => 1,
         flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalDefense() * 0.5,
         flatTip: () => ({ casterDefense: 50 }),
-        afterMath: (hitType: HitType) => (hitType !== HitType.miss) ? { defensePercent: 1.4 } : null,
+        afterMath: (hitType: HitType) => (hitType !== HitType.miss) ? new AftermathSkill({ defensePercent: 1.4 }) : null,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
         isSingle: () => true,
       }),
@@ -331,7 +331,7 @@ export const Heroes: Record<string, Hero> = {
         onlyCrit: true,
         rate: () => 1,
         pow: () => 1,
-        enhance_from: 's1',
+        enhanceFrom: 's1',
         isSingle: () => true,
       }),
       s3: new Skill({
@@ -848,7 +848,7 @@ export const Heroes: Record<string, Hero> = {
         id: 's1_bis',
         rate: () => 1.3,
         pow: () => 1.3,
-        // enhance_from: 's1', Presumed not to inherit from s1 mola since the pow is so high already
+        // enhanceFrom: 's1', Presumed not to inherit from s1 mola since the pow is so high already
         isSingle: () => true,
         isExtra: true,
         noCrit: true,
@@ -887,7 +887,7 @@ export const Heroes: Record<string, Hero> = {
   //     s1_bis: {
   //     //       rate: () => 1.3,
   //       pow: () => 1.3,
-  //       // enhance_from: 's1', Presumed not to inherit from s1 mola since the pow is so high already
+  //       // enhanceFrom: 's1', Presumed not to inherit from s1 mola since the pow is so high already
   //       isSingle: () => true,
   //       noCrit: true,
   //     },
@@ -1273,7 +1273,7 @@ export const Heroes: Record<string, Hero> = {
         id: 's1_rock_smash',
         rate: () => 0.5,
         pow: () => 0.95,
-        enhance_from: 's1',
+        enhanceFrom: 's1',
         isExtra: true,
         aoe: true,
       }),
@@ -1314,7 +1314,7 @@ export const Heroes: Record<string, Hero> = {
         id: 's1_bis',
         rate: () => 1.2,
         pow: () => 0.9,
-        enhance_from: 's1',
+        enhanceFrom: 's1',
         detonate: DoT.burn,
         detonation: () => 1.3,
         noCrit: true,
@@ -1571,7 +1571,7 @@ export const Heroes: Record<string, Hero> = {
         id: 's1',
         rate: () => 0.85,
         pow: () => 1,
-        afterMath: (hitType: HitType) => (hitType !== HitType.miss) ? { attackPercent: 0.3 } : null,
+        afterMath: (hitType: HitType) => (hitType !== HitType.miss) ? new AftermathSkill({ attackPercent: 0.3 }) : null,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
         isSingle: () => true,
       }),
@@ -1579,7 +1579,7 @@ export const Heroes: Record<string, Hero> = {
         id: 's3',
         rate: () => 0.95,
         pow: () => 1.1,
-        afterMath: (hitType: HitType) => (hitType !== HitType.miss) ? { attackPercent: 0.3 } : null,
+        afterMath: (hitType: HitType) => (hitType !== HitType.miss) ? new AftermathSkill({ attackPercent: 0.3 }) : null,
         enhance: [0.05, 0, 0, 0, 0.15],
         aoe: true,
       })
@@ -2525,7 +2525,7 @@ export const Heroes: Record<string, Hero> = {
         pow: () => 1,
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + (100 - inputValues.targetCurrentHPPercent) * 0.004,
         multTip: () => ({ target_lost_hp_pc: 0.4 }),
-        enhance_from: 's1',
+        enhanceFrom: 's1',
         isSingle: () => true,
       }),
       s3: new Skill({
@@ -2864,7 +2864,7 @@ export const Heroes: Record<string, Hero> = {
         noMiss: true,
         rate: () => 0,
         pow: () => 0,
-        afterMath: () => ({ injuryPercent: 0.8 }),
+        afterMath: () => new AftermathSkill({ injuryPercent: 0.8 }), // TODO: check if this still works, does it penetrate correctly?
         isSingle: () => true,
       })
     }
@@ -4097,7 +4097,7 @@ export const Heroes: Record<string, Hero> = {
         id: 's1',
         rate: () => 0.8,
         pow: () => 1,
-        afterMath: (hitType: HitType, inputValues: DamageFormData) => inputValues.casterHasBuff && hitType !== HitType.miss ? ({ attackPercent: 0.25 }) : null,
+        afterMath: (hitType: HitType, inputValues: DamageFormData) => inputValues.casterHasBuff && hitType !== HitType.miss ? new AftermathSkill({ attackPercent: 0.25 }) : null,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
         isSingle: () => true,
         noCrit: true,
@@ -4213,7 +4213,7 @@ export const Heroes: Record<string, Hero> = {
         pow: () => 1,
         flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * (soulburn ? 0.28 : 0.18),
         flatTip: (soulburn: boolean) => ({ casterMaxHP: (soulburn ? 28 : 18) }),
-        afterMath: () => ({ injuryPercent: 0.5 }),
+        afterMath: () => new AftermathSkill({ injuryPercent: 0.5 }),
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
         isSingle: () => true,
       }),
@@ -4365,7 +4365,7 @@ export const Heroes: Record<string, Hero> = {
         id: 's1_extra',
         rate: () => 1.1,
         pow: () => 1,
-        enhance_from: 's1',
+        enhanceFrom: 's1',
         isExtra: true,
         isSingle: () => true,
       }),
@@ -4399,7 +4399,7 @@ export const Heroes: Record<string, Hero> = {
   //     s1_extra: {
   //     //       rate: () => 1.1,
   //       pow: () => 1,
-  //       enhance_from: 's1',
+  //       enhanceFrom: 's1',
   //       isSingle: () => true,
   //     },
   //     s3: new Skill({
@@ -4768,7 +4768,7 @@ export const Heroes: Record<string, Hero> = {
         id: 's1',
         rate: () => 1,
         pow: () => 1,
-        afterMath: (inputValues: DamageFormData) => inputValues.targetHasDebuff ? { attackPercent: 0.6 } : null,
+        afterMath: (inputValues: DamageFormData) => inputValues.targetHasDebuff ? new AftermathSkill({ attackPercent: 0.6 }) : null,
         enhance: [0.05, 0, 0.1, 0, 0.15],
         isSingle: () => true,
       }),
@@ -5549,7 +5549,7 @@ export const Heroes: Record<string, Hero> = {
         id: 's3_splash',
         rate: () => 0,
         pow: () => 0,
-        afterMath: (inputValues: DamageFormData) => inputValues.elementalAdvantage ? { attackPercent: 1.2 } : null,
+        afterMath: (inputValues: DamageFormData) => inputValues.elementalAdvantage ? new AftermathSkill({ attackPercent: 1.2 }) : null,
         noCrit: true,
         noMiss: true,
       })
@@ -6123,7 +6123,7 @@ export const Heroes: Record<string, Hero> = {
           }
         },
         multTip: () => ({ per_fewer_target: 30 }),
-        enhance_from: 's2',
+        enhanceFrom: 's2',
         aoe: true,
       }),
       s3: new Skill({
@@ -6939,7 +6939,7 @@ export const Heroes: Record<string, Hero> = {
         pow: () => 1,
         flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * 0.05,
         flatTip: () => ({ casterMaxHP: 5 }),
-        enhance_from: 's1',
+        enhanceFrom: 's1',
         aoe: true,
       }),
       s3: new Skill({
@@ -7190,7 +7190,7 @@ export const Heroes: Record<string, Hero> = {
         id: 's1',
         rate: () => 1,
         pow: () => 1,
-        afterMath: (hitType: HitType) => hitType !== HitType.miss ? ({ attackPercent: 0.5 }) : null,
+        afterMath: (hitType: HitType) => hitType !== HitType.miss ? new AftermathSkill(({ attackPercent: 0.5 })) : null,
         noCrit: true,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
         isSingle: () => true,
@@ -7748,7 +7748,7 @@ export const Heroes: Record<string, Hero> = {
         id: 's2',
         rate: () => 0,
         pow: () => 0,
-        afterMath: () => ({ attackPercent: 0.45 }),
+        afterMath: () => new AftermathSkill({ attackPercent: 0.45 }),
         noCrit: true,
         noMiss: true,
         isSingle: () => true,
@@ -7984,7 +7984,7 @@ export const Heroes: Record<string, Hero> = {
         pow: () => 1,
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + (100 - inputValues.targetCurrentHPPercent) * 0.003,
         multTip: () => ({ target_lost_hp_pc: 0.3 }),
-        enhance_from: 's1',
+        enhanceFrom: 's1',
         aoe: true,
       }),
       s3: new Skill({
@@ -8001,7 +8001,7 @@ export const Heroes: Record<string, Hero> = {
         id: 'explosion',
         rate: () => 0,
         pow: () => 0,
-        afterMath: () => ({ attackPercent: 1.5 }),
+        afterMath: () => new AftermathSkill({ attackPercent: 1.5 }),
         noCrit: true,
         noMiss: true,
       })
@@ -8238,7 +8238,7 @@ export const Heroes: Record<string, Hero> = {
         id: 's1_extra',
             rate: () => 0.5,
         pow: () => 1.3,
-        enhance_from: 's1',
+        enhanceFrom: 's1',
         aoe: true,
       }),
       s3: new Skill({
@@ -8299,7 +8299,7 @@ export const Heroes: Record<string, Hero> = {
         pow: () => 1,
         flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.targetMaxHP * 0.05,
         flatTip: () => ({ targetMaxHP: 5 }),
-        afterMath: () => ({ attackPercent: 0.4 }),
+        afterMath: () => new AftermathSkill({ attackPercent: 0.4 }),
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
         isSingle: () => true,
       })
@@ -8443,7 +8443,7 @@ export const Heroes: Record<string, Hero> = {
             rate: () => 1.3,
         pow: () => 0.9,
         penetrate: () => 0.35,
-        enhance_from: 's1',
+        enhanceFrom: 's1',
         isSingle: () => true,
       }),
     }
@@ -8722,7 +8722,7 @@ export const Heroes: Record<string, Hero> = {
         id: 's1_extra',
             rate: () => 0.7,
         pow: () => 1,
-        enhance_from: 's1',
+        enhanceFrom: 's1',
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + (100 - inputValues.casterCurrentHPPercent) * 0.003,
         multTip: () => ({ casterSpeed: 0.3 }),
         isSingle: () => true,
@@ -8761,7 +8761,7 @@ export const Heroes: Record<string, Hero> = {
         id: 's1_soulburn',
         rate: () => 1,
         pow: () => 1,
-        enhance_from: 's1',
+        enhanceFrom: 's1',
         aoe: true,
       }),
       s3: new Skill({
@@ -9122,7 +9122,7 @@ export const Heroes: Record<string, Hero> = {
         id: 's1_bis',
         rate: () => 0.85,
         pow: () => 1,
-        enhance_from: 's1',
+        enhanceFrom: 's1',
         aoe: true,
       }),
       s3: new Skill({
@@ -9257,7 +9257,7 @@ export const Heroes: Record<string, Hero> = {
         pow: () => 1,
         fixed: (inputValues: DamageFormData) => inputValues.casterHasBzzt ? 2000 : 0,
         fixedTip: () => ({ caster_has_bzzt: 2000 }),
-        afterMath: () => ({ injuryPercent: 0.6 }),
+        afterMath: () => new AftermathSkill({ injuryPercent: 0.6 }),
         flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * 0.25,
         flatTip: () => ({ casterMaxHP: 25 }),
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
@@ -9490,14 +9490,14 @@ export const Heroes: Record<string, Hero> = {
         id: 's2_wave_2',
         rate: () => 0.55,
         pow: () => 0.9,
-        enhance_from: 's2',
+        enhanceFrom: 's2',
         aoe: true,
       }),
       s2_wave_3: new Skill({
         id: 's2_wave_3',
         rate: () => 0.3,
         pow: () => 0.9,
-        enhance_from: 's2',
+        enhanceFrom: 's2',
         aoe: true,
       })
     }
@@ -9606,7 +9606,7 @@ export const Heroes: Record<string, Hero> = {
         id: 's1_bis',
             rate: () => 0.5,
         pow: () => 1,
-        enhance_from: 's1',
+        enhanceFrom: 's1',
         isSingle: () => true,
       })
     }
@@ -9923,7 +9923,7 @@ export const Heroes: Record<string, Hero> = {
             rate: () => 1,
         pow: () => 1,
         penetrate: () => 0.5,
-        enhance_from: 's1',
+        enhanceFrom: 's1',
         isSingle: () => true,
       }),
       s3: new Skill({
