@@ -6912,7 +6912,7 @@ const heroes = {
       }
     }
   },
-  ram:{
+  ram: {
     name: 'Ram',
     element: element.earth,
     classType: classType.mage,
@@ -6925,7 +6925,14 @@ const heroes = {
         rate: 1,
         pow: 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
-        // add soulburn aoe condition?
+        single: true
+      },
+      s1_soulburn: {
+        name: infoLabel('s1_soulburn'),
+        rate: 1,
+        pow: 1,
+        enhance_from: 's1',
+        aoe: true,
       },
       s3: {
         rate: 1.8, 
