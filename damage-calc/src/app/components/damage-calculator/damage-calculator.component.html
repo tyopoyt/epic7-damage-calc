@@ -132,14 +132,36 @@
                 </span>
             </mat-checkbox>
         </div>
-        <div *ngIf="artifact.id !== 'no_proc' && artifact.scale" class="artifact-block header-block">
+        <div *ngIf="artifact.id !== 'no_proc' && (artifact.scale || artifactSpecificNumberInputs.length || artifactSpecificBooleanInputs.length)" class="artifact-block header-block">
             <h1>{{'artifact' | translate:'ui':languageService.language.value}}</h1>
             <div class="neat-container full-width">
-                <app-slide-input
+                <app-slide-input *ngIf="artifact.scale"
                     [label]="'level' | translate:'form':languageService.language.value"
                     [max]="30" [min]="0" [default]="30" (valueChange)="inputChange('artifactLevel', $event)"
                     [column]="screenService.mediumScreen.value">
                 </app-slide-input>
+                <div *ngFor="let input of artifactSpecificNumberInputs" class="full-width">
+                    <app-slide-input
+                        [label]="input | translate:'form':languageService.language.value"
+                        [max]="artifactSpecificMaximums[input] || formDefaults[input]?.max || 10000"
+                        [min]="formDefaults[input]?.min || 0" [step]="formDefaults[input]?.step || 1"
+                        [default]="formDefaults[input]?.defaultValue || 0"
+                        (valueChange)="inputChange(input, $event)"
+                        [column]="screenService.mediumScreen.value">
+                    </app-slide-input>
+                </div>
+                <div class="checkbox-holder">
+                    <!-- TODO: add icons for buffs -->
+                    <mat-checkbox *ngFor="let input of artifactSpecificBooleanInputs"
+                        class="small-margin-top" [checked]="!!inputValues[input]"
+                        (change)="inputChange(input, $event.checked)">
+                        <span class="neat-container">
+                            <!-- <img class="png-icon medium tiny-margin-right" src="assets/elements/{{advantageousElement}}.png" alt="{{advantageousElement}}"> -->
+                            {{input | translate:'form':languageService.language.value}}
+                            <img class="icon tiny tiny-margin-left" *ngIf="formDefaults[input]?.hint" src="assets/icons/help-circle-outline.svg" alt="Hint" matTooltip="{{formDefaults[input]?.hint}}">
+                        </span>
+                    </mat-checkbox>
+                </div>
             </div>
         </div>
         <div class="target-block header-block">
@@ -205,6 +227,7 @@
             </div>
         </div>
         <div *ngIf="hero.heroSpecific.length" class="hero-specific-block header-block">
+            <!-- TODO: translate -->
             <h1>Hero Specific</h1>
             <div class="neat-container full-width">
                 <div *ngFor="let input of heroSpecificNumberInputs" class="full-width">

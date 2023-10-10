@@ -58,7 +58,7 @@ export class Skill {
     isSingle: Function;
     mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => number;
     multTip: Function;
-    penetrate: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => number;
+    penetrate: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact, casterAttack: number) => number;
     penetrateTip: Function;
     pow: (soulburn: boolean, inputValues: DamageFormData) => number;
     rate: (soulburn: boolean, inputValues: DamageFormData) => number;
@@ -96,7 +96,7 @@ export class Skill {
         this.flat2 = _.get(data, 'flat2', () => 0); // TODO: remove this if unncessary (only sc alexa has it)
         this.flatTip = _.get(data, 'flatTip', () => null);
         this.ignoreDamageTransfer = _.get(data, 'ignoreDamageTransfer', () => false);
-        this.isAOE = _.get(data, 'aoe', () => false);
+        this.isAOE = _.get(data, 'isAOE', () => false);
         this.isExtra = _.get(data, 'isExtra', false);
         this.isSingle = _.get(data, 'isSingle', () => false);
         this.mult = _.get(data, 'mult', () => 1);

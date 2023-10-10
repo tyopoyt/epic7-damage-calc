@@ -29,7 +29,9 @@ export class Artifact {
     attackPercent: number;
     defensePercent: number;
     penetrate: number;
-
+    extraAttackBonus: boolean;
+    artifactSpecific: string[];
+    artifactSpecificMaximums: Record<string, number>;
 
     constructor(data: any) {
         this.id = _.get(data, 'id', 'no_proc');
@@ -41,11 +43,14 @@ export class Artifact {
         this.additional = _.get(data, 'additional', null);
         this.maxHP = _.get(data, 'maxHP', 1);
         this.applies = _.get(data, 'applies', () => true);
+        this.extraAttackBonus = _.get(data, 'extraAttackBonus', false);
         this.value = _.get(data, 'value', (artifactScale: number) => artifactScale);
         this.flat = _.get(data, 'flat', () => 0); //TODO: add appropriate inputs to these fxns
         this.attackPercent = _.get(data, 'attackPercent', 0);
         this.defensePercent = _.get(data, 'defensePercent', 0);
         this.penetrate = _.get(data, 'penetrate', 0.7);
+        this.artifactSpecific = _.get(data, 'artifactSpecific', []);
+        this.artifactSpecificMaximums = _.get(data, 'artifactSpecificMaximums', {});
     }
 
     getDefensePenetration(level: number, inputValues: DamageFormData, skill: Skill, isExtra = false): number {

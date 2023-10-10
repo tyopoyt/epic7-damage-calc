@@ -4,7 +4,7 @@
  * fixed damage is used for flat extra damage (rimuru)
  * flat damage is used for damage scaling with stats other than attack (alencia)
  */
-
+// Fix skill labels for unique names like Beehoo's Incinerate
 import { Artifact } from "src/app/models/artifact";
 import { DamageFormData } from "src/app/models/forms";
 import { Hero, HeroClass, HeroElement } from "src/app/models/hero";
@@ -86,7 +86,7 @@ export const Heroes: Record<string, Hero> = {
         },
         multTip: () => ({ per_fewer_target: 20 }),
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
@@ -116,7 +116,7 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -155,7 +155,7 @@ export const Heroes: Record<string, Hero> = {
         flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * 0.04,
         flatTip: () => ({ casterMaxHP: 4 }),
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
-        aoe: true,
+        isAOE: () => true,
       }),
     }
   }),
@@ -286,7 +286,7 @@ export const Heroes: Record<string, Hero> = {
         id: 's3',
         rate: () => 1,
         pow: () => 1,
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -308,7 +308,7 @@ export const Heroes: Record<string, Hero> = {
         id: 's3',
         rate: () => 0.9,
         pow: () => 1,
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -399,7 +399,7 @@ export const Heroes: Record<string, Hero> = {
         flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * 0.15,
         flatTip: () => ({ casterMaxHP: 15 }),
         enhance: [0.05, 0.05, 0, 0.05, 0.15],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -493,7 +493,7 @@ export const Heroes: Record<string, Hero> = {
         flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * 0.12,
         flatTip: () => ({ casterMaxHP: 12 }),
         enhance: [0.05, 0, 0.05, 0, 0, 0.05, 0.15],
-        aoe: true,
+        isAOE: () => true,
       }),
     }
   }),
@@ -620,14 +620,14 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 0.9,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0.15],
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0, 0, 0.1, 0.1],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -657,7 +657,7 @@ export const Heroes: Record<string, Hero> = {
         },
         pow: () => 0.85,
         enhance: [0.05, 0.05, 0.05, 0.1, 0.1, 0.1],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -680,14 +680,14 @@ export const Heroes: Record<string, Hero> = {
         id: 's2',
         rate: () => 0.6,
         pow: () => 1.3,
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -716,7 +716,7 @@ export const Heroes: Record<string, Hero> = {
         multTip: () => ({ casterSpeed: 0.1125 }),
         enhance: [0.05, 0.05, 0.05, 0, 0.1, 0.15],
         noTrans: true,
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -741,7 +741,7 @@ export const Heroes: Record<string, Hero> = {
   //       multTip: () => ({ casterSpeed: 0.1125 }),
   //       enhance: [0.05, 0.05, 0.05, 0, 0.1, 0.15],
   //       noTrans: true,
-  //       aoe: true,
+  //       isAOE: () => true,
   //     }
   //   }
   // },
@@ -770,7 +770,7 @@ export const Heroes: Record<string, Hero> = {
         pow: () => 1.3,
         flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalDefense() * 1.4,
         flatTip: () => ({ casterDefense: 140 }),
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -1012,7 +1012,7 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 1.1,
         pow: () => 0.9,
         enhance: [0.05, 0.05, 0, 0.05, 0.05, 0.1, 0.1],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -1036,7 +1036,7 @@ export const Heroes: Record<string, Hero> = {
         rate: (soulburn: boolean) => soulburn ? 1 : 0.8,
         pow: () => 1,
         enhance: [0.05, 0, 0, 0, 0.1, 0.15],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -1066,7 +1066,7 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 0.9,
         pow: () => 1,
         enhance: [0.05, 0, 0, 0.1, 0.15],
-        aoe: true,
+        isAOE: () => true,
       }),
     }
   }),
@@ -1092,14 +1092,14 @@ export const Heroes: Record<string, Hero> = {
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + (inputValues.targetNumberOfDebuffs * 0.15),
         multTip: () => ({ per_target_debuff: 15 }),
         enhance: [0.05, 0.05, 0, 0.1, 0.1, 0.1],
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
         rate: () => 0.8,
         pow: () => 1,
         enhance: [0.05, 0, 0, 0, 0.1, 0.15],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -1120,7 +1120,7 @@ export const Heroes: Record<string, Hero> = {
         flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * 0.06,
         flatTip: () => ({ casterMaxHP: 6 }),
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
@@ -1148,7 +1148,7 @@ export const Heroes: Record<string, Hero> = {
   //       flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact)*0.06,
   //       flatTip: () => ({ casterMaxHP: 6 }),
   //       enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
-  //       aoe: true,
+  //       isAOE: () => true,
   //     },
   //     s3: new Skill({
   //       rate: () => 1.3,
@@ -1214,14 +1214,14 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 0.9,
         pow: () => 1,
         enhance: [0.05, 0, 0, 0.1, 0.15],
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
         rate: () => 0.9,
         pow: () => 0.9,
         enhance: [0.05, 0.1, 0, 0.1, 0.15],
-        aoe: true,
+        isAOE: () => true,
       }),
     }
   }),
@@ -1275,7 +1275,7 @@ export const Heroes: Record<string, Hero> = {
         pow: () => 0.95,
         enhanceFrom: 's1',
         isExtra: true,
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
@@ -1342,7 +1342,7 @@ export const Heroes: Record<string, Hero> = {
         flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * 0.09,
         flatTip: () => ({ casterMaxHP: 9 }),
         enhance: [0.05, 0, 0.05, 0, 0.05, 0, 0.1],
-        aoe: true,
+        isAOE: () => true,
       }),
       s1_extra: new Skill({
         id: 's1_extra',
@@ -1351,7 +1351,7 @@ export const Heroes: Record<string, Hero> = {
         pow: () => 1.3,
         flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * 0.045,
         flatTip: () => ({ casterMaxHP: 4.5 }),
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
@@ -1360,7 +1360,7 @@ export const Heroes: Record<string, Hero> = {
         pow: () => 1.3,
         flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * 0.12,
         flatTip: () => ({ casterMaxHP: 12 }),
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -1388,7 +1388,7 @@ export const Heroes: Record<string, Hero> = {
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.numberOfTargets > 1 ? 1 + (inputValues.numberOfTargets - 1) * 0.1 : 1,
         multTip: () => ({ per_target: 10 }),
         enhance: [0.05, 0.05, 0.05, 0.1, 0.1],
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
@@ -1396,7 +1396,7 @@ export const Heroes: Record<string, Hero> = {
         rate: (soulburn: boolean) => soulburn ? 1.2 : 0.95,
         pow: () => 1,
         enhance: [0.15, 0, 0, 0, 0.15],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -1418,14 +1418,14 @@ export const Heroes: Record<string, Hero> = {
         id: 'mana_burst',
         rate: () => 0.5,
         pow: () => 1,
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
         rate: () => 0.9,
         pow: () => 1.1,
         enhance: [0.05, 0, 0, 0, 0.15],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -1452,7 +1452,7 @@ export const Heroes: Record<string, Hero> = {
         pow: () => 1,
         penetrate: (soulburn: boolean, inputValues: DamageFormData) => inputValues.casterHasMultilayerBarrier ? 0.6 : 0.3,
         isExtra: true,
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
@@ -1482,7 +1482,7 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 1.2,
         pow: () => 0.95,
         enhance: [0.05, 0.05, 0.05, 0.1, 0.1],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -1518,7 +1518,7 @@ export const Heroes: Record<string, Hero> = {
         rate: (soulburn: boolean) => soulburn ? 1.45 : 1.2,
         pow: () => 0.95,
         enhance: [0.05, 0.05, 0, 0.1, 0.15],
-        aoe: true,
+        isAOE: () => true,
       }),
     }
   }),
@@ -1581,7 +1581,7 @@ export const Heroes: Record<string, Hero> = {
         pow: () => 1.1,
         afterMath: (hitType: HitType) => (hitType !== HitType.miss) ? new AftermathSkill({ attackPercent: 0.3 }) : null,
         enhance: [0.05, 0, 0, 0, 0.15],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -1604,7 +1604,7 @@ export const Heroes: Record<string, Hero> = {
   //       pow: () => 1.1,
   //       afterMath: (hitType: HitType) => (hitType !== HitType.miss) ? { attackPercent: 0.3 } : null,
   //       enhance: [0.05, 0, 0, 0, 0.15],
-  //       aoe: true,
+  //       isAOE: () => true,
   //     }
   //   }
   // },
@@ -1732,7 +1732,7 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 0.9,
         pow: () => 1,
         enhance: [0.05, 0, 0.05, 0, 0.1, 0, 0.1],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -1795,7 +1795,7 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0, 0, 0.1, 0, 0.15],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -1834,7 +1834,7 @@ export const Heroes: Record<string, Hero> = {
           ? { casterCurrentHPPercent_under_hp_threshold: soulburn ? 10 : 6.25 }
           : { casterCurrentHPPercent_over_hp_threshold: soulburn ? 8 : 5 },
         enhance: [0.05, 0, 0, 0.1, 0, 0.15],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -1864,7 +1864,7 @@ export const Heroes: Record<string, Hero> = {
         flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * 0.06,
         flatTip: () => ({ casterMaxHP: 6 }),
         enhance: [0.05, 0, 0.1, 0, 0.15],
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
@@ -1874,7 +1874,7 @@ export const Heroes: Record<string, Hero> = {
         flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * 0.12,
         flatTip: () => ({ casterMaxHP: 12 }),
         enhance: [0.1, 0, 0, 0, 0.15],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -1898,7 +1898,7 @@ export const Heroes: Record<string, Hero> = {
         rate: (soulburn: boolean) => soulburn ? 1.25 : 1,
         pow: () => 0.9,
         enhance: [0.05, 0.05, 0.05, 0, 0.05, 0.1, 0.1],
-        aoe: true,
+        isAOE: () => true,
       }),
     }
   }),
@@ -1924,14 +1924,14 @@ export const Heroes: Record<string, Hero> = {
         flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.targetMaxHP * 0.04,
         flatTip: () => ({ targetMaxHP: 4 }),
         enhance: [0.05, 0.05, 0.1, 0.1, 0.1],
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
         rate: () => 1.2,
         pow: () => 0.8,
         enhance: [0.1, 0.1, 0, 0.15, 0.15],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -2032,7 +2032,7 @@ export const Heroes: Record<string, Hero> = {
         pow: () => 1.1,
         enhance: [0.05, 0, 0, 0, 0.15],
         elementalAdvantage: () => true,
-        aoe: true,
+        isAOE: () => true,
       }),
     }
   }),
@@ -2118,7 +2118,7 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0, 0, 0.1, 0.15],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -2179,7 +2179,7 @@ export const Heroes: Record<string, Hero> = {
         flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * 0.08,
         flatTip: () => ({ casterMaxHP: 8 }),
         enhance: [0.05, 0.05, 0.1, 0.15],
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
@@ -2217,7 +2217,7 @@ export const Heroes: Record<string, Hero> = {
   //       flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact)*0.05,
   //       flatTip: () => ({ casterMaxHP: 5 }),
   //       enhance: [0.05, 0.05, 0.1, 0.15],
-  //       aoe: true,
+  //       isAOE: () => true,
   //     },
   //     s3: new Skill({
   //       rate: () => 1.2,
@@ -2267,7 +2267,7 @@ export const Heroes: Record<string, Hero> = {
         },
         multTip: () => ({ per_fewer_target: 26.7 }),
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -2284,7 +2284,7 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 0.9,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
@@ -2292,7 +2292,7 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 1.4,
         pow: () => 0.9,
         enhance: [0.05, 0.05, 0.05, 0.1, 0.15],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -2370,7 +2370,7 @@ export const Heroes: Record<string, Hero> = {
         flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * 0.15,
         flatTip: () => ({ casterMaxHP: 15 }),
         enhance: [0.05, 0.05, 0, 0.05, 0.05, 0.1],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -2421,7 +2421,7 @@ export const Heroes: Record<string, Hero> = {
         flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * 0.05,
         flatTip: () => ({ casterMaxHP: 5 }),
         enhance: [0.05, 0.05, 0.1, 0.15],
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
@@ -2489,7 +2489,7 @@ export const Heroes: Record<string, Hero> = {
         pow: () => 1,
         enhance: [0.05, 0.05, 0.05, 0.1, 0.1],
         isExtra: true,
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
@@ -2500,7 +2500,7 @@ export const Heroes: Record<string, Hero> = {
         multTip: () => ({ caster_rage: 30 }),
         exclusiveEquipmentMultiplier: (inputValues: DamageFormData) => inputValues.exclusiveEquipment3 ? 0.1 : 0,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -2534,7 +2534,7 @@ export const Heroes: Record<string, Hero> = {
         rate: (soulburn: boolean) => soulburn ? 1.25 : 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -2632,7 +2632,7 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 1.1,
         pow: () => 1,
         enhance: [0.05, 0, 0, 0, 0.1, 0.15],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -2656,13 +2656,13 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 0.75,
         pow: () => 1,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
         rate: () => 0.75,
         pow: () => 1,
-        penetrate: (inputValues: DamageFormData, casterAttack: number) => {
+        penetrate: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact, casterAttack: number) => {
           const targetAtk = inputValues.targetAttack;
 
           const penDiff = (casterAttack - targetAtk) * 0.000117;
@@ -2718,7 +2718,7 @@ export const Heroes: Record<string, Hero> = {
         flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalDefense() * 0.7,
         flatTip: () => ({ casterDefense: 70 }),
         enhance: [0.05, 0, 0, 0, 0, 0.1, 0.15],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -2805,7 +2805,7 @@ export const Heroes: Record<string, Hero> = {
         flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalDefense() * 0.6,
         flatTip: () => ({ casterDefense: 60 }),
         enhance: [0.1, 0, 0, 0, 0.1, 0, 0.15],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -2911,7 +2911,7 @@ export const Heroes: Record<string, Hero> = {
         flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalDefense() * 1.15,
         flatTip: () => ({ casterDefense: 115 }),
         enhance: [0.05, 0.05, 0, 0.05, 0.15],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -2967,7 +2967,7 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 0.8,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0, 0, 0.1, 0.1],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -2986,14 +2986,14 @@ export const Heroes: Record<string, Hero> = {
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.targetHasDebuff ? 1.3 : 1.0,
         multTip: () => ({ target_debuff: 30 }),
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
-        aoe: true,
+        isAOE: () => true,
       }),
       s2: new Skill({
         id: 's2',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
@@ -3001,7 +3001,7 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 2.5,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -3024,7 +3024,7 @@ export const Heroes: Record<string, Hero> = {
         id: 's2',
         rate: () => 0.6,
         pow: () => 1,
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
@@ -3057,7 +3057,7 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 0.75,
         pow: () => 0.95,
         enhance: [0.05, 0.05, 0, 0, 0, 0.1, 0.15],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -3122,14 +3122,14 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 0.9,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
-        aoe: true
+        isAOE: () => true
       }),
       s3: new Skill({
         id: 's3',
         rate: () => 1.05,
         pow: () => 1.1,
         enhance: [0.05, 0, 0, 0, 0.15],
-        aoe: true
+        isAOE: () => true
       })
     }
   }),
@@ -3170,7 +3170,7 @@ export const Heroes: Record<string, Hero> = {
         flatTip: () => ({casterMaxHP: 8}),
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
         isExtra: true,
-        aoe: true
+        isAOE: () => true
       }),
       s3: new Skill({
         id: 's3',
@@ -3206,7 +3206,7 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 0.9,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0.15],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -3301,7 +3301,7 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 0.7,
         pow: () => 0.9,
         enhance: [0.05, 0.05, 0.05, 0, 0, 0.1, 0.15],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -3408,14 +3408,14 @@ export const Heroes: Record<string, Hero> = {
         extraDmg: (hitType: HitType, inputValues: DamageFormData) => hitType !== HitType.miss && inputValues.targetProvoked ? inputValues.targetMaxHP * 0.1 : 0,
         extraDmgTip: (inputValues: DamageFormData) => ({ targetMaxHP: inputValues.targetProvoked ? 10 : 0 }),
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.10],
-        aoe: true,
+        isAOE: () => true,
       }),
     }
   }),
@@ -3438,7 +3438,7 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 0.9,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
@@ -3501,7 +3501,7 @@ export const Heroes: Record<string, Hero> = {
         flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * 0.12,
         flatTip: () => ({ casterMaxHP: 12 }),
         enhance: [0.05, 0.05, 0, 0.1, 0.15],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -3573,7 +3573,7 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0.1, 0.1],
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
@@ -3636,7 +3636,7 @@ export const Heroes: Record<string, Hero> = {
         flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 0.08 * inputValues.casterFinalMaxHP(artifact),
         flatTip: () => ({ casterMaxHP: 8 }),
         enhance: [0.05, 0, 0, 0, 0.1, 0.15],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -3699,7 +3699,7 @@ export const Heroes: Record<string, Hero> = {
         rate: (soulburn: boolean) => soulburn ? 0.95 : 0.7,
         pow: () => 1,
         enhance: [0.05, 0.1, 0, 0, 0.15, 0],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -3854,7 +3854,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 758,
     baseHP: 6002,
     baseDefense: 639,
-    heroSpecific: ['casterMaxHP', 'enemyCounters'],
+    heroSpecific: ['casterMaxHP', 'enemyCounterStack'],
     barrier: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => {
       return inputValues.casterFinalMaxHP(artifact) * 0.2;
     },
@@ -3864,7 +3864,7 @@ export const Heroes: Record<string, Hero> = {
         hpScaling: true,
         rate: () => 0.7,
         pow: () => 1,
-        fixed: (inputValues: DamageFormData) => 500 + inputValues.enemyCounterStack * 1000,
+        fixed: (hitType: HitType, inputValues: DamageFormData) => 500 + inputValues.enemyCounterStack * 100,
         flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * 0.05,
         flatTip: () => ({ casterMaxHP: 5 }),
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
@@ -3875,11 +3875,11 @@ export const Heroes: Record<string, Hero> = {
         hpScaling: true,
         rate: () => 0.7,
         pow: () => 1,
-        fixed: (inputValues: DamageFormData) => 500 + inputValues.enemyCounterStack * 1000,
+        fixed: (hitType: HitType, inputValues: DamageFormData) => 500 + inputValues.enemyCounterStack * 1000,
         flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * 0.1,
         flatTip: () => ({ casterMaxHP: 10 }),
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -3921,7 +3921,7 @@ export const Heroes: Record<string, Hero> = {
         },
         multTip: () => ({ per_fewer_target: 50 }),
         enhance: [0.15, 0, 0, 0, 0.15],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -4008,14 +4008,14 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 0.8,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.05, 0.15],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -4040,7 +4040,7 @@ export const Heroes: Record<string, Hero> = {
         id: 's2',
         rate: () => 0.8,
         pow: () => 1,
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
@@ -4070,7 +4070,7 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 0.9,
         pow: () => 1,
         enhance: [0.05, 0, 0, 0, 0.1, 0.15],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -4183,7 +4183,7 @@ export const Heroes: Record<string, Hero> = {
         rate: (soulburn: boolean) => soulburn ? 1.15 : 0.9,
         pow: () => 1,
         enhance: [0.05, 0, 0, 0, 0.1, 0, 0.15],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -4225,7 +4225,7 @@ export const Heroes: Record<string, Hero> = {
         flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * 0.15,
         flatTip: () => ({ casterMaxHP: 15 }),
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -4258,7 +4258,7 @@ export const Heroes: Record<string, Hero> = {
   //       flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact)*0.12,
   //       flatTip: () => ({ casterMaxHP: 12 }),
   //       enhance: [0.05, 0.05, 0, 0.1, 0.1],
-  //       aoe: true,
+  //       isAOE: () => true,
   //     }
   //   }
   // },
@@ -4459,7 +4459,7 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 0.9,
         pow: () => 0.9,
         enhance: [0.05, 0.05, 0.05, 0, 0.05, 0.1, 0.1],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -4482,7 +4482,7 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 0.85,
         pow: () => 0.95,
         enhance: [0.05, 0.05, 0, 0, 0.1, 0, 0.15],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -4506,7 +4506,7 @@ export const Heroes: Record<string, Hero> = {
   //       rate: (soulburn: boolean) => soulburn ? 1.1 : 0.85,
   //       pow: () => 0.95,
   //       enhance: [0.05, 0.05, 0, 0, 0.1, 0, 0.15],
-  //       aoe: true,
+  //       isAOE: () => true,
   //     }
   //   }
   // },
@@ -4530,7 +4530,7 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0.1, 0.1],
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
@@ -4539,7 +4539,7 @@ export const Heroes: Record<string, Hero> = {
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + (inputValues.numberOfTargets - 1) * 0.1,
         multTip: () => ({ per_target: 10 }),
         enhance: [0.05, 0, 0.05, 0, 0, 0.1, 0.1],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -4579,7 +4579,7 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 1,
         pow: () => 1.1,
         enhance: [0.05, 0, 0.05, 0, 0.1],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -4599,14 +4599,14 @@ export const Heroes: Record<string, Hero> = {
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + inputValues.casterFinalSpeed() * 0.00075,
         multTip: () => ({ casterSpeed: 0.075 }),
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0, 0.1, 0.15],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -4679,7 +4679,7 @@ export const Heroes: Record<string, Hero> = {
         penetrate: () => 0.3,
         exclusiveEquipmentMultiplier: (inputValues: DamageFormData) => inputValues.exclusiveEquipment3 ? 0.2 : 0,
         enhance: [0.05, 0.05, 0, 0.1, 0.15],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -4700,7 +4700,7 @@ export const Heroes: Record<string, Hero> = {
         multTip: () => ({ caster_lost_hp_pc: 0.15 }),
         exclusiveEquipmentMultiplier: (inputValues: DamageFormData) => inputValues.exclusiveEquipment1 ? 0.1 : 0,
         enhance: [0.05, 0.05, 0, 0.05, 0, 0.15],
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
@@ -4780,7 +4780,7 @@ export const Heroes: Record<string, Hero> = {
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + inputValues.casterFinalSpeed() * 0.00075,
         multTip: () => ({ casterSpeed: 0.075 }),
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
@@ -4844,7 +4844,7 @@ export const Heroes: Record<string, Hero> = {
         flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalDefense() * (soulburn ? 0.6 : 0.5),
         flatTip: (soulburn: boolean) => ({ casterDefense: soulburn ? 60 : 50 }),
         enhance: [0.05, 0, 0.1, 0, 0.15],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -4867,7 +4867,7 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 0.7,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.05, 0.05],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -4901,7 +4901,7 @@ export const Heroes: Record<string, Hero> = {
         penetrate: (soulburn: boolean, inputValues: DamageFormData) => inputValues.casterHasStealth ? 0.6 : 0.3,
         exclusiveEquipmentMultiplier: (inputValues: DamageFormData) => inputValues.exclusiveEquipment2 ? 0.1 : 0,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
@@ -4941,7 +4941,7 @@ export const Heroes: Record<string, Hero> = {
   //       penetrate: (soulburn: boolean, inputValues: DamageFormData) => inputValues.casterHasStealth ? 0.6 : 0.3,
   //       exclusiveEquipmentMultiplier: (inputValues: DamageFormData) => inputValues.exclusiveEquipment2 ? 0.1 : 0,
   //       enhance: [0.05, 0.05, 0, 0.1, 0.1],
-  //       aoe: true,
+  //       isAOE: () => true,
   //     },
   //     s3: new Skill({
   //       rate: () => 1.6,
@@ -4978,7 +4978,7 @@ export const Heroes: Record<string, Hero> = {
         rate: (soulburn: boolean) => soulburn ? 1.05 : 0.8,
         pow: () => 0.95,
         enhance: [0.05, 0, 0.05, 0, 0.1, 0, 0.15],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -5099,7 +5099,7 @@ export const Heroes: Record<string, Hero> = {
       }),
       s3: new Skill({
         id: 's3',
-        aoe: true,
+        isAOE: () => true,
         rate: () => 0.9,
         pow: () => 1,
         penetrate: (soulburn: boolean, inputValues: DamageFormData) => inputValues.casterFullFightingSpirit ? 0.5 : 0,
@@ -5183,7 +5183,7 @@ export const Heroes: Record<string, Hero> = {
         multTip: () => ({ per_stack: 20, casterSpeed: 0.1125 }),
         penetrate: () => 1.0,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -5218,7 +5218,7 @@ export const Heroes: Record<string, Hero> = {
   //       multTip: () => ({ per_stack: 20 }),
   //       penetrate: () => 1.0,
   //       enhance: [0.05, 0.05, 0, 0.1, 0.1],
-  //       aoe: true,
+  //       isAOE: () => true,
   //     }
   //   }
   // },
@@ -5245,7 +5245,7 @@ export const Heroes: Record<string, Hero> = {
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + (100 - inputValues.targetCurrentHPPercent) * 0.002,
         multTip: () => ({ target_lost_hp_pc: 0.2 }),
         enhance: [0.05, 0.05, 0, 0.05, 0.05, 0.1],
-        aoe: true,
+        isAOE: () => true,
       }),
     }
   }),
@@ -5275,7 +5275,7 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 0.8,
         pow: () => 0.8,
         enhance: [0.05, 0.05, 0, 0.1, 0.15],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -5304,14 +5304,14 @@ export const Heroes: Record<string, Hero> = {
         penetrate: () => 1,
         noCrit: true,
         isExtra: true,
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
         rate: () => 1,
         pow: () => 1.05,
         enhance: [0.0, 0.1, 0, 0, 0.15],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -5334,7 +5334,7 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 0.7,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
@@ -5370,7 +5370,7 @@ export const Heroes: Record<string, Hero> = {
         atk: (inputValues: DamageFormData) => inputValues.highestAllyAttack,
         noBuff: true,
         enhance: [0.05, 0.05, 0, 0.05, 0.05, 0.1],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -5395,7 +5395,7 @@ export const Heroes: Record<string, Hero> = {
   //       atk: () => inputValues.highestAllyAttack,
   //       noBuff: true,
   //       enhance: [0.05, 0.05, 0, 0.05, 0.05, 0.1],
-  //       aoe: true,
+  //       isAOE: () => true,
   //     }
   //   }
   // },
@@ -5485,7 +5485,7 @@ export const Heroes: Record<string, Hero> = {
         flatTip: () => ({ casterDefense: 135 }),
         penetrate: () => 0.5,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.1],
-        aoe: true,
+        isAOE: () => true,
       }),
     }
   }),
@@ -5517,7 +5517,7 @@ export const Heroes: Record<string, Hero> = {
         flatTip: () => ({ casterDefense: 135 }),
         penetrate: () => 0.5,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.1],
-        aoe: true,
+        isAOE: () => true,
       }),
     }
   }),
@@ -5612,7 +5612,7 @@ export const Heroes: Record<string, Hero> = {
         pow: () => 1,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
         isExtra: true,
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
@@ -5727,7 +5727,7 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 0.9,
         pow: () => 0.95,
         enhance: [0.05, 0.05, 0, 0.05, 0, 0.1, 0.1],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -5761,7 +5761,7 @@ export const Heroes: Record<string, Hero> = {
         penetrate: (soulburn: boolean, inputValues: DamageFormData) => inputValues.casterInvincible ? 0.6 : 0.3,
         exclusiveEquipmentMultiplier: (inputValues: DamageFormData) => inputValues.exclusiveEquipment3 ? 0.1 : 0,
         enhance: [0.05, 0.05, 0, 0.1, 0.15],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -5793,7 +5793,7 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 0.9,
         pow: () => 1.05,
         enhance: [0.1, 0, 0, 0, 0.15],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -5909,7 +5909,7 @@ export const Heroes: Record<string, Hero> = {
         rate: (soulburn: boolean) => soulburn ? 1.1 : 0.9,
         pow: () => 1,
         enhance: [0.05, 0, 0, 0.1, 0, 0.15],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -6008,7 +6008,7 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
-        aoe: true
+        isAOE: () => true
       })
     }
   }),
@@ -6108,10 +6108,11 @@ export const Heroes: Record<string, Hero> = {
         },
         multTip: () => ({ per_fewer_target: 30 }),
         enhance: [0.05, 0.05, 0.1, 0.1, 0.1],
-        aoe: true,
+        isAOE: () => true,
       }),
       s2_bis: new Skill({
         id: 's2_bis',
+        isExtra: true,
         rate: () => 0.35,
         pow: () => 0.9,
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => {
@@ -6124,7 +6125,7 @@ export const Heroes: Record<string, Hero> = {
         },
         multTip: () => ({ per_fewer_target: 30 }),
         enhanceFrom: 's2',
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
@@ -6134,7 +6135,7 @@ export const Heroes: Record<string, Hero> = {
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + (100 - inputValues.targetCurrentHPPercent) * 0.003,
         multTip: () => ({ caster_lost_hp_pc: 0.3 }),
         enhance: [0.05, 0.05, 0, 0.1, 0.15],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -6208,7 +6209,7 @@ export const Heroes: Record<string, Hero> = {
         id: 's2',
         rate: () => 1,
         pow: () => 1,
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
@@ -6348,7 +6349,7 @@ export const Heroes: Record<string, Hero> = {
         flatTip: () => ({ casterMaxHP: 15 }),
         exclusiveEquipmentMultiplier: (inputValues: DamageFormData) => inputValues.exclusiveEquipment3 ? 0.1 : 0,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -6402,14 +6403,14 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 0.7,
         pow: () => 1,
         enhance: [0.05, 0, 0, 0.1, 0.15],
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
         rate: () => 1,
         pow: () => 0.95,
         enhance: [0.05, 0.05, 0, 0.1, 0.15],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -6430,13 +6431,13 @@ export const Heroes: Record<string, Hero> = {
   //       rate: () => 1,
   //       pow: () => 0.9,
   //       enhance: [0.05, 0, 0, 0.1, 0.15],
-  //       aoe: true,
+  //       isAOE: () => true,
   //     },
   //     s3: new Skill({
   //       rate: () => 1,
   //       pow: () => 0.95,
   //       enhance: [0.05, 0.05, 0, 0.1, 0.15],
-  //       aoe: true,
+  //       isAOE: () => true,
   //     }
   //   }
   // },
@@ -6494,7 +6495,7 @@ export const Heroes: Record<string, Hero> = {
         rate: (soulburn: boolean) => soulburn ? 1.25 : 1,
         pow: () => 1.1,
         enhance: [0.05, 0, 0, 0, 0.15],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -6522,7 +6523,7 @@ export const Heroes: Record<string, Hero> = {
             rate: () => 0.8,
         pow: () => 1.3,
         isExtra: true,
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
@@ -6530,7 +6531,7 @@ export const Heroes: Record<string, Hero> = {
         pow: () => 1.05,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
         penetrate: () => 0.6,
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -6579,7 +6580,7 @@ export const Heroes: Record<string, Hero> = {
         id: 's2',
         rate: () => 1,
         pow: () => 1,
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -6617,7 +6618,7 @@ export const Heroes: Record<string, Hero> = {
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + inputValues.casterFinalSpeed() * 0.001125,
         multTip: () => ({ casterSpeed: 0.1125 }),
         enhance: [0.05, 0, 0, 0, 0.15],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -6708,7 +6709,7 @@ export const Heroes: Record<string, Hero> = {
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + inputValues.casterFinalSpeed() * 0.001125,
         multTip: () => ({ casterSpeed: 0.1125 }),
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
@@ -6758,7 +6759,7 @@ export const Heroes: Record<string, Hero> = {
         },
         penetrateTip: () => ({caster_target_def_diff: 0.032}),
         enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.1],
-        aoe: true,
+        isAOE: () => true,
       }),
     }
   }),
@@ -6781,7 +6782,7 @@ export const Heroes: Record<string, Hero> = {
         id: 's2',
         rate: () => 0.6,
         pow: () => 1,
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
@@ -6820,7 +6821,7 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
@@ -6879,7 +6880,7 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 0.8,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.05, 0.05, 0.1],
-        aoe: true,
+        isAOE: () => true,
         noCrit: true,
       }),
     }
@@ -6903,14 +6904,14 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 0.9,
         pow: () => 1,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
         rate: () => 1,
         pow: () => 1.1,
         enhance: [0.05, 0, 0, 0, 0.15],
-        aoe: true,
+        isAOE: () => true,
       }),
     }
   }),
@@ -6940,7 +6941,7 @@ export const Heroes: Record<string, Hero> = {
         flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * 0.05,
         flatTip: () => ({ casterMaxHP: 5 }),
         enhanceFrom: 's1',
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
@@ -6951,7 +6952,7 @@ export const Heroes: Record<string, Hero> = {
         flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * 0.1,
         flatTip: () => ({ casterMaxHP: 10 }),
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -7038,7 +7039,7 @@ export const Heroes: Record<string, Hero> = {
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + inputValues.casterFinalSpeed() * 0.00075 + inputValues.targetFinalSpeed() * 0.0015,
         multTip: () => ({ casterSpeed: 0.075, targetSpeed: 0.15 }),
         enhance: [0.05, 0.05, 0, 0, 0, 0.1, 0.1],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -7075,7 +7076,7 @@ export const Heroes: Record<string, Hero> = {
         flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * 0.04,
         flatTip: () => ({ casterMaxHP: 4 }),
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
-        aoe: true,
+        isAOE: () => true,
       }),
     }
   }),
@@ -7103,7 +7104,7 @@ export const Heroes: Record<string, Hero> = {
         pow: () => 0.95,
         penetrate: () => 0.5,
         enhance: [0.05, 0.05, 0, 0.1, 0.15],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -7142,14 +7143,14 @@ export const Heroes: Record<string, Hero> = {
         id: 's2',
         rate: () => 0.5, 
         pow: () => 1,
-        aoe: true
+        isAOE: () => true
       }),
       s3: new Skill({
         id: 's3',
         rate: () => 1, 
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
-        aoe: true
+        isAOE: () => true
       })
     }
   }),
@@ -7204,7 +7205,7 @@ export const Heroes: Record<string, Hero> = {
         penetrate: () => 1.0,
         noCrit: true,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
-        aoe: true
+        isAOE: () => true
       }),
     }
   }),
@@ -7261,7 +7262,7 @@ export const Heroes: Record<string, Hero> = {
         pow: () => 1,
         rate: () => 1,
         enhance: [0.05, 0, 0, 0, 0.1, 0, 0.15],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -7314,7 +7315,7 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 0.9,
         pow: () => 1,
         enhance: [0.05, 0, 0.05, 0, 0.1, 0, 0.1],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -7458,7 +7459,7 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 0.8,
         pow: () => 1.1,
         enhance: [0.05, 0, 0, 0, 0.15],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -7512,7 +7513,7 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 0.7,
         pow: () => 1,
         enhance: [0.05, 0, 0, 0.1, 0.15],
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
@@ -7521,7 +7522,7 @@ export const Heroes: Record<string, Hero> = {
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.targetHasBuff ? 1.3 : 1,
         multTip: () => ({ targetBuffed: 30 }),
         enhance: [0.05, 0.1, 0, 0.15, 0.15],
-        aoe: true,
+        isAOE: () => true,
       }),
     }
   }),
@@ -7611,7 +7612,7 @@ export const Heroes: Record<string, Hero> = {
         },
         multTip: () => ({per_fewer_target: 20}),
         enhance: [0.05, 0.05, 0.05, 0.1, 0.15],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -7655,7 +7656,7 @@ export const Heroes: Record<string, Hero> = {
         id: 's2',
         rate: () => 0.85,
         pow: () => 1.3,
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
@@ -7690,7 +7691,7 @@ export const Heroes: Record<string, Hero> = {
         id: 's2',
         rate: () => 0.7,
         pow: () => 1.3,
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
@@ -7723,7 +7724,7 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -7759,7 +7760,7 @@ export const Heroes: Record<string, Hero> = {
         pow: () => 1.1,
         enhance: [0.05, 0, 0, 0, 0.15],
         noCrit: true,
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -7817,7 +7818,7 @@ export const Heroes: Record<string, Hero> = {
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.skillTreeCompleted ? 1.05 : 1,
         multTip: (inputValues: DamageFormData) => (inputValues.skillTreeCompleted ? {skill_tree: 5} : null),
         enhance: [0.05, 0.05, 0, 0, 0.1, 0, 0.15],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -7884,7 +7885,7 @@ export const Heroes: Record<string, Hero> = {
         pow: () => 1,
         exclusiveEquipmentMultiplier: (inputValues: DamageFormData) => inputValues.exclusiveEquipment2 ? 0.1 : 0,
         enhance: [0.05, 0.1, 0.15],
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
@@ -7892,7 +7893,7 @@ export const Heroes: Record<string, Hero> = {
         pow: () => 1,
         critDmgBoost: () => 0.2,
         enhance: [0.05, 0, 0, 0, 0.1, 0.15],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -7920,7 +7921,7 @@ export const Heroes: Record<string, Hero> = {
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.skillTreeCompleted ? 1.1 : 1,
         multTip: (inputValues: DamageFormData) => (inputValues.skillTreeCompleted ? {skill_tree: 10} : null),
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
@@ -7985,7 +7986,7 @@ export const Heroes: Record<string, Hero> = {
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + (100 - inputValues.targetCurrentHPPercent) * 0.003,
         multTip: () => ({ target_lost_hp_pc: 0.3 }),
         enhanceFrom: 's1',
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
@@ -8026,7 +8027,7 @@ export const Heroes: Record<string, Hero> = {
   //       rate: () => 0.5,
   //       pow: () => 1,
   //       enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
-  //       aoe: true,
+  //       isAOE: () => true,
   //     },
   //     s3: new Skill({
   //       soulburn: true,
@@ -8072,7 +8073,7 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 1.05,
         pow: () => 0.8,
         enhance: [0.1, 0.1, 0, 0.15, 0.15],
-        aoe: true,
+        isAOE: () => true,
       }),
     }
   }),
@@ -8102,7 +8103,7 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
-        aoe: true,
+        isAOE: () => true,
       }),
     }
   }),
@@ -8176,7 +8177,7 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 0.95,
         pow: () => 1.05,
         enhance: [0.1, 0, 0, 0.15],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -8215,7 +8216,7 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 0.95,
         pow: () => 1.05,
         enhance: [0.1, 0, 0, 0.15],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -8239,14 +8240,14 @@ export const Heroes: Record<string, Hero> = {
             rate: () => 0.5,
         pow: () => 1.3,
         enhanceFrom: 's1',
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
         rate: () => 0.9,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
-        aoe: true,
+        isAOE: () => true,
       }),
     }
   }),
@@ -8325,7 +8326,7 @@ export const Heroes: Record<string, Hero> = {
         id: 's1_extra',
             rate: () => 0.8,
         pow: () => 1.3,
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
@@ -8375,7 +8376,7 @@ export const Heroes: Record<string, Hero> = {
         rate: (soulburn: boolean) => soulburn ? 1.15 : 0.9,
         pow: () => 1,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
@@ -8477,7 +8478,7 @@ export const Heroes: Record<string, Hero> = {
         },
         multTip: () => ({per_fewer_target: 20}),
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
@@ -8494,7 +8495,7 @@ export const Heroes: Record<string, Hero> = {
         },
         penetrateTip: () => ({caster_target_atk_diff: 0.035}),
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
-        aoe: true,
+        isAOE: () => true,
       }),
     }
   }),
@@ -8627,7 +8628,7 @@ export const Heroes: Record<string, Hero> = {
         detonate: DoT.bomb,
         detonation: () => 1.1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
-        aoe: true,
+        isAOE: () => true,
         noCrit: true,
       }),
     }
@@ -8699,7 +8700,7 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 1.5,
         pow: () => 0.9,
         enhance: [0.05, 0.05, 0.05, 0.1, 0.15],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -8735,7 +8736,7 @@ export const Heroes: Record<string, Hero> = {
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + (100 - inputValues.casterCurrentHPPercent) * 0.005 + (100 - inputValues.targetCurrentHPPercent) * 0.0015,
         multTip: () => ({caster_lost_hp_pc: 50, target_lost_hp_pc: 15}),
         enhance: [0.05, 0.05, 0.1, 0, 0.1, 0.1, 0.1],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -8762,14 +8763,14 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 1,
         pow: () => 1,
         enhanceFrom: 's1',
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
         rate: () => 1.1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
-        aoe: true,
+        isAOE: () => true,
       }),
     }
   }),
@@ -8807,7 +8808,7 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 1,
         pow: () => 0.9,
         enhance: [0.05, 0.05, 0, 0.05, 0.05, 0.1, 0.1],
-        aoe: true,
+        isAOE: () => true,
       }),
     }
   }),
@@ -8957,7 +8958,7 @@ export const Heroes: Record<string, Hero> = {
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + (100 - inputValues.casterCurrentHPPercent) * 0.002,
         multTip: () => ({ caster_lost_hp_pc: 20 }),
         enhance: [0.1, 0, 0, 0, 0.15],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -8981,14 +8982,14 @@ export const Heroes: Record<string, Hero> = {
         rate: (soulburn: boolean) => soulburn ? 1.05 : 0.8,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
         rate: () => 1.1,
         pow: () => 1.05,
         enhance: [0.1, 0, 0, 0, 0.15],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -9011,7 +9012,7 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 0.8,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
@@ -9019,7 +9020,7 @@ export const Heroes: Record<string, Hero> = {
         rate: (soulburn: boolean) => soulburn ? 1.35 : 1.1,
         pow: () => 1.05,
         enhance: [0.1, 0, 0, 0, 0.15],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -9123,7 +9124,7 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 0.85,
         pow: () => 1,
         enhanceFrom: 's1',
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
@@ -9132,7 +9133,7 @@ export const Heroes: Record<string, Hero> = {
         fixed: (hitType: HitType, inputValues: DamageFormData) => (hitType !== HitType.miss) ? ((inputValues.casterEnraged) ? 10000 : 2000) : 0,
         fixedTip: () => ({ caster_rage_flat: 10000 }),
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
-        aoe: true,
+        isAOE: () => true,
       }),
     }
   }),
@@ -9163,7 +9164,7 @@ export const Heroes: Record<string, Hero> = {
         flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * 0.1,
         flatTip: () => ({ casterMaxHP: 10 }),
         enhance: [0.05, 0.05, 0, 0, 0, 0.1, 0.15],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -9188,7 +9189,7 @@ export const Heroes: Record<string, Hero> = {
   //       flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact)*0.1,
   //       flatTip: () => ({ casterMaxHP: 10 }),
   //       enhance: [0.05, 0.05, 0, 0, 0, 0.1, 0.15],
-  //       aoe: true,
+  //       isAOE: () => true,
   //     }
   //   }
   // },
@@ -9243,7 +9244,7 @@ export const Heroes: Record<string, Hero> = {
         soulburn: true,
         rate: (soulburn: boolean) => (soulburn ? 0.8 : 0.5),
         pow: () => 1,
-        fixed: (inputValues: DamageFormData) => inputValues.casterHasBzzt ? 2000 : 0,
+        fixed: (hitType: HitType, inputValues: DamageFormData) => inputValues.casterHasBzzt ? 2000 : 0,
         fixedTip: () => ({ caster_has_bzzt: 2000 }),
         flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * (soulburn ? 0.16 : 0.1),
         flatTip: (soulburn: boolean) => ({ casterMaxHP: soulburn ? 16 : 10 }),
@@ -9255,7 +9256,7 @@ export const Heroes: Record<string, Hero> = {
         hpScaling: true,
         rate: () => 0.5,
         pow: () => 1,
-        fixed: (inputValues: DamageFormData) => inputValues.casterHasBzzt ? 2000 : 0,
+        fixed: (hitType: HitType, inputValues: DamageFormData) => inputValues.casterHasBzzt ? 2000 : 0,
         fixedTip: () => ({ caster_has_bzzt: 2000 }),
         afterMath: () => new AftermathSkill({ injuryPercent: 0.6 }),
         flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * 0.25,
@@ -9296,7 +9297,7 @@ export const Heroes: Record<string, Hero> = {
         },
         multTip: () => ({ per_fewer_target: 20 }),
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
@@ -9390,7 +9391,7 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 0.7,
         pow: () => 1,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
@@ -9402,7 +9403,7 @@ export const Heroes: Record<string, Hero> = {
         multTip: () => ({ casterSpeed: 0.1125 }),
         exclusiveEquipmentMultiplier: (inputValues: DamageFormData) => inputValues.exclusiveEquipment2 ? 0.1 : 0,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -9424,7 +9425,7 @@ export const Heroes: Record<string, Hero> = {
   //       rate: () => 0.5,
   //       pow: () => 1,
   //       enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
-  //       aoe: true,
+  //       isAOE: () => true,
   //     },
   //     s3: new Skill({
   //       soulburn: true,
@@ -9434,7 +9435,7 @@ export const Heroes: Record<string, Hero> = {
   //       multTip: (soulburn: boolean) => ({ casterSpeed: soulburn ? 0.09 : 0.075 }),
   //       exclusiveEquipmentMultiplier: (inputValues: DamageFormData) => inputValues.exclusiveEquipment2 ? 0.1 : 0,
   //       enhance: [0.05, 0.05, 0, 0.1, 0.1],
-  //       aoe: true,
+  //       isAOE: () => true,
   //     }
   //   }
   // },
@@ -9484,21 +9485,21 @@ export const Heroes: Record<string, Hero> = {
         rate: (soulburn: boolean) => soulburn ? 1.3 : 1.05,
         pow: () => 0.9,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.1],
-        aoe: true,
+        isAOE: () => true,
       }),
       s2_wave_2: new Skill({
         id: 's2_wave_2',
         rate: () => 0.55,
         pow: () => 0.9,
         enhanceFrom: 's2',
-        aoe: true,
+        isAOE: () => true,
       }),
       s2_wave_3: new Skill({
         id: 's2_wave_3',
         rate: () => 0.3,
         pow: () => 0.9,
         enhanceFrom: 's2',
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -9576,7 +9577,7 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 0.7,
         pow: () => 1.05,
         enhance: [0.1, 0, 0, 0, 0.15],
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
@@ -9631,7 +9632,7 @@ export const Heroes: Record<string, Hero> = {
         id: 's2',
         rate: () => 0.9,
         pow: () => 1,
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
@@ -9660,7 +9661,7 @@ export const Heroes: Record<string, Hero> = {
   //     s2: new Skill({
   //       rate: () => 0.9,
   //       pow: () => 1,
-  //       aoe: true,
+  //       isAOE: () => true,
   //     },
   //     s3: new Skill({
   //       rate: () => 2,
@@ -9731,7 +9732,7 @@ export const Heroes: Record<string, Hero> = {
         },
         multTip: () => ({ casterSpeed: 0.075, per_fewer_target: 20 }),
         enhance: [0.05, 0.05, 0.05, 0.1, 0.1, 0.15],
-        aoe: true,
+        isAOE: () => true,
       }),
       s3: new Skill({
         id: 's3',
@@ -9749,7 +9750,7 @@ export const Heroes: Record<string, Hero> = {
         multTip: () => ({ per_fewer_target: 20 }),
         exclusiveEquipmentMultiplier: (inputValues: DamageFormData) => inputValues.exclusiveEquipment3 ? 0.3 : 0,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1, 0.1, 0.1],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -9864,7 +9865,7 @@ export const Heroes: Record<string, Hero> = {
           return { per_stack: 7 + extra };
         },
         enhance: [0.05, 0, 0.1, 0, 0.15],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),
@@ -9898,7 +9899,7 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0, 0, 0.1, 0.1],
-        aoe: true,
+        isAOE: () => true,
       })
     }
   }),

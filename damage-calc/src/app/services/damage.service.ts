@@ -113,7 +113,7 @@ export class DamageService {
       fixedTip: this.languageService.getSkillModTip(skill.fixedTip()),
       flat: skill.flat(soulburn, this.damageForm, this.currentArtifact),
       flatTip: this.languageService.getSkillModTip(skill.flatTip(soulburn)),
-      pen: skill.penetrate(soulburn, this.damageForm, this.currentArtifact),
+      pen: skill.penetrate(soulburn, this.damageForm, this.currentArtifact, this.currentHero.getAttack(this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill)),
       penTip: this.languageService.getSkillModTip(skill.penetrateTip(soulburn)),
     };
   }
@@ -131,7 +131,6 @@ export class DamageService {
       elementalAdvantage = BattleConstants.elementalAdvantage;
     }
     const target = this.damageForm.targetTargeted ? BattleConstants.target : 1.0;
-
     const dmgMod = 1.0
         + this.getGlobalDamageMult(skill)
         + this.damageForm.damageIncrease / 100
@@ -142,13 +141,14 @@ export class DamageService {
 
   // This getAtk is called because of lilias
   getDotDamage(skill: Skill, type: DoT) {
+    const casterAttack = this.currentHero.getAttack(this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill);
     switch (type) {
     case DoT.bleed:
-      return this.currentHero.getAttack(this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill) * 0.3 * BattleConstants.dmgConst * this.dataService.currentTarget.defensivePower(new Skill({ penetrate: () => 0.7 }), this.damageForm, this.getGlobalDefenseMult(), this.currentArtifact, false, true);
+      return this.currentHero.getAttack(this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill) * 0.3 * BattleConstants.dmgConst * this.dataService.currentTarget.defensivePower(new Skill({ penetrate: () => 0.7 }), this.damageForm, this.getGlobalDefenseMult(), this.currentArtifact, false, casterAttack, true);
     case DoT.burn:
-      return this.currentHero.getAttack(this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill) * 0.6 * BattleConstants.dmgConst * (this.damageForm.beehooPassive ? this.dataService.heroConstants.beehooBurnMult : 1) * this.dataService.currentTarget.defensivePower(new Skill({ penetrate: () => 0.7 }), this.damageForm, this.getGlobalDefenseMult(), this.currentArtifact, false, true);
+      return this.currentHero.getAttack(this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill) * 0.6 * BattleConstants.dmgConst * (this.damageForm.beehooPassive ? this.dataService.heroConstants.beehooBurnMult : 1) * this.dataService.currentTarget.defensivePower(new Skill({ penetrate: () => 0.7 }), this.damageForm, this.getGlobalDefenseMult(), this.currentArtifact, false, casterAttack, true);
     case DoT.bomb:
-      return this.currentHero.getAttack(this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill) * 1.5 * BattleConstants.dmgConst * this.dataService.currentTarget.defensivePower(new Skill({ penetrate: () => 0.7 }), this.damageForm, this.getGlobalDefenseMult(), this.currentArtifact, false, true);
+      return this.currentHero.getAttack(this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill) * 1.5 * BattleConstants.dmgConst * this.dataService.currentTarget.defensivePower(new Skill({ penetrate: () => 0.7 }), this.damageForm, this.getGlobalDefenseMult(), this.currentArtifact, false, casterAttack, true);
     default: return 0;
     }
   }
@@ -173,8 +173,9 @@ export class DamageService {
 
   // TODO: ensure this is called only once per skill when something changes (hero, input, etc.)
   getDamage(skill: Skill, soulburn = false, isExtra = false): DamageRow {
+    const casterAttack = this.currentHero.getAttack(this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill);
     const critDmgBuff = this.damageForm.increasedCritDamage ? BattleConstants.increasedCritDamage : 0.0;
-    const hit = this.offensivePower(skill, soulburn, isExtra) * this.dataService.currentTarget.defensivePower(skill, this.damageForm, this.getGlobalDefenseMult(), this.currentArtifact, soulburn);
+    const hit = this.offensivePower(skill, soulburn, isExtra) * this.dataService.currentTarget.defensivePower(skill, this.damageForm, this.getGlobalDefenseMult(), this.currentArtifact, soulburn, casterAttack);
     const critDmg = Math.min((this.damageForm.critDamage / 100) + critDmgBuff, 3.5)
         + (skill.critDmgBoost ? skill.critDmgBoost(soulburn) : 0)
         + (this.currentArtifact.getCritDmgBoost(this.damageForm.artifactLevel, this.damageForm, skill, isExtra) || 0)
@@ -192,14 +193,16 @@ export class DamageService {
   updateDamages() {
     const newDamages: DamageRow[] = []
     for (const skill of Object.values(this.currentHero.skills)) {
-      newDamages.push(this.getDamage(skill, false, false));
+      if (skill.rate(false, this.damageForm)) {
+        newDamages.push(this.getDamage(skill, false, false));
 
-      if (skill.soulburn) {
-        newDamages.push(this.getDamage(skill, true, false));
-      }
-
-      if (skill.canExtra) {
-      newDamages.push(this.getDamage(skill, false, true));
+        if (skill.soulburn) {
+          newDamages.push(this.getDamage(skill, true, false));
+        }
+  
+        if (skill.canExtra && this.currentArtifact.extraAttackBonus) {
+        newDamages.push(this.getDamage(skill, false, true));
+        }
       }
     }
 

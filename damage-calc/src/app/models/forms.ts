@@ -218,7 +218,7 @@ export const FormDefaults: Record<string, {max?: number, min?: number, defaultVa
         min: 0,
         defaultValue: 0
     },
-    enemyCounters: {
+    enemyCounterStack: {
         max: 4,
         min: 0,
         defaultValue: 0

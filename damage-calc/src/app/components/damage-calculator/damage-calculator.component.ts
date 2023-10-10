@@ -18,6 +18,7 @@ import { Artifact } from 'src/app/models/artifact';
 import { SlideInputComponent } from '../ui-elements/slide-input/slide-input.component';
 import { DamageFormData, FormDefaults } from 'src/app/models/forms';
 import { MatTableDataSource } from '@angular/material/table';
+import { DoT } from 'src/app/models/skill';
 
 @Component({
   selector: 'app-damage-calculator',
@@ -46,6 +47,10 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
   heroSpecificNumberInputs: string[] = [];
   heroSpecificBooleanInputs: string[] = [];
   heroSpecificMaximums: Record<string, number> = {};
+
+  artifactSpecificNumberInputs: string[] = [];
+  artifactSpecificBooleanInputs: string[] = [];
+  artifactSpecificMaximums: Record<string, number> = {};
 
   // All hero entries
   heroes: [string, Hero][] = Object.entries(Heroes);
@@ -169,11 +174,28 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
   }
 
   updateFormInputs() {
+    console.log(this.artifact)
     this.heroSpecificBooleanInputs = this.hero.heroSpecific.filter((input) => {
       return typeof this.inputValues[input as keyof DamageFormData] === 'boolean';
     });
 
+    this.artifactSpecificBooleanInputs = this.artifact.artifactSpecific.filter((input) => {
+      return typeof this.inputValues[input as keyof DamageFormData] === 'boolean';
+    });
+
     this.heroSpecificNumberInputs = this.hero.heroSpecific.filter((input) => {
+      return typeof this.inputValues[input as keyof DamageFormData] === 'number';
+    });
+
+    this.artifactSpecificNumberInputs = this.artifact.artifactSpecific.filter((input) => {
+      return typeof this.inputValues[input as keyof DamageFormData] === 'number';
+    });
+
+    this.addAddtionalBooleanInputs();
+  }
+
+  addAddtionalBooleanInputs() {
+    this.heroSpecificNumberInputs.forEach(input => {
       if (this.dataService.buffModifiedSpecific.includes(input)) {
         this.heroSpecificBooleanInputs.push(`${input}Up`);
         this.heroSpecificBooleanInputs.push(`${input}Down`);
@@ -186,20 +208,49 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
           this.heroSpecificBooleanInputs.push('targetEnraged')
         }
       }
-      this.addAddtionalBooleanInputs()
-      return typeof this.inputValues[input as keyof DamageFormData] === 'number';
-    });
-  }
+    })
 
-  addAddtionalBooleanInputs() {
+    this.artifactSpecificNumberInputs.forEach(input => {
+      if (this.dataService.buffModifiedSpecific.includes(input)) {
+        this.artifactSpecificBooleanInputs.push(`${input}Up`);
+        this.artifactSpecificBooleanInputs.push(`${input}Down`);
+
+        if (input === 'targetAttack') {
+          this.artifactSpecificBooleanInputs.push(`${input}UpGreat`)
+        }
+
+        if (input === 'targetSpeed') {
+          this.artifactSpecificBooleanInputs.push('targetEnraged')
+        }
+      }
+    })    
+
     if (this.heroSpecificNumberInputs.includes('casterMaxHP') && this.dataService.HPIncreaseArtifacts.includes(this.dataService.currentArtifactID.value)) {
       this.heroSpecificBooleanInputs.push('inBattleHP');
     }
+    if (this.artifactSpecificNumberInputs.includes('casterMaxHP') && this.dataService.HPIncreaseArtifacts.includes(this.dataService.currentArtifactID.value)) {
+      this.artifactSpecificBooleanInputs.push('inBattleHP');
+    }
+
+    // TODO: Default to checked for Beehoo and artifact specific (are hero ones working?) with default true
+    if (this.hero.getDoT(this.artifact).includes(DoT.burn)) {
+      this.heroSpecificBooleanInputs.push('beehooPassive');
+    }
+    console.log(this.heroSpecificBooleanInputs, this.heroSpecificNumberInputs, this.artifactSpecificBooleanInputs, this.artifactSpecificNumberInputs)
     this.dedupeForm();
   }
 
   dedupeForm() {
-    this.heroSpecificBooleanInputs =[...(new Set(this.heroSpecificBooleanInputs))]
+    this.heroSpecificBooleanInputs = [...(new Set(this.heroSpecificBooleanInputs))];
+    this.artifactSpecificBooleanInputs = [...(new Set(this.artifactSpecificBooleanInputs))];
+
+    this.artifactSpecificBooleanInputs.filter(input => {
+      return !this.heroSpecificBooleanInputs.includes(input);
+    })
+
+    this.artifactSpecificNumberInputs.filter(input => {
+      return !this.heroSpecificNumberInputs.includes(input);
+    })
   }
 
   // TODO: don't call this initially for every input, only once
@@ -220,6 +271,7 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
 
   selectArtifact(artifact: string) {
     this.dataService.updateSelectedArtifact(artifact);
+    this.updateFormInputs();
   }
 
   filterHeroes() {
