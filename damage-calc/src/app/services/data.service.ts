@@ -17,9 +17,10 @@ export class DataService {
   damageInputValues: DamageFormData = new DamageFormData({});
   damageInputChanged: EventEmitter<void> = new EventEmitter();
 
-  // TODO: update the defaults here when possible
-  currentHeroID = new BehaviorSubject<string>('abigail')
-  currentHero = new BehaviorSubject<Hero>(Heroes.abigail);  // Default to abigail when more things are working
+  // currentHeroID = new BehaviorSubject<string>('abigail')
+  // currentHero = new BehaviorSubject<Hero>(Heroes.abigail);
+  currentHeroID = new BehaviorSubject<string>('pirate_captain_flan')
+  currentHero = new BehaviorSubject<Hero>(Heroes.pirate_captain_flan);
   currentArtifactID = new BehaviorSubject<string>('no_proc')
   currentArtifact = new BehaviorSubject<Artifact>(Artifacts.no_proc);
   currentTarget: Target = new Target();
@@ -73,7 +74,6 @@ export class DataService {
   }
 
   updateDamageInputValues(updates: Record<string, any>) {
-    console.log(updates)
     for (const [field, data] of Object.entries(updates)) {
       this.setProperty(this.damageInputValues, field as keyof DamageFormData, data);
     }

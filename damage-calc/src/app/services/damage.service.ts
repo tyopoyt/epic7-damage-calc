@@ -75,7 +75,6 @@ export class DamageService {
     let mult = 0.0;
     // TODO: double check rage when hp scaling works
     this.dataService.damageMultSets.forEach((set) => {
-      console.log(this.damageForm)
       mult += (this.damageForm[set as keyof DamageFormData] || !!this.damageForm[`${set}Stack` as keyof DamageFormData]) ? _.get(BattleConstants, set) * (_.get(this.damageForm, `${set}Stack`, 1) as number) : 0.0;
     });
 
@@ -208,5 +207,18 @@ export class DamageService {
     }
 
     this.damages.next(newDamages);
+  }
+
+  getBarriers(): {label: string, value: number}[] {
+    const barriers = [];
+    if (this.currentHero.barrier) {
+      barriers.push({label: this.currentHero.barrierSkills ? this.currentHero.barrierSkills[0] : 'S1', value: Math.round(this.currentHero.barrier(this.currentHero, new Skill({}), this.currentArtifact, this.damageForm, this.getGlobalAttackMult()))})
+    }
+
+    if (this.currentHero.barrier2) {
+      barriers.push({label: this.currentHero.barrierSkills ? this.currentHero.barrierSkills[1] : 'S2', value: Math.round(this.currentHero.barrier2(this.currentHero, new Skill({}), this.currentArtifact, this.damageForm, this.getGlobalAttackMult()))})
+    }
+
+    return barriers;
   }
 }

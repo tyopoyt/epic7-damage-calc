@@ -25,8 +25,8 @@ export enum HeroClass {
 //TODO: refactor atk to attack and crit to critDamage
 export class Hero {
     attackIncrease: (inputValues: DamageFormData) => number;
-    barrier: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => number;
-    barrier2: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => number;
+    barrier?: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number) => number;
+    barrier2?: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number) => number;
     barrier2Enhance?: string;
     barrierEnhance?: string;
     barrierSkills?: string[];
@@ -47,8 +47,8 @@ export class Hero {
     )
   {
     this.attackIncrease = _.get(heroValues, 'attackIncrease', () => 1);
-    this.barrier = _.get(heroValues, 'barrier', () => 0);
-    this.barrier2 = _.get(heroValues, 'barrier2', () => 0);
+    this.barrier = _.get(heroValues, 'barrier', null);
+    this.barrier2 = _.get(heroValues, 'barrier2', null);
     this.barrier2Enhance = _.get(heroValues, 'barrier2Enhance', '');
     this.barrierEnhance = _.get(heroValues, 'barrierEnhance', '');
     this.barrierSkills = _.get(heroValues, 'barrierSkills', []);
@@ -152,15 +152,5 @@ export class Hero {
 
     // TODO: should this return 0 instead?
     return null;
-  }
-
-  getBarrierStrength(molagoras: any, soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) {
-    return this.barrier ? (this.barrier(soulburn, inputValues, artifact) * (this.barrierEnhance ? this.getSkillEnhanceMult(_.get(this.skills, this.barrierEnhance, this.skills[0]), molagoras) : 1)) : 0;
-  }
-
-  getBarrier2Strength(molagoras: any, soulburn: boolean, inputValues:DamageFormData, artifact: Artifact) {
-    //TODO: update this if needed
-    // For now only Roana needs this and her barrier does not scale with enhances
-    return this.barrier2 ? (this.barrier2(soulburn, inputValues, artifact) * (this.barrier2Enhance ? this.getSkillEnhanceMult(_.get(this.skills, this.barrier2Enhance, this.skills[0]), molagoras) : 1)) : 0;
   }
 }

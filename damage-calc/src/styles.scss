@@ -86,6 +86,13 @@ html, body {
     filter: $font-light-color-filter;
   }
 
+  .mini-card {
+    width: max-content;
+    height: 1.75rem;
+    background-color: $ui-dark-color;
+    border-radius: $gutter-small;
+  }
+
   .mat-mdc-unelevated-button:not(:disabled) {
     height: 2rem;
   }
@@ -1066,8 +1073,16 @@ body {
   padding-left: 0.25rem;
 }
 
+.tiny-padding-right {
+  padding-right: 0.25rem;
+}
+
 .small-padding-left {
   padding-left: 0.5rem;
+}
+
+.small-padding-right{
+  padding-right: 0.5rem;
 }
 
 .medium-padding-left {

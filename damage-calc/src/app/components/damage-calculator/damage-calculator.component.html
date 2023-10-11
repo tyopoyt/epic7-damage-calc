@@ -281,11 +281,25 @@
             </div>
         </div>
         <div class="damage-block">
-            <!-- TODO: DoTs, Artifact damage block, barriers, multiplier fxn breakdown button -->
+            <!-- TODO: Artifact damage, barriers, multiplier fxn breakdown button -->
             <!-- TODO: Add healing? -->
             <mat-card class="left">
-                <div class="extra-large-text bold-text small-padding-top">
-                    {{"damage_title" | translate:'form':languageService.language.value}}
+                <div class="full-width neat-container flex-between">
+                    <div class="extra-large-text bold-text small-padding-top">
+                        {{"damage_title" | translate:'form':languageService.language.value}}
+                    </div>
+                    <div *ngIf="heroDots.length" class="neat-container">
+                        <div *ngFor="let dot of heroDots" class="mini-card neat-container flex-row small-margin-left tiny-padding-right bold-text">
+                            <img class="png-icon medium tiny-margin-right tiny-margin-left" src="assets/debuffs/{{dot}}-debuff.png" alt="{{dot}}">
+                            {{dotDamages[dot]}}
+                        </div>
+                    </div>
+                    <div *ngIf="barriers.length" class="neat-container">
+                        <div *ngFor="let barrier of barriers" class="mini-card neat-container flex-row small-margin-left tiny-padding-right bold-text">
+                            <img class="png-icon medium tiny-margin-right tiny-margin-left" src="assets/buffs/barrier-buff.png" alt="Barrier">
+                            {{barrier.label}}: {{barrier.value}}
+                        </div>
+                    </div>
                 </div>
                 <table class="margin-top" [class.tiny-padding]="screenService.smallScreen.value" mat-table [dataSource]="damageData">
 

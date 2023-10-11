@@ -18,7 +18,7 @@ import { Artifact } from 'src/app/models/artifact';
 import { SlideInputComponent } from '../ui-elements/slide-input/slide-input.component';
 import { DamageFormData, FormDefaults } from 'src/app/models/forms';
 import { MatTableDataSource } from '@angular/material/table';
-import { DoT } from 'src/app/models/skill';
+import { DoT, Skill } from 'src/app/models/skill';
 
 @Component({
   selector: 'app-damage-calculator',
@@ -45,6 +45,11 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
   damageData = new MatTableDataSource<DamageRow>() //DamageRow[] = [];
 
   stackingSets: string[] = [];
+
+  heroDots: DoT[] = [];
+  dotDamages = {'bleed': 0, 'bomb': 0, 'burn': 0};
+
+  barriers: {label: string, value: number}[]  = []
 
   heroSpecificNumberInputs: string[] = [];
   heroSpecificBooleanInputs: string[] = [];
@@ -271,15 +276,35 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
         this.attackPresetControl.setValue(AttackPresets.manual.id);
       }
     }
+    this.updateDots();
+    this.updateBarriers();
   }
 
   selectHero(hero: string) {
     this.dataService.updateSelectedHero(hero);
+    this.updateDots();
   }
 
   selectArtifact(artifact: string) {
     this.dataService.updateSelectedArtifact(artifact);
     this.updateFormInputs();
+    this.updateDots();
+  }
+
+  // TODO: this workaround to suppress the changed after checked errors is sloppy, but there is no negative effect whatsoever
+  // that this error is pointing out so rather than wasting more time debugging this, I'm just gonna use this workaround.
+  updateDots() {
+    Promise.resolve().then(() => {
+      this.heroDots = [...(new Set(this.hero.getDoT(this.artifact)))];
+      this.dotDamages['bleed'] = Math.round(this.damageService.getDotDamage(new Skill({}), DoT.bleed));
+      this.dotDamages['bomb'] = Math.round(this.damageService.getDotDamage(new Skill({}), DoT.bomb));
+      this.dotDamages['burn'] = Math.round(this.damageService.getDotDamage(new Skill({}), DoT.burn));
+    });
+    
+  }
+
+  updateBarriers() {
+    Promise.resolve().then(() => this.barriers = this.damageService.getBarriers());
   }
 
   filterHeroes() {
