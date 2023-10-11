@@ -44,6 +44,8 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['skill', 'crit', 'crush', 'normal', 'miss']
   damageData = new MatTableDataSource<DamageRow>() //DamageRow[] = [];
 
+  stackingSets: string[] = [];
+
   heroSpecificNumberInputs: string[] = [];
   heroSpecificBooleanInputs: string[] = [];
   heroSpecificMaximums: Record<string, number> = {};
@@ -174,7 +176,6 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
   }
 
   updateFormInputs() {
-    console.log(this.artifact)
     this.heroSpecificBooleanInputs = this.hero.heroSpecific.filter((input) => {
       return typeof this.inputValues[input as keyof DamageFormData] === 'boolean';
     });
@@ -236,7 +237,6 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
     if (this.hero.getDoT(this.artifact).includes(DoT.burn)) {
       this.heroSpecificBooleanInputs.push('beehooPassive');
     }
-    console.log(this.heroSpecificBooleanInputs, this.heroSpecificNumberInputs, this.artifactSpecificBooleanInputs, this.artifactSpecificNumberInputs)
     this.dedupeForm();
   }
 
@@ -255,6 +255,14 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
 
   // TODO: don't call this initially for every input, only once
   inputChange(field: string, value: number | boolean) {
+    if (field.endsWith('SetStack') && (!this.stackingSets.includes(field) || !value)) {
+      if (value) {
+        this.stackingSets.push(field);
+      } else {
+        this.stackingSets = this.stackingSets.filter(set => field !== set)
+      }
+    }
+
     this.dataService.updateDamageInputValues({[field]: value});
   
     // Check if attack preset needs to be reset

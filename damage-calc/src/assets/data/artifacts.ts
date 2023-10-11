@@ -218,7 +218,7 @@ export const Artifacts: Record<string, Artifact> = {
     scale: [0.07, 0.077, 0.084, 0.091, 0.098, 0.105, 0.112, 0.119, 0.126, 0.133, 0.14],
     type: ArtifactDamageType.damage,
     exclusive: HeroClass.mage,
-    applies: (skill: Skill, inputValues: DamageFormData) => {console.log(skill); return skill.isAOE()},
+    applies: (skill: Skill, inputValues: DamageFormData) => skill.isAOE(),
   }),
   mature_sunglasses: new Artifact({
     id: 'mature_sunglasses',

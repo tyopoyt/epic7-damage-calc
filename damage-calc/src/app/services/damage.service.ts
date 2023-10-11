@@ -75,6 +75,7 @@ export class DamageService {
     let mult = 0.0;
     // TODO: double check rage when hp scaling works
     this.dataService.damageMultSets.forEach((set) => {
+      console.log(this.damageForm)
       mult += (this.damageForm[set as keyof DamageFormData] || !!this.damageForm[`${set}Stack` as keyof DamageFormData]) ? _.get(BattleConstants, set) * (_.get(this.damageForm, `${set}Stack`, 1) as number) : 0.0;
     });
 

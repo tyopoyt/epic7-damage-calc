@@ -132,6 +132,19 @@
                 </span>
             </mat-checkbox>
         </div>
+        <div *ngIf="stackingSets.length" class="artifact-block header-block">
+            <h1>{{'numberOfSets' | translate:'ui':languageService.language.value}}</h1>
+            <div class="neat-container full-width">
+                <div *ngFor="let set of stackingSets" class="full-width">
+                    <app-slide-input
+                        [label]="set | translate:'form':languageService.language.value"
+                        [max]="3" [min]="1" [default]="1"
+                        (valueChange)="inputChange(set, $event)"
+                        [column]="screenService.mediumScreen.value">
+                    </app-slide-input>
+                </div>
+            </div>
+        </div>
         <div *ngIf="artifact.id !== 'no_proc' && (artifact.scale || artifactSpecificNumberInputs.length || artifactSpecificBooleanInputs.length)" class="artifact-block header-block">
             <h1>{{'artifact' | translate:'ui':languageService.language.value}}</h1>
             <div class="neat-container full-width">

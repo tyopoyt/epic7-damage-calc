@@ -73,6 +73,7 @@ export class DataService {
   }
 
   updateDamageInputValues(updates: Record<string, any>) {
+    console.log(updates)
     for (const [field, data] of Object.entries(updates)) {
       this.setProperty(this.damageInputValues, field as keyof DamageFormData, data);
     }

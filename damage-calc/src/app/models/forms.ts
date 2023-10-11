@@ -236,11 +236,6 @@ export const FormDefaults: Record<string, {max?: number, min?: number, defaultVa
         min: 0,
         defaultValue: 0
     },
-    torrentSetStack: {
-        max: 3,
-        min: 1,
-        defaultValue: 1
-    },
     enemyDefeated: {
         default: true
     },
