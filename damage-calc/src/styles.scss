@@ -697,6 +697,10 @@ html, body {
       filter: $font-dark-color-filter;
     }
 
+    .mini-card {
+      background-color: $ui-medium-medium-light-light-color;
+    }
+
     .mat-mdc-unelevated-button:not(:disabled) {
       background-color: $ui-medium-medium-light-light-color;
       color: $font-dark-color;
@@ -1027,6 +1031,10 @@ body {
 
 .tiny-margin-right {
   margin-right: 0.25rem;
+}
+
+.microscopic-margin-bottom {
+  margin-bottom: 0.125rem;
 }
 
 .small-margin-right {

@@ -653,6 +653,7 @@
     "contribute": "Contribute",
     "references": "References",
     "artifact": "Artifact",
-    "target": "Target"
+    "target": "Target",
+    "artifact_damage_hint": "Damage from Artifact, already included in the table below"
   }
 }

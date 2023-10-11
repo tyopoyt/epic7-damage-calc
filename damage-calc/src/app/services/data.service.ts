@@ -17,12 +17,12 @@ export class DataService {
   damageInputValues: DamageFormData = new DamageFormData({});
   damageInputChanged: EventEmitter<void> = new EventEmitter();
 
-  // currentHeroID = new BehaviorSubject<string>('abigail')
-  // currentHero = new BehaviorSubject<Hero>(Heroes.abigail);
-  currentHeroID = new BehaviorSubject<string>('pirate_captain_flan')
-  currentHero = new BehaviorSubject<Hero>(Heroes.pirate_captain_flan);
-  currentArtifactID = new BehaviorSubject<string>('no_proc')
-  currentArtifact = new BehaviorSubject<Artifact>(Artifacts.no_proc);
+  currentHeroID = new BehaviorSubject<string>('abigail')
+  currentHero = new BehaviorSubject<Hero>(Heroes.abigail);
+  // currentArtifactID = new BehaviorSubject<string>('no_proc')
+  // currentArtifact = new BehaviorSubject<Artifact>(Artifacts.no_proc);
+  currentArtifactID = new BehaviorSubject<string>('uberius_tooth')
+  currentArtifact = new BehaviorSubject<Artifact>(Artifacts.uberius_tooth);
   currentTarget: Target = new Target();
   
   heroConstants: Record<string, number> = {

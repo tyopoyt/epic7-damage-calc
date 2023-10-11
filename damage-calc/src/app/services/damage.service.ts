@@ -221,4 +221,8 @@ export class DamageService {
 
     return barriers;
   }
+
+  getArtifactDamage(): number {
+    return Math.round(this.currentHero.getAfterMathArtifactDamage(new Skill({id: 's1', isAOE: () => true, isSingle: () => true}), this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), this.getGlobalDefenseMult(), this.dataService.currentTarget) || 0);
+  }
 }

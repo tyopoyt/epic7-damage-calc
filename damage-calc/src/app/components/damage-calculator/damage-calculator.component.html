@@ -288,16 +288,31 @@
                     <div class="extra-large-text bold-text small-padding-top">
                         {{"damage_title" | translate:'form':languageService.language.value}}
                     </div>
-                    <div *ngIf="heroDots.length" class="neat-container">
-                        <div *ngFor="let dot of heroDots" class="mini-card neat-container flex-row small-margin-left tiny-padding-right bold-text">
-                            <img class="png-icon medium tiny-margin-right tiny-margin-left" src="assets/debuffs/{{dot}}-debuff.png" alt="{{dot}}">
-                            {{dotDamages[dot]}}
+                    <div class="neat-container flex-row">
+                        <div *ngIf="!!artifactDamage" class="neat-container small-padding-top medium-text">
+                            <div class="mini-card neat-container flex-row small-margin-left tiny-padding-right bold-text">
+                                <img class="png-icon medium tiny-margin-right tiny-margin-left" src="assets/icons/artifact.png" alt="Artifact Damage">
+                                <span class="microscopic-margin-bottom">
+                                    {{artifactDamage}}
+                                </span>
+                                <img class="icon tiny tiny-margin-left" src="assets/icons/help-circle-outline.svg" alt="Hint" matTooltip="{{'artifact_damage_hint' | translate:'ui':languageService.language.value}}">
+                            </div>
                         </div>
-                    </div>
-                    <div *ngIf="barriers.length" class="neat-container">
-                        <div *ngFor="let barrier of barriers" class="mini-card neat-container flex-row small-margin-left tiny-padding-right bold-text">
-                            <img class="png-icon medium tiny-margin-right tiny-margin-left" src="assets/buffs/barrier-buff.png" alt="Barrier">
-                            {{barrier.label}}: {{barrier.value}}
+                        <div *ngIf="heroDots.length" class="neat-container small-padding-top medium-text">
+                            <div *ngFor="let dot of heroDots" class="mini-card neat-container flex-row small-margin-left tiny-padding-right bold-text">
+                                <img class="png-icon medium tiny-margin-right tiny-margin-left" src="assets/debuffs/{{dot}}-debuff.png" alt="{{dot}}">
+                                <span class="microscopic-margin-bottom">
+                                    {{dotDamages[dot]}}
+                                </span>
+                            </div>
+                        </div>
+                        <div *ngIf="barriers.length" class="neat-container small-padding-top medium-text">
+                            <div *ngFor="let barrier of barriers" class="mini-card neat-container flex-row small-margin-left tiny-padding-right bold-text">
+                                <img class="png-icon medium tiny-margin-right tiny-margin-left" src="assets/buffs/barrier-buff.png" alt="Barrier">
+                                <span class="microscopic-margin-bottom">
+                                    {{barrier.label ? barrier.label + ": " : ''}}{{barrier.value}}
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -48,6 +48,7 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
 
   heroDots: DoT[] = [];
   dotDamages = {'bleed': 0, 'bomb': 0, 'burn': 0};
+  artifactDamage = 0;
 
   barriers: {label: string, value: number}[]  = []
 
@@ -276,19 +277,24 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
         this.attackPresetControl.setValue(AttackPresets.manual.id);
       }
     }
-    this.updateDots();
-    this.updateBarriers();
+    this.updateDamageBlockHeader();
   }
 
   selectHero(hero: string) {
     this.dataService.updateSelectedHero(hero);
-    this.updateDots();
+    this.updateDamageBlockHeader();
   }
 
   selectArtifact(artifact: string) {
     this.dataService.updateSelectedArtifact(artifact);
     this.updateFormInputs();
+    this.updateDamageBlockHeader();
+  }
+
+  updateDamageBlockHeader() { 
     this.updateDots();
+    this.updateBarriers();
+    this.artifactDamage = this.damageService.getArtifactDamage();
   }
 
   // TODO: this workaround to suppress the changed after checked errors is sloppy, but there is no negative effect whatsoever
@@ -300,7 +306,6 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
       this.dotDamages['bomb'] = Math.round(this.damageService.getDotDamage(new Skill({}), DoT.bomb));
       this.dotDamages['burn'] = Math.round(this.damageService.getDotDamage(new Skill({}), DoT.burn));
     });
-    
   }
 
   updateBarriers() {
