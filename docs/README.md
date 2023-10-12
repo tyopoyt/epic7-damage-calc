@@ -1,5 +1,7 @@
 ## Changelog
 
+### <strong>Oct 12 2023 Update:</strong>
+- Added Abyssal Yufine, Kane, and Tyrant's Descent. Did not have time to translate them, will do so later.
 ### <strong>Sept 29 2023:</strong>
 - Fixed Time Matter.
 ### <strong>Sept 27 2023:</strong>

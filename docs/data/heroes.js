@@ -4550,6 +4550,38 @@ const heroes = {
       }
     }
   },
+  kane: {
+    name: 'Kane',
+    element: element.fire,
+    classType: classType.warrior,
+    baseAtk: 1359,
+    baseHP: 5542,
+    baseDef: 585,
+    form: [elements.caster_enrage, elements.target_nb_debuff],
+    dot: [dot.bleed],
+    skills: {
+      s1: {
+        rate: 0.9,
+        pow: 1,
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.05],
+        single: true,
+      },
+      s1_bis: {
+        name: infoLabel('kane_rock_smash'),
+        rate: 0.5,
+        pow: 1.3,
+        aoe: true,
+      },
+      s3: {
+        rate: 1.6,
+        pow: 1,
+        mult: () => 1 + elements.target_nb_debuff.value() * 0.2,
+        multTip: () => ({ per_target_debuff: 20 }),
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.05],
+        aoe: true,
+      }
+    }
+  },
   kanna: {
     name: 'Kanna',
     element: element.fire,

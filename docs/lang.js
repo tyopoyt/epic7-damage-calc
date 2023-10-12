@@ -155,6 +155,7 @@ const i18n = {
       arunka_expose: 'Expose',
       balance_op_sigret: 'Balance Update: Added Speed scaling, lowered Attack scaling: S2: 0.8 -> 0.75 / S3 1.1 -> 1',
       beehoo_incinerate: 'Incinerate',
+      kane_rock_smash: 'Rock Smash',
       lethe_call_of_the_abyss: 'Call of the Abyss',
       lqc_s3_splash: 'S3 Splash',
       ml_celine_nimble_sword: 'Nimble Sword',
