@@ -365,7 +365,8 @@ const elements = {
       return Number(document.getElementById('caster-defense').value)
       * (1 + (elements.caster_defense_up.value() ? battleConstants.defUp : 0)
          + (document.getElementById('vigor').checked ? battleConstants.vigor - 1 : 0)
-         + (document.getElementById('caster-fury')?.checked ? battleConstants['caster-fury'] - 1 : 0));
+         + (document.getElementById('caster-fury')?.checked ? battleConstants['caster-fury'] - 1 : 0)
+         + (document.getElementById('caster-has-trauma')?.checked ? battleConstants['trauma'] : 0));
     }
   },
   caster_defense_up: {
@@ -581,6 +582,16 @@ const elements = {
     value: () => document.getElementById('caster-immense-power')
       ? document.getElementById('caster-immense-power').checked
       : false,
+  },
+  caster_has_trauma: {
+    ref: 'caster_has_trauma',
+    id: 'caster-has-trauma',
+    label: 'Caster has Trauma',
+    type: 'checkbox',
+    value: () => document.getElementById('caster-has-trauma')
+      ? document.getElementById('caster-has-trauma').checked
+      : false,
+    icon: './assets/debuffs/trauma-debuff.png'
   },
   caster_stealth: {
     ref: 'caster_stealth',
