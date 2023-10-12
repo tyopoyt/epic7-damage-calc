@@ -247,8 +247,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1057,
     baseHP: 5542,
     baseDefense: 532,
-    heroSpecific: ['attackSkillStack'],
-    heroSpecificMaximums: {'attackSkillStack': 3},
+    heroSpecific: ['skill3Stack'],
     skills: {
       s1: new Skill({
         id: 's1',
@@ -261,7 +260,7 @@ export const Heroes: Record<string, Hero> = {
         id: 's3',
         rate: () => 0.8,
         pow: () => 0.95,
-        fixed: (hitType: HitType, inputValues: DamageFormData) => (hitType === HitType.crit) ? 5000 * (inputValues.casterAttackStack + 1)  : 0,
+        fixed: (hitType: HitType, inputValues: DamageFormData) => (hitType === HitType.crit) ? 5000 * (inputValues.skill3Stack + 1)  : 0,
         fixedTip: () => ({fixed: 5000, per_stack: 5000 }),
         enhance: [0.05, 0.05, 0, 0.05, 0.05, 0.1, 0.1],
         isSingle: () => true,
@@ -367,7 +366,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 975,
     baseHP: 7054,
     baseDefense: 652,
-    heroSpecific: ['casterMaxHP', 'exclusiveEquipment2'],
+    heroSpecific: ['exclusiveEquipment2', 'casterMaxHP'],
     skills: {
       s1: new Skill({
         id: 's1',
@@ -637,7 +636,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1283,
     baseHP: 5138,
     baseDefense: 522,
-    heroSpecific: ['caster_full_focus'],
+    heroSpecific: ['casterFullFocus'],
     skills: {
       s1: new Skill({
         id: 's1',
@@ -964,7 +963,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1027,
     baseHP: 5299,
     baseDefense: 469,
-    heroSpecific: ['casterSpeed', 'casterHasStealth', 'exclusiveEquipment1'],
+    heroSpecific: ['exclusiveEquipment1', 'casterSpeed', 'casterHasStealth'],
     skills: {
       s1: new Skill({
         id: 's1',
@@ -1432,7 +1431,7 @@ export const Heroes: Record<string, Hero> = {
   benimaru: new Hero({
     element: HeroElement.fire,
     class: HeroClass.warrior,
-    heroSpecific: ['caster_has_multilayer_barrier'],
+    heroSpecific: ['casterHasMultilayerBarrier'],
     baseAttack: 1177,
     baseHP: 5542,
     baseDefense: 553,
@@ -2068,7 +2067,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1187,
     baseHP: 4491,
     baseDefense: 627,
-    heroSpecific: ['critical_hit_stack'],
+    heroSpecific: ['criticalHitStack'],
     skills: {
       s1: new Skill({
         id: 's1',
@@ -2236,7 +2235,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 957,
     baseHP: 6148,
     baseDefense: 634,
-    heroSpecific: ['casterNumberOfBuffs', 'numberOfTargets', 'exclusiveEquipment2'],
+    heroSpecific: ['exclusiveEquipment2', 'casterNumberOfBuffs', 'numberOfTargets'],
     skills: {
       s1: new Skill({
         id: 's1',
@@ -2302,7 +2301,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1177,
     baseHP: 5542,
     baseDefense: 553,
-    heroSpecific: ['target_magic_nailed'],
+    heroSpecific: ['targetMagicNailed'],
     skills: {
       s1: new Skill({
         id: 's1',
@@ -2338,7 +2337,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 966,
     baseHP: 7323,
     baseDefense: 657,
-    heroSpecific: ['casterMaxHP', 'caster_full_focus'],
+    heroSpecific: ['casterMaxHP', 'casterFullFocus'],
     skills: {
       s1: new Skill({
         id: 's1',
@@ -2441,7 +2440,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1029,
     baseHP: 5097,
     baseDefense: 473,
-    heroSpecific: ['casterSpeed', 'exclusiveEquipment3'],
+    heroSpecific: ['exclusiveEquipment3', 'casterSpeed'],
     skills: {
       s1: new Skill({
         id: 's1',
@@ -2473,7 +2472,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1252,
     baseHP: 5219,
     baseDefense: 564,
-    heroSpecific: ['casterEnraged', 'exclusiveEquipment3'],
+    heroSpecific: ['exclusiveEquipment3', 'casterEnraged'],
     dot: [DoT.bleed],
     skills: {
       s1: new Skill({
@@ -3732,7 +3731,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1138,
     baseHP: 5421,
     baseDefense: 536,
-    heroSpecific: ['dualAttackStack', 'exclusiveEquipment1'],
+    heroSpecific: ['exclusiveEquipment1', 'dualAttackStack'],
     heroSpecificMaximums: {'dualAttackStack': 5},
     barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number)=> hero.getAttack(artifact, inputValues, attackMultiplier, skill) * 0.5,
     attackIncrease: (inputValues: DamageFormData) => 1 + inputValues.dualAttackStack * 0.15,
@@ -4648,7 +4647,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1306,
     baseHP: 4248,
     baseDefense: 652,
-    heroSpecific: ['targetSpeed', 'casterSpeed', 'exclusiveEquipment3'],
+    heroSpecific: ['exclusiveEquipment3', 'casterSpeed', 'targetSpeed'],
     skills: {
       s1: new Skill({
         id: 's1',
@@ -4689,7 +4688,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1119,
     baseHP: 5340,
     baseDefense: 483,
-    heroSpecific: ['casterCurrentHPPercent', 'exclusiveEquipment1', 'exclusiveEquipment2'],
+    heroSpecific: ['exclusiveEquipment1', 'exclusiveEquipment2', 'casterCurrentHPPercent'],
     skills: {
       s1: new Skill({
         id: 's1',
@@ -4878,7 +4877,7 @@ export const Heroes: Record<string, Hero> = {
     baseHP: 5138,
     baseDefense: 522,
     barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number)=> hero.getAttack(artifact, inputValues, attackMultiplier, skill) * 0.65,
-    heroSpecific: ['targetBuffed', 'casterHasStealth', 'casterCurrentHPPercent', 'exclusiveEquipment2'],
+    heroSpecific: ['exclusiveEquipment2', 'casterHasStealth', 'casterCurrentHPPercent', 'targetHasBuff'],
     skills: {
       s1: new Skill({
         id: 's1',
@@ -4920,7 +4919,7 @@ export const Heroes: Record<string, Hero> = {
   //   class: HeroClass.thief,
   //   baseAttack: 1283,
   //   barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number)=> hero.getAtk() * 0.5,
-  //   heroSpecific: [targetBuffed, casterHasStealth, casterCurrentHPPercent, 'exclusiveEquipment2'],
+  //   heroSpecific: [targetHasBuff, casterHasStealth, casterCurrentHPPercent, 'exclusiveEquipment2'],
   //   skills: {
   //     s1: new Skill({
   //       soulburn: true,
@@ -5406,7 +5405,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1119,
     baseHP: 6266,
     baseDefense: 627,
-    heroSpecific: ['targetSpeed', 'exclusiveEquipment3'],
+    heroSpecific: ['exclusiveEquipment3', 'targetSpeed'],
     dot: [DoT.bleed],
     skills: {
       s1: new Skill({
@@ -5738,7 +5737,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1412,
     baseHP: 4248,
     baseDefense: 645,
-    heroSpecific: ['casterInvincible', 'exclusiveEquipment1', 'exclusiveEquipment3'],
+    heroSpecific: ['exclusiveEquipment1', 'exclusiveEquipment3', 'casterInvincible'],
     skills: {
       s1: new Skill({
         id: 's1',
@@ -5772,7 +5771,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1316,
     baseHP: 4777,
     baseDefense: 715,
-    heroSpecific: ['targetCurrentHPPercent', 's3Stack'],
+    heroSpecific: ['targetCurrentHPPercent', 'skill3Stack'],
     barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number)=> hero.getAttack(artifact, inputValues, attackMultiplier, skill) * (1 + inputValues.skill3Stack * 0.2) * 0.375,
     barrierEnhance: 's2',
     attackIncrease: (inputValues: DamageFormData) => 1 + inputValues.skill3Stack * 0.2,
@@ -6019,7 +6018,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1412,
     baseHP: 4248,
     baseDefense: 645,
-    heroSpecific: ['casterCurrentHPPercent', 'exclusiveEquipment2'],
+    heroSpecific: ['exclusiveEquipment2', 'casterCurrentHPPercent'],
     skills: {
       s1: new Skill({
         id: 's1',
@@ -6329,7 +6328,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 957,
     baseHP: 6148,
     baseDefense: 634,
-    heroSpecific: ['casterMaxHP', 'casterEnraged', 'exclusiveEquipment3'],
+    heroSpecific: ['exclusiveEquipment3', 'casterMaxHP', 'casterEnraged' ],
     skills: {
       s1: new Skill({
         id: 's1',
@@ -6629,7 +6628,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 857,
     baseHP: 4531,
     baseDefense: 483,
-    heroSpecific: ['casterPerception', 'casterSpeed', 'targetSpeed'],
+    heroSpecific: ['casterSpeed', 'casterPerception', 'targetSpeed'],
     skills: {
       s1: new Skill({
         id: 's1',
@@ -7500,7 +7499,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1109,
     baseHP: 4329,
     baseDefense: 655,
-    heroSpecific: ['targetBuffed'],
+    heroSpecific: ['targetHasBuff'],
     skills: {
       s1: new Skill({
         id: 's1',
@@ -7521,7 +7520,7 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 0.9,
         pow: () => 0.85,
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.targetHasBuff ? 1.3 : 1,
-        multTip: () => ({ targetBuffed: 30 }),
+        multTip: () => ({ targetHasBuff: 30 }),
         enhance: [0.05, 0.1, 0, 0.15, 0.15],
         isAOE: () => true,
       }),
@@ -8114,7 +8113,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1228,
     baseHP: 5784,
     baseDefense: 553,
-    heroSpecific: ['targetNumberOfDebuffs', 'exclusiveEquipment1'],
+    heroSpecific: ['exclusiveEquipment1', 'targetNumberOfDebuffs'],
     dot: [DoT.bleed],
     skills: {
       s1: new Skill({
@@ -8274,7 +8273,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1177,
     baseHP: 5542,
     baseDefense: 553,
-    heroSpecific: ['targetBuffed', 'targetMaxHP'],
+    heroSpecific: ['targetHasBuff', 'targetMaxHP'],
     skills: {
       s1: new Skill({
         id: 's1',
@@ -9376,7 +9375,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1283,
     baseHP: 5138,
     baseDefense: 522,
-    heroSpecific: ['casterSpeed', 'exclusiveEquipment2'],
+    heroSpecific: ['exclusiveEquipment2', 'casterSpeed'],
     skills: {
       s1: new Skill({
         id: 's1',
@@ -9650,7 +9649,7 @@ export const Heroes: Record<string, Hero> = {
   //   element: HeroElement.earth,
   //   class: HeroClass.warrior,
   //   baseAttack: 1228,
-  //   heroSpecific: [targetBuffed, 'exclusiveEquipment2'],
+  //   heroSpecific: [targetHasBuff, 'exclusiveEquipment2'],
   //   skills: {
   //     s1: new Skill({
   //       rate: () => 1,
@@ -9668,7 +9667,7 @@ export const Heroes: Record<string, Hero> = {
   //       rate: () => 2,
   //       pow: () => 0.95,
   //       mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.targetHasBuff ? 1.5 : 1.0,
-  //       multTip: () => ({targetBuffed: 50}),
+  //       multTip: () => ({targetHasBuff: 50}),
   //       enhance: [0.05, 0.05, 0, 0.05, 0.1, 0.1],
   //       isSingle: () => true,
   //     }
@@ -9714,7 +9713,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1158,
     baseHP: 6002,
     baseDefense: 553,
-    heroSpecific: ['casterSpeed', 'numberOfTargets', 'exclusiveEquipment3'],
+    heroSpecific: ['exclusiveEquipment3', 'casterSpeed', 'numberOfTargets'],
     skills: {
       s1: new Skill({
         id: 's1',
@@ -9761,7 +9760,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1177,
     baseHP: 5542,
     baseDefense: 553,
-    heroSpecific: ['targetBuffed'],
+    heroSpecific: ['targetHasBuff'],
     skills: {
       s1: new Skill({
         id: 's1',
@@ -9769,7 +9768,7 @@ export const Heroes: Record<string, Hero> = {
         rate: (soulburn: boolean) => soulburn ? 1.8 : 1.1,
         pow: () => 1,
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.targetHasBuff ? 1.3 : 1,
-        multTip: () => ({ targetBuffed: 30 }),
+        multTip: () => ({ targetHasBuff: 30 }),
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
         isSingle: () => true,
       }),
@@ -9788,7 +9787,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1168,
     baseHP: 3877,
     baseDefense: 666,
-    heroSpecific: ['skillTreeCompleted', 'targetBuffed'],
+    heroSpecific: ['skillTreeCompleted', 'targetHasBuff'],
     skills: {
       s1: new Skill({
         id: 's1',

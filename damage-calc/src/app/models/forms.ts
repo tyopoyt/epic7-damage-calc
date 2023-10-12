@@ -4,11 +4,136 @@ import { BattleConstants } from 'src/assets/data/constants';
 import { Artifact } from './artifact';
 
 // The | null here is to suppress a warning when using ?. in the html to check for a value in FormDefaults
-export const FormDefaults: Record<string, {max?: number, min?: number, defaultValue?: number, default?: boolean, step?: number, hint?: string} | null> = {
+// TODO: actually use the default: true
+export const FormDefaults: Record<string, {max?: number, min?: number, defaultValue?: number, default?: boolean, step?: number, hint?: string, icon?: string, svgIcon?: boolean} | null> = {
     casterMaxHP: {
         max: 50000,
         min: 1000,
         defaultValue: 10000
+    },
+    casterDefenseUp: {
+        icon: 'buffs/defense-buff.png'
+    },
+    casterDefenseDown: {
+        icon: 'debuffs/defense-debuff.png'
+    },
+    exclusiveEquipment1: {
+        icon: 'icons/one.png'
+    },
+    exclusiveEquipment2: {
+        icon: 'icons/two.png'
+    },
+    exclusiveEquipment3: {
+        icon: 'icons/three.png'
+    },
+    skillTreeCompleted: {
+        default: true,
+        icon: 'icons/skill_tree.png'
+    },
+    casterSpeedUp: {
+        icon: 'buffs/speed-buff.png'
+    },
+    targetSpeedUp: {
+        icon: 'buffs/speed-buff.png'
+    },
+    casterSpeedDown: {
+        icon: 'debuffs/speed-debuff.png'
+    },
+    targetSpeedDown: {
+        icon: 'debuffs/speed-debuff.png'
+    },
+    casterEnraged: {
+        icon: 'buffs/rage-buff.png'
+    },
+    targetEnraged: {
+        icon: 'buffs/rage-buff.png'
+    },
+    casterFury: {
+        icon: 'buffs/rage-buff.png'
+    },
+    beehooPassive: {
+        icon: 'heroes/beehoo-icon.png'
+    },
+    casterFullFocus: {
+        icon: 'icons/full-charge.svg',
+        svgIcon: true
+    },
+    casterFullFightingSpirit: {
+        icon: 'icons/full-charge.svg',
+        svgIcon: true
+    },
+    casterHasBarrier: {
+        icon: 'buffs/barrier-buff.png'
+    },
+    targetHasBarrier: {
+        icon: 'buffs/barrier-buff.png'
+    },
+    casterHasStealth: {
+        icon: 'buffs/stealth-buff.png'
+    },
+    targetHasDebuff: {
+        icon: 'icons/e7-chevron-down.png'
+    },
+    targetHasBuff: {
+        icon: 'icons/e7-chevron-up.png'
+    },
+    casterHasMultilayerBarrier: {
+        icon: 'buffs/multilayer-barrier-buff.png'
+    },
+    casterDebuffed: {
+        icon: 'icons/e7-chevron-down.png'
+    },
+    casterPerception: {
+        icon: 'buffs/perception-buff.png'
+    },
+    targetMagicNailed: {
+        icon: 'debuffs/nail-debuff.png'
+    },
+    targetAttackUp: {
+        icon: 'buffs/attack-buff.png'
+    },
+    targetAttackDown: {
+        icon: 'debuffs/attack-debuff.png'
+    },
+    targetAttackUpGreat: {
+        icon: 'buffs/greater-attack-buff.png'
+    },
+    targetAsleep: {
+        icon: 'debuffs/sleep-debuff.png'
+    },
+    targetProvoked: {
+        icon: 'debuffs/provoke-debuff.png'
+    },
+    targetStunned: {
+        icon: 'debuffs/stun-debuff.png'
+    },
+    targetSilenced: {
+        icon: 'debuffs/silence-debuff.png'
+    },
+    casterHasNeoPhantomSword: {
+        icon: 'buffs/neo-phantom-sword-buff.png'
+    },
+    casterInvincible: {
+        icon: 'buffs/invincible-buff.png'
+    },
+    casterAboveHalfHP: {
+        icon: 'icons/half-hp.png',
+        default: true
+    },
+    casterHasImmensePower: {
+        icon: 'buffs/immense-power-buff.png',
+        default: true
+    },
+    casterHasFlameAlchemist: {
+        icon: 'buffs/flame-alchemist-buff.png',
+        default: true
+    },
+    targetIsHighestMaxHP: {
+        icon: 'icons/highest-hp.png',
+    },
+    casterHasBzzt: {
+        icon: 'buffs/bzzt-buff.png',
+        default: true
     },
     numberOfTargets: {
         max: 9,
@@ -24,15 +149,6 @@ export const FormDefaults: Record<string, {max?: number, min?: number, defaultVa
         max: 10000,
         min: 200,
         defaultValue: 2000
-    },
-    targetAttackUp: {
-        default: false
-    },
-    targetAttackUpGreat: {
-        default: false
-    },
-    targetAttackDown: {
-        default: false
     },
     targetCurrentHP: {
         max: 50000,
@@ -51,9 +167,6 @@ export const FormDefaults: Record<string, {max?: number, min?: number, defaultVa
         max: 50000,
         min: 0,
         defaultValue: 0
-    },
-    targetIsHighestMaxHP: {
-        default: false
     },
     targetCurrentHPPercent: {
         max: 100,
@@ -81,34 +194,6 @@ export const FormDefaults: Record<string, {max?: number, min?: number, defaultVa
         min: 0,
         defaultValue: 0
     },
-    // TODO: assume false if not defined here
-    // targetHasBuff: {
-    //     default: false
-    // },
-    // targetHasDebuff: {
-    //     default: false
-    // },
-    // targetHasBleed: {
-    //     default: false
-    // },
-    // targetAsleep: {
-    //     default: false
-    // },
-    // targetProvoked: {
-    //     default: false
-    // },
-    // targetTargeted: {
-    //     default: false
-    // },
-    // targetStunned: {
-    //     default: false
-    // },
-    // targetSilenced: {
-    //     default: false
-    // },
-    // targetHasBarrier: {
-    //     default: false
-    // },
     targetNumberOfBleeds: {
         max: 10,
         min: 0,
@@ -139,9 +224,6 @@ export const FormDefaults: Record<string, {max?: number, min?: number, defaultVa
         min: 1000,
         defaultValue: 10000
     },
-    casterAboveHalfHP: {
-        default: true
-    },
     casterDefense: {
         max: 5000,
         min: 200,
@@ -154,6 +236,11 @@ export const FormDefaults: Record<string, {max?: number, min?: number, defaultVa
     },
     casterNumberOfBuffs: {
         max: 10,
+        min: 0,
+        defaultValue: 0
+    },
+    alliesNumberOfBuffs: {
+        max: 40,
         min: 0,
         defaultValue: 0
     },
@@ -231,7 +318,7 @@ export const FormDefaults: Record<string, {max?: number, min?: number, defaultVa
     s3OnCooldown: {
         default: true
     },
-    s3Stack: {
+    skill3Stack: {
         max: 3,
         min: 0,
         defaultValue: 0
@@ -280,6 +367,7 @@ export class DamageFormData {
     casterInvincible: boolean;
     casterMaxHP: number;
     casterNumberOfBuffs: number;
+    alliesNumberOfBuffs: number;
     casterPerception: boolean;
     casterSpeed: number;
     casterSpeedUp: boolean;
@@ -308,6 +396,7 @@ export class DamageFormData {
     molagoras2: number;
     molagoras3: number;
     nonAttackSkillStack: number;
+    attackSkillStack: number;
     nonCasterAttackStack: number;
     numberOfDeaths: number;
     numberOfHits: number;
@@ -386,6 +475,7 @@ export class DamageFormData {
         this.casterInvincible = _.get(data, 'casterInvincible', false);
         this.casterMaxHP = _.get(data, 'casterMaxHP', 10000);
         this.casterNumberOfBuffs = _.get(data, 'casterNumberOfBuffs', 0)
+        this.alliesNumberOfBuffs = _.get(data, 'alliesNumberOfBuffs', 0)
         this.casterPerception = _.get(data, 'casterPerception', false);
         this.casterSpeed = _.get(data, 'casterSpeed', 150);
         this.casterSpeedUp = _.get(data, 'casterSpeedUp', false);
@@ -414,6 +504,7 @@ export class DamageFormData {
         this.molagoras2 = _.get(data, 'molagoraS2', 0);
         this.molagoras3 = _.get(data, 'molagoraS3', 0);
         this.nonAttackSkillStack = _.get(data, 'nonAttackSkillStack', 0);
+        this.attackSkillStack = _.get(data, 'attackSkillStack', 0);
         this.nonCasterAttackStack = _.get(data, 'nonCasterAttackStack', 0);
         this.numberOfDeaths = _.get(data, 'numberOfDeaths', 0);
         this.numberOfHits = _.get(data, 'numberOfHits', 1);

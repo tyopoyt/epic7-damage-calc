@@ -164,12 +164,11 @@
                     </app-slide-input>
                 </div>
                 <div class="checkbox-holder">
-                    <!-- TODO: add icons for buffs -->
                     <mat-checkbox *ngFor="let input of artifactSpecificBooleanInputs"
                         class="small-margin-top" [checked]="!!inputValues[input]"
                         (change)="inputChange(input, $event.checked)">
                         <span class="neat-container">
-                            <!-- <img class="png-icon medium tiny-margin-right" src="assets/elements/{{advantageousElement}}.png" alt="{{advantageousElement}}"> -->
+                            <img class="png-icon medium tiny-margin-right" src="assets/{{formDefaults[input]?.icon}}" [class.icon]="formDefaults[input]?.svgIcon" alt="{{advantageousElement}}">
                             {{input | translate:'form':languageService.language.value}}
                             <img class="icon tiny tiny-margin-left" *ngIf="formDefaults[input]?.hint" src="assets/icons/help-circle-outline.svg" alt="Hint" matTooltip="{{formDefaults[input]?.hint}}">
                         </span>
@@ -254,13 +253,11 @@
                     </app-slide-input>
                 </div>
                 <div class="checkbox-holder">
-                    <!-- TODO: add icons for buffs -->
-                    <!-- TODO: add icons for EEs -->
                     <mat-checkbox *ngFor="let input of heroSpecificBooleanInputs"
                         class="small-margin-top" [checked]="!!inputValues[input]"
                         (change)="inputChange(input, $event.checked)">
                         <span class="neat-container">
-                            <!-- <img class="png-icon medium tiny-margin-right" src="assets/elements/{{advantageousElement}}.png" alt="{{advantageousElement}}"> -->
+                            <img class="png-icon medium tiny-margin-right" src="assets/{{formDefaults[input]?.icon}}" [class.icon]="formDefaults[input]?.svgIcon" alt="{{advantageousElement}}">
                             {{input | translate:'form':languageService.language.value}}
                             <img class="icon tiny tiny-margin-left" *ngIf="formDefaults[input]?.hint" src="assets/icons/help-circle-outline.svg" alt="Hint" matTooltip="{{formDefaults[input]?.hint}}">
                         </span>
