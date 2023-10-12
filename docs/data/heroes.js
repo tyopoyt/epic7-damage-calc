@@ -66,6 +66,7 @@ const heroes = {
     baseAtk: 830,
     baseHP: 6619,
     baseDef: 713,
+    info: infoLabel('unreleased_hero'),
     form: [elements.caster_defense, elements.caster_has_trauma],
     atkUp: () => {
       let boost = 1;
@@ -4557,6 +4558,7 @@ const heroes = {
     baseAtk: 1359,
     baseHP: 5542,
     baseDef: 585,
+    info: infoLabel('unreleased_hero'),
     form: [elements.caster_enrage, elements.target_nb_debuff],
     dot: [dot.bleed],
     skills: {
