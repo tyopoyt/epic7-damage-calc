@@ -149,10 +149,13 @@ const i18n = {
       nb_sets: 'Number of Sets'
     },
     info: {
+      abyssal_yufine_unbridled_outburst: 'Unbridled Outburst',
+      soulburn: ' Soulburn',
       alencia_trample: 'Trample',
       arunka_expose: 'Expose',
       balance_op_sigret: 'Balance Update: Added Speed scaling, lowered Attack scaling: S2: 0.8 -> 0.75 / S3 1.1 -> 1',
       beehoo_incinerate: 'Incinerate',
+      kane_rock_smash: 'Rock Smash',
       lethe_call_of_the_abyss: 'Call of the Abyss',
       lqc_s3_splash: 'S3 Splash',
       ml_celine_nimble_sword: 'Nimble Sword',
@@ -633,6 +636,7 @@ const i18n = {
     },
     
     info: {
+      soulburn: ' 魂力解放',
       alencia_trample: '圧殺',
       arunka_expose: 'えぐり',
       beehoo_incinerate: '焼却',
@@ -1348,6 +1352,7 @@ const i18n = {
       }
     },
     info: {
+      soulburn: ' 靈魂燃燒',
       alencia_trample: '扼殺',
       arunka_expose: '揭露',
       beehoo_incinerate: '焚燒',
@@ -2063,6 +2068,7 @@ const i18n = {
       }
     },
     info: {
+      soulburn: ' 灵魂燃烧',
       alencia_trample: '扼杀',
       arunka_expose: '揭露',
       silk_automatic_fire: '连发射击',
@@ -2707,6 +2713,7 @@ const i18n = {
       }
     },
     info: {
+      soulburn: ' 소울번',
       alencia_trample: '압살',
       arunka_expose: '파헤치기',
       beehoo_incinerate: '소각',
@@ -3269,6 +3276,7 @@ const i18n = {
       }
     },
     info: {
+      soulburn: ' Burn',
       alencia_trample: 'Pisotear',
       arunka_expose: 'Carcomere',
       beehoo_incinerate: 'Carbonizar',
@@ -3372,10 +3380,10 @@ const getSkillModTip = (tips) => {
   return `(${output.join(', ')})`;
 };
 
-const infoLabel = (key) => {
+const infoLabel = (key, soulburn = false) => {
   let lang = document.getElementById('root').getAttribute('lang');
   if (i18n[lang].info === undefined) lang = 'en';
 
-  return i18n[lang].info[key] || i18n['en'].info[key] || key || '';
+  return (i18n[lang].info[key] || i18n['en'].info[key] || key || '') + (soulburn ? i18n[lang].info['soulburn'] : '');
 };
 /* eslint-enable */

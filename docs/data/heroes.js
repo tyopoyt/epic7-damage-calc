@@ -58,6 +58,68 @@ const heroes = {
       }
     }
   },
+  // TODO: translate Abyssal Yufine stuff
+  abyssal_yufine: {
+    name: 'Abyssal Yufine',
+    element: element.dark,
+    classType: classType.knight,
+    baseAtk: 830,
+    baseHP: 6619,
+    baseDef: 713,
+    info: infoLabel('unreleased_hero'),
+    form: [elements.caster_defense, elements.caster_has_trauma],
+    atkUp: () => {
+      let boost = 1;
+
+      if (elements.caster_has_trauma.value()) {
+        boost += 1
+
+        let defenseBeforeTrauma = Number(document.getElementById('caster-defense').value)
+                                      * (1 + (elements.caster_defense_up.value() ? battleConstants.defUp : 0)
+                                      + (document.getElementById('vigor').checked ? battleConstants.vigor - 1 : 0)
+                                      + (document.getElementById('caster-fury')?.checked ? battleConstants['caster-fury'] - 1 : 0));
+        if (defenseBeforeTrauma >= 2000) {
+          boost += 1;
+        }
+      }
+
+      return boost;
+    },
+    skills: {
+      s1: {
+        defenseScaling: true,
+        rate: (soulburn) => soulburn ? 0.9 : 0.7,
+        pow: 1,
+        flat: (soulburn) => elements.caster_defense.value() * (soulburn ? 1.1 : 0.9),
+        flatTip: (soulburn) => ({caster_defense: soulburn ? 110 : 90}),
+        enhance: [0.05, 0, 0.05, 0.05, 0, 0.15],
+        aoe: true,
+        soulburn: true
+      },
+      s1_bis: {
+        name: infoLabel('abyssal_yufine_unbridled_outburst'),
+        rate: 0.8,
+        pow: 0.9,
+        penetrate: () => 0.7,
+        enhance_from: 's1',
+        single: true,
+      },
+      s1_bis_soulburn: {
+        name: infoLabel('abyssal_yufine_unbridled_outburst', true),
+        rate: 1.25,
+        pow: 0.9,
+        penetrate: () => 0.7,
+        enhance_from: 's1',
+        single: true,
+      },
+      s3: {
+        rate: 1.1,
+        pow: 1,
+        enhance: [0.05, 0.05, 0, 0.05, 0.05, 0.1],
+        aoe: true,
+      }
+    }
+  },
   achates: {
     name: 'Achates',
     element: element.fire,
@@ -4485,6 +4547,39 @@ const heroes = {
         rate: 1,
         pow: 1.1,
         enhance: [0.05, 0, 0.05, 0, 0.1],
+        aoe: true,
+      }
+    }
+  },
+  kane: {
+    name: 'Kane',
+    element: element.fire,
+    classType: classType.warrior,
+    baseAtk: 1359,
+    baseHP: 5542,
+    baseDef: 585,
+    info: infoLabel('unreleased_hero'),
+    form: [elements.caster_enrage, elements.target_nb_debuff],
+    dot: [dot.bleed],
+    skills: {
+      s1: {
+        rate: 0.9,
+        pow: 1,
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.05],
+        single: true,
+      },
+      s1_bis: {
+        name: infoLabel('kane_rock_smash'),
+        rate: 0.5,
+        pow: 1.3,
+        aoe: true,
+      },
+      s3: {
+        rate: 1.6,
+        pow: 1,
+        mult: () => 1 + elements.target_nb_debuff.value() * 0.2,
+        multTip: () => ({ per_target_debuff: 20 }),
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.05],
         aoe: true,
       }
     }

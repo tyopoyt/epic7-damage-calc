@@ -28,7 +28,7 @@ selectorParams = [
 ];
 boolParams = [
   'elemAdv', 'atkDown', 'atkUp', 'atkUpGreat', 'critDmgUp', 'vigor', 'rageSet',
-  'penSet', 'torrentSet', 'defUp', 'targetVigor', 'defDown', 'target'
+  'penSet', 'torrentSet', 'defUp', 'targetVigor', 'defDown', 'target', 'trauma'
 ];
 numberParams = [
   'atk', 'atkPcImprint', 'atkPcUp', 'crit', 'bonusDamage', 'torrentSetStack', 'def',
@@ -83,6 +83,7 @@ const dmgTransInput = document.getElementById('dmg-trans');
 const defUpInput = document.getElementById('def-up');
 const targetVigorInput = document.getElementById('target-vigor');
 const defDownInput = document.getElementById('def-down');
+const traumaInput = document.getElementById('trauma');
 const targetInput = document.getElementById('target');
 const heroSelector = document.getElementById('hero');
 const artifactSelector = document.getElementById('artifact');
@@ -354,8 +355,13 @@ const getGlobalDamageMult = (hero, skill) => {
 const getGlobalDefMult = () => {
   let mult = 1.0;
 
-  for (let defMod of ['defUp', 'defDown', 'targetVigor']) {
+  for (let defMod of ['defUp', 'defDown', 'targetVigor', 'trauma']) {
     mult += inputValues[defMod] ? battleConstants[defMod] : 0.0;
+  }
+
+  if (inputValues['trauma'] && inputValues['defDown']) {
+    mult -= battleConstants['trauma'];
+    mult *= battleConstants['trauma'] * -1;
   }
 
   return mult;

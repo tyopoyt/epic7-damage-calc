@@ -451,6 +451,19 @@ const artifacts = {
     dot: [dot.bleed],
     exclusive: classType.thief
   },
+  tyrants_descent: {
+    id: 'tyrants_descent',
+    name: "Tyrant's Descent",
+    form: [elements.target_nb_debuff],
+    scale: [0.06, 0.66, 0.072, 0.078, 0.084, 0.09, 0.096, 0.102, 0.108, 0.114, 0.12],
+    // TODO: Check additional scaling
+    additional: [0.18, 0.186, 0.192, 0.198, 0.204, 0.21, 0.216, 0.222, 0.228, 0.234, 0.24],
+    type: artifactDmgType.damage,
+    exclusive: classType.warrior,
+    value: (artiScale) => {
+      return artiScale + Math.min(elements.target_nb_debuff.value() * 0.03, artifacts.tyrants_descent.additional[artifacts.tyrants_descent.scale.indexOf(artiScale)])
+    }
+  },
   uberius_tooth: {
     id: 'uberius_tooth',
     name: 'Uberius\'s Tooth',
