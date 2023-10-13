@@ -1,7 +1,7 @@
 ## Changelog
 
 ### <strong>Oct 12 2023 Update:</strong>
-- Added Abyssal Yufine, Kane, and Tyrant's Descent. Did not have time to translate them, will do so later.
+- Added Abyssal Yufine, Kane, and Tyrant's Descent.
 ### <strong>Sept 29 2023:</strong>
 - Fixed Time Matter.
 ### <strong>Sept 27 2023:</strong>
@@ -9,12 +9,12 @@
 ### <strong>Sept 17 2023:</strong>
 - Added Lilias's missing barrier.
 ### <strong>Sept 14 2023:</strong>
-- Added Midnight Gala Lilias and Hostess of the Banquet.   
+- Added Midnight Gala Lilias and Hostess of the Banquet.
 ### <strong>Sept 4 2023:</strong>
 - Overhaul Changelog Markdown
 ### <strong>Aug 31 2023:</strong>
 - Added Veronica, Brieg, and Urban Shadow Choux. 
-- Updated with the 8/3 balance patch changes. 
+- Updated with the 8/3 balance patch changes.
 - Added Our Beautiful Seasons.
 ### <strong>Aug 30 2023:</strong>
 - Added Graphs feature. 
