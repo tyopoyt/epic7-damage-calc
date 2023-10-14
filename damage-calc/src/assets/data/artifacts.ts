@@ -61,8 +61,8 @@ export const Artifacts: Record<string, Artifact> = {
     scale: [0.12, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2, 0.21, 0.22, 0.24],
     type: ArtifactDamageType.critDamageBoost,
     exclusive: HeroClass.mage,
-    // TODO: add form defaults
-    artifactSpecific:['attackSkillSstack'],
+    // TODO: listen to form defaults for artifacts
+    artifactSpecific:['attackSkillStack'],
     artifactSpecificMaximums:{'attackSkillStack': 5},
     value: (artiScale: number, inputValues: DamageFormData) => artiScale - ((artiScale / 10) * inputValues.casterAttackStack),
   }),
@@ -379,7 +379,6 @@ export const Artifacts: Record<string, Artifact> = {
     name: 'Sword of Cycling Seasons',
     value: () => 0.25,
     type: ArtifactDamageType.damage,
-    //TODO: refactor hero_exclusive to work with this
     heroExclusive: ['adin', 'savior_adin', 'holy_flame_adin', 'serene_purity_adin', 'verdant_adin'],
     applies: (skill: Skill, inputValues: DamageFormData) => {
       return inputValues.elementalAdvantage || skill.elementalAdvantage(inputValues);

@@ -76,6 +76,64 @@ html, body {
     max-height: 25rem;
   }
 
+  .mat-mdc-dialog-container {
+    .mat-mdc-dialog-surface {
+      background-color: $ui-medium-dark-color;
+      border-radius: $gutter;
+
+      .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+        background-color: $ui-dark-color;
+        border-radius: $gutter;
+
+      }
+      .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-text-field__input {
+        --mdc-filled-text-field-caret-color: #{$e7-buff-contrast-color};
+      }
+
+      .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-floating-label, .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-floating-label--float-above {
+        --mdc-filled-text-field-caret-color: #{$font-light-color};
+        --mdc-filled-text-field-focus-active-indicator-color: #{$font-light-color};
+        --mdc-filled-text-field-focus-label-text-color: #{$font-light-color};
+        --mdc-outlined-text-field-caret-color: #{$font-light-color};
+        --mdc-outlined-text-field-focus-outline-color: #{$font-light-color};
+        --mdc-outlined-text-field-focus-label-text-color: #{$font-light-color};
+
+        --mdc-filled-text-field-label-text-color: #{$ui-light-color};
+        --mdc-filled-text-field-disabled-label-text-color: #{$ui-light-color};
+        --mdc-filled-text-field-input-text-color: #{$ui-light-color};
+        --mdc-filled-text-field-disabled-input-text-color: #{$ui-light-color};
+        --mdc-filled-text-field-input-text-placeholder-color: #{$ui-light-color};
+        --mdc-filled-text-field-active-indicator-color: #{$ui-light-color};
+        --mdc-filled-text-field-disabled-active-indicator-color: #{$ui-light-color};
+        --mdc-filled-text-field-hover-active-indicator-color: #{$ui-light-color};
+        --mdc-outlined-text-field-label-text-color: #{$ui-light-color};
+        --mdc-outlined-text-field-disabled-label-text-color: #{$ui-light-color};
+        --mdc-outlined-text-field-input-text-color: #{$ui-light-color};
+        --mdc-outlined-text-field-disabled-input-text-color: #{$ui-light-color};
+        --mdc-outlined-text-field-input-text-placeholder-color: #{$ui-light-color};
+        --mdc-outlined-text-field-outline-color: #{$ui-light-color};
+        --mdc-outlined-text-field-disabled-outline-color: #{$ui-light-color};
+        --mdc-outlined-text-field-hover-outline-color: #{$ui-light-color};
+        --mat-form-field-disabled-input-text-placeholder-color: #{$ui-light-color};
+      }
+
+      .mat-mdc-dialog-title {
+        color: $font-light-color;
+      }
+
+      .mat-mdc-dialog-actions {
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      .mdc-button {
+        .mdc-button__label {
+          color: $font-light-color;
+        }
+      }
+    }
+  }
+
   .sticky-top {
     position: sticky;
     top: $gutter;
@@ -103,6 +161,14 @@ html, body {
     &.medium {
       height: 1.25rem;
     }
+
+    &.large {
+      height: 1.75rem;
+    }
+
+    &.filter {
+      filter: $font-light-color-filter;
+    }
   }
 
   .menu-item {
@@ -115,6 +181,10 @@ html, body {
 
   .mat-mdc-menu-item:not([disabled]):hover, .mat-mdc-option:not([disabled]):hover {
     background-color: $ui-dark-color;
+  }
+
+  .text-color {
+    color: $font-light-color !important;
   }
 
   .mat-mdc-option:not([disabled]).mdc-list-item--selected {
@@ -268,7 +338,6 @@ html, body {
   }
 
   .mat-mdc-form-field {
-
     .mat-mdc-select-value {
       color: $font-light-color;
     }
@@ -334,8 +403,9 @@ html, body {
 
   .mat-mdc-table {
     border-radius: $gutter;
-    margin: $gutter-large 0 $gutter;
+    margin: $gutter-small 0 $gutter;
     overflow: hidden;
+    background-color: $ui-medium-dark-color;
 
     &.smaller-padding {
       .mat-mdc-header-cell, .mat-mdc-cell {
@@ -585,10 +655,10 @@ html, body {
       --mdc-checkbox-selected-hover-icon-color: #{$e7-buff-contrast-color};
       --mdc-checkbox-selected-icon-color: #{$e7-buff-contrast-color};
       --mdc-checkbox-selected-pressed-icon-color: #{$e7-buff-contrast-color};
-      --mdc-checkbox-unselected-focus-icon-color: #{$ui-medium-medium-light-color};
-      --mdc-checkbox-unselected-hover-icon-color: #{$ui-medium-medium-light-color};
-      --mdc-checkbox-unselected-icon-color: #{$ui-medium-medium-light-color};
-      --mdc-checkbox-unselected-pressed-icon-color: #{$ui-medium-medium-light-color};
+      --mdc-checkbox-unselected-focus-icon-color: #{$ui-medium-light-color};
+      --mdc-checkbox-unselected-hover-icon-color: #{$ui-medium-light-color};
+      --mdc-checkbox-unselected-icon-color: #{$ui-medium-light-color};
+      --mdc-checkbox-unselected-pressed-icon-color: #{$ui-medium-light-color};
       --mdc-checkbox-selected-focus-state-layer-color: #{$e7-buff-contrast-color};
       --mdc-checkbox-selected-hover-state-layer-color: #{$e7-buff-contrast-color};
       --mdc-checkbox-selected-pressed-state-layer-color: #{$e7-buff-contrast-color};
@@ -614,6 +684,12 @@ html, body {
     }
   }
 
+  span.mdc-button__label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   .navbar {
     position: sticky;
     top: 0;
@@ -624,12 +700,6 @@ html, body {
     background-color: $ui-dark-color;
     height: $navbar-height !important;
     z-index: $navabar-z-index;
-
-    span.mdc-button__label {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
 
     &.small {
       padding: 0 0.5rem;
@@ -674,12 +744,16 @@ html, body {
     color: $font-dark-color;
     background-color: whitesmoke !important;
 
+    .text-color {
+      color: $font-dark-color !important;
+    }
+
     ::-webkit-scrollbar {
       width: 0.6rem;
     }
       
     ::-webkit-scrollbar-track {
-        background: $ui-medium-light-color;
+        background: $ui-light-theme-color;
     }
       
     ::-webkit-scrollbar-thumb {
@@ -691,18 +765,18 @@ html, body {
     }
   
     // firefox doesn't support webkit scrollbar so this is pretty much all the customization :(
-    scrollbar-color: $e7-buff-contrast-color $ui-medium-light-color;
+    scrollbar-color: $e7-buff-contrast-color $ui-light-theme-color;
 
     .icon {
       filter: $font-dark-color-filter;
     }
 
     .mini-card {
-      background-color: $ui-medium-medium-light-light-color;
+      background-color: $ui-light-theme-medium-color;
     }
 
     .mat-mdc-unelevated-button:not(:disabled) {
-      background-color: $ui-medium-medium-light-light-color;
+      background-color: $ui-light-theme-medium-color;
       color: $font-dark-color;
     }
 
@@ -728,7 +802,7 @@ html, body {
     ngx-mat-select-search {
       input.mat-select-search-input {
         // important because some id is filled and used in the selector
-        background-color: $ui-medium-light-color !important;
+        background-color: $ui-light-theme-color !important;
         color: $font-dark-color !important;
       }
       ::placeholder {
@@ -738,6 +812,59 @@ html, body {
       
       ::-ms-input-placeholder { /* Edge 12 -18 */
         color: $font-dark-color;
+      }
+    }
+
+    .mat-mdc-dialog-container {
+      .mat-mdc-dialog-surface {
+        background-color: $ui-light-color;
+
+        .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+          background-color: whitesmoke;
+        }
+  
+        .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-floating-label, .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-floating-label--float-above {
+          --mdc-filled-text-field-caret-color: #{$font-dark-color};
+          --mdc-filled-text-field-focus-active-indicator-color: #{$font-dark-color};
+          --mdc-filled-text-field-focus-label-text-color: #{$font-dark-color};
+          --mdc-outlined-text-field-caret-color: #{$font-dark-color};
+          --mdc-outlined-text-field-focus-outline-color: #{$font-dark-color};
+          --mdc-outlined-text-field-focus-label-text-color: #{$font-dark-color};
+
+          --mdc-filled-text-field-label-text-color: #{$font-dark-color};
+          --mdc-filled-text-field-disabled-label-text-color: #{$font-dark-color};
+          --mdc-filled-text-field-input-text-color: #{$font-dark-color};
+          --mdc-filled-text-field-disabled-input-text-color: #{$font-dark-color};
+          --mdc-filled-text-field-input-text-placeholder-color: #{$font-dark-color};
+          --mdc-filled-text-field-active-indicator-color: #{$font-dark-color};
+          --mdc-filled-text-field-disabled-active-indicator-color: #{$font-dark-color};
+          --mdc-filled-text-field-hover-active-indicator-color: #{$font-dark-color};
+          --mdc-outlined-text-field-label-text-color: #{$font-dark-color};
+          --mdc-outlined-text-field-disabled-label-text-color: #{$font-dark-color};
+          --mdc-outlined-text-field-input-text-color: #{$font-dark-color};
+          --mdc-outlined-text-field-disabled-input-text-color: #{$font-dark-color};
+          --mdc-outlined-text-field-input-text-placeholder-color: #{$font-dark-color};
+          --mdc-outlined-text-field-outline-color: #{$font-dark-color};
+          --mdc-outlined-text-field-disabled-outline-color: #{$font-dark-color};
+          --mdc-outlined-text-field-hover-outline-color: #{$font-dark-color};
+          --mat-form-field-disabled-input-text-placeholder-color: #{$font-dark-color};
+        }
+  
+        .mat-mdc-dialog-title {
+          color: $font-dark-color;
+        }
+  
+        .mdc-button {
+          .mdc-button__label {
+            color: $font-dark-color;
+          }
+
+          &.light-text {
+            .mdc-button__label {
+              color: $font-light-color;
+            }
+          }
+        }
       }
     }
 
@@ -801,20 +928,20 @@ html, body {
       }
 
       span.header {
-        background-color: $ui-medium-light-color;
+        background-color: $ui-light-theme-color;
       }
     }
 
     .damage-block {
       .mat-mdc-card {
-        background-color: $ui-medium-light-color;
+        background-color: $ui-light-theme-color;
       }
     }
 
     .mat-mdc-table {  
       thead {
         > tr {
-          background-color: $ui-medium-medium-light-light-color;
+          background-color: $ui-light-theme-medium-color;
   
           .mat-mdc-header-cell {
             border-right: $gutter-tiny solid $ui-light-color;
@@ -831,8 +958,8 @@ html, body {
         color: $font-dark-color;
   
         .mat-mdc-cell {
-          border-bottom: 2px solid $ui-medium-medium-light-light-color;
-          border-right: 2px solid $ui-medium-medium-light-light-color;
+          border-bottom: 2px solid $ui-light-theme-medium-color;
+          border-right: 2px solid $ui-light-theme-medium-color;
         }
   
         > :last-child {
@@ -850,7 +977,7 @@ html, body {
     }
 
     div.mat-mdc-select-panel {
-      background: $ui-medium-light-light-color;
+      background: $ui-light-theme-light-color;
     
       .mat-mdc-option {
         color: $font-dark-color;
@@ -870,7 +997,7 @@ html, body {
 
       .mat-mdc-option:focus.mdc-list-item, .mat-mdc-option.mat-mdc-option-active.mdc-list-item {
         &:not(.mdc-list-item--selected) {
-          background-color: $ui-medium-light-color;
+          background-color: $ui-light-theme-color;
         }
       }
     }
@@ -902,16 +1029,16 @@ html, body {
     }
 
     .mat-mdc-menu-item:not([disabled]):hover, .mat-mdc-option:not([disabled]):hover {
-      background-color: $ui-medium-light-color;
+      background-color: $ui-light-theme-color;
     }
 
     div.mat-mdc-menu-panel {
-      background-color: $ui-medium-light-light-color;
+      background-color: $ui-light-theme-light-color;
   
       .mat-mdc-menu-content {
         > mat-slide-toggle {
           &:hover {
-            background-color: $ui-medium-light-color;
+            background-color: $ui-light-theme-color;
           }
         }
       }
@@ -1033,6 +1160,10 @@ body {
   margin-right: 0.25rem;
 }
 
+.tiny-margin-bottom {
+  margin-bottom: 0.25rem;
+}
+
 .microscopic-margin-bottom {
   margin-bottom: 0.125rem;
 }
@@ -1087,6 +1218,10 @@ body {
 
 .small-padding-left {
   padding-left: 0.5rem;
+}
+
+.small-padding-bottom {
+  padding-bottom: 0.5rem;
 }
 
 .small-padding-right{
@@ -1326,4 +1461,56 @@ mat-pseudo-checkbox {
 
 .full-height {
   height: 100%;
+}
+
+// These importants are to ensure these styles override other more contextual styles
+.color-grey {
+  background-color: $ui-medium-color !important;
+  color: $ui-light-color !important;
+}
+
+.color-blue {
+  background-color: $e7-buff-ui-color !important;
+  color: $ui-light-color !important;
+}
+
+.color-orange {
+  background-color: $ui-orange-color !important;
+  color: $ui-light-color !important;
+}
+
+.color-green {
+  background-color: $e7-earth-ui-color !important;
+  color: $ui-light-color !important;
+}
+
+.button-line {
+  border-radius: 0 !important;
+
+  &-left {
+    border-radius: $gutter 0 0 $gutter !important;
+  }
+
+  &-right {
+    border-radius: 0 $gutter $gutter 0 !important;
+  }
+}
+
+.button-line, .button-line-left, .button-line-right {
+  padding: $gutter-small !important;
+  min-width: 2.5rem !important;
+
+  .svg-icon {
+    height: 1.25rem;
+    filter: $font-light-color-filter;
+
+    &.white {
+      height: 1rem;
+      filter: $white-to-font-light-filter
+    }
+  }
+}
+
+.left-align {
+  text-align: left !important;
 }

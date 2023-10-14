@@ -15,6 +15,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -33,6 +34,7 @@ import { SlideInputComponent } from './components/ui-elements/slide-input/slide-
 import { SpeedTunerComponent } from './components/speed-tuner/speed-tuner.component';
 import { TranslationPipe } from './pipes/translation.pipe';
 import { TypeofPipe } from './pipes/typeof.pipe';
+import { CompareComponent } from './components/compare/compare.component';
 
 
 @NgModule({
@@ -50,7 +52,8 @@ import { TypeofPipe } from './pipes/typeof.pipe';
     SlideInputComponent,
     SpeedTunerComponent,
     TranslationPipe,
-    TypeofPipe
+    TypeofPipe,
+    CompareComponent
   ],
   imports: [
     AppRoutingModule,
@@ -70,6 +73,7 @@ import { TypeofPipe } from './pipes/typeof.pipe';
     MatTableModule,
     MatToolbarModule,
     MatTooltipModule,
+    MatDialogModule,
     NgxMatSelectSearchModule,
     ReactiveFormsModule
   ],

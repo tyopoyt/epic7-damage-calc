@@ -40,7 +40,7 @@ export class Hero {
     heroSpecificMaximums: Record<string, number>;
     innateAttackIncrease?: (inputValues: DamageFormData) => number;
     skills: Record<string, Skill>;
-    exclusiveEquipmentMultiplier?: Function;
+    exclusiveEquipmentMultiplier?: (inputValues: DamageFormData) => number;
 
   constructor(
       heroValues: any,
@@ -111,17 +111,6 @@ export class Hero {
     return (atk + atkImprint) * atkMod;
   }
 
-  // TODO: remove this?
-  getHP(inputValues: DamageFormData): number {
-    return inputValues.casterMaxHP || 10000;
-  }
-
-  getSpeed(inputValues: DamageFormData): number {
-      return Math.floor(inputValues.casterSpeed) * (1 + (inputValues.casterSpeedUp ? BattleConstants.spdUp - 1 : 0)
-           + (inputValues.casterSpeedDown ? 1 - BattleConstants.spdUp : 0)
-           + (inputValues.casterEnraged ? BattleConstants['casterRage'] - 1 : 0));
-  }
-
   getAfterMathSkillDamage(skill: Skill, hitType: HitType, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number, defenseMultiplier: number, target: Target, isExtra = false) {
     let skillDamage = 0;
     const skillMultipliers = skill.afterMath(hitType, inputValues);
@@ -150,7 +139,6 @@ export class Hero {
       }
     }
 
-    // TODO: should this return 0 instead?
     return null;
   }
 }

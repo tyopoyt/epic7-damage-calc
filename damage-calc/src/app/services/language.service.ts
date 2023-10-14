@@ -38,12 +38,12 @@ export class LanguageService {
     this.englishDict = await englishFile.json();
   }
 
-  async setLanguage(language: Language) {
+  async setLanguage(language: Language, fromButton = false) {
     if (language) {
       const translationFile = await fetch(`../../assets/i18n/${language?.countryCode}.json`);
       this.translationDict = await translationFile.json();
   
-      if (this.language.value === language) {
+      if (this.language.value === language && fromButton) {
         this.sameLanguageCount++;
         debounce('clearSameLanguageCount', () => {this.sameLanguageCount = 0}, [], 4000)
         if (this.sameLanguageCount >= 3) {

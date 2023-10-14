@@ -93,7 +93,7 @@ export class NavbarComponent implements OnInit  {
   // There's probably a better way to do this but it works and is performant enough so it's fine
   selectLanguage(language: Language) {
     const newUrl = this.router.createUrlTree([language.countryCode]).toString()
-    this.languageService.setLanguage(language);
+    this.languageService.setLanguage(language, true);
     this._location.go(`${newUrl}/${this.languageService.toolTitleToPathMap[this.toolSelection.value]}`)
   }
 

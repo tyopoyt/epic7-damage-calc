@@ -1,16 +1,18 @@
-//TODO: fix the rediculous names like medium-medium-light-light
 $background-dark-color: #1f1f1f;
 $ui-light-color: #e6e6e6;
-$ui-medium-light-light-color: #EEEEEE; // Yes this name is a bit silly but it was made after medium-light and light were already made
-$ui-medium-light-color: #DDDDDD; // Same as font-light-color but alias for context
-$ui-medium-medium-light-light-color: #cccaca;
-$ui-medium-medium-light-color: #898989; // another silly name...
+$ui-medium-light-color: #898989;
 $ui-medium-color: #666666;
 $ui-medium-dark-color: #454545;
 $ui-dark-color: #333333;
 $ui-darker-color: #272626;
+
+$ui-light-theme-light-color: #EEEEEE;
+$ui-light-theme-color: #DDDDDD;
+$ui-light-theme-medium-color: #cccaca;
+
 $font-light-color: #DDDDDD;
 $font-light-color-filter: invert(100%) sepia(0%) saturate(1701%) hue-rotate(278deg) brightness(106%) contrast(73%);
+$white-to-font-light-filter: invert(5%) sepia(78%) saturate(0%) hue-rotate(246deg) brightness(109%) contrast(84%);
 $font-dark-color: #212529;
 $font-dark-color-filter: invert(12%) sepia(4%) saturate(1687%) hue-rotate(169deg) brightness(93%) contrast(91%);
 $e7-buff-color: #06abfe;
@@ -29,6 +31,7 @@ $e7-earth-dark-color-filter: invert(57%) sepia(19%) saturate(1650%) hue-rotate(6
 $e7-ice-color: #1eacff;
 $e7-fire-color: #e54332;
 $e7-unique-effect-color: #d9b75e;
+$ui-orange-color: #DE7715;
 $ui-info-color: #41A288;
 $white-filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(31deg) brightness(101%) contrast(105%);
 

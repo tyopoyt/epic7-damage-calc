@@ -8,11 +8,6 @@ export enum DoT {
     bomb = 'bomb'
 }
 
-export enum SkillType {
-    single = 'single',
-    aoe = 'aoe'
-}
-
 export enum HitType {
     crit = 'crit',
     crush = 'crush',
@@ -79,7 +74,7 @@ export class Skill {
     // TODO: refactor atk to attackToUse
     constructor(data: any) {
         this.id = _.get(data, 'id', 's1');
-        this.afterMath = _.get(data, 'afterMath', () => null); //TODO: define a type for this
+        this.afterMath = _.get(data, 'afterMath', () => null);
         this.canExtra = _.get(data, 'canExtra', false);
         this.critDmgBoost = _.get(data, 'critDmgBoost', () => 0);
         this.critDmgBoostTip = _.get(data, 'critDmgBoostTip', () => null);
@@ -118,11 +113,4 @@ export class Skill {
         this.detonate = _.get(data, 'detonate', []);
         this.soulburn = _.get(data, 'soulburn', false);
     }
-
-    //TODO: get rid of this if unused
-    getSkillType = () => {
-        if (this.isSingle()) return SkillType.single;
-        if (this.isAOE()) return SkillType.aoe;
-        return undefined;
-    };
 }

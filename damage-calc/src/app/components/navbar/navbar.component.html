@@ -40,8 +40,8 @@
     <ng-container *ngIf="languageService.language.value">
         <span *ngIf="screenService.extraLargeScreen.value; else settingsCog" class="absolute-right neat-container">
             <span class="neat-container icon-holder">
-                <button type="button" class="side-input right" (click)="openKofi()"  mat-flat-button>
-                    <img class="webp-icon" src="assets/icons/ko-fi.webp">
+                <button type="button" (click)="openKofi()"  mat-flat-button>
+                    <img class="webp-icon" src="assets/icons/ko-fi.webp" alt="ko-fi icon">
                     {{'donate' | translate:'ui':languageService.language.value}}
                 </button>
                 <ng-template [ngTemplateOutlet]="darkModeToggle"></ng-template>
@@ -50,7 +50,7 @@
         </span>
         <ng-template #settingsCog>
             <span class="absolute-right neat-container">
-                <img *ngIf="!screenService.microscopicScreen.value" class="webp-icon" src="assets/icons/ko-fi.webp" (click)="openKofi()">
+                <img *ngIf="!screenService.microscopicScreen.value" class="webp-icon" src="assets/icons/ko-fi.webp" (click)="openKofi()" alt="ko-fi icon">
                 <!-- This is using container with ngIf rather than [class.extra-item] because angular does not pass the class down to the 
                      element that actually gets rendered if it's dynamically applied -->
                 <ng-container *ngIf="!screenService.microscopicScreen.value; else extraItemCogMenu">

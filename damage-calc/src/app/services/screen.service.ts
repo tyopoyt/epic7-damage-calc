@@ -30,9 +30,6 @@ export class ScreenService {
   // theme: BehaviorSubject<Theme> = new BehaviorSubject<Theme>(Theme.dark)
   theme: Theme = Theme.dark;
 
-
-  constructor() {}
-
   toggleMicroscopicScreen() {
     this.microscopicScreen.next(!this.microscopicScreen.value);
   }

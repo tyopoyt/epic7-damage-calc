@@ -173,12 +173,6 @@ export const FormDefaults: Record<string, {max?: number, min?: number, defaultVa
         min: 1,
         defaultValue: 100
     },
-    // TODO: this seems to be a duplicate, remove it if so
-    // targetCurrentHP: {
-    //     max: 50000,
-    //     min: 1000,
-    //     defaultValue: 10000
-    // },
     targetSpeed: {
         max: 350,
         min: 70,
@@ -332,7 +326,6 @@ export const FormDefaults: Record<string, {max?: number, min?: number, defaultVa
     }
 }
 
-//TODO: heroes will replace form with heroSpecific [] and heroSpecificMaximums {}
 export class DamageFormData {
     [key: string]: string | number | boolean | DefensePreset | ReductionPreset | undefined | ((artifact: Artifact) => number),
     AOEStack: number;

@@ -19,11 +19,36 @@ import { SlideInputComponent } from '../ui-elements/slide-input/slide-input.comp
 import { DamageFormData, FormDefaults } from 'src/app/models/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { DoT, Skill } from 'src/app/models/skill';
+import { MatDialog } from '@angular/material/dialog';
+import { CompareSaveComponent } from '../compare-save/compare-save.component';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-damage-calculator',
   templateUrl: './damage-calculator.component.html',
-  styleUrls: ['./damage-calculator.component.scss']
+  styleUrls: ['./damage-calculator.component.scss'],
+  animations: [
+    trigger('collapseAnimation', 
+      [
+        transition(
+          ':enter', 
+          [
+            style({ height: 0, opacity: 0 }),
+            animate('0.125s ease-out', 
+                    style({ opacity: 1 }))
+          ]
+        ),
+        transition(
+          ':leave', 
+          [
+            style({ opacity: 1 }),
+            animate('0.125s ease-in',
+                    style({ height: 0, opacity: 0 }))
+          ]
+        )
+      ]
+    )
+  ]
 })
 export class DamageCalculatorComponent implements OnInit, OnDestroy {
 
@@ -82,6 +107,8 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
   public attackPresetControl: FormControl<string | null>;
 
   translationPipe: TranslationPipe;
+
+  collapsed = false;
   
   get inputValues() {
     return this.dataService.damageInputValues;
@@ -112,7 +139,8 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
     public languageService: LanguageService,
     public screenService: ScreenService,
     private damageService: DamageService,
-    public dataService: DataService
+    public dataService: DataService,
+    private dialog: MatDialog
   ) {
     this.translationPipe = new TranslationPipe(this.languageService);
     this.heroControl = new FormControl<string | null>(this.dataService.currentHeroID.value)
@@ -348,5 +376,21 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
         return true;
       }
     })
+  }
+
+  saveBuild() {
+    const dialogRef = this.dialog.open(CompareSaveComponent, {
+      height: '14.375rem',
+      width: '50rem',
+      data: {attack: 1, defense: 1}
+    })
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+    });
+  }
+
+  toggleTable() {
+    this.collapsed = !this.collapsed;
   }
 }

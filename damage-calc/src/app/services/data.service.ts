@@ -19,10 +19,8 @@ export class DataService {
 
   currentHeroID = new BehaviorSubject<string>('abigail')
   currentHero = new BehaviorSubject<Hero>(Heroes.abigail);
-  // currentArtifactID = new BehaviorSubject<string>('no_proc')
-  // currentArtifact = new BehaviorSubject<Artifact>(Artifacts.no_proc);
-  currentArtifactID = new BehaviorSubject<string>('uberius_tooth')
-  currentArtifact = new BehaviorSubject<Artifact>(Artifacts.uberius_tooth);
+  currentArtifactID = new BehaviorSubject<string>('no_proc')
+  currentArtifact = new BehaviorSubject<Artifact>(Artifacts.no_proc);
   currentTarget: Target = new Target();
   
   heroConstants: Record<string, number> = {
@@ -62,15 +60,6 @@ export class DataService {
     [HeroElement.earth]: HeroElement.ice,
     [HeroElement.dark]: HeroElement.light,
     [HeroElement.light]: HeroElement.dark,
-  }
-
-  constructor() {
-    this.initialSetup();
-  }
-
-  // TODO: remove this if no longer needed
-  async initialSetup() {
-    return;
   }
 
   updateDamageInputValues(updates: Record<string, any>) {

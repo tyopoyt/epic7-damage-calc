@@ -2,14 +2,12 @@
 <div class="page-container sticky-bottom">
     <span class="page-body">
         <app-dismissible [content]="'damage_calculator_updates' | translate:'info':languageService.language.value" [color]="DismissibleColorOption.info"></app-dismissible>
-        <!-- TODO: go to one column on small screens  -->
         <div class="filter-select-container full-width neat-container" [ngClass]="!screenService.mediumSmallScreen.value ? 'column-3' : 'flex-column'">
             <mat-form-field class="example-full-width neat-container has-icons">
                 <img class="png-icon medium tiny-margin-right select-icon" src="assets/elements/{{hero.element}}.png" alt="{{hero.element}}">
                 <img class="png-icon medium tiny-margin-right select-icon-2" src="assets/classes/{{hero.class}}.png" alt="{{hero.class}}">
                 <mat-select [formControl]="heroControl" placeholder="" #singleSelect (selectionChange)="selectHero($event.value)">
                     <mat-option>
-                        <!-- TODO: finish styling: Set light mode colors for select box and this search field -->
                         <ngx-mat-select-search spellcheck="false" [formControl]="heroFilterControl" placeholderLabel="Find hero..." noEntriesFoundLabel="No matching heroes found"></ngx-mat-select-search>
                     </mat-option>
                     <mat-option *ngFor="let hero of filteredHeroes" class="has-icons" [value]="hero[0]">
@@ -278,12 +276,30 @@
             </div>
         </div>
         <div class="damage-block">
-            <!-- TODO: Artifact damage, barriers, multiplier fxn breakdown button -->
+            <!-- TODO: multiplier fxn breakdown button -->
             <!-- TODO: Add healing? -->
             <mat-card class="left">
                 <div class="full-width neat-container flex-between">
-                    <div class="extra-large-text bold-text small-padding-top">
-                        {{"damage_title" | translate:'form':languageService.language.value}}
+                    <div class="flex-row neat-container">
+                        <div class="extra-large-text bold-text small-padding-bottom">
+                            {{"damage_title" | translate:'form':languageService.language.value}}
+                        </div>
+                        <button type="button" class="small-margin-left color-grey button-line-left neat-container" (click)="saveBuild()" mat-flat-button>
+                            <img class="svg-icon" [class.tiny-margin-right]="!screenService.mediumScreen.value" src="assets/icons/save.svg" alt="save">
+                            <ng-container *ngIf="!screenService.mediumScreen.value">{{'save' | translate:'ui':languageService.language.value}}</ng-container>
+                        </button>
+                        <button type="button" class="color-blue button-line" mat-flat-button>
+                            <img class="svg-icon" [class.tiny-margin-right]="!screenService.mediumScreen.value" src="assets/icons/compare.svg" alt="compare">
+                            <ng-container *ngIf="!screenService.mediumScreen.value">{{'compare' | translate:'ui':languageService.language.value}}</ng-container>
+                        </button>
+                        <button type="button" class="color-orange button-line" mat-flat-button>
+                            <img class="svg-icon white" [class.tiny-margin-right]="!screenService.mediumScreen.value" src="assets/icons/line-chart.svg" alt="graph">
+                            <ng-container *ngIf="!screenService.mediumScreen.value">{{'show_graph' | translate:'ui':languageService.language.value}}</ng-container>
+                        </button>
+                        <button type="button" class="color-green button-line-right" mat-flat-button>
+                            <img class="svg-icon white" [class.tiny-margin-right]="!screenService.mediumScreen.value" src="assets/icons/share-nodes-solid.svg" alt="share">
+                            <ng-container *ngIf="!screenService.mediumScreen.value">{{'share' | translate:'ui':languageService.language.value}}</ng-container>
+                        </button>
                     </div>
                     <div class="neat-container flex-row">
                         <div *ngIf="!!artifactDamage" class="neat-container small-padding-top medium-text">
@@ -311,10 +327,10 @@
                                 </span>
                             </div>
                         </div>
+                        <img class="svg-icon large filter pointer" (click)="toggleTable()" src="{{collapsed ? 'assets/icons/chevron-up.svg' : 'assets/icons/chevron-down.svg'}}" alt="collapse">
                     </div>
                 </div>
-                <table class="margin-top" [class.tiny-padding]="screenService.smallScreen.value" mat-table [dataSource]="damageData">
-
+                <table [@collapseAnimation] *ngIf="!collapsed" [class.tiny-padding]="screenService.smallScreen.value" mat-table [dataSource]="damageData">
                     <ng-container matColumnDef="skill">
                       <th mat-header-cell *matHeaderCellDef> {{"skill" | translate:'form':languageService.language.value}} </th>
                       <td mat-cell *matCellDef="let element"> {{element.skill | translate:'skills':languageService.language.value}} </td>

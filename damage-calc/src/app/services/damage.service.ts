@@ -36,7 +36,7 @@ export class DamageService {
     return this.dataService.currentHero.value;
   }
   
-  // TODO: comment functions
+  // TODO: add comments to functions
   constructor(private dataService: DataService, private languageService: LanguageService) {
     this.dataService.damageInputChanged.subscribe(() => {
       this.updateDamages();
@@ -73,7 +73,6 @@ export class DamageService {
 
   getGlobalDamageMult(skill: Skill): number {
     let mult = 0.0;
-    // TODO: double check rage when hp scaling works
     this.dataService.damageMultSets.forEach((set) => {
       mult += (this.damageForm[set as keyof DamageFormData] || !!this.damageForm[`${set}Stack` as keyof DamageFormData]) ? _.get(BattleConstants, set) * (_.get(this.damageForm, `${set}Stack`, 1) as number) : 0.0;
     });
@@ -135,7 +134,7 @@ export class DamageService {
         + this.getGlobalDamageMult(skill)
         + this.damageForm.damageIncrease / 100
         + this.currentArtifact.getDamageMultiplier(this.damageForm.artifactLevel, this.damageForm, skill, isExtra)
-        + (skill.mult ? skill.mult(soulburn, this.damageForm, this.currentArtifact) - 1 : 0); // TODO: 'this' is certainly the wrong thing to pass here
+        + (skill.mult ? skill.mult(soulburn, this.damageForm, this.currentArtifact) - 1 : 0);
     return ((this.currentHero.getAttack(this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill, isExtra) * rate + flatMod) * BattleConstants.dmgConst + flatMod2) * pow * skillEnhance * elementalAdvantage * target * dmgMod;
   }
 

@@ -13,7 +13,7 @@
     bottom: 0;
     z-index: $damage-block-z-index;
     mat-card {
-        // TODO: maybe remove elevation if scrolled to below the card?
+        // TODO: maybe remove elevation if scrolled to below the card? maybe event when credits scroll into view?
         @include mat.elevation(5)
     }
 }

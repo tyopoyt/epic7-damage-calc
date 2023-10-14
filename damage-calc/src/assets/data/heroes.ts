@@ -2864,7 +2864,7 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 0,
         pow: () => 0,
         afterMath: () => new AftermathSkill({ injuryPercent: 0.8 }), // TODO: check if this still works, does it penetrate correctly?
-        isSingle: () => true,
+        isAOE: () => true,
       })
     }
   }),
