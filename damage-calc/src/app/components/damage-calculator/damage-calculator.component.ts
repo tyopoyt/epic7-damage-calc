@@ -22,6 +22,7 @@ import { DoT, Skill } from 'src/app/models/skill';
 import { MatDialog } from '@angular/material/dialog';
 import { CompareSaveComponent } from '../compare-save/compare-save.component';
 import { animate, style, transition, trigger } from '@angular/animations';
+import { CompareComponent } from '../compare/compare.component';
 
 @Component({
   selector: 'app-damage-calculator',
@@ -109,6 +110,7 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
   translationPipe: TranslationPipe;
 
   collapsed = false;
+  savedBuildsCount = 0;
   
   get inputValues() {
     return this.dataService.damageInputValues;
@@ -183,6 +185,7 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
 
     this.currentHeroSubscription = this.dataService.currentHero.subscribe(() => {
       this.updateFormInputs();
+      this.refreshCompareBadge();
     })
   }
   
@@ -379,15 +382,59 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
   }
 
   saveBuild() {
+    const artifactName = this.translationPipe.transform(this.artifactControl.value as string, 'artifacts', this.languageService.language.value)
     const dialogRef = this.dialog.open(CompareSaveComponent, {
       height: '14.375rem',
       width: '50rem',
-      data: {attack: 1, defense: 1}
+      data: {buildName: `${Math.round(this.inputValues.attack)}⚔️ x ${Math.round(this.inputValues.critDamage)}% (${artifactName}) vs ${Math.round(this.dataService.currentTarget.getDefense(this.inputValues, this.damageService.getGlobalDefenseMult()))}🛡️`}
     })
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
+      if (result) {
+        const builds = localStorage.getItem('heroes');
+        const allSets = builds ? JSON.parse(builds as string) : {};
+        const heroSets = allSets[this.heroControl.value as string] || {};
+        const saveData: Record<string, Record<string, number>> = {}
+        for (const damage of this.damageData.data) {
+          saveData[damage.skill as string] = {'crit': damage.crit || 0, 'normal': damage.normal || 0, 'miss': damage.miss || 0}
+        }
+        heroSets[result] = saveData;
+        allSets[this.heroControl.value as string] = heroSets;
+        localStorage.setItem('heroes', JSON.stringify(allSets));
+        // window.dataLayer.push({
+        //   'event': 'save_hero',
+        //   'hero': this.heroControl.value
+        // });
+      }
+      this.refreshCompareBadge();
     });
+  }
+
+  compareBuilds() {
+    const builds = localStorage.getItem('heroes');
+    const allSets = builds ? JSON.parse(builds as string) : {};
+    const heroSets = allSets[this.heroControl.value as string] || {};
+  
+    const dialogRef = this.dialog.open(CompareComponent, {
+      // height: '14.375rem',
+      width: '50rem',
+      data: heroSets
+    })
+
+    dialogRef.afterClosed().subscribe(removeBuilds => {
+      if (removeBuilds) {
+        delete allSets[this.heroControl.value as string];
+        localStorage.setItem('heroes', JSON.stringify(allSets));
+      }
+      this.refreshCompareBadge();
+    });
+  }
+
+  refreshCompareBadge() {
+    const builds = localStorage.getItem('heroes');
+    const allSets = builds ? JSON.parse(builds as string)[this.heroControl.value as string] : null;
+
+    this.savedBuildsCount = allSets ? Object.keys(allSets).length : 0;
   }
 
   toggleTable() {

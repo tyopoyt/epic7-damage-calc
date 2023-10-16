@@ -325,6 +325,16 @@ html, body {
     }
   }
 
+  .count-badge {
+    display: flex;
+    justify-content: center;
+    color: $font-light-color;
+    background-color: $ui-medium-dark-color;
+    width: 1rem;
+    margin-left: $gutter-tiny;
+    border-radius: $gutter-small;
+  }
+
   .number-input-display {
     background-color: $ui-medium-dark-color;
     text-align: center;

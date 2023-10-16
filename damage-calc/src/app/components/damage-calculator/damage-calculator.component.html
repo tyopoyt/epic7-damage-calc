@@ -288,9 +288,12 @@
                             <img class="svg-icon" [class.tiny-margin-right]="!screenService.mediumScreen.value" src="assets/icons/save.svg" alt="save">
                             <ng-container *ngIf="!screenService.mediumScreen.value">{{'save' | translate:'ui':languageService.language.value}}</ng-container>
                         </button>
-                        <button type="button" class="color-blue button-line" mat-flat-button>
+                        <button type="button" class="color-blue button-line" (click)="compareBuilds()" mat-flat-button>
                             <img class="svg-icon" [class.tiny-margin-right]="!screenService.mediumScreen.value" src="assets/icons/compare.svg" alt="compare">
-                            <ng-container *ngIf="!screenService.mediumScreen.value">{{'compare' | translate:'ui':languageService.language.value}}</ng-container>
+                            <ng-container *ngIf="!screenService.mediumScreen.value">
+                                {{'compare' | translate:'ui':languageService.language.value}}
+                                <span *ngIf="savedBuildsCount" class="count-badge">{{savedBuildsCount}}</span>
+                            </ng-container>
                         </button>
                         <button type="button" class="color-orange button-line" mat-flat-button>
                             <img class="svg-icon white" [class.tiny-margin-right]="!screenService.mediumScreen.value" src="assets/icons/line-chart.svg" alt="graph">
@@ -302,7 +305,7 @@
                         </button>
                     </div>
                     <div class="neat-container flex-row">
-                        <div *ngIf="!!artifactDamage" class="neat-container small-padding-top medium-text">
+                        <div *ngIf="!!artifactDamage && !collapsed" class="neat-container small-padding-top medium-text">
                             <div class="mini-card neat-container flex-row small-margin-left tiny-padding-right bold-text">
                                 <img class="png-icon medium tiny-margin-right tiny-margin-left" src="assets/icons/artifact.png" alt="Artifact Damage">
                                 <span class="microscopic-margin-bottom">
@@ -311,7 +314,7 @@
                                 <img class="icon tiny tiny-margin-left" src="assets/icons/help-circle-outline.svg" alt="Hint" matTooltip="{{'artifact_damage_hint' | translate:'ui':languageService.language.value}}">
                             </div>
                         </div>
-                        <div *ngIf="heroDots.length" class="neat-container small-padding-top medium-text">
+                        <div *ngIf="heroDots.length && !collapsed" class="neat-container small-padding-top medium-text">
                             <div *ngFor="let dot of heroDots" class="mini-card neat-container flex-row small-margin-left tiny-padding-right bold-text">
                                 <img class="png-icon medium tiny-margin-right tiny-margin-left" src="assets/debuffs/{{dot}}-debuff.png" alt="{{dot}}">
                                 <span class="microscopic-margin-bottom">
@@ -319,7 +322,7 @@
                                 </span>
                             </div>
                         </div>
-                        <div *ngIf="barriers.length" class="neat-container small-padding-top medium-text">
+                        <div *ngIf="barriers.length && !collapsed" class="neat-container small-padding-top medium-text">
                             <div *ngFor="let barrier of barriers" class="mini-card neat-container flex-row small-margin-left tiny-padding-right bold-text">
                                 <img class="png-icon medium tiny-margin-right tiny-margin-left" src="assets/buffs/barrier-buff.png" alt="Barrier">
                                 <span class="microscopic-margin-bottom">

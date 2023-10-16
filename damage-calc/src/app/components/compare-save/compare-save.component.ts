@@ -6,11 +6,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
 export interface BuildSaveData {
-  attack: number;
-  defense: number;
   buildName: string;
 }
 
+// TODO: Does this really need to be standalone?
 @Component({
   selector: 'app-compare-save',
   templateUrl: './compare-save.component.html',

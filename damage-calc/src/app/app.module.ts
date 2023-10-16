@@ -77,6 +77,9 @@ import { CompareComponent } from './components/compare/compare.component';
     NgxMatSelectSearchModule,
     ReactiveFormsModule
   ],
+  exports: [
+    TranslationPipe
+  ],
    providers: [],
   bootstrap: [AppComponent]
 })
