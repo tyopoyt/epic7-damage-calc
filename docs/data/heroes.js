@@ -6216,7 +6216,7 @@ const heroes = {
       },
       s2: {
         rate: 1,
-        pow: 1,
+        pow: 1.3,
         aoe: true,
       },
       s3: {
