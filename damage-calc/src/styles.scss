@@ -373,7 +373,7 @@ html, body {
       .mdc-line-ripple {
           display: none;
       }
-  }
+    }
 
     .mat-mdc-select-arrow {
       // important so it doesn't change color when active
@@ -385,6 +385,41 @@ html, body {
       display: none;
     }
     
+  }
+
+  .damage-block {
+    .mat-mdc-form-field {
+      &.number-input-field {
+        .mat-mdc-text-field-wrapper {
+          background-color: $ui-dark-color;
+        }
+      }      
+    }
+
+    .mat-mdc-unelevated-button:not(:disabled) {
+      background-color: $ui-darker-color;
+      color: $font-light-color;
+    }
+
+    mat-radio-button {
+      .mdc-form-field {
+        color: $font-light-color;
+
+        --mdc-radio-disabled-selected-icon-color: #{$font-dark-color};
+        --mdc-radio-disabled-unselected-icon-color: #{$font-dark-color};
+        --mat-radio-disabled-label-color: #{$font-dark-color};
+
+        --mdc-radio-unselected-hover-icon-color: whitesmoke;
+        --mdc-radio-unselected-icon-color: #{$font-light-color};
+        --mdc-radio-unselected-pressed-icon-color: #{$e7-buff-color};
+        --mdc-radio-selected-focus-icon-color: #{$e7-buff-medium-color};
+        --mdc-radio-selected-hover-icon-color: #{$e7-buff-medium-color};
+        --mdc-radio-selected-icon-color: #{$e7-buff-medium-color};
+        --mdc-radio-selected-pressed-icon-color: #{$e7-buff-medium-color};
+        --mat-radio-ripple-color: #{$font-light-color};
+        --mat-radio-checked-ripple-color: #{$e7-buff-medium-color};
+      }
+    }
   }
 
   .mat-mdc-card {
@@ -1190,6 +1225,10 @@ body {
   margin-right: 1.5rem;
 }
 
+.extra-large-margin-right {
+  margin-right: 1.75rem;
+}
+
 .margin-top {
   margin-top: 1rem;
 }
@@ -1204,6 +1243,10 @@ body {
 
 .large-margin-top {
   margin-top: 1.5rem;
+}
+
+.jumbo-margin-top {
+  margin-top: $gutter-jumbo;
 }
 
 .padding-left {
@@ -1246,6 +1289,11 @@ body {
   align-items: center;
   display: flex;
   justify-content: center;
+}
+
+.flex-aligned {
+  align-items: center;
+  display: flex;
 }
 
 .small-text {
@@ -1327,6 +1375,12 @@ app-slide-input {
 
 .right {
   margin-right: 0 !important;
+}
+
+.first-radio {
+  div.mdc-radio {
+    padding-left: 0 !important;
+  }
 }
 
 .result-cards {
@@ -1420,6 +1474,10 @@ app-slide-input {
 
 .pointer {
   cursor: pointer;
+
+  label {
+    cursor: pointer;
+  }
 }
 
 .hidden {

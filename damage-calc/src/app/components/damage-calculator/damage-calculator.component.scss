@@ -5,6 +5,19 @@
     h1 {
         font-weight: bold;
         margin: $gutter-jumbo 0 0;
+
+        &.line-title {
+            margin-top: $gutter;
+        }
+    }
+
+    &.single-column {
+        h1 {
+            margin-top: 0;
+            width: 100%;
+            text-align: left;
+            margin-bottom: $gutter;
+        }
     }
 }
 
@@ -16,10 +29,40 @@
         // TODO: maybe remove elevation if scrolled to below the card? maybe event when credits scroll into view?
         @include mat.elevation(5)
     }
+
+    .collapse-icon {
+        position: absolute;
+        right: $gutter;
+
+        &.normal-top {
+            top: $gutter-large;
+        }
+
+        &.smaller-top {
+            top: $gutter;
+        }
+
+        &.graph-top {
+            top: calc($gutter-large + 22.5rem)
+        }
+
+        &.graph-top-small {
+            top: calc($gutter + 22.5rem)
+        }
+    }
+}
+
+.damage-graph {
+    // height: 20rem;
+    height: max-content;
 }
 
 .filter-select-container {
     margin-top: $gutter;
+
+    &.jumbo-margin-top {
+        margin-top: $gutter-jumbo;
+    }
 
     &.flex-column {
         mat-form-field {

@@ -1,14 +1,9 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CompareSaveComponent } from '../compare-save/compare-save.component';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatButtonModule } from '@angular/material/button';
-import { FormsModule } from '@angular/forms';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
 import { ScreenService } from 'src/app/services/screen.service';
-import { AppModule } from 'src/app/app.module';
 import { LanguageService } from 'src/app/services/language.service';
-import { DamageRow } from 'src/app/services/damage.service';
 
 export interface CompareData {
   buildName?: string;
@@ -25,8 +20,6 @@ export interface CompareDamageRow {
   selector: 'app-compare',
   templateUrl: './compare.component.html',
   styleUrls: ['./compare.component.scss'],
-  // standalone: true,
-  // imports: [MatDialogModule, MatFormFieldModule, FormsModule, MatButtonModule, MatTableModule, AppModule],
 })
 export class CompareComponent {
 

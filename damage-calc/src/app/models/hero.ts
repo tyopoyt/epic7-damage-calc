@@ -41,6 +41,7 @@ export class Hero {
     innateAttackIncrease?: (inputValues: DamageFormData) => number;
     skills: Record<string, Skill>;
     exclusiveEquipmentMultiplier?: (inputValues: DamageFormData) => number;
+  innateAtkUp: any;
 
   constructor(
       heroValues: any,
@@ -90,7 +91,7 @@ export class Hero {
   }
 
   getAttack(artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number, skill: Skill, isExtra = false): number {
-    let atk = skill?.atk(inputValues) || inputValues.attack;
+    let atk = skill?.atk(inputValues) || inputValues.casterFinalAttack;
 
     // TODO: check if this is innateAttackIncrease val is added twice?
     if (this.innateAttackIncrease !== undefined) {

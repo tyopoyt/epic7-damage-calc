@@ -93,6 +93,7 @@ export class DamageService {
   }
 
   // TODO: Does this need to know about hit type?
+  // TODO: is this even used anymore?
   getModifiers(skill: Skill, soulburn = false) {
     return {
       rate: skill.rate(soulburn, this.damageForm),
@@ -171,11 +172,13 @@ export class DamageService {
   }
 
   // TODO: ensure this is called only once per skill when something changes (hero, input, etc.)
-  getDamage(skill: Skill, soulburn = false, isExtra = false): DamageRow {
+  getDamage(skill: Skill, soulburn = false, isExtra = false, inputOverrides: Record<string, number> | null = null): DamageRow {
+    this.damageForm.inputOverrides = inputOverrides ? inputOverrides : {};
+
     const casterAttack = this.currentHero.getAttack(this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill);
     const critDmgBuff = this.damageForm.increasedCritDamage ? BattleConstants.increasedCritDamage : 0.0;
     const hit = this.offensivePower(skill, soulburn, isExtra) * this.dataService.currentTarget.defensivePower(skill, this.damageForm, this.getGlobalDefenseMult(), this.currentArtifact, soulburn, casterAttack);
-    const critDmg = Math.min((this.damageForm.critDamage / 100) + critDmgBuff, 3.5)
+    const critDmg = Math.min((this.damageForm.casterFinalCritDamage / 100) + critDmgBuff, 3.5)
         + (skill.critDmgBoost ? skill.critDmgBoost(soulburn) : 0)
         + (this.currentArtifact.getCritDmgBoost(this.damageForm.artifactLevel, this.damageForm, skill, isExtra) || 0)
         + (this.damageForm.casterPerception ? BattleConstants.perception : 0);

@@ -35,7 +35,9 @@ import { SpeedTunerComponent } from './components/speed-tuner/speed-tuner.compon
 import { TranslationPipe } from './pipes/translation.pipe';
 import { TypeofPipe } from './pipes/typeof.pipe';
 import { CompareComponent } from './components/compare/compare.component';
-
+import { NgChartsModule } from 'ng2-charts';
+import { DamageGraphComponent } from './components/damage-graph/damage-graph.component';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,8 @@ import { CompareComponent } from './components/compare/compare.component';
     SpeedTunerComponent,
     TranslationPipe,
     TypeofPipe,
-    CompareComponent
+    CompareComponent,
+    DamageGraphComponent
   ],
   imports: [
     AppRoutingModule,
@@ -75,7 +78,9 @@ import { CompareComponent } from './components/compare/compare.component';
     MatTooltipModule,
     MatDialogModule,
     NgxMatSelectSearchModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgChartsModule,
+    MatRadioModule
   ],
   exports: [
     TranslationPipe

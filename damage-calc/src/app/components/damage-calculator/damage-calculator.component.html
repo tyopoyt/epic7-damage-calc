@@ -3,7 +3,7 @@
     <span class="page-body">
         <app-dismissible [content]="'damage_calculator_updates' | translate:'info':languageService.language.value" [color]="DismissibleColorOption.info"></app-dismissible>
         <div class="filter-select-container full-width neat-container" [ngClass]="!screenService.mediumSmallScreen.value ? 'column-3' : 'flex-column'">
-            <mat-form-field class="example-full-width neat-container has-icons">
+            <mat-form-field class="neat-container has-icons">
                 <img class="png-icon medium tiny-margin-right select-icon" src="assets/elements/{{hero.element}}.png" alt="{{hero.element}}">
                 <img class="png-icon medium tiny-margin-right select-icon-2" src="assets/classes/{{hero.class}}.png" alt="{{hero.class}}">
                 <mat-select [formControl]="heroControl" placeholder="" #singleSelect (selectionChange)="selectHero($event.value)">
@@ -17,7 +17,7 @@
                     </mat-option>
                 </mat-select>
             </mat-form-field>
-            <mat-form-field class="example-full-width neat-container has-icon">
+            <mat-form-field class="neat-container has-icon">
                 <img class="png-icon medium tiny-margin-right select-icon" src=" assets/{{artifact.heroExclusive.length ? 'heroes' : 'classes'}}/{{artifact.heroExclusive.length ? artifact.heroExclusive[0] + '-icon' : artifact.exclusive}}.png" alt="{{artifact.exclusive}}">
                 <mat-select [formControl]="artifactControl" placeholder="" #singleSelect (selectionChange)="selectArtifact($event.value)">
                     <mat-option>
@@ -28,7 +28,8 @@
                         {{artifact[0] | translate:'artifacts':languageService.language.value}}
                     </mat-option>
                 </mat-select>
-            </mat-form-field><mat-form-field class="example-full-width neat-container">
+            </mat-form-field>
+            <mat-form-field class="neat-container">
                 <mat-select [formControl]="attackPresetControl" placeholder="" #singleSelect>
                     <mat-option *ngFor="let attackPreset of attackPresets" [value]="attackPreset[0]">
                         <span class="flex-row neat-container">{{attackPreset[0] | translate:'form':languageService.language.value}}<p *ngIf="attackPreset[1].attack && attackPreset[1].critDamage" class="preset-hint"> ({{attackPreset[1].attack}}atk/{{attackPreset[1].critDamage}}%cdam)</p></span>
@@ -152,7 +153,7 @@
                     [column]="screenService.mediumScreen.value">
                 </app-slide-input>
                 <div *ngFor="let input of artifactSpecificNumberInputs" class="full-width">
-                    <app-slide-input
+                    <app-slide-input #specificInput
                         [label]="input | translate:'form':languageService.language.value"
                         [max]="artifactSpecificMaximums[input] || formDefaults[input]?.max || 10000"
                         [min]="formDefaults[input]?.min || 0" [step]="formDefaults[input]?.step || 1"
@@ -174,18 +175,43 @@
                 </div>
             </div>
         </div>
-        <div class="target-block header-block">
-            <h1>Target</h1>
+        <div class="target-block header-block" [class.single-column]="screenService.mediumSmallScreen.value">
+            <div class="filter-select-container full-width neat-container jumbo-margin-top" [ngClass]="!screenService.mediumSmallScreen.value ? 'column-3' : 'flex-column'">
+                <h1 class="line-title">Target</h1>
+                <mat-form-field class="neat-container">
+                    <mat-select [formControl]="targetPresetControl" placeholder="" #singleSelect>
+                        <mat-select-trigger>{{targetPresetControl.value?.id}}</mat-select-trigger>
+                        <mat-option>
+                            <ngx-mat-select-search spellcheck="false" [formControl]="targetPresetFilterControl" placeholderLabel="Find Defense Preset..." noEntriesFoundLabel="No matching Defense Presets found..."></ngx-mat-select-search>
+                        </mat-option>
+                        <mat-optgroup *ngFor="let targetPresetGroup of targetPresetGroups" [label]="targetPresetGroup[0]">
+                            <mat-option *ngFor="let targetPreset of targetPresetGroup[1]" [value]="targetPreset">
+                                <span class="flex-row neat-container">{{targetPreset.id | translate:'form':languageService.language.value}}<p *ngIf="targetPreset.hp" class="preset-hint"> ({{targetPreset.hp + ' hp' + (targetPreset.speed ? '/' + targetPreset.speed + ' spd' : '')}})</p></span>
+                            </mat-option>
+                        </mat-optgroup>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="neat-container">
+                    <mat-select [formControl]="reductionPresetControl" placeholder="" #singleSelect>
+                        <mat-select-trigger>{{reductionPresetControl.value?.id}}</mat-select-trigger>
+                        <mat-optgroup *ngFor="let reductionPresetGroup of reductionPresetGroups" [label]="reductionPresetGroup[0]">
+                            <mat-option *ngFor="let reductionPreset of reductionPresetGroup[1]" [value]="reductionPreset">
+                                <span class="flex-row neat-container">{{reductionPreset.id | translate:'form':languageService.language.value}}<p *ngIf="reductionPreset.damageReduction || reductionPreset.damageTransfer" class="preset-hint"> {{reductionPreset.damageReduction || reductionPreset.damageTransfer}}%{{reductionPreset.defenseIncrease ? (' (+' + reductionPreset.defenseIncrease + '% Defense)') : ''}}</p></span>
+                            </mat-option>
+                        </mat-optgroup>
+                    </mat-select>
+                </mat-form-field>
+            </div>
             <div class="neat-container full-width" [class.column-2]="!screenService.mediumSmallScreen.value" [class.full-width-number-input]="!screenService.mediumScreen.value">
                 <div [class.full-width]="screenService.mediumSmallScreen.value">
-                    <app-slide-input
+                    <app-slide-input  #defenseSlider
                         [label]="'defense' | translate:'form':languageService.language.value"
                         [max]="5000" [min]="200" [default]="1000" (valueChange)="inputChange('targetDefense', $event)"
                         [column]="screenService.mediumScreen.value">
                     </app-slide-input>
                 </div>
                 <div [class.full-width]="screenService.mediumSmallScreen.value">
-                    <app-slide-input
+                    <app-slide-input  #defenseIncreaseSlider
                         [label]="'defense_increase' | translate:'form':languageService.language.value"
                         [max]="20" [min]="0" [default]="0" (valueChange)="inputChange('targetDefenseIncrease', $event)"
                         [column]="screenService.mediumScreen.value" [hint]="'defense_increase_hint' | translate:'form':languageService.language.value">
@@ -194,14 +220,14 @@
             </div>
             <div class="neat-container full-width" [class.column-2]="!screenService.mediumSmallScreen.value" [class.full-width-number-input]="!screenService.mediumScreen.value">
                 <div [class.full-width]="screenService.mediumSmallScreen.value">
-                    <app-slide-input
+                    <app-slide-input  #damageReductionSlider
                         [label]="'damage_reduction' | translate:'form':languageService.language.value"
                         [max]="100" [min]="0" [default]="0" (valueChange)="inputChange('damageReduction', $event)"
                         [column]="screenService.mediumScreen.value">
                     </app-slide-input>
                 </div>
                 <div [class.full-width]="screenService.mediumSmallScreen.value">
-                    <app-slide-input
+                    <app-slide-input  #damageTransferSlider
                         [label]="'damage_transfer' | translate:'form':languageService.language.value"
                         [max]="100" [min]="0" [default]="0" (valueChange)="inputChange('damageTransfer', $event)"
                         [column]="screenService.mediumScreen.value">
@@ -241,7 +267,7 @@
             <h1>Hero Specific</h1>
             <div class="neat-container full-width">
                 <div *ngFor="let input of heroSpecificNumberInputs" class="full-width">
-                    <app-slide-input
+                    <app-slide-input #specificInput
                         [label]="input | translate:'form':languageService.language.value"
                         [max]="heroSpecificMaximums[input] || formDefaults[input]?.max || 10000"
                         [min]="formDefaults[input]?.min || 0" [step]="formDefaults[input]?.step || 1"
@@ -279,9 +305,10 @@
             <!-- TODO: multiplier fxn breakdown button -->
             <!-- TODO: Add healing? -->
             <mat-card class="left">
+                <app-damage-graph *ngIf="showGraph" class="damage-graph" #damageGraph></app-damage-graph>
                 <div class="full-width neat-container flex-between">
-                    <div class="flex-row neat-container">
-                        <div class="extra-large-text bold-text small-padding-bottom">
+                    <div class="flex-row neat-container large-margin-right">
+                        <div class="bold-text small-padding-bottom" [ngClass]="!screenService.smallScreen.value ? 'extra-large-text' : 'large-text small-margin-top'">
                             {{"damage_title" | translate:'form':languageService.language.value}}
                         </div>
                         <button type="button" class="small-margin-left color-grey button-line-left neat-container" (click)="saveBuild()" mat-flat-button>
@@ -295,16 +322,16 @@
                                 <span *ngIf="savedBuildsCount" class="count-badge">{{savedBuildsCount}}</span>
                             </ng-container>
                         </button>
-                        <button type="button" class="color-orange button-line" mat-flat-button>
+                        <button type="button" class="color-orange button-line" (click)="toggleGraph()" mat-flat-button>
                             <img class="svg-icon white" [class.tiny-margin-right]="!screenService.mediumScreen.value" src="assets/icons/line-chart.svg" alt="graph">
-                            <ng-container *ngIf="!screenService.mediumScreen.value">{{'show_graph' | translate:'ui':languageService.language.value}}</ng-container>
+                            <ng-container *ngIf="!screenService.mediumScreen.value">{{ (showGraph ? 'hide_graph' : 'show_graph') | translate:'ui':languageService.language.value}}</ng-container>
                         </button>
                         <button type="button" class="color-green button-line-right" mat-flat-button>
                             <img class="svg-icon white" [class.tiny-margin-right]="!screenService.mediumScreen.value" src="assets/icons/share-nodes-solid.svg" alt="share">
                             <ng-container *ngIf="!screenService.mediumScreen.value">{{'share' | translate:'ui':languageService.language.value}}</ng-container>
                         </button>
                     </div>
-                    <div class="neat-container flex-row">
+                    <div class="neat-container flex-row extra-large-margin-right">
                         <div *ngIf="!!artifactDamage && !collapsed" class="neat-container small-padding-top medium-text">
                             <div class="mini-card neat-container flex-row small-margin-left tiny-padding-right bold-text">
                                 <img class="png-icon medium tiny-margin-right tiny-margin-left" src="assets/icons/artifact.png" alt="Artifact Damage">
@@ -330,8 +357,8 @@
                                 </span>
                             </div>
                         </div>
-                        <img class="svg-icon large filter pointer" (click)="toggleTable()" src="{{collapsed ? 'assets/icons/chevron-up.svg' : 'assets/icons/chevron-down.svg'}}" alt="collapse">
                     </div>
+                    <img class="svg-icon large filter pointer collapse-icon" (click)="toggleTable()" src="{{collapsed ? 'assets/icons/chevron-up.svg' : 'assets/icons/chevron-down.svg'}}" alt="collapse">
                 </div>
                 <table [@collapseAnimation] *ngIf="!collapsed" [class.tiny-padding]="screenService.smallScreen.value" mat-table [dataSource]="damageData">
                     <ng-container matColumnDef="skill">

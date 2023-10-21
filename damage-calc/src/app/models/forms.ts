@@ -327,7 +327,7 @@ export const FormDefaults: Record<string, {max?: number, min?: number, defaultVa
 }
 
 export class DamageFormData {
-    [key: string]: string | number | boolean | DefensePreset | ReductionPreset | undefined | ((artifact: Artifact) => number),
+    [key: string]: string | number | boolean | DefensePreset | ReductionPreset | undefined | ((artifact: Artifact) => number) | Record<string, number>,
     AOEStack: number;
     artifactLevel: number;
     attack: number;
@@ -435,6 +435,16 @@ export class DamageFormData {
     totalAllyBuffs: number;
     turnStack: number;
 
+    inputOverrides: Record<string, number>;
+
+    get casterFinalAttack() {
+        return this.inputOverrides['attack'] ? this.inputOverrides['attack'] : this.attack;
+    }
+
+    get casterFinalCritDamage() {
+        return this.inputOverrides['critDamage'] ? this.inputOverrides['critDamage'] : this.critDamage;
+    }
+
     constructor(data: any) {
         this.AOEStack = _.get(data, 'AOEStack', 0);
         this.artifactLevel = _.get(data, 'artifactLevel', 0);
@@ -528,7 +538,7 @@ export class DamageFormData {
         this.targetInjuries = _.get(data, 'targetInjuries', 0);
         this.targetIsHighestMaxHP = _.get(data, 'targetIsHighestMaxHP', false);
         this.targetMagicNailed = _.get(data, 'targetMagicNailed', false);
-        this.targetMaxHP = _.get(data, 'targetMaxHP', 10000);
+        this.targetMaxHP = _.get(data, 'targetMaxHP', 0);
         this.targetNumberOfBleeds = _.get(data, 'targetNumberOfBleeds', 0);
         this.targetNumberOfDebuffs = _.get(data, 'targetNumberOfDebuffs', 0);
         this.targetProvoked = _.get(data, 'targetProvoked', false);
@@ -542,10 +552,11 @@ export class DamageFormData {
         this.torrentSetStack = _.get(data, 'torrentSetStack', 0);
         this.totalAllyBuffs = _.get(data, 'totalAllyBuffs', 0);
         this.turnStack = _.get(data, 'turnStack', 0);
+        this.inputOverrides = _.get(data, 'inputOverrides', {});
     }
 
     casterFinalSpeed = () => {
-        return Math.floor(this.casterSpeed * (1 + (this.casterSpeedUp ? BattleConstants.spdUp - 1 : 0)
+        return Math.floor((this.inputOverrides['casterSpeed'] ? this.inputOverrides['casterSpeed'] : this.casterSpeed) * (1 + (this.casterSpeedUp ? BattleConstants.spdUp - 1 : 0)
            + (this.casterSpeedDown ? 1 - BattleConstants.spdUp : 0)
            + (this.casterEnraged ? BattleConstants.casterRage - 1 : 0)));
     }
@@ -558,7 +569,7 @@ export class DamageFormData {
 
     // TODO: Make sure the targetdefense... get replaced when constants are renamed
     casterFinalDefense = () => {
-        return Math.floor(this.casterDefense * (1 + (this.casterDefenseUp ? BattleConstants.targetDefenseUp : 0)
+        return Math.floor((this.inputOverrides['casterDefense'] ? this.inputOverrides['casterDefense'] : this.casterDefense) * (1 + (this.casterDefenseUp ? BattleConstants.targetDefenseUp : 0)
            + (this.casterDefenseDown ? BattleConstants.targetDefenseDown : 0)
            + (this.casterVigor ? BattleConstants.casterVigor - 1 : 0)
            + (this.casterFury ? BattleConstants['caster-fury'] - 1 : 0)));
@@ -572,6 +583,6 @@ export class DamageFormData {
     }
 
     casterFinalMaxHP = (artifact: Artifact) => {
-        return this.casterMaxHP * (this.inBattleHP ? 1: artifact.maxHP);
+        return (this.inputOverrides['casterMaxHP'] ? this.inputOverrides['casterMaxHP'] : this.casterMaxHP) * (this.inBattleHP ? 1: artifact.maxHP);
     }
 }

@@ -707,7 +707,7 @@ export const Heroes: Record<string, Hero> = {
       }),
       s3: new Skill({
         id: 's3',
-        spdScaling: true,
+        speedScaling: true,
         rate: () => 0.95,
         pow: () => 0.9,
         penetrate: (soulburn: boolean, inputValues: DamageFormData) => inputValues.targetTargeted ? 0.8 : 0,
@@ -936,7 +936,7 @@ export const Heroes: Record<string, Hero> = {
     skills: {
       s1: new Skill({
         id: 's1',
-        spdScaling: true,
+        speedScaling: true,
         rate: () => 0.9,
         pow: () => 1,
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + inputValues.casterFinalSpeed() * 0.00075,
@@ -946,7 +946,7 @@ export const Heroes: Record<string, Hero> = {
       }),
       s3: new Skill({
         id: 's3',
-        spdScaling: true,
+        speedScaling: true,
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 2 : 1.5,
         pow: () => 0.95,
@@ -967,7 +967,7 @@ export const Heroes: Record<string, Hero> = {
     skills: {
       s1: new Skill({
         id: 's1',
-        spdScaling: true,
+        speedScaling: true,
         rate: (soulburn: boolean, inputValues: DamageFormData) => inputValues.casterHasStealth ? 1.2 : 0.9,
         pow: () => 1,
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + inputValues.casterFinalSpeed() * 0.00075,
@@ -978,7 +978,7 @@ export const Heroes: Record<string, Hero> = {
       }),
       s3: new Skill({
         id: 's3',
-        spdScaling: true,
+        speedScaling: true,
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 3 : 1.5,
         pow: () => 0.8,
@@ -2444,7 +2444,7 @@ export const Heroes: Record<string, Hero> = {
     skills: {
       s1: new Skill({
         id: 's1',
-        spdScaling: true,
+        speedScaling: true,
         rate: (soulburn: boolean, inputValues: DamageFormData) => inputValues.casterSpeedUp ? 1.5 : 0.9,
         pow: (soulburn: boolean, inputValues: DamageFormData) => inputValues.casterSpeedUp ? 0.9 : 0.95,
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + inputValues.casterFinalSpeed() * 0.00075,
@@ -2454,7 +2454,7 @@ export const Heroes: Record<string, Hero> = {
       }),
       s3: new Skill({
         id: 's3',
-        spdScaling: true,
+        speedScaling: true,
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 2.2 : 1.6,
         pow: () => 1,
@@ -3219,7 +3219,7 @@ export const Heroes: Record<string, Hero> = {
     skills: {
       s1: new Skill({
         id: 's1',
-        spdScaling: true,
+        speedScaling: true,
         rate: () => 0.95,
         pow: () => 0.9,
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + inputValues.casterFinalSpeed() * 0.00075,
@@ -3229,7 +3229,7 @@ export const Heroes: Record<string, Hero> = {
       }),
       s2: new Skill({
         id: 's2',
-        spdScaling: true,
+        speedScaling: true,
         rate: () => 0.7,
         pow: () => 1.3,
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => {
@@ -3827,7 +3827,7 @@ export const Heroes: Record<string, Hero> = {
     skills: {
       s1: new Skill({
         id: 's1',
-        spdScaling: true,
+        speedScaling: true,
         rate: () => 0.95,
         pow: () => 0.95,
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + inputValues.casterFinalSpeed() * 0.00075,
@@ -3837,7 +3837,7 @@ export const Heroes: Record<string, Hero> = {
       }),
       s2: new Skill({
         id: 's2',
-        spdScaling: true,
+        speedScaling: true,
         rate: () => 1.3,
         pow: () => 0.85,
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + inputValues.casterFinalSpeed() * 0.00125,
@@ -4592,7 +4592,7 @@ export const Heroes: Record<string, Hero> = {
     skills: {
       s1: new Skill({
         id: 's1',
-        spdScaling: true,
+        speedScaling: true,
         rate: () => 0.75,
         pow: () => 1,
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + inputValues.casterFinalSpeed() * 0.00075,
@@ -4651,7 +4651,7 @@ export const Heroes: Record<string, Hero> = {
     skills: {
       s1: new Skill({
         id: 's1',
-        spdScaling: true,
+        speedScaling: true,
         rate: () => 0.9,
         pow: () => 1,
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + inputValues.casterFinalSpeed() * 0.00075,
@@ -4670,7 +4670,7 @@ export const Heroes: Record<string, Hero> = {
       }),
       s3: new Skill({
         id: 's3',
-        spdScaling: true,
+        speedScaling: true,
         rate: () => 0.8,
         pow: () => 0.95,
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + inputValues.casterFinalSpeed() * 0.00075,
@@ -4773,7 +4773,7 @@ export const Heroes: Record<string, Hero> = {
       }),
       s2: new Skill({
         id: 's2',
-        spdScaling: true,
+        speedScaling: true,
         rate: () => 0.9,
         pow: () => 1,
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + inputValues.casterFinalSpeed() * 0.00075,
@@ -4783,7 +4783,7 @@ export const Heroes: Record<string, Hero> = {
       }),
       s3: new Skill({
         id: 's3',
-        spdScaling: true,
+        speedScaling: true,
         rate: () => 1.5,
         pow: () => 1,
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + inputValues.casterFinalSpeed() * 0.001125,
@@ -5117,7 +5117,7 @@ export const Heroes: Record<string, Hero> = {
     skills: {
       s1: new Skill({
         id: 's1',
-        spdScaling: true,
+        speedScaling: true,
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 1.5 : 0.9,
         pow: () => 1,
@@ -5131,7 +5131,7 @@ export const Heroes: Record<string, Hero> = {
       }),
       s2: new Skill({
         id: 's2',
-        spdScaling: true,
+        speedScaling: true,
         rate: () => 1.5,
         pow: () => 0.9,
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + inputValues.casterFinalSpeed() * 0.0015,
@@ -5172,7 +5172,7 @@ export const Heroes: Record<string, Hero> = {
       s3: new Skill({
         id: 's3',
         hpScaling: true,
-        spdScaling: true,
+        speedScaling: true,
         noCrit: true,
         rate: () => 0.3,
         pow: () => 1,
@@ -6231,7 +6231,7 @@ export const Heroes: Record<string, Hero> = {
     skills: {
       s1: new Skill({
         id: 's1',
-        spdScaling: true,
+        speedScaling: true,
         rate: () => 0.9,
         pow: () => 1,
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + inputValues.casterFinalSpeed() * 0.00075,
@@ -6241,7 +6241,7 @@ export const Heroes: Record<string, Hero> = {
       }),
       s3: new Skill({
         id: 's3',
-        spdScaling: true,
+        speedScaling: true,
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 2.5 : 1.8,
         pow: () => 0.85,
@@ -6363,7 +6363,7 @@ export const Heroes: Record<string, Hero> = {
     skills: {
       s1: new Skill({
         id: 's1',
-        spdScaling: true,
+        speedScaling: true,
         rate: () => 0.9,
         pow: () => 1,
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + inputValues.casterFinalSpeed() * 0.00075,
@@ -6373,7 +6373,7 @@ export const Heroes: Record<string, Hero> = {
       }),
       s3: new Skill({
         id: 's3',
-        spdScaling: true,
+        speedScaling: true,
         rate: () => 1.5,
         pow: () => 1,
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + inputValues.casterFinalSpeed() * 0.00075,
@@ -6601,7 +6601,7 @@ export const Heroes: Record<string, Hero> = {
       }),
       s2: new Skill({
         id: 's2',
-        spdScaling: true,
+        speedScaling: true,
         rate: () => 0.75,
         pow: () => 1,
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + inputValues.casterFinalSpeed() * 0.00075,
@@ -6612,7 +6612,7 @@ export const Heroes: Record<string, Hero> = {
       }),
       s3: new Skill({
         id: 's3',
-        spdScaling: true,
+        speedScaling: true,
         rate: () => 1,
         pow: () => 1.1,
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + inputValues.casterFinalSpeed() * 0.001125,
@@ -6632,7 +6632,7 @@ export const Heroes: Record<string, Hero> = {
     skills: {
       s1: new Skill({
         id: 's1',
-        spdScaling: true,
+        speedScaling: true,
         rate: () => 0.65,
         pow: () => 0.9,
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + inputValues.casterFinalSpeed() * 0.00075,
@@ -6642,7 +6642,7 @@ export const Heroes: Record<string, Hero> = {
       }),
       s3: new Skill({
         id: 's3',
-        spdScaling: true,
+        speedScaling: true,
         rate: () => 0.7,
         pow: () => 0.95,
         penetrate: (soulburn: boolean, inputValues: DamageFormData) => {
@@ -6693,7 +6693,7 @@ export const Heroes: Record<string, Hero> = {
     skills: {
       s1: new Skill({
         id: 's1',
-        spdScaling: true,
+        speedScaling: true,
         rate: () => 0.9,
         pow: () => 1.1,
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + inputValues.casterFinalSpeed() * 0.00075,
@@ -6703,7 +6703,7 @@ export const Heroes: Record<string, Hero> = {
       }),
       s2: new Skill({
         id: 's2',
-        spdScaling: true,
+        speedScaling: true,
         rate: () => 0.8,
         pow: () => 1,
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + inputValues.casterFinalSpeed() * 0.001125,
@@ -6713,7 +6713,7 @@ export const Heroes: Record<string, Hero> = {
       }),
       s3: new Skill({
         id: 's3',
-        spdScaling: true,
+        speedScaling: true,
         rate: () => 1.6,
         pow: () => 1,
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + inputValues.casterFinalSpeed() * 0.0015,
@@ -7022,7 +7022,7 @@ export const Heroes: Record<string, Hero> = {
     skills: {
       s1: new Skill({
         id: 's1',
-        spdScaling: true,
+        speedScaling: true,
         rate: () => 0.9,
         pow: () => 0.9,
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + inputValues.casterFinalSpeed() * 0.00075,
@@ -7033,7 +7033,7 @@ export const Heroes: Record<string, Hero> = {
       }),
       s3: new Skill({
         id: 's3',
-        spdScaling: true,
+        speedScaling: true,
         rate: () => 0.8,
         pow: () => 1,
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + inputValues.casterFinalSpeed() * 0.00075 + inputValues.targetFinalSpeed() * 0.0015,
@@ -7276,7 +7276,7 @@ export const Heroes: Record<string, Hero> = {
     skills: {
       s1: new Skill({
         id: 's1',
-        spdScaling: true,
+        speedScaling: true,
         rate: () => 0.8,
         pow: () => 1,
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + inputValues.casterFinalSpeed() * 0.00075,
@@ -7286,7 +7286,7 @@ export const Heroes: Record<string, Hero> = {
       }),
       s2: new Skill({
         id: 's2',
-        spdScaling: true,
+        speedScaling: true,
         rate: () => 1.2,
         pow: () => 1,
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + inputValues.casterFinalSpeed() * 0.001125,
@@ -7536,7 +7536,7 @@ export const Heroes: Record<string, Hero> = {
     skills: {
       s1: new Skill({
         id: 's1',
-        spdScaling: true,
+        speedScaling: true,
         rate: () => 0.8,
         pow: () => 1,
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + inputValues.casterFinalSpeed() * 0.00075,
@@ -7546,7 +7546,7 @@ export const Heroes: Record<string, Hero> = {
       }),
       s2: new Skill({
         id: 's2',
-        spdScaling: true,
+        speedScaling: true,
         rate: () => 1.2,
         pow: () => 1,
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + inputValues.casterFinalSpeed() * 0.001125,
@@ -8152,7 +8152,7 @@ export const Heroes: Record<string, Hero> = {
     skills: {
       s1: new Skill({
         id: 's1',
-        spdScaling: true,
+        speedScaling: true,
         rate: () => 0.9,
         pow: () => 0.9,
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + inputValues.casterFinalSpeed() * 0.00075,
@@ -8163,7 +8163,7 @@ export const Heroes: Record<string, Hero> = {
       s1_bis: new Skill({
         id: 's1_bis',
         s1Benefits: true,
-        spdScaling: true,
+        speedScaling: true,
         rate: () => 1.2,
         pow: () => 0.9,
         penetrate: () =>  0.2,
@@ -8191,7 +8191,7 @@ export const Heroes: Record<string, Hero> = {
     skills: {
       s1: new Skill({
         id: 's1',
-        spdScaling: true,
+        speedScaling: true,
         rate: () => 0.9,
         pow: () => 0.9,
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + inputValues.casterFinalSpeed() * 0.00075,
@@ -8202,7 +8202,7 @@ export const Heroes: Record<string, Hero> = {
       s1_bis: new Skill({
         id: 's1_bis',
         s1Benefits: true,
-        spdScaling: true,
+        speedScaling: true,
         rate: () => 1.25,
         pow: () => 0.9,
         penetrate: () => 0.2,
@@ -8784,7 +8784,7 @@ export const Heroes: Record<string, Hero> = {
     skills: {
       s1: new Skill({
         id: 's1',
-        spdScaling: true,
+        speedScaling: true,
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 1.65 : 0.98,
         pow: () => 0.9,
@@ -8795,7 +8795,7 @@ export const Heroes: Record<string, Hero> = {
       }),
       s1_extra: new Skill({
         id: 's1_extra',
-        spdScaling: true,
+        speedScaling: true,
             rate: () => 1.2,
         pow: () => 1.3,
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + inputValues.casterFinalSpeed() * 0.00075,
@@ -9069,7 +9069,7 @@ export const Heroes: Record<string, Hero> = {
       }),
       s3: new Skill({
         id: 's3',
-        spdScaling: true,
+        speedScaling: true,
         rate: () => 1.6,
         pow: () => 1,
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + inputValues.casterFinalSpeed() * 0.0015,
@@ -9379,7 +9379,7 @@ export const Heroes: Record<string, Hero> = {
     skills: {
       s1: new Skill({
         id: 's1',
-        spdScaling: true,
+        speedScaling: true,
         rate: () => 0.9,
         pow: () => 0.95,
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + inputValues.casterFinalSpeed() * 0.00075,
@@ -9395,7 +9395,7 @@ export const Heroes: Record<string, Hero> = {
       }),
       s3: new Skill({
         id: 's3',
-        spdScaling: true,
+        speedScaling: true,
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 1.1 : 0.85,
         pow: () => 1,
@@ -9717,7 +9717,7 @@ export const Heroes: Record<string, Hero> = {
     skills: {
       s1: new Skill({
         id: 's1',
-        spdScaling: true,
+        speedScaling: true,
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 0.85 : 0.6,
         pow: () => 0.8,

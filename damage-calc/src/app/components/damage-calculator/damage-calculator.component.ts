@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Languages } from 'src/app/models/languages';
 import { AttackPreset, AttackPresets } from 'src/app/models/attack-presets';
@@ -23,6 +23,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { CompareSaveComponent } from '../compare-save/compare-save.component';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { CompareComponent } from '../compare/compare.component';
+import { DamageGraphComponent } from '../damage-graph/damage-graph.component';
+import { debounce } from 'src/app/utils/utils';
+import { DefensePreset, ReductionPreset, TargetPresetGroups, TargetReductionPresetGroups } from 'src/app/models/target-presets';
 
 @Component({
   selector: 'app-damage-calculator',
@@ -56,12 +59,31 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
   @ViewChild('attackSlider') attackSlider: SlideInputComponent | null = null;
   @ViewChild('critDamageSlider') critDamageSlider: SlideInputComponent | null = null;
 
+  @ViewChild('defenseSlider') defenseSlider: SlideInputComponent | null = null;
+  @ViewChild('defenseIncreaseSlider') defenseIncreaseSlider: SlideInputComponent | null = null;
+  @ViewChild('damageReductionSlider') damageReductionSlider: SlideInputComponent | null = null;
+  @ViewChild('damageTransferSlider') damageTransferSlider: SlideInputComponent | null = null;
+
+  @ViewChildren('specificInput') specificInputs: QueryList<SlideInputComponent> = new QueryList();
+
+
+  private damageGraph: DamageGraphComponent | null = null;
+  @ViewChild('damageGraph') set content(content: DamageGraphComponent) {
+    if(content) {
+        this.damageGraph = content;
+    }
+ }
+
   formDefaults = FormDefaults;
 
   damageSubscription: Subscription;
   heroSearchSubscription: Subscription;
   artifactSearchSubscription: Subscription;
   attackPresetSubscription: Subscription;
+  reductionPresetSubscription: Subscription;
+  targetPresetSubscription: Subscription;
+  reductionPresetSearchSubscription: Subscription;
+  targetPresetSearchSubscription: Subscription;
   currentArtifactSubscription: Subscription;
   currentHeroSubscription: Subscription;
 
@@ -98,19 +120,32 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
   artifacts: [string, Artifact][] = Object.entries(Artifacts);
   // Hero entries displayed in select box after a search filter
   filteredArtifacts: [string, Artifact][] = _.cloneDeep(this.artifacts);
-  // controls for hero selection
+  // controls for artifact selection
   public artifactControl: FormControl<string | null>;
   public artifactFilterControl: FormControl<string | null>;
 
   // All attack preset entries
   attackPresets: [string, AttackPreset][] = Object.entries(AttackPresets);
-  // controls for hero selection
+  // controls for preset selection
   public attackPresetControl: FormControl<string | null>;
+
+  // All reduction preset entries
+  reductionPresetGroups: [string, ReductionPreset[]][] = Object.entries(TargetReductionPresetGroups);
+  // controls for preset selection
+  public reductionPresetControl: FormControl<ReductionPreset | null>;
+  public reductionPresetFilterControl: FormControl<string | null>;
+
+  // All target preset entries
+  targetPresetGroups: [string, DefensePreset[]][] = Object.entries(TargetPresetGroups);
+  // controls for preset selection
+  public targetPresetControl: FormControl<DefensePreset | null>;
+  public targetPresetFilterControl: FormControl<string | null>;
 
   translationPipe: TranslationPipe;
 
   collapsed = false;
   savedBuildsCount = 0;
+  showGraph = false;
   
   get inputValues() {
     return this.dataService.damageInputValues;
@@ -153,6 +188,13 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
 
     this.attackPresetControl = new FormControl<string | null>(AttackPresets.manual.id)
 
+    this.targetPresetControl = new FormControl(TargetPresetGroups.default[0])
+    this.targetPresetFilterControl = new FormControl('')
+
+    this.reductionPresetControl = new FormControl(TargetReductionPresetGroups.default[0])
+    this.reductionPresetFilterControl = new FormControl('')
+
+
     this.damageSubscription = this.damageService.damages.subscribe((skillDamages: DamageRow[]) => {
       this.damageData.data = skillDamages;
     });
@@ -165,6 +207,16 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
     this.artifactSearchSubscription = this.artifactFilterControl.valueChanges
       .subscribe(() => {
         this.filterArtifacts();
+    });
+
+    this.reductionPresetSearchSubscription = this.reductionPresetControl.valueChanges
+      .subscribe(() => {
+        this.filterReductionPresets();
+    });
+
+    this.targetPresetSearchSubscription = this.targetPresetControl.valueChanges
+      .subscribe(() => {
+        this.filterTargetPresets();
     });
 
     this.attackPresetSubscription = this.attackPresetControl.valueChanges
@@ -187,6 +239,30 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
       this.updateFormInputs();
       this.refreshCompareBadge();
     })
+
+    this.targetPresetSubscription = this.targetPresetControl.valueChanges
+      .subscribe(() => {
+        if (this.targetPresetControl.value?.defense && this.defenseSlider) {
+          this.defenseSlider.overrideValue(this.targetPresetControl.value.defense);
+        }
+        if (this.targetPresetControl.value?.hp) {
+          const targetMaxHPSlider = this.specificInputs.filter(input => input.label === this.translationPipe.transform('targetMaxHP', 'form', this.languageService.language.value))[0]
+          targetMaxHPSlider?.overrideValue(this.targetPresetControl.value.hp);
+          this.damageGraph?.setOneshotHP(this.targetPresetControl.value.hp);
+          this.inputValues.targetMaxHP = this.targetPresetControl.value.hp;
+        }
+    });
+
+    this.reductionPresetSubscription = this.reductionPresetControl.valueChanges
+      .subscribe(() => {
+        const preset = AttackPresets[this.attackPresetControl.value || 'manual']
+        if (preset.attack && this.attackSlider) {
+          this.attackSlider.overrideValue(preset.attack);
+        }
+        if (preset.critDamage && this.critDamageSlider) {
+          this.critDamageSlider.overrideValue(preset.critDamage);
+        }
+    });
   }
   
   ngOnInit() {
@@ -300,6 +376,10 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
       }
     }
 
+    if (field === 'targetMaxHP') {
+      this.damageGraph?.setOneshotHP(value as number);
+    }
+
     this.dataService.updateDamageInputValues({[field]: value});
   
     // Check if attack preset needs to be reset
@@ -309,6 +389,8 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
       }
     }
     this.updateDamageBlockHeader();
+
+    debounce('calculateChart', () => {this.damageGraph?.calculateChart()}, undefined, 150);
   }
 
   selectHero(hero: string) {
@@ -381,6 +463,40 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
     })
   }
 
+  filterReductionPresets() {
+    this.filteredHeroes = this.heroes.filter((hero) => {
+      const searchValues = (this.heroFilterControl.value?.toLowerCase() || '').split(',');
+      if (searchValues.length) {
+        let matches = true;
+        for (const searchValue of searchValues) {
+          if (!this.heroMatches(hero[0], searchValue)) {
+            matches = false;
+          }
+        }
+        return matches;
+      } else {
+        return true;
+      }
+    })
+  }
+
+  filterTargetPresets() {
+    this.filteredHeroes = this.heroes.filter((hero) => {
+      const searchValues = (this.heroFilterControl.value?.toLowerCase() || '').split(',');
+      if (searchValues.length) {
+        let matches = true;
+        for (const searchValue of searchValues) {
+          if (!this.heroMatches(hero[0], searchValue)) {
+            matches = false;
+          }
+        }
+        return matches;
+      } else {
+        return true;
+      }
+    })
+  }
+
   saveBuild() {
     const artifactName = this.translationPipe.transform(this.artifactControl.value as string, 'artifacts', this.languageService.language.value)
     const dialogRef = this.dialog.open(CompareSaveComponent, {
@@ -439,5 +555,17 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
 
   toggleTable() {
     this.collapsed = !this.collapsed;
+  }
+
+  toggleGraph() {
+    this.showGraph = !this.showGraph;
+
+    // to execute after the graph is rendered
+    setTimeout(() => {
+      if (this.showGraph) {
+        this.damageGraph?.calculateChart();
+      }
+    }, 1);
+    
   }
 }

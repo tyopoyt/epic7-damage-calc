@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<mat-toolbar class="navbar" [class.small]="screenService.smallScreen.value">
+<mat-toolbar class="navbar mat-elevation-z2" [class.small]="screenService.smallScreen.value">
     <span class="neat-container absolute-left">
         <img class="navbar-icon" [class.small]="screenService.tinyScreen.value" src="assets/icons/{{toolSelection.value}}_logo.png" alt="Revive buff icon">
         <span *ngIf="!screenService.microscopicScreen.value" [class.medium-text]="screenService.tinyScreen.value">{{'app_title' | translate:'titles':languageService.language.value}}</span>
@@ -52,12 +52,12 @@
             <span class="absolute-right neat-container">
                 <img *ngIf="!screenService.microscopicScreen.value" class="webp-icon" src="assets/icons/ko-fi.webp" (click)="openKofi()" alt="ko-fi icon">
                 <!-- This is using container with ngIf rather than [class.extra-item] because angular does not pass the class down to the 
-                     element that actually gets rendered if it's dynamically applied -->
+                        element that actually gets rendered if it's dynamically applied -->
                 <ng-container *ngIf="!screenService.microscopicScreen.value; else extraItemCogMenu">
                     <img class="icon navbar-icon right" [matMenuTriggerFor]="menu" (click)="setSlideToggleIcons(50)" src="assets/icons/cog.svg" alt="Settings">
                     <mat-menu class="switch-nested-menu-arrows" #menu="matMenu">
                         <!-- The menu content here is duplicated rather than templated because the submenu was not rendering when it
-                             was defined in a template. -->
+                                was defined in a template. -->
                         <ng-template [ngTemplateOutlet]="darkModeToggle"></ng-template>
                         <!-- <ng-template [ngTemplateOutlet]="languageSelector"></ng-template> -->
                         <button class="language-menu" mat-menu-item [matMenuTriggerFor]="languageMenu">
@@ -83,6 +83,7 @@
         </ng-template>
     </ng-container>
 </mat-toolbar>
+
 
 <!-- Templates -->
 <ng-template #languageSelector>

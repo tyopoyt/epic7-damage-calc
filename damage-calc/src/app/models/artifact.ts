@@ -28,6 +28,9 @@ export class Artifact {
     flat: (artiScale: number, inputValues: DamageFormData) => number;
     attackPercent: number;
     defensePercent: number;
+    defenseScaling: boolean;
+    hpScaling: boolean;
+    speedScaling: boolean;
     penetrate: number;
     extraAttackBonus: boolean;
     artifactSpecific: string[];
@@ -43,6 +46,9 @@ export class Artifact {
         this.additional = _.get(data, 'additional', null);
         this.maxHP = _.get(data, 'maxHP', 1);
         this.applies = _.get(data, 'applies', () => true);
+        this.defenseScaling = _.get(data, 'defenseScaling', false);
+        this.hpScaling = _.get(data, 'hpScaling', false);
+        this.speedScaling = _.get(data, 'speedScaling', false);
         this.extraAttackBonus = _.get(data, 'extraAttackBonus', false);
         this.value = _.get(data, 'value', (artifactScale: number) => artifactScale);
         this.flat = _.get(data, 'flat', () => 0); //TODO: add appropriate inputs to these fxns
