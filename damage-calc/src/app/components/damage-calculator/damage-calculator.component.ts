@@ -59,8 +59,8 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
   @ViewChild('attackSlider') attackSlider: SlideInputComponent | null = null;
   @ViewChild('critDamageSlider') critDamageSlider: SlideInputComponent | null = null;
 
-  @ViewChild('defenseSlider') defenseSlider: SlideInputComponent | null = null;
-  @ViewChild('defenseIncreaseSlider') defenseIncreaseSlider: SlideInputComponent | null = null;
+  @ViewChild('targetDefenseSlider') targetDefenseSlider: SlideInputComponent | null = null;
+  @ViewChild('targetDefenseIncreaseSlider') targetDefenseIncreaseSlider: SlideInputComponent | null = null;
   @ViewChild('damageReductionSlider') damageReductionSlider: SlideInputComponent | null = null;
   @ViewChild('damageTransferSlider') damageTransferSlider: SlideInputComponent | null = null;
 
@@ -97,6 +97,7 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
   heroDots: DoT[] = [];
   dotDamages = {'bleed': 0, 'bomb': 0, 'burn': 0};
   artifactDamage = 0;
+  inputDefaultOverrides: Record<string, number> = {};
 
   barriers: {label: string, value: number}[]  = []
 
@@ -131,12 +132,14 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
 
   // All reduction preset entries
   reductionPresetGroups: [string, ReductionPreset[]][] = Object.entries(TargetReductionPresetGroups);
+  filteredReductionPresetGroups: [string, ReductionPreset[]][] = Object.entries(TargetReductionPresetGroups);
   // controls for preset selection
   public reductionPresetControl: FormControl<ReductionPreset | null>;
   public reductionPresetFilterControl: FormControl<string | null>;
 
   // All target preset entries
   targetPresetGroups: [string, DefensePreset[]][] = Object.entries(TargetPresetGroups);
+  filteredTargetPresetGroups: [string, DefensePreset[]][] = Object.entries(TargetPresetGroups);
   // controls for preset selection
   public targetPresetControl: FormControl<DefensePreset | null>;
   public targetPresetFilterControl: FormControl<string | null>;
@@ -209,12 +212,12 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
         this.filterArtifacts();
     });
 
-    this.reductionPresetSearchSubscription = this.reductionPresetControl.valueChanges
+    this.reductionPresetSearchSubscription = this.reductionPresetFilterControl.valueChanges
       .subscribe(() => {
         this.filterReductionPresets();
     });
 
-    this.targetPresetSearchSubscription = this.targetPresetControl.valueChanges
+    this.targetPresetSearchSubscription = this.targetPresetFilterControl.valueChanges
       .subscribe(() => {
         this.filterTargetPresets();
     });
@@ -242,26 +245,46 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
 
     this.targetPresetSubscription = this.targetPresetControl.valueChanges
       .subscribe(() => {
-        if (this.targetPresetControl.value?.defense && this.defenseSlider) {
-          this.defenseSlider.overrideValue(this.targetPresetControl.value.defense);
+        if (this.targetPresetControl.value) {
+          this.inputChange('defensePreset', this.targetPresetControl.value);
+        }
+
+        if (this.targetPresetControl.value?.defense && this.targetDefenseSlider) {
+          this.targetDefenseSlider.overrideValue(this.targetPresetControl.value.defense);
         }
         if (this.targetPresetControl.value?.hp) {
           const targetMaxHPSlider = this.specificInputs.filter(input => input.label === this.translationPipe.transform('targetMaxHP', 'form', this.languageService.language.value))[0]
           targetMaxHPSlider?.overrideValue(this.targetPresetControl.value.hp);
           this.damageGraph?.setOneshotHP(this.targetPresetControl.value.hp);
           this.inputValues.targetMaxHP = this.targetPresetControl.value.hp;
+          this.inputDefaultOverrides['targetMaxHP'] = this.targetPresetControl.value.hp;
         }
     });
 
     this.reductionPresetSubscription = this.reductionPresetControl.valueChanges
       .subscribe(() => {
-        const preset = AttackPresets[this.attackPresetControl.value || 'manual']
-        if (preset.attack && this.attackSlider) {
-          this.attackSlider.overrideValue(preset.attack);
+        if (this.reductionPresetControl.value) {
+          this.inputChange('reductionPreset', this.reductionPresetControl.value);
         }
-        if (preset.critDamage && this.critDamageSlider) {
-          this.critDamageSlider.overrideValue(preset.critDamage);
+
+        if (this.reductionPresetControl.value?.damageReduction && this.damageReductionSlider) {
+          this.damageReductionSlider.overrideValue(this.reductionPresetControl.value.damageReduction)
+        } else if (this.reductionPresetControl.value?.id !== 'manual') {
+          this.damageReductionSlider?.overrideValue(0)
         }
+
+        if (this.reductionPresetControl.value?.damageTransfer && this.damageTransferSlider) {
+          this.damageTransferSlider.overrideValue(this.reductionPresetControl.value.damageTransfer)
+        } else if (this.reductionPresetControl.value?.id !== 'manual') {
+          this.damageTransferSlider?.overrideValue(0)
+        }
+
+        if (this.reductionPresetControl.value?.defenseIncrease && this.targetDefenseIncreaseSlider) {
+          this.targetDefenseIncreaseSlider.overrideValue(this.reductionPresetControl.value.defenseIncrease)
+        } else if (this.reductionPresetControl.value?.id !== 'manual') {
+          this.targetDefenseIncreaseSlider?.overrideValue(0)
+        }
+        
     });
   }
   
@@ -367,17 +390,26 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
   }
 
   // TODO: don't call this initially for every input, only once
-  inputChange(field: string, value: number | boolean) {
+  inputChange(field: string, value: number | boolean | DefensePreset | ReductionPreset) {
     if (field.endsWith('SetStack') && (!this.stackingSets.includes(field) || !value)) {
       if (value) {
         this.stackingSets.push(field);
       } else {
         this.stackingSets = this.stackingSets.filter(set => field !== set)
       }
-    }
-
-    if (field === 'targetMaxHP') {
+    } else if (field === 'targetMaxHP') {
       this.damageGraph?.setOneshotHP(value as number);
+    } else if (field === 'targetDefense' && this.targetPresetControl.value?.defense !== value) {
+      this.targetPresetControl.setValue(TargetPresetGroups.default[0])
+    } else if (field === 'damageReduction' && value !== 0
+               && this.reductionPresetControl.value?.id !== 'manual' && this.reductionPresetControl.value?.damageReduction !== value) {
+      this.reductionPresetControl.setValue(TargetReductionPresetGroups.default[0])
+    } else if (field === 'targetDefenseIncrease' && value !== 0
+              && this.reductionPresetControl.value?.id !== 'manual' && this.reductionPresetControl.value?.defenseIncrease !== value) {
+      this.reductionPresetControl.setValue(TargetReductionPresetGroups.default[0])
+    } else if (field === 'damageTransfer' && value !== 0
+               && this.reductionPresetControl.value?.id !== 'manual' && this.reductionPresetControl.value?.damageTransfer !== value) {
+      this.reductionPresetControl.setValue(TargetReductionPresetGroups.default[0])
     }
 
     this.dataService.updateDamageInputValues({[field]: value});
@@ -464,37 +496,31 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
   }
 
   filterReductionPresets() {
-    this.filteredHeroes = this.heroes.filter((hero) => {
-      const searchValues = (this.heroFilterControl.value?.toLowerCase() || '').split(',');
-      if (searchValues.length) {
-        let matches = true;
-        for (const searchValue of searchValues) {
-          if (!this.heroMatches(hero[0], searchValue)) {
-            matches = false;
-          }
-        }
-        return matches;
-      } else {
-        return true;
+    this.filteredReductionPresetGroups = [] 
+
+    for (const reductionPresetGroup of this.reductionPresetGroups) {
+      const groupResults = reductionPresetGroup[1].filter(reduction => {
+        return this.translationPipe.transform(reduction.id, 'form', this.languageService.language.value).toLowerCase().replace(/ /g, '').includes((this.reductionPresetFilterControl.value?.toLowerCase() || ''));
+      });
+
+      if (groupResults.length) {
+        this.filteredReductionPresetGroups.push([reductionPresetGroup[0], groupResults]);
       }
-    })
+    }
   }
 
   filterTargetPresets() {
-    this.filteredHeroes = this.heroes.filter((hero) => {
-      const searchValues = (this.heroFilterControl.value?.toLowerCase() || '').split(',');
-      if (searchValues.length) {
-        let matches = true;
-        for (const searchValue of searchValues) {
-          if (!this.heroMatches(hero[0], searchValue)) {
-            matches = false;
-          }
-        }
-        return matches;
-      } else {
-        return true;
+    this.filteredTargetPresetGroups = []
+
+    for (const targetPresetGroup of this.targetPresetGroups) {
+      const groupResults = targetPresetGroup[1].filter(target => {
+        return this.translationPipe.transform(target.id, 'form', this.languageService.language.value).toLowerCase().replace(/ /g, '').includes((this.targetPresetFilterControl.value?.toLowerCase() || ''));
+      });
+
+      if (groupResults.length) {
+        this.filteredTargetPresetGroups.push([targetPresetGroup[0], groupResults]);
       }
-    })
+    }
   }
 
   saveBuild() {

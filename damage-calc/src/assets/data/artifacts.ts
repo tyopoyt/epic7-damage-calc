@@ -89,7 +89,7 @@ export const Artifacts: Record<string, Artifact> = {
     scale: [0.015, 0.0165, 0.018, 0.0195, 0.021, 0.0225, 0.024, 0.0255, 0.027, 0.0285, 0.03],
     type: ArtifactDamageType.flat,
     artifactSpecific:['targetMaxHP'],
-    flat: (artiScale: number, inputValues: DamageFormData) => inputValues.targetMaxHP * artiScale
+    flat: (artiScale: number, inputValues: DamageFormData) => inputValues.targetFinalMaxHP() * artiScale
   }),
   dignus_orb: new Artifact({
     id: 'dignus_orb',

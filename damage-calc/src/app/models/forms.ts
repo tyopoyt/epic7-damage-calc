@@ -585,4 +585,8 @@ export class DamageFormData {
     casterFinalMaxHP = (artifact: Artifact) => {
         return (this.inputOverrides['casterMaxHP'] ? this.inputOverrides['casterMaxHP'] : this.casterMaxHP) * (this.inBattleHP ? 1: artifact.maxHP);
     }
+
+    targetFinalMaxHP = () => {
+        return (this.inputOverrides['targetMaxHP'] ? this.inputOverrides['targetMaxHP'] : this.targetMaxHP * (this.defensePreset?.hpDamageMultiplier ? this.defensePreset.hpDamageMultiplier : 1));
+    }
 }

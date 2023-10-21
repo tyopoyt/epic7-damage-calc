@@ -325,6 +325,15 @@ html, body {
     }
   }
 
+  .preset-hint {
+    color: $font-light-color;
+  }
+
+  .mat-mdc-optgroup-label {
+    font-weight: bold;
+    color: $font-light-color;
+  }
+
   .count-badge {
     display: flex;
     justify-content: center;
@@ -832,6 +841,14 @@ html, body {
 
     .multi-slide {
       background-color: $ui-light-color;
+    }
+
+    .preset-hint {
+      color: $font-dark-color;
+    }
+
+    .mat-mdc-optgroup-label {
+      color: $font-dark-color;
     }
 
     div.switch-nested-menu-arrows {

@@ -8,7 +8,7 @@
                 <img class="png-icon medium tiny-margin-right select-icon-2" src="assets/classes/{{hero.class}}.png" alt="{{hero.class}}">
                 <mat-select [formControl]="heroControl" placeholder="" #singleSelect (selectionChange)="selectHero($event.value)">
                     <mat-option>
-                        <ngx-mat-select-search spellcheck="false" [formControl]="heroFilterControl" placeholderLabel="Find hero..." noEntriesFoundLabel="No matching heroes found"></ngx-mat-select-search>
+                        <ngx-mat-select-search spellcheck="false" [formControl]="heroFilterControl" placeholderLabel="Find hero..."></ngx-mat-select-search>
                     </mat-option>
                     <mat-option *ngFor="let hero of filteredHeroes" class="has-icons" [value]="hero[0]">
                         <img class="png-icon medium tiny-margin-right select-option-icon" src="assets/elements/{{hero[1].element}}.png" alt="{{hero[1].element}}">
@@ -21,7 +21,7 @@
                 <img class="png-icon medium tiny-margin-right select-icon" src=" assets/{{artifact.heroExclusive.length ? 'heroes' : 'classes'}}/{{artifact.heroExclusive.length ? artifact.heroExclusive[0] + '-icon' : artifact.exclusive}}.png" alt="{{artifact.exclusive}}">
                 <mat-select [formControl]="artifactControl" placeholder="" #singleSelect (selectionChange)="selectArtifact($event.value)">
                     <mat-option>
-                        <ngx-mat-select-search spellcheck="false" [formControl]="artifactFilterControl" placeholderLabel="Find artifact..." noEntriesFoundLabel="No matching artifacts found"></ngx-mat-select-search>
+                        <ngx-mat-select-search spellcheck="false" [formControl]="artifactFilterControl" placeholderLabel="Find artifact..."></ngx-mat-select-search>
                     </mat-option>
                     <mat-option *ngFor="let artifact of filteredArtifacts" class="has-icon" [value]="artifact[0]" [disabled]="(artifact[1].exclusive !== 'common' && artifact[1].exclusive !== hero.class) || (!!artifact[1].heroExclusive.length && !(artifact[1].heroExclusive.includes(heroID)))">
                         <img class="png-icon medium tiny-margin-right select-option-icon" src=" assets/{{artifact[1].heroExclusive.length ? 'heroes' : 'classes'}}/{{artifact[1].heroExclusive.length ? artifact[1].heroExclusive[0] + '-icon' : artifact[1].exclusive}}.png" alt="{{artifact[1].exclusive}}">
@@ -157,7 +157,7 @@
                         [label]="input | translate:'form':languageService.language.value"
                         [max]="artifactSpecificMaximums[input] || formDefaults[input]?.max || 10000"
                         [min]="formDefaults[input]?.min || 0" [step]="formDefaults[input]?.step || 1"
-                        [default]="formDefaults[input]?.defaultValue || 0"
+                        [default]="inputDefaultOverrides[input] || formDefaults[input]?.defaultValue || 0"
                         (valueChange)="inputChange(input, $event)"
                         [column]="screenService.mediumScreen.value">
                     </app-slide-input>
@@ -182,9 +182,9 @@
                     <mat-select [formControl]="targetPresetControl" placeholder="" #singleSelect>
                         <mat-select-trigger>{{targetPresetControl.value?.id}}</mat-select-trigger>
                         <mat-option>
-                            <ngx-mat-select-search spellcheck="false" [formControl]="targetPresetFilterControl" placeholderLabel="Find Defense Preset..." noEntriesFoundLabel="No matching Defense Presets found..."></ngx-mat-select-search>
+                            <ngx-mat-select-search spellcheck="false" [formControl]="targetPresetFilterControl" placeholderLabel="Find Defense Preset..."></ngx-mat-select-search>
                         </mat-option>
-                        <mat-optgroup *ngFor="let targetPresetGroup of targetPresetGroups" [label]="targetPresetGroup[0]">
+                        <mat-optgroup *ngFor="let targetPresetGroup of filteredTargetPresetGroups" [label]="targetPresetGroup[0]">
                             <mat-option *ngFor="let targetPreset of targetPresetGroup[1]" [value]="targetPreset">
                                 <span class="flex-row neat-container">{{targetPreset.id | translate:'form':languageService.language.value}}<p *ngIf="targetPreset.hp" class="preset-hint"> ({{targetPreset.hp + ' hp' + (targetPreset.speed ? '/' + targetPreset.speed + ' spd' : '')}})</p></span>
                             </mat-option>
@@ -193,8 +193,11 @@
                 </mat-form-field>
                 <mat-form-field class="neat-container">
                     <mat-select [formControl]="reductionPresetControl" placeholder="" #singleSelect>
+                        <mat-option>
+                            <ngx-mat-select-search spellcheck="false" [formControl]="reductionPresetFilterControl" placeholderLabel="Find Reduction Preset..."></ngx-mat-select-search>
+                        </mat-option>
                         <mat-select-trigger>{{reductionPresetControl.value?.id}}</mat-select-trigger>
-                        <mat-optgroup *ngFor="let reductionPresetGroup of reductionPresetGroups" [label]="reductionPresetGroup[0]">
+                        <mat-optgroup *ngFor="let reductionPresetGroup of filteredReductionPresetGroups" [label]="reductionPresetGroup[0]">
                             <mat-option *ngFor="let reductionPreset of reductionPresetGroup[1]" [value]="reductionPreset">
                                 <span class="flex-row neat-container">{{reductionPreset.id | translate:'form':languageService.language.value}}<p *ngIf="reductionPreset.damageReduction || reductionPreset.damageTransfer" class="preset-hint"> {{reductionPreset.damageReduction || reductionPreset.damageTransfer}}%{{reductionPreset.defenseIncrease ? (' (+' + reductionPreset.defenseIncrease + '% Defense)') : ''}}</p></span>
                             </mat-option>
@@ -204,14 +207,14 @@
             </div>
             <div class="neat-container full-width" [class.column-2]="!screenService.mediumSmallScreen.value" [class.full-width-number-input]="!screenService.mediumScreen.value">
                 <div [class.full-width]="screenService.mediumSmallScreen.value">
-                    <app-slide-input  #defenseSlider
+                    <app-slide-input  #targetDefenseSlider
                         [label]="'defense' | translate:'form':languageService.language.value"
                         [max]="5000" [min]="200" [default]="1000" (valueChange)="inputChange('targetDefense', $event)"
                         [column]="screenService.mediumScreen.value">
                     </app-slide-input>
                 </div>
                 <div [class.full-width]="screenService.mediumSmallScreen.value">
-                    <app-slide-input  #defenseIncreaseSlider
+                    <app-slide-input  #targetDefenseIncreaseSlider
                         [label]="'defense_increase' | translate:'form':languageService.language.value"
                         [max]="20" [min]="0" [default]="0" (valueChange)="inputChange('targetDefenseIncrease', $event)"
                         [column]="screenService.mediumScreen.value" [hint]="'defense_increase_hint' | translate:'form':languageService.language.value">
