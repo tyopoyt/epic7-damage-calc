@@ -37,7 +37,7 @@ export class Artifact {
     artifactSpecificMaximums: Record<string, number>;
 
     constructor(data: any) {
-        this.id = _.get(data, 'id', 'no_proc');
+        this.id = _.get(data, 'id', 'noProc');
         this.dot = _.get(data, 'dot', null);
         this.exclusive = _.get(data, 'exclusive', HeroClass.common)
         this.heroExclusive = _.get(data, 'heroExclusive', [])

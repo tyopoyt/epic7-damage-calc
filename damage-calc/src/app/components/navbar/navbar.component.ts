@@ -4,7 +4,7 @@ import { UntypedFormControl } from '@angular/forms';
 import { MatSelect, MatSelectChange } from '@angular/material/select';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Language, Languages } from 'src/app/models/languages';
-import { LanguageService } from 'src/app/services/language.service';
+import { CustomLanguage, LanguageService } from 'src/app/services/language.service';
 import { ScreenService, Theme } from 'src/app/services/screen.service';
 
 @Component({
@@ -16,6 +16,8 @@ export class NavbarComponent implements OnInit  {
 
   @ViewChild('darkModeSwitch') darkModeSwitch: ElementRef | undefined;
   @ViewChild('smallScreenPageSelect') pageSelect: MatSelect | undefined;
+
+  customLanguage = CustomLanguage
 
   languages = Object.values(Languages);
   countries = Object.entries(Languages).map(([key, value]) => value.countryCode)
@@ -113,5 +115,11 @@ export class NavbarComponent implements OnInit  {
     newUrlParts.push(this.languageService.toolTitleToPathMap[tool])
 
     this.router.navigate(newUrlParts)
+  }
+
+  languageSelectOptionClicked(language: Language) {
+    if (language.code === this.languageService.language.value?.code && language.countryCode === this.languageService.language.value?.countryCode) {
+      this.languageService.incrementLanguageCounter()
+    }
   }
 }

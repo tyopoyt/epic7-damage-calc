@@ -56,15 +56,15 @@ import { DefensePreset, ReductionPreset, TargetPresetGroups, TargetReductionPres
 })
 export class DamageCalculatorComponent implements OnInit, OnDestroy {
 
-  @ViewChild('attackSlider') attackSlider: SlideInputComponent | null = null;
-  @ViewChild('critDamageSlider') critDamageSlider: SlideInputComponent | null = null;
+  // @ViewChild('attackSlider') attackSlider: SlideInputComponent | null = null;
+  // @ViewChild('critDamageSlider') critDamageSlider: SlideInputComponent | null = null;
 
-  @ViewChild('targetDefenseSlider') targetDefenseSlider: SlideInputComponent | null = null;
-  @ViewChild('targetDefenseIncreaseSlider') targetDefenseIncreaseSlider: SlideInputComponent | null = null;
-  @ViewChild('damageReductionSlider') damageReductionSlider: SlideInputComponent | null = null;
-  @ViewChild('damageTransferSlider') damageTransferSlider: SlideInputComponent | null = null;
+  // @ViewChild('targetDefenseSlider') targetDefenseSlider: SlideInputComponent | null = null;
+  // @ViewChild('targetDefenseIncreaseSlider') targetDefenseIncreaseSlider: SlideInputComponent | null = null;
+  // @ViewChild('damageReductionSlider') damageReductionSlider: SlideInputComponent | null = null;
+  // @ViewChild('damageTransferSlider') damageTransferSlider: SlideInputComponent | null = null;
 
-  @ViewChildren('specificInput') specificInputs: QueryList<SlideInputComponent> = new QueryList();
+  @ViewChildren('slideInput') slideInputs: QueryList<SlideInputComponent> = new QueryList();
 
 
   private damageGraph: DamageGraphComponent | null = null;
@@ -93,6 +93,9 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
   damageData = new MatTableDataSource<DamageRow>() //DamageRow[] = [];
 
   stackingSets: string[] = [];
+
+  molagoraModifiers: Record<string, number> = {}
+  queuedQueryParams: Record<string, string> | null = null;
 
   heroDots: DoT[] = [];
   dotDamages = {'bleed': 0, 'bomb': 0, 'burn': 0};
@@ -149,6 +152,7 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
   collapsed = false;
   savedBuildsCount = 0;
   showGraph = false;
+  loading = true;
   
   get inputValues() {
     return this.dataService.damageInputValues;
@@ -180,8 +184,16 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
     public screenService: ScreenService,
     private damageService: DamageService,
     public dataService: DataService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private activatedRoute: ActivatedRoute
   ) {
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.queuedQueryParams = params;
+      if (!this.loading) {
+        this.loadQueryParams();
+      }
+    })
+
     this.translationPipe = new TranslationPipe(this.languageService);
     this.heroControl = new FormControl<string | null>(this.dataService.currentHeroID.value)
     this.heroFilterControl = new FormControl<string | null>('')
@@ -225,11 +237,13 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
     this.attackPresetSubscription = this.attackPresetControl.valueChanges
       .subscribe(() => {
         const preset = AttackPresets[this.attackPresetControl.value || 'manual']
-        if (preset.attack && this.attackSlider) {
-          this.attackSlider.overrideValue(preset.attack);
+        const attackSlider = this.slideInputs.filter(input => input.label === this.translationPipe.transform('attack', 'form', this.languageService.language.value))[0]
+        if (preset.attack && attackSlider) {
+          attackSlider.overrideValue(preset.attack);
         }
-        if (preset.critDamage && this.critDamageSlider) {
-          this.critDamageSlider.overrideValue(preset.critDamage);
+        const critDamageSlider = this.slideInputs.filter(input => input.label === this.translationPipe.transform('critDamage', 'form', this.languageService.language.value))[0]
+        if (preset.critDamage && critDamageSlider) {
+          critDamageSlider.overrideValue(preset.critDamage);
         }
     });
 
@@ -249,11 +263,13 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
           this.inputChange('defensePreset', this.targetPresetControl.value);
         }
 
-        if (this.targetPresetControl.value?.defense && this.targetDefenseSlider) {
-          this.targetDefenseSlider.overrideValue(this.targetPresetControl.value.defense);
+        const targetDefenseSlider = this.slideInputs.filter(input => input.label === this.translationPipe.transform('defense', 'form', this.languageService.language.value))[0]
+        console.log(this.slideInputs)
+        if (this.targetPresetControl.value?.defense && targetDefenseSlider) {
+          targetDefenseSlider.overrideValue(this.targetPresetControl.value.defense);
         }
         if (this.targetPresetControl.value?.hp) {
-          const targetMaxHPSlider = this.specificInputs.filter(input => input.label === this.translationPipe.transform('targetMaxHP', 'form', this.languageService.language.value))[0]
+          const targetMaxHPSlider = this.slideInputs.filter(input => input.label === this.translationPipe.transform('targetMaxHP', 'form', this.languageService.language.value))[0]
           targetMaxHPSlider?.overrideValue(this.targetPresetControl.value.hp);
           this.damageGraph?.setOneshotHP(this.targetPresetControl.value.hp);
           this.inputValues.targetMaxHP = this.targetPresetControl.value.hp;
@@ -267,22 +283,25 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
           this.inputChange('reductionPreset', this.reductionPresetControl.value);
         }
 
-        if (this.reductionPresetControl.value?.damageReduction && this.damageReductionSlider) {
-          this.damageReductionSlider.overrideValue(this.reductionPresetControl.value.damageReduction)
+        const damageReductionSlider = this.slideInputs.filter(input => input.label === this.translationPipe.transform('damageReduction', 'form', this.languageService.language.value))[0]
+        if (this.reductionPresetControl.value?.damageReduction && damageReductionSlider) {
+          damageReductionSlider.overrideValue(this.reductionPresetControl.value.damageReduction)
         } else if (this.reductionPresetControl.value?.id !== 'manual') {
-          this.damageReductionSlider?.overrideValue(0)
+          damageReductionSlider?.overrideValue(0)
         }
 
-        if (this.reductionPresetControl.value?.damageTransfer && this.damageTransferSlider) {
-          this.damageTransferSlider.overrideValue(this.reductionPresetControl.value.damageTransfer)
+        const damageTransferSlider = this.slideInputs.filter(input => input.label === this.translationPipe.transform('damageTransfer', 'form', this.languageService.language.value))[0]
+        if (this.reductionPresetControl.value?.damageTransfer && damageTransferSlider) {
+          damageTransferSlider.overrideValue(this.reductionPresetControl.value.damageTransfer)
         } else if (this.reductionPresetControl.value?.id !== 'manual') {
-          this.damageTransferSlider?.overrideValue(0)
+          damageTransferSlider?.overrideValue(0)
         }
 
-        if (this.reductionPresetControl.value?.defenseIncrease && this.targetDefenseIncreaseSlider) {
-          this.targetDefenseIncreaseSlider.overrideValue(this.reductionPresetControl.value.defenseIncrease)
+        const targetDefenseIncreaseSlider = this.slideInputs.filter(input => input.label === this.translationPipe.transform('defenseIncrease', 'form', this.languageService.language.value))[0]
+        if (this.reductionPresetControl.value?.defenseIncrease && targetDefenseIncreaseSlider) {
+          targetDefenseIncreaseSlider.overrideValue(this.reductionPresetControl.value.defenseIncrease)
         } else if (this.reductionPresetControl.value?.id !== 'manual') {
-          this.targetDefenseIncreaseSlider?.overrideValue(0)
+          targetDefenseIncreaseSlider?.overrideValue(0)
         }
         
     });
@@ -391,6 +410,10 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
 
   // TODO: don't call this initially for every input, only once
   inputChange(field: string, value: number | boolean | DefensePreset | ReductionPreset) {
+    if (this.loading && field === 'molagoras3') {
+      this.loading = false;
+      this.loadQueryParams();
+    }
     if (field.endsWith('SetStack') && (!this.stackingSets.includes(field) || !value)) {
       if (value) {
         this.stackingSets.push(field);
@@ -410,6 +433,15 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
     } else if (field === 'damageTransfer' && value !== 0
                && this.reductionPresetControl.value?.id !== 'manual' && this.reductionPresetControl.value?.damageTransfer !== value) {
       this.reductionPresetControl.setValue(TargetReductionPresetGroups.default[0])
+    } else if (field.startsWith('molagora')) {
+      let modifier = 0;
+      for (let i = 0; i < (value as number); i++) {
+        modifier += this.hero.skills[field.slice(-2)].enhance[i] * 100;
+      }
+      // TODO: better solution if have a chance
+      Promise.resolve().then(() => {
+        this.molagoraModifiers[field] = modifier;
+      })
     }
 
     this.dataService.updateDamageInputValues({[field]: value});
@@ -592,6 +624,40 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
         this.damageGraph?.calculateChart();
       }
     }, 1);
+    
+  }
+
+  async loadQueryParams() {
+    console.log(this.queuedQueryParams)
+    if (!this.loading && this.queuedQueryParams) {
+      const paramInputs: Record<string, boolean | number | string> = {};
+      let paramArtifact = '';
+      // setvalue on sliders
+      for (const param of Object.entries(this.queuedQueryParams)) {
+        if (param[1].toLowerCase() === 'true') {
+          paramInputs[param[0]] = true;
+        } else if (param[1].toLowerCase() === 'false') {
+          paramInputs[param[0]] = false;
+        } else if (!isNaN(Number(param[1]))) {
+          paramInputs[param[0]] = Number(param[1]);
+        } else if (['defensePreset', 'reductionPreset'].includes(param[0])) {
+          paramInputs[param[0]] = param[1];
+        } else if (param[0].toLowerCase() === 'hero' && Object.keys(Heroes).includes(param[1])) {
+          await Promise.resolve()
+          this.selectHero(param[1])
+          this.heroControl.setValue(param[1])
+        } else if (param[0].toLowerCase() === 'artifact' && Object.keys(Artifacts).includes(param[1])) {
+          paramArtifact = param[1];
+        }
+      }
+
+      if (paramArtifact
+          && (Artifacts[paramArtifact].exclusive === this.hero.class || Artifacts[paramArtifact].heroExclusive.includes(this.heroID))) {
+        this.selectArtifact(paramArtifact)
+      }
+  
+      this.dataService.updateDamageInputValues(paramInputs);
+    }
     
   }
 }

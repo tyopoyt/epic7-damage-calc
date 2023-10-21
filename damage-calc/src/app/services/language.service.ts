@@ -5,6 +5,14 @@ import { Language, Languages } from '../models/languages';
 import * as _ from 'lodash-es'
 import { debounce } from '../utils/utils';
 
+export const CustomLanguage = {
+  name: 'Custom',
+  localName: 'Custom',
+  code: 'en',
+  countryCode: 'us',
+  custom: true
+}
+
 // TODO: check if elementalAdvantage under skills can be removed in each lang file.
 @Injectable({
   providedIn: 'root'
@@ -20,7 +28,7 @@ export class LanguageService {
   toolTitles: string[] = ['damage_calculator', 'speed_tuner', 'ehp_calculator', 'effectiveness_checker']
   toolTitleToPathMap: Record<string, string> = {
     'damage_calculator': '',
-    'speed_tuner': 'speed-tuner',
+  'speed_tuner': 'speed-tuner',
     'ehp_calculator': 'ehp-calculator',
     'effectiveness_checker': 'effectiveness'
   }
@@ -47,17 +55,28 @@ export class LanguageService {
         this.sameLanguageCount++;
         debounce('clearSameLanguageCount', () => {this.sameLanguageCount = 0}, [], 4000)
         if (this.sameLanguageCount >= 3) {
-          this.sameLanguageCount = 0;
-          if (confirm('Are you sure you want to load a local translation file for testing?\nIf there are any errors with your file you can refresh the page to reset.')) {
-            this.getTranslationFile();
-            return
-          }
+          this.localTranslationTriggered();
+          return
         }
       } else {
         this.sameLanguageCount = 0;
       }
 
       this.language.next(language);
+    }
+  }
+
+  incrementLanguageCounter() {
+    this.sameLanguageCount++;
+    if (this.sameLanguageCount >= 3) {
+      this.localTranslationTriggered();
+    }
+  }
+
+  localTranslationTriggered() {
+    this.sameLanguageCount = 0;
+    if (confirm('Are you sure you want to load a local translation file for testing?\nIf there are any errors with your file you can refresh the page to reset.')) {
+      this.getTranslationFile();
     }
   }
 
@@ -86,12 +105,7 @@ export class LanguageService {
 
   loadCustomLanguage() {
     this.language.next(
-      {
-        name: 'English',
-        localName: 'English',
-        code: 'en',
-        countryCode: 'us'
-      }
+      CustomLanguage
     )
   }
 

@@ -5,6 +5,7 @@ export class Language {
     localName: string;
     code: string;
     countryCode: string;
+    custom?: boolean = false;
 
     constructor(language: any) {
         this.name = _.get(language, 'name', 'English');

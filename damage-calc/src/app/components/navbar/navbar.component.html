@@ -61,7 +61,7 @@
                         <ng-template [ngTemplateOutlet]="darkModeToggle"></ng-template>
                         <!-- <ng-template [ngTemplateOutlet]="languageSelector"></ng-template> -->
                         <button class="language-menu" mat-menu-item [matMenuTriggerFor]="languageMenu">
-                            <app-flag [country]="languageSelection.value.countryCode"></app-flag> {{languageSelection.value.localName}}
+                            <app-flag *ngIf="!languageService.language.value?.custom" [country]="languageSelection.value.countryCode"></app-flag> {{languageSelection.value.localName}}
                         </button>
                     </mat-menu>
                 </ng-container>
@@ -89,20 +89,28 @@
 <ng-template #languageSelector>
     <mat-form-field class="navbar-picker language-picker" [class.small]="screenService.tinyScreen.value">
         <mat-select hideSingleSelectionIndicator [formControl]="languageSelection" (selectionChange)="selectLanguage($event.value)">
-            <mat-select-trigger class="language-trigger">
+            <mat-select-trigger *ngIf="!languageService.language.value?.custom" class="language-trigger">
                 <span [class.small-text]="screenService.tinyScreen.value">
                     {{languageSelection.value.localName}} <app-flag [country]="languageSelection.value.countryCode"></app-flag>
                 </span>
+                <ng-template #customTrigger>
+                    <span class="margin-left" [class.small-text]="screenService.tinyScreen.value">
+                        Custom Language
+                    </span>
+                </ng-template>
             </mat-select-trigger>
-            <mat-option *ngFor="let language of languages" [value]="language">
+            <mat-option *ngFor="let language of languages" [value]="language" (click)="languageSelectOptionClicked(language)">
                 {{language.localName}} <app-flag [country]="language.countryCode"></app-flag>
+            </mat-option>
+            <mat-option *ngIf="languageService.language.value?.custom" [value]="customLanguage">
+                Custom
             </mat-option>
         </mat-select>
     </mat-form-field>
 </ng-template>
 
 <ng-template #darkModeToggle>
-    <mat-slide-toggle [class.top-menu-item]="!screenService.microscopicScreen.value" #darkModeSwitch class="pointer" (click)="toggleDarkMode()" [checked]="screenService.theme === Theme.dark">{{'dark_mode' | translate:'ui':languageService.language.value}}</mat-slide-toggle>
+    <mat-slide-toggle [class.margin-right]="languageService.language.value?.custom" [class.top-menu-item]="!screenService.microscopicScreen.value" #darkModeSwitch class="pointer" (click)="toggleDarkMode()" [checked]="screenService.theme === Theme.dark">{{'dark_mode' | translate:'ui':languageService.language.value}}</mat-slide-toggle>
 </ng-template>
 
 <mat-menu #languageMenu="matMenu">

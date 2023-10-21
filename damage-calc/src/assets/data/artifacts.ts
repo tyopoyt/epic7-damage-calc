@@ -7,7 +7,7 @@ import { ArtifactDamageType } from "src/app/models/artifact"
 
 //TODO: add ftene artifact
 export const Artifacts: Record<string, Artifact> = {
-  no_proc: new Artifact({}),
+  noProc: new Artifact({}),
   air_to_surface_missile_misha: new Artifact({
     id: 'air_to_surface_missile_misha',
     name: 'Air-to-Surface Missile: MISHA',

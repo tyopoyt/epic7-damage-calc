@@ -46,3 +46,11 @@ mat-slider {
     //   opacity: 0.2;
     // }
 }
+
+.extra-label {
+  font-size: 1rem;
+  background-color: $ui-medium-color;
+  border-radius: $gutter;
+  padding: $gutter-tiny $gutter-small $gutter-small;
+  color: $font-light-color
+}

@@ -19,8 +19,8 @@ export class DataService {
 
   currentHeroID = new BehaviorSubject<string>('abigail')
   currentHero = new BehaviorSubject<Hero>(Heroes.abigail);
-  currentArtifactID = new BehaviorSubject<string>('no_proc')
-  currentArtifact = new BehaviorSubject<Artifact>(Artifacts.no_proc);
+  currentArtifactID = new BehaviorSubject<string>('noProc')
+  currentArtifact = new BehaviorSubject<Artifact>(Artifacts.noProc);
   currentTarget: Target = new Target();
   
   heroConstants: Record<string, number> = {
@@ -63,6 +63,7 @@ export class DataService {
   }
 
   updateDamageInputValues(updates: Record<string, any>) {
+    console.log(updates)
     for (const [field, data] of Object.entries(updates)) {
       this.setProperty(this.damageInputValues, field as keyof DamageFormData, data);
     }
@@ -74,7 +75,7 @@ export class DataService {
     this.currentHero.next(Heroes[hero]);
 
     if (this.currentArtifact.value.exclusive !== HeroClass.common && this.currentArtifact.value.exclusive !== this.currentHero.value.class) {
-      this.updateSelectedArtifact(Artifacts.no_proc.id)
+      this.updateSelectedArtifact(Artifacts.noProc.id)
     }
   }
 

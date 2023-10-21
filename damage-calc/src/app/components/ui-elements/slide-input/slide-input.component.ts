@@ -14,6 +14,7 @@ export class SlideInputComponent implements OnInit {
   @Input() default: number = this.min;
   @Input() step = 1;
   @Input() label = '';
+  @Input() extraLabel = '';
   @Input() column = false;
   @Input() row = false;
   @Input() hint = '';
@@ -22,13 +23,20 @@ export class SlideInputComponent implements OnInit {
   @Output() valueChange: BehaviorSubject<number> = new BehaviorSubject(this.default);
 
   value = 0;
+  initialized = false;
 
   constructor(public screenService: ScreenService) { }
 
   ngOnInit(): void {
-    this.value = this.default;
-    this.slideValue.next(this.value)
-    this.valueChange.next(this.value)
+    // This seemed to already fire after setvalue from the number input group
+    // but do it after resolve to ensure that's always the case
+    Promise.resolve().then(() => {
+      this.value = this.default;
+      this.slideValue.next(this.value)
+      this.valueChange.next(this.value)
+
+      this.initialized = true;
+    })
   }
 
   valueChanged(event: any) {
@@ -37,8 +45,10 @@ export class SlideInputComponent implements OnInit {
   }
 
   setValue(value: number) {
-    this.value = value;
-    this.valueChange.next(this.value)
+    if (this.initialized) {
+      this.value = value;
+      this.valueChange.next(this.value)
+    }
   }
 
   overrideValue(value: number) {

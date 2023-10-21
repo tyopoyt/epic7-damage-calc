@@ -11,6 +11,7 @@ import { Hero, HeroClass, HeroElement } from "src/app/models/hero";
 import { AftermathSkill, DoT, HitType, Skill } from "src/app/models/skill";
 
 export const Heroes: Record<string, Hero> = {
+  // If a new first hero with out an s3 is released, update the logic for the loading variable in damage-calculator.component.ts
   abigail: new Hero({
     element: HeroElement.fire,
     class: HeroClass.warrior,
@@ -5540,7 +5541,7 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 1.5,
         pow: () => 1,
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.elementalAdvantage ? 1.5 : 1,
-        multTip: () => ({ elemental_advantage: 50 }),
+        multTip: () => ({ elementalAdvantage: 50 }),
         penetrate: () => 0.5,
         enhance: [0.05, 0.05, 0, 0.05, 0.15],
         isSingle: () => true,
@@ -5573,7 +5574,7 @@ export const Heroes: Record<string, Hero> = {
   //       rate: () => 1.5,
   //       pow: () => 1,
   //       mult: () => elementalAdvantage ? 1.3 : 1,
-  //       multTip: () => ({ elemental_advantage: 30 }),
+  //       multTip: () => ({ elementalAdvantage: 30 }),
   //       penetrate: () => 0.5,
   //       enhance: [0.05, 0.05, 0, 0.05, 0.15],
   //       isSingle: () => true,
@@ -6208,7 +6209,7 @@ export const Heroes: Record<string, Hero> = {
       s2: new Skill({
         id: 's2',
         rate: () => 1,
-        pow: () => 1,
+        pow: () => 1.3,
         isAOE: () => true,
       }),
       s3: new Skill({
@@ -9352,7 +9353,7 @@ export const Heroes: Record<string, Hero> = {
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.skillTreeCompleted ? (1.1 + (inputValues.elementalAdvantage ? 0.25 : 0)) : 1,
         multTip: (inputValues: DamageFormData) => (inputValues.skillTreeCompleted ? ({
           skill_tree: 10,
-          ...(inputValues.elementalAdvantage ? { elemental_advantage: 25 } : {}),
+          ...(inputValues.elementalAdvantage ? { elementalAdvantage: 25 } : {}),
         }) : null),
         enhance: [0.05, 0, 0.05, 0, 0.05, 0.05, 0.1],
         isSingle: () => true,
@@ -9362,7 +9363,7 @@ export const Heroes: Record<string, Hero> = {
         soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 2.2 : 1.5,
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.skillTreeCompleted && inputValues.elementalAdvantage ? 1.25 : 1,
-        multTip: () => ({ elemental_advantage: 25 }),
+        multTip: () => ({ elementalAdvantage: 25 }),
         pow: () => 0.9,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.1],
         isSingle: () => true,

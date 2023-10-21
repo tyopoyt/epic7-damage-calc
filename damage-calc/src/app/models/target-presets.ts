@@ -13,7 +13,7 @@ export const TargetPresetGroups: Record<string, DefensePreset[]> = {
     ],
     wyvern13: [ //TODO: add translations for these into i18n files
         {
-            id: 'blaze-dragona-13',
+            id: 'blazeDragona13',
             name: 'Blaze Dragona',
             description: '20241 hp/175 spd',
             defense: 1392,
@@ -21,7 +21,7 @@ export const TargetPresetGroups: Record<string, DefensePreset[]> = {
             speed: 175
         },
         {
-            id: 'blood-ridge-naga-13',
+            id: 'bloodRidgeNaga13',
             name: 'Blood Ridge Naga',
             description: '13554 hp/154 spd',
             defense: 1340,
@@ -29,7 +29,7 @@ export const TargetPresetGroups: Record<string, DefensePreset[]> = {
             speed: 154
         },
         {
-            id: 'wyvern-13',
+            id: 'wyvern13',
             name: 'Wyvern',
             description: '233578 hp/242 spd',
             defense: 1940,
@@ -41,7 +41,7 @@ export const TargetPresetGroups: Record<string, DefensePreset[]> = {
     ],
     golem13: [
         {
-            id: 'raqix-flying-troop-13',
+            id: 'raqixFlyingTroop13',
             name: 'Raqix Flying Troop',
             description: '14743 hp/188 spd',
             defense: 1007,
@@ -49,14 +49,14 @@ export const TargetPresetGroups: Record<string, DefensePreset[]> = {
             speed: 188
         },
         {
-            id: 'mossy-testudo-13',
+            id: 'mossyTestudo13',
             name: 'Mossy Testudo',
             description: '17172 hp',
             defense: 1221,
             hp: 17172
         },
         {
-            id: 'golem-13',
+            id: 'golem13',
             name: 'Golem',
             description: '158553 hp',
             defense: 1550,
@@ -67,7 +67,7 @@ export const TargetPresetGroups: Record<string, DefensePreset[]> = {
     ],
     banshee13: [
         {
-            id: 'mystychain-13',
+            id: 'mystychain13',
             name: 'Mistychain',
             description: '11015 hp/174 spd',
             defense: 1248,
@@ -75,7 +75,7 @@ export const TargetPresetGroups: Record<string, DefensePreset[]> = {
             speed: 174
         },
         {
-            id: 'icy-dark-broom-13',
+            id: 'icyDarkBroom13',
             name: 'Icy Dark Broom',
             description: '11015 hp/174 spd',
             defense: 1248,
@@ -83,7 +83,7 @@ export const TargetPresetGroups: Record<string, DefensePreset[]> = {
             speed: 174
         },
         {
-            id: 'banshee-13',
+            id: 'banshee13',
             name: 'Banshee',
             description: '115703 hp/203 spd',
             defense: 1977,
@@ -95,7 +95,7 @@ export const TargetPresetGroups: Record<string, DefensePreset[]> = {
     ],
     azimanak13: [
         {
-            id: 'striker-raqix-warlord-13',
+            id: 'strikerRaqixWarlord13',
             name: 'Raqix Warlord',
             description: '14653 hp/218 spd',
             defense: 1134,
@@ -103,7 +103,7 @@ export const TargetPresetGroups: Record<string, DefensePreset[]> = {
             speed: 218
         },
         {
-            id: 'karax-charger-13',
+            id: 'karaxCharger13',
             name: 'Karax Charger',
             description: '23805 hp/176 spd',
             defense: 1297,
@@ -111,14 +111,14 @@ export const TargetPresetGroups: Record<string, DefensePreset[]> = {
             speed: 176
         },
         {
-            id: 'egg-13',
+            id: 'egg13',
             name: 'Egg',
             description: '9156 hp',
             defense: 600,
             hp: 9156
         },
         {
-            id: 'azimanak-13',
+            id: 'azimanak13',
             name: 'Azimanak',
             description: '134511 hp',
             defense: 2822,
@@ -127,7 +127,7 @@ export const TargetPresetGroups: Record<string, DefensePreset[]> = {
     ],
     caides13: [
         {
-            id: 'converted-symaqus-13',
+            id: 'convertedSymaqus13',
             name: 'Converted Symaqus',
             description: '41387 hp/264 spd',
             defense: 2698,
@@ -135,7 +135,7 @@ export const TargetPresetGroups: Record<string, DefensePreset[]> = {
             speed: 264
         },
         {
-            id: 'caides-13',
+            id: 'caides13',
             name: 'Caides',
             description: '226348 hp/180 spd/50% HP-Dmg Reduction',
             defense: 1456,
@@ -146,7 +146,7 @@ export const TargetPresetGroups: Record<string, DefensePreset[]> = {
     ],
     wyvern11: [
         {
-            id: 'blaze-dragona-11',
+            id: 'blazeDragona11',
             name: 'Blaze Dragona',
             description: '14158 hp/163 spd',
             defense: 984,
@@ -154,7 +154,7 @@ export const TargetPresetGroups: Record<string, DefensePreset[]> = {
             speed: 163
         },
         {
-            id: 'blood-ridge-naga-11',
+            id: 'bloodRidgeNaga11',
             name: 'Blood Ridge Naga',
             description: '11851 hp/144 spd',
             defense: 1183,
@@ -162,7 +162,7 @@ export const TargetPresetGroups: Record<string, DefensePreset[]> = {
             speed: 144
         },
         {
-            id: 'wyvern-11',
+            id: 'wyvern11',
             name: 'Wyvern',
             description: '150452 hp/208 spd',
             defense: 1254,
@@ -174,21 +174,21 @@ export const TargetPresetGroups: Record<string, DefensePreset[]> = {
     ],
     golem11: [
         {
-            id: 'raqix-flying-troop-11',
+            id: 'raqixFlyingTroop11',
             name: 'Raqix Flying Troop',
             description: '12528 hp',
             defense: 891,
             hp: 12528
         },
         {
-            id: 'mossy-testudo-11',
+            id: 'mossyTestudo11',
             name: 'Mossy Testudo',
             description: '15015 hp',
             defense: 1077,
             hp: 15015
         },
         {
-            id: 'golem-11',
+            id: 'golem11',
             name: 'Golem',
             description: '101983 hp',
             defense: 1306,
@@ -199,7 +199,7 @@ export const TargetPresetGroups: Record<string, DefensePreset[]> = {
     ],
     banshee11: [
         {
-            id: 'mystychain-11',
+            id: 'mystychain11',
             name: 'Mistychain',
             description: '9631 hp/154 spd',
             defense: 1101,
@@ -207,7 +207,7 @@ export const TargetPresetGroups: Record<string, DefensePreset[]> = {
             speed: 154
         },
         {
-            id: 'icy-dark-broom-11',
+            id: 'icyDarkBroom11',
             name: 'Icy Dark Broom',
             description: '9631 hp/152 spd',
             defense: 1101,
@@ -215,7 +215,7 @@ export const TargetPresetGroups: Record<string, DefensePreset[]> = {
             speed: 152
         },
         {
-            id: 'banshee-11',
+            id: 'banshee11',
             name: 'Banshee',
             description: '60624 hp/160 spd',
             defense: 1289,
@@ -227,7 +227,7 @@ export const TargetPresetGroups: Record<string, DefensePreset[]> = {
     ],
     azimanak11: [
         {
-            id: 'striker-raqix-warlord-11',
+            id: 'strikerRaqixWarlord11',
             name: 'Raqix Warlord',
             description: '12812 hp/211 spd',
             defense: 1030,
@@ -235,7 +235,7 @@ export const TargetPresetGroups: Record<string, DefensePreset[]> = {
             speed: 211
         },
         {
-            id: 'karax-charger-11',
+            id: 'karaxCharger11',
             name: 'Karax Charger',
             description: '20814 hp/149 spd',
             defense: 1150,
@@ -243,14 +243,14 @@ export const TargetPresetGroups: Record<string, DefensePreset[]> = {
             speed: 149
         },
         {
-            id: 'egg-11',
+            id: 'egg11',
             name: 'Egg',
             description: '8098 hp',
             defense: 540,
             hp: 8098
         },
         {
-            id: 'azimanak-11',
+            id: 'azimanak11',
             name: 'Azimanak',
             description: '87729 hp',
             defense: 1825,
@@ -259,7 +259,7 @@ export const TargetPresetGroups: Record<string, DefensePreset[]> = {
     ],
     earthExpedition3: [
         {
-            id: 'earth-exp-3',
+            id: 'earthExp3',
             name: 'Earth Expedition - Level 3',
             defense: 1087,
             extraDamageElement: HeroElement.fire,
@@ -270,7 +270,7 @@ export const TargetPresetGroups: Record<string, DefensePreset[]> = {
     ],
     iceExpedition3: [
         {
-            id: 'ice-exp-3',
+            id: 'iceExp3',
             name: 'Ice Expedition - Level 3',
             defense: 905,
             extraDamageElement: HeroElement.earth,
@@ -279,7 +279,7 @@ export const TargetPresetGroups: Record<string, DefensePreset[]> = {
     ],
     fireExpedition3: [
         {
-            id: 'fire-exp-3',
+            id: 'fireExp3',
             name: 'Fire Expedition - Level 3',
             defense: 1340,
             extraDamageElement: HeroElement.ice,
@@ -288,7 +288,7 @@ export const TargetPresetGroups: Record<string, DefensePreset[]> = {
     ],
     lightExpedition3: [
         {
-            id: 'light-exp-3',
+            id: 'lightExp3',
             name: 'Light Expedition - Level 3',
             defense: 815
         }
@@ -306,19 +306,19 @@ export const TargetReductionPresetGroups: Record<string, ReductionPreset[]> = {
     ],
     damageReduction: [
         {
-            id: 'proof-of-valor-init',
+            id: 'proofOfValorInit',
             name: 'Proof of Valor (Battle start)',
             label: '30%',
             damageReduction: 30
         },
         {
-            id: 'proof-of-valor-down',
+            id: 'proofOfValorDown',
             name: 'Proof of Valor (After 5 hits)',
             label: '15%',
             damageReduction: 15
         },
         {
-            id: 'adamant-shield',
+            id: 'adamantShield',
             name: 'Adamant Shield (Max)',
             label: '16%',
             damageReduction: 16
@@ -330,33 +330,34 @@ export const TargetReductionPresetGroups: Record<string, ReductionPreset[]> = {
             damageReduction: 15
         },
         {
-            id: 'c-armin',
+            id: 'cArmin',
             name: 'Crimson Armin (S2 Passive)',
             label: '15%',
             damageReduction: 15
         },
         {
-            id: 'sepulcrum-1',
+            id: 'sepulcrum1',
             name: 'Sepulcrum (Max - 1 stack)',
             label: '8%',
             damageReduction: 8
         },
         {
-            id: 'sepulcrum-2',
+            id: 'sepulcrum2',
             name: 'Sepulcrum (Max - 2 stacks)',
             label: '16%',
             damageReduction: 16
         },
         {
-            id: 'sepulcrum-3',
+            id: 'sepulcrum3',
             name: 'Sepulcrum (Max - 3 stacks)',
             label: '24%',
             damageReduction: 24
         }
     ],
     damageTransfer: [
+        // TODO: add other damage transfer kits (like PFlan)
         {
-            id: 'ss-bellona',
+            id: 'ssb',
             name: 'Seaside Bellona (S2 Passive)',
             label: '30%',
             damageTransfer: 30
@@ -375,7 +376,7 @@ export const TargetReductionPresetGroups: Record<string, ReductionPreset[]> = {
             defenseIncrease: 10
         },
         {
-            id: 't-crozet',
+            id: 'tCrozet',
             name: 'Troublemaker Crozet (S2 Passive)',
             label: '40%',
             damageTransfer: 40
