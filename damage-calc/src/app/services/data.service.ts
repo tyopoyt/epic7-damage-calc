@@ -1,6 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { Hero, HeroClass, HeroElement } from '../models/hero';
-import { DamageFormData } from '../models/forms';
+import { DamageFormData, FormDefaults } from '../models/forms';
 import { Artifact } from '../models/artifact';
 import { Target } from '../models/target';
 import { Heroes } from '../../assets/data/heroes';
@@ -8,12 +8,12 @@ import { Heroes } from '../../assets/data/heroes';
 import * as _ from 'lodash-es'
 import { BehaviorSubject } from 'rxjs';
 import { Artifacts } from 'src/assets/data/artifacts';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-  // TODO: make sure these all have correct initial values when queryparams are implemented
   damageInputValues: DamageFormData = new DamageFormData({});
   damageInputChanged: EventEmitter<void> = new EventEmitter();
 
@@ -62,6 +62,8 @@ export class DataService {
     [HeroElement.light]: HeroElement.dark,
   }
 
+  constructor (private router: Router, private activatedRoute: ActivatedRoute) {}
+
   updateDamageInputValues(updates: Record<string, any>) {
     console.log(updates)
     for (const [field, data] of Object.entries(updates)) {
@@ -98,6 +100,34 @@ export class DataService {
 
   advantageousElement(hero: Hero = this.currentHero.value) {
     return this.advantageousElementMap[hero.element];
+  }
+
+  updateDamageQueryParams(params: Record<string, boolean | string | number> ) {
+    console.log(params)
+    const queryParams: Record<string, boolean | string | number> = {}
+    for (const param of Object.entries(params)) {
+      if (typeof param[1] !== 'function') {
+        if (typeof param[1] === 'boolean' && param[1] !== (FormDefaults[param[0]]?.default || false)) {
+          queryParams[param[0]] = param[1];
+        } else if (typeof param[1] === 'number' && param[1] !== (FormDefaults[param[0]]?.defaultValue || 0)) {
+          queryParams[param[0]] = param[1];
+        } else {
+          const id = _.get(param[1], 'id');
+          if (id && id !== 'manual') {
+            queryParams[param[0]] = id;
+          }
+        }
+      }
+    }
+
+    console.log(queryParams)
+    // this.router.navigate(
+    //   [], 
+    //   {
+    //     relativeTo: this.activatedRoute,
+    //     queryParams, 
+    //     queryParamsHandling: 'merge', // remove to replace all query params by provided
+    //   });
   }
 
   // Helper function to update the value of a form input

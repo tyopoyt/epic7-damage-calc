@@ -9,7 +9,6 @@
     </mat-form-field>
     <div class="full-width flex-aligned flex-between" [ngClass]="!screenService.mediumSmallScreen.value ? 'flex-row' : 'flex-column'">
         <mat-radio-group [formControl]="hitTypeControl" (change)="setChartHitType($event.value)" aria-label="Hit type">
-            <!-- TODO: pointer class should have opposite condition to disabled -->
             <mat-radio-button [disabled]="onlyMiss || noCrit" [class.pointer]="!onlyMiss && !noCrit" value="crit">Critical Hit</mat-radio-button>
             <mat-radio-button [disabled]="onlyMiss || noCrit || onlyCrit" [class.pointer]="!onlyMiss && !noCrit && !onlyCrit" value="crush">Crushing Hit</mat-radio-button>
             <mat-radio-button [disabled]="onlyMiss || onlyCrit" [class.pointer]="!onlyMiss && !onlyCrit" value="normal">Normal Hit</mat-radio-button>

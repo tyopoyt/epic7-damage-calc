@@ -39,7 +39,7 @@ export class Skill {
     elementalAdvantage: (inputValues: DamageFormData) => boolean;
     enhance: number[];
     enhanceFrom: string;
-    exclusiveEquipment: Function;
+    exclusiveEquipmentMultiplier: (inputValues: DamageFormData) => number;
     extraDmg: (hitType: HitType, inputValues: DamageFormData) => number;
     extraDmgTip: Function;
     fixed: (hitType: HitType, inputValues: DamageFormData) => number;
@@ -70,7 +70,6 @@ export class Skill {
     speedScaling: boolean;
     soulburn: boolean;
 
-    // TODO: refactor things like isAOE to be boolean not fxn
     // TODO: refactor atk to attackToUse
     constructor(data: any) {
         this.id = _.get(data, 'id', 's1');
@@ -82,7 +81,7 @@ export class Skill {
         this.elementalAdvantage = _.get(data, 'elementalAdvantage', (inputValues: DamageFormData) => inputValues.elementalAdvantage);
         this.enhance = _.get(data, 'enhance', []);
         this.enhanceFrom = _.get(data, 'enhanceFrom', '');
-        this.exclusiveEquipment = _.get(data, 'exclusiveEquipment', () => 0);
+        this.exclusiveEquipmentMultiplier = _.get(data, 'exclusiveEquipmentMultiplier', () => 0);
         this.extraDmg = _.get(data, 'extraDmg', () => 0);
         this.extraDmgTip = _.get(data, 'extraDmgTip', () => null);
         this.fixed = _.get(data, 'fixed', () => 0);

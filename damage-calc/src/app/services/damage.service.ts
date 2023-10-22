@@ -106,7 +106,7 @@ export class DamageService {
       critBoostTip: this.languageService.getSkillModTip(skill.critDmgBoostTip(soulburn)),
       detonation: skill.detonation() - 1,
       elementalAdvantage: skill.elementalAdvantage(this.damageForm),
-      exEq: skill.exclusiveEquipment(),
+      exEq: skill.exclusiveEquipmentMultiplier(this.damageForm),
       extraDmg: skill.extraDmg(HitType.crit, this.damageForm),
       extraDmgTip: this.languageService.getSkillModTip(skill.extraDmgTip(soulburn)),
       fixed: skill.fixed(HitType.crit, this.damageForm),
@@ -214,11 +214,24 @@ export class DamageService {
   getBarriers(): {label: string, value: number}[] {
     const barriers = [];
     if (this.currentHero.barrier) {
-      barriers.push({label: this.currentHero.barrierSkills ? this.currentHero.barrierSkills[0] : 'S1', value: Math.round(this.currentHero.barrier(this.currentHero, new Skill({}), this.currentArtifact, this.damageForm, this.getGlobalAttackMult()))})
+      let barrierEnhanceMultiplier = 1;
+      if (this.currentHero.barrierEnhance) {
+        for (let i = 0; i < (this.damageForm['molagora' + this.currentHero.barrierEnhance] as number); i++) {
+          barrierEnhanceMultiplier += this.currentHero.skills[this.currentHero.barrierEnhance].enhance[i];
+        }
+      }
+      
+      barriers.push({label: this.currentHero.barrierSkills ? this.currentHero.barrierSkills[0] : 'S1', value: Math.round(this.currentHero.barrier(this.currentHero, new Skill({}), this.currentArtifact, this.damageForm, this.getGlobalAttackMult()) * barrierEnhanceMultiplier)})
     }
 
     if (this.currentHero.barrier2) {
-      barriers.push({label: this.currentHero.barrierSkills ? this.currentHero.barrierSkills[1] : 'S2', value: Math.round(this.currentHero.barrier2(this.currentHero, new Skill({}), this.currentArtifact, this.damageForm, this.getGlobalAttackMult()))})
+      let barrierEnhanceMultiplier = 1;
+      if (this.currentHero.barrier2Enhance) {
+        for (let i = 0; i < (this.damageForm['molagora' + this.currentHero.barrier2Enhance] as number); i++) {
+          barrierEnhanceMultiplier += this.currentHero.skills[this.currentHero.barrier2Enhance].enhance[i];
+        }
+      }
+      barriers.push({label: this.currentHero.barrierSkills ? this.currentHero.barrierSkills[1] : 'S2', value: Math.round(this.currentHero.barrier2(this.currentHero, new Skill({}), this.currentArtifact, this.damageForm, this.getGlobalAttackMult()) * barrierEnhanceMultiplier)})
     }
 
     return barriers;

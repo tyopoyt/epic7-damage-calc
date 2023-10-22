@@ -569,7 +569,8 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 975,
     baseHP: 7054,
     baseDefense: 652,
-    heroSpecific: ['casterMaxHP', 'deadPeople'],
+    heroSpecific: ['casterMaxHP', 'numberOfDeaths'],
+    heroSpecificMaximums: {'numberOfDeaths': 3},
     skills: {
       s1: new Skill({
         id: 's1',
@@ -590,7 +591,7 @@ export const Heroes: Record<string, Hero> = {
         flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * 0.2,
         flatTip: () => ({ casterMaxHP: 20 }),
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + Math.min(inputValues.numberOfDeaths, 3) * 0.25,
-        multTip: () => ({ deadPeople: 25 }),
+        multTip: () => ({ numberOfDeaths: 25 }),
         enhance: [0.05, 0.05, 0, 0.05, 0.1, 0.1],
         isSingle: () => true,
       })
@@ -996,6 +997,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1079,
     baseHP: 5502,
     baseDefense: 564,
+    // TODO: Star's blessing
     heroSpecific: ['targetHasDebuff'],
     skills: {
       s1: new Skill({
@@ -2302,6 +2304,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1177,
     baseHP: 5542,
     baseDefense: 553,
+    // TODO: add magic nail dot damage?
     heroSpecific: ['targetMagicNailed'],
     skills: {
       s1: new Skill({
@@ -2467,6 +2470,7 @@ export const Heroes: Record<string, Hero> = {
       })
     }
   }),
+  // TODO: HERE
   clarissa: new Hero({
     element: HeroElement.ice,
     class: HeroClass.warrior,
@@ -7999,7 +8003,7 @@ export const Heroes: Record<string, Hero> = {
         enhance: [0.05, 0.05, 0, 0.1, 0.15],
         isSingle: () => true,
       }),
-      explosion: new Skill({ // TODO: change this to be aftermath on s3 with an input for enemy killed?
+      explosion: new Skill({ // TODO: change this to be aftermath on s3 with an input for enemy killed? or not if it's aoe
         id: 'explosion',
         rate: () => 0,
         pow: () => 0,
@@ -8395,7 +8399,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1197,
     baseHP: 4572,
     baseDefense: 683,
-    heroSpecific: ['targetNumberOfDebuffs', 'deadPeople', 's3OnCooldown'],
+    heroSpecific: ['targetNumberOfDebuffs', 'numberOfDeaths', 's3OnCooldown'],
     attackIncrease: (inputValues: DamageFormData) => {
       let buff = 0.07;
       for (let i = 0; i < inputValues.molagoras2; i++) {

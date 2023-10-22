@@ -136,6 +136,7 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
   // All reduction preset entries
   reductionPresetGroups: [string, ReductionPreset[]][] = Object.entries(TargetReductionPresetGroups);
   filteredReductionPresetGroups: [string, ReductionPreset[]][] = Object.entries(TargetReductionPresetGroups);
+  allReductionPresets: ReductionPreset[];
   // controls for preset selection
   public reductionPresetControl: FormControl<ReductionPreset | null>;
   public reductionPresetFilterControl: FormControl<string | null>;
@@ -146,6 +147,7 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
   // controls for preset selection
   public targetPresetControl: FormControl<DefensePreset | null>;
   public targetPresetFilterControl: FormControl<string | null>;
+  allTargetPresets: DefensePreset[];
 
   translationPipe: TranslationPipe;
 
@@ -153,6 +155,8 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
   savedBuildsCount = 0;
   showGraph = false;
   loading = true;
+  // TODO: ideally fix it so on intial load each slide only emits once
+  firstRoundLoaded = false;
   
   get inputValues() {
     return this.dataService.damageInputValues;
@@ -259,52 +263,26 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
 
     this.targetPresetSubscription = this.targetPresetControl.valueChanges
       .subscribe(() => {
-        if (this.targetPresetControl.value) {
-          this.inputChange('defensePreset', this.targetPresetControl.value);
-        }
-
-        const targetDefenseSlider = this.slideInputs.filter(input => input.label === this.translationPipe.transform('defense', 'form', this.languageService.language.value))[0]
-        console.log(this.slideInputs)
-        if (this.targetPresetControl.value?.defense && targetDefenseSlider) {
-          targetDefenseSlider.overrideValue(this.targetPresetControl.value.defense);
-        }
-        if (this.targetPresetControl.value?.hp) {
-          const targetMaxHPSlider = this.slideInputs.filter(input => input.label === this.translationPipe.transform('targetMaxHP', 'form', this.languageService.language.value))[0]
-          targetMaxHPSlider?.overrideValue(this.targetPresetControl.value.hp);
-          this.damageGraph?.setOneshotHP(this.targetPresetControl.value.hp);
-          this.inputValues.targetMaxHP = this.targetPresetControl.value.hp;
-          this.inputDefaultOverrides['targetMaxHP'] = this.targetPresetControl.value.hp;
-        }
+        this.selectTarget();
     });
 
     this.reductionPresetSubscription = this.reductionPresetControl.valueChanges
       .subscribe(() => {
-        if (this.reductionPresetControl.value) {
-          this.inputChange('reductionPreset', this.reductionPresetControl.value);
-        }
-
-        const damageReductionSlider = this.slideInputs.filter(input => input.label === this.translationPipe.transform('damageReduction', 'form', this.languageService.language.value))[0]
-        if (this.reductionPresetControl.value?.damageReduction && damageReductionSlider) {
-          damageReductionSlider.overrideValue(this.reductionPresetControl.value.damageReduction)
-        } else if (this.reductionPresetControl.value?.id !== 'manual') {
-          damageReductionSlider?.overrideValue(0)
-        }
-
-        const damageTransferSlider = this.slideInputs.filter(input => input.label === this.translationPipe.transform('damageTransfer', 'form', this.languageService.language.value))[0]
-        if (this.reductionPresetControl.value?.damageTransfer && damageTransferSlider) {
-          damageTransferSlider.overrideValue(this.reductionPresetControl.value.damageTransfer)
-        } else if (this.reductionPresetControl.value?.id !== 'manual') {
-          damageTransferSlider?.overrideValue(0)
-        }
-
-        const targetDefenseIncreaseSlider = this.slideInputs.filter(input => input.label === this.translationPipe.transform('defenseIncrease', 'form', this.languageService.language.value))[0]
-        if (this.reductionPresetControl.value?.defenseIncrease && targetDefenseIncreaseSlider) {
-          targetDefenseIncreaseSlider.overrideValue(this.reductionPresetControl.value.defenseIncrease)
-        } else if (this.reductionPresetControl.value?.id !== 'manual') {
-          targetDefenseIncreaseSlider?.overrideValue(0)
-        }
-        
+        this.selectReduction();        
     });
+
+    this.allReductionPresets = [];
+    for (const group of this.reductionPresetGroups) {
+      this.allReductionPresets = this.allReductionPresets.concat(group[1])
+    }
+
+    this.allTargetPresets = [];
+
+    this.allTargetPresets = [];
+    for (const group of this.targetPresetGroups) {
+      this.allTargetPresets = this.allTargetPresets.concat(group[1])
+    }
+
   }
   
   ngOnInit() {
@@ -346,6 +324,8 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
     this.artifactSpecificNumberInputs = this.artifact.artifactSpecific.filter((input) => {
       return typeof this.inputValues[input as keyof DamageFormData] === 'number';
     });
+
+    this.heroSpecificMaximums = this.hero.heroSpecificMaximums;
 
     this.addAddtionalBooleanInputs();
   }
@@ -410,8 +390,13 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
 
   // TODO: don't call this initially for every input, only once
   inputChange(field: string, value: number | boolean | DefensePreset | ReductionPreset) {
+    // TODO: if fixing initial slide input emissions, refactor this logic
     if (this.loading && field === 'molagoras3') {
-      this.loading = false;
+      if (!this.firstRoundLoaded) {
+        this.firstRoundLoaded = true
+      } else {
+        this.loading = false;
+      }
       this.loadQueryParams();
     }
     if (field.endsWith('SetStack') && (!this.stackingSets.includes(field) || !value)) {
@@ -457,8 +442,10 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
     debounce('calculateChart', () => {this.damageGraph?.calculateChart()}, undefined, 150);
   }
 
-  selectHero(hero: string) {
+    // TODO: potentially reset max hp after switching heroes
+    selectHero(hero: string) {
     this.dataService.updateSelectedHero(hero);
+    this.dataService.updateDamageInputValues({exclusiveEquipment1: false, exclusiveEquipment2: false, exclusiveEquipment3: false})
     this.updateDamageBlockHeader();
   }
 
@@ -466,6 +453,65 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
     this.dataService.updateSelectedArtifact(artifact);
     this.updateFormInputs();
     this.updateDamageBlockHeader();
+  }
+
+  selectTarget(newTarget: DefensePreset | null = null) {
+    if (newTarget) {
+      console.log(newTarget)
+      this.targetPresetControl.setValue(newTarget);
+    }
+
+    console.log('targetpreset is now', this.targetPresetControl.value)
+
+    if (this.targetPresetControl.value) {
+      this.inputChange('defensePreset', this.targetPresetControl.value);
+    }
+
+    const targetDefenseSlider = this.slideInputs.filter(input => input.label === this.translationPipe.transform('defense', 'form', this.languageService.language.value))[0]
+    if (this.targetPresetControl.value?.defense && targetDefenseSlider) {
+      targetDefenseSlider.overrideValue(this.targetPresetControl.value.defense);
+    }
+    if (this.targetPresetControl.value?.hp) {
+      const targetMaxHPSlider = this.slideInputs.filter(input => input.label === this.translationPipe.transform('targetMaxHP', 'form', this.languageService.language.value))[0]
+      targetMaxHPSlider?.overrideValue(this.targetPresetControl.value.hp);
+      this.damageGraph?.setOneshotHP(this.targetPresetControl.value.hp);
+      this.inputValues.targetMaxHP = this.targetPresetControl.value.hp;
+      this.inputDefaultOverrides['targetMaxHP'] = this.targetPresetControl.value.hp;
+    }
+  }
+
+  selectReduction(newReduction: ReductionPreset | null = null) {
+    if (newReduction) {
+      console.log(newReduction)
+      this.reductionPresetControl.setValue(newReduction);
+    }
+
+    console.log('reductionpreset is now', this.reductionPresetControl.value)
+
+    if (this.reductionPresetControl.value) {
+      this.inputChange('reductionPreset', this.reductionPresetControl.value);
+    }
+
+    const damageReductionSlider = this.slideInputs.filter(input => input.label === this.translationPipe.transform('damageReduction', 'form', this.languageService.language.value))[0]
+    if (this.reductionPresetControl.value?.damageReduction && damageReductionSlider) {
+      damageReductionSlider.overrideValue(this.reductionPresetControl.value.damageReduction)
+    } else if (this.reductionPresetControl.value?.id !== 'manual') {
+      damageReductionSlider?.overrideValue(0)
+    }
+
+    const damageTransferSlider = this.slideInputs.filter(input => input.label === this.translationPipe.transform('damageTransfer', 'form', this.languageService.language.value))[0]
+    if (this.reductionPresetControl.value?.damageTransfer && damageTransferSlider) {
+      damageTransferSlider.overrideValue(this.reductionPresetControl.value.damageTransfer)
+    } else if (this.reductionPresetControl.value?.id !== 'manual') {
+      damageTransferSlider?.overrideValue(0)
+    }
+
+    const targetDefenseIncreaseSlider = this.slideInputs.filter(input => input.label === this.translationPipe.transform('defenseIncrease', 'form', this.languageService.language.value))[0]
+    if (this.reductionPresetControl.value?.defenseIncrease && targetDefenseIncreaseSlider) {
+      targetDefenseIncreaseSlider.overrideValue(this.reductionPresetControl.value.defenseIncrease)
+    } else if (this.reductionPresetControl.value?.id !== 'manual') {
+      targetDefenseIncreaseSlider?.overrideValue(0)
+    }
   }
 
   updateDamageBlockHeader() { 
@@ -639,7 +685,8 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
         } else if (param[1].toLowerCase() === 'false') {
           paramInputs[param[0]] = false;
         } else if (!isNaN(Number(param[1]))) {
-          paramInputs[param[0]] = Number(param[1]);
+          // paramInputs[param[0]] = Number(param[1]);
+          this.slideInputs.filter(input => input.label === this.translationPipe.transform(param[0], 'form', this.languageService.language.value))[0]?.overrideValue(Number(param[1]))
         } else if (['defensePreset', 'reductionPreset'].includes(param[0])) {
           paramInputs[param[0]] = param[1];
         } else if (param[0].toLowerCase() === 'hero' && Object.keys(Heroes).includes(param[1])) {
@@ -654,6 +701,18 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
       if (paramArtifact
           && (Artifacts[paramArtifact].exclusive === this.hero.class || Artifacts[paramArtifact].heroExclusive.includes(this.heroID))) {
         this.selectArtifact(paramArtifact)
+      }
+
+      if (paramInputs['defensePreset']) {
+        this.selectTarget(this.allTargetPresets.filter(preset => preset.id === paramInputs['defensePreset'])[0])
+        console.log(this.allTargetPresets.filter(preset => preset.id === paramInputs['defensePreset'])[0])
+        console.log(this.targetPresetControl.value)
+      }
+
+      if (paramInputs['reductionPreset']) {
+        this.selectReduction(this.allReductionPresets.filter(preset => preset.id === paramInputs['reductionPreset'])[0])
+        console.log(this.allReductionPresets.filter(preset => preset.id === paramInputs['reductionPreset'])[0])
+        console.log(this.reductionPresetControl.value)
       }
   
       this.dataService.updateDamageInputValues(paramInputs);

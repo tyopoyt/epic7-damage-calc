@@ -1,4 +1,3 @@
-// TODO: refactor these to be more readable
 // TODO: don't have separate entries for target and caster for the same condition
 export const BattleConstants: Record<string, number> = {
   'dmgConst': 1.871,

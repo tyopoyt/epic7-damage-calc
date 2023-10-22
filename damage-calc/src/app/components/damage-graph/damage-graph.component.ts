@@ -173,9 +173,9 @@ export class DamageGraphComponent implements OnInit, OnDestroy, AfterViewInit {
   
   updateOneshotLine = () => {
     // TODO: implement after queryparams
-    // if (this.oneshotHP) {
-    //   debounce('updateQueryParams', updateQueryParams, [false]);
-    // }
+    if (this.oneshotHP) {
+      debounce('updateDamageQueryParams', this.dataService.updateDamageQueryParams, [this.dataService.damageInputValues]);
+    }
   
     // check if damage is close enough to oneshot that the line should be shown
     if (this.oneshotHP.value && this.oneshotHP.value <= Math.max(...this.maxDamages) * 1.25 && Math.min(...this.minDamages) <= this.oneshotHP.value * 1.25) {

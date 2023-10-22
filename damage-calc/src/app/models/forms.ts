@@ -153,14 +153,11 @@ export const FormDefaults: Record<string, {max?: number, min?: number, defaultVa
     targetCurrentHP: {
         max: 50000,
         min: 1000,
-        // TODO: update this default if target preset is selected. Either here or in damage calc component
         defaultValue: 10000
     },
     targetMaxHP: {
         max: 50000,
         min: 1000,
-        // TODO: update this default if target preset is selected. Either here or in damage calc component
-        // TODO: this used to be how caides hp % dmg reduction worked, make caides work again
         defaultValue: 10000
     },
     targetInjuries: {
@@ -294,7 +291,7 @@ export const FormDefaults: Record<string, {max?: number, min?: number, defaultVa
         min: 0,
         defaultValue: 0
     },
-    deadPeople: {
+    numberOfDeaths: {
         max: 8,
         min: 0,
         defaultValue: 0

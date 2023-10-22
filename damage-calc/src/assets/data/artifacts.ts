@@ -61,7 +61,7 @@ export const Artifacts: Record<string, Artifact> = {
     scale: [0.12, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2, 0.21, 0.22, 0.24],
     type: ArtifactDamageType.critDamageBoost,
     exclusive: HeroClass.mage,
-    // TODO: listen to form defaults for artifacts
+    // TODO: listen to form Maximums for artifacts
     artifactSpecific:['attackSkillStack'],
     artifactSpecificMaximums:{'attackSkillStack': 5},
     value: (artiScale: number, inputValues: DamageFormData) => artiScale - ((artiScale / 10) * inputValues.casterAttackStack),

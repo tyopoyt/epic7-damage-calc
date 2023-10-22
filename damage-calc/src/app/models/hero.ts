@@ -41,7 +41,7 @@ export class Hero {
     innateAttackIncrease?: (inputValues: DamageFormData) => number;
     skills: Record<string, Skill>;
     exclusiveEquipmentMultiplier?: (inputValues: DamageFormData) => number;
-  innateAtkUp: any;
+    innateAtkUp: any;
 
   constructor(
       heroValues: any,
@@ -79,14 +79,14 @@ export class Hero {
       skillToUse = _.get(this.skills, skill.enhanceFrom);
     }
 
-    if (skillToUse.enhance.length) {
+  if (skillToUse.enhance.length) {
       const enhanceLevel =  inputValues[`molagoras${skillToUse.id[1]}`] as number;
       for (let i = 0; i < enhanceLevel; i++) {
         mult += skillToUse.enhance[i];
       }
     }
 
-    mult += skill.exclusiveEquipment();
+    mult += skill.exclusiveEquipmentMultiplier(inputValues);
     return mult;
   }
 

@@ -322,8 +322,8 @@
                             <img class="svg-icon" [class.tiny-margin-right]="!screenService.mediumScreen.value" src="assets/icons/compare.svg" alt="compare">
                             <ng-container *ngIf="!screenService.mediumScreen.value">
                                 {{'compare' | translate:'ui':languageService.language.value}}
-                                <span *ngIf="savedBuildsCount" class="count-badge">{{savedBuildsCount}}</span>
                             </ng-container>
+                            <span *ngIf="savedBuildsCount" class="count-badge">{{savedBuildsCount}}</span>
                         </button>
                         <button type="button" class="color-orange button-line" (click)="toggleGraph()" mat-flat-button>
                             <img class="svg-icon white" [class.tiny-margin-right]="!screenService.mediumScreen.value" src="assets/icons/line-chart.svg" alt="graph">
