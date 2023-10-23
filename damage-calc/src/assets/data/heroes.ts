@@ -3033,7 +3033,8 @@ export const Heroes: Record<string, Hero> = {
         id: 's3',
         rate: () => 1.5,
         pow: () => 0.9,
-        extraDmg: (hitType: HitType, inputValues: DamageFormData) => {console.log('hi', inputValues);return inputValues.targetAsleep ? inputValues.targetFinalMaxHP() * 0.3 : 0},
+        // TODO: is extraDmg necessary or is it just aftermath?
+        extraDmg: (hitType: HitType, inputValues: DamageFormData) => inputValues.targetAsleep ? inputValues.targetFinalMaxHP() * 0.3 : 0,
         extraDmgTip: (inputValues: DamageFormData) => ({ targetMaxHP: inputValues.targetAsleep ? 30 : 0 }),
         enhance: [0.05, 0.05, 0, 0.1, 0.1, 0.1],
         isSingle: () => true,

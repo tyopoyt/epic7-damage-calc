@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Languages } from 'src/app/models/languages';
+import { Language, Languages } from 'src/app/models/languages';
 import { AttackPreset, AttackPresets } from 'src/app/models/attack-presets';
 import { LanguageService } from 'src/app/services/language.service';
 import { ScreenService } from 'src/app/services/screen.service';
@@ -18,7 +18,7 @@ import { Artifact } from 'src/app/models/artifact';
 import { SlideInputComponent } from '../ui-elements/slide-input/slide-input.component';
 import { DamageFormData, FormDefaults } from 'src/app/models/forms';
 import { MatTableDataSource } from '@angular/material/table';
-import { DoT, Skill } from 'src/app/models/skill';
+import { AftermathSkill, DoT, HitType, Skill } from 'src/app/models/skill';
 import { MatDialog } from '@angular/material/dialog';
 import { CompareSaveComponent } from '../compare-save/compare-save.component';
 import { animate, style, transition, trigger } from '@angular/animations';
@@ -56,24 +56,14 @@ import { GoogleTagManagerService } from 'angular-google-tag-manager';
   ]
 })
 export class DamageCalculatorComponent implements OnInit, OnDestroy {
-
-  // @ViewChild('attackSlider') attackSlider: SlideInputComponent | null = null;
-  // @ViewChild('critDamageSlider') critDamageSlider: SlideInputComponent | null = null;
-
-  // @ViewChild('targetDefenseSlider') targetDefenseSlider: SlideInputComponent | null = null;
-  // @ViewChild('targetDefenseIncreaseSlider') targetDefenseIncreaseSlider: SlideInputComponent | null = null;
-  // @ViewChild('damageReductionSlider') damageReductionSlider: SlideInputComponent | null = null;
-  // @ViewChild('damageTransferSlider') damageTransferSlider: SlideInputComponent | null = null;
-
   @ViewChildren('slideInput') slideInputs: QueryList<SlideInputComponent> = new QueryList();
-
 
   private damageGraph: DamageGraphComponent | null = null;
   @ViewChild('damageGraph') set content(content: DamageGraphComponent) {
     if(content) {
         this.damageGraph = content;
     }
- }
+  }
 
   formDefaults = FormDefaults;
 
@@ -94,6 +84,7 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
   damageData = new MatTableDataSource<DamageRow>() //DamageRow[] = [];
 
   stackingSets: string[] = [];
+  skillMultiplierTips: Record<string, Record<string, string | number | string[][]>> = {}
 
   molagoraModifiers: Record<string, number> = {}
   queuedQueryParams: Record<string, string> | null = null;
@@ -183,6 +174,10 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
     return this.dataService.advantageousElement();
   }
 
+  get language() {
+    return this.languageService.language.value;
+  }
+
   constructor (
     private route: ActivatedRoute,
     public languageService: LanguageService,
@@ -217,7 +212,6 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
 
     this.damageSubscription = this.damageService.damages.subscribe((skillDamages: DamageRow[]) => {
       this.damageData.data = skillDamages;
-      console.log(skillDamages)
     });
 
     this.heroSearchSubscription = this.heroFilterControl.valueChanges
@@ -243,11 +237,11 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
     this.attackPresetSubscription = this.attackPresetControl.valueChanges
       .subscribe(() => {
         const preset = AttackPresets[this.attackPresetControl.value || 'manual']
-        const attackSlider = this.slideInputs.filter(input => input.label === this.translationPipe.transform('attack', 'form', this.languageService.language.value))[0]
+        const attackSlider = this.slideInputs.filter(input => input.label === this.translationPipe.transform('attack', 'form', this.language))[0]
         if (preset.attack && attackSlider) {
           attackSlider.overrideValue(preset.attack);
         }
-        const critDamageSlider = this.slideInputs.filter(input => input.label === this.translationPipe.transform('critDamage', 'form', this.languageService.language.value))[0]
+        const critDamageSlider = this.slideInputs.filter(input => input.label === this.translationPipe.transform('critDamage', 'form', this.language))[0]
         if (preset.critDamage && critDamageSlider) {
           critDamageSlider.overrideValue(preset.critDamage);
         }
@@ -443,6 +437,73 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
     this.updateDamageBlockHeader();
 
     debounce('calculateChart', () => {this.damageGraph?.calculateChart()}, undefined, 150);
+    debounce('updateMultiplierTips', () => {this.updateMultiplierTips()}, undefined, 150)
+  }
+
+  updateMultiplierTips() {
+    for (const skill of Object.entries(this.hero.skills)) {
+      const skillTip: Record<string, string | number | string[][]> = {};
+      const soulburn = skill[0].endsWith('_soulburn');
+
+      // Assignment in an expression isn't the most readable so as a heads up this function will be using them
+      let value: number | AftermathSkill = skill[1].rate(soulburn, this.inputValues);
+      skillTip['rate'] = value;
+
+      value = skill[1].pow(soulburn, this.inputValues)
+      skillTip['pow'] = value;
+
+      // TODO: the ifs should check value or tip
+      // TODO: refactor this so that value is only used once for things like multiple mult mods
+      let tip;
+
+      if ((tip = skill[1].flatTip())) {
+        value = skill[1].flat(soulburn, this.inputValues, this.artifact)
+        skillTip['flat'] = [];
+
+        for (const statTip of Object.entries(tip)) {
+          skillTip['flat'].push([`${this.translationPipe.transform(statTip[0], 'tips', this.language).replace('{v}', (statTip[1] as number).toString())}`, `${value}`])
+        }
+      }
+
+      if ((tip = skill[1].multTip())) {
+        value = skill[1].mult(soulburn, this.inputValues, this.artifact)
+        skillTip['mult'] = [];
+
+        for (const modifierTip of Object.entries(tip)) {
+          skillTip['mult'].push([`${this.translationPipe.transform(modifierTip[0], 'tips', this.language).replace('{v}', (modifierTip[1] as number).toString())}`, `${value}`])
+        }
+      }
+
+      const skillDamageData = this.damageData.data.filter(skillDamage => skillDamage.skill === skill[0])[0];
+      const hitType = skillDamageData.crit ? HitType.crit : (skillDamageData.crush ? HitType.crush : (skillDamageData.normal ? HitType.normal : HitType.miss))
+
+      if ((tip = skill[1].fixedTip())) {
+        value = skill[1].fixed(hitType, this.inputValues)
+        skillTip['fixed'] = [];
+
+        for (const modifierTip of Object.entries(tip)) {
+          skillTip['fixed'].push([`${this.translationPipe.transform(modifierTip[0], 'tips', this.language).replace('{v}', (modifierTip[1] as number).toString())}`, `${value}`])
+        }
+      }
+
+      // TODO: go through each entry in the AftermathSkill
+      if ((tip = skill[1].afterMath(hitType, this.inputValues))) {
+        value = skill[1].afterMath(hitType, this.inputValues)
+        skillTip['fixed'] = [];
+
+        for (const modifierTip of Object.entries(tip)) {
+          skillTip['fixed'].push([`${this.translationPipe.transform(modifierTip[0], 'tips', this.language).replace('{v}', (modifierTip[1] as number).toString())}`, `${value}`])
+        }
+      }
+
+      // TODO: add extraDmg if it's not just a duplicate of aftermath
+
+      // TODO: add penetrate
+
+      this.skillMultiplierTips[skill[0]] = skillTip;
+
+      console.log(skillTip)
+    }
   }
 
   // TODO: potentially reset max hp after switching heroes
@@ -483,12 +544,12 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
       this.inputChange('defensePreset', this.targetPresetControl.value);
     }
 
-    const targetDefenseSlider = this.slideInputs.filter(input => input.label === this.translationPipe.transform('defense', 'form', this.languageService.language.value))[0]
+    const targetDefenseSlider = this.slideInputs.filter(input => input.label === this.translationPipe.transform('defense', 'form', this.language))[0]
     if (this.targetPresetControl.value?.defense && targetDefenseSlider) {
       targetDefenseSlider.overrideValue(this.targetPresetControl.value.defense);
     }
     if (this.targetPresetControl.value?.hp) {
-      const targetMaxHPSlider = this.slideInputs.filter(input => input.label === this.translationPipe.transform('targetMaxHP', 'form', this.languageService.language.value))[0]
+      const targetMaxHPSlider = this.slideInputs.filter(input => input.label === this.translationPipe.transform('targetMaxHP', 'form', this.language))[0]
       targetMaxHPSlider?.overrideValue(this.targetPresetControl.value.hp);
       this.damageGraph?.setOneshotHP(this.targetPresetControl.value.hp);
       this.inputValues.targetMaxHP = this.targetPresetControl.value.hp;
@@ -510,21 +571,21 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
       this.inputChange('reductionPreset', this.reductionPresetControl.value);
     }
 
-    const damageReductionSlider = this.slideInputs.filter(input => input.label === this.translationPipe.transform('damageReduction', 'form', this.languageService.language.value))[0]
+    const damageReductionSlider = this.slideInputs.filter(input => input.label === this.translationPipe.transform('damageReduction', 'form', this.language))[0]
     if (this.reductionPresetControl.value?.damageReduction && damageReductionSlider) {
       damageReductionSlider.overrideValue(this.reductionPresetControl.value.damageReduction)
     } else if (this.reductionPresetControl.value?.id !== 'manual') {
       damageReductionSlider?.overrideValue(0)
     }
 
-    const damageTransferSlider = this.slideInputs.filter(input => input.label === this.translationPipe.transform('damageTransfer', 'form', this.languageService.language.value))[0]
+    const damageTransferSlider = this.slideInputs.filter(input => input.label === this.translationPipe.transform('damageTransfer', 'form', this.language))[0]
     if (this.reductionPresetControl.value?.damageTransfer && damageTransferSlider) {
       damageTransferSlider.overrideValue(this.reductionPresetControl.value.damageTransfer)
     } else if (this.reductionPresetControl.value?.id !== 'manual') {
       damageTransferSlider?.overrideValue(0)
     }
 
-    const targetDefenseIncreaseSlider = this.slideInputs.filter(input => input.label === this.translationPipe.transform('defenseIncrease', 'form', this.languageService.language.value))[0]
+    const targetDefenseIncreaseSlider = this.slideInputs.filter(input => input.label === this.translationPipe.transform('defenseIncrease', 'form', this.language))[0]
     if (this.reductionPresetControl.value?.defenseIncrease && targetDefenseIncreaseSlider) {
       targetDefenseIncreaseSlider.overrideValue(this.reductionPresetControl.value.defenseIncrease)
     } else if (this.reductionPresetControl.value?.id !== 'manual') {
@@ -572,7 +633,7 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
 
   heroMatches(heroName: string, searchTerm: string): boolean {
     const scrubbed = searchTerm.replace(/ /g,'');
-    const heroLocalizedName = this.translationPipe.transform(heroName, 'heroes', this.languageService.language.value).toLowerCase();
+    const heroLocalizedName = this.translationPipe.transform(heroName, 'heroes', this.language).toLowerCase();
     return heroLocalizedName.replace(/ /g,'').includes(scrubbed)
            || _.get(this.languageService.translationDict.nicknames, heroName, '').replace(/ /g,'').includes(scrubbed)
            || Heroes[heroName].element == scrubbed
@@ -581,7 +642,7 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
 
   filterArtifacts() {
     this.filteredArtifacts = this.artifacts.filter((artifact) => {
-      const artifactName = this.translationPipe.transform(artifact[0], 'artifacts', this.languageService.language.value).toLowerCase();
+      const artifactName = this.translationPipe.transform(artifact[0], 'artifacts', this.language).toLowerCase();
       const searchValue = this.artifactFilterControl.value?.toLowerCase() || '';
       if (searchValue) {
         return artifactName.includes(searchValue) || _.get(this.languageService.translationDict.nicknames, artifact[0], '').includes(searchValue)
@@ -596,7 +657,7 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
 
     for (const reductionPresetGroup of this.reductionPresetGroups) {
       const groupResults = reductionPresetGroup[1].filter(reduction => {
-        return this.translationPipe.transform(reduction.id, 'form', this.languageService.language.value).toLowerCase().replace(/ /g, '').includes((this.reductionPresetFilterControl.value?.toLowerCase() || ''));
+        return this.translationPipe.transform(reduction.id, 'form', this.language).toLowerCase().replace(/ /g, '').includes((this.reductionPresetFilterControl.value?.toLowerCase() || ''));
       });
 
       if (groupResults.length) {
@@ -610,7 +671,7 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
 
     for (const targetPresetGroup of this.targetPresetGroups) {
       const groupResults = targetPresetGroup[1].filter(target => {
-        return this.translationPipe.transform(target.id, 'form', this.languageService.language.value).toLowerCase().replace(/ /g, '').includes((this.targetPresetFilterControl.value?.toLowerCase() || ''));
+        return this.translationPipe.transform(target.id, 'form', this.language).toLowerCase().replace(/ /g, '').includes((this.targetPresetFilterControl.value?.toLowerCase() || ''));
       });
 
       if (groupResults.length) {
@@ -620,9 +681,8 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
   }
 
   saveBuild() {
-    const artifactName = this.translationPipe.transform(this.artifactControl.value as string, 'artifacts', this.languageService.language.value)
+    const artifactName = this.translationPipe.transform(this.artifactControl.value as string, 'artifacts', this.language)
     const dialogRef = this.dialog.open(CompareSaveComponent, {
-      height: '14.375rem',
       width: '50rem',
       data: {buildName: `${Math.round(this.inputValues.attack)}⚔️ x ${Math.round(this.inputValues.critDamage)}% (${artifactName}) vs ${Math.round(this.dataService.currentTarget.getDefense(this.inputValues, this.damageService.getGlobalDefenseMult()))}🛡️`}
     })
@@ -654,7 +714,6 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
     const heroSets = allSets[this.heroControl.value as string] || {};
   
     const dialogRef = this.dialog.open(CompareComponent, {
-      // height: '14.375rem',
       width: '50rem',
       data: heroSets
     })
@@ -694,7 +753,7 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
         this.gtmService.pushTag({
           'event': 'show_chart',
           'hero': this.heroID,
-          'lang': this.languageService.language.value?.name
+          'lang': this.language?.name
         });
       }
     }, 1);
@@ -702,8 +761,6 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
   }
 
   async loadQueryParams() {
-    console.log(this.queuedQueryParams)
-
     this.gtmService.pushTag({
       'event': 'loaded_query_params',
       'page': 'damage_calculator',
@@ -721,7 +778,7 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
           paramInputs[param[0]] = false;
         } else if (!isNaN(Number(param[1]))) {
           // paramInputs[param[0]] = Number(param[1]);
-          this.slideInputs.filter(input => input.label === this.translationPipe.transform(param[0], 'form', this.languageService.language.value))[0]?.overrideValue(Number(param[1]))
+          this.slideInputs.filter(input => input.label === this.translationPipe.transform(param[0], 'form', this.language))[0]?.overrideValue(Number(param[1]))
         } else if (['defensePreset', 'reductionPreset'].includes(param[0])) {
           paramInputs[param[0]] = param[1];
         } else if (param[0].toLowerCase() === 'hero' && Object.keys(Heroes).includes(param[1])) {
@@ -749,6 +806,11 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
       this.dataService.updateDamageInputValues(paramInputs);
     }
     
+  }
+
+  testfxn(yeah: string) {
+    console.log('oop')
+    return yeah;
   }
 
   // TODO: add when share button is implemented

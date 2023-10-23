@@ -65,7 +65,6 @@ export class DataService {
   constructor (private router: Router, private activatedRoute: ActivatedRoute) {}
 
   updateDamageInputValues(updates: Record<string, any>) {
-    console.log(updates)
     for (const [field, data] of Object.entries(updates)) {
       this.setProperty(this.damageInputValues, field as keyof DamageFormData, data);
     }
@@ -103,7 +102,6 @@ export class DataService {
   }
 
   updateDamageQueryParams(params: Record<string, boolean | string | number> ) {
-    console.log(params)
     const queryParams: Record<string, boolean | string | number> = {}
     for (const param of Object.entries(params)) {
       if (typeof param[1] !== 'function') {
@@ -120,7 +118,7 @@ export class DataService {
       }
     }
 
-    console.log(queryParams)
+    // console.log(queryParams)
     // this.router.navigate(
     //   [], 
     //   {

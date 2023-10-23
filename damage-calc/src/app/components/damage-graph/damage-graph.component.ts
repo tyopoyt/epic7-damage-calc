@@ -1,5 +1,5 @@
-import { AfterViewChecked, AfterViewInit, Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Chart, ChartConfiguration } from 'chart.js';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Chart, ChartConfiguration, ChartOptions } from 'chart.js';
 import { Skill } from 'src/app/models/skill';
 import { DamageRow, DamageService } from 'src/app/services/damage.service';
 import { DataService } from 'src/app/services/data.service';
@@ -8,7 +8,7 @@ import Annotation, { AnnotationOptions } from 'chartjs-plugin-annotation';
 import { FormControl } from '@angular/forms';
 import { LanguageService } from 'src/app/services/language.service';
 import { BehaviorSubject, Subscription } from 'rxjs';
-import { ScreenService } from 'src/app/services/screen.service';
+import { ScreenService, Theme } from 'src/app/services/screen.service';
 import { debounce } from 'src/app/utils/utils';
 import { BaseChartDirective } from 'ng2-charts';
 
@@ -70,15 +70,24 @@ export class DamageGraphComponent implements OnInit, OnDestroy, AfterViewInit {
   pointOutlines = ['#36a2eb', '#ff6384', '#fcaf32', '#08c988', '#7059d4'];
   pointStyles = ['circle', 'triangle', 'rect', 'rectRot', 'star'];
 // TODO: color of axis and legend labels
-  options: ChartConfiguration['options'] = {
+  options: ChartOptions = {
     maintainAspectRatio: false,
     scales: {
       y: {
-        beginAtZero: false
+        beginAtZero: false,
+        grid: {
+          color: this.screenService.theme === Theme.dark ? '#5f5f5f': '#898989'
+        },
+        ticks: {
+          color: this.screenService.theme === Theme.dark ? '#DDDDDD': '#898989'
+        }
       },
       x: {
         ticks: {
           display: false
+        },
+        grid: {
+          color: this.screenService.theme === Theme.dark ? '#5f5f5f': '#898989'
         }
       }
     },
@@ -90,6 +99,11 @@ export class DamageGraphComponent implements OnInit, OnDestroy, AfterViewInit {
             // `${formLabel('with_more')} ${item.dataset.label}: ${item.formattedValue} ${formLabel('damage')}`,
             
         },
+      },
+      legend: {
+        labels: {
+          color: this.screenService.theme === Theme.dark ? '#DDDDDD': '#898989'
+        }
       },
       annotation: {
         annotations: [

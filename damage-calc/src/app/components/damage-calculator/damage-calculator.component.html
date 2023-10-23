@@ -366,7 +366,7 @@
                 <table [@collapseAnimation] *ngIf="!collapsed" [class.tiny-padding]="screenService.smallScreen.value" mat-table [dataSource]="damageData">
                     <ng-container matColumnDef="skill">
                       <th mat-header-cell *matHeaderCellDef> {{"skill" | translate:'form':languageService.language.value}} </th>
-                      <td mat-cell *matCellDef="let element"> {{element.skill | translate:'skills':languageService.language.value}} </td>
+                      <td mat-cell *matCellDef="let element"><span class="flex-aligned flex-between">{{element.skill | translate:'skills':languageService.language.value}} <img class="icon large tiny-margin-left svg-icon cursor-help" src="assets/icons/square-root.svg" alt="Skill multipliers" matTooltip="{{skillMultiplierTips[element.skill]}}"></span></td>
                     </ng-container>
 
                     <ng-container matColumnDef="crit">

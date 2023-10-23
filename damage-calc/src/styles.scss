@@ -175,6 +175,10 @@ html, body {
     cursor: pointer;
   }
 
+  .cursor-help {
+    cursor: help;
+  }
+
   mat-card.mat-mdc-card {
     border-radius: 0.5rem;
   }
@@ -405,6 +409,10 @@ html, body {
       }      
     }
 
+    .mat-mdc-card {
+      background-color: $ui-medium-dark-color;
+    }
+
     .mat-mdc-unelevated-button:not(:disabled) {
       background-color: $ui-darker-color;
       color: $font-light-color;
@@ -446,12 +454,6 @@ html, body {
 
     .slider-row {
       color: $font-light-color;
-    }
-  }
-
-  .damage-block {
-    .mat-mdc-card {
-      background-color: $ui-medium-dark-color;
     }
   }
 
@@ -879,7 +881,7 @@ html, body {
 
     .mat-mdc-dialog-container {
       .mat-mdc-dialog-surface {
-        background-color: $ui-light-color;
+        background-color: $ui-lighter-color;
 
         .mdc-text-field--filled:not(.mdc-text-field--disabled) {
           background-color: whitesmoke;
@@ -934,6 +936,38 @@ html, body {
       mat-form-field {
         &.mat-mdc-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-mdc-text-field-wrapper {
           background-color: $ui-lighter-color;
+        }
+      }
+
+      .damage-block {
+        mat-form-field {
+          &.mat-mdc-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-mdc-text-field-wrapper {
+            background-color: $ui-light-theme-medium-color;
+          }
+        }
+
+        mat-radio-button {
+          .mdc-form-field {
+            color: $font-dark-color;
+    
+            --mdc-radio-disabled-selected-icon-color: #{$ui-medium-light-color};
+            --mdc-radio-disabled-unselected-icon-color: #{$ui-medium-light-color};
+            --mat-radio-disabled-label-color: #{$ui-medium-light-color};
+    
+            --mdc-radio-unselected-hover-icon-color: grey;
+            --mdc-radio-unselected-icon-color: #{$font-dark-color};
+            --mat-radio-ripple-color: #{$font-dark-color};
+          }
+        }
+      }
+    }
+
+    .webp-icon, .png-icon, .svg-icon {
+      &.filter {
+        filter: $font-dark-color-filter;
+
+        &.white-filter {
+          filter: $font-light-color-filter;
         }
       }
     }
