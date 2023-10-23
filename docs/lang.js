@@ -149,10 +149,13 @@ const i18n = {
       nb_sets: 'Number of Sets'
     },
     info: {
+      abyssal_yufine_unbridled_outburst: 'Unbridled Outburst',
+      soulburn: ' Soulburn',
       alencia_trample: 'Trample',
       arunka_expose: 'Expose',
       balance_op_sigret: 'Balance Update: Added Speed scaling, lowered Attack scaling: S2: 0.8 -> 0.75 / S3 1.1 -> 1',
       beehoo_incinerate: 'Incinerate',
+      kane_rock_smash: 'Rock Smash',
       lethe_call_of_the_abyss: 'Call of the Abyss',
       lqc_s3_splash: 'S3 Splash',
       ml_celine_nimble_sword: 'Nimble Sword',
@@ -176,11 +179,14 @@ const i18n = {
     heroes: {
       // Unreleased units: (未発表)
       // Pre-Balance versions: (前のバージョン)
-      lionheart_cermia_old: '獅子王 チェルミア (前のバージョン)',
-      silk_old: 'シルク (前のバージョン)',
-      tenebria_old: 'テネブレア (前のバージョン)',
+      eligos: 'エリコス (前のバージョン)',
+      inferno_khawazu_old: '狂炎のカワズ (前のバージョン)',
+      martial_artist_ken_old: '覇者 ケン (前のバージョン)',
+      moon_bunny_dominiel_old: '月うさぎ ドミニエル (前のバージョン)',
+      twisted_eidolon_kayron_old: '歪みし亡霊 カイロン (前のバージョン)',
       // End Pre-Balance
       abigail: 'アビゲイル',
+      abyssal_yufine: '深淵のユピネ',
       achates: 'アカテス',
       adin: 'アーディン',
       adlay: 'アドレー',
@@ -320,6 +326,7 @@ const i18n = {
       judge_kise: '審判者 キセ',
       judith: 'ジュディス',
       juni: 'ジュニ',
+      kane: 'ケイン',
       kanna: '爆撃型 カノン',
       karin: 'カリン',
       kawerik: 'カーウェリック',
@@ -376,6 +383,7 @@ const i18n = {
       mui: 'ミュイ',
       muse_rima: 'ミューズ リマ',
       muwi: 'ムーム',
+      nahkwol: 'ナユル',
       navy_captain_landy: '海軍大佐 ランディ',
       nemunas: 'ネムナス',
       ocean_breeze_luluca: '海の香り ルルカ',
@@ -534,6 +542,7 @@ const i18n = {
       tear_of_the_desert: '砂漠の涙',
       time_matter: '流転物質',
       torn_sleeve: '破れた着物',
+      tyrants_descent: '暴君の血統',
       uberius_tooth: 'ユーベリウスの牙',
       victorious_flag: '勝利の旗',
       violet_talisman: '紫菫の輝き',
@@ -630,10 +639,13 @@ const i18n = {
     },
     
     info: {
+      abyssal_yufine_unbridled_outburst: '暴走',
+      soulburn: ' 魂力解放',
       alencia_trample: '圧殺',
       arunka_expose: 'えぐり',
       beehoo_incinerate: '焼却',
       silk_automatic_fire: 'バーストショット',
+      kane_rock_smash: 'ロックスマッシュ',
       lethe_call_of_the_abyss: '深淵の呼び声',
       lqc_s3_splash: 'S3 スプラッシュダメージ',
       ml_celine_nimble_sword: '快剣',
@@ -653,11 +665,14 @@ const i18n = {
     heroes: {
       // Unreleased units: (未發布)
       // Pre-Balance versions: (以前的版本)
-      lionheart_cermia_old: '獅心王潔若米亞 (以前的版本)',
-      silk_old: '席可 (以前的版本)',
-      tenebria_old: '泰妮布里雅 (以前的版本)',
+      eligos: '艾利戈斯 (以前的版本)',
+      inferno_khawazu_old: '烈焰的卡瓦朱 (以前的版本)',
+      martial_artist_ken_old: '武鬥家肯恩 (以前的版本)',
+      moon_bunny_dominiel_old: '月兔多米妮爾 (以前的版本)',
+      twisted_eidolon_kayron_old: '扭曲的亡靈凱隆 (以前的版本)',
       // End Pre-Balance
       abigail: '雅碧凱',
+      abyssal_yufine: '深淵優芬妮',
       achates: '雅卡泰絲',
       adin: '艾庭',
       adlay: '亞迪賴',
@@ -797,6 +812,7 @@ const i18n = {
       judge_kise: '審判者綺世',
       judith: '茱迪絲',
       juni: '珠妮',
+      kane: 'ケイン',
       kanna: '暴擊型卡農',
       karin: '卡琳',
       kawerik: '卡威利',
@@ -853,6 +869,7 @@ const i18n = {
       mui: '繆伊',
       muse_rima: '繆斯黎瑪',
       muwi: '武蔚',
+      nahkwol: '落月',
       navy_captain_landy: '海軍上校蘭蒂',
       nemunas: '尼姆拉斯',
       ocean_breeze_luluca: '海洋香氣璐璐卡',
@@ -1192,6 +1209,7 @@ const i18n = {
       tear_of_the_desert: '沙漠之淚',
       time_matter: '時間的物質',
       torn_sleeve: '撕裂的右衣袖',
+      tyrants_descent: '暴君的血統',
       uberius_tooth: '尤貝里烏斯的臼齒',
       victorious_flag: '勝戰旗幟',
       violet_talisman: '紫色護身符',
@@ -1342,10 +1360,13 @@ const i18n = {
       }
     },
     info: {
+      abyssal_yufine_unbridled_outburst: '暴走',
+      soulburn: ' 靈魂燃燒',
       alencia_trample: '扼殺',
       arunka_expose: '揭露',
       beehoo_incinerate: '焚燒',
       silk_automatic_fire: '連發射擊',
+      kane_rock_smash: '碎岩重擊',
       lethe_call_of_the_abyss: '深淵的呼喚',
       lqc_s3_splash: 'S3 濺射傷害',
       ml_celine_nimble_sword: '快劍',
@@ -1364,11 +1385,14 @@ const i18n = {
     heroes: {
       // Unreleased units: (未发布)
       // Pre-Balance versions: (以前的版本)
-      lionheart_cermia_old: '狮心王洁若米亚 (以前的版本)',
-      silk_old: '席可 (以前的版本)',
-      tenebria_old: '泰妮布里雅 (以前的版本)',
+      eligos: '艾利戈斯 (以前的版本)',
+      inferno_khawazu_old: '烈焰的卡瓦朱 (以前的版本)',
+      martial_artist_ken_old: '武斗家肯恩 (以前的版本)',
+      moon_bunny_dominiel_old: '月兔多米妮尔 (以前的版本)',
+      twisted_eidolon_kayron_old: '扭曲亡灵凯隆 (以前的版本)',
       // End Pre-Balance
       abigail: '雅碧凱',
+      abyssal_yufine: '深淵優芬妮', // TODO: Simplified when available
       achates: '雅卡泰丝',
       adin: '艾庭',
       adlay: '亚迪赖',
@@ -1508,6 +1532,7 @@ const i18n = {
       judge_kise: '审判者绮世',
       judith: '茱迪丝',
       juni: '珠妮',
+      kane: '該隱', // TODO: Simplified when available
       kanna: '暴击型卡农',
       karin: '卡琳',
       kawerik: '卡威利',
@@ -1564,6 +1589,7 @@ const i18n = {
       mui:'缪伊',
       muse_rima: '缪斯黎玛',
       muwi: '武蔚',
+      nahkwol: '落月', //TODO: Simplified when available
       navy_captain_landy: '海軍上校蘭蒂', //TODO: Simplified when available
       nemunas: '尼姆拉斯',
       ocean_breeze_luluca: '',
@@ -1894,6 +1920,7 @@ const i18n = {
       tear_of_the_desert: '沙漠之泪',
       time_matter: '时间的物质',
       torn_sleeve: '撕裂的右衣袖',
+      tyrants_descent: '暴君的血統', // TODO: update to simplified when possible
       uberius_tooth: '尤贝里乌斯的臼齿',
       victorious_flag: '胜战旗帜',
       violet_talisman: '紫色护身符',
@@ -2054,10 +2081,13 @@ const i18n = {
       }
     },
     info: {
+      abyssal_yufine_unbridled_outburst: '暴走', // TODO: Simplified when available
+      soulburn: ' 灵魂燃烧',
       alencia_trample: '扼杀',
       arunka_expose: '揭露',
       silk_automatic_fire: '连发射击',
       beehoo_incinerate: '焚烧',
+      kane_rock_smash: '碎岩重擊', // TODO: Simplified when avaialble
       lethe_call_of_the_abyss: '深渊呼唤',
       lqc_s3_splash: 'S3 溅射伤害',
       ml_celine_nimble_sword: '快剑',
@@ -2077,11 +2107,14 @@ const i18n = {
     heroes: {
       // Unreleased units: (미공개)
       // Pre-Balance versions: (이전 버전)
-      lionheart_cermia_old: '사자왕 체르미아 (이전 버전)',
-      silk_old: '실크 (이전 버전)',
-      tenebria_old: '테네브리아 (이전 버전)',
+      eligos: '엘리고스 (이전 버전)',
+      inferno_khawazu_old: '광염의 카와주 (이전 버전)',
+      martial_artist_ken_old: '무투가 켄 (이전 버전)',
+      moon_bunny_dominiel_old: '달토끼 도미니엘 (이전 버전)',
+      twisted_eidolon_kayron_old: '뒤틀린 망령 카일론 (이전 버전)',
       // End Pre-Balance
       abigail: '아비게일',
+      abyssal_yufine: '심연의 유피네',
       achates: '아카테스',
       adin: '아딘',
       adlay: '아들라이',
@@ -2225,6 +2258,7 @@ const i18n = {
       judge_kise: '심판자 키세',
       judith: '쥬디스',
       juni: '쥬니',
+      kane: '케인',
       kanna: '폭격형 카논',
       karin: '카린',
       kawerik: '카웨릭',
@@ -2281,6 +2315,7 @@ const i18n = {
       mui: '뮤이',
       muse_rima: '뮤즈 리마',
       muwi: '무위',
+      nahkwol: '낙월',
       navy_captain_landy: '해군 대령 랑디',
       nemunas: '네무나스',
       ocean_breeze_luluca: '바다 향기 루루카',
@@ -2540,6 +2575,7 @@ const i18n = {
       tear_of_the_desert: '사막의 눈물',
       time_matter: '시간의 물질',
       torn_sleeve: '찢어진 오른 소매',
+      tyrants_descent: '폭군의 혈통',
       uberius_tooth: '유베리우스의 어금니',
       victorious_flag: '승전의 깃발',
       violet_talisman: '보랏빛 탈리스만',
@@ -2695,10 +2731,13 @@ const i18n = {
       }
     },
     info: {
+      abyssal_yufine_unbridled_outburst: '폭주',
+      soulburn: ' 소울번',
       alencia_trample: '압살',
       arunka_expose: '파헤치기',
       beehoo_incinerate: '소각',
       silk_automatic_fire: '연발 사격',
+      kane_rock_smash: '록 스매시',
       lethe_call_of_the_abyss: '심연의 부름',
       lqc_s3_splash: '스킬 3 스플래시',
       ml_celine_nimble_sword: '쾌검',
@@ -2718,11 +2757,14 @@ const i18n = {
     heroes: {
       // Unreleased units: (Unidades) (Não Lançadas)
       // Pre-Balance versions: (Versão) (Pré-Balanceamento)
-      lionheart_cermia_old: 'Cérmia Coração de Leão (Pré-Balanceamento)',
-      silk_old: 'Seda (Pré-Balanceamento)',
-      tenebria_old: 'Tenébria (Pré-Balanceamento)',
+      eligos: 'Eligós (Pré-Balanceamento)',
+      inferno_khawazu_old: 'Khawazu Infernal (Pré-Balanceamento)',
+      martial_artist_ken_old: 'Artista Marcial Ken (Pré-Balanceamento)',
+      moon_bunny_dominiel_old: 'Dominiel Coelhinha Lunar (Pré-Balanceamento)',
+      twisted_eidolon_kayron_old: 'Espírito Distorcido Kayron (Pré-Balanceamento)',
       // End Pre-Balance
       abigail: 'Abigail',
+      abyssal_yufine: '', // TODO: translate when available
       achates: 'Acates',
       adin: 'Adine',
       adlay: 'Adlay',
@@ -2862,6 +2904,7 @@ const i18n = {
       judge_kise: 'Juíza Kise',
       judith: 'Judite',
       juni: 'Juni',
+      kane: '', // TODO: translate when avail
       kanna: 'Modelo Bombardeio Kanna',
       karin: 'Karin',
       kawerik: 'Kawerik',
@@ -2918,6 +2961,7 @@ const i18n = {
       mui: 'Mui',
       muse_rima: 'Rima Musa',
       muwi: 'Muwi',
+      nahkwol: 'Nahkwol',
       navy_captain_landy: 'Landy Capitã da Marinha',
       nemunas: 'Nemunas',
       ocean_breeze_luluca: 'Luluca Aroma de Mar',
@@ -3091,6 +3135,7 @@ const i18n = {
       tear_of_the_desert: 'Lágrima do Deserto',
       time_matter: 'Matéria Temporal',
       torn_sleeve: 'Manga Rasgada',
+      tyrants_descent: '', // TODO: Translate when available
       uberius_tooth: 'Dente de Ulbério',
       victorious_flag: 'Bandeira da Vitória',
       violet_talisman: 'Talismã Purpúrio',
@@ -3254,10 +3299,13 @@ const i18n = {
       }
     },
     info: {
+      abyssal_yufine_unbridled_outburst: '', // TODO: translate when available
+      soulburn: ' Burn',
       alencia_trample: 'Pisotear',
       arunka_expose: 'Carcomere',
       beehoo_incinerate: 'Carbonizar',
       silk_automatic_fire: 'Disparo Automático',
+      kane_rock_smash: '', // TODO: Translate when available
       lethe_call_of_the_abyss: 'Chamado do Abismo',
       lqc_s3_splash: 'S3 Splash',
       ml_celine_nimble_sword: 'Fulgor',
@@ -3357,10 +3405,10 @@ const getSkillModTip = (tips) => {
   return `(${output.join(', ')})`;
 };
 
-const infoLabel = (key) => {
+const infoLabel = (key, soulburn = false) => {
   let lang = document.getElementById('root').getAttribute('lang');
   if (i18n[lang].info === undefined) lang = 'en';
 
-  return i18n[lang].info[key] || i18n['en'].info[key] || key || '';
+  return (i18n[lang].info[key] || i18n['en'].info[key] || key || '') + (soulburn ? i18n[lang].info['soulburn'] : '');
 };
 /* eslint-enable */

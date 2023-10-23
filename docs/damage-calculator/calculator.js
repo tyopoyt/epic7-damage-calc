@@ -28,7 +28,7 @@ selectorParams = [
 ];
 boolParams = [
   'elemAdv', 'atkDown', 'atkUp', 'atkUpGreat', 'critDmgUp', 'vigor', 'rageSet',
-  'penSet', 'torrentSet', 'defUp', 'targetVigor', 'defDown', 'target'
+  'penSet', 'torrentSet', 'defUp', 'targetVigor', 'defDown', 'target', 'trauma'
 ];
 numberParams = [
   'atk', 'atkPcImprint', 'atkPcUp', 'crit', 'bonusDamage', 'torrentSetStack', 'def',
@@ -83,6 +83,7 @@ const dmgTransInput = document.getElementById('dmg-trans');
 const defUpInput = document.getElementById('def-up');
 const targetVigorInput = document.getElementById('target-vigor');
 const defDownInput = document.getElementById('def-down');
+const traumaInput = document.getElementById('trauma');
 const targetInput = document.getElementById('target');
 const heroSelector = document.getElementById('hero');
 const artifactSelector = document.getElementById('artifact');
@@ -313,12 +314,12 @@ const getModTooltip = (hero, skillId, soulburn = false) => {
   return content;
 };
 
-const attackMods = ['atkDown', 'atkUp', 'atkUpGreat', 'vigor'];
+const attackMods = ['atkDown', 'atkUp', 'atkUpGreat', 'vigor', 'caster-has-stars-blessing'];
 const getGlobalAtkMult = () => {
   let mult = 0.0;
 
   attackMods.forEach((mod) => {
-    mult += inputValues[mod] ? battleConstants[mod] - 1 : 0.0;
+    mult += inputValues[mod] ? (battleConstants[mod] - 1) : 0.0;
   });
 
   if (elements.caster_enrage.value()) {
@@ -354,8 +355,13 @@ const getGlobalDamageMult = (hero, skill) => {
 const getGlobalDefMult = () => {
   let mult = 1.0;
 
-  for (let defMod of ['defUp', 'defDown', 'targetVigor']) {
+  for (let defMod of ['defUp', 'defDown', 'targetVigor', 'trauma']) {
     mult += inputValues[defMod] ? battleConstants[defMod] : 0.0;
+  }
+
+  if (inputValues['trauma'] && inputValues['defDown']) {
+    mult -= battleConstants['trauma'];
+    mult *= battleConstants['trauma'] * -1;
   }
 
   return mult;
@@ -391,6 +397,7 @@ class Hero {
 
   getModifiers(skillId, soulburn = false) {
     const skill = this.skills[skillId];
+    const fixed = skill.fixed !== undefined ? skill.fixed(hitTypes.crit) : null
     return {
       rate: (typeof skill.rate === 'function') ? skill.rate(soulburn) : skill.rate,
       pow: (typeof skill.pow === 'function') ? skill.pow(soulburn) : skill.pow,
@@ -410,23 +417,26 @@ class Hero {
       extraDmg: skill.extraDmg !== undefined ? skill.extraDmg() : null,
       extraDmgTip: skill.extraDmgTip !== undefined ? getSkillModTip(skill.extraDmgTip(soulburn)) : '',
       fixed: skill.fixed !== undefined ? skill.fixed(hitTypes.crit) : null,
-      fixedTip: skill.fixedTip !== undefined ? getSkillModTip(skill.fixedTip()) : null,
+      fixedTip: skill.fixedTip !== undefined ? getSkillModTip(skill.fixedTip(fixed || 0)) : null,
     };
   }
 
+  //TODO: do perception and stars blessing go beyond cap? probably not
   getDamage(skillId, soulburn = false, isExtra = false) {
-    const critDmgBuff = inputValues.critDmgUp ? battleConstants.critDmgUp : 0.0;
+    let critDmgBuff = inputValues.critDmgUp ? battleConstants.critDmgUp : 0.0;
+    critDmgBuff += inputValues['caster-has-stars-blessing'] ? (battleConstants['caster-has-stars-blessing'] - 1) : 0;
 
     const skill = this.skills[skillId];
     const hit = this.offensivePower(skillId, soulburn, isExtra, this) * this.target.defensivePower(skill);
+    const onlyCrit = typeof(skill.onlyCrit) === 'function' ? skill.onlyCrit(soulburn) : skill.onlyCrit;
     const critDmg = Math.min((this.crit / 100) + critDmgBuff, 3.5)
         + (skill.critDmgBoost ? skill.critDmgBoost(soulburn) : 0)
         + (this.artifact.getCritDmgBoost() || 0)
         + (elements.caster_perception.value() ? 0.15 : 0);
     return {
       crit: skill.noCrit || skill.onlyMiss ? null : Math.round(hit * critDmg + (skill.fixed !== undefined ? skill.fixed(hitTypes.crit) : 0) + this.getAfterMathDamage(skillId, hitTypes.crit)),
-      crush: skill.noCrit || skill.onlyCrit || skill.onlyMiss ? null : Math.round(hit * 1.3 + (skill.fixed !== undefined ? skill.fixed(hitTypes.crush) : 0) + this.getAfterMathDamage(skillId, hitTypes.crush)),
-      normal: skill.onlyCrit || skill.onlyMiss ? null : Math.round(hit + (skill.fixed !== undefined ? skill.fixed(hitTypes.normal) : 0) + this.getAfterMathDamage(skillId, hitTypes.normal)),
+      crush: skill.noCrit || onlyCrit || skill.onlyMiss ? null : Math.round(hit * 1.3 + (skill.fixed !== undefined ? skill.fixed(hitTypes.crush) : 0) + this.getAfterMathDamage(skillId, hitTypes.crush)),
+      normal: onlyCrit || skill.onlyMiss ? null : Math.round(hit + (skill.fixed !== undefined ? skill.fixed(hitTypes.normal) : 0) + this.getAfterMathDamage(skillId, hitTypes.normal)),
       miss: skill.noMiss ? null : Math.round(hit * 0.75 + (skill.fixed !== undefined ? skill.fixed(hitTypes.miss) : 0) + this.getAfterMathDamage(skillId, hitTypes.miss))
     };
   }
@@ -568,6 +578,8 @@ class Hero {
         return this.getAtk() * artiMultipliers.atkPercent * dmgConst * this.target.defensivePower({ penetrate: () => artiMultipliers.penetrate }, true);
       } else if (artiMultipliers.defPercent) {
         return elements.caster_defense.value() * artiMultipliers.defPercent * dmgConst * this.target.defensivePower({ penetrate: () => artiMultipliers.penetrate }, true);
+      } else if (artiMultipliers.fixedDamage) {
+        return artiMultipliers.fixedDamage
       }
     }
 
@@ -679,12 +691,13 @@ class Artifact {
 
   getAfterMathMultipliers(skill, skillId) {
     if(!this.applies(skill, skillId)) return null;
-    if (this.id === undefined || artifacts[this.id].type !== artifactDmgType.aftermath || (artifacts[this.id].atkPercent === undefined && artifacts[this.id].defPercent === undefined) || artifacts[this.id].penetrate === undefined) {
+    if (this.id === undefined || ![artifactDmgType.aftermath, artifactDmgType.fixedDamage].includes(artifacts[this.id].type) || (artifacts[this.id].atkPercent === undefined && artifacts[this.id].defPercent === undefined && artifacts[this.id].scale === undefined) || artifacts[this.id].penetrate === undefined) {
       return null;
     }
     return {
       atkPercent: artifacts[this.id].atkPercent,
       defPercent: artifacts[this.id].defPercent,
+      fixedDamage: artifacts[this.id].type === artifactDmgType.fixedDamage ? artifacts[this.id].value() : 0,
       penetrate: artifacts[this.id].penetrate,
     };
   }

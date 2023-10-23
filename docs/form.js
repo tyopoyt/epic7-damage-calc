@@ -1,4 +1,13 @@
 const elements = {
+  extra_dual_or_counter: {
+    ref: 'extra_dual_or_counter',
+    id: 'extra-dual-or-counter',
+    label: 'Extra, Dual, or Counter attack',
+    type: 'checkbox',
+    value: () => {
+      return document.getElementById('extra-dual-or-counter')?.checked
+    }
+  },
   nb_targets: {
     ref: 'nb_targets',
     id: 'nb-targets',
@@ -356,7 +365,8 @@ const elements = {
       return Number(document.getElementById('caster-defense').value)
       * (1 + (elements.caster_defense_up.value() ? battleConstants.defUp : 0)
          + (document.getElementById('vigor').checked ? battleConstants.vigor - 1 : 0)
-         + (document.getElementById('caster-fury')?.checked ? battleConstants['caster-fury'] - 1 : 0));
+         + (document.getElementById('caster-fury')?.checked ? battleConstants['caster-fury'] - 1 : 0)
+         + (document.getElementById('caster-has-trauma')?.checked ? battleConstants['trauma'] : 0));
     }
   },
   caster_defense_up: {
@@ -467,6 +477,15 @@ const elements = {
     value: () => document.getElementById('caster-has-flame-alchemist').checked,
     icon: './assets/buffs/flame-alchemist-buff.png'
   },
+  caster_has_stars_blessing: {
+    ref: 'caster_has_stars_blessing',
+    id: 'caster-has-stars-blessing',
+    label: "Caster has Star's Blessing",
+    type: 'checkbox',
+    default: true,
+    value: () => document.getElementById('caster-has-stars-blessing').checked,
+    icon: './assets/buffs/stars-blessing-buff.png'
+  },
   caster_has_multilayer_barrier: {
     ref: 'caster_has_multilayer_barrier',
     id: 'caster-has-multilayer-barrier',
@@ -563,6 +582,16 @@ const elements = {
     value: () => document.getElementById('caster-immense-power')
       ? document.getElementById('caster-immense-power').checked
       : false,
+  },
+  caster_has_trauma: {
+    ref: 'caster_has_trauma',
+    id: 'caster-has-trauma',
+    label: 'Caster has Trauma',
+    type: 'checkbox',
+    value: () => document.getElementById('caster-has-trauma')
+      ? document.getElementById('caster-has-trauma').checked
+      : false,
+    icon: './assets/debuffs/trauma-debuff.png'
   },
   caster_stealth: {
     ref: 'caster_stealth',
@@ -1216,6 +1245,8 @@ const dedupeForm = (hero, artifact) => {
 const updateGraphSkillSelect = () => {
   const skillSelect = document.getElementById('chart-skill');
   const skill = heroes[inputValues.hero]?.skills[skillSelect.options[skillSelect.selectedIndex]?.value.replace('_soulburn', '') || 's1'];
+  const soulburn = skillSelect.options[skillSelect.selectedIndex]?.value.endsWith('_soulburn');
+  const onlyCrit = typeof(skill.onlyCrit) === 'function' ? skill.onlyCrit(soulburn) : skill.onlyCrit;
 
   if (skill.onlyMiss) {
     damageToUse = 'miss';
@@ -1232,7 +1263,7 @@ const updateGraphSkillSelect = () => {
 
     $('#miss-hit').removeAttr('disabled');
     $('#normal-hit').removeAttr('disabled');
-  } else if (skill.onlyCrit) {
+  } else if (onlyCrit) {
     damageToUse = 'crit';
     $('#crit-hit').removeAttr('disabled');
     $('#miss-hit').removeAttr('disabled');

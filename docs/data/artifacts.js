@@ -4,6 +4,7 @@ const artifactDmgType = {
   aftermath: 'aftermath',
   attack: 'attack',
   critDmgBoost: 'crit-dmg-boost',
+  fixedDamage: 'fixedDamage',
   flat: 'flat',
   dot: 'dot'
 };
@@ -146,6 +147,21 @@ const artifacts = {
     scale: [0.1, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2],
     type: artifactDmgType.penetrate,
     exclusive: classType.thief
+  },
+  //TODO: translate and add announcement/changelog
+  fairy_tale_for_a_nightmare: {
+    id: 'fairy_tale_for_a_nightmare',
+    name: 'Fairy Tale for a Nightmare',
+    type: artifactDmgType.fixedDamage,
+    form: [elements.extra_dual_or_counter],
+    penetrate: 1,
+    scale: [750, 825, 900, 975, 1050, 1125, 1200, 1275, 1350, 1425, 1500],
+    exclusive: classType.mage,
+    applies: (skill) => skill.isExtra || elements.extra_dual_or_counter.value(),
+    value: () => {
+      const artiScale = Math.floor(Number(document.getElementById('artifact-lvl')?.value || '30') / 3)
+      return artifacts['fairy_tale_for_a_nightmare'].scale[artiScale];
+    }
   },
   frame_of_light: {
     id: 'frame_of_light',
@@ -419,10 +435,14 @@ const artifacts = {
   time_matter: {
     id: 'time_matter',
     name: 'Time Matter',
-    scale: [0.12, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2, 0.21, 0.22, 0.24],
+    form: [elements.enemy_defeated],
+    scale: [0.06, 0.66, 0.072, 0.078, 0.084, 0.09, 0.096, 0.102, 0.108, 0.114, 0.12],
+    additional: [0.12, 0.132, 0.144, 0.156, 0.168, 0.18, 0.192, 0.204, 0.216, 0.228, 0.24],
     type: artifactDmgType.damage,
     exclusive: classType.mage,
-    value: (artiScale) => (artiScale / 2) + artiScale,
+    value: (input) => {
+      return input + (elements.enemy_defeated.value() ? artifacts.time_matter.additional[artifacts.time_matter.scale.indexOf(input)] : 0);
+    }
   },
   torn_sleeve:{
     id: 'torn_sleeve',
@@ -430,6 +450,19 @@ const artifacts = {
     type: artifactDmgType.dot,
     dot: [dot.bleed],
     exclusive: classType.thief
+  },
+  tyrants_descent: {
+    id: 'tyrants_descent',
+    name: "Tyrant's Descent",
+    form: [elements.target_nb_debuff],
+    scale: [0.06, 0.66, 0.072, 0.078, 0.084, 0.09, 0.096, 0.102, 0.108, 0.114, 0.12],
+    // TODO: Check additional scaling
+    additional: [0.18, 0.186, 0.192, 0.198, 0.204, 0.21, 0.216, 0.222, 0.228, 0.234, 0.24],
+    type: artifactDmgType.damage,
+    exclusive: classType.warrior,
+    value: (artiScale) => {
+      return artiScale + Math.min(elements.target_nb_debuff.value() * 0.03, artifacts.tyrants_descent.additional[artifacts.tyrants_descent.scale.indexOf(artiScale)])
+    }
   },
   uberius_tooth: {
     id: 'uberius_tooth',
