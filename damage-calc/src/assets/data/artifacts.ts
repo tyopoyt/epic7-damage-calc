@@ -64,7 +64,7 @@ export const Artifacts: Record<string, Artifact> = {
     // TODO: listen to form Maximums for artifacts
     artifactSpecific:['attackSkillStack'],
     artifactSpecificMaximums:{'attackSkillStack': 5},
-    value: (artiScale: number, inputValues: DamageFormData) => artiScale - ((artiScale / 10) * inputValues.casterAttackStack),
+    value: (artiScale: number, inputValues: DamageFormData) => artiScale - ((artiScale / 10) * inputValues.attackSkillStack),
   }),
   border_coin: new Artifact({
     id: 'border_coin',

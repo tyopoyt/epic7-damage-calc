@@ -238,7 +238,10 @@ export const FormDefaults: Record<string, {max?: number, min?: number, defaultVa
     casterTurn: {
         default: true
     },
-    // TODO: default of casterHasBuff depending on other buff boxes
+    // TODO: default of casterBuffed depending on other buff boxes
+    casterBuffed: {
+        icon: 'icons/e7-chevron-up.png'
+    },
     // TODO: caster has bzzt (and other unique buffs from passive) default to true? Check on queryparams stuff w/ that
     casterFocus: {
         max: 5,
@@ -319,9 +322,14 @@ export const FormDefaults: Record<string, {max?: number, min?: number, defaultVa
     },
     inBattleHP: {
         default: false,
-        hint: 'inBattleHPHint'
+        hint: 'inBattleHPHint',
+        icon: 'icons/full-hp.png'
     }
 }
+
+export const TargetAttackModifiers = [
+    'targetAttackDown', 'targetAttackUp', 'targetAttackUpGreat', 'targetVigor', 'targetEnraged'
+]
 
 export class DamageFormData {
     [key: string]: string | number | boolean | DefensePreset | ReductionPreset | undefined | ((artifact: Artifact) => number) | Record<string, number>,
@@ -335,7 +343,6 @@ export class DamageFormData {
     decreasedAttack: boolean;
     casterAboveHalfHP: boolean;
     casterAttackedStack: number;
-    casterAttackStack: number;
     casterCurrentHP: number;
     casterCurrentHPPercent: number;
     casterDebuffed: boolean;
@@ -347,7 +354,7 @@ export class DamageFormData {
     casterFullFightingSpirit: boolean;
     casterFullFocus: boolean;
     casterFury: boolean;
-    casterHasBuff: boolean;
+    casterBuffed: boolean;
     casterHasBzzt: boolean;
     casterHasFlameAlchemist: boolean;
     casterHasImmensePower: boolean;
@@ -387,7 +394,7 @@ export class DamageFormData {
     molagoras3: number;
     nonAttackSkillStack: number;
     attackSkillStack: number;
-    nonCasterAttackStack: number;
+    nonattackSkillStack: number;
     numberOfDeaths: number;
     numberOfHits: number;
     numberOfTargets: number;
@@ -453,7 +460,6 @@ export class DamageFormData {
         this.decreasedAttack = _.get(data, 'decreasedAttack', false);
         this.casterAboveHalfHP = _.get(data, 'casterAboveHalfHP', true);
         this.casterAttackedStack = _.get(data, 'casterAttackedStack', 0);
-        this.casterAttackStack = _.get(data, 'casterAttackStack', 0);
         this.casterCurrentHP = _.get(data, 'casterCurrentHP', 10000);
         this.casterCurrentHPPercent = _.get(data, 'casterCurrentHPPercent', 100);
         this.casterDebuffed = _.get(data, 'casterDebuffed', false);
@@ -465,7 +471,7 @@ export class DamageFormData {
         this.casterFullFightingSpirit = _.get(data, 'casterFullFightingSpirit', false);
         this.casterFullFocus = _.get(data, 'casterFullFocus', false);
         this.casterFury = _.get(data, 'casterFury', false);
-        this.casterHasBuff = _.get(data, 'casterHasBuff', false);
+        this.casterBuffed = _.get(data, 'casterBuffed', false);
         this.casterHasBzzt = _.get(data, 'casterHasBzzt', false);
         this.casterHasFlameAlchemist = _.get(data, 'casterHasFlameAlchemist', false);
         this.casterHasImmensePower = _.get(data, 'casterHasImmensePower', false);
@@ -505,7 +511,7 @@ export class DamageFormData {
         this.molagoras3 = _.get(data, 'molagoraS3', 0);
         this.nonAttackSkillStack = _.get(data, 'nonAttackSkillStack', 0);
         this.attackSkillStack = _.get(data, 'attackSkillStack', 0);
-        this.nonCasterAttackStack = _.get(data, 'nonCasterAttackStack', 0);
+        this.nonattackSkillStack = _.get(data, 'nonattackSkillStack', 0);
         this.numberOfDeaths = _.get(data, 'numberOfDeaths', 0);
         this.numberOfHits = _.get(data, 'numberOfHits', 1);
         this.numberOfTargets = _.get(data, 'numberOfTargets', 0);
@@ -555,13 +561,13 @@ export class DamageFormData {
     casterFinalSpeed = () => {
         return Math.floor((this.inputOverrides['casterSpeed'] ? this.inputOverrides['casterSpeed'] : this.casterSpeed) * (1 + (this.casterSpeedUp ? BattleConstants.spdUp - 1 : 0)
            + (this.casterSpeedDown ? 1 - BattleConstants.spdUp : 0)
-           + (this.casterEnraged ? BattleConstants.casterRage - 1 : 0)));
+           + (this.casterEnraged ? BattleConstants.casterEnraged - 1 : 0)));
     }
 
     targetFinalSpeed = () => {
         return Math.floor(this.targetSpeed * (1 + (this.targetSpeedUp ? BattleConstants.spdUp - 1 : 0)
            + (this.targetSpeedDown ? 1 - BattleConstants.spdUp : 0)
-           + (this.targetEnraged ? BattleConstants.targetRage - 1 : 0)));
+           + (this.targetEnraged ? BattleConstants.targetEnraged - 1 : 0)));
     }
 
     // TODO: Make sure the targetdefense... get replaced when constants are renamed
@@ -585,5 +591,18 @@ export class DamageFormData {
 
     targetFinalMaxHP = () => {
         return (this.inputOverrides['targetMaxHP'] ? this.inputOverrides['targetMaxHP'] : this.targetMaxHP * (this.defensePreset?.hpDamageMultiplier ? this.defensePreset.hpDamageMultiplier : 1));
+    }
+
+    targetFinalAttack = () => {
+        let targetAttackModifier = 1
+        TargetAttackModifiers.forEach((mod) => {
+            let modValue = BattleConstants[mod] - 1
+            if (mod === 'targetVigor') {
+                modValue += 1
+            }
+
+            targetAttackModifier += this[mod as keyof DamageFormData] ? modValue : 0.0;
+        });
+        return this.targetAttack * targetAttackModifier
     }
 }

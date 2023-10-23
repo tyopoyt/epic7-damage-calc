@@ -3,6 +3,7 @@ import { AfterViewInit, Component, ElementRef, HostListener, OnInit, Renderer2, 
 import { UntypedFormControl } from '@angular/forms';
 import { MatSelect, MatSelectChange } from '@angular/material/select';
 import { ActivatedRoute, Router } from '@angular/router';
+import { GoogleTagManagerService } from 'angular-google-tag-manager';
 import { Language, Languages } from 'src/app/models/languages';
 import { CustomLanguage, LanguageService } from 'src/app/services/language.service';
 import { ScreenService, Theme } from 'src/app/services/screen.service';
@@ -36,7 +37,9 @@ export class NavbarComponent implements OnInit  {
     private route: ActivatedRoute,
     private router: Router,
     public screenService: ScreenService,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private gtmService: GoogleTagManagerService
+
   ) {
     this.toolSelection = new UntypedFormControl(this.languageService.toolTitles[0]);
   }
@@ -89,6 +92,11 @@ export class NavbarComponent implements OnInit  {
 
   toggleDarkMode() {
     this.screenService.toggleDarkMode();
+
+    this.gtmService.pushTag({
+      'event': 'toggle_dark_mode',
+      'dark_mode': this.screenService.theme === Theme.dark ? 'on' : 'off'
+    });
   }
 
   // The navigation here and in selectTool is a bit clunky but ActivatedRoute is only populated for the component that matched the route

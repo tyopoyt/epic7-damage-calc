@@ -85,7 +85,9 @@ import { MatRadioModule } from '@angular/material/radio';
   exports: [
     TranslationPipe
   ],
-   providers: [],
+  providers: [
+    {provide: 'googleTageManagerId', useValue: 'GTM-M7H68RW'}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

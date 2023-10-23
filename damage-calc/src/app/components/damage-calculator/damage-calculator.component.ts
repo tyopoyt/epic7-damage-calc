@@ -26,6 +26,7 @@ import { CompareComponent } from '../compare/compare.component';
 import { DamageGraphComponent } from '../damage-graph/damage-graph.component';
 import { debounce } from 'src/app/utils/utils';
 import { DefensePreset, ReductionPreset, TargetPresetGroups, TargetReductionPresetGroups } from 'src/app/models/target-presets';
+import { GoogleTagManagerService } from 'angular-google-tag-manager';
 
 @Component({
   selector: 'app-damage-calculator',
@@ -189,7 +190,8 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
     private damageService: DamageService,
     public dataService: DataService,
     private dialog: MatDialog,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private gtmService: GoogleTagManagerService
   ) {
     this.activatedRoute.queryParams.subscribe(params => {
       this.queuedQueryParams = params;
@@ -213,9 +215,9 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
     this.reductionPresetControl = new FormControl(TargetReductionPresetGroups.default[0])
     this.reductionPresetFilterControl = new FormControl('')
 
-
     this.damageSubscription = this.damageService.damages.subscribe((skillDamages: DamageRow[]) => {
       this.damageData.data = skillDamages;
+      console.log(skillDamages)
     });
 
     this.heroSearchSubscription = this.heroFilterControl.valueChanges
@@ -337,7 +339,8 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
         this.heroSpecificBooleanInputs.push(`${input}Down`);
 
         if (input === 'targetAttack') {
-          this.heroSpecificBooleanInputs.push(`${input}UpGreat`)
+          this.heroSpecificBooleanInputs.push('targetAttackUpGreat')
+          this.heroSpecificBooleanInputs.push('targetEnraged')
         }
 
         if (input === 'targetSpeed') {
@@ -442,10 +445,15 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
     debounce('calculateChart', () => {this.damageGraph?.calculateChart()}, undefined, 150);
   }
 
-    // TODO: potentially reset max hp after switching heroes
-    selectHero(hero: string) {
+  // TODO: potentially reset max hp after switching heroes
+  // TODO: reset all hero specific after switch?
+  selectHero(hero: string) {
+    this.gtmService.pushTag({
+      'event': 'select_hero',
+      'hero': hero
+    });
     this.dataService.updateSelectedHero(hero);
-    this.dataService.updateDamageInputValues({exclusiveEquipment1: false, exclusiveEquipment2: false, exclusiveEquipment3: false})
+    this.dataService.updateDamageInputValues({exclusiveEquipment1: false, exclusiveEquipment2: false, exclusiveEquipment3: false, casterPerception: false, casterEnraged: false})
     this.updateDamageBlockHeader();
   }
 
@@ -453,15 +461,23 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
     this.dataService.updateSelectedArtifact(artifact);
     this.updateFormInputs();
     this.updateDamageBlockHeader();
+
+    this.gtmService.pushTag({
+      'event': 'select_artifact',
+      'artifact': artifact,
+      'hero': this.heroID
+    });
   }
 
   selectTarget(newTarget: DefensePreset | null = null) {
     if (newTarget) {
-      console.log(newTarget)
       this.targetPresetControl.setValue(newTarget);
     }
 
-    console.log('targetpreset is now', this.targetPresetControl.value)
+    this.gtmService.pushTag({
+      'event': 'select_preset_def',
+      'def_unit': this.targetPresetControl.value?.id
+    });
 
     if (this.targetPresetControl.value) {
       this.inputChange('defensePreset', this.targetPresetControl.value);
@@ -482,11 +498,13 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
 
   selectReduction(newReduction: ReductionPreset | null = null) {
     if (newReduction) {
-      console.log(newReduction)
       this.reductionPresetControl.setValue(newReduction);
     }
 
-    console.log('reductionpreset is now', this.reductionPresetControl.value)
+    this.gtmService.pushTag({
+      'event': 'select_preset_dmg_red',
+      'dmg_red': this.reductionPresetControl.value?.id
+    });
 
     if (this.reductionPresetControl.value) {
       this.inputChange('reductionPreset', this.reductionPresetControl.value);
@@ -621,10 +639,10 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
         heroSets[result] = saveData;
         allSets[this.heroControl.value as string] = heroSets;
         localStorage.setItem('heroes', JSON.stringify(allSets));
-        // window.dataLayer.push({
-        //   'event': 'save_hero',
-        //   'hero': this.heroControl.value
-        // });
+        this.gtmService.pushTag({
+          'event': 'save_hero',
+          'hero': this.heroControl.value
+        });
       }
       this.refreshCompareBadge();
     });
@@ -640,6 +658,11 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
       width: '50rem',
       data: heroSets
     })
+
+    this.gtmService.pushTag({
+      'event': 'compare_hero',
+      'hero': this.heroID
+    });
 
     dialogRef.afterClosed().subscribe(removeBuilds => {
       if (removeBuilds) {
@@ -668,6 +691,11 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       if (this.showGraph) {
         this.damageGraph?.calculateChart();
+        this.gtmService.pushTag({
+          'event': 'show_chart',
+          'hero': this.heroID,
+          'lang': this.languageService.language.value?.name
+        });
       }
     }, 1);
     
@@ -675,6 +703,13 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
 
   async loadQueryParams() {
     console.log(this.queuedQueryParams)
+
+    this.gtmService.pushTag({
+      'event': 'loaded_query_params',
+      'page': 'damage_calculator',
+      'loaded_params': JSON.stringify(this.queuedQueryParams)
+    });
+
     if (!this.loading && this.queuedQueryParams) {
       const paramInputs: Record<string, boolean | number | string> = {};
       let paramArtifact = '';
@@ -705,18 +740,21 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
 
       if (paramInputs['defensePreset']) {
         this.selectTarget(this.allTargetPresets.filter(preset => preset.id === paramInputs['defensePreset'])[0])
-        console.log(this.allTargetPresets.filter(preset => preset.id === paramInputs['defensePreset'])[0])
-        console.log(this.targetPresetControl.value)
       }
 
       if (paramInputs['reductionPreset']) {
         this.selectReduction(this.allReductionPresets.filter(preset => preset.id === paramInputs['reductionPreset'])[0])
-        console.log(this.allReductionPresets.filter(preset => preset.id === paramInputs['reductionPreset'])[0])
-        console.log(this.reductionPresetControl.value)
       }
   
       this.dataService.updateDamageInputValues(paramInputs);
     }
     
   }
+
+  // TODO: add when share button is implemented
+  // window.dataLayer.push({
+  //   'event': 'shared_query_params',
+  //   'page': page,
+  //   'shared_params': linkURL.search
+  // });
 }

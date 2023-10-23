@@ -840,7 +840,7 @@ html, body {
     }
 
     .multi-slide {
-      background-color: $ui-light-color;
+      background-color: $ui-lighter-color;
     }
 
     .preset-hint {
@@ -933,7 +933,7 @@ html, body {
     .page-container {
       mat-form-field {
         &.mat-mdc-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-mdc-text-field-wrapper {
-          background-color: $ui-light-color;
+          background-color: $ui-lighter-color;
         }
       }
     }
@@ -983,7 +983,7 @@ html, body {
     }
 
     .mat-mdc-card {
-      background-color: $ui-light-color;
+      background-color: $ui-lighter-color;
   
       .slider-row {
         color: $font-dark-color;
@@ -996,7 +996,7 @@ html, body {
 
     .damage-block {
       .mat-mdc-card {
-        background-color: $ui-light-theme-color;
+        background-color: $ui-lighter-color;
       }
     }
 
@@ -1087,7 +1087,7 @@ html, body {
     }
 
     .mat-mdc-checkbox .mdc-form-field {
-      background-color: $ui-light-color;
+      background-color: $ui-lighter-color;
     }
 
     .mat-mdc-menu-item:not([disabled]):hover, .mat-mdc-option:not([disabled]):hover {

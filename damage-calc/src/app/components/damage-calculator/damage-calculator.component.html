@@ -286,7 +286,7 @@
                         <span class="neat-container">
                             <img class="png-icon medium tiny-margin-right" src="assets/{{formDefaults[input]?.icon}}" [class.icon]="formDefaults[input]?.svgIcon" alt="{{advantageousElement}}">
                             {{input | translate:'form':languageService.language.value}}
-                            <img class="icon tiny tiny-margin-left" *ngIf="formDefaults[input]?.hint" src="assets/icons/help-circle-outline.svg" alt="Hint" matTooltip="{{formDefaults[input]?.hint}}">
+                            <img class="icon tiny tiny-margin-left" *ngIf="formDefaults[input]?.hint" src="assets/icons/help-circle-outline.svg" alt="Hint" matTooltip="{{(formDefaults[input]?.hint || '') | translate:'form':languageService.language.value}}">
                         </span>
                     </mat-checkbox>
                 </div>

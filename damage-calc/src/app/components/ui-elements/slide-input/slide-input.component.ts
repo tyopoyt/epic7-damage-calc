@@ -30,7 +30,6 @@ export class SlideInputComponent implements OnInit {
   ngOnInit(): void {
     // This seemed to already fire after setvalue from the number input group
     // but do it after resolve to ensure that's always the case
-    console.log('HI-1')
     Promise.resolve().then(() => {
       this.value = this.default;
       this.slideValue.next(this.value)
@@ -41,14 +40,11 @@ export class SlideInputComponent implements OnInit {
   }
 
   valueChanged(event: any) {
-    console.log('HI1')
     this.slideValue.next(Number(event.target.value))
     this.valueChange.next(Number(event.target.value))
   }
 
   setValue(value: number) {
-    console.log('HI2')
-
     if (this.initialized) {
       this.value = value;
       this.valueChange.next(this.value)
