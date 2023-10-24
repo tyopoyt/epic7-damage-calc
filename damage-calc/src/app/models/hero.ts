@@ -130,13 +130,15 @@ export class Hero {
 
   // this belongs to hero because it calls getAtk and getDef
   getAfterMathArtifactDamage(skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number, defenseMultiplier: number, target: Target, isExtra = false) {
-    const artiMultipliers = artifact.getAfterMathMultipliers(skill, inputValues);
+    const artiMultipliers = artifact.getAfterMathMultipliers(skill, inputValues, isExtra);
     const attack = this.getAttack(artifact, inputValues, attackMultiplier, skill, isExtra)
     if (artiMultipliers !== null) {
       if (artiMultipliers.attackPercent) {
         return this.getAttack(artifact, inputValues, attackMultiplier, skill, isExtra) * artiMultipliers.attackPercent * BattleConstants.damageConstant * target.defensivePower(new Skill({ penetrate: () => artiMultipliers.penetrate }), inputValues, defenseMultiplier, artifact, false, attack, true);
       } else if (artiMultipliers.defensePercent) {
         return inputValues.casterFinalDefense() * artiMultipliers.defensePercent * BattleConstants.damageConstant * target.defensivePower(new Skill({ penetrate: () => artiMultipliers.penetrate }), inputValues, defenseMultiplier, artifact, false, attack, true);
+      } else if (artiMultipliers.fixedDamage) {
+        return artiMultipliers.fixedDamage
       }
     }
 

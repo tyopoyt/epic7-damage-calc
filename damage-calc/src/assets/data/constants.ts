@@ -21,7 +21,10 @@ export const BattleConstants: Record<string, number> = {
   'spdUp': 1.3, 
   'casterEnraged': 1.1,
   'targetEnraged': 1.1,
-  'perception': 0.15
+  'perception': 0.15,
+  'casterHasStarsBlessing': 1.15,
+  'trauma': -0.7,
+  'targetHasTrauma': -0.7
 };
 
 export const HeroConstants = {

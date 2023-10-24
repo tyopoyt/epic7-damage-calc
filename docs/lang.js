@@ -179,7 +179,7 @@ const i18n = {
     heroes: {
       // Unreleased units: (未発表)
       // Pre-Balance versions: (前のバージョン)
-      eligos: 'エリコス (前のバージョン)',
+      eligos_old: 'エリコス (前のバージョン)',
       inferno_khawazu_old: '狂炎のカワズ (前のバージョン)',
       martial_artist_ken_old: '覇者 ケン (前のバージョン)',
       moon_bunny_dominiel_old: '月うさぎ ドミニエル (前のバージョン)',
@@ -812,7 +812,7 @@ const i18n = {
       judge_kise: '審判者綺世',
       judith: '茱迪絲',
       juni: '珠妮',
-      kane: 'ケイン',
+      kane: '該隱',
       kanna: '暴擊型卡農',
       karin: '卡琳',
       kawerik: '卡威利',

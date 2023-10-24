@@ -250,15 +250,17 @@ export class DamageGraphComponent implements OnInit, OnDestroy, AfterViewInit {
       return;
     }
 
+    const soulburn = this.skillControl.value?.endsWith('_soulburn') || false;
+
     this.noCrit = skill.noCrit;
-    this.onlyCrit = skill.onlyCrit;
+    this.onlyCrit = skill.onlyCrit(soulburn);
     this.noMiss = skill.noMiss;
     this.onlyMiss = skill.onlyMiss;
 
     if (['crit', 'crush'].includes(this.damageToUse) && skill.noCrit) {
       this.damageToUse = 'normal';
       this.hitTypeControl.setValue('normal');
-    } else if (['crush', 'normal'].includes(this.damageToUse) && skill.onlyCrit) {
+    } else if (['crush', 'normal'].includes(this.damageToUse) && skill.onlyCrit(soulburn)) {
       this.damageToUse = 'crit';
       this.hitTypeControl.setValue('crit')
     } else if (this.damageToUse === 'miss' && skill.noMiss) {
@@ -284,8 +286,6 @@ export class DamageGraphComponent implements OnInit, OnDestroy, AfterViewInit {
     const artifactApplies = this.dataService.currentArtifact.value.applies(skill, this.dataService.damageInputValues);
   
     // let filteredDatasets = this.damageData.filter(dataset => dataset.label === formLabel('attack'));
-    const soulburn = this.skillControl.value?.endsWith('_soulburn');
-
     let filteredDatasets = this.damageData.datasets.filter(dataset => dataset.label === 'attack');
     if (!skill.rate(!!soulburn, this.dataService.damageInputValues) && filteredDatasets.length && !(this.artifact.attackPercent && artifactApplies)) {
       this.damageData.datasets.splice(this.damageData.datasets.indexOf(filteredDatasets[0]), 1);

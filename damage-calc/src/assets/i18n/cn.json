@@ -1,10 +1,13 @@
 {
     "heroes": {
-      "lionheart_cermia_old": "狮心王洁若米亚 (以前的版本)",
-      "silk_old": "席可 (以前的版本)",
-      "tenebria_old": "泰妮布里雅 (以前的版本)",
+      "eligos_old": "艾利戈斯 (以前的版本)",
+      "inferno_khawazu_old": "烈焰的卡瓦朱 (以前的版本)",
+      "martial_artist_ken_old": "武斗家肯恩 (以前的版本)",
+      "moon_bunny_dominiel_old": "月兔多米妮尔 (以前的版本)",
+      "twisted_eidolon_kayron_old": "扭曲亡灵凯隆 (以前的版本)",
 
       "abigail": "雅碧凱",
+      "abyssal_yufine": "深淵優芬妮",
       "achates": "雅卡泰丝",
       "adin": "艾庭",
       "adlay": "亚迪赖",
@@ -144,6 +147,7 @@
       "judge_kise": "审判者绮世",
       "judith": "茱迪丝",
       "juni": "珠妮",
+      "kane": "該隱",
       "kanna": "暴击型卡农",
       "karin": "卡琳",
       "kawerik": "卡威利",
@@ -199,6 +203,7 @@
       "mui": "缪伊",
       "muse_rima": "缪斯黎玛",
       "muwi": "武蔚",
+      "nahkwol": "落月",
       "navy_captain_landy": "海軍上校蘭蒂",
       "nemunas": "尼姆拉斯",
       "ocean_breeze_luluca": "",
@@ -528,6 +533,7 @@
       "tear_of_the_desert": "沙漠之泪",
       "time_matter": "时间的物质",
       "torn_sleeve": "撕裂的右衣袖",
+      "tyrants_descent": "暴君的血統",
       "uberius_tooth": "尤贝里乌斯的臼齿",
       "victorious_flag": "胜战旗帜",
       "violet_talisman": "紫色护身符",
@@ -764,9 +770,11 @@
       }
     },
     "info": {
+      "abyssal_yufine_unbridled_outburst": "暴走",
       "alencia_trample": "扼杀",
       "arunka_expose": "揭露",
       "silk_automatic_fire": "连发射击",
+      "kane_rock_smash": "碎岩重擊",
       "beehoo_incinerate": "焚烧",
       "lethe_call_of_the_abyss": "深渊呼唤",
       "lqc_s3_splash": "S3 溅射伤害",

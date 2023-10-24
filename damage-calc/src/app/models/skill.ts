@@ -43,7 +43,7 @@ export class Skill {
     extraDmg: (hitType: HitType, inputValues: DamageFormData) => number;
     extraDmgTip: Function;
     fixed: (hitType: HitType, inputValues: DamageFormData) => number;
-    fixedTip: Function;
+    fixedTip: (fixedDamage: number) => Record<string, number>;
     flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => number;
     flat2: Function;
     flatTip: Function;
@@ -61,7 +61,7 @@ export class Skill {
     atk: Function;
     noBuff: boolean; //TODO: possible remove this and just use atk (atkToUse)
     noCrit: boolean;
-    onlyCrit: boolean;
+    onlyCrit: (soulburn: boolean) => boolean;
     onlyMiss: boolean;
     noMiss: boolean;
     detonate: DoT[];
@@ -103,7 +103,7 @@ export class Skill {
         this.noBuff = _.get(data, 'noBuff', false);
         this.s1Benefits = _.get(data, 's1Benefits', false);
         this.noCrit = _.get(data, 'noCrit', false);
-        this.onlyCrit = _.get(data, 'onlyCrit', false);
+        this.onlyCrit = _.get(data, 'onlyCrit', () => false);
         this.onlyMiss = _.get(data, 'onlyMiss', false);
         this.noMiss = _.get(data, 'noMiss', false);
         this.hpScaling = _.get(data, 'hpScaling', false);

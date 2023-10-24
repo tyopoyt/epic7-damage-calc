@@ -1,10 +1,13 @@
 {
     "heroes": {
-        "lionheart_cermia_old": "사자왕 체르미아 (이전 버전)",
-        "silk_old": "실크 (이전 버전)",
-        "tenebria_old": "테네브리아 (이전 버전)",
+        "eligos_old": "엘리고스 (이전 버전)",
+        "inferno_khawazu_old": "광염의 카와주 (이전 버전)",
+        "martial_artist_ken_old": "무투가 켄 (이전 버전)",
+        "moon_bunny_dominiel_old": "달토끼 도미니엘 (이전 버전)",
+        "twisted_eidolon_kayron_old": "뒤틀린 망령 카일론 (이전 버전)",
 
         "abigail": "아비게일",
+        "abyssal_yufine": "심연의 유피네",
         "achates": "아카테스",
         "adin": "아딘",
         "adlay": "아들라이",
@@ -148,6 +151,7 @@
         "judge_kise": "심판자 키세",
         "judith": "쥬디스",
         "juni": "쥬니",
+        "kane": "케인",
         "kanna": "폭격형 카논",
         "karin": "카린",
         "kawerik": "카웨릭",
@@ -203,6 +207,7 @@
         "mui": "뮤이",
         "muse_rima": "뮤즈 리마",
         "muwi": "무위",
+        "nahkwol": "낙월",
         "navy_captain_landy": "해군 대령 랑디",
         "nemunas": "네무나스",
         "ocean_breeze_luluca": "바다 향기 루루카",
@@ -461,6 +466,7 @@
         "tear_of_the_desert": "사막의 눈물",
         "time_matter": "시간의 물질",
         "torn_sleeve": "찢어진 오른 소매",
+        "tyrants_descent": "폭군의 혈통",
         "uberius_tooth": "유베리우스의 어금니",
         "victorious_flag": "승전의 깃발",
         "violet_talisman": "보랏빛 탈리스만",
@@ -691,10 +697,12 @@
         }
     },
     "info": {
+        "abyssal_yufine_unbridled_outburst": "폭주",
         "alencia_trample": "압살",
         "arunka_expose": "파헤치기",
         "beehoo_incinerate": "소각",
         "silk_automatic_fire": "연발 사격",
+        "kane_rock_smash": "록 스매시",
         "lethe_call_of_the_abyss": "심연의 부름",
         "lqc_s3_splash": "스킬 3 스플래시",
         "ml_celine_nimble_sword": "쾌검",

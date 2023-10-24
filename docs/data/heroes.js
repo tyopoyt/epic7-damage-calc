@@ -58,7 +58,6 @@ const heroes = {
       }
     }
   },
-  // TODO: translate Abyssal Yufine stuff
   abyssal_yufine: {
     name: 'Abyssal Yufine',
     element: element.dark,

@@ -152,6 +152,17 @@ export const Artifacts: Record<string, Artifact> = {
     type: ArtifactDamageType.penetrate,
     exclusive: HeroClass.thief
   }),
+  fairy_tale_for_a_nightmare: new Artifact({
+    id: 'fairy_tale_for_a_nightmare',
+    name: 'Fairy Tale for a Nightmare',
+    type: ArtifactDamageType.fixedDamage,
+    artifactSpecific: ['extraDualOrCounter'],
+    penetrate: 1,
+    scale: [750, 825, 900, 975, 1050, 1125, 1200, 1275, 1350, 1425, 1500],
+    exclusive: HeroClass.mage,
+    applies: (skill: Skill, inputValues: DamageFormData) => skill.isExtra || inputValues.extraDualOrCounter,
+    value: (artiScale: number, inputValues: DamageFormData) => artiScale
+  }),
   frame_of_light: new Artifact({
     id: 'frame_of_light',
     name: 'Frame of Light',
@@ -418,10 +429,12 @@ export const Artifacts: Record<string, Artifact> = {
   time_matter: new Artifact({
     id: 'time_matter',
     name: 'Time Matter',
-    scale: [0.12, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2, 0.21, 0.22, 0.24],
+    scale: [0.06, 0.66, 0.072, 0.078, 0.084, 0.09, 0.096, 0.102, 0.108, 0.114, 0.12],
+    additional: [0.12, 0.132, 0.144, 0.156, 0.168, 0.18, 0.192, 0.204, 0.216, 0.228, 0.24],
+    artifactSpecific:['enemyDefeated'],
     type: ArtifactDamageType.damage,
     exclusive: HeroClass.mage,
-    value: (artiScale: number) => (artiScale / 2) + artiScale,
+    value: (artiScale: number, inputValues: DamageFormData) => artiScale + (inputValues.enemyDefeated ? Artifacts.time_matter.additional[Artifacts.time_matter.scale.indexOf(artiScale)] : 0) ,
   }),
   torn_sleeve: new Artifact({
     id: 'torn_sleeve',
@@ -429,6 +442,19 @@ export const Artifacts: Record<string, Artifact> = {
     type: ArtifactDamageType.dot,
     dot: [DoT.bleed],
     exclusive: HeroClass.thief
+  }),
+  tyrants_descent: new Artifact({
+    id: 'tyrants_descent',
+    name: "Tyrant's Descent",
+    artifactSpecific: ['targetNumberOfDebuffs'],
+    scale: [0.06, 0.66, 0.072, 0.078, 0.084, 0.09, 0.096, 0.102, 0.108, 0.114, 0.12],
+    // TODO: Check additional scaling, is max 24 total or 24 + scale
+    additional: [0.18, 0.186, 0.192, 0.198, 0.204, 0.21, 0.216, 0.222, 0.228, 0.234, 0.24],
+    type: ArtifactDamageType.damage,
+    exclusive: HeroClass.warrior,
+    value: (artiScale: number, inputValues: DamageFormData) => {
+      return artiScale + Math.min(inputValues.targetNumberOfDebuffs * 0.03, Artifacts.tyrants_descent.additional[Artifacts.tyrants_descent.scale.indexOf(artiScale)])
+    }
   }),
   uberius_tooth: new Artifact({
     id: 'uberius_tooth',

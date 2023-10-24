@@ -50,10 +50,15 @@ export class DamageService {
   getGlobalDefenseMult(): number {
     let mult = 1.0;
     
-    for (const defenseModifier of ['targetDefenseUp', 'targetDefenseDown', 'targetVigor']) {
+    for (const defenseModifier of ['targetDefenseUp', 'targetDefenseDown', 'targetVigor', 'targetHasTrauma']) {
       mult += this.damageForm[defenseModifier as keyof DamageFormData] ? BattleConstants[defenseModifier] : 0.0;
     }
-  
+
+    // TODO: double check defense + trauma interaction?
+    if (this.damageForm.targetHasTrauma && this.damageForm.targetDefenseDown) {
+      mult -= BattleConstants.trauma;
+      mult *= 1 + BattleConstants.trauma;
+    }
     return mult;
   }
 
@@ -106,7 +111,7 @@ export class DamageService {
       extraDmg: skill.extraDmg(HitType.crit, this.damageForm),
       extraDmgTip: this.languageService.getSkillModTip(skill.extraDmgTip(soulburn)),
       fixed: skill.fixed(HitType.crit, this.damageForm),
-      fixedTip: this.languageService.getSkillModTip(skill.fixedTip()),
+      fixedTip: this.languageService.getSkillModTip(skill.fixedTip(skill.fixed(HitType.crit, this.damageForm))),
       flat: skill.flat(soulburn, this.damageForm, this.currentArtifact),
       flatTip: this.languageService.getSkillModTip(skill.flatTip(soulburn)),
       pen: skill.penetrate(soulburn, this.damageForm, this.currentArtifact, this.currentHero.getAttack(this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill)),
@@ -172,7 +177,8 @@ export class DamageService {
     this.damageForm.inputOverrides = inputOverrides ? inputOverrides : {};
 
     const casterAttack = this.currentHero.getAttack(this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill);
-    const critDmgBuff = this.damageForm.increasedCritDamage ? BattleConstants.increasedCritDamage : 0.0;
+    let critDmgBuff = this.damageForm.increasedCritDamage ? BattleConstants.increasedCritDamage : 0.0;
+    critDmgBuff += this.damageForm.casterHasStarsBlessing ? BattleConstants.casterHasStarsBlessing - 1 : 0;
     const hit = this.offensivePower(skill, soulburn, isExtra) * this.dataService.currentTarget.defensivePower(skill, this.damageForm, this.getGlobalDefenseMult(), this.currentArtifact, soulburn, casterAttack);
     const critDmg = Math.min((this.damageForm.casterFinalCritDamage / 100) + critDmgBuff, 3.5)
         + (skill.critDmgBoost ? skill.critDmgBoost(soulburn) : 0)
@@ -181,8 +187,8 @@ export class DamageService {
     return {
       skill: skill.id + (soulburn ? '_soulburn' : (isExtra ? '_extra' : '')),
       crit: skill.noCrit || skill.onlyMiss ? null : Math.round(hit * critDmg + (skill.fixed !== undefined ? skill.fixed(HitType.crit, this.damageForm) : 0) + this.getAfterMathDamage(skill, HitType.crit)),
-      crush: skill.noCrit || skill.onlyCrit || skill.onlyMiss ? null : Math.round(hit * 1.3 + (skill.fixed !== undefined ? skill.fixed(HitType.crush, this.damageForm) : 0) + this.getAfterMathDamage(skill, HitType.crush)),
-      normal: skill.onlyCrit || skill.onlyMiss ? null : Math.round(hit + (skill.fixed !== undefined ? skill.fixed(HitType.normal, this.damageForm) : 0) + this.getAfterMathDamage(skill, HitType.normal)),
+      crush: skill.noCrit || skill.onlyCrit(soulburn) || skill.onlyMiss ? null : Math.round(hit * 1.3 + (skill.fixed !== undefined ? skill.fixed(HitType.crush, this.damageForm) : 0) + this.getAfterMathDamage(skill, HitType.crush)),
+      normal: skill.onlyCrit(soulburn) || skill.onlyMiss ? null : Math.round(hit + (skill.fixed !== undefined ? skill.fixed(HitType.normal, this.damageForm) : 0) + this.getAfterMathDamage(skill, HitType.normal)),
       miss: skill.noMiss ? null : Math.round(hit * 0.75 + (skill.fixed !== undefined ? skill.fixed(HitType.miss, this.damageForm) : 0) + this.getAfterMathDamage(skill, HitType.miss))
     };
   }

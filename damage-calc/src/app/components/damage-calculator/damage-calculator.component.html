@@ -257,6 +257,12 @@
                         {{'decreasedDefense' | translate:'form':languageService.language.value}}
                     </span>
                 </mat-checkbox>
+                <mat-checkbox class="small-margin-top" [checked]="inputValues.targetHasTrauma" (change)="inputChange('targetHasTrauma', $event.checked)">
+                    <span class="neat-container">
+                        <img class="png-icon medium tiny-margin-right" src="assets/debuffs/trauma-debuff.png" alt="Trauma debuff">
+                        {{'targetHasTrauma' | translate:'form':languageService.language.value}}
+                    </span>
+                </mat-checkbox>
                 <mat-checkbox class="small-margin-top" [checked]="inputValues.targetTargeted" (change)="inputChange('targetTargeted', $event.checked)">
                     <span class="neat-container">
                         <img class="png-icon medium tiny-margin-right" src="assets/debuffs/target-debuff.png" alt="Target debuff">

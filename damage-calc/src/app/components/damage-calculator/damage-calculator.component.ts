@@ -376,13 +376,14 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
     this.heroSpecificBooleanInputs = [...(new Set(this.heroSpecificBooleanInputs))];
     this.artifactSpecificBooleanInputs = [...(new Set(this.artifactSpecificBooleanInputs))];
 
-    this.artifactSpecificBooleanInputs.filter(input => {
+    this.artifactSpecificBooleanInputs = this.artifactSpecificBooleanInputs.filter(input => {
       return !this.heroSpecificBooleanInputs.includes(input);
     })
 
-    this.artifactSpecificNumberInputs.filter(input => {
+    this.artifactSpecificNumberInputs = this.artifactSpecificNumberInputs.filter(input => {
       return !this.heroSpecificNumberInputs.includes(input);
     })
+
   }
 
   // TODO: don't call this initially for every input, only once
@@ -441,6 +442,7 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
   }
 
   updateMultiplierTips() {
+    // TODO: USE GETMODIFIERS IN DAMAGE SERVICE????
     for (const skill of Object.entries(this.hero.skills)) {
       const skillTip: Record<string, string | number | string[][]> = {};
       const soulburn = skill[0].endsWith('_soulburn');
@@ -475,10 +477,11 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
       }
 
       const skillDamageData = this.damageData.data.filter(skillDamage => skillDamage.skill === skill[0])[0];
-      const hitType = skillDamageData.crit ? HitType.crit : (skillDamageData.crush ? HitType.crush : (skillDamageData.normal ? HitType.normal : HitType.miss))
-
-      if ((tip = skill[1].fixedTip())) {
-        value = skill[1].fixed(hitType, this.inputValues)
+      const hitType = skillDamageData?.crit ? HitType.crit : (skillDamageData?.crush ? HitType.crush : (skillDamageData?.normal ? HitType.normal : HitType.miss))
+    
+      // TODO: make condition
+      value = skill[1].fixed(hitType, this.inputValues)
+      if ((tip = skill[1].fixedTip(value))) {
         skillTip['fixed'] = [];
 
         for (const modifierTip of Object.entries(tip)) {
@@ -514,6 +517,7 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
       'hero': hero
     });
     this.dataService.updateSelectedHero(hero);
+    this.updateFormInputs();
     this.dataService.updateDamageInputValues({exclusiveEquipment1: false, exclusiveEquipment2: false, exclusiveEquipment3: false, casterPerception: false, casterEnraged: false})
     this.updateDamageBlockHeader();
   }
@@ -805,7 +809,7 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
   
       this.dataService.updateDamageInputValues(paramInputs);
     }
-    
+    this.refreshCompareBadge();
   }
 
   testfxn(yeah: string) {

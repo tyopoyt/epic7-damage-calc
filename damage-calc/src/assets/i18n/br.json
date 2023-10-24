@@ -1,8 +1,10 @@
 {
     "heroes": {
-      "lionheart_cermia_old": "Cérmia Coração de Leão (Pré-Balanceamento)",
-      "silk_old": "Seda (Pré-Balanceamento)",
-      "tenebria_old": "Tenébria (Pré-Balanceamento)",
+      "eligos_old": "Eligós (Pré-Balanceamento)",
+      "inferno_khawazu_old": "Khawazu Infernal (Pré-Balanceamento)",
+      "martial_artist_ken_old": "Artista Marcial Ken (Pré-Balanceamento)",
+      "moon_bunny_dominiel_old": "Dominiel Coelhinha Lunar (Pré-Balanceamento)",
+      "twisted_eidolon_kayron_old": "Espírito Distorcido Kayron (Pré-Balanceamento)",
 
       "abigail": "Abigail",
       "achates": "Acates",

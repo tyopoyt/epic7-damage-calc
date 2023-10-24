@@ -1,10 +1,13 @@
 {
     "heroes": {
-      "lionheart_cermia_old": "獅子王 チェルミア (前のバージョン)",
-      "silk_old": "シルク (前のバージョン)",
-      "tenebria_old": "テネブレア (前のバージョン)",
+      "eligos_old": "エリコス (前のバージョン)",
+      "inferno_khawazu_old": "狂炎のカワズ (前のバージョン)",
+      "martial_artist_ken_old": "覇者 ケン (前のバージョン)",
+      "moon_bunny_dominiel_old": "月うさぎ ドミニエル (前のバージョン)",
+      "twisted_eidolon_kayron_old": "歪みし亡霊 カイロン (前のバージョン)",
 
       "abigail": "アビゲイル",
+      "abyssal_yufine": "深淵のユピネ",
       "achates": "アカテス",
       "adin": "アーディン",
       "adlay": "アドレー",
@@ -144,6 +147,7 @@
       "judge_kise": "審判者 キセ",
       "judith": "ジュディス",
       "juni": "ジュニ",
+      "kane": "ケイン",
       "kanna": "爆撃型 カノン",
       "karin": "カリン",
       "kawerik": "カーウェリック",
@@ -199,6 +203,7 @@
       "mui": "ミュイ",
       "muse_rima": "ミューズ リマ",
       "muwi": "ムーム",
+      "nahkwol": "ナユル",
       "navy_captain_landy": "海軍大佐 ランディ",
       "nemunas": "ネムナス",
       "ocean_breeze_luluca": "海の香り ルルカ",
@@ -356,6 +361,7 @@
       "tear_of_the_desert": "砂漠の涙",
       "time_matter": "流転物質",
       "torn_sleeve": "破れた着物",
+      "tyrants_descent": "暴君の血統",
       "uberius_tooth": "ユーベリウスの牙",
       "victorious_flag": "勝利の旗",
       "violet_talisman": "紫菫の輝き",
@@ -526,10 +532,12 @@
       }
     },
     "info": {
+      "abyssal_yufine_unbridled_outburst": "暴走",
       "alencia_trample": "圧殺",
       "arunka_expose": "えぐり",
       "beehoo_incinerate": "焼却",
       "silk_automatic_fire": "バーストショット",
+      "kane_rock_smash": "ロックスマッシュ",
       "lethe_call_of_the_abyss": "深淵の呼び声",
       "lqc_s3_splash": "S3 スプラッシュダメージ",
       "ml_celine_nimble_sword": "快剣",

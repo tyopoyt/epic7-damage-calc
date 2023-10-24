@@ -17,6 +17,15 @@ export const FormDefaults: Record<string, {max?: number, min?: number, defaultVa
     casterDefenseDown: {
         icon: 'debuffs/defense-debuff.png'
     },
+    casterHasStarsBlessing: {
+        icon: 'buffs/stars-blessing-buff.png'
+    },
+    casterHasTrauma: {
+        icon: 'debuffs/trauma-debuff.png'
+    },
+    targetHasTrauma: {
+        icon: 'debuffs/trauma-debuff.png'
+    },
     exclusiveEquipment1: {
         icon: 'icons/one.png'
     },
@@ -25,6 +34,9 @@ export const FormDefaults: Record<string, {max?: number, min?: number, defaultVa
     },
     exclusiveEquipment3: {
         icon: 'icons/three.png'
+    },
+    extraDualOrCounter: {
+        icon: 'buffs/dual-attack-buff.png'
     },
     skillTreeCompleted: {
         default: true,
@@ -318,6 +330,8 @@ export const FormDefaults: Record<string, {max?: number, min?: number, defaultVa
         defaultValue: 0
     },
     enemyDefeated: {
+        icon: 'icons/skull.svg',
+        svgIcon: true,
         default: true
     },
     inBattleHP: {
@@ -352,6 +366,7 @@ export class DamageFormData {
     casterEnraged: boolean;
     casterFocus: number;
     casterFullFightingSpirit: boolean;
+    casterFightingSpirit: number;
     casterFullFocus: boolean;
     casterFury: boolean;
     casterBuffed: boolean;
@@ -361,6 +376,8 @@ export class DamageFormData {
     casterHasMultilayerBarrier: boolean;
     casterHasNeoPhantomSword: boolean;
     casterHasStealth: boolean;
+    casterHasTrauma: boolean;
+    casterHasStarsBlessing: boolean;
     casterInvincible: boolean;
     casterMaxHP: number;
     casterNumberOfBuffs: number;
@@ -384,6 +401,7 @@ export class DamageFormData {
     exclusiveEquipment1: boolean;
     exclusiveEquipment2: boolean;
     exclusiveEquipment3: boolean;
+    extraDualOrCounter: boolean;
     heroID: string;
     highestAllyAttack: number;
     inBattleHP: boolean;
@@ -421,6 +439,7 @@ export class DamageFormData {
     targetHasBarrier: boolean;
     targetHasBuff: boolean;
     targetHasDebuff: boolean;
+    targetHasTrauma: boolean;
     targetInjuries: number;
     targetIsHighestMaxHP: boolean;
     targetMagicNailed: boolean;
@@ -469,6 +488,7 @@ export class DamageFormData {
         this.casterEnraged = _.get(data, 'casterEnraged', false);
         this.casterFocus = _.get(data, 'casterFocus', 0);
         this.casterFullFightingSpirit = _.get(data, 'casterFullFightingSpirit', false);
+        this.casterFightingSpirit = _.get(data, 'casterFightingSpirit', 0);
         this.casterFullFocus = _.get(data, 'casterFullFocus', false);
         this.casterFury = _.get(data, 'casterFury', false);
         this.casterBuffed = _.get(data, 'casterBuffed', false);
@@ -478,6 +498,8 @@ export class DamageFormData {
         this.casterHasMultilayerBarrier = _.get(data, 'casterHasMultilayerBarrier', false);
         this.casterHasNeoPhantomSword = _.get(data, 'casterHasNeoPhantomSword', false);
         this.casterHasStealth = _.get(data, 'casterHasStealth', false);
+        this.casterHasTrauma = _.get(data, 'casterHasTrauma', false);
+        this.casterHasStarsBlessing = _.get(data, 'casterHasStarsBlessing', false);
         this.casterInvincible = _.get(data, 'casterInvincible', false);
         this.casterMaxHP = _.get(data, 'casterMaxHP', 10000);
         this.casterNumberOfBuffs = _.get(data, 'casterNumberOfBuffs', 0)
@@ -501,6 +523,7 @@ export class DamageFormData {
         this.exclusiveEquipment1 = _.get(data, 'exclusiveEquipment1', false);
         this.exclusiveEquipment2 = _.get(data, 'exclusiveEquipment2', false);
         this.exclusiveEquipment3 = _.get(data, 'exclusiveEquipment3', false);
+        this.extraDualOrCounter = _.get(data, 'extraDualOrCounter', false);
         this.heroID = _.get(data, 'heroID', 'abigail');
         this.highestAllyAttack = _.get(data, 'highestAllyAttack', 2500);
         this.inBattleHP = _.get(data, 'inBattleHP', false);
@@ -538,6 +561,7 @@ export class DamageFormData {
         this.targetHasBarrier = _.get(data, 'targetHasBarrier', false);
         this.targetHasBuff = _.get(data, 'targetHasBuff', false);
         this.targetHasDebuff = _.get(data, 'targetHasDebuff', false);
+        this.targetHasTrauma = _.get(data, 'targetHasTrauma', false);
         this.targetInjuries = _.get(data, 'targetInjuries', 0);
         this.targetIsHighestMaxHP = _.get(data, 'targetIsHighestMaxHP', false);
         this.targetMagicNailed = _.get(data, 'targetMagicNailed', false);
@@ -572,17 +596,33 @@ export class DamageFormData {
 
     // TODO: Make sure the targetdefense... get replaced when constants are renamed
     casterFinalDefense = () => {
-        return Math.floor((this.inputOverrides['casterDefense'] ? this.inputOverrides['casterDefense'] : this.casterDefense) * (1 + (this.casterDefenseUp ? BattleConstants.targetDefenseUp : 0)
-           + (this.casterDefenseDown ? BattleConstants.targetDefenseDown : 0)
-           + (this.casterVigor ? BattleConstants.casterVigor - 1 : 0)
-           + (this.casterFury ? BattleConstants['caster-fury'] - 1 : 0)));
+        let defenseMultiplier = (1 + (this.casterDefenseUp ? BattleConstants.targetDefenseUp : 0)
+        + (this.casterDefenseDown ? BattleConstants.targetDefenseDown : 0)
+        + (this.casterHasTrauma ? BattleConstants.trauma : 0)
+        + (this.casterVigor ? BattleConstants.casterVigor - 1 : 0)
+        + (this.casterFury ? BattleConstants['caster-fury'] - 1 : 0));
+
+        if (this.casterHasTrauma && this.casterDefenseDown) {
+            defenseMultiplier -= BattleConstants.trauma;
+            defenseMultiplier *= BattleConstants.trauma * -1;
+        }
+        
+        return Math.floor((this.inputOverrides['casterDefense'] ? this.inputOverrides['casterDefense'] : this.casterDefense) * defenseMultiplier);
     }
     // TODO: add indomitable for peacemaker
     targetFinalDefense = () => {
-        return Math.floor(this.targetDefense * (1 + (this.targetDefenseUp ? BattleConstants.targetDefenseUp : 0)
-           + (this.targetDefenseDown ? BattleConstants.targetDefenseDown : 0)
-           + (this.targetVigor ? BattleConstants.casterVigor - 1 : 0)
-           + (this.targetFury ? BattleConstants['caster-fury'] - 1 : 0)));
+        let defenseMultiplier = (1 + (this.targetDefenseUp ? BattleConstants.targetDefenseUp : 0)
+        + (this.targetDefenseDown ? BattleConstants.targetDefenseDown : 0)
+        + (this.targetHasTrauma ? BattleConstants.trauma : 0)
+        + (this.targetVigor ? BattleConstants.casterVigor - 1 : 0)
+        + (this.targetFury ? BattleConstants['caster-fury'] - 1 : 0));
+
+        if (this.targetHasTrauma && this.targetDefenseDown) {
+            defenseMultiplier -= BattleConstants.trauma;
+            defenseMultiplier *= BattleConstants.trauma * -1;
+        }
+
+        return Math.floor(this.targetDefense * defenseMultiplier);
     }
 
     casterFinalMaxHP = (artifact: Artifact) => {

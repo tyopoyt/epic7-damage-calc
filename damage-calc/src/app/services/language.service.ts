@@ -13,6 +13,8 @@ export const CustomLanguage = {
   custom: true
 }
 
+// TODO: simplified chinese translations for: abyssal yufine, unbridled outburst, kan, tyrant's ascent
+// TODO: add pt translations for: abyssal yufine, unbridled outburst, kan, tyrant's ascent
 // TODO: check if elementalAdvantage under skills can be removed in each lang file.
 @Injectable({
   providedIn: 'root'

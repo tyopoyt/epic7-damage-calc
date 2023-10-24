@@ -1,10 +1,13 @@
 {
   "heroes": {
-    "lionheart_cermia_old": "Lionheart Cermia (Pre-Balance)",
-    "silk_old": "Silk (Pre-Balance)",
-    "tenebria_old": "Tenebria (Pre-Balance)",
+    "eligos_old": "Eligos (Pre-Balance)",
+    "inferno_khawazu_old": "Inferno Khawazu (Pre-Balance)",
+    "martial_artist_ken_old": "Martial Artist Ken (Pre-Balance)",
+    "moon_bunny_dominiel_old": "Moon Bunny Dominiel (Pre-Balance)",
+    "twisted_eidolon_kayron_old": "Twisted Eidolon Kayron (Pre-Balance)",
 
     "abigail": "Abigail",
+    "abyssal_yufine": "Abyssal Yufine",
     "achates": "Achates",
     "adin": "Adin",
     "adlay": "Adlay",
@@ -148,6 +151,7 @@
     "judge_kise": "Judge Kise",
     "judith": "Judith",
     "juni": "Juni",
+    "kane": "Kane",
     "kanna": "Kanna",
     "karin": "Karin",
     "kawerik": "Kawerik",
@@ -203,6 +207,7 @@
     "mui": "Mui",
     "muse_rima": "Muse Rima",
     "muwi": "Muwi",
+    "nahkwol": "Nahkwol",
     "navy_captain_landy": "Navy Captain Landy",
     "nemunas": "Nemunas",
     "ocean_breeze_luluca": "Ocean Breeze Luluca",
@@ -361,6 +366,7 @@
     "tear_of_the_desert": "Tear of the Desert",
     "time_matter": "Time Matter",
     "torn_sleeve": "Torn Sleeve",
+    "tyrants_descent": "Tyrant's Descent",
     "uberius_tooth": "Uberius's Tooth",
     "victorious_flag": "Victorious Flag",
     "violet_talisman": "Violet Talisman",
@@ -614,10 +620,12 @@
     "inBattleHPHint": "Check this box ONLY if you are using the caster's final HP value displayed in an active battle instead of the value on the hero's stat page."
   },
   "info": {
+    "abyssal_yufine_unbridled_outburst": "Unbridled Outburst",
     "alencia_trample": "Trample",
     "arunka_expose": "Expose",
     "balance_op_sigret": "Balance Update: Added Speed scaling, lowered Attack scaling: S2: 0.8 -> 0.75 / S3 1.1 -> 1",
     "beehoo_incinerate": "Incinerate",
+    "kane_rock_smash": "Rock Smash",
     "lethe_call_of_the_abyss": "Call of the Abyss",
     "lqc_s3_splash": "S3 Splash",
     "ml_celine_nimble_sword": "Nimble Sword",

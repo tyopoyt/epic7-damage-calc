@@ -10,6 +10,7 @@ export enum ArtifactDamageType {
     aftermath = 'aftermath',
     attack = 'attack',
     critDamageBoost = 'critDamageBoost',
+    fixedDamage = 'fixedDamage',
     flat = 'flat',
     dot = 'dot'
 }
@@ -29,6 +30,7 @@ export class Artifact {
     attackPercent: number;
     defensePercent: number;
     defenseScaling: boolean;
+    fixedDamage: number;
     hpScaling: boolean;
     speedScaling: boolean;
     penetrate: number;
@@ -54,6 +56,7 @@ export class Artifact {
         this.flat = _.get(data, 'flat', () => 0); //TODO: add appropriate inputs to these fxns
         this.attackPercent = _.get(data, 'attackPercent', 0);
         this.defensePercent = _.get(data, 'defensePercent', 0);
+        this.fixedDamage = _.get(data, 'fixedDamage', 0);
         this.penetrate = _.get(data, 'penetrate', 0.7);
         this.artifactSpecific = _.get(data, 'artifactSpecific', []);
         this.artifactSpecificMaximums = _.get(data, 'artifactSpecificMaximums', {});
@@ -107,14 +110,16 @@ export class Artifact {
       return this.value(this.getScale(level), inputValues, skill, isExtra);
     }
 
-    getAfterMathMultipliers(skill: Skill, inputValues: DamageFormData) {
+    getAfterMathMultipliers(skill: Skill, inputValues: DamageFormData, isExtra: boolean) {
         if(!this.applies(skill, inputValues)) return null;
-        if (this.id === undefined || this.type !== ArtifactDamageType.aftermath || (this.attackPercent === undefined && this.defensePercent === undefined) || this.penetrate === undefined) {
+        if (this.id === undefined || ![ArtifactDamageType.aftermath, ArtifactDamageType.fixedDamage].includes(this.type)  || (this.attackPercent === undefined && this.defensePercent === undefined) || this.penetrate === undefined) {
           return null;
         }
+        console.log(this.getScale(inputValues.artifactLevel))
         return {
           attackPercent: this.attackPercent,
           defensePercent: this.defensePercent,
+          fixedDamage: this.type === ArtifactDamageType.fixedDamage ? this.value(this.getScale(inputValues.artifactLevel), inputValues, skill, isExtra) : 0,
           penetrate: this.penetrate
         };
       }
