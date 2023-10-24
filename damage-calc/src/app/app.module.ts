@@ -12,6 +12,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MtxTooltipModule } from '@ng-matero/extensions/tooltip';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
@@ -80,7 +81,8 @@ import { MatRadioModule } from '@angular/material/radio';
     NgxMatSelectSearchModule,
     ReactiveFormsModule,
     NgChartsModule,
-    MatRadioModule
+    MatRadioModule,
+    MtxTooltipModule
   ],
   exports: [
     TranslationPipe

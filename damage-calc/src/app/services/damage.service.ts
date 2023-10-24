@@ -96,25 +96,33 @@ export class DamageService {
   // TODO: Does this need to know about hit type?
   // TODO: is this even used anymore?
   getModifiers(skill: Skill, soulburn = false) {
+    const aftermathFormula = skill.afterMath(HitType.crit, this.damageForm);
+    const formattedAftermathFormula: Record<string, number> = {}
+
+    if (aftermathFormula) {
+      for (const tip of Object.entries(aftermathFormula)) {
+        if (tip[1]) {
+          formattedAftermathFormula[tip[0]] = tip[1] * 100
+        }
+      }
+    }
     return {
       rate: skill.rate(soulburn, this.damageForm),
       pow: skill.pow(soulburn, this.damageForm),
-      mult: skill.mult(soulburn, this.damageForm, this.currentArtifact) - 1, // TODO: change anything checking for this to be null to check for -1
+      mult: Math.round(((skill.mult(soulburn, this.damageForm, this.currentArtifact) - 1) * 100)), // TODO: change anything checking for this to be null to check for -1
       multTip: this.languageService.getSkillModTip(skill.multTip(soulburn)),
-      afterMathDmg: this.currentHero.getAfterMathSkillDamage(skill, HitType.crit, this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), this.getGlobalDefenseMult(), this.dataService.currentTarget),
-      afterMathFormula: skill.afterMath(HitType.crit, this.damageForm),
-      critBoost: skill.critDmgBoost(soulburn),
+      afterMathDmg: Math.round(this.currentHero.getAfterMathSkillDamage(skill, HitType.crit, this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), this.getGlobalDefenseMult(), this.dataService.currentTarget)),
+      afterMathFormula: Object.keys(formattedAftermathFormula).length ? this.languageService.getSkillModTip(formattedAftermathFormula) : '',
+      critBoost: (skill.critDmgBoost(soulburn) * 100),
       critBoostTip: this.languageService.getSkillModTip(skill.critDmgBoostTip(soulburn)),
-      detonation: skill.detonation() - 1,
+      detonation: skill.detonation() ? Math.round((skill.detonation() - 1) * 100) : 0,
       elementalAdvantage: skill.elementalAdvantage(this.damageForm),
-      exEq: skill.exclusiveEquipmentMultiplier(this.damageForm),
-      extraDmg: skill.extraDmg(HitType.crit, this.damageForm),
-      extraDmgTip: this.languageService.getSkillModTip(skill.extraDmgTip(soulburn)),
-      fixed: skill.fixed(HitType.crit, this.damageForm),
-      fixedTip: this.languageService.getSkillModTip(skill.fixedTip(skill.fixed(HitType.crit, this.damageForm))),
-      flat: skill.flat(soulburn, this.damageForm, this.currentArtifact),
+      exEq: skill.exclusiveEquipmentMultiplier(this.damageForm) * 100,
+      fixed: Math.round(skill.fixed(HitType.crit, this.damageForm)),
+      fixedTip: this.languageService.getSkillModTip(skill.fixedTip(skill.fixed(HitType.crit, this.damageForm), this.damageForm)),
+      flat: Math.round(skill.flat(soulburn, this.damageForm, this.currentArtifact)),
       flatTip: this.languageService.getSkillModTip(skill.flatTip(soulburn)),
-      pen: skill.penetrate(soulburn, this.damageForm, this.currentArtifact, this.currentHero.getAttack(this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill)),
+      pen: (skill.penetrate(soulburn, this.damageForm, this.currentArtifact, this.currentHero.getAttack(this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill)) * 100),
       penTip: this.languageService.getSkillModTip(skill.penetrateTip(soulburn)),
     };
   }
@@ -168,8 +176,7 @@ export class DamageService {
     const detonation = this.getDetonateDamage(skill);
     const artiDamage: number = this.currentHero.getAfterMathArtifactDamage(skill, this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), this.getGlobalDefenseMult(), this.dataService.currentTarget) || 0;
     const skillDamage = this.currentHero.getAfterMathSkillDamage(skill, hitType, this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), this.getGlobalDefenseMult(), this.dataService.currentTarget);
-    const skillExtraDmg = skill.extraDmg !== undefined ? Math.round(skill.extraDmg(hitType, this.damageForm)) : 0;
-    return detonation + artiDamage + skillDamage + skillExtraDmg;
+    return detonation + artiDamage + skillDamage;
   }
 
   // TODO: ensure this is called only once per skill when something changes (hero, input, etc.)
@@ -184,6 +191,7 @@ export class DamageService {
         + (skill.critDmgBoost ? skill.critDmgBoost(soulburn) : 0)
         + (this.currentArtifact.getCritDmgBoost(this.damageForm.artifactLevel, this.damageForm, skill, isExtra) || 0)
         + (this.damageForm.casterPerception ? BattleConstants.perception : 0);
+
     return {
       skill: skill.id + (soulburn ? '_soulburn' : (isExtra ? '_extra' : '')),
       crit: skill.noCrit || skill.onlyMiss ? null : Math.round(hit * critDmg + (skill.fixed !== undefined ? skill.fixed(HitType.crit, this.damageForm) : 0) + this.getAfterMathDamage(skill, HitType.crit)),
@@ -209,7 +217,6 @@ export class DamageService {
         }
       }
     }
-
     this.damages.next(newDamages);
   }
 

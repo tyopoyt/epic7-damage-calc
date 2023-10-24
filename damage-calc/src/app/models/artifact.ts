@@ -115,7 +115,7 @@ export class Artifact {
         if (this.id === undefined || ![ArtifactDamageType.aftermath, ArtifactDamageType.fixedDamage].includes(this.type)  || (this.attackPercent === undefined && this.defensePercent === undefined) || this.penetrate === undefined) {
           return null;
         }
-        console.log(this.getScale(inputValues.artifactLevel))
+
         return {
           attackPercent: this.attackPercent,
           defensePercent: this.defensePercent,

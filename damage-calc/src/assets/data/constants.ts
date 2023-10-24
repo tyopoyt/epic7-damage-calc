@@ -6,7 +6,7 @@ export const BattleConstants: Record<string, number> = {
   'targetAttackDown': 0.5, 
   'attackUp': 1.5, 
   'targetAttackUp': 1.5, 
-  'attackUpGreat': 1.75, 
+  'attackUpGreat': 1.75,
   'targetAttackUpGreat': 1.75, 
   'casterVigor': 1.3,
   'targetVigor': 0.3,

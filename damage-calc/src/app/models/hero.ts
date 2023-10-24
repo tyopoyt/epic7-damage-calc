@@ -91,6 +91,7 @@ export class Hero {
   }
 
   getAttack(artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number, skill: Skill, isExtra = false): number {
+    console.log(skill.atk, skill.atk(inputValues))
     let atk = skill?.atk(inputValues) || inputValues.casterFinalAttack;
 
     // TODO: check if this is innateAttackIncrease val is added twice?
@@ -123,6 +124,9 @@ export class Hero {
         skillDamage = inputValues.casterFinalDefense() * skillMultipliers.defensePercent * BattleConstants.damageConstant * target.defensivePower(new Skill({ penetrate: () => skillMultipliers.penetrate }), inputValues, defenseMultiplier, artifact, false, attack, true);
       } else if (skillMultipliers.injuryPercent) {
         skillDamage = inputValues.targetInjuries * skillMultipliers.injuryPercent * BattleConstants.damageConstant * target.defensivePower(new Skill({ penetrate: () => skillMultipliers.penetrate }), inputValues, defenseMultiplier, artifact, false, attack, true);
+      } else if (skillMultipliers.targetMaxHPPercent) {
+        console.log('here')
+        skillDamage = inputValues.targetFinalMaxHP() * skillMultipliers.targetMaxHPPercent;
       }
     }
     return skillDamage;

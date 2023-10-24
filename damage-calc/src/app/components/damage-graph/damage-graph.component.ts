@@ -155,10 +155,12 @@ export class DamageGraphComponent implements OnInit, OnDestroy, AfterViewInit {
     this.heroSubscription = this.dataService.currentHero.subscribe(hero => {
       this.heroSkills = [];
       for (const skill of Object.keys(hero.skills)) {
-        this.heroSkills.push(skill);
-        // TODO: support extra attacks when relevant (prayer of solitude)
-        if (hero.skills[skill].soulburn) {
-          this.heroSkills.push(skill + '_soulburn')
+        if (hero.skills[skill].rate(false, this.inputValues) || hero.skills[skill].pow(false, this.inputValues)) {
+          this.heroSkills.push(skill);
+          // TODO: support extra attacks when relevant (prayer of solitude)
+          if (hero.skills[skill].soulburn) {
+            this.heroSkills.push(skill + '_soulburn')
+          }
         }
       }
       this.damageToUse = 'crit';

@@ -121,7 +121,6 @@ export class LanguageService {
       } catch  {
         output.push(key);
       }
-      
     }
   
     return `(${output.join(', ')})`;

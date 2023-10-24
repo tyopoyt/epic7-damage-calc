@@ -84,7 +84,9 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
   damageData = new MatTableDataSource<DamageRow>() //DamageRow[] = [];
 
   stackingSets: string[] = [];
-  skillMultiplierTips: Record<string, Record<string, string | number | string[][]>> = {}
+  // skillMultiplierTips: Record<string, number | string | AftermathSkill> = {}
+  // TODO: un-anyify this
+  skillMultiplierTips: Record<string, any> = {}
 
   molagoraModifiers: Record<string, number> = {}
   queuedQueryParams: Record<string, string> | null = null;
@@ -253,6 +255,7 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
     })
 
     this.currentHeroSubscription = this.dataService.currentHero.subscribe(() => {
+      this.skillMultiplierTips = {};
       this.updateFormInputs();
       this.refreshCompareBadge();
     })
@@ -335,9 +338,9 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
         if (input === 'targetAttack') {
           this.heroSpecificBooleanInputs.push('targetAttackUpGreat')
           this.heroSpecificBooleanInputs.push('targetEnraged')
-        }
-
-        if (input === 'targetSpeed') {
+        } else if (input === 'highestAllyAttack') {
+          this.heroSpecificBooleanInputs.push('highestAllyAttackUpGreat')
+        } else if (input === 'targetSpeed') {
           this.heroSpecificBooleanInputs.push('targetEnraged')
         }
       }
@@ -442,70 +445,14 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
   }
 
   updateMultiplierTips() {
-    // TODO: USE GETMODIFIERS IN DAMAGE SERVICE????
     for (const skill of Object.entries(this.hero.skills)) {
-      const skillTip: Record<string, string | number | string[][]> = {};
-      const soulburn = skill[0].endsWith('_soulburn');
+      let multipliers = this.damageService.getModifiers(skill[1], skill[0].endsWith('_soulburn'))
+      this.skillMultiplierTips[skill[0]] = multipliers;
 
-      // Assignment in an expression isn't the most readable so as a heads up this function will be using them
-      let value: number | AftermathSkill = skill[1].rate(soulburn, this.inputValues);
-      skillTip['rate'] = value;
-
-      value = skill[1].pow(soulburn, this.inputValues)
-      skillTip['pow'] = value;
-
-      // TODO: the ifs should check value or tip
-      // TODO: refactor this so that value is only used once for things like multiple mult mods
-      let tip;
-
-      if ((tip = skill[1].flatTip())) {
-        value = skill[1].flat(soulburn, this.inputValues, this.artifact)
-        skillTip['flat'] = [];
-
-        for (const statTip of Object.entries(tip)) {
-          skillTip['flat'].push([`${this.translationPipe.transform(statTip[0], 'tips', this.language).replace('{v}', (statTip[1] as number).toString())}`, `${value}`])
-        }
+      if (skill[1].soulburn) {
+        multipliers = this.damageService.getModifiers(skill[1], true);
+        this.skillMultiplierTips[skill[0] + '_soulburn'] = multipliers;
       }
-
-      if ((tip = skill[1].multTip())) {
-        value = skill[1].mult(soulburn, this.inputValues, this.artifact)
-        skillTip['mult'] = [];
-
-        for (const modifierTip of Object.entries(tip)) {
-          skillTip['mult'].push([`${this.translationPipe.transform(modifierTip[0], 'tips', this.language).replace('{v}', (modifierTip[1] as number).toString())}`, `${value}`])
-        }
-      }
-
-      const skillDamageData = this.damageData.data.filter(skillDamage => skillDamage.skill === skill[0])[0];
-      const hitType = skillDamageData?.crit ? HitType.crit : (skillDamageData?.crush ? HitType.crush : (skillDamageData?.normal ? HitType.normal : HitType.miss))
-    
-      // TODO: make condition
-      value = skill[1].fixed(hitType, this.inputValues)
-      if ((tip = skill[1].fixedTip(value))) {
-        skillTip['fixed'] = [];
-
-        for (const modifierTip of Object.entries(tip)) {
-          skillTip['fixed'].push([`${this.translationPipe.transform(modifierTip[0], 'tips', this.language).replace('{v}', (modifierTip[1] as number).toString())}`, `${value}`])
-        }
-      }
-
-      // TODO: go through each entry in the AftermathSkill
-      if ((tip = skill[1].afterMath(hitType, this.inputValues))) {
-        value = skill[1].afterMath(hitType, this.inputValues)
-        skillTip['fixed'] = [];
-
-        for (const modifierTip of Object.entries(tip)) {
-          skillTip['fixed'].push([`${this.translationPipe.transform(modifierTip[0], 'tips', this.language).replace('{v}', (modifierTip[1] as number).toString())}`, `${value}`])
-        }
-      }
-
-      // TODO: add extraDmg if it's not just a duplicate of aftermath
-
-      // TODO: add penetrate
-
-      this.skillMultiplierTips[skill[0]] = skillTip;
-
-      console.log(skillTip)
     }
   }
 
@@ -810,11 +757,6 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
       this.dataService.updateDamageInputValues(paramInputs);
     }
     this.refreshCompareBadge();
-  }
-
-  testfxn(yeah: string) {
-    console.log('oop')
-    return yeah;
   }
 
   // TODO: add when share button is implemented

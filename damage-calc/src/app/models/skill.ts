@@ -19,18 +19,22 @@ export class AftermathSkill {
     defensePercent?: number
     attackPercent?: number
     injuryPercent?: number
+    targetMaxHPPercent?: number
     penetrate: number
     
     constructor(data: any) {
         this.defensePercent = data.defensePercent;
         this.attackPercent = data.attackPercent;
         this.injuryPercent = data.injuryPercent;
+        this.targetMaxHPPercent = data.targetMaxHPPercent;
         this.penetrate = data.penetrate || 0.7;
     }
 }
 
 export class Skill {
     id: string;
+    // TODO: refactor this name
+    atk: (inputValues: DamageFormData) => number;
     afterMath: (hitType: HitType, inputValues: DamageFormData) => AftermathSkill;
     canExtra: boolean;
     critDmgBoost: Function;
@@ -40,10 +44,8 @@ export class Skill {
     enhance: number[];
     enhanceFrom: string;
     exclusiveEquipmentMultiplier: (inputValues: DamageFormData) => number;
-    extraDmg: (hitType: HitType, inputValues: DamageFormData) => number;
-    extraDmgTip: Function;
     fixed: (hitType: HitType, inputValues: DamageFormData) => number;
-    fixedTip: (fixedDamage: number) => Record<string, number>;
+    fixedTip: (fixedDamage: number, inputValues: DamageFormData) => Record<string, number>;
     flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => number;
     flat2: Function;
     flatTip: Function;
@@ -58,7 +60,6 @@ export class Skill {
     pow: (soulburn: boolean, inputValues: DamageFormData) => number;
     rate: (soulburn: boolean, inputValues: DamageFormData) => number;
     s1Benefits: boolean;
-    atk: Function;
     noBuff: boolean; //TODO: possible remove this and just use atk (atkToUse)
     noCrit: boolean;
     onlyCrit: (soulburn: boolean) => boolean;
@@ -73,6 +74,7 @@ export class Skill {
     // TODO: refactor atk to attackToUse
     constructor(data: any) {
         this.id = _.get(data, 'id', 's1');
+        this.atk = _.get(data, 'atk', () => 0)
         this.afterMath = _.get(data, 'afterMath', () => null);
         this.canExtra = _.get(data, 'canExtra', false);
         this.critDmgBoost = _.get(data, 'critDmgBoost', () => 0);
@@ -82,8 +84,6 @@ export class Skill {
         this.enhance = _.get(data, 'enhance', []);
         this.enhanceFrom = _.get(data, 'enhanceFrom', '');
         this.exclusiveEquipmentMultiplier = _.get(data, 'exclusiveEquipmentMultiplier', () => 0);
-        this.extraDmg = _.get(data, 'extraDmg', () => 0);
-        this.extraDmgTip = _.get(data, 'extraDmgTip', () => null);
         this.fixed = _.get(data, 'fixed', () => 0);
         this.fixedTip = _.get(data, 'fixedTip', () => null);
         this.flat = _.get(data, 'flat', () => 0); //TODO: give these appropriate params
@@ -99,7 +99,6 @@ export class Skill {
         this.penetrateTip = _.get(data, 'penetrateTip', () => null);
         this.pow = _.get(data, 'pow', () => 0);
         this.rate = _.get(data, 'rate', () => 0);
-        this.atk = _.get(data, 'atk', () => 0);
         this.noBuff = _.get(data, 'noBuff', false);
         this.s1Benefits = _.get(data, 's1Benefits', false);
         this.noCrit = _.get(data, 'noCrit', false);

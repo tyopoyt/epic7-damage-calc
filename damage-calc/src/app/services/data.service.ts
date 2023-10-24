@@ -47,7 +47,7 @@ export class DataService {
   };
 
   buffModifiedSpecific = [
-    'casterSpeed', 'targetSpeed', 'casterDefense', 'targetDefense', 'targetAttack'
+    'casterSpeed', 'targetSpeed', 'casterDefense', 'targetDefense', 'targetAttack', 'highestAllyAttack'
   ]
 
   HPIncreaseArtifacts = [

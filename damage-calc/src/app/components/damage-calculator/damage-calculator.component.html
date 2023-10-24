@@ -369,10 +369,10 @@
                     </div>
                     <img class="svg-icon large filter pointer collapse-icon" (click)="toggleTable()" src="{{collapsed ? 'assets/icons/chevron-up.svg' : 'assets/icons/chevron-down.svg'}}" alt="collapse">
                 </div>
-                <table [@collapseAnimation] *ngIf="!collapsed" [class.tiny-padding]="screenService.smallScreen.value" mat-table [dataSource]="damageData">
+                <table [@collapseAnimation] *ngIf="!collapsed" [class.tiny-padding]="screenService.mediumSmallScreen.value" mat-table [dataSource]="damageData">
                     <ng-container matColumnDef="skill">
                       <th mat-header-cell *matHeaderCellDef> {{"skill" | translate:'form':languageService.language.value}} </th>
-                      <td mat-cell *matCellDef="let element"><span class="flex-aligned flex-between">{{element.skill | translate:'skills':languageService.language.value}} <img class="icon large tiny-margin-left svg-icon cursor-help" src="assets/icons/square-root.svg" alt="Skill multipliers" matTooltip="{{skillMultiplierTips[element.skill]}}"></span></td>
+                      <td mat-cell *matCellDef="let element"><span class="flex-aligned flex-between">{{element.skill | translate:'skills':languageService.language.value}} <img *ngIf="languageService.language.value" class="icon large tiny-margin-left svg-icon cursor-help" src="assets/icons/square-root.svg" alt="Skill multipliers" [mtxTooltip]="modifierTooltip" [mtxTooltipContext]="element.skill" [mtxTooltipPosition]="'left'"></span></td>
                     </ng-container>
 
                     <ng-container matColumnDef="crit">
@@ -433,3 +433,42 @@
         </div>
     </span>
 </div>
+
+<!-- TEMPLATES -->
+<ng-template let-i #modifierTooltip>
+    <h3 class="no-margin bold-text left-align">{{'skillModifiers' | translate:'ui':languageService.language.value}}</h3>
+    <span class="flex-aligned flex-between">
+        <b>{{'attackRate' | translate:'ui':languageService.language.value}}:</b>&nbsp;<p class="no-margin">{{skillMultiplierTips[i]?.rate}}</p>
+    </span>
+    <span class="flex-aligned flex-between">
+        <b>{{'pow' | translate:'ui':languageService.language.value}}:</b>&nbsp;<p class="no-margin">{{skillMultiplierTips[i]?.pow}}</p>
+    </span>
+    <!-- TODO: implement this? -->
+    <!-- <span *ngIf="skillMultiplierTips[i]?.elementalAdvantage" class="flex-aligned flex-between">
+        <b>{{'elementalAdvantage' | translate:'ui':languageService.language.value}}:</b><img class="icon tiny tiny-margin-left svg-icon link" src="assets/icons/open-in-new.svg" alt="Elemental advantage">
+    </span> -->
+    <span *ngIf="skillMultiplierTips[i]?.flat || skillMultiplierTips[i]?.flatTip" class="flex-aligned flex-between">
+        <b>{{'flat' | translate:'ui':languageService.language.value}}:</b><p class="no-margin">&nbsp;{{skillMultiplierTips[i]?.flatTip}}</p>&nbsp;<p class="no-margin">{{skillMultiplierTips[i]?.flat}}</p>
+    </span>
+    <span *ngIf="skillMultiplierTips[i]?.mult || skillMultiplierTips[i]?.multTip" class="flex-aligned flex-between">
+        <b>{{'mult' | translate:'ui':languageService.language.value}}:</b><p class="no-margin">&nbsp;{{skillMultiplierTips[i]?.multTip}}</p>&nbsp;<p class="no-margin">{{skillMultiplierTips[i]?.mult}}%</p>
+    </span>
+    <span *ngIf="skillMultiplierTips[i]?.exEq" class="flex-aligned flex-between">
+        <b>{{'exclusiveEquipment' | translate:'ui':languageService.language.value}}:</b><p class="no-margin">&nbsp;<p class="no-margin">{{skillMultiplierTips[i]?.exEq}}%</p>
+    </span>
+    <span *ngIf="skillMultiplierTips[i]?.critBoost || skillMultiplierTips[i]?.critBoostTip" class="flex-aligned flex-between">
+        <b>{{'critDamageBoost' | translate:'ui':languageService.language.value}}:</b><p class="no-margin">&nbsp;{{skillMultiplierTips[i]?.critBoostTip}}</p>&nbsp;<p class="no-margin">+{{skillMultiplierTips[i]?.critBoost}}%</p>
+    </span>
+    <span *ngIf="skillMultiplierTips[i]?.fixed || skillMultiplierTips[i]?.fixedTip" class="flex-aligned flex-between">
+        <b>{{'fixed' | translate:'ui':languageService.language.value}}:</b><p class="no-margin">&nbsp;{{skillMultiplierTips[i]?.fixedTip}}</p>&nbsp;<p class="no-margin">{{skillMultiplierTips[i]?.fixed}}</p>
+    </span>
+    <span *ngIf="skillMultiplierTips[i]?.afterMathDmg || skillMultiplierTips[i]?.afterMathFormula" class="flex-aligned flex-between">
+        <b>{{'aftermath' | translate:'ui':languageService.language.value}}:</b><p class="no-margin">&nbsp;{{skillMultiplierTips[i]?.afterMathFormula}}</p>&nbsp;<p class="no-margin">{{skillMultiplierTips[i]?.afterMathDmg}}</p>
+    </span>
+    <span *ngIf="skillMultiplierTips[i]?.detonation" class="flex-aligned flex-between">
+        <b>{{'detonation' | translate:'ui':languageService.language.value}}:</b>&nbsp;<p class="no-margin">+{{skillMultiplierTips[i]?.detonation}}%</p>
+    </span>
+    <span *ngIf="skillMultiplierTips[i]?.pen || skillMultiplierTips[i]?.penTip" class="flex-aligned flex-between">
+        <b>{{'pentration' | translate:'ui':languageService.language.value}}:</b><p class="no-margin">&nbsp;{{skillMultiplierTips[i]?.penTip}}</p>&nbsp;<p class="no-margin">{{skillMultiplierTips[i]?.pen}}%</p>
+    </span>
+</ng-template>

@@ -72,11 +72,11 @@ export const Heroes: Record<string, Hero> = {
     },
     skills: {
       s1: new Skill({
+        id: 's1',
         defenseScaling: true,
         rate: (soulburn: boolean) => soulburn ? 0.9 : 0.7,
         pow: () => 1,
         flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => {
-          console.log(inputValues.casterFinalDefense())
           return inputValues.casterFinalDefense() * (soulburn ? 1.1 : 0.9)
         },
         flatTip: (soulburn: boolean) => ({caster_defense: soulburn ? 110 : 90}),
@@ -87,6 +87,7 @@ export const Heroes: Record<string, Hero> = {
       s1_bis: new Skill({
         // TODO: translate includes these
         // name: infoLabel('abyssal_yufine_unbridled_outburst'),
+        id: 's1_bis',
         rate: () => 0.8,
         pow: () => 0.9,
         penetrate: () => 0.7,
@@ -95,6 +96,7 @@ export const Heroes: Record<string, Hero> = {
       }),
       s1_bis_soulburn: new Skill({
         // name: infoLabel('abyssal_yufine_unbridled_outburst', true),
+        id: 's1_bis_soulburn',
         rate: () => 1.25,
         pow: () => 0.9,
         penetrate: () => 0.7,
@@ -102,6 +104,7 @@ export const Heroes: Record<string, Hero> = {
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.05, 0.05, 0.1],
@@ -329,7 +332,7 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 0.8,
         pow: () => 0.95,
         fixed: (hitType: HitType, inputValues: DamageFormData) => (hitType === HitType.crit) ? 5000 * (inputValues.skill3Stack + 1)  : 0,
-        fixedTip: () => ({fixed: 5000, per_stack: 5000 }),
+        fixedTip: () => ({fixed: 5000, fixed_per_stack: 5000 }),
         enhance: [0.05, 0.05, 0, 0.05, 0.05, 0.1, 0.1],
         isSingle: () => true,
       }),
@@ -3103,9 +3106,8 @@ export const Heroes: Record<string, Hero> = {
         id: 's3',
         rate: () => 1.5,
         pow: () => 0.9,
-        // TODO: is extraDmg necessary or is it just aftermath?
-        extraDmg: (hitType: HitType, inputValues: DamageFormData) => inputValues.targetAsleep ? inputValues.targetFinalMaxHP() * 0.3 : 0,
-        extraDmgTip: (inputValues: DamageFormData) => ({ targetMaxHP: inputValues.targetAsleep ? 30 : 0 }),
+        fixed: (hitType: HitType, inputValues: DamageFormData) => (inputValues.targetAsleep) ? inputValues.targetFinalMaxHP() * 0.3 : 0,
+        fixedTip: (fixedDamage: number, inputValues: DamageFormData) => ({ targetMaxHP: inputValues.targetAsleep ? 30 : 0 }),
         enhance: [0.05, 0.05, 0, 0.1, 0.1, 0.1],
         isSingle: () => true,
       }),
@@ -3518,8 +3520,8 @@ export const Heroes: Record<string, Hero> = {
         id: 's2',
         rate: () => 0.8,
         pow: () => 1,
-        extraDmg: (hitType: HitType, inputValues: DamageFormData) => hitType !== HitType.miss && inputValues.targetProvoked ? inputValues.targetFinalMaxHP() * 0.1 : 0,
-        extraDmgTip: (inputValues: DamageFormData) => ({ targetMaxHP: inputValues.targetProvoked ? 10 : 0 }),
+        fixed: (hitType: HitType, inputValues: DamageFormData) => (hitType !== HitType.miss && inputValues.targetProvoked) ? inputValues.targetFinalMaxHP() * 0.1 : 0,
+        fixedTip: (fixedDamage: number, inputValues: DamageFormData) => ({ targetMaxHP: inputValues.targetProvoked ? 10 : 0 }),
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
         isAOE: () => true,
         isExtra: true
@@ -4735,6 +4737,7 @@ export const Heroes: Record<string, Hero> = {
     dot: [DoT.bleed],
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 0.9,
         pow: () => 1,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.05],
@@ -4742,11 +4745,13 @@ export const Heroes: Record<string, Hero> = {
       }),
       s1_bis: new Skill({
         // name: infoLabel('kane_rock_smash'),
+        id: 's1_bis',
         rate: () => 0.5,
         pow: () => 1.3,
         isAOE: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1.6,
         pow: () => 1,
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + inputValues.targetNumberOfDebuffs * 0.2,
@@ -5181,7 +5186,6 @@ export const Heroes: Record<string, Hero> = {
       }),
     }
   }),
-  // TODO: here
   kluri: new Hero({
     element: HeroElement.earth,
     class: HeroClass.knight,
@@ -5526,7 +5530,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 821,
     baseHP: 6751,
     baseDefense: 648,
-    heroSpecific: ['casterMaxHP', 'highestAllyAttack'],
+    heroSpecific: ['casterMaxHP', 'highestAllyAttack', 'exclusiveEquipment3'],
     skills: {
       s1: new Skill({
         id: 's1',
@@ -5542,7 +5546,12 @@ export const Heroes: Record<string, Hero> = {
         id: 's3',
         rate: () => 1,
         pow: () => 1,
-        atk: (inputValues: DamageFormData) => inputValues.highestAllyAttack,
+        atk: (inputValues: DamageFormData) => {
+          return inputValues.highestAllyAttack * (1 + (inputValues.highestAllyAttackUp ? BattleConstants.attackUp - 1 : 0)
+                                                    + (inputValues.highestAllyAttackUpGreat ? BattleConstants.attackUpGreat - 1 : 0)
+                                                    - (inputValues.highestAllyAttackDown ? BattleConstants.decreasedAttack : 0));
+        },
+        exclusiveEquipmentMultiplier: (inputValues: DamageFormData) => inputValues.exclusiveEquipment3 ? 0.2 : 0,
         noBuff: true,
         enhance: [0.05, 0.05, 0, 0.05, 0.05, 0.1],
         isAOE: () => true,
@@ -5580,7 +5589,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1119,
     baseHP: 6266,
     baseDefense: 627,
-    heroSpecific: ['exclusiveEquipment3', 'targetSpeed'],
+    heroSpecific: ['exclusiveEquipment1', 'exclusiveEquipment3'],
     dot: [DoT.bleed],
     skills: {
       s1: new Skill({
@@ -6744,18 +6753,21 @@ export const Heroes: Record<string, Hero> = {
     baseDef: 585,
     skills: {
       s1: new Skill({
+        id: 's1',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
         isSingle: () => true,
       }),
       s2: new Skill({
+        id: 's2',
         rate: () => 1.5,
         pow: () => 1,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
         isSingle: () => true,
       }),
       s3: new Skill({
+        id: 's3',
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
@@ -7052,8 +7064,8 @@ export const Heroes: Record<string, Hero> = {
         id: 's3',
         rate: () => 1.5,
         pow: () => 0.9,
-        extraDmg: (hitType: HitType, inputValues: DamageFormData) => inputValues.targetAsleep ? inputValues.targetFinalMaxHP() * 0.2 : 0,
-        extraDmgTip: (inputValues: DamageFormData) => ({ targetMaxHP: inputValues.targetAsleep ? 20 : 0 }),
+        fixed: (hitType: HitType, inputValues: DamageFormData) => (inputValues.targetAsleep) ? inputValues.targetFinalMaxHP() * 0.2 : 0,
+        fixedTip: (fixedDamage: number, inputValues: DamageFormData) => ({ targetMaxHP: inputValues.targetAsleep ? 20 : 0 }),
         enhance: [0.05, 0.05, 0, 0.1, 0.1, 0.1],
         isSingle: () => true,
       }),
@@ -7537,6 +7549,7 @@ export const Heroes: Record<string, Hero> = {
       })
     }
   }),
+  // TODO: here
   righteous_thief_roozid: new Hero({
     element: HeroElement.earth,
     class: HeroClass.thief,

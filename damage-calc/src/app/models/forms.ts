@@ -321,6 +321,15 @@ export const FormDefaults: Record<string, {max?: number, min?: number, defaultVa
         min: 200,
         defaultValue: 4000
     },
+    highestAllyAttackUp: {
+        icon: 'buffs/attack-buff.png'
+    },
+    highestAllyAttackUpGreat: {
+        icon: 'buffs/greater-attack-buff.png'
+    },
+    highestAllyAttackDown: {
+        icon: 'debuffs/attack-debuff.png'
+    },
     s3OnCooldown: {
         default: true
     },
@@ -404,6 +413,9 @@ export class DamageFormData {
     extraDualOrCounter: boolean;
     heroID: string;
     highestAllyAttack: number;
+    highestAllyAttackUp: boolean;
+    highestAllyAttackUpGreat: boolean;
+    highestAllyAttackDown: boolean;
     inBattleHP: boolean;
     attackUp: boolean;
     attackUpGreat: boolean;
@@ -526,6 +538,9 @@ export class DamageFormData {
         this.extraDualOrCounter = _.get(data, 'extraDualOrCounter', false);
         this.heroID = _.get(data, 'heroID', 'abigail');
         this.highestAllyAttack = _.get(data, 'highestAllyAttack', 2500);
+        this.highestAllyAttackUp = _.get(data, 'highestAllyAttackUp', false);
+        this.highestAllyAttackUpGreat = _.get(data, 'highestAllyAttackUpGreat', false);
+        this.highestAllyAttackDown = _.get(data, 'highestAllyAttackDown', false);
         this.inBattleHP = _.get(data, 'inBattleHP', false);
         this.attackUp = _.get(data, 'attackUp', false);
         this.attackUpGreat = _.get(data, 'attackUpGreat', false);

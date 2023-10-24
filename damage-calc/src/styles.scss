@@ -76,6 +76,19 @@ html, body {
     max-height: 25rem;
   }
 
+  .mtx-mdc-tooltip {
+    .mdc-tooltip__surface {
+      color: $font-light-color;
+      background-color: $ui-medium-color;
+      max-width: unset;
+      width: max-content;
+      min-width: 10rem;
+      -webkit-box-shadow: 0px 0px 15px 1px rgba(0,0,0,0.25);
+      -moz-box-shadow: 0px 0px 15px 1px rgba(0,0,0,0.25);
+      box-shadow: 0px 0px 15px 1px rgba(0,0,0,0.25);
+    }
+  }
+
   .mat-mdc-dialog-container {
     .mat-mdc-dialog-surface {
       background-color: $ui-medium-dark-color;
@@ -823,6 +836,13 @@ html, body {
     // firefox doesn't support webkit scrollbar so this is pretty much all the customization :(
     scrollbar-color: $e7-buff-contrast-color $ui-light-theme-color;
 
+    .mtx-mdc-tooltip {
+      .mdc-tooltip__surface {
+        color: $font-dark-color;
+        background-color: $ui-light-theme-light-color;
+      }
+    }
+
     .icon {
       filter: $font-dark-color-filter;
     }
@@ -1368,7 +1388,7 @@ body {
 }
 
 .bold-text {
-  font-weight: bold;
+  font-weight: bold !important;
 }
 
 .page-container {
@@ -1632,4 +1652,8 @@ mat-pseudo-checkbox {
 
 .left-align {
   text-align: left !important;
+}
+
+.no-margin {
+  margin: 0 !important;
 }
