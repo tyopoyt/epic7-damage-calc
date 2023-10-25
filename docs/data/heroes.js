@@ -4339,7 +4339,6 @@ const heroes = {
         name: infoLabel('s1_extra_attack'),
         rate: 1.1,
         pow: 1,
-        enhance_from: 's1',
         isExtra: true,
         single: true,
       },
