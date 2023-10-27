@@ -1,5 +1,7 @@
 ## Changelog
 
+### <strong>Oct 26 2023 Update:</strong>
+- Added Claudia, Emiki, Ezra, and Arunka's EE.
 ### <strong>Oct 12 2023 Update:</strong>
 - Added Abyssal Yufine, Kane, and Tyrant's Descent.
 ### <strong>Sept 29 2023:</strong>
