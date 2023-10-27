@@ -340,6 +340,14 @@ const elements = {
     value: () => document.getElementById('caster-hp-above-50pc').checked,
     default: true,
   },
+  caster_below_30_percent_hp: {
+    ref: 'caster_below_30_percent_hp',
+    id: 'caster-below-30-percent-hp',
+    label: 'Caster\'s HP below 30%',
+    type: 'checkbox',
+    value: () => document.getElementById('caster-below-30-percent-hp').checked,
+    default: false,
+  },
   target_defense: {
     ref: 'target_defense',
     id: 'def',
