@@ -574,6 +574,37 @@ const heroes = {
       },
     }
   },
+  amiki: {
+    name: 'Amiki',
+    element: element.ice,
+    classType: classType.warrior,
+    baseAttack: 1019,
+    baseHP: 5738,
+    baseDefense: 571,
+    form: [elements.caster_below_30_percent_hp],
+    skills: {
+      s1: {
+        id: 's1',
+        rate: () => 0.6,
+        pow: () => 1,
+        enhance: [0.05, 0.05, 0, 0.05, 0, 0.15],
+        noCrit: true,
+        single: true,
+        penetrate: () => 0.3,
+        canExtra: true
+      },
+      s3: {
+        id: 's3',
+        soulburn: true,
+        rate: (soulburn) => soulburn ? 1.5 : 1.1,
+        pow: () => 0.95,
+        enhance: [0.05, 0.05, 0.05, 0, 0.1, 0.1],
+        noCrit: true,
+        single: true,
+        penetrate: () => elements.caster_below_30_percent_hp.value() ? 0.7 : 0.3
+      }
+    }
+  },
   angel_of_light_angelica: {
     name: 'Angel of Light Angelica',
     element: element.light,
@@ -886,7 +917,7 @@ const heroes = {
     baseAtk: 1570,
     baseHP: 6488,
     baseDef: 616,
-    form: [elements.target_has_barrier],
+    form: [elements.target_has_barrier, elements.exclusive_equipment_2],
     dot: [dot.bleed],
     innateAtkUp: () => 0.30,
     skills: {
@@ -913,6 +944,7 @@ const heroes = {
         mult: () => elements.target_has_barrier.value() ? 3.4 : 1,
         multTip: () => ({ target_has_barrier: 240 }),
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
+        exEq: () => elements.exclusive_equipment_2.value() ? 0.1 : 0,
         single: true,
         noCrit: true,
       },
@@ -2491,6 +2523,29 @@ const heroes = {
       }
     }
   },
+  claudia: {
+    name: "Claudia",
+    element: element.fire,
+    classType: classType.knight,
+    baseAttack: 703,
+    baseHP: 5914,
+    baseDefense: 596,
+    form: [elements.caster_max_hp],
+    barrier: () => elements.caster_max_hp.value() * 0.2,
+    skills: {
+      s1: {
+        rate: () => 1,
+        pow: () => 1,
+        enhance: [0.05, 0.05, 0, 0.05, 0, 0.05, 0.1],
+        single: () => true,
+      },
+      s2: {
+        rate: () => 1,
+        pow: () => 1.3,
+        single: () => true,
+      }
+    }
+  },
   closer_charles: {
     name:  'Closer Charles',
     element: element.dark,
@@ -3371,6 +3426,35 @@ const heroes = {
         multTip: () => ({caster_vs_target_hp_diff: 10}),
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
         single: true,
+      }
+    }
+  },
+  ezra: {
+    name: 'Ezra',
+    element: element.earth,
+    classType: classType.thief,
+    baseAttack: 921,
+    baseHP: 4945,
+    baseDefense: 462,
+    form: [elements.target_nb_debuff],
+    skills: {
+      s1: {
+        id: 's1',
+        rate: () => 1,
+        pow: () => 1,
+        enhance: [0.05, 0, 0.1, 0, 0.15],
+        fixed: (hitType) => (hitType !== hitTypes.miss) ? elements.target_nb_debuff.value() * 1000 : 0,
+        fixedTip: () => ({ per_target_debuff: 1000 }),
+        single: true,
+      },
+      s2: {
+        id: 's2',
+        rate: () => 1,
+        pow: () => 1,
+        enhance: [0.05, 0, 0.1, 0, 0.15],
+        fixed: (hitType) => (hitType !== hitTypes.miss) ? elements.target_nb_debuff.value() * 1500 : 0,
+        fixedTip: () => ({ per_target_debuff: 1500 }),
+        aoe: true,
       }
     }
   },
