@@ -1,5 +1,7 @@
 ## Changelog
 
+### <strong>Nov 11 2023 Update:</strong>
+- Added Fumyr.
 ### <strong>Oct 26 2023 Update:</strong>
 - Added Claudia, Emiki, Ezra, and Arunka's EE.
 ### <strong>Oct 12 2023 Update:</strong>
