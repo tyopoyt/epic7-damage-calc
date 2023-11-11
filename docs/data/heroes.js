@@ -7261,15 +7261,15 @@ const heroes = {
     baseDef: 616,
     skills: {
       s1: {
-        rate: 0.95,
+        rate: 0.9,
         pow: 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
         canExtra: true,
         single: true
       },
       s2: {
-        rate: 0.5, 
-        pow: 1,
+        rate: 0.8, 
+        pow: 1.3,
         aoe: true
       },
       s3: {
