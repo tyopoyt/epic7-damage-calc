@@ -3649,6 +3649,30 @@ const heroes = {
       }
     }
   },
+  fumyr: {
+    name: 'Fumyr',
+    element: element.ice,
+    classType: classType.mage,
+    baseAttack: 1039,
+    baseHP: 5299,
+    baseDefense: 673,
+    form: [elements.caster_elemental_wisdom_stack],
+    skills: {
+      s1: {
+        rate: 0.9,
+        pow: 1,
+        enhance: [0.05, 0.05, 0.0, 0.05, 0.15],
+        single: true,
+      },
+      s3: {
+        rate: 1.5,
+        pow: 1,
+        fixed: () => elements.caster_elemental_wisdom_stack.value() * 3000,
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        single: true,
+      }
+    }
+  },
   furious: {
     name: 'Furious',
     element: element.ice,

@@ -332,6 +332,16 @@ const elements = {
     default: 10000,
     value: () => Number(document.getElementById('caster-hp').value)
   },
+  caster_elemental_wisdom_stack: {
+    ref: 'caster_elemental_wisdom_stack',
+    id: 'caster-elemental-wisdom-stack',
+    label: 'Elemental Wisdom Stack',
+    type: 'slider',
+    min: 0,
+    max: 3,
+    default: 0,
+    value: () => Number(document.getElementById('caster-elemental-wisdom-stack').value)
+  },
   caster_hp_above_50pc: {
     ref: 'caster_hp_above_50pc',
     id: 'caster-hp-above-50pc',

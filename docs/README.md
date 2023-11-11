@@ -1,5 +1,7 @@
 ## Changelog
 
+### <strong>Nov 11 2023 Update:</strong>
+- Added Fumyr.
 ### <strong>Oct 12 2023 Update:</strong>
 - Added Abyssal Yufine, Kane, and Tyrant's Descent.
 ### <strong>Sept 29 2023:</strong>
