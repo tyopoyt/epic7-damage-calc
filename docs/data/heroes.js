@@ -66,7 +66,6 @@ const heroes = {
     baseAtk: 830,
     baseHP: 6619,
     baseDef: 713,
-    info: infoLabel('unreleased_hero'),
     form: [elements.caster_defense, elements.caster_has_trauma],
     atkUp: () => {
       let boost = 1;
@@ -581,6 +580,7 @@ const heroes = {
     baseAttack: 1019,
     baseHP: 5738,
     baseDefense: 571,
+    info: infoLabel('unreleased_hero'),
     form: [elements.caster_below_30_percent_hp],
     skills: {
       s1: {
@@ -2530,6 +2530,7 @@ const heroes = {
     baseAttack: 703,
     baseHP: 5914,
     baseDefense: 596,
+    info: infoLabel('unreleased_hero'),
     form: [elements.caster_max_hp],
     barrier: () => elements.caster_max_hp.value() * 0.2,
     skills: {
@@ -3436,6 +3437,7 @@ const heroes = {
     baseAttack: 921,
     baseHP: 4945,
     baseDefense: 462,
+    info: infoLabel('unreleased_hero'),
     form: [elements.target_nb_debuff],
     skills: {
       s1: {
@@ -4665,7 +4667,6 @@ const heroes = {
     baseAtk: 1359,
     baseHP: 5542,
     baseDef: 585,
-    info: infoLabel('unreleased_hero'),
     form: [elements.caster_enrage, elements.target_nb_debuff],
     dot: [dot.bleed],
     skills: {
