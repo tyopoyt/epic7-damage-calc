@@ -3448,7 +3448,7 @@ const heroes = {
   },
   eternal_wanderer_ludwig: {
     name: 'Eternal Wanderer Ludwig',
-    element: element.light,
+    element: element.dark,
     classType: classType.mage,
     baseAtk: 1412,
     baseHP: 4248,
