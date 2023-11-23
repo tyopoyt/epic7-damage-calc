@@ -580,7 +580,6 @@ const heroes = {
     baseAttack: 1019,
     baseHP: 5738,
     baseDefense: 571,
-    info: infoLabel('unreleased_hero'),
     form: [elements.caster_below_30_percent_hp],
     skills: {
       s1: {
@@ -2530,7 +2529,6 @@ const heroes = {
     baseAttack: 703,
     baseHP: 5914,
     baseDefense: 596,
-    info: infoLabel('unreleased_hero'),
     form: [elements.caster_max_hp],
     barrier: () => elements.caster_max_hp.value() * 0.2,
     skills: {
@@ -2875,6 +2873,24 @@ const heroes = {
   },
   death_dealer_ray: {
     name: 'Death Dealer Ray',
+    element: element.dark,
+    classType: classType.soul_weaver,
+    baseAtk: 621,
+    baseHP: 6034,
+    baseDef: 775,
+    form: [elements.target_injuries],
+    skills: {
+      s1: {
+        rate: 1,
+        pow: 1,
+        afterMath: () => ({ injuryPercent: 0.4, penetrate: 0.7 }),
+        enhance: [0.05, 0.05, 0, 0.1, 0.1],
+        single: true,
+      }
+    }
+  },
+  death_dealer_ray_old: {
+    name: 'Death Dealer Ray (Pre-Balance)',
     element: element.dark,
     classType: classType.soul_weaver,
     baseAtk: 621,
@@ -3430,6 +3446,37 @@ const heroes = {
       }
     }
   },
+  eternal_wanderer_ludwig: {
+    name: 'Eternal Wanderer Ludwig',
+    element: element.light,
+    classType: classType.mage,
+    baseAtk: 1412,
+    baseHP: 4248,
+    baseDef: 645,
+    form: [elements.soulburn_stack],
+    info: infoLabel('unreleased_hero'),
+    skills: {
+      s1: {
+        rate: 1,
+        pow: 1,
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        single: true,
+      },
+      s2: {
+        rate: 1.6,
+        pow: 1,
+        enhance: [0.05, 0.05, 0, 0.05, 0.15],
+        single: true,
+      },
+      s3: {
+        rate: 1,
+        pow: 1,
+        penetrate: () => 0.3 * (Math.max(elements.soulburn_stack.value(), 2)),
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        aoe: true,
+      }
+    }
+  },
   ezra: {
     name: 'Ezra',
     element: element.earth,
@@ -3437,7 +3484,6 @@ const heroes = {
     baseAttack: 921,
     baseHP: 4945,
     baseDefense: 462,
-    info: infoLabel('unreleased_hero'),
     form: [elements.target_nb_debuff],
     skills: {
       s1: {
@@ -5665,6 +5711,41 @@ const heroes = {
   // },
   lone_crescent_bellona: {
     name: 'Lone Crescent Bellona',
+    element: element.dark,
+    classType: classType.warrior,
+    form: [elements.caster_has_buff, elements.attack_skill_stack_5],
+    baseAtk: 1208,
+    baseHP: 6488,
+    baseDef: 616,
+    atkUp: () => 1 + elements.attack_skill_stack_5.value() * 0.1,
+    skills: {
+      s1: {
+        onlyCrit: true,
+        rate: (soulburn) => soulburn ? 1.6 : 0.9,
+        pow: 1,
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        single: true,
+        soulburn: true
+      },
+      s2: {
+        onlyCrit: true,
+        rate: 0.6,
+        pow: 1,
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        isExtra: true,
+        aoe: true,
+      },
+      s3: {
+        onlyCrit: true,
+        rate: 1.7,
+        pow: 1,
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        single: true,
+      }
+    }
+  },
+  lone_crescent_bellona_old: {
+    name: 'Lone Crescent Bellona (Pre-Balance)',
     element: element.dark,
     classType: classType.warrior,
     form: [elements.caster_has_buff, elements.attack_skill_stack_5],
@@ -8026,6 +8107,36 @@ const heroes = {
   },
   serila: {
     name: 'Serila',
+    element: element.fire,
+    classType: classType.mage,
+    baseAtk: 1218,
+    baseHP: 4521,
+    baseDef: 683,
+    dot: [dot.burn],
+    skills: {
+      s1: {
+        rate: 1,
+        pow: 1,
+        enhance: [0.05, 0, 0.1, 0, 0.15],
+        single: true,
+      },
+      s2: {
+        soulburn: true,
+        rate: (soulburn) => soulburn ? 2.2 : 1.7,
+        pow: 1.05,
+        enhance: [0.1, 0, 0, 0, 0.15],
+        single: true,
+      },
+      s3: {
+        rate: 1.8,
+        pow: 1.05,
+        enhance: [0.1, 0, 0, 0, 0.15],
+        single: true,
+      }
+    }
+  },
+  serila_old: {
+    name: 'Serila (Pre-Balance)',
     element: element.fire,
     classType: classType.mage,
     baseAtk: 1218,

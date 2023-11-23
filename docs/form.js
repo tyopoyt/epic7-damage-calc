@@ -342,6 +342,16 @@ const elements = {
     default: 0,
     value: () => Number(document.getElementById('caster-elemental-wisdom-stack').value)
   },
+  soulburn_stack: {
+    ref: 'soulburn_stack',
+    id: 'soulburn-stack',
+    label: 'Soulburn Stack',
+    type: 'slider',
+    min: 0,
+    max: 2,
+    default: 0,
+    value: () => Number(document.getElementById('soulburn-stack').value)
+  },
   caster_hp_above_50pc: {
     ref: 'caster_hp_above_50pc',
     id: 'caster-hp-above-50pc',
