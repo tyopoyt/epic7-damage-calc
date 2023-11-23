@@ -2878,7 +2878,7 @@ const heroes = {
     baseAtk: 621,
     baseHP: 6034,
     baseDef: 775,
-    form: [elements.target_injuries],
+    form: [elements.target_injuries], 
     skills: {
       s1: {
         rate: 1,
@@ -3471,7 +3471,7 @@ const heroes = {
       s3: {
         rate: 1,
         pow: 1,
-        penetrate: () => 0.3 * (Math.max(elements.soulburn_stack.value(), 2)),
+        penetrate: () => 0.3 * (Math.min(elements.soulburn_stack.value(), 2)),
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
         aoe: true,
       }
