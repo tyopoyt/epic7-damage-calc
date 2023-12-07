@@ -1,5 +1,7 @@
 ## Changelog
 
+### <strong>Dec 7 2023 Update:</strong>
+- Added Byblis.
 ### <strong>Nov 23 2023 Update:</strong>
 - Added Eternal Wanderer Ludwig. Updated Serila and Lone Crescent Bellona, and Death Dealer Ray from Balance Patch.
 ### <strong>Nov 11 2023 Update:</strong>
