@@ -1739,6 +1739,34 @@ const heroes = {
       },
     }
   },
+  byblis: {
+    name: 'Byblis',
+    element: element.ice,
+    classType: classType.ranger,
+    baseAtk: 993,
+    baseHP: 6002,
+    baseDef: 611,
+    skills: {
+      s1: {
+        rate: 1,
+        pow: 1,
+        enhance: [0.05, 0, 0.1, 0, 0.15],
+        single: true,
+      },
+      s2: {
+        rate: 0.8,
+        pow: 1.3,
+        isExtra: true,
+        aoe: true,
+      },
+      s3: {
+        rate: 1,
+        pow: 1,
+        enhance: [0.05, 0.05, 0, 0.05, 0.15],
+        aoe: true,
+      },
+    }
+  },
   camilla: {
     name: 'Camilla',
     element: element.light,
