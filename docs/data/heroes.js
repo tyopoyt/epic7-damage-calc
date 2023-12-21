@@ -1660,6 +1660,7 @@ const heroes = {
         },
         penetrateTip: () => ({caster_target_spd_diff: 0.0059}),
         single: true,
+        noCrit: true,
       }
     }
   },
