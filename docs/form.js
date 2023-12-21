@@ -417,7 +417,14 @@ const elements = {
       if (currentHero.spd) {
         return currentHero.getSpd();
       }
-      return Number(document.getElementById('caster-speed').value) * (elements.caster_speed_up.value() ? battleConstants.spdUp : 1);
+
+      let spdUp = 1;
+
+      if (currentHero.spdUp) {
+        spdUp = currentHero.spdUp();
+      }
+
+      return Number(document.getElementById('caster-speed').value) * (elements.caster_speed_up.value() ? battleConstants.spdUp : 1) * spdUp;
     }
   },
   caster_speed_up: {
@@ -847,6 +854,17 @@ const elements = {
     default: 0,
     readonly: true,
     value: () => Number(document.getElementById('enemy-counters').value)
+  },
+  enemy_number_of_debuffs: {
+    ref: 'enemy_number_of_debuffs',
+    id: 'enemy-number-of-debuffs',
+    label: 'Number of Debuffs on Enemies',
+    type: 'slider',
+    min: 0,
+    max: 10,
+    default: 0,
+    readonly: true,
+    value: () => Number(document.getElementById('enemy-number-of-debuffs').value)
   },
   highest_ally_attack: {
     ref: 'highest_ally_attack',
