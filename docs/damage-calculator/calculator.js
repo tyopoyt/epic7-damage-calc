@@ -383,6 +383,7 @@ class Hero {
     this.baseHP = heroes[id].baseHP || 0;
     this.dot = [...(heroes[id].dot || []), ...(artifact?.getDoT() || [])];
     this.atkUp = heroes[id].atkUp;
+    this.spdUp = heroes[id].spdUp;
     this.innateAtkUp = heroes[id].innateAtkUp;
     this.element = heroes[id].element;
     this.barrierSkills = heroes[id].barrierSkills;

@@ -1,5 +1,7 @@
 ## Changelog
 
+### <strong>Dec 21 2023 Update:</strong>
+- Added Blooming Lidica.
 ### <strong>Dec 7 2023 Update:</strong>
 - Added Byblis.
 ### <strong>Nov 23 2023 Update:</strong>
