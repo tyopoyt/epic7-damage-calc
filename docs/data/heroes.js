@@ -1641,6 +1641,7 @@ const heroes = {
         hpScaling: true,
         rate: () => 0.5,
         pow: () => 1,
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
         flat: () => elements.caster_max_hp.value() * 0.07,
         flatTip: () => ({ caster_max_hp: 7 }),
         isExtra: true,
