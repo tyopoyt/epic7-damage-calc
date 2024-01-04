@@ -497,6 +497,14 @@ const elements = {
     value: () => document.getElementById('caster-has-bzzt').checked,
     icon: './assets/buffs/bzzt-buff.png'
   },
+  caster_has_cascade: {
+    ref: 'caster_has_cascade',
+    id: 'caster-has-cascade',
+    label: 'Cascade',
+    type: 'checkbox',
+    value: () => document.getElementById('caster-has-cascade').checked,
+    icon: './assets/buffs/cascade-buff.png'
+  },
   caster_has_debuff: {
     ref: 'caster_has_debuff',
     id: 'caster-has-debuff',
