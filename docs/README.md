@@ -1,5 +1,7 @@
 ## Changelog
 
+### <strong>Jan 4 2024 Update:</strong>
+- Added Dragon King Sharun, Elvira, and Leah.
 ### <strong>Dec 21 2023 Update:</strong>
 - Added Blooming Lidica.
 ### <strong>Dec 7 2023 Update:</strong>

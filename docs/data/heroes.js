@@ -3192,6 +3192,28 @@ const heroes = {
       }
     }
   },
+  dragon_king_sharun: {
+    name: 'Dragon King Sharun',
+    element: element.light,
+    classType: classType.soul_weaver,
+    baseAtk: 640,
+    baseHP: 5340,
+    baseDef: 720,
+    skills: {
+      s1: {
+        rate: 1,
+        pow: 1,
+        enhance: [0.05, 0, 0.1, 0, 0.15],
+        single: true,
+      },
+      s3: {
+        rate: 1.1,
+        pow: 0.5,
+        enhance: [0.1, 0, 0, 0, 0.15],
+        aoe: true,
+      }
+    }
+  },
   eaton: {
     name: 'Eaton',
     element: element.light,
@@ -3442,6 +3464,41 @@ const heroes = {
         pow: 0.9,
         enhance: [0.05, 0.05, 0.05, 0, 0, 0.1, 0.15],
         aoe: true,
+      }
+    }
+  },
+  elvira: {
+    name: 'Elvira',
+    element: element.ice,
+    classType: classType.thief,
+    form: [elements.target_current_hp],
+    baseAtk: 1057,
+    baseHP: 5542,
+    baseDef: 532,
+    skills: {
+      s1: {
+        rate: 1,
+        pow: 1,
+        enhance: [0.05, 0, 0.1, 0, 0.15],
+        single: true,
+        noCrit: true,
+      },
+      s1_extra: {
+        name: 'Exterminate',
+        rate: 0.5,
+        pow: 1.3,
+        aoe: true,
+        noCrit: true,
+      },
+      s3: {
+        rate: 0.2,
+        pow: 1,
+        flat: () => elements.target_current_hp.value() * 0.16,
+        flatTip: () => ({ targetCurrentHP: 16 }),
+        penetrate: () => 1,
+        enhance: [0.05, 0.05, 0, 0.05, 0.15],
+        single: true,
+        noCrit: true,
       }
     }
   },
@@ -5427,6 +5484,33 @@ const heroes = {
   //     }
   //   }
   // },
+  leah: {
+    name: 'Leah',
+    element: element.earth,
+    classType: classType.ranger,
+    form: [elements.caster_speed],
+    baseAtk: 1081,
+    baseHP: 4450,
+    baseDef: 504,
+    skills: {
+      s1:{
+        rate: 0.9,
+        pow: 0.95,
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.1],
+        single: true,
+      },
+      s2: {
+        name: 'Explosive Fire',
+        spdScaling: true,
+        rate: 1.2,
+        pow: 0.95,
+        mult: () => 1 + elements.caster_speed.value() * 0.001,
+        multTip: () => ({ casterSpeed: 0.1 }),
+        enhance_from: 's1',
+        single: true,
+      },
+    }
+  },
   lena: {
     name: 'Lena',
     element: element.ice,

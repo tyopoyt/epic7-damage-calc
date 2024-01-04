@@ -27,8 +27,8 @@ selectorParams = [
   'artifact', 'hero', 'atkPreset', 'defPreset', 'dmgReducPreset', 'chartSkill'
 ];
 boolParams = [
-  'elemAdv', 'atkDown', 'atkUp', 'atkUpGreat', 'critDmgUp', 'vigor', 'rageSet',
-  'penSet', 'torrentSet', 'defUp', 'targetVigor', 'defDown', 'target', 'trauma'
+  'elemAdv', 'atkDown', 'atkUp', 'atkUpGreat', 'critDmgUp', 'vigor', 'casterHasCascade',
+   'rageSet', 'penSet', 'torrentSet', 'defUp', 'targetVigor', 'defDown', 'target', 'trauma'
 ];
 numberParams = [
   'atk', 'atkPcImprint', 'atkPcUp', 'crit', 'bonusDamage', 'torrentSetStack', 'def',
@@ -72,6 +72,7 @@ const atkUpInput = document.getElementById('atk-up');
 const atkUpGreatInput = document.getElementById('atk-up-great');
 const critDmgUpInput = document.getElementById('crit-dmg-up');
 const vigorInput = document.getElementById('vigor');
+const casterHasCascadeInput = document.getElementById('caster-has-cascade');
 const rageSetInput = document.getElementById('rage-set');
 const penSetInput = document.getElementById('pen-set');
 const torrentSetInput = document.getElementById('torrent-set');
@@ -549,7 +550,7 @@ class Hero {
     const skillDamage = this.getAfterMathSkillDamage(skillId, hitType);
     const skillExtraDmg = skill.extraDmg !== undefined ? Math.round(skill.extraDmg(hitType)) : 0;
 
-    return detonation + artiDamage + skillDamage + skillExtraDmg;
+    return detonation + artiDamage + skillDamage + skillExtraDmg + (inputValues.casterHasCascade ? 2500 : 0);
   }
 
   getAfterMathSkillDamage(skillId, hitType) {
