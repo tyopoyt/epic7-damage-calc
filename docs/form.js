@@ -598,6 +598,14 @@ const elements = {
     value: () => document.getElementById('caster-perception') ? document.getElementById('caster-perception').checked : false,
     icon: './assets/buffs/perception-buff.png'
   },
+  caster_possession: {
+    ref: 'caster_possession',
+    id: 'caster-possession',
+    label: 'Caster has Possession',
+    type: 'checkbox',
+    value: () => document.getElementById('caster-possession') ? document.getElementById('caster-possession').checked : false,
+    icon: './assets/buffs/possession-buff.png'
+  },
   caster_vigor: {
     value: () => document.getElementById('vigor') ? document.getElementById('vigor').checked : false,
   },

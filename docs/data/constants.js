@@ -18,7 +18,8 @@ const battleConstants = {
   'spdUp': 1.3, 
   'casterRage': 1.1,
   'caster-has-stars-blessing': 1.15,
-  'trauma': -0.7
+  'trauma': -0.7,
+  'caster-possession': 1.25
 };
 
 const heroConstants = {

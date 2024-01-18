@@ -28,7 +28,8 @@ selectorParams = [
 ];
 boolParams = [
   'elemAdv', 'atkDown', 'atkUp', 'atkUpGreat', 'critDmgUp', 'vigor', 'casterHasCascade',
-   'rageSet', 'penSet', 'torrentSet', 'defUp', 'targetVigor', 'defDown', 'target', 'trauma'
+  'rageSet', 'penSet', 'torrentSet', 'defUp', 'targetVigor', 'defDown', 'target', 'trauma',
+  'casterPossession'
 ];
 numberParams = [
   'atk', 'atkPcImprint', 'atkPcUp', 'crit', 'bonusDamage', 'torrentSetStack', 'def',
@@ -72,6 +73,7 @@ const atkUpInput = document.getElementById('atk-up');
 const atkUpGreatInput = document.getElementById('atk-up-great');
 const critDmgUpInput = document.getElementById('crit-dmg-up');
 const vigorInput = document.getElementById('vigor');
+const casterPossessionInput = document.getElementById('caster-possession');
 const casterHasCascadeInput = document.getElementById('caster-has-cascade');
 const rageSetInput = document.getElementById('rage-set');
 const penSetInput = document.getElementById('pen-set');
@@ -315,7 +317,7 @@ const getModTooltip = (hero, skillId, soulburn = false) => {
   return content;
 };
 
-const attackMods = ['atkDown', 'atkUp', 'atkUpGreat', 'vigor', 'caster-has-stars-blessing'];
+const attackMods = ['atkDown', 'atkUp', 'atkUpGreat', 'vigor', 'caster-has-stars-blessing', 'caster-possession'];
 const getGlobalAtkMult = () => {
   let mult = 0.0;
 
@@ -414,8 +416,8 @@ class Hero {
       detonation: skill.detonation !== undefined ? skill.detonation() - 1 : null,
       exEq: skill.exEq !== undefined ? skill.exEq() : null,
       elemAdv: (typeof skill.elemAdv === 'function') ? skill.elemAdv() : null,
-      afterMathFormula: skill.afterMath !== undefined ? skill.afterMath(soulburn) : null,
-      afterMathDmg: skill.afterMath !== undefined ? this.getAfterMathSkillDamage(skillId, hitTypes.crit) : null,
+      afterMathFormula: skill.afterMath !== undefined ? skill.afterMath(hitTypes.crit, soulburn) : null, // bug? should pass hit type and soulburn?
+      afterMathDmg: skill.afterMath !== undefined ? this.getAfterMathSkillDamage(skillId, hitTypes.crit, soulburn) : null,
       extraDmg: skill.extraDmg !== undefined ? skill.extraDmg() : null,
       extraDmgTip: skill.extraDmgTip !== undefined ? getSkillModTip(skill.extraDmgTip(soulburn)) : '',
       fixed: skill.fixed !== undefined ? skill.fixed(hitTypes.crit) : null,
@@ -436,10 +438,10 @@ class Hero {
         + (this.artifact.getCritDmgBoost() || 0)
         + (elements.caster_perception.value() ? 0.15 : 0);
     return {
-      crit: skill.noCrit || skill.onlyMiss ? null : Math.round(hit * critDmg + (skill.fixed !== undefined ? skill.fixed(hitTypes.crit) : 0) + this.getAfterMathDamage(skillId, hitTypes.crit)),
-      crush: skill.noCrit || onlyCrit || skill.onlyMiss ? null : Math.round(hit * 1.3 + (skill.fixed !== undefined ? skill.fixed(hitTypes.crush) : 0) + this.getAfterMathDamage(skillId, hitTypes.crush)),
-      normal: onlyCrit || skill.onlyMiss ? null : Math.round(hit + (skill.fixed !== undefined ? skill.fixed(hitTypes.normal) : 0) + this.getAfterMathDamage(skillId, hitTypes.normal)),
-      miss: skill.noMiss ? null : Math.round(hit * 0.75 + (skill.fixed !== undefined ? skill.fixed(hitTypes.miss) : 0) + this.getAfterMathDamage(skillId, hitTypes.miss))
+      crit: skill.noCrit || skill.onlyMiss ? null : Math.round(hit * critDmg + (skill.fixed !== undefined ? skill.fixed(hitTypes.crit) : 0) + this.getAfterMathDamage(skillId, hitTypes.crit, soulburn)),
+      crush: skill.noCrit || onlyCrit || skill.onlyMiss ? null : Math.round(hit * 1.3 + (skill.fixed !== undefined ? skill.fixed(hitTypes.crush) : 0) + this.getAfterMathDamage(skillId, hitTypes.crush, soulburn)),
+      normal: onlyCrit || skill.onlyMiss ? null : Math.round(hit + (skill.fixed !== undefined ? skill.fixed(hitTypes.normal) : 0) + this.getAfterMathDamage(skillId, hitTypes.normal, soulburn)),
+      miss: skill.noMiss ? null : Math.round(hit * 0.75 + (skill.fixed !== undefined ? skill.fixed(hitTypes.miss) : 0) + this.getAfterMathDamage(skillId, hitTypes.miss, soulburn))
     };
   }
 
@@ -537,7 +539,7 @@ class Hero {
     return mult;
   }
 
-  getAfterMathDamage(skillId, hitType) {
+  getAfterMathDamage(skillId, hitType, soulburn) {
     const skill = this.skills[skillId];
     const detonation = this.getDetonateDamage(skillId);
 
@@ -547,17 +549,17 @@ class Hero {
     }
 
 
-    const skillDamage = this.getAfterMathSkillDamage(skillId, hitType);
+    const skillDamage = this.getAfterMathSkillDamage(skillId, hitType, soulburn);
     const skillExtraDmg = skill.extraDmg !== undefined ? Math.round(skill.extraDmg(hitType)) : 0;
 
     return detonation + artiDamage + skillDamage + skillExtraDmg + (inputValues.casterHasCascade ? 2500 : 0);
   }
 
-  getAfterMathSkillDamage(skillId, hitType) {
+  getAfterMathSkillDamage(skillId, hitType, soulburn) {
     const skill = this.skills[skillId];
 
     let skillDamage = 0;
-    const skillMultipliers = skill.afterMath ? skill.afterMath(hitType) : null;
+    const skillMultipliers = skill.afterMath ? skill.afterMath(hitType, soulburn) : null;
     if (skillMultipliers !== null) {
       if (skillMultipliers.atkPercent) {
         skillDamage = this.getAtk(skillId) * skillMultipliers.atkPercent * dmgConst * this.target.defensivePower({ penetrate: () => skillMultipliers.penetrate }, true);
