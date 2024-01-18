@@ -7955,6 +7955,34 @@ const heroes = {
     baseAtk: 1109,
     baseHP: 4329,
     baseDef: 655,
+    skills: {
+      s1: {
+        rate: 1,
+        pow: 1,
+        enhance: [0.05, 0.05, 0, 0.1, 0.1],
+        single: true,
+      },
+      s2: {
+        rate: 0.7,
+        pow: 1,
+        enhance: [0.05, 0, 0, 0.1, 0.15],
+        aoe: true,
+      },
+      s3: {
+        rate: 0.9,
+        pow: 0.85,
+        enhance: [0.05, 0.1, 0, 0.15, 0.15],
+        aoe: true,
+      },
+    }
+  },
+  romann_old: {
+    name: 'Romann (Pre-Balance)',
+    element: element.ice,
+    classType: classType.mage,
+    baseAtk: 1109,
+    baseHP: 4329,
+    baseDef: 655,
     form: [elements.target_has_buff],
     skills: {
       s1: {
@@ -7974,34 +8002,6 @@ const heroes = {
         pow: 0.85,
         mult: () => elements.target_has_buff.value() ? 1.3 : 1,
         multTip: () => ({ target_has_buff: 30 }),
-        enhance: [0.05, 0.1, 0, 0.15, 0.15],
-        aoe: true,
-      },
-    }
-  },
-  romann_old: {
-    name: 'Romann (Pre-Balance)',
-    element: element.ice,
-    classType: classType.mage,
-    baseAtk: 1109,
-    baseHP: 4329,
-    baseDef: 655,
-    skills: {
-      s1: {
-        rate: 1,
-        pow: 1,
-        enhance: [0.05, 0.05, 0, 0.1, 0.1],
-        single: true,
-      },
-      s2: {
-        rate: 0.7,
-        pow: 1,
-        enhance: [0.05, 0, 0, 0.1, 0.15],
-        aoe: true,
-      },
-      s3: {
-        rate: 0.9,
-        pow: 0.85,
         enhance: [0.05, 0.1, 0, 0.15, 0.15],
         aoe: true,
       },
