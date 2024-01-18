@@ -3485,7 +3485,7 @@ const heroes = {
       },
       s1_extra: {
         name: 'Exterminate',
-        rate: 0.5,
+        rate: 1,
         pow: 1.3,
         aoe: true,
         noCrit: true,
@@ -3520,7 +3520,7 @@ const heroes = {
       },
       s1_extra: {
         name: 'Exterminate',
-        rate: 1,
+        rate: 0.5,
         pow: 1.3,
         aoe: true,
         noCrit: true,
