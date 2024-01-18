@@ -2966,31 +2966,31 @@ const heroes = {
       }
     }
   },
-  death_dealer_ray_old: {
-    name: 'Death Dealer Ray (Pre-Balance)',
-    element: element.dark,
-    classType: classType.soul_weaver,
-    baseAtk: 621,
-    baseHP: 6034,
-    baseDef: 775,
-    form: [elements.target_injuries],
-    skills: {
-      s1: {
-        rate: 1,
-        pow: 1,
-        enhance: [0.05, 0.05, 0, 0.1, 0.1],
-        single: true,
-      },
-      s3: {
-        noCrit: true,
-        noMiss: true,
-        rate: 0,
-        pow: 0,
-        afterMath: () => ({ injuryPercent: 0.8, penetrate: 0.7 }),
-        single: true,
-      }
-    }
-  },
+  // death_dealer_ray_old: {
+  //   name: 'Death Dealer Ray (Pre-Balance)',
+  //   element: element.dark,
+  //   classType: classType.soul_weaver,
+  //   baseAtk: 621,
+  //   baseHP: 6034,
+  //   baseDef: 775,
+  //   form: [elements.target_injuries],
+  //   skills: {
+  //     s1: {
+  //       rate: 1,
+  //       pow: 1,
+  //       enhance: [0.05, 0.05, 0, 0.1, 0.1],
+  //       single: true,
+  //     },
+  //     s3: {
+  //       noCrit: true,
+  //       noMiss: true,
+  //       rate: 0,
+  //       pow: 0,
+  //       afterMath: () => ({ injuryPercent: 0.8, penetrate: 0.7 }),
+  //       single: true,
+  //     }
+  //   }
+  // },
   desert_jewel_basar: {
     name: 'Desert Jewel Basar',
     element: element.light,
@@ -3377,43 +3377,43 @@ const heroes = {
       }
     }
   },
-  eligos_old: {
-    name: 'Eligos (Pre-Balance)',
-    element: element.fire,
-    classType: classType.ranger,
-    form: [elements.caster_speed, elements.caster_perception, elements.target_speed],
-    baseAtk: 1283,
-    baseHP: 4976,
-    baseDef: 536,
-    skills: {
-      s1: {
-        spdScaling: true,
-        rate: 0.95,
-        pow: 0.9,
-        mult: () => 1 + elements.caster_speed.value() * 0.00075,
-        multTip: () => ({ caster_speed: 0.075 }),
-        enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.1],
-        single: true,
-      },
-      s2: {
-        spdScaling: true,
-        rate: 0.7,
-        pow: 1.3,
-        mult: () => {
-          const spdDiff = (elements.caster_speed.value() - elements.target_speed.value()) * 0.025;
-          return 1 + Math.min(Math.max(0, spdDiff), 2);
-        },
-        multTip: () => ({ caster_target_spd_diff: 0.25 }),
-        single: true,
-      },
-      s3: {
-        rate: 1.5,
-        pow: 1,
-        enhance: [0.05, 0.05, 0, 0, 0, 0.1, 0.1],
-        single: true,
-      }
-    }
-  },
+  // eligos_old: {
+  //   name: 'Eligos (Pre-Balance)',
+  //   element: element.fire,
+  //   classType: classType.ranger,
+  //   form: [elements.caster_speed, elements.caster_perception, elements.target_speed],
+  //   baseAtk: 1283,
+  //   baseHP: 4976,
+  //   baseDef: 536,
+  //   skills: {
+  //     s1: {
+  //       spdScaling: true,
+  //       rate: 0.95,
+  //       pow: 0.9,
+  //       mult: () => 1 + elements.caster_speed.value() * 0.00075,
+  //       multTip: () => ({ caster_speed: 0.075 }),
+  //       enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.1],
+  //       single: true,
+  //     },
+  //     s2: {
+  //       spdScaling: true,
+  //       rate: 0.7,
+  //       pow: 1.3,
+  //       mult: () => {
+  //         const spdDiff = (elements.caster_speed.value() - elements.target_speed.value()) * 0.025;
+  //         return 1 + Math.min(Math.max(0, spdDiff), 2);
+  //       },
+  //       multTip: () => ({ caster_target_spd_diff: 0.25 }),
+  //       single: true,
+  //     },
+  //     s3: {
+  //       rate: 1.5,
+  //       pow: 1,
+  //       enhance: [0.05, 0.05, 0, 0, 0, 0.1, 0.1],
+  //       single: true,
+  //     }
+  //   }
+  // },
   elphelt_valentine: {
     name: 'Elphelt Valentine',
     element: element.fire,
@@ -4599,31 +4599,31 @@ const heroes = {
       }
     }
   },
-  inferno_khawazu_old: {
-    name: 'Inferno Khawazu (Pre-Balance)',
-    element: element.dark,
-    classType: classType.warrior,
-    baseAtk: 1119,
-    baseHP: 6091,
-    baseDef: 594,
-    form: [elements.target_burn_detonate],
-    dot: [dot.burn],
-    skills: {
-      s1: {
-        rate: 0.95,
-        pow: 1,
-        enhance: [0.05, 0, 0.05, 0, 0.1,  0.1],
-        single: true,
-      },
-      s3: {
-        rate: 0.7,
-        pow: 1,
-        detonate: dot.burn,
-        detonation: () => 1.2,
-        single: true,
-      }
-    }
-  },
+  // inferno_khawazu_old: {
+  //   name: 'Inferno Khawazu (Pre-Balance)',
+  //   element: element.dark,
+  //   classType: classType.warrior,
+  //   baseAtk: 1119,
+  //   baseHP: 6091,
+  //   baseDef: 594,
+  //   form: [elements.target_burn_detonate],
+  //   dot: [dot.burn],
+  //   skills: {
+  //     s1: {
+  //       rate: 0.95,
+  //       pow: 1,
+  //       enhance: [0.05, 0, 0.05, 0, 0.1,  0.1],
+  //       single: true,
+  //     },
+  //     s3: {
+  //       rate: 0.7,
+  //       pow: 1,
+  //       detonate: dot.burn,
+  //       detonation: () => 1.2,
+  //       single: true,
+  //     }
+  //   }
+  // },
   infinite_horizon_achates: {
     name: 'Infinite Horizon Achates',
     element: element.light,
@@ -6007,42 +6007,42 @@ const heroes = {
       }
     }
   },
-  lone_crescent_bellona_old: {
-    name: 'Lone Crescent Bellona (Pre-Balance)',
-    element: element.dark,
-    classType: classType.warrior,
-    form: [elements.caster_has_buff, elements.attack_skill_stack_5],
-    baseAtk: 1208,
-    baseHP: 6488,
-    baseDef: 616,
-    atkUp: () => 1 + elements.attack_skill_stack_5.value() * 0.1,
-    skills: {
-      s1: {
-        onlyCrit: true,
-        rate: 0.9,
-        pow: 0.95,
-        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
-        single: true,
-      },
-      s2: {
-        onlyCrit: true,
-        rate: 0.6,
-        pow: 1,
-        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
-        isExtra: true,
-        aoe: true,
-      },
-      s3: {
-        onlyCrit: true,
-        rate: 1.5,
-        pow: 1,
-        mult: () => 1 + (elements.caster_has_buff.value() ? 0.3 : 0),
-        multTip: () => ({ caster_has_buff: 30 }),
-        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
-        single: true,
-      }
-    }
-  },
+  // lone_crescent_bellona_old: {
+  //   name: 'Lone Crescent Bellona (Pre-Balance)',
+  //   element: element.dark,
+  //   classType: classType.warrior,
+  //   form: [elements.caster_has_buff, elements.attack_skill_stack_5],
+  //   baseAtk: 1208,
+  //   baseHP: 6488,
+  //   baseDef: 616,
+  //   atkUp: () => 1 + elements.attack_skill_stack_5.value() * 0.1,
+  //   skills: {
+  //     s1: {
+  //       onlyCrit: true,
+  //       rate: 0.9,
+  //       pow: 0.95,
+  //       enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+  //       single: true,
+  //     },
+  //     s2: {
+  //       onlyCrit: true,
+  //       rate: 0.6,
+  //       pow: 1,
+  //       enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+  //       isExtra: true,
+  //       aoe: true,
+  //     },
+  //     s3: {
+  //       onlyCrit: true,
+  //       rate: 1.5,
+  //       pow: 1,
+  //       mult: () => 1 + (elements.caster_has_buff.value() ? 0.3 : 0),
+  //       multTip: () => ({ caster_has_buff: 30 }),
+  //       enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+  //       single: true,
+  //     }
+  //   }
+  // },
   lorina: {
     name: 'Lorina',
     element: element.dark,
@@ -6315,45 +6315,45 @@ const heroes = {
       }
     }
   },
-  martial_artist_ken_old: {
-    name: 'Martial Artist Ken (Pre-Balance)',
-    element: element.dark,
-    classType: classType.warrior,
-    baseAtk: 1359,
-    baseHP: 5542,
-    baseDef: 585,
-    form: [elements.caster_hp_pc],
-    skills: {
-      s1: {
-        rate: 1,
-        pow: 0.95,
-        enhance: [0.05, 0.05, 0, 0.1, 0, 0.15],
-        single: true,
-      },
-      s2: {
-        onlyCrit: true,
-        rate: 1.2,
-        pow: 0.95,
-        mult: () => {
-          let extra = 0;
-          for (let i = 0; i < Number(document.getElementById('molagora-s1').value); i++) {
-            extra += heroes.martial_artist_ken.skills.s1.enhance[i];
-          }
-          return (1 + (100 - elements.caster_hp_pc.value()) * 0.004 + extra);
-        },
-        multTip: () => ({ caster_lost_hp_pc: 40 }),
-        enhance: [0.05, 0.1, 0.15],
-        single: true,
-      },
-      s3: {
-        soulburn: true,
-        rate: (soulburn) => soulburn ? 1.1 : 0.9,
-        pow: 1,
-        enhance: [0.05, 0, 0, 0.1, 0, 0.15],
-        aoe: true,
-      }
-    }
-  },
+  // martial_artist_ken_old: {
+  //   name: 'Martial Artist Ken (Pre-Balance)',
+  //   element: element.dark,
+  //   classType: classType.warrior,
+  //   baseAtk: 1359,
+  //   baseHP: 5542,
+  //   baseDef: 585,
+  //   form: [elements.caster_hp_pc],
+  //   skills: {
+  //     s1: {
+  //       rate: 1,
+  //       pow: 0.95,
+  //       enhance: [0.05, 0.05, 0, 0.1, 0, 0.15],
+  //       single: true,
+  //     },
+  //     s2: {
+  //       onlyCrit: true,
+  //       rate: 1.2,
+  //       pow: 0.95,
+  //       mult: () => {
+  //         let extra = 0;
+  //         for (let i = 0; i < Number(document.getElementById('molagora-s1').value); i++) {
+  //           extra += heroes.martial_artist_ken.skills.s1.enhance[i];
+  //         }
+  //         return (1 + (100 - elements.caster_hp_pc.value()) * 0.004 + extra);
+  //       },
+  //       multTip: () => ({ caster_lost_hp_pc: 40 }),
+  //       enhance: [0.05, 0.1, 0.15],
+  //       single: true,
+  //     },
+  //     s3: {
+  //       soulburn: true,
+  //       rate: (soulburn) => soulburn ? 1.1 : 0.9,
+  //       pow: 1,
+  //       enhance: [0.05, 0, 0, 0.1, 0, 0.15],
+  //       aoe: true,
+  //     }
+  //   }
+  // },
   mascot_hazel: {
     name: 'Mascot Hazel',
     element: element.fire,
@@ -6773,28 +6773,28 @@ const heroes = {
       },
     }
   },
-  moon_bunny_dominiel_old: {
-    name: 'Moon Bunny Dominiel (Pre-Balance)',
-    element: element.light,
-    classType: classType.soul_weaver,
-    baseAtk: 649,
-    baseHP: 4572,
-    baseDef: 631,
-    form: [elements.caster_max_hp],
-    barrier: () => elements.caster_max_hp.value() * 0.21,
-    barrierEnhance: 's2',
-    skills: {
-      s1: {
-        rate: 1,
-        pow: 0.9,
-        enhance: [0.05, 0, 0.05, 0, 0.1, 0.1],
-        single: true,
-      },
-      s2: {
-        enhance: [0.05, 0.05, 0.05, 0.1, 0.1, 0.1]
-      },
-    }
-  },
+  // moon_bunny_dominiel_old: {
+  //   name: 'Moon Bunny Dominiel (Pre-Balance)',
+  //   element: element.light,
+  //   classType: classType.soul_weaver,
+  //   baseAtk: 649,
+  //   baseHP: 4572,
+  //   baseDef: 631,
+  //   form: [elements.caster_max_hp],
+  //   barrier: () => elements.caster_max_hp.value() * 0.21,
+  //   barrierEnhance: 's2',
+  //   skills: {
+  //     s1: {
+  //       rate: 1,
+  //       pow: 0.9,
+  //       enhance: [0.05, 0, 0.05, 0, 0.1, 0.1],
+  //       single: true,
+  //     },
+  //     s2: {
+  //       enhance: [0.05, 0.05, 0.05, 0.1, 0.1, 0.1]
+  //     },
+  //   }
+  // },
   mort: {
     name: 'Mort',
     element: element.earth,
@@ -8426,36 +8426,36 @@ const heroes = {
       }
     }
   },
-  serila_old: {
-    name: 'Serila (Pre-Balance)',
-    element: element.fire,
-    classType: classType.mage,
-    baseAtk: 1218,
-    baseHP: 4521,
-    baseDef: 683,
-    dot: [dot.burn],
-    skills: {
-      s1: {
-        rate: 1,
-        pow: 1,
-        enhance: [0.05, 0, 0.1, 0, 0.15],
-        single: true,
-      },
-      s2: {
-        soulburn: true,
-        rate: (soulburn) => soulburn ? 2 : 1.5,
-        pow: 1.05,
-        enhance: [0.1, 0, 0, 0, 0.15],
-        single: true,
-      },
-      s3: {
-        rate: 1.8,
-        pow: 1.05,
-        enhance: [0.1, 0, 0, 0, 0.15],
-        single: true,
-      }
-    }
-  },
+  // serila_old: {
+  //   name: 'Serila (Pre-Balance)',
+  //   element: element.fire,
+  //   classType: classType.mage,
+  //   baseAtk: 1218,
+  //   baseHP: 4521,
+  //   baseDef: 683,
+  //   dot: [dot.burn],
+  //   skills: {
+  //     s1: {
+  //       rate: 1,
+  //       pow: 1,
+  //       enhance: [0.05, 0, 0.1, 0, 0.15],
+  //       single: true,
+  //     },
+  //     s2: {
+  //       soulburn: true,
+  //       rate: (soulburn) => soulburn ? 2 : 1.5,
+  //       pow: 1.05,
+  //       enhance: [0.1, 0, 0, 0, 0.15],
+  //       single: true,
+  //     },
+  //     s3: {
+  //       rate: 1.8,
+  //       pow: 1.05,
+  //       enhance: [0.1, 0, 0, 0, 0.15],
+  //       single: true,
+  //     }
+  //   }
+  // },
   sez: {
     name: 'Sez',
     element: element.ice,
@@ -9610,42 +9610,42 @@ const heroes = {
       },
     }
   },
-  twisted_eidolon_kayron_old: {
-    name: 'Twisted Eidolon Kayron (Pre-Balance)',
-    element: element.light,
-    classType: classType.thief,
-    baseAtk: 1228,
-    baseHP: 6266,
-    baseDef: 473,
-    barrier: () => elements.caster_max_hp.value() * 0.12,
-    form: [elements.target_hp_pc, elements.caster_enrage, elements.caster_max_hp],
-    skills: {
-      s1: {
-        rate: (soulburn) => soulburn ? 1.7 : 1,
-        pow: 1,
-        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
-        mult: () => 1 + (1 - (elements.target_hp_pc.value() / 100)) * 0.3,
-        multTip: () => ({ target_lost_hp_pc: 30 }),
-        single: true,
-        soulburn: true
-      },
-      s1_bis: {
-        name: infoLabel('ml_kayron_flash_slash'),
-        rate: 0.85,
-        pow: 1,
-        enhance_from: 's1',
-        aoe: true,
-      },
-      s3: {
-        rate: 0.9,
-        pow: 1,
-        fixed: (hitType) => (hitType !== hitTypes.miss) ? ((elements.caster_enrage.value()) ? 10000 : 2000) : 0,
-        fixedTip: () => ({ caster_rage_flat: 10000 }),
-        enhance: [0.05, 0.05, 0, 0.1, 0.1],
-        aoe: true,
-      },
-    }
-  },
+  // twisted_eidolon_kayron_old: {
+  //   name: 'Twisted Eidolon Kayron (Pre-Balance)',
+  //   element: element.light,
+  //   classType: classType.thief,
+  //   baseAtk: 1228,
+  //   baseHP: 6266,
+  //   baseDef: 473,
+  //   barrier: () => elements.caster_max_hp.value() * 0.12,
+  //   form: [elements.target_hp_pc, elements.caster_enrage, elements.caster_max_hp],
+  //   skills: {
+  //     s1: {
+  //       rate: (soulburn) => soulburn ? 1.7 : 1,
+  //       pow: 1,
+  //       enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+  //       mult: () => 1 + (1 - (elements.target_hp_pc.value() / 100)) * 0.3,
+  //       multTip: () => ({ target_lost_hp_pc: 30 }),
+  //       single: true,
+  //       soulburn: true
+  //     },
+  //     s1_bis: {
+  //       name: infoLabel('ml_kayron_flash_slash'),
+  //       rate: 0.85,
+  //       pow: 1,
+  //       enhance_from: 's1',
+  //       aoe: true,
+  //     },
+  //     s3: {
+  //       rate: 0.9,
+  //       pow: 1,
+  //       fixed: (hitType) => (hitType !== hitTypes.miss) ? ((elements.caster_enrage.value()) ? 10000 : 2000) : 0,
+  //       fixedTip: () => ({ caster_rage_flat: 10000 }),
+  //       enhance: [0.05, 0.05, 0, 0.1, 0.1],
+  //       aoe: true,
+  //     },
+  //   }
+  // },
   tywin: {
     name: 'Tywin',
     element: element.ice,
