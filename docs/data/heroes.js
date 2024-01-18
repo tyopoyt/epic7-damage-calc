@@ -4378,7 +4378,6 @@ const heroes = {
         soulburn: true
       },
       s3: {
-        hpScaling: true,
         rate: 1.1,
         pow: 1,
         penetrate: () => {
