@@ -4378,7 +4378,6 @@ const heroes = {
         soulburn: true
       },
       s3: {
-        hpScaling: true,
         rate: 1.1,
         pow: 1,
         penetrate: () => {
@@ -4389,7 +4388,7 @@ const heroes = {
 
           return Math.min(Math.max(0, penDiff), 1);
         },
-        penetrateTip: () => ({ caster_vs_target_hp_diff: 9.1 }),
+        penetrateTip: () => ({caster_target_atk_diff: 0.0196}),
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
         single: true,
         noCrit: true,
@@ -4409,7 +4408,7 @@ const heroes = {
     innateAtkUp: () => {
       let boost = 0.20;
       for (let i = 0; i < Number(document.getElementById('molagora-s2').value); i++) {
-        boost += heroes.hwayoung.skills.s2.enhance[i];
+        boost += heroes.hwayoung_old.skills.s2.enhance[i];
       }
       return boost;
     },
@@ -7956,6 +7955,34 @@ const heroes = {
     baseAtk: 1109,
     baseHP: 4329,
     baseDef: 655,
+    skills: {
+      s1: {
+        rate: 1,
+        pow: 1,
+        enhance: [0.05, 0.05, 0, 0.1, 0.1],
+        single: true,
+      },
+      s2: {
+        rate: 0.7,
+        pow: 1,
+        enhance: [0.05, 0, 0, 0.1, 0.15],
+        aoe: true,
+      },
+      s3: {
+        rate: 0.9,
+        pow: 0.85,
+        enhance: [0.05, 0.1, 0, 0.15, 0.15],
+        aoe: true,
+      },
+    }
+  },
+  romann_old: {
+    name: 'Romann (Pre-Balance)',
+    element: element.ice,
+    classType: classType.mage,
+    baseAtk: 1109,
+    baseHP: 4329,
+    baseDef: 655,
     form: [elements.target_has_buff],
     skills: {
       s1: {
@@ -7975,34 +8002,6 @@ const heroes = {
         pow: 0.85,
         mult: () => elements.target_has_buff.value() ? 1.3 : 1,
         multTip: () => ({ target_has_buff: 30 }),
-        enhance: [0.05, 0.1, 0, 0.15, 0.15],
-        aoe: true,
-      },
-    }
-  },
-  romann_old: {
-    name: 'Romann (Pre-Balance)',
-    element: element.ice,
-    classType: classType.mage,
-    baseAtk: 1109,
-    baseHP: 4329,
-    baseDef: 655,
-    skills: {
-      s1: {
-        rate: 1,
-        pow: 1,
-        enhance: [0.05, 0.05, 0, 0.1, 0.1],
-        single: true,
-      },
-      s2: {
-        rate: 0.7,
-        pow: 1,
-        enhance: [0.05, 0, 0, 0.1, 0.15],
-        aoe: true,
-      },
-      s3: {
-        rate: 0.9,
-        pow: 0.85,
         enhance: [0.05, 0.1, 0, 0.15, 0.15],
         aoe: true,
       },
