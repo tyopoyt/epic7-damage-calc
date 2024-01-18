@@ -1,5 +1,7 @@
 ## Changelog
 
+### <strong>Jan 18 2024 Update:</strong>
+Added changes from 01/2024 Balance patch.
 ### <strong>Jan 4 2024 Update:</strong>
 - Added Dragon King Sharun, Elvira, and Leah.
 ### <strong>Dec 21 2023 Update:</strong>

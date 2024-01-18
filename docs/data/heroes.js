@@ -3502,6 +3502,41 @@ const heroes = {
       }
     }
   },
+  elvira_old: {
+    name: 'Elvira (Pre-Balance)',
+    element: element.ice,
+    classType: classType.thief,
+    form: [elements.target_current_hp],
+    baseAtk: 1057,
+    baseHP: 5542,
+    baseDef: 532,
+    skills: {
+      s1: {
+        rate: 1,
+        pow: 1,
+        enhance: [0.05, 0, 0.1, 0, 0.15],
+        single: true,
+        noCrit: true,
+      },
+      s1_extra: {
+        name: 'Exterminate',
+        rate: 1,
+        pow: 1.3,
+        aoe: true,
+        noCrit: true,
+      },
+      s3: {
+        rate: 0.2,
+        pow: 1,
+        flat: () => elements.target_current_hp.value() * 0.16,
+        flatTip: () => ({ targetCurrentHP: 16 }),
+        penetrate: () => 1,
+        enhance: [0.05, 0.05, 0, 0.05, 0.15],
+        single: true,
+        noCrit: true,
+      }
+    }
+  },
   emilia: {
     name: 'Emilia',
     element: element.ice,
@@ -4327,9 +4362,45 @@ const heroes = {
     name: 'Hwayoung',
     element: element.fire,
     classType: classType.warrior,
-    // info: "<strong>Notice:</strong> Hwayoung's S1 additional damage penetration has been set back to 0.7 in the calculator.  It was presumed" +
-    //       " to have been removed because it did not show up when the skill data spreadsheet datamined.  However, as of now it is presumed all" +
-    //       " additional damage of this kind has 0.7 def pen due to other heroes' additional damage penetration similarly being absent in datamines.",
+    baseAtk: 1119,
+    baseHP: 6226,
+    baseDef: 627,
+    form: [elements.target_attack],
+    barrier: (hero) => hero.getAtk() * 0.8,
+    skills: {
+      s1: {
+        rate: (soulburn) => soulburn ? 1.2 : 0.8,
+        pow: 1,
+        afterMath: (hitType, soulburn) => hitType !== hitTypes.miss ? (soulburn ? ({ atkPercent: 0.70, penetrate: 0.7 }) : ({ atkPercent: 0.35, penetrate: 0.7 })) : null,
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        single: true,
+        noCrit: true,
+        soulburn: true
+      },
+      s3: {
+        hpScaling: true,
+        rate: 1.1,
+        pow: 1,
+        penetrate: () => {
+          const targetAtk = elements.target_attack.value();
+          const casterAtk = currentHero.getAtk('s3');
+
+          const penDiff = (casterAtk - targetAtk) * 0.000196;
+
+          return Math.min(Math.max(0, penDiff), 1);
+        },
+        penetrateTip: () => ({ caster_vs_target_hp_diff: 9.1 }),
+        enhance: [0.05, 0.05, 0, 0.1, 0.1],
+        single: true,
+        noCrit: true,
+      },
+    }
+  },
+  // from 01/2024 balance patch
+  hwayoung_old: {
+    name: 'Hwayoung (Pre-Balance)',
+    element: element.fire,
+    classType: classType.warrior,
     baseAtk: 1119,
     baseHP: 6226,
     baseDef: 627,
@@ -4772,6 +4843,38 @@ const heroes = {
   // },
   judge_kise: {
     name: 'Judge Kise',
+    element: element.light,
+    classType: classType.warrior,
+    baseAtk: 1039,
+    baseHP: 5340,
+    baseDef: 617,
+    form: [elements.nb_targets],
+    skills: {
+      s1: {
+        rate: 1,
+        pow: 1,
+        enhance: [0.05, 0.05, 0.1, 0.1],
+        penetrate: () => 0.2,
+        single: true,
+      },
+      s2: {
+        rate: 1,
+        pow: 1,
+        enhance: [0.15, 0, 0, 0.15],
+        aoe: true,
+      },
+      s3: {
+        rate: 1.1,
+        pow: 0.95,
+        mult: () => 1 + (elements.nb_targets.value() - 1) * 0.1,
+        multTip: () => ({ per_target: 10 }),
+        enhance: [0.05, 0.05, 0.05, 0, 0.05, 0.05, 0.1],
+        aoe: true,
+      }
+    }
+  },
+  judge_kise_old: {
+    name: 'Judge Kise (Pre-Balance)',
     element: element.light,
     classType: classType.warrior,
     baseAtk: 1039,
@@ -7877,6 +7980,34 @@ const heroes = {
       },
     }
   },
+  romann_old: {
+    name: 'Romann (Pre-Balance)',
+    element: element.ice,
+    classType: classType.mage,
+    baseAtk: 1109,
+    baseHP: 4329,
+    baseDef: 655,
+    skills: {
+      s1: {
+        rate: 1,
+        pow: 1,
+        enhance: [0.05, 0.05, 0, 0.1, 0.1],
+        single: true,
+      },
+      s2: {
+        rate: 0.7,
+        pow: 1,
+        enhance: [0.05, 0, 0, 0.1, 0.15],
+        aoe: true,
+      },
+      s3: {
+        rate: 0.9,
+        pow: 0.85,
+        enhance: [0.05, 0.1, 0, 0.15, 0.15],
+        aoe: true,
+      },
+    }
+  },
   roozid: {
     name: 'Roozid',
     element: element.earth,
@@ -8773,6 +8904,31 @@ const heroes = {
   },
   spirit_eye_celine: {
     name: 'Spirit Eye Celine',
+    element: element.light,
+    classType: classType.thief,
+    form: [elements.caster_possession],
+    baseAtk: 1158,
+    baseHP: 5016,
+    baseDef: 532,
+    skills: {
+      s1: {
+        rate: 1,
+        pow: 0.9,
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.1],
+        single: true,
+      },
+      s1_bis: {
+        name: infoLabel('ml_celine_nimble_sword'),
+        rate: 1,
+        pow: 0.9,
+        penetrate: () => 0.5,
+        enhance_from: 's1',
+        single: true,
+      },
+    }
+  },
+  spirit_eye_celine_old: {
+    name: 'Spirit Eye Celine (Pre-Balance)',
     element: element.light,
     classType: classType.thief,
     baseAtk: 1158,

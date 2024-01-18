@@ -179,9 +179,11 @@ const i18n = {
     heroes: {
       // Unreleased units: (未発表)
       // Pre-Balance versions: (前のバージョン)
-      lone_crescent_bellona_old: '孤月のヴェローナ (前のバージョン)',
-      serila_old: 'セリラ (前のバージョン)',
-      death_dealer_ray_old: '死の探究者 レイ (前のバージョン)',
+      judge_kise_old: '審判者 キセ (前のバージョン)',
+      spirit_eye_celine_old: '霊眼のセリン (前のバージョン)',
+      elvira_old: 'Elvira (前のバージョン)', //TODO: translate
+      romann_old: 'ローマン (前のバージョン)',
+      hwayoung_old: 'フィナス (前のバージョン)',
       // End Pre-Balance
       abigail: 'アビゲイル',
       abyssal_yufine: '深淵のユピネ',
@@ -664,9 +666,11 @@ const i18n = {
     heroes: {
       // Unreleased units: (未發布)
       // Pre-Balance versions: (以前的版本)
-      lone_crescent_bellona_old: '一輪孤月維爾蘿娜 (以前的版本)',
-      serila_old: '塞麗拉 (以前的版本)',
-      death_dealer_ray_old: '死亡探究者雷伊 (以前的版本)',
+      judge_kise_old: '審判者綺世 (以前的版本)',
+      spirit_eye_celine_old: '靈眼的瑟琳 (以前的版本)',
+      elvira_old: 'Elvira (以前的版本)',
+      romann_old: '洛曼 (以前的版本)',
+      hwayoung_old: '和英 (以前的版本)',
       // End Pre-Balance
       abigail: '雅碧凱',
       abyssal_yufine: '深淵優芬妮',
@@ -1383,9 +1387,11 @@ const i18n = {
     heroes: {
       // Unreleased units: (未发布)
       // Pre-Balance versions: (以前的版本)
-      lone_crescent_bellona_old: '一轮孤月维尔夢娜 (以前的版本)',
-      serila_old: '塞丽拉 (以前的版本)',
-      death_dealer_ray_old: '死亡探究者雷伊 (以前的版本)',
+      judge_kise_old: '审判者绮世 (以前的版本)',
+      spirit_eye_celine_old: '灵眼的瑟琳 (以前的版本)',
+      elvira_old: 'Elvira (以前的版本)',
+      romann_old: '洛曼 (以前的版本)',
+      hwayoung_old: '和英 (以前的版本)',
       // End Pre-Balance
       abigail: '雅碧凱',
       abyssal_yufine: '深淵優芬妮', // TODO: Simplified when available
@@ -2104,9 +2110,11 @@ const i18n = {
     heroes: {
       // Unreleased units: (미공개)
       // Pre-Balance versions: (이전 버전)
-      lone_crescent_bellona_old: '일편고월 벨로나 (이전 버전)',
-      serila_old: '세릴라 (이전 버전)',
-      death_dealer_ray_old: '죽음의 탐구자 레이 (이전 버전)',
+      judge_kise_old: '심판자 키세 (이전 버전)',
+      spirit_eye_celine_old: '영안의 셀린 (이전 버전)',
+      elvira_old: 'Elvira (이전 버전)',
+      romann_old: '로만 (이전 버전)',
+      hwayoung_old: '화영 (이전 버전)',
       // End Pre-Balance
       abigail: '아비게일',
       abyssal_yufine: '심연의 유피네',
@@ -2753,9 +2761,11 @@ const i18n = {
     heroes: {
       // Unreleased units: (Unidades) (Não Lançadas)
       // Pre-Balance versions: (Versão) (Pré-Balanceamento)
-      lone_crescent_bellona_old: 'Bellona Lua Solitária (Pré-Balanceamento)',
-      serila_old: 'Serila (Pré-Balanceamento)',
-      death_dealer_ray_old: 'Ray Investigador da Morte (Pré-Balanceamento)',
+      judge_kise_old: 'Juíza Kise (Pré-Balanceamento)',
+      spirit_eye_celine_old: 'Celine Médium Espiritual (Pré-Balanceamento)',
+      elvira_old: 'Elvira (Pré-Balanceamento)',
+      romann_old: 'Romann (Pré-Balanceamento)',
+      hwayoung_old: 'Hwa Young (Pré-Balanceamento)',
       // End Pre-Balance
       abigail: 'Abigail',
       abyssal_yufine: '', // TODO: translate when available
