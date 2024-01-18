@@ -4408,7 +4408,7 @@ const heroes = {
     innateAtkUp: () => {
       let boost = 0.20;
       for (let i = 0; i < Number(document.getElementById('molagora-s2').value); i++) {
-        boost += heroes.hwayoung.skills.s2.enhance[i];
+        boost += heroes.hwayoung_old.skills.s2.enhance[i];
       }
       return boost;
     },
