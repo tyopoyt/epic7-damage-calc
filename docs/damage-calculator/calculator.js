@@ -1119,7 +1119,7 @@ const calculateChart = (inputValues) => {
     const HPDataIndex = chart.data.datasets.indexOf(filteredDatasets[0]);
 
     chart.data.datasets[HPDataIndex].data = [];
-    hero.hp = Math.floor(inputValues['caster-max-hp'] * (artifacts[artifact.id]?.maxHP || 1) - (intersectionPoint *  hpStep));
+    hero.hp = Math.floor(elements.caster_max_hp.value() - (intersectionPoint *  hpStep));
 
     index = 0;
     while (chart.data.datasets[HPDataIndex].data.length < numSteps) {

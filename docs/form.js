@@ -307,7 +307,11 @@ const elements = {
       if (currentHero.hp) {
         return currentHero.getHP();
       }
-      return Number(document.getElementById('caster-max-hp').value) * (artifacts[currentArtifact.id]?.maxHP ? artifacts[currentArtifact.id]?.maxHP : 1);
+
+      const artifactObject = artifacts[currentArtifact.id];
+      const artifactHP = (artifactObject?.type === artifactDmgType.health_only && artifactObject.scale?.length) ? artifactObject.scale[Math.floor(inputValues['artifact-lvl']/3)] : (artifactObject?.maxHP || 1);
+
+      return Number(document.getElementById('caster-max-hp').value) * artifactHP;
     }
   },
   caster_hp_pc: {
