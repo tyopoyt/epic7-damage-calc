@@ -1,7 +1,7 @@
 ## Changelog
 
 ### <strong>Feb 1 2024 Update:</strong>
-Added Laia.
+Added Laia and Sweet Miracle.
 ### <strong>Jan 18 2024 Update:</strong>
 Added changes from 01/2024 Balance patch.
 ### <strong>Jan 4 2024 Update:</strong>
