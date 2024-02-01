@@ -5467,6 +5467,7 @@ const heroes = {
         pow: 1,
         flat: (soulburn) => (soulburn ? 0.32 : 0.2) * elements.caster_max_hp.value(),
         flatTip: (soulburn) => ({ caster_max_hp: soulburn ? 32 : 20 }),
+        enhance: [0.05, 0.05, 0, 0.1, 0.1],
         penetrate: () => 1.0,
         isSingle: () => true,
       }
