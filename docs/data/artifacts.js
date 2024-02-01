@@ -6,7 +6,8 @@ const artifactDmgType = {
   critDmgBoost: 'crit-dmg-boost',
   fixedDamage: 'fixedDamage',
   flat: 'flat',
-  dot: 'dot'
+  dot: 'dot',
+  health_only: 'health_only'
 };
 
 const artifacts = {
@@ -391,6 +392,13 @@ const artifacts = {
     type: artifactDmgType.dot,
     dot: [dot.bomb],
     exclusive: classType.ranger
+  },
+  sweet_miracle: {
+    id: 'sweet_miracle',
+    name: 'Sweet Miracle',
+    maxHP: 1.1,
+    exclusive: classType.warrior,
+    type: artifactDmgType.health_only
   },
   sword_of_cycling_seasons: {
     id: 'sword_of_cycling_seasons',
