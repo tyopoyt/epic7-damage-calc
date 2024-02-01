@@ -5441,6 +5441,37 @@ const heroes = {
       }
     }
   },
+  laia: {
+    name: 'Laia',
+    element: element.earth,
+    classType: classType.warrior,
+    baseAtk: 984,
+    baseHP: 6266,
+    baseDef: 637,
+    form: [elements.caster_max_hp],
+    skills: {
+      s1: {
+        hpScaling: true,
+        rate: 0.7,
+        pow: 1,
+        flat: () => 0.01 * elements.caster_max_hp.value(),
+        flatTip: () => ({ caster_max_hp: 10 }),
+        enhance: [0.05, 0, 0.1, 0, 0.15],
+        isSingle: () => true,
+      },
+      s3: {
+        soulburn: true,
+        hpScaling: true,
+        noCrit: true,
+        rate: 0.3,
+        pow: 1,
+        flat: (soulburn) => (soulburn ? 0.32 : 0.2) * elements.caster_max_hp.value(),
+        flatTip: (soulburn) => ({ caster_max_hp: soulburn ? 32 : 20 }),
+        penetrate: () => 1.0,
+        isSingle: () => true,
+      }
+    }
+  },
   landy: {
     name: 'Landy',
     element: element.earth,
