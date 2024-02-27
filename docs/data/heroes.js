@@ -3207,8 +3207,8 @@ const heroes = {
         single: true,
       },
       s3: {
-        rate: 1.1,
-        pow: 0.5,
+        rate: 1,
+        pow: 1.05,
         enhance: [0.1, 0, 0, 0, 0.15],
         aoe: true,
       }
