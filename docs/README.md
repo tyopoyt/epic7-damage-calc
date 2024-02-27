@@ -1,5 +1,7 @@
 ## Changelog
 
+### <strong>Feb 271 2024 Update:</strong>
+Added Beehoo EE.
 ### <strong>Feb 1 2024 Update:</strong>
 Added Laia and Sweet Miracle.
 ### <strong>Jan 18 2024 Update:</strong>
