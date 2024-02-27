@@ -1358,7 +1358,7 @@ const heroes = {
     name: 'Beehoo',
     element: element.fire,
     classType: classType.ranger,
-    form: [elements.target_burn_detonate],
+    form: [elements.target_burn_detonate, elements.exclusive_equipment_3],
     baseAtk: 1203,
     baseHP: 5704,
     baseDef: 702,
@@ -1367,7 +1367,7 @@ const heroes = {
       for (let i = 0; i < Number(document.getElementById('molagora-s2').value); i++) {
         boost += heroes.beehoo.skills.s2.enhance[i];
       }
-      return boost;
+      return boost + (elements.exclusive_equipment_3.value() ? 0.05 : 0);
     },
     dot: [dot.burn],
     skills: {
