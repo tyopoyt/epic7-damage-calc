@@ -82,6 +82,14 @@ const artifacts = {
     type: artifactDmgType.penetrate,
     exclusive: classType.knight
   },
+  // TODO: handle barrier from this arti
+  dark_blood_keeper: {
+    id: 'dark_blood_keeper',
+    name: 'Dark Blood Keeper',
+    type: artifactDmgType.attack,
+    exclusive: classType.thief,
+    value: 0.15
+  },
   daydream_joker: {
     id: 'daydream_joker',
     name: 'Daydream Joker',
@@ -490,9 +498,7 @@ const artifacts = {
     info: infoLabel('victorious_flag'),
     applies: (skill) => {
       const hero = heroes[document.getElementById('hero').value];
-      if (hero.element === element.dark || hero.element === element.light) return false;
-
-      return (document.getElementById('elem-adv').checked || ((skill.elemAdv !== undefined) && skill.elemAdv() === true));
+      return  !(hero.element === element.dark || hero.element === element.light);
     }
   },
   violet_talisman: {

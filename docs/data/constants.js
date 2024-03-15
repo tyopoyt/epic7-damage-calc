@@ -16,7 +16,7 @@ const battleConstants = {
   'target': 1.15,
   'caster-fury': 1.3,
   'spdUp': 1.3, 
-  'casterRage': 1.1,
+  'casterRage': 1.2,
   'caster-has-stars-blessing': 1.15,
   'trauma': -0.7,
   'caster-possession': 1.25
