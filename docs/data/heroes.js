@@ -2600,7 +2600,7 @@ const heroes = {
     }
   },
   clarissa_old: {
-    name: 'Clarissa',
+    name: 'Clarissa (Pre-Balance)',
     element: element.ice,
     classType: classType.warrior,
     baseAtk: 1252,
@@ -7774,7 +7774,7 @@ const heroes = {
     }
   },
   requiem_roana_old: {
-    name: 'Requiem Roana',
+    name: 'Requiem Roana (Pre-Balance)',
     element: element.dark,
     classType: classType.mage,
     form: [elements.attack_skill_stack_3],
@@ -9690,7 +9690,7 @@ const heroes = {
     }
   },
   top_model_luluca_old: {
-    name: 'Top Model Luluca',
+    name: 'Top Model Luluca (Pre-Balance)',
     element: element.dark,
     classType: classType.mage,
     baseAtk: 1228,
