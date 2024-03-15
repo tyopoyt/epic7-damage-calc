@@ -1,6 +1,8 @@
 ## Changelog
 
-### <strong>Feb 271 2024 Update:</strong>
+### <strong>Mar 15 2024 Update:</strong>
+Added Jenua and Dark Blood Keeper.  Updated Heroes and Artifacts included in 3/14 balance patch.
+### <strong>Feb 27 2024 Update:</strong>
 Added Beehoo EE.
 ### <strong>Feb 1 2024 Update:</strong>
 Added Laia and Sweet Miracle.
