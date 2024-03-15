@@ -7750,7 +7750,6 @@ const heroes = {
     name: 'Requiem Roana',
     element: element.dark,
     classType: classType.mage,
-    form: [elements.attack_skill_stack_3],
     baseAtk: 1316,
     baseHP: 4777,
     baseDef: 715,
