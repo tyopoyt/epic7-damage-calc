@@ -88,7 +88,7 @@ const artifacts = {
     name: 'Dark Blood Keeper',
     type: artifactDmgType.attack,
     exclusive: classType.thief,
-    value: 0.15
+    value: () => 0.15
   },
   daydream_joker: {
     id: 'daydream_joker',
