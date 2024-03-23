@@ -326,7 +326,7 @@ const getGlobalAtkMult = () => {
   });
 
   if (elements.caster_enrage.value()) {
-    mult += 0.1;
+    mult += 0.2;
   }
 
   return mult + (inputValues.atkPcUp / 100);
