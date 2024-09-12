@@ -4940,6 +4940,37 @@ export const Heroes: Record<string, Hero> = {
       })
     }
   }),
+  judge_kise: new Hero({
+    element: HeroElement.light,
+    class: HeroClass.warrior,
+    baseAttack: 1039,
+    baseHP: 5340,
+    baseDefense: 617,
+    skills: {
+      s1: new Skill({
+        id: 's1',
+        rate: () => 1,
+        pow: () => 1,
+        enhance: [0.05, 0.05, 0.1, 0.1],
+        penetrate: () => 0.2,
+        isSingle: () => true,
+      }),
+      s2: new Skill({
+        id: 's2',
+        rate: () => 1,
+        pow: () => 1,
+        enhance: [0.15, 0, 0, 0.15],
+        isAOE: () => true,
+      }),
+      s3: new Skill({
+        id: 's3',
+        rate: () => 1.2,
+        pow: () => 0.95,
+        enhance: [0.05, 0.05, 0.05, 0, 0.05, 0.05, 0.1],
+        isAOE: () => true,
+      })
+    }
+  }),
   judge_kise_old: new Hero({
     element: HeroElement.light,
     class: HeroClass.warrior,
@@ -4969,37 +5000,6 @@ export const Heroes: Record<string, Hero> = {
         pow: () => 0.95,
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + (inputValues.numberOfTargets - 1) * 0.1,
         multTip: () => ({ per_target: 10 }),
-        enhance: [0.05, 0.05, 0.05, 0, 0.05, 0.05, 0.1],
-        isAOE: () => true,
-      })
-    }
-  }),
-  judge_kise: new Hero({
-    element: HeroElement.light,
-    class: HeroClass.warrior,
-    baseAttack: 1039,
-    baseHP: 5340,
-    baseDefense: 617,
-    skills: {
-      s1: new Skill({
-        id: 's1',
-        rate: () => 1,
-        pow: () => 1,
-        enhance: [0.05, 0.05, 0.1, 0.1],
-        penetrate: () => 0.2,
-        isSingle: () => true,
-      }),
-      s2: new Skill({
-        id: 's2',
-        rate: () => 1,
-        pow: () => 1,
-        enhance: [0.15, 0, 0, 0.15],
-        isAOE: () => true,
-      }),
-      s3: new Skill({
-        id: 's3',
-        rate: () => 1.2,
-        pow: () => 0.95,
         enhance: [0.05, 0.05, 0.05, 0, 0.05, 0.05, 0.1],
         isAOE: () => true,
       })
