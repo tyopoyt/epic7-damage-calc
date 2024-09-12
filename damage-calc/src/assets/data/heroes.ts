@@ -4940,7 +4940,7 @@ export const Heroes: Record<string, Hero> = {
       })
     }
   }),
-  judge_kise: new Hero({
+  judge_kise_old: new Hero({
     element: HeroElement.light,
     class: HeroClass.warrior,
     baseAttack: 1039,
@@ -4974,7 +4974,7 @@ export const Heroes: Record<string, Hero> = {
       })
     }
   }),
-  judge_kise_old: new Hero({
+  judge_kise: new Hero({
     element: HeroElement.light,
     class: HeroClass.warrior,
     baseAttack: 1039,
