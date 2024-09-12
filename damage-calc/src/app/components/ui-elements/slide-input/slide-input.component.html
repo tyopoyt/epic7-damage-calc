@@ -14,7 +14,7 @@
             </ng-template>
             <app-number-input-group [value]="slideValue" [max]="max" [min]="min" [default]="default" [step]="step" (valueChange)="setValue($event)"></app-number-input-group>
         </div>
-        <mat-slider min="{{min}}" max="{{max}}" step="{{step}}" (input)="valueChanged($event)">
+        <mat-slider [class.mobile-width-slider]="screenService.mediumSmallScreen.value" min="{{min}}" max="{{max}}" step="{{step}}" (input)="valueChanged($event)">
             <input matSliderThumb [(value)]="value">
         </mat-slider>
     </div>

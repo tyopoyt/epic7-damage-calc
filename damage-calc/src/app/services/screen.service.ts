@@ -5,7 +5,9 @@ import { get } from 'lodash-es'
 
 export enum Theme {
   dark = 'dark',
-  light = 'light'
+  light = 'light',
+  retro = 'retro',
+  retroLight = 'retroLight'
 }
 
 @Injectable({
@@ -18,7 +20,7 @@ export class ScreenService {
   small = 580;
   mediumSmall = 720;
   medium = 930;
-  extraLarge = 1460;
+  extraLarge = 1715;
 
   microscopicScreen: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   tinyScreen: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
@@ -60,23 +62,64 @@ export class ScreenService {
 
   toggleDarkMode() {
     // TODO: Look into indexedDB instead?
-    this.theme = this.theme === Theme.light ? Theme.dark : Theme.light;
-    if (this.theme === Theme.light) {
+    switch (this.theme) {
+      case Theme.light:
+        this.theme = Theme.dark;
+        break;
+      case Theme.dark:
+        this.theme = Theme.light;
+        break;
+      case Theme.retroLight:
+        this.theme = Theme.retro;
+        break;
+      default:
+        this.theme = Theme.retroLight;
+    }
+
+    if ([Theme.light, Theme.retroLight].includes(this.theme)) {
       document.querySelector('body.mat-typography')?.classList.add('light-theme');
-      localStorage.e7calcTheme = Theme.light;
     } else {
       document.querySelector('body.mat-typography')?.classList.remove('light-theme');
-      localStorage.e7calcTheme = Theme.dark;
     }
+
+    localStorage.e7calcTheme = this.theme;
+  }
+
+  toggleRetroMode() {
+    switch (this.theme) {
+      case Theme.light:
+        this.theme = Theme.retroLight;
+        break;
+      case Theme.dark:
+        this.theme = Theme.retro;
+        break;
+      case Theme.retroLight:
+        this.theme = Theme.light;
+        break;
+      default:
+        this.theme = Theme.dark;
+    }
+  
+    if ([Theme.retro, Theme.retroLight].includes(this.theme)) {
+      document.querySelector('body.mat-typography')?.classList.add('retro-theme');
+    } else {
+      document.querySelector('body.mat-typography')?.classList.remove('retro-theme');
+    }
+  
+    localStorage.e7calcTheme = this.theme;
   }
 
   initializeTheme() {
-    if (get(Theme, localStorage.e7calcTheme, Theme.dark) === 'light') {
+    const loadedTheme = get(Theme, localStorage.e7calcTheme, Theme.dark)
+    if ([Theme.light, Theme.retroLight].includes(loadedTheme)) {
       this.toggleDarkMode();
+    }
+    if ([Theme.retro, Theme.retroLight].includes(loadedTheme)) {
+      this.toggleRetroMode();
     }
   }
 
-  // To support other themes in the future, may not ever use
+  // // To support other themes in the future, may not ever use
   // setTheme(theme: Theme) {
   //   this.theme.next(theme);
   // }

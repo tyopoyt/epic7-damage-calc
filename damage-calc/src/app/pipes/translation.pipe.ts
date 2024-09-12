@@ -12,6 +12,13 @@ export class TranslationPipe implements PipeTransform {
   constructor(private languageService: LanguageService) {}
 
   transform(value: string, category: string, language: Language | null): string {
-    return _.get(this.languageService.translationDict[category], value) || _.get(this.languageService.englishDict[category], value, value);
+    let valueToUse = value;
+    let suffix = "";
+    if (value.endsWith("_old")) {
+      valueToUse = value.slice(0, -4)
+      suffix = ` (${_.get(this.languageService.translationDict[category], 'pre_balance') || _.get(this.languageService.englishDict[category], 'pre_balance', 'Pre-Balance')})`
+    }
+
+    return (_.get(this.languageService.translationDict[category], valueToUse) || _.get(this.languageService.englishDict[category], valueToUse, value)) + suffix;
   }
 }

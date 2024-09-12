@@ -147,6 +147,40 @@ html, body {
     }
   }
 
+  .mat-mdc-tab.mdc-tab .mdc-tab__text-label {
+    color: $font-light-color;
+  }
+
+  .mat-mdc-tab.mdc-tab--active, .mat-mdc-tab.mdc-tab--active:hover {
+    .mdc-tab__text-label {
+      color: $e7-buff-medium-color;
+    }
+
+    .mdc-tab-indicator__content--underline {
+      border-color: $e7-buff-medium-color;
+    }
+
+    &:hover {
+      .mdc-tab__text-label {
+        color: $e7-buff-contrast-color;
+      }
+  
+      .mdc-tab-indicator__content--underline {
+        border-color: $e7-buff-contrast-color;
+      }
+    }
+  }
+
+  .mat-mdc-tab.mdc-tab--active.cdk-focused {
+    .mdc-tab__text-label {
+      color: $e7-buff-contrast-color;
+    }
+
+    .mdc-tab-indicator__content--underline {
+      border-color: $e7-buff-contrast-color;
+    }
+  }
+
   .sticky-top {
     position: sticky;
     top: $gutter;
@@ -181,6 +215,10 @@ html, body {
 
     &.filter {
       filter: $font-light-color-filter;
+    }
+
+    &.indented {
+      padding-left: $gutter-indent;
     }
   }
 
@@ -290,6 +328,12 @@ html, body {
       background-color: $e7-buff-darker-color !important;
       opacity: 0.2;
     }
+
+    &.mobile-width-slider {
+      width: 80%;
+      align-self: flex-start;
+      margin-left: $gutter;
+    }
   }
 
   ngx-mat-select-search {
@@ -327,11 +371,17 @@ html, body {
       mat-form-field {
         border-radius: 0;
       }
-    }
+    }    
   
     .has-icons {
       &.mat-mdc-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-mdc-text-field-wrapper .mat-mdc-select-value-text {
         padding-left: calc(2.5rem + (2 * #{$gutter-small}));
+      }
+
+      &-3 {
+        &.mat-mdc-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-mdc-text-field-wrapper .mat-mdc-select-value-text {
+          padding-left: calc(3.75rem + (2 * #{$gutter-small}));
+        }
       }
     }
 
@@ -453,7 +503,7 @@ html, body {
   }
 
   .mat-mdc-card {
-    padding: 0.25rem 0.75rem;
+    padding: $gutter 0.75rem;
     background-color: $ui-dark-color;
     margin: 0.5rem 0 0 0.5rem;
 
@@ -592,7 +642,7 @@ html, body {
       padding: 0;
       display: flex;
       flex-direction: column;
-      height: 5rem;
+      height: 7.5rem;
       justify-content: space-around;
       margin-top: $gutter;
       z-index: $popup-z-index;
@@ -650,7 +700,7 @@ html, body {
 
     &.extra-item {
       .mat-mdc-menu-content {
-        height: 7.5rem;
+        height: 10rem;
       }
     }
 
@@ -812,6 +862,40 @@ html, body {
   &.light-theme {
     color: $font-dark-color;
     background-color: whitesmoke !important;
+
+    .mat-mdc-tab.mdc-tab .mdc-tab__text-label {
+      color: $font-dark-color;
+    }
+  
+    .mat-mdc-tab.mdc-tab--active, .mat-mdc-tab.mdc-tab--active:hover {
+      .mdc-tab__text-label {
+        color: $e7-buff-medium-color;
+      }
+  
+      .mdc-tab-indicator__content--underline {
+        border-color: $e7-buff-medium-color;
+      }
+  
+      &:hover {
+        .mdc-tab__text-label {
+          color: $e7-buff-contrast-color;
+        }
+    
+        .mdc-tab-indicator__content--underline {
+          border-color: $e7-buff-contrast-color;
+        }
+      }
+    }
+  
+    .mat-mdc-tab.mdc-tab--active.cdk-focused {
+      .mdc-tab__text-label {
+        color: $e7-buff-contrast-color;
+      }
+  
+      .mdc-tab-indicator__content--underline {
+        border-color: $e7-buff-contrast-color;
+      }
+    }
 
     .text-color {
       color: $font-dark-color !important;
@@ -1014,6 +1098,12 @@ html, body {
       }
     }
 
+    // TODO: add blurred background behind hero and arti selectors and sticky to top
+    //   background-color: #454545;
+    // padding: 0.25rem;
+    // border-radius: 0 0 0.5rem 0.5rem;
+    // filter: blur(2px);
+
     .mat-mdc-form-field {
 
       .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-text-field__input {
@@ -1054,7 +1144,7 @@ html, body {
       }
     }
 
-    .mat-mdc-table {  
+    .mat-mdc-table {
       thead {
         > tr {
           background-color: $ui-light-theme-medium-color;
@@ -1142,6 +1232,7 @@ html, body {
 
     .mat-mdc-checkbox .mdc-form-field {
       background-color: $ui-lighter-color;
+      box-shadow: var(--mdc-elevated-card-container-elevation) !important;
     }
 
     .mat-mdc-menu-item:not([disabled]):hover, .mat-mdc-option:not([disabled]):hover {
@@ -1186,7 +1277,169 @@ html, body {
     }
   }
 
-  height: 100%;
+  &.retro-theme {
+    .page-container {
+      mat-form-field {
+        border: 1px solid $ui-light-color;
+      }
+
+      .column-3 {
+        > * {
+          width: calc(33.3% - calc(#{$gutter} * (2/3)) - 2px);
+        }
+      }
+
+      mat-card.mat-mdc-card {
+        box-shadow: none;
+      }
+
+      .damage-block, .credits-block {
+        mat-card.mat-mdc-card {
+          border: 1px solid $ui-medium-light-color;
+        }
+      }
+
+      app-number-input-group {
+        .mat-mdc-unelevated-button:not(:disabled) {
+          border: 1px solid $ui-medium-light-color;
+          height: 2.1rem;
+        }
+
+        mat-form-field {
+          border: 1px solid $ui-light-color;
+          border-right: none;
+          border-left: none;
+        }
+      }
+
+      .mat-mdc-checkbox {
+        .mdc-form-field {
+          background-color: transparent;
+          border: 1px solid $ui-light-color;
+        }
+
+        &:not(.mat-mdc-checkbox-checked) {
+          .mdc-checkbox__background {
+            border-color: $font-light-color !important; // really don't feel like fighting angular material on this one
+            background: $ui-light-color !important;
+          }
+        }
+        
+      }
+
+    }
+
+    &.light-theme {
+      .color-grey, .color-blue, .color-orange, .color-green {
+        color: white !important;
+      }
+      .page-container {
+        background-color: white;
+
+        .mat-mdc-form-field.number-input-field .mat-mdc-text-field-wrapper {
+          background-color: white;
+        }
+
+        mat-form-field {
+          border: 1px solid $ui-light-theme-color;
+          &.mat-mdc-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-mdc-text-field-wrapper {
+            background-color: whitesmoke;
+          }
+        }
+
+        mat-card.mat-mdc-card {
+          background-color: whitesmoke;
+        }
+
+        .damage-block, .credits-block {
+          mat-card.mat-mdc-card {
+            background-color: white;
+          }
+        }
+  
+        app-number-input-group {
+          .mat-mdc-unelevated-button:not(:disabled) {
+            border: 1px solid $ui-medium-light-color;
+            background-color: transparent;
+          }
+  
+          mat-form-field {
+            border-color: $ui-medium-light-color;
+            border-right: none;
+            border-left: none;
+          }
+        }
+  
+        .mat-mdc-checkbox {
+          .mdc-form-field {
+            border: 1px solid $ui-medium-light-color;
+          }
+  
+          &:not(.mat-mdc-checkbox-checked) {
+            .mdc-checkbox__background {
+              border-color: $ui-medium-light-color !important; // really don't feel like fighting angular material on this one
+              background: transparent !important;
+            }
+          }
+          
+        }
+
+        .mat-mdc-table {
+          border: 1px solid $ui-medium-light-color;
+          thead {
+            > tr {
+              background-color: $ui-light-theme-color;
+      
+              .mat-mdc-header-cell {
+                border-right: $gutter-tiny solid $ui-light-theme-medium-color;
+              }
+      
+              > :last-child {
+                border-right: none;
+              }
+            }
+          }
+      
+          tr {
+            background-color: white;
+            color: $font-dark-color;
+      
+            .mat-mdc-cell {
+              border-bottom: 2px solid $ui-light-theme-medium-color;
+              border-right: 2px solid $ui-light-theme-medium-color;
+            }
+      
+            > :last-child {
+              border-right: none;
+            }
+          }
+    
+          tbody {
+            > :last-child {
+              .mat-mdc-cell {
+                border-bottom: none;
+              }
+            }
+          }
+        }
+
+        .extra-label {
+          color:white;
+        }
+
+        .multi-slide {
+          background-color: whitesmoke;
+          box-shadow: none;
+        }
+      }
+    }
+  }
+
+    display: block;
+    position: relative;
+    height: 100dvh;
+    width: 100dvw;
+    overflow-x: hidden;
 }
 
 body { 
@@ -1228,8 +1481,8 @@ body {
 
 .flex-between {
   display: flex;
-  justify-content: space-between;
-  align-items: space-between;
+  // Important because some components have a lot of overrides for this
+  justify-content: space-between !important;
 }
 
 .flex-column {
@@ -1300,6 +1553,16 @@ body {
   margin-right: 1.75rem;
 }
 
+.large-margin-left {
+  margin-left: 1.5rem;
+}
+
+.medium-large-margin-left {
+  margin-left: 1rem;
+}
+
+.mediumol
+
 .margin-top {
   margin-top: 1rem;
 }
@@ -1309,11 +1572,11 @@ body {
 }
 
 .small-margin-top {
-  margin-top: 0.5rem;
+  margin-top: 0.5rem !important;
 }
 
 .large-margin-top {
-  margin-top: 1.5rem;
+  margin-top: 1.5rem !important;
 }
 
 .jumbo-margin-top {
@@ -1388,19 +1651,19 @@ body {
 }
 
 .bold-text {
-  font-weight: bold !important;
+  font-weight: 600 !important;
 }
 
 .page-container {
-  padding: 0 3vw 0.5rem;
+  padding: 0 3dvw 0.5rem;
   align-self: center;
-  width: 94vw; // 100vw - the side padding
-  height: calc(100vh - #{$navbar-height} - 0.5rem);
+  width: 94dvw; // 100vw - the side padding
+  height: calc(100dvh - #{$navbar-height} - 0.5rem);
   overflow: auto;
 
   &.sticky-bottom {
     padding-bottom: 0;
-    height: calc(100vh - #{$navbar-height});
+    height: calc(100dvh - #{$navbar-height});
   }
 
   display: flex;
@@ -1555,6 +1818,15 @@ app-slide-input {
   display: none !important;
 }
 
+.trigger-icon {
+
+}
+
+.trigger {
+  display: flex;
+  align-items: center;
+}
+
 .select-icon {
   position: absolute;
   bottom: calc(#{$gutter} + #{$gutter-tiny});
@@ -1562,6 +1834,12 @@ app-slide-input {
   &-2 {
     position: absolute;
     left: calc(1.25rem + #{$gutter-tiny});
+    bottom: calc(#{$gutter} + #{$gutter-tiny});
+  }
+
+  &-3 {
+    position: absolute;
+    left: calc(2.5rem + #{$gutter-tiny});
     bottom: calc(#{$gutter} + #{$gutter-tiny});
   }
 }
@@ -1576,6 +1854,12 @@ app-slide-input {
     left: calc(#{$gutter} + 1.25rem);
     bottom: calc(#{$gutter} + #{$gutter-tiny});
   }
+
+  &-3 {
+    position: absolute;
+    left: calc(#{$gutter} + 2.5rem);
+    bottom: calc(#{$gutter} + #{$gutter-tiny});
+  }
 }
 
 html div.mat-mdc-select-panel .mat-mdc-option, body div.mat-mdc-select-panel .mat-mdc-option {
@@ -1583,10 +1867,18 @@ html div.mat-mdc-select-panel .mat-mdc-option, body div.mat-mdc-select-panel .ma
   height: 2.5rem;
   &.has-icons {
     padding-left: calc(2.5rem + (2 * #{$gutter}));
+
+    &-3 {
+      padding-left: calc(3.75rem + (2 * #{$gutter}));
+    }
   }
 
   &.has-icon {
     padding-left: calc(1.25rem + #{$gutter-large});
+
+    &.indented {
+      padding-left: calc(1.25rem + #{$gutter-extra-large} + #{$gutter-indent});
+    }
   }
 }
 

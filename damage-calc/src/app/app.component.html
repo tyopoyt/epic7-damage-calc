@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<body *ngIf="!loadingFallback" [class.light-theme]="screenService.theme === Theme.light">
+<body *ngIf="!loadingFallback" [class.light-theme]="screenService.theme === Theme.light || screenService.theme === Theme.retroLight" [class.retro-theme]="screenService.theme === Theme.retro || screenService.theme === Theme.retroLight">
     <app-navbar></app-navbar>
     <router-outlet></router-outlet>
 </body>

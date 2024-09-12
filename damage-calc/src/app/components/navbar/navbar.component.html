@@ -4,7 +4,7 @@
         <img class="navbar-icon" [class.small]="screenService.tinyScreen.value" src="assets/icons/{{toolSelection.value}}_logo.png" alt="Revive buff icon">
         <span *ngIf="!screenService.microscopicScreen.value" [class.medium-text]="screenService.tinyScreen.value">{{'app_title' | translate:'titles':languageService.language.value}}</span>
     </span>
-    <div class="navbar-options">        
+    <div class="navbar-options">
         <span class="neat-container">
             <span *ngIf="!screenService.mediumSmallScreen.value; else smallScreenPageSelect" class="neat-container">
                 <span *ngFor="let toolTitle of toolTitles; let i = index" class="navbar-link"
@@ -45,6 +45,7 @@
                     {{'donate' | translate:'ui':languageService.language.value}}
                 </button>
                 <ng-template [ngTemplateOutlet]="darkModeToggle"></ng-template>
+                <ng-template [ngTemplateOutlet]="retroModeToggle"></ng-template>
             </span>
             <ng-template [ngTemplateOutlet]="languageSelector"></ng-template>
         </span>
@@ -59,6 +60,7 @@
                         <!-- The menu content here is duplicated rather than templated because the submenu was not rendering when it
                                 was defined in a template. -->
                         <ng-template [ngTemplateOutlet]="darkModeToggle"></ng-template>
+                        <ng-template [ngTemplateOutlet]="retroModeToggle"></ng-template>
                         <!-- <ng-template [ngTemplateOutlet]="languageSelector"></ng-template> -->
                         <button class="language-menu" mat-menu-item [matMenuTriggerFor]="languageMenu">
                             <app-flag *ngIf="!languageService.language.value?.custom" [country]="languageSelection.value.countryCode"></app-flag> {{languageSelection.value.localName}}
@@ -73,6 +75,7 @@
                             {{'donate' | translate:'ui':languageService.language.value}}
                         </button>
                         <ng-template [ngTemplateOutlet]="darkModeToggle"></ng-template>
+                        <ng-template [ngTemplateOutlet]="retroModeToggle"></ng-template>
                         <!-- <ng-template [ngTemplateOutlet]="languageSelector"></ng-template> -->
                         <button class="language-menu" mat-menu-item [matMenuTriggerFor]="languageMenu">
                             <app-flag [country]="languageSelection.value.countryCode"></app-flag> {{languageSelection.value.localName}}
@@ -110,7 +113,11 @@
 </ng-template>
 
 <ng-template #darkModeToggle>
-    <mat-slide-toggle [class.margin-right]="languageService.language.value?.custom" [class.top-menu-item]="!screenService.microscopicScreen.value" #darkModeSwitch class="pointer" (click)="toggleDarkMode()" [checked]="screenService.theme === Theme.dark">{{'dark_mode' | translate:'ui':languageService.language.value}}</mat-slide-toggle>
+    <mat-slide-toggle [class.margin-right]="languageService.language.value?.custom" [class.top-menu-item]="!screenService.microscopicScreen.value" #darkModeSwitch class="pointer" (click)="toggleDarkMode()" [checked]="screenService.theme === Theme.dark || screenService.theme === Theme.retro">{{'dark_mode' | translate:'ui':languageService.language.value}}</mat-slide-toggle>
+</ng-template>
+
+<ng-template #retroModeToggle>
+    <mat-slide-toggle [class.margin-right]="languageService.language.value?.custom" [class.top-menu-item]="!screenService.microscopicScreen.value" #retroModeSwitch class="pointer" (click)="toggleRetroMode()" [checked]="screenService.theme === Theme.retro || screenService.theme === Theme.retroLight">{{'retro_mode' | translate:'ui':languageService.language.value}}</mat-slide-toggle>
 </ng-template>
 
 <mat-menu #languageMenu="matMenu">

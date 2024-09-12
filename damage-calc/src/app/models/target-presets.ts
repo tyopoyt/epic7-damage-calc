@@ -8,7 +8,8 @@ export const TargetPresetGroups: Record<string, DefensePreset[]> = {
         {
             id: 'manual',
             name: 'Manual',
-            defense: null
+            defense: null,
+            icon: 'icons/manual'
         },
     ],
     wyvern13: [ //TODO: add translations for these into i18n files
@@ -18,7 +19,8 @@ export const TargetPresetGroups: Record<string, DefensePreset[]> = {
             description: '20241 hp/175 spd',
             defense: 1392,
             hp: 20241,
-            speed: 175
+            speed: 175,
+            icon: 'monsters/blazeDragona'
         },
         {
             id: 'bloodRidgeNaga13',
@@ -26,17 +28,19 @@ export const TargetPresetGroups: Record<string, DefensePreset[]> = {
             description: '13554 hp/154 spd',
             defense: 1340,
             hp: 13554,
-            speed: 154
+            speed: 154,
+            icon: 'monsters/bloodRidgeNaga'
         },
         {
-            id: 'wyvern13',
+            id: 'wyvernBoss13',
             name: 'Wyvern',
             description: '233578 hp/242 spd',
             defense: 1940,
             hp: 233578,
             extraDamageElement: HeroElement.ice,
             extraDamageMultiplier: 1.3,
-            speed: 242
+            speed: 242,
+            icon: 'monsters/wyvernBoss13'
         },
     ],
     golem13: [
@@ -46,23 +50,26 @@ export const TargetPresetGroups: Record<string, DefensePreset[]> = {
             description: '14743 hp/188 spd',
             defense: 1007,
             hp: 14743,
-            speed: 188
+            speed: 188,
+            icon: 'monsters/raqixFlyingTroop'
         },
         {
             id: 'mossyTestudo13',
             name: 'Mossy Testudo',
             description: '17172 hp',
             defense: 1221,
-            hp: 17172
+            hp: 17172,
+            icon: 'monsters/mossyTestudo'
         },
         {
-            id: 'golem13',
+            id: 'golemBoss13',
             name: 'Golem',
             description: '158553 hp',
             defense: 1550,
             hp: 158553,
             extraDamageElement: HeroElement.fire,
-            extraDamageMultiplier: 1.3
+            extraDamageMultiplier: 1.3,
+            icon: 'monsters/golemBoss13'
         },
     ],
     banshee13: [
@@ -72,7 +79,8 @@ export const TargetPresetGroups: Record<string, DefensePreset[]> = {
             description: '11015 hp/174 spd',
             defense: 1248,
             hp: 11015,
-            speed: 174
+            speed: 174,
+            icon: 'monsters/mistychain'
         },
         {
             id: 'icyDarkBroom13',
@@ -80,17 +88,19 @@ export const TargetPresetGroups: Record<string, DefensePreset[]> = {
             description: '11015 hp/174 spd',
             defense: 1248,
             hp: 11015,
-            speed: 174
+            speed: 174,
+            icon: 'monsters/icyDarkBroom'
         },
         {
-            id: 'banshee13',
+            id: 'bansheeBoss13',
             name: 'Banshee',
             description: '115703 hp/203 spd',
             defense: 1977,
             hp: 115703,
             extraDamageElement: HeroElement.earth,
             extraDamageMultiplier: 1.3,
-            speed: 203
+            speed: 203,
+            icon: 'monsters/bansheeBoss13'
         },
     ],
     azimanak13: [
@@ -100,7 +110,8 @@ export const TargetPresetGroups: Record<string, DefensePreset[]> = {
             description: '14653 hp/218 spd',
             defense: 1134,
             hp: 14653,
-            speed: 218
+            speed: 218,
+            icon: 'monsters/strikerRaqixWarlord'
         },
         {
             id: 'karaxCharger13',
@@ -108,21 +119,24 @@ export const TargetPresetGroups: Record<string, DefensePreset[]> = {
             description: '23805 hp/176 spd',
             defense: 1297,
             hp: 23805,
-            speed: 176
+            speed: 176,
+            icon: 'monsters/karaxCharger'
         },
         {
             id: 'egg13',
             name: 'Egg',
             description: '9156 hp',
             defense: 600,
-            hp: 9156
+            hp: 9156,
+            icon: 'monsters/egg'
         },
         {
-            id: 'azimanak13',
+            id: 'azimanakBoss13',
             name: 'Azimanak',
             description: '134511 hp',
             defense: 2822,
-            hp: 134511
+            hp: 134511,
+            icon: 'monsters/azimanakBoss13'
         },
     ],
     caides13: [
@@ -132,16 +146,18 @@ export const TargetPresetGroups: Record<string, DefensePreset[]> = {
             description: '41387 hp/264 spd',
             defense: 2698,
             hp: 41387,
-            speed: 264
+            speed: 264,
+            icon: 'monsters/convertedSymaqus'
         },
         {
-            id: 'caides13',
+            id: 'caidesBoss13',
             name: 'Caides',
             description: '226348 hp/180 spd/50% HP-Dmg Reduction',
             defense: 1456,
             hp: 226348,
             hpDamageMultiplier: 0.5,
-            speed: 180
+            speed: 180,
+            icon: 'monsters/caidesBoss13'
         },
     ],
     wyvern11: [
@@ -151,7 +167,8 @@ export const TargetPresetGroups: Record<string, DefensePreset[]> = {
             description: '14158 hp/163 spd',
             defense: 984,
             hp: 14158,
-            speed: 163
+            speed: 163,
+            icon: 'monsters/blazeDragona'
         },
         {
             id: 'bloodRidgeNaga11',
@@ -159,17 +176,19 @@ export const TargetPresetGroups: Record<string, DefensePreset[]> = {
             description: '11851 hp/144 spd',
             defense: 1183,
             hp: 11851,
-            speed: 144
+            speed: 144,
+            icon: 'monsters/bloodRidgeNaga'
         },
         {
-            id: 'wyvern11',
+            id: 'wyvernBoss11',
             name: 'Wyvern',
             description: '150452 hp/208 spd',
             defense: 1254,
             hp: 150452,
             extraDamageElement: HeroElement.ice,
             extraDamageMultiplier: 1.3,
-            speed: 208
+            speed: 208,
+            icon: 'monsters/wyvernBoss11'
         },
     ],
     golem11: [
@@ -178,23 +197,26 @@ export const TargetPresetGroups: Record<string, DefensePreset[]> = {
             name: 'Raqix Flying Troop',
             description: '12528 hp',
             defense: 891,
-            hp: 12528
+            hp: 12528,
+            icon: 'monsters/raqixFlyingTroop'
         },
         {
             id: 'mossyTestudo11',
             name: 'Mossy Testudo',
             description: '15015 hp',
             defense: 1077,
-            hp: 15015
+            hp: 15015,
+            icon: 'monsters/mossyTestudo'
         },
         {
-            id: 'golem11',
+            id: 'golemBoss11',
             name: 'Golem',
             description: '101983 hp',
             defense: 1306,
             hp: 101983,
             extraDamageElement: HeroElement.fire,
-            extraDamageMultiplier: 1.3
+            extraDamageMultiplier: 1.3,
+            icon: 'monsters/golemBoss11'
         },
     ],
     banshee11: [
@@ -204,7 +226,8 @@ export const TargetPresetGroups: Record<string, DefensePreset[]> = {
             description: '9631 hp/154 spd',
             defense: 1101,
             hp: 9631,
-            speed: 154
+            speed: 154,
+            icon: 'monsters/mistychain'
         },
         {
             id: 'icyDarkBroom11',
@@ -212,17 +235,19 @@ export const TargetPresetGroups: Record<string, DefensePreset[]> = {
             description: '9631 hp/152 spd',
             defense: 1101,
             hp: 9631,
-            speed: 152
+            speed: 152,
+            icon: 'monsters/icyDarkBroom'
         },
         {
-            id: 'banshee11',
+            id: 'bansheeBoss11',
             name: 'Banshee',
             description: '60624 hp/160 spd',
             defense: 1289,
             hp: 60624,
             extraDamageElement: HeroElement.earth,
             extraDamageMultiplier: 1.3,
-            speed: 160
+            speed: 160,
+            icon: 'monsters/bansheeBoss11'
         },
     ],
     azimanak11: [
@@ -232,7 +257,8 @@ export const TargetPresetGroups: Record<string, DefensePreset[]> = {
             description: '12812 hp/211 spd',
             defense: 1030,
             hp: 12812,
-            speed: 211
+            speed: 211,
+            icon: 'monsters/strikerRaqixWarlord'
         },
         {
             id: 'karaxCharger11',
@@ -240,24 +266,27 @@ export const TargetPresetGroups: Record<string, DefensePreset[]> = {
             description: '20814 hp/149 spd',
             defense: 1150,
             hp: 20814,
-            speed: 149
+            speed: 149,
+            icon: 'monsters/karaxCharger'
         },
         {
             id: 'egg11',
             name: 'Egg',
             description: '8098 hp',
             defense: 540,
-            hp: 8098
+            hp: 8098,
+            icon: 'monsters/egg'
         },
         {
-            id: 'azimanak11',
+            id: 'azimanakBoss11',
             name: 'Azimanak',
             description: '87729 hp',
             defense: 1825,
             hp: 87729,
+            icon: 'monsters/azimanakBoss11'
         },
     ],
-    earthExpedition3: [
+    expedition3: [
         {
             id: 'earthExp3',
             name: 'Earth Expedition - Level 3',
@@ -265,32 +294,30 @@ export const TargetPresetGroups: Record<string, DefensePreset[]> = {
             extraDamageElement: HeroElement.fire,
             extraDamageMultiplier: 1.5,
             singleAttackMultiplier: 0.3,
-            nonSingleAttackMultiplier: 1.7
-        }
-    ],
-    iceExpedition3: [
+            nonSingleAttackMultiplier: 1.7,
+            icon: 'monsters/earthExpeditionBoss3'
+        },
         {
             id: 'iceExp3',
             name: 'Ice Expedition - Level 3',
             defense: 905,
             extraDamageElement: HeroElement.earth,
-            extraDamageMultiplier: 1.5
-        }
-    ],
-    fireExpedition3: [
+            extraDamageMultiplier: 1.5,
+            icon: 'monsters/iceExpeditionBoss3'
+        },
         {
             id: 'fireExp3',
             name: 'Fire Expedition - Level 3',
             defense: 1340,
             extraDamageElement: HeroElement.ice,
-            extraDamageMultiplier: 1.5
-        }
-    ],
-    lightExpedition3: [
+            extraDamageMultiplier: 1.5,
+            icon: 'monsters/fireExpeditionBoss3'
+        },
         {
             id: 'lightExp3',
             name: 'Light Expedition - Level 3',
-            defense: 815
+            defense: 815,
+            icon: 'monsters/lightExpeditionBoss3'
         }
     ],
     //TODO: get dark expo defense and add here
@@ -301,7 +328,8 @@ export const TargetReductionPresetGroups: Record<string, ReductionPreset[]> = {
         {
             id: 'manual',
             name: 'Manual',
-            label: null
+            label: null,
+            icon: 'icons/manual'
         },
     ],
     damageReduction: [
@@ -309,49 +337,64 @@ export const TargetReductionPresetGroups: Record<string, ReductionPreset[]> = {
             id: 'proofOfValorInit',
             name: 'Proof of Valor (Battle start)',
             label: '30%',
-            damageReduction: 30
+            damageReduction: 30,
+            icon: 'artifacts/proof_of_valor'
         },
         {
             id: 'proofOfValorDown',
             name: 'Proof of Valor (After 5 hits)',
             label: '15%',
-            damageReduction: 15
+            damageReduction: 15,
+            icon: 'artifacts/proof_of_valor'
         },
         {
             id: 'adamantShield',
             name: 'Adamant Shield (Max)',
             label: '16%',
-            damageReduction: 16
+            damageReduction: 16,
+            icon: 'artifacts/adamant_shield'
+        },
+        {
+            id: 'dracoPlate',
+            name: 'Draco Plate (Max)',
+            label: '16%',
+            damageReduction: 16,
+            icon: 'artifacts/draco_plate'
         },
         {
             id: 'elena',
             name: 'Elena (S2 Passive)',
             label: '15%',
-            damageReduction: 15
+            damageReduction: 15,
+            icon: 'heroes/elena-icon'
         },
         {
             id: 'cArmin',
             name: 'Crimson Armin (S2 Passive)',
             label: '15%',
-            damageReduction: 15
+            damageReduction: 15,
+            icon: 'heroes/crimson_armin-icon'
         },
         {
             id: 'sepulcrum1',
             name: 'Sepulcrum (Max - 1 stack)',
             label: '8%',
-            damageReduction: 8
+            damageReduction: 8,
+            icon: 'artifacts/sepulcrum'
         },
         {
             id: 'sepulcrum2',
             name: 'Sepulcrum (Max - 2 stacks)',
             label: '16%',
-            damageReduction: 16
+            damageReduction: 16,
+            icon: 'artifacts/sepulcrum'
         },
         {
             id: 'sepulcrum3',
             name: 'Sepulcrum (Max - 3 stacks)',
             label: '24%',
-            damageReduction: 24
+            damageReduction: 24,
+            icon: 'artifacts/sepulcrum'
         }
     ],
     damageTransfer: [
@@ -360,39 +403,44 @@ export const TargetReductionPresetGroups: Record<string, ReductionPreset[]> = {
             id: 'ssb',
             name: 'Seaside Bellona (S2 Passive)',
             label: '30%',
-            damageTransfer: 30
+            damageTransfer: 30,
+            icon: 'heroes/seaside_bellona-icon'
         },
         {
             id: 'escort',
             name: 'Escort Buff',
             label: '30%',
-            damageTransfer: 30
+            damageTransfer: 30,
+            icon: 'buffs/escort-buff'
         },
         {
             id: 'aurius',
             name: 'Aurius (Max)',
-            label: '20% (+10% Defense)',
+            label: '20% (+10% Defense)', // TODO: translate defense here somehow
             damageTransfer: 20,
-            defenseIncrease: 10
+            defenseIncrease: 10,
+            icon: 'artifacts/aurius'
         },
         {
             id: 'tCrozet',
             name: 'Troublemaker Crozet (S2 Passive)',
             label: '40%',
-            damageTransfer: 40
+            damageTransfer: 40,
+            icon: 'heroes/troublemaker_crozet-icon'
         },
         {
             id: 'eaton',
             name: 'Eaton (S2 Passive)',
             label: '30%',
-            damageTransfer: 30
+            damageTransfer: 30,
+            icon: 'heroes/eaton-icon'
         }
     ]
 }
 
 export class DefensePreset {
-    id: string; // TODO: remove if unused
-    name: string;
+    id: string;
+    name: string; // TODO: remove if unused
     description?: string;
     defense: number | null;
     hp?: number;
@@ -402,6 +450,7 @@ export class DefensePreset {
     hpDamageMultiplier?: number;
     singleAttackMultiplier?: number;
     nonSingleAttackMultiplier?: number;
+    icon?: string;
 
     constructor(data: any) {
         this.id = _.get(data, 'id', '');
@@ -415,6 +464,7 @@ export class DefensePreset {
         this.hpDamageMultiplier = _.get(data, 'hpDamageMultiplier', 1);
         this.singleAttackMultiplier = _.get(data, 'singleAttackMultiplier', 1);
         this.nonSingleAttackMultiplier = _.get(data, 'nonSingleAttackMultiplier', 1);
+        this.icon = _.get(data, 'icon', 'icons/unknown_portrait');
     }
 }
 
@@ -425,6 +475,7 @@ export class ReductionPreset {
     damageReduction?: number;
     damageTransfer?: number;
     defenseIncrease?: number;
+    icon?: string;
 
     constructor(data: any) {
         this.id = _.get(data, 'id', '');
@@ -433,5 +484,6 @@ export class ReductionPreset {
         this.damageReduction = _.get(data, 'damageReduction', 0);
         this.damageTransfer = _.get(data, 'damageTransfer', 0);
         this.defenseIncrease = _.get(data, 'defenseIncrease', 0);
+        this.icon = _.get(data, 'icon', 'icons/unknown_portrait');
     }
 }

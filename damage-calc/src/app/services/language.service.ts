@@ -15,7 +15,9 @@ export const CustomLanguage = {
 
 // TODO: simplified chinese translations for: abyssal yufine, unbridled outburst, kan, tyrant's ascent
 // TODO: add pt translations for: abyssal yufine, unbridled outburst, kan, tyrant's ascent
+// TODO: add jp translations for: Suthan, ML Choux, fairy tale artifact, rocket punch, samsara prayer beads
 // TODO: check if elementalAdvantage under skills can be removed in each lang file.
+// TODO: translate amiki, claudia, ezra
 @Injectable({
   providedIn: 'root'
 })
@@ -117,7 +119,7 @@ export class LanguageService {
     const output = [];
     for (const key of Object.keys(tips)) {
       try {
-        output.push(_.get(this.translationDict.skills.custom, key, key.toString()).replace('{v}', _.get(tips, key).toString()));
+        output.push(_.get(this.translationDict.skills.custom, key, key.toString()).replace('{v}', _.get(tips, key).toFixed(2).replace('.00', '')));
       } catch  {
         output.push(key);
       }

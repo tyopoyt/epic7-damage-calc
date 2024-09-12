@@ -34,11 +34,23 @@ export const Languages: Record<string, Language> = {
         code: 'ko',
         countryCode: 'kr'
     },
+    'zhTW': {
+        name: 'Chinese (Traditional)',
+        localName: '繁體中文',
+        code: 'zh',
+        countryCode: 'tw'
+    },    
     'tw': {
         name: 'Chinese (Traditional)',
         localName: '繁體中文',
         code: 'zh',
         countryCode: 'tw'
+    },
+    'zhCN': {
+        name: 'Chinese (Simplified)',
+        localName: '简体中文',
+        code: 'zh',
+        countryCode: 'cn'
     },
     'cn': {
         name: 'Chinese (Simplified)',

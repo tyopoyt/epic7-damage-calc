@@ -14,9 +14,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MtxTooltipModule } from '@ng-matero/extensions/tooltip';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatTabsModule } from '@angular/material/tabs';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -39,6 +40,8 @@ import { CompareComponent } from './components/compare/compare.component';
 import { NgChartsModule } from 'ng2-charts';
 import { DamageGraphComponent } from './components/damage-graph/damage-graph.component';
 import { MatRadioModule } from '@angular/material/radio';
+import { CompareSaveComponent } from './components/compare-save/compare-save.component';
+import { RemoveOldPipe } from './pipes/remove-old.pipe';
 
 @NgModule({
   declarations: [
@@ -57,7 +60,9 @@ import { MatRadioModule } from '@angular/material/radio';
     TranslationPipe,
     TypeofPipe,
     CompareComponent,
-    DamageGraphComponent
+    DamageGraphComponent,
+    CompareSaveComponent,
+    RemoveOldPipe
   ],
   imports: [
     AppRoutingModule,
@@ -82,7 +87,9 @@ import { MatRadioModule } from '@angular/material/radio';
     ReactiveFormsModule,
     NgChartsModule,
     MatRadioModule,
-    MtxTooltipModule
+    MtxTooltipModule,
+    FormsModule,
+    MatTabsModule
   ],
   exports: [
     TranslationPipe

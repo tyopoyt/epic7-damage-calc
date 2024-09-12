@@ -1,16 +1,24 @@
-<!-- TODO: translate -->
-<h1 mat-dialog-title>Save Build</h1>
+<h1 mat-dialog-title>{{'saveBuild' | translate:'ui':languageService.language.value}}</h1>
 <div mat-dialog-content>
   <mat-form-field class="full-width dark-text">
-    <mat-label>Build Name</mat-label>
+    <mat-label>{{'buildName' | translate:'ui':languageService.language.value}}</mat-label>
     <input class="left-align tiny-margin-bottom" spellcheck="false" matInput [(ngModel)]="data.buildName" cdkFocusInitial>
   </mat-form-field>
-  <i class="text-color">Saving a build with an existing name for the same hero will overwrite the old build.</i>
+  <i class="text-color">{{'saveBuildTip' | translate:'ui':languageService.language.value}}</i>
 </div>
-<div mat-dialog-actions>
-  <button mat-button (click)="close()">Cancel</button>
-  <button mat-button class="color-blue light-text" [mat-dialog-close]="data.buildName">
-    <img class="svg-icon medium filter white-filter tiny-margin-right" src="assets/icons/save.svg" alt="save">
-    Save
-  </button>
+<div mat-dialog-actions class="flex-aligned flex-between">
+  <div class="medium-large-margin-left">
+    <mat-checkbox [checked]="multiCompare" (change)="multiCompare = !multiCompare">
+      <span class="neat-container">
+          {{'multiCompareAdd' | translate:'ui':languageService.language.value}}
+      </span>
+    </mat-checkbox>
+  </div>
+  <div>
+    <button mat-button (click)="close()">{{'cancel' | translate:'ui':languageService.language.value}}</button>
+    <button mat-button class="color-blue light-text" [mat-dialog-close]="{buildName: data.buildName, multiCompare: multiCompare}">
+      <img class="svg-icon medium filter white-filter tiny-margin-right" src="assets/icons/save.svg" alt="save">
+      {{'save' | translate:'ui':languageService.language.value}}
+    </button>
+  </div>
 </div>

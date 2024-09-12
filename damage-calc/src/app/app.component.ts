@@ -1,11 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { Languages } from './models/languages';
-import { FormControl } from '@angular/forms';
-import { MatSelectChange } from '@angular/material/select';
-import { ActivatedRoute, Router } from '@angular/router';
 import { ScreenService, Theme } from './services/screen.service';
 import { LanguageService } from './services/language.service';
-import { delay } from './utils/utils';
 
 
 @Component({
@@ -15,7 +10,7 @@ import { delay } from './utils/utils';
 })
 export class AppComponent implements OnInit {
   title = 'damage-calc';
-  loadingFallback: boolean = true;
+  loadingFallback = true;
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {

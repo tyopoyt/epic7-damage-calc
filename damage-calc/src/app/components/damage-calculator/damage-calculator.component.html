@@ -2,29 +2,35 @@
 <div class="page-container sticky-bottom">
     <span class="page-body">
         <app-dismissible [content]="'damageCalculatorUpdates' | translate:'info':languageService.language.value" [color]="DismissibleColorOption.info"></app-dismissible>
+        <app-dismissible *ngIf="heroID === 'harsetti'" [content]="'harsettiWarning' | translate:'info':languageService.language.value" [color]="DismissibleColorOption.warn"></app-dismissible>
+        <!-- Hero/arti/preset selector row -->
         <div class="filter-select-container full-width neat-container" [ngClass]="!screenService.mediumSmallScreen.value ? 'column-3' : 'flex-column'">
-            <mat-form-field class="neat-container has-icons">
-                <img class="png-icon medium tiny-margin-right select-icon" src="assets/elements/{{hero.element}}.png" alt="{{hero.element}}">
-                <img class="png-icon medium tiny-margin-right select-icon-2" src="assets/classes/{{hero.class}}.png" alt="{{hero.class}}">
+            <mat-form-field class="neat-container has-icons-3">
+                <img class="png-icon medium tiny-margin-right select-icon" src="assets/heroes/{{heroID | removeOld}}-icon.png" alt="{{dataService.currentHeroID.value}} portrait">
+                <img class="png-icon medium tiny-margin-right select-icon-2" src="assets/elements/{{hero.element}}.png" alt="{{hero.element}}">
+                <img class="png-icon medium tiny-margin-right select-icon-3" src="assets/classes/{{hero.class}}.png" alt="{{hero.class}}">
                 <mat-select [formControl]="heroControl" placeholder="" #singleSelect (selectionChange)="selectHero($event.value)">
                     <mat-option>
                         <ngx-mat-select-search spellcheck="false" [formControl]="heroFilterControl" placeholderLabel="Find hero..."></ngx-mat-select-search>
                     </mat-option>
-                    <mat-option *ngFor="let hero of filteredHeroes" class="has-icons" [value]="hero[0]">
-                        <img class="png-icon medium tiny-margin-right select-option-icon" src="assets/elements/{{hero[1].element}}.png" alt="{{hero[1].element}}">
-                        <img class="png-icon medium tiny-margin-right select-option-icon-2" src="assets/classes/{{hero[1].class}}.png" alt="{{hero[1].class}}">
+                    <mat-option *ngFor="let hero of filteredHeroes" class="has-icons-3" [value]="hero[0]">
+                        <img class="png-icon medium tiny-margin-right select-option-icon" src="assets/heroes/{{hero[0] | removeOld}}-icon.png" alt="{{hero[0]}} portrait">
+                        <img class="png-icon medium tiny-margin-right select-option-icon-2" src="assets/elements/{{hero[1].element}}.png" alt="{{hero[1].element}}">
+                        <img class="png-icon medium tiny-margin-right select-option-icon-3" src="assets/classes/{{hero[1].class}}.png" alt="{{hero[1].class}}">
                         {{hero[0] | translate:'heroes':languageService.language.value}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
-            <mat-form-field class="neat-container has-icon">
-                <img class="png-icon medium tiny-margin-right select-icon" src=" assets/{{artifact.heroExclusive.length ? 'heroes' : 'classes'}}/{{artifact.heroExclusive.length ? artifact.heroExclusive[0] + '-icon' : artifact.exclusive}}.png" alt="{{artifact.exclusive}}">
+            <mat-form-field class="neat-container has-icons">
+                <img class="png-icon medium tiny-margin-right select-icon" src=" assets/artifacts/{{artifact.id}}.png" alt="{{artifact.id}}">
+                <img class="png-icon medium tiny-margin-right select-icon-2" src=" assets/{{artifact.heroExclusive.length ? 'heroes' : 'classes'}}/{{artifact.heroExclusive.length ? artifact.heroExclusive[0] + '-icon' : artifact.exclusive}}.png" alt="{{artifact.exclusive}}">
                 <mat-select [formControl]="artifactControl" placeholder="" #singleSelect (selectionChange)="selectArtifact($event.value)">
                     <mat-option>
                         <ngx-mat-select-search spellcheck="false" [formControl]="artifactFilterControl" placeholderLabel="Find artifact..."></ngx-mat-select-search>
                     </mat-option>
-                    <mat-option *ngFor="let artifact of filteredArtifacts" class="has-icon" [value]="artifact[0]" [disabled]="(artifact[1].exclusive !== 'common' && artifact[1].exclusive !== hero.class) || (!!artifact[1].heroExclusive.length && !(artifact[1].heroExclusive.includes(heroID)))">
-                        <img class="png-icon medium tiny-margin-right select-option-icon" src=" assets/{{artifact[1].heroExclusive.length ? 'heroes' : 'classes'}}/{{artifact[1].heroExclusive.length ? artifact[1].heroExclusive[0] + '-icon' : artifact[1].exclusive}}.png" alt="{{artifact[1].exclusive}}">
+                    <mat-option *ngFor="let artifact of filteredArtifacts" class="has-icons" [value]="artifact[0]" [disabled]="(artifact[1].exclusive !== 'common' && artifact[1].exclusive !== hero.class) || (!!artifact[1].heroExclusive.length && !(artifact[1].heroExclusive.includes(heroID)))">
+                        <img class="png-icon medium tiny-margin-right select-option-icon" src=" assets/artifacts/{{artifact[1].id}}.png" alt="{{artifact[1].id}}">
+                        <img class="png-icon medium tiny-margin-right select-option-icon-2" src=" assets/{{artifact[1].heroExclusive.length ? 'heroes' : 'classes'}}/{{artifact[1].heroExclusive.length ? artifact[1].heroExclusive[0] + '-icon' : artifact[1].exclusive}}.png" alt="{{artifact[1].exclusive}}">
                         {{artifact[0] | translate:'artifacts':languageService.language.value}}
                     </mat-option>
                 </mat-select>
@@ -37,6 +43,7 @@
                 </mat-select>
             </mat-form-field>
         </div>
+        <!-- Hero form inputs -->
         <div class="neat-container full-width">
             <app-slide-input #slideInput
                 [label]="'attack' | translate:'form':languageService.language.value"
@@ -54,7 +61,7 @@
             </div>
             <div [class.full-width]="screenService.mediumSmallScreen.value">
                 <app-slide-input #slideInput
-                    [label]="'attackIncrease' | translate:'form':languageService.language.value"
+                    [label]="'attackIncreasePercent' | translate:'form':languageService.language.value"
                     [max]="20" [min]="0" [default]="0" (valueChange)="inputChange('attackIncreasePercent', $event)"
                     [column]="!screenService.largeScreen.value" [hint]="'attackIncreaseHint' | translate:'form':languageService.language.value">
                 </app-slide-input>
@@ -111,6 +118,18 @@
                     {{'vigor' | translate:'form':languageService.language.value}}
                 </span>
             </mat-checkbox>
+            <mat-checkbox class="small-margin-top" [checked]="inputValues.casterEnraged" (change)="inputChange('casterEnraged', $event.checked)">
+                <span class="neat-container">
+                    <img class="png-icon medium tiny-margin-right" src="assets/buffs/rage-buff.png" alt="rage buff">
+                    {{'rage' | translate:'form':languageService.language.value}}
+                </span>
+            </mat-checkbox>
+            <mat-checkbox class="small-margin-top" [checked]="inputValues.casterHasCascade" (change)="inputChange('casterHasCascade', $event.checked)">
+                <span class="neat-container">
+                    <img class="png-icon medium tiny-margin-right" src="assets/buffs/cascade-buff.png" alt="cascade buff">
+                    {{'cascade' | translate:'form':languageService.language.value}}
+                </span>
+            </mat-checkbox>
             <!-- TODO: edit set pngs to have no margin -->
             <mat-checkbox class="small-margin-top" [checked]="inputValues.rageSet" (change)="inputChange('rageSet', $event.checked)">
                 <span class="neat-container">
@@ -132,9 +151,10 @@
             </mat-checkbox>
         </div>
         <div *ngIf="stackingSets.length" class="artifact-block header-block">
-            <h1>{{'numberOfSets' | translate:'ui':languageService.language.value}}</h1>
+            <h1>{{'numberOfSets' | translate:'form':languageService.language.value}}</h1>
             <div class="neat-container full-width">
                 <div *ngFor="let set of stackingSets" class="full-width">
+                    <!-- TODO: figure out how to fix changedAfterCheckedError here -->
                     <app-slide-input #slideInput
                         [label]="set | translate:'form':languageService.language.value"
                         [max]="3" [min]="1" [default]="1"
@@ -144,6 +164,7 @@
                 </div>
             </div>
         </div>
+        <!-- Artifact form inputs -->
         <div *ngIf="artifact.id !== 'noProc' && (artifact.scale || artifactSpecificNumberInputs.length || artifactSpecificBooleanInputs.length)" class="artifact-block header-block">
             <h1>{{'artifact' | translate:'ui':languageService.language.value}}</h1>
             <div class="neat-container full-width">
@@ -175,18 +196,26 @@
                 </div>
             </div>
         </div>
+        <!-- Target form inputs -->
         <div class="target-block header-block" [class.single-column]="screenService.mediumSmallScreen.value">
             <div class="filter-select-container full-width neat-container jumbo-margin-top" [ngClass]="!screenService.mediumSmallScreen.value ? 'column-3' : 'flex-column'">
-                <h1 class="line-title">Target</h1>
+                <h1 class="line-title">{{'target' | translate:'ui':languageService.language.value}}</h1>
                 <mat-form-field class="neat-container">
                     <mat-select [formControl]="targetPresetControl" placeholder="" #singleSelect>
-                        <mat-select-trigger>{{targetPresetControl.value?.id}}</mat-select-trigger>
+                        <mat-select-trigger>
+                            <span class="has-icon trigger">
+                                <img class="png-icon medium small-margin-right trigger-icon" src="assets/{{targetPresetControl.value?.icon || 'icons/unknown_portrait'}}.png" alt="{{targetPresetControl.value?.icon || 'icons/unknown_portrait'}} portrait">
+                                {{(targetPresetControl.value?.id || 'manual') | translate:'defensePreset':languageService.language.value}}
+                            </span>
+                        </mat-select-trigger>
                         <mat-option>
                             <ngx-mat-select-search spellcheck="false" [formControl]="targetPresetFilterControl" placeholderLabel="Find Defense Preset..."></ngx-mat-select-search>
                         </mat-option>
-                        <mat-optgroup *ngFor="let targetPresetGroup of filteredTargetPresetGroups" [label]="targetPresetGroup[0]">
-                            <mat-option *ngFor="let targetPreset of targetPresetGroup[1]" [value]="targetPreset">
-                                <span class="flex-row neat-container">{{targetPreset.id | translate:'form':languageService.language.value}}<p *ngIf="targetPreset.hp" class="preset-hint"> ({{targetPreset.hp + ' hp' + (targetPreset.speed ? '/' + targetPreset.speed + ' spd' : '')}})</p></span>
+                        <mat-optgroup *ngFor="let targetPresetGroup of filteredTargetPresetGroups" [label]="targetPresetGroup[0] | translate:'defensePreset':languageService.language.value">
+                            <mat-option *ngFor="let targetPreset of targetPresetGroup[1]" [value]="targetPreset" class="has-icon indented">
+                                <span class="flex-row neat-container">
+                                    <img class="png-icon medium tiny-margin-right select-option-icon indented" src="assets/{{targetPreset.icon || 'icons/unknown_portrait'}}.png" alt="{{targetPreset.id || 'icons/unknown_portrait'}} portrait">
+                                    {{targetPreset.id | translate:'defensePreset':languageService.language.value}}<p *ngIf="targetPreset.hp" class="preset-hint"> ({{targetPreset.hp + ' hp' + (targetPreset.speed ? '/' + targetPreset.speed + ' spd' : '')}})</p></span>
                             </mat-option>
                         </mat-optgroup>
                     </mat-select>
@@ -196,10 +225,16 @@
                         <mat-option>
                             <ngx-mat-select-search spellcheck="false" [formControl]="reductionPresetFilterControl" placeholderLabel="Find Reduction Preset..."></ngx-mat-select-search>
                         </mat-option>
-                        <mat-select-trigger>{{reductionPresetControl.value?.id}}</mat-select-trigger>
-                        <mat-optgroup *ngFor="let reductionPresetGroup of filteredReductionPresetGroups" [label]="reductionPresetGroup[0]">
-                            <mat-option *ngFor="let reductionPreset of reductionPresetGroup[1]" [value]="reductionPreset">
-                                <span class="flex-row neat-container">{{reductionPreset.id | translate:'form':languageService.language.value}}<p *ngIf="reductionPreset.damageReduction || reductionPreset.damageTransfer" class="preset-hint"> {{reductionPreset.damageReduction || reductionPreset.damageTransfer}}%{{reductionPreset.defenseIncrease ? (' (+' + reductionPreset.defenseIncrease + '% Defense)') : ''}}</p></span>
+                        <mat-select-trigger>
+                            <span class="has-icon trigger">
+                                <img class="png-icon medium small-margin-right trigger-icon" src="assets/{{reductionPresetControl.value?.icon || 'icons/unknown_portrait'}}.png" alt="{{reductionPresetControl.value?.icon || 'icons/unknown_portrait'}} portrait">
+                                {{(reductionPresetControl.value?.id || 'manual') | translate:'reductionPreset':languageService.language.value}}
+                            </span>
+                        </mat-select-trigger>
+                        <mat-optgroup *ngFor="let reductionPresetGroup of filteredReductionPresetGroups" [label]="reductionPresetGroup[0] | translate:'reductionPreset':languageService.language.value">
+                            <mat-option *ngFor="let reductionPreset of reductionPresetGroup[1]" [value]="reductionPreset"class="has-icon indented">
+                                <img class="png-icon medium tiny-margin-right select-option-icon indented" src="assets/{{reductionPreset.icon || 'icons/unknown_portrait'}}.png" alt="{{reductionPreset.id || 'icons/unknown_portrait'}} portrait">
+                                <span class="flex-row neat-container">{{reductionPreset.id | translate:'reductionPreset':languageService.language.value}}<p *ngIf="reductionPreset.damageReduction || reductionPreset.damageTransfer" class="preset-hint"> {{reductionPreset.damageReduction || reductionPreset.damageTransfer}}%{{reductionPreset.defenseIncrease ? (' (+' + reductionPreset.defenseIncrease + '% Defense)') : ''}}</p></span>
                             </mat-option>
                         </mat-optgroup>
                     </mat-select>
@@ -215,7 +250,7 @@
                 </div>
                 <div [class.full-width]="screenService.mediumSmallScreen.value">
                     <app-slide-input #slideInput
-                        [label]="'defenseIncrease' | translate:'form':languageService.language.value"
+                        [label]="'targetDefenseIncrease' | translate:'form':languageService.language.value"
                         [max]="20" [min]="0" [default]="0" (valueChange)="inputChange('targetDefenseIncrease', $event)"
                         [column]="screenService.mediumScreen.value" [hint]="'defenseIncreaseHint' | translate:'form':languageService.language.value">
                     </app-slide-input>
@@ -236,6 +271,13 @@
                         [column]="screenService.mediumScreen.value">
                     </app-slide-input>
                 </div>
+            </div>
+            <div class="neat-container full-width">
+                <app-slide-input #slideInput
+                    [label]="'penetrationResistance' | translate:'form':languageService.language.value"
+                    [max]="100" [min]="0" [default]="0" (valueChange)="inputChange('penetrationResistance', $event)"
+                    [column]="screenService.mediumScreen.value">
+                </app-slide-input>
             </div>
             <div class="checkbox-holder">
                 <!-- <mat-checkbox class="small-margin-top" (click)="toggleStigmaPolitis()" [checked]="this.stigmaPolitis"> -->
@@ -260,7 +302,7 @@
                 <mat-checkbox class="small-margin-top" [checked]="inputValues.targetHasTrauma" (change)="inputChange('targetHasTrauma', $event.checked)">
                     <span class="neat-container">
                         <img class="png-icon medium tiny-margin-right" src="assets/debuffs/trauma-debuff.png" alt="Trauma debuff">
-                        {{'targetHasTrauma' | translate:'form':languageService.language.value}}
+                        {{'trauma' | translate:'form':languageService.language.value}}
                     </span>
                 </mat-checkbox>
                 <mat-checkbox class="small-margin-top" [checked]="inputValues.targetTargeted" (change)="inputChange('targetTargeted', $event.checked)">
@@ -271,9 +313,10 @@
                 </mat-checkbox>
             </div>
         </div>
+        <!-- Hero-specific inputs form -->
         <div *ngIf="hero.heroSpecific.length" class="hero-specific-block header-block">
             <!-- TODO: translate -->
-            <h1>Hero Specific</h1>
+            <h1>{{'heroSpecific' | translate:'ui':languageService.language.value}}</h1>
             <div class="neat-container full-width">
                 <div *ngFor="let input of heroSpecificNumberInputs" class="full-width">
                     <app-slide-input #slideInput
@@ -299,7 +342,7 @@
             </div>
         </div>
         <div class="skill-enhance-block header-block">
-            <h1>Skill Enhance</h1>
+            <h1>{{'skillEnhance' | translate:'ui':languageService.language.value}}</h1>
             <div class="multi-slide">
                 <div *ngFor="let skill of skills" class="neat-container full-width">
                     <app-slide-input #slideInput *ngIf="skill.enhance?.length"
@@ -310,6 +353,7 @@
                 </div>
             </div>
         </div>
+        <!-- Sticky damage block at bottom of screen -->
         <div class="damage-block">
             <!-- TODO: multiplier fxn breakdown button -->
             <!-- TODO: Add healing? -->
@@ -318,7 +362,7 @@
                 <div class="full-width neat-container flex-between">
                     <div class="flex-row neat-container large-margin-right">
                         <div class="bold-text small-padding-bottom" [ngClass]="!screenService.smallScreen.value ? 'extra-large-text' : 'large-text small-margin-top'">
-                            {{"damageTitle" | translate:'form':languageService.language.value}}
+                            {{"damageTitle" | translate:'ui':languageService.language.value}}
                         </div>
                         <button type="button" class="small-margin-left color-grey button-line-left neat-container" (click)="saveBuild()" mat-flat-button>
                             <img class="svg-icon" [class.tiny-margin-right]="!screenService.mediumScreen.value" src="assets/icons/save.svg" alt="save">
@@ -335,9 +379,9 @@
                             <img class="svg-icon white" [class.tiny-margin-right]="!screenService.mediumScreen.value" src="assets/icons/line-chart.svg" alt="graph">
                             <ng-container *ngIf="!screenService.mediumScreen.value">{{ (showGraph ? 'hideGraph' : 'showGraph') | translate:'ui':languageService.language.value}}</ng-container>
                         </button>
-                        <button type="button" class="color-green button-line-right" mat-flat-button>
+                        <button type="button" class="color-green button-line-right" (click)="shareResults()" mat-flat-button>
                             <img class="svg-icon white" [class.tiny-margin-right]="!screenService.mediumScreen.value" src="assets/icons/share-nodes-solid.svg" alt="share">
-                            <ng-container *ngIf="!screenService.mediumScreen.value">{{'share' | translate:'ui':languageService.language.value}}</ng-container>
+                            <ng-container *ngIf="!screenService.mediumScreen.value">{{shareButtonText | translate:'ui':languageService.language.value}}</ng-container>
                         </button>
                     </div>
                     <div class="neat-container flex-row extra-large-margin-right">
@@ -369,50 +413,51 @@
                     </div>
                     <img class="svg-icon large filter pointer collapse-icon" (click)="toggleTable()" src="{{collapsed ? 'assets/icons/chevron-up.svg' : 'assets/icons/chevron-down.svg'}}" alt="collapse">
                 </div>
+                <!-- Damage table -->
                 <table [@collapseAnimation] *ngIf="!collapsed" [class.tiny-padding]="screenService.mediumSmallScreen.value" mat-table [dataSource]="damageData">
                     <ng-container matColumnDef="skill">
-                      <th mat-header-cell *matHeaderCellDef> {{"skill" | translate:'form':languageService.language.value}} </th>
-                      <td mat-cell *matCellDef="let element"><span class="flex-aligned flex-between">{{element.skill | translate:'skills':languageService.language.value}} <img *ngIf="languageService.language.value" class="icon large tiny-margin-left svg-icon cursor-help" src="assets/icons/square-root.svg" alt="Skill multipliers" [mtxTooltip]="modifierTooltip" [mtxTooltipContext]="element.skill" [mtxTooltipPosition]="'left'"></span></td>
+                      <th mat-header-cell *matHeaderCellDef> {{"skill" | translate:'ui':languageService.language.value}} </th>
+                      <td mat-cell *matCellDef="let element"><span class="flex-aligned flex-between">{{element.skill | translate:'skills':languageService.language.value}} <img *ngIf="languageService.language.value" class="icon large tiny-margin-left svg-icon cursor-help" src="assets/icons/square-root.svg" alt="Skill multipliers" [mtxTooltip]="modifierTooltip" [mtxTooltipContext]="element.skill" [mtxTooltipPosition]="'left'" #tooltip="mtxTooltip" (click)="tooltip.toggle()"></span></td>
                     </ng-container>
 
                     <ng-container matColumnDef="crit">
-                      <th mat-header-cell *matHeaderCellDef> {{"criticalHit" | translate:'form':languageService.language.value}} </th>
+                      <th mat-header-cell *matHeaderCellDef> {{"criticalHit" | translate:'ui':languageService.language.value}} </th>
                       <!-- Intentionally using != instead of !== here to catch null and undefined -->
                       <!-- eslint-disable @angular-eslint/template/eqeqeq -->
                       <td mat-cell *matCellDef="let element"> {{element.crit != null ? element.crit : 'nonApplicable' | translate:'skills':languageService.language.value}} </td>
                     </ng-container>
                   
                     <ng-container matColumnDef="crush">
-                      <th mat-header-cell *matHeaderCellDef> {{"crushingHit" | translate:'form':languageService.language.value}} </th>
+                      <th mat-header-cell *matHeaderCellDef> {{"crushingHit" | translate:'ui':languageService.language.value}} </th>
                       <td mat-cell *matCellDef="let element"> {{element.crush != null ? element.crush : 'nonApplicable' | translate:'skills':languageService.language.value}} </td>
                     </ng-container>
 
                     <ng-container matColumnDef="normal">
-                      <th mat-header-cell *matHeaderCellDef> {{"normalHit" | translate:'form':languageService.language.value}} </th>
+                      <th mat-header-cell *matHeaderCellDef> {{"normalHit" | translate:'ui':languageService.language.value}} </th>
                       <td mat-cell *matCellDef="let element"> {{element.normal != null ? element.normal : 'nonApplicable' | translate:'skills':languageService.language.value}} </td>
                     </ng-container>
 
                     <ng-container matColumnDef="miss">
-                        <th mat-header-cell *matHeaderCellDef> {{"miss" | translate:'form':languageService.language.value}} </th>
+                        <th mat-header-cell *matHeaderCellDef> {{"miss" | translate:'ui':languageService.language.value}} </th>
                         <td mat-cell *matCellDef="let element"> {{element.miss != null ? element.miss : 'nonApplicable' | translate:'skills':languageService.language.value}} </td>
                     </ng-container>
                     <!-- eslint-enable -->
-                  
                     <tr mat-header-row *matHeaderRowDef="displayedColumns" [class.large-text]="!screenService.smallScreen.value"></tr>
                     <tr mat-row *matRowDef="let row; columns: displayedColumns;" [class.large-text]="!screenService.smallScreen.value"></tr>
                   </table>
             </mat-card>
         </div>
+        <!-- Credits below damage block when scrolled to bottom of page -->
         <div class="credits-block">
             <mat-card class="left" [class.content-height]="!screenService.largeScreen.value">
                 <div class="full-height" [ngClass]="screenService.largeScreen.value ? 'column-3' : 'column'">
                     <div class="credit-column">
                         <h2>{{'credits' | translate:'ui':languageService.language.value}}</h2>
                         <p>
-                            Discord: @tyopoyt<br>
-                            Thanks to the original creator, Maphe<br>
-                            Thanks for the help: Thunder_God, okloio, haie<br>
-                            Translation: Rano / TriATK <app-flag [country]="'cn'"></app-flag>
+                            {{'discord'| translate:'ui':languageService.language.value}}: @tyopoyt<br>
+                            {{'thanksCreator'| translate:'ui':languageService.language.value}}, Maphe<br>
+                            {{'thanksHelp'| translate:'ui':languageService.language.value}}: Thunder_God, okloio, haie<br>
+                            {{'translation'| translate:'ui':languageService.language.value}}: Rano / TriATK <app-flag [country]="'cn'"></app-flag>
                             / <span class="icon-line"><img class="icon tiny tiny-margin-left tiny-margin-right svg-icon" src="assets/icons/incognito.svg" alt="Anonymous"></span>
                             <app-flag [country]="'kr'"></app-flag>
                             / Tagle <app-flag [country]="'jp'"></app-flag>
@@ -421,12 +466,13 @@
                     </div>
                     <div class="credit-column">
                         <h2>{{'references' | translate:'ui':languageService.language.value}}</h2>
-                        <a class="icon-line" href="https://docs.google.com/spreadsheets/d/e/2PACX-1vRWZw_BeIhf32W9UIyPuyrr1VDeBuX6p1Nzxov4-5Pkt5DplChLovysSDN83mGVbsZ0XgYs2FICuRXA/pubhtml" target="_blank">Multiplier Spreadsheet <img class="icon tiny tiny-margin-left svg-icon link" src="assets/icons/open-in-new.svg" alt="Open link in new tab"></a>
+                        <a class="icon-line" href="https://docs.google.com/spreadsheets/d/e/2PACX-1vRWZw_BeIhf32W9UIyPuyrr1VDeBuX6p1Nzxov4-5Pkt5DplChLovysSDN83mGVbsZ0XgYs2FICuRXA/pubhtml" target="_blank">{{'multiplierSpreadsheet' | translate:'ui':languageService.language.value }} <img class="icon tiny tiny-margin-left svg-icon link" src="assets/icons/open-in-new.svg" alt="Open link in new tab"></a>
                         <a class="icon-line" href="https://epic7x.com" target="_blank">Epic 7x <img class="icon tiny tiny-margin-left svg-icon link" src="assets/icons/open-in-new.svg" alt="Open link in new tab"></a>
                     </div>
                     <div class="credit-column">
                         <h2 class="text-uppercase">{{'contribute' | translate:'ui':languageService.language.value}}</h2>
-                        <a class="icon-line" href="https://github.com/tyopoyt/epic7-damage-calc/issues" target="_blank">Raise a bug <img class="icon tiny tiny-margin-left svg-icon link" src="assets/icons/open-in-new.svg" alt="Open link in new tab"></a>
+                        <a class="icon-line" href="https://github.com/tyopoyt/epic7-damage-calc/issues" target="_blank">{{'reportBug' | translate:'ui':languageService.language.value}} <img class="icon tiny tiny-margin-left svg-icon link" src="assets/icons/open-in-new.svg" alt="Open link in new tab"></a>
+                        <a class="icon-line" href="https://github.com/tyopoyt/epic7-damage-calc/#contributing-a-translation" target="_blank">{{'contributeTranslation' | translate:'ui':languageService.language.value}} <img class="icon tiny tiny-margin-left svg-icon link" src="assets/icons/open-in-new.svg" alt="Open link in new tab"></a>
                     </div>
                 </div>
             </mat-card>
@@ -435,6 +481,7 @@
 </div>
 
 <!-- TEMPLATES -->
+<!-- Template for skill modifiers popup -->
 <ng-template let-i #modifierTooltip>
     <h3 class="no-margin bold-text left-align">{{'skillModifiers' | translate:'ui':languageService.language.value}}</h3>
     <span class="flex-aligned flex-between">
@@ -447,6 +494,7 @@
     <!-- <span *ngIf="skillMultiplierTips[i]?.elementalAdvantage" class="flex-aligned flex-between">
         <b>{{'elementalAdvantage' | translate:'ui':languageService.language.value}}:</b><img class="icon tiny tiny-margin-left svg-icon link" src="assets/icons/open-in-new.svg" alt="Elemental advantage">
     </span> -->
+    <!-- TODO: implement custom multis? like apoc's per dead enemy? -->
     <span *ngIf="skillMultiplierTips[i]?.flat || skillMultiplierTips[i]?.flatTip" class="flex-aligned flex-between">
         <b>{{'flat' | translate:'ui':languageService.language.value}}:</b><p class="no-margin">&nbsp;{{skillMultiplierTips[i]?.flatTip}}</p>&nbsp;<p class="no-margin">{{skillMultiplierTips[i]?.flat}}</p>
     </span>

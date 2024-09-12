@@ -17,6 +17,7 @@ export enum HitType {
 
 export class AftermathSkill {
     defensePercent?: number
+    hpPercent?: number
     attackPercent?: number
     injuryPercent?: number
     targetMaxHPPercent?: number
@@ -24,6 +25,7 @@ export class AftermathSkill {
     
     constructor(data: any) {
         this.defensePercent = data.defensePercent;
+        this.hpPercent = data.hpPercent;
         this.attackPercent = data.attackPercent;
         this.injuryPercent = data.injuryPercent;
         this.targetMaxHPPercent = data.targetMaxHPPercent;
@@ -35,7 +37,7 @@ export class Skill {
     id: string;
     // TODO: refactor this name
     atk: (inputValues: DamageFormData) => number;
-    afterMath: (hitType: HitType, inputValues: DamageFormData) => AftermathSkill;
+    afterMath: (hitType: HitType, inputValues: DamageFormData, soulburn: boolean) => AftermathSkill;
     canExtra: boolean;
     critDmgBoost: Function;
     critDmgBoostTip: Function;
@@ -49,18 +51,21 @@ export class Skill {
     flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => number;
     flat2: Function;
     flatTip: Function;
-    ignoreDamageTransfer: Function;
-    isAOE: Function;
+    ignoreDamageTransfer: (inputValuse: DamageFormData) => boolean;
+    isAOE: (inputValues: DamageFormData) => boolean;
     isExtra: boolean;
-    isSingle: Function;
-    mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => number;
+    extraModifier: boolean;
+    isSingle: (inputValues: DamageFormData) => boolean;
+    mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact, heroAttack: number) => number;
     multTip: Function;
-    penetrate: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact, casterAttack: number) => number;
+    name: string | null;
+    penetrate: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact, casterAttack: number, casterSpeed: number) => number;
     penetrateTip: Function;
     pow: (soulburn: boolean, inputValues: DamageFormData) => number;
-    rate: (soulburn: boolean, inputValues: DamageFormData) => number;
+    rate: (soulburn: boolean, inputValues: DamageFormData, isExtra: boolean) => number;
     s1Benefits: boolean;
     noBuff: boolean; //TODO: possible remove this and just use atk (atkToUse)
+    noTrans: (inputValues: DamageFormData) => boolean;
     noCrit: boolean;
     onlyCrit: (soulburn: boolean) => boolean;
     onlyMiss: boolean;
@@ -77,6 +82,7 @@ export class Skill {
         this.atk = _.get(data, 'atk', () => 0)
         this.afterMath = _.get(data, 'afterMath', () => null);
         this.canExtra = _.get(data, 'canExtra', false);
+        this.extraModifier = _.get(data, 'extraModifier', false);
         this.critDmgBoost = _.get(data, 'critDmgBoost', () => 0);
         this.critDmgBoostTip = _.get(data, 'critDmgBoostTip', () => null);
         this.detonation = _.get(data, 'detonation', () => 0);
@@ -94,12 +100,14 @@ export class Skill {
         this.isExtra = _.get(data, 'isExtra', false);
         this.isSingle = _.get(data, 'isSingle', () => false);
         this.mult = _.get(data, 'mult', () => 1);
+        this.name = _.get(data, 'name', null);
         this.multTip = _.get(data, 'multTip', () => null);
         this.penetrate = _.get(data, 'penetrate', () => 0);
         this.penetrateTip = _.get(data, 'penetrateTip', () => null);
         this.pow = _.get(data, 'pow', () => 0);
         this.rate = _.get(data, 'rate', () => 0);
         this.noBuff = _.get(data, 'noBuff', false);
+        this.noTrans = _.get(data, 'noTrans', () => false);
         this.s1Benefits = _.get(data, 's1Benefits', false);
         this.noCrit = _.get(data, 'noCrit', false);
         this.onlyCrit = _.get(data, 'onlyCrit', () => false);
@@ -112,3 +120,5 @@ export class Skill {
         this.soulburn = _.get(data, 'soulburn', false);
     }
 }
+
+export const DoTSkill: Skill = new Skill({id: 'FixedPenetration', penetrate: () => 0.7});
