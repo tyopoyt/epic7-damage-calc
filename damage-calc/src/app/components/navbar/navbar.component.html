@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<mat-toolbar class="navbar mat-elevation-z2" [class.small]="screenService.smallScreen.value">
+    <span class="neat-container absolute-left">
+        <img class="navbar-icon" [class.small]="screenService.tinyScreen.value" src="assets/icons/{{toolSelection.value}}_logo.png" alt="Revive buff icon">
+        <span *ngIf="!screenService.microscopicScreen.value" [class.medium-text]="screenService.tinyScreen.value">{{'app_title' | translate:'titles':languageService.language.value}}</span>
+    </span>
+    <div class="navbar-options">
+        <span class="neat-container">
+            <span *ngIf="!screenService.mediumSmallScreen.value; else smallScreenPageSelect" class="neat-container">
+                <span *ngFor="let toolTitle of toolTitles; let i = index" class="navbar-link"
+                    [class.selected]="toolSelection.value === toolTitle" [class.left]="i === 0"
+                    [ngClass]="{
+                        'small-text': !screenService.largeScreen.value && !(toolSelection.value === toolTitle),
+                        'medium-text': (screenService.largeScreen.value && !(toolSelection.value === toolTitle)) || (toolSelection.value === toolTitle && !screenService.largeScreen.value),
+                        'margin-left': screenService.largeScreen.value,
+                        'medium-margin-left': !screenService.largeScreen.value
+                    }"
+                    (click)="selectTool(toolTitle)">
+                    {{toolTitle | translate:'titles':languageService.language.value}}
+                </span>
+            </span>
+            <ng-template #smallScreenPageSelect>
+                <mat-form-field class="navbar-picker tool-picker" [class.small]="screenService.tinyScreen.value">
+                    <mat-select hideSingleSelectionIndicator [formControl]="toolSelection" (selectionChange)="selectTool($event.value)">
+                        <!-- This trigger has the same value but is here for styling purposes -->
+                        <mat-select-trigger class="tool-trigger" [class.medium-text]="screenService.tinyScreen.value">
+                            <span class="neat-container">
+                                {{toolSelection.value | translate:'titles':languageService.language.value}}
+                            </span>
+                        </mat-select-trigger>
+                        <mat-option *ngFor="let toolTitle of toolTitles" [value]="toolTitle">
+                            {{toolTitle | translate:'titles':languageService.language.value}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </ng-template>
+        </span>
+    </div>
+    <!-- Delay rendering language picker until initial language has been determined -->
+    <ng-container *ngIf="languageService.language.value">
+        <span *ngIf="screenService.extraLargeScreen.value; else settingsCog" class="absolute-right neat-container">
+            <span class="neat-container icon-holder">
+                <button type="button" (click)="openKofi()"  mat-flat-button>
+                    <img class="webp-icon" src="assets/icons/ko-fi.webp" alt="ko-fi icon">
+                    {{'donate' | translate:'ui':languageService.language.value}}
+                </button>
+                <ng-template [ngTemplateOutlet]="darkModeToggle"></ng-template>
+                <ng-template [ngTemplateOutlet]="retroModeToggle"></ng-template>
+            </span>
+            <ng-template [ngTemplateOutlet]="languageSelector"></ng-template>
+        </span>
+        <ng-template #settingsCog>
+            <span class="absolute-right neat-container">
+                <img *ngIf="!screenService.microscopicScreen.value" class="webp-icon" src="assets/icons/ko-fi.webp" (click)="openKofi()" alt="ko-fi icon">
+                <!-- This is using container with ngIf rather than [class.extra-item] because angular does not pass the class down to the 
+                        element that actually gets rendered if it's dynamically applied -->
+                <ng-container *ngIf="!screenService.microscopicScreen.value; else extraItemCogMenu">
+                    <img class="icon navbar-icon right" [matMenuTriggerFor]="menu" (click)="setSlideToggleIcons(50)" src="assets/icons/cog.svg" alt="Settings">
+                    <mat-menu class="switch-nested-menu-arrows" #menu="matMenu">
+                        <!-- The menu content here is duplicated rather than templated because the submenu was not rendering when it
+                                was defined in a template. -->
+                        <ng-template [ngTemplateOutlet]="darkModeToggle"></ng-template>
+                        <ng-template [ngTemplateOutlet]="retroModeToggle"></ng-template>
+                        <!-- <ng-template [ngTemplateOutlet]="languageSelector"></ng-template> -->
+                        <button class="language-menu" mat-menu-item [matMenuTriggerFor]="languageMenu">
+                            <app-flag *ngIf="!languageService.language.value?.custom" [country]="languageSelection.value.countryCode"></app-flag> {{languageSelection.value.localName}}
+                        </button>
+                    </mat-menu>
+                </ng-container>
+                <ng-template #extraItemCogMenu>
+                    <img class="icon navbar-icon right" [matMenuTriggerFor]="extraItemMenu" (click)="setSlideToggleIcons(50)" src="assets/icons/cog.svg" alt="Settings">
+                    <mat-menu class="switch-nested-menu-arrows extra-item" #extraItemMenu="matMenu">
+                        <button mat-menu-item class="top-menu-item menu-item neat-container donate-button" (click)="openKofi()">
+                            <img class="webp-icon extra-item" src="assets/icons/ko-fi.webp">
+                            {{'donate' | translate:'ui':languageService.language.value}}
+                        </button>
+                        <ng-template [ngTemplateOutlet]="darkModeToggle"></ng-template>
+                        <ng-template [ngTemplateOutlet]="retroModeToggle"></ng-template>
+                        <!-- <ng-template [ngTemplateOutlet]="languageSelector"></ng-template> -->
+                        <button class="language-menu" mat-menu-item [matMenuTriggerFor]="languageMenu">
+                            <app-flag [country]="languageSelection.value.countryCode"></app-flag> {{languageSelection.value.localName}}
+                        </button>
+                    </mat-menu>
+                </ng-template>
+            </span>
+        </ng-template>
+    </ng-container>
+</mat-toolbar>
+
+
+<!-- Templates -->
+<ng-template #languageSelector>
+    <mat-form-field class="navbar-picker language-picker" [class.small]="screenService.tinyScreen.value">
+        <mat-select hideSingleSelectionIndicator [formControl]="languageSelection" (selectionChange)="selectLanguage($event.value)">
+            <mat-select-trigger *ngIf="!languageService.language.value?.custom" class="language-trigger">
+                <span [class.small-text]="screenService.tinyScreen.value">
+                    {{languageSelection.value.localName}} <app-flag [country]="languageSelection.value.countryCode"></app-flag>
+                </span>
+                <ng-template #customTrigger>
+                    <span class="margin-left" [class.small-text]="screenService.tinyScreen.value">
+                        Custom Language
+                    </span>
+                </ng-template>
+            </mat-select-trigger>
+            <mat-option *ngFor="let language of languages" [value]="language" (click)="languageSelectOptionClicked(language)">
+                {{language.localName}} <app-flag [country]="language.countryCode"></app-flag>
+            </mat-option>
+            <mat-option *ngIf="languageService.language.value?.custom" [value]="customLanguage">
+                Custom
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</ng-template>
+
+<ng-template #darkModeToggle>
+    <mat-slide-toggle [class.margin-right]="languageService.language.value?.custom" [class.top-menu-item]="!screenService.microscopicScreen.value" #darkModeSwitch class="pointer" (click)="toggleDarkMode()" [checked]="screenService.theme === Theme.dark || screenService.theme === Theme.retro">{{'dark_mode' | translate:'ui':languageService.language.value}}</mat-slide-toggle>
+</ng-template>
+
+<ng-template #retroModeToggle>
+    <mat-slide-toggle [class.margin-right]="languageService.language.value?.custom" [class.top-menu-item]="!screenService.microscopicScreen.value" #retroModeSwitch class="pointer" (click)="toggleRetroMode()" [checked]="screenService.theme === Theme.retro || screenService.theme === Theme.retroLight">{{'retro_mode' | translate:'ui':languageService.language.value}}</mat-slide-toggle>
+</ng-template>
+
+<mat-menu #languageMenu="matMenu">
+    <button *ngFor="let language of languages" (click)="selectLanguage(language)" [class.selected]="languageService.language.value === language" [value]="language" mat-menu-item>
+        {{language.localName}} <app-flag [country]="language.countryCode"></app-flag>
+    </button>
+</mat-menu>

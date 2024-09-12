@@ -1,0 +1,46 @@
+@import "../../../../variables";
+
+:host {
+    display: flex;
+    margin-top: $gutter;
+    width: 100%;
+    color: white;
+
+
+    .dismissible {
+        width: 100%;
+        height: max-content;
+        padding: $gutter-extra-large;
+        border-radius: $gutter;
+        position: relative;
+        font-size: medium;
+
+        p {
+            font-weight: 500;
+            margin: 0;
+            width: calc(100% - 1.35rem);
+            white-space: pre-wrap;
+        }
+
+        &.info {
+            background-color: $ui-info-color;
+        }
+        
+        &.instructions {
+            background-color: $e7-buff-ui-color;
+        }
+        
+        &.warn {
+            background-color: $e7-fire-color;
+        }
+
+        .svg-icon {
+            height: 1.35rem;
+            position: absolute;
+            top: $gutter-large;
+            right: $gutter-large;
+
+            filter: $white-filter;
+        }
+    }
+}

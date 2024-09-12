@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<mat-card [class.left]="left" [class.full-width]="fullWidth" [class.has-subcontent]="!!subContent">
+    <span class="header flex-centered bold-text">
+        {{header}}
+        <img class="icon tiny tiny-margin-left" *ngIf="!!hint" src="assets/icons/help-circle-outline.svg" alt="Hint" matTooltip="{{hint}}">
+    </span>
+    <span class="content flex-centered bold-text flex-column"
+        [class.green]="color === 'green'" [class.red]="color === 'red'" [class.blue]="color === 'blue'"
+        [class.small-text]="contentSize === 'small'" [class.medium-text]="contentSize === 'medium'" [class.extra-large-text]="contentSize === 'large'" [class.normal-weight]="normalWeight">
+        {{content}}
+        <span *ngIf="!!subContent">
+            <br>
+            {{subContent}}
+        </span>
+        <span *ngIf="!!additional" class="additional neat-container">
+            <img *ngIf="!!additionalIcon" class="additional-icon" [ngClass]="color" src="{{additionalIcon}}" alt="Additional icon">
+            {{additional}}
+        </span>
+    </span>
+</mat-card>

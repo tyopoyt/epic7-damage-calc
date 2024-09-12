@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<div class="page-container">
+    <span class="page-body">
+        <app-slide-input
+            [label]="'hit_chance' | translate:'form':languageService.language.value"
+            [max]="100" [min]="0" [default]="100" [step]="5"
+            (valueChange)="hitChanceChange($event)">
+        </app-slide-input>
+        <app-slide-input
+            [label]="'effect_chance' | translate:'form':languageService.language.value"
+            [max]="100" [min]="0" [default]="100" [step]="5"
+            (valueChange)="effectChanceChange($event)">
+        </app-slide-input>
+        <app-slide-input
+            [label]="'caster_effectiveness' | translate:'form':languageService.language.value"
+            [max]="400" [min]="0" [default]="0" (valueChange)="effectivenessChange($event)">
+        </app-slide-input>
+        <app-slide-input
+            [label]="'target_resistance' | translate:'form':languageService.language.value"
+            [max]="400" [min]="0" [default]="0" (valueChange)="resistanceChange($event)">
+        </app-slide-input>
+        <div class="result-cards neat-container flex-between" [class.flex-column]="screenService.mediumSmallScreen.value">
+            <app-header-card
+                [class.full-width]="screenService.mediumSmallScreen.value"
+                [left]="true" [fullWidth]="screenService.mediumSmallScreen.value"
+                [header]="'inflict_effect' | translate:'form':languageService.language.value"
+                [content]="inflictText" [color]="HeaderCardComponentColorOption.green" [contentSize]="HeaderCardComponentSizeOption.large"
+                [hint]="'inflict_effect_hint' | translate:'form':languageService.language.value">
+            </app-header-card>
+    
+            <span class="neat-container" 
+                [class.full-width]="screenService.mediumSmallScreen.value"
+                [class.flex-column]="screenService.mediumSmallScreen.value">
+                <app-header-card
+                    [class.full-width]="screenService.mediumSmallScreen.value"
+                    [left]="screenService.mediumSmallScreen.value"
+                    [fullWidth]="screenService.mediumSmallScreen.value"
+                    [header]="'caster_to_land' | translate:'form':languageService.language.value"
+                    [content]="landText" [color]="HeaderCardComponentColorOption.blue" [contentSize]="HeaderCardComponentSizeOption.large"
+                    [hint]="'caster_to_land_hint' | translate:'form':languageService.language.value">
+                </app-header-card>
+                <app-header-card
+                    [class.full-width]="screenService.mediumSmallScreen.value"
+                    [left]="screenService.mediumSmallScreen.value"
+                    [fullWidth]="screenService.mediumSmallScreen.value"
+                    [header]="'target_to_resist' | translate:'form':languageService.language.value"
+                    [content]="resistText" [color]="HeaderCardComponentColorOption.red" [contentSize]="HeaderCardComponentSizeOption.large"
+                    [hint]="'target_to_resist_hint' | translate:'form':languageService.language.value">
+                </app-header-card>
+            </span>
+        </div>
+    </span>
+</div>

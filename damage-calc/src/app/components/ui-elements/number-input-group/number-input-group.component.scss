@@ -1,0 +1,47 @@
+@import '../../../../variables';
+
+button.side-input {
+    width: 1.25rem;
+    min-width: 1.25rem;    
+    border-radius: 0.25rem 0 0 0.25rem;
+
+    &.right {
+        border-radius: 0 0.25rem 0.25rem 0;
+    }
+
+    ::ng-deep.mdc-button__label {
+        padding-bottom: 0.25rem;
+        padding-left: 0.1rem;
+    }
+}
+
+.mat-mdc-unelevated-button:not(:disabled) {
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+.number-input-field {
+    ::ng-deep.mat-mdc-text-field-wrapper {
+        height: 2rem;
+        border: none;
+        border-radius: 0;
+    }
+
+    ::ng-deep.mdc-text-field--no-label:not(.mdc-text-field--outlined):not(.mdc-text-field--textarea) .mat-mdc-form-field-infix {
+        height: 2rem;
+        padding: 0.25rem 0 0;
+
+        // input.mat-mdc-input-element {
+        //     font-weight: bold;
+        //     text-align: center;
+        // }
+    }
+}
+
+.number-input-display {
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10rem;
+}

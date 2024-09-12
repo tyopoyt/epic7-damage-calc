@@ -1,0 +1,11 @@
+@import "../../../variables";
+
+.neat-container {
+    height: 100%;
+}
+
+.canvas-holder {
+    height: 30dvh;
+    width: 100%;
+    margin-bottom: $gutter-small;
+}

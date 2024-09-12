@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+<div class="neat-container flex-nowrap">
+    <button type="button" class="side-input" (click)="minus()" mat-flat-button>-</button>
+    <mat-form-field class="number-input-field">
+        <input type="number" (input)="valueUpdated($event)" [value]="numberValue" [max]="max" [min]="min" [step]="step" matInput>
+    </mat-form-field>
+    <button type="button" class="side-input right" (click)="plus()" mat-flat-button>+</button>
+</div>

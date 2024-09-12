@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<div class="page-container">
+    <span class="page-body">
+        <div class="neat-container full-width" [class.column-2]="!screenService.mediumSmallScreen.value" [class.full-width-number-input]="!screenService.largeScreen.value">
+            <div [class.full-width]="screenService.mediumSmallScreen.value">
+                <app-slide-input
+                    [label]="'first_build_defense' | translate:'form':languageService.language.value"
+                    [max]="5000" [min]="200" [default]="1000" (valueChange)="firstDefenseChange($event)"
+                    [column]="!screenService.largeScreen.value">
+                </app-slide-input>
+                <app-slide-input
+                    [label]="'first_build_hp' | translate:'form':languageService.language.value"
+                    [max]="50000" [min]="1000" [default]="10000" (valueChange)="firstHPChange($event)"
+                    [column]="!screenService.largeScreen.value">
+                </app-slide-input>
+            </div>
+            <div [class.full-width]="screenService.mediumSmallScreen.value">
+                <app-slide-input
+                    [label]="'second_build_defense' | translate:'form':languageService.language.value"
+                    [max]="5000" [min]="200" [default]="1000" (valueChange)="secondDefenseChange($event)"
+                    [column]="!screenService.largeScreen.value">
+                </app-slide-input>
+                <app-slide-input
+                    [label]="'second_build_hp' | translate:'form':languageService.language.value"
+                    [max]="50000" [min]="1000" [default]="10000" (valueChange)="secondHPChange($event)"
+                    [column]="!screenService.largeScreen.value">
+                </app-slide-input>
+            </div>
+        </div>
+        <div class="result-cards neat-container" [ngClass]="screenService.mediumSmallScreen.value ? 'flex-column' : 'column-2'">
+            <app-header-card
+                class="full-width" [fullWidth]="true" [left]="true"
+                [header]="'first_build_ehp' | translate:'form':languageService.language.value"
+                [content]="firstEHP" [color]="firstColor" [contentSize]="HeaderCardComponentSizeOption.large"
+                [hint]="'first_build_ehp_hint' | translate:'form':languageService.language.value"
+                [additional]="firstRelativePercent" [additionalIcon]="firstRelativeIcon">
+            </app-header-card>
+            <app-header-card
+                class="full-width" [fullWidth]="true" [left]="true"
+                [header]="'second_build_ehp' | translate:'form':languageService.language.value"
+                [content]="secondEHP" [color]="secondColor" [contentSize]="HeaderCardComponentSizeOption.large"
+                [hint]="'second_build_ehp_hint' | translate:'form':languageService.language.value"
+                [additional]="secondRelativePercent" [additionalIcon]="secondRelativeIcon">
+            </app-header-card>
+        </div>
+    </span>
+</div>

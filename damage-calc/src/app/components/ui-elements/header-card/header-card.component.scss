@@ -1,0 +1,77 @@
+@import '../../../../variables';
+
+mat-card {
+    height: 10rem;
+    width: 13.75rem;
+    padding: 0;
+
+    &.has-subcontent {
+        height: max-content;
+    }
+
+    &.left {
+        margin-left: 0;
+    }
+
+    &.full-width {
+        width: 100%;
+    }
+
+    span.header {
+        height: 2rem;
+        width: calc(100% - 1.5rem);
+        padding: 0 0.75rem 0 0.75rem;
+        border-radius: 0.5rem 0.5rem 0 0;
+    }
+
+    span.content {
+        padding: 0.75rem;
+        height: calc(100% - 2rem);
+
+        &.green {
+            color: $e7-earth-dark-color;
+        }
+
+        &.blue {
+            color: $e7-buff-color;
+        }
+
+        &.red {
+            color: $e7-debuff-color;
+        }
+
+        &.normal-weight {
+            font-weight: 500;
+        }
+
+        .additional {
+            font-size: $medium-font-size;
+            position: absolute;
+            bottom: $gutter;
+            right: $gutter;
+
+            .additional-icon {
+                height: calc($medium-font-size * 1.25);
+                padding-top: 0.01rem;
+
+                &.green {
+                    filter: $e7-earth-dark-color-filter;
+                }
+
+                &.blue {
+                    filter: $e7-buff-color-filter;
+                }
+        
+                &.red {
+                    filter: $e7-debuff-color-filter;
+                }
+            }
+        }
+    }
+
+    .icon {
+        cursor: help;
+    }
+
+    background-color: $ui-medium-dark-color;
+}

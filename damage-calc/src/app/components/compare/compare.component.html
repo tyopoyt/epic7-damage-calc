@@ -1,0 +1,80 @@
+<h1 mat-dialog-title>{{'compareDamage' | translate:'ui':languageService.language.value}}</h1>
+<div mat-dialog-content>
+  <mat-tab-group (selectedIndexChange)="tabChange($event)">
+    <!-- Single unit compare -->
+    <mat-tab label="{{dataService.currentHeroID.value | translate:'heroes':languageService.language.value }}">
+      <table class="small-margin-top" *ngIf="!!damageData.data.length; else noBuilds" [class.tiny-padding]="screenService.smallScreen.value" mat-table [dataSource]="damageData">
+        <ng-container matColumnDef="delete">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element"><img class="svg-icon filter medium tiny-margin-left pointer" (click)="removeBuild(element)" src="assets/icons/delete.svg" alt="delete build"></td>
+        </ng-container>
+
+        <ng-container matColumnDef="buildName">
+          <th mat-header-cell *matHeaderCellDef> {{"build" | translate:'ui':languageService.language.value}} </th>
+          <td mat-cell *matCellDef="let element"> {{element.buildName | translate:'skills':languageService.language.value}} </td>
+        </ng-container>
+
+        <ng-container *ngFor="let skill of skills; index as i">
+            <ng-container matColumnDef="{{skill}}">
+                <th mat-header-cell *matHeaderCellDef> {{skill | translate:'skills':languageService.language.value}} </th>
+                <td mat-cell *matCellDef="let element"> {{element.damages[i]}} </td>
+            </ng-container>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns" [class.large-text]="!screenService.smallScreen.value"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" [class.large-text]="!screenService.smallScreen.value"></tr>
+      </table>
+      <ng-template #noBuilds>
+        <div class="text-color large-margin-top">
+          {{'noBuilds' | translate:'ui':languageService.language.value}}
+        </div>
+      </ng-template>
+    </mat-tab>
+
+    <!-- Multi unit compare -->
+    <mat-tab label="{{'multiCompare' | translate:'ui':languageService.language.value }}">
+      <table class="small-margin-top" *ngIf="!!multiCompareDamageData.data.length; else noMultiBuilds" [class.tiny-padding]="screenService.smallScreen.value" mat-table [dataSource]="multiCompareDamageData">
+        <ng-container matColumnDef="delete">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element"><img class="svg-icon filter medium tiny-margin-left pointer" (click)="tabIndex ? removeMultiBuild(element) : removeBuild(element)" src="assets/icons/delete.svg" alt="delete build"></td>
+        </ng-container>
+
+        <ng-container matColumnDef="hero">
+          <th mat-header-cell *matHeaderCellDef> {{"hero" | translate:'ui':languageService.language.value}} </th>
+          <td mat-cell *matCellDef="let element"> {{element.hero | translate:'heroes':languageService.language.value}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="buildName">
+          <th mat-header-cell *matHeaderCellDef> {{"build" | translate:'ui':languageService.language.value}} </th>
+          <td mat-cell *matCellDef="let element"> {{element.buildName | translate:'skills':languageService.language.value}} </td>
+        </ng-container>
+
+        <ng-container *ngFor="let skill of multiCompareSkills">
+            <ng-container matColumnDef="{{skill}}">
+                <th mat-header-cell *matHeaderCellDef> {{skill | translate:'skills':languageService.language.value}} <img class="icon tiny tiny-margin-left" *ngIf="skill === 'extraSkill'" src="assets/icons/help-circle-outline.svg" alt="Hint" matTooltip="{{'extraSkillHint' | translate:'ui':languageService.language.value}}"></th>
+                <td mat-cell *matCellDef="let element"> {{element.damages[skill] ? element.damages[skill] : ('nonApplicable' | translate:'skills':languageService.language.value)}} </td>
+            </ng-container>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedMultiCompareColumns" [class.large-text]="!screenService.smallScreen.value"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedMultiCompareColumns;" [class.large-text]="!screenService.smallScreen.value"></tr>
+      </table>
+      <ng-template #noMultiBuilds>
+        <div class="text-color large-margin-top">
+          {{'noMultiBuilds' | translate:'ui':languageService.language.value}}
+        </div>
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>
+  <i *ngIf="(!tabIndex && !!damageData.data.length) || (tabIndex && !!multiCompareDamageData.data.length)" class="text-color">{{'compareTip' | translate:'ui':languageService.language.value}}</i>
+</div>
+
+<div mat-dialog-actions>
+  <button *ngIf="!!damageData.data.length" (click)="tabIndex ? removeAllMultiCompareBuilds() : removeAllBuilds()" mat-button>
+    <img class="svg-icon filter medium tiny-margin-right" src="assets/icons/delete.svg" alt="delete all builds">
+    {{ (tabIndex ? 'removeMultiCompareBuilds' : 'removeAllBuilds') | translate:'ui':languageService.language.value}}
+  </button>
+  <button mat-button (click)="close()" class="color-blue light-text" cdkFocusInitial>
+    {{'close' | translate:'ui':languageService.language.value}}
+  </button>
+</div>

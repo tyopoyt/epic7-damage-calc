@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<mat-card>
+    <div class="neat-container flex-column relative">
+        <div class="large-text bold-text margin-top flex-nowrap" [ngClass]="(screenService.smallScreen.value || column && !row) ? 'slider-col' : 'slider-row'">
+            <span *ngIf="!!label; else labelPlaceholder" class="neat-container">
+                {{label}}
+                <span *ngIf="extraLabel" class="extra-label small-margin-left tiny-margin-top">
+                    {{extraLabel}}
+                </span>
+                <img class="icon tiny tiny-margin-left" *ngIf="!!hint" src="assets/icons/help-circle-outline.svg" alt="Hint" matTooltip="{{hint}}">
+            </span>
+            <ng-template #labelPlaceholder>
+                <span></span>
+            </ng-template>
+            <app-number-input-group [value]="slideValue" [max]="max" [min]="min" [default]="default" [step]="step" (valueChange)="setValue($event)"></app-number-input-group>
+        </div>
+        <mat-slider [class.mobile-width-slider]="screenService.mediumSmallScreen.value" min="{{min}}" max="{{max}}" step="{{step}}" (input)="valueChanged($event)">
+            <input matSliderThumb [(value)]="value">
+        </mat-slider>
+    </div>
+</mat-card>

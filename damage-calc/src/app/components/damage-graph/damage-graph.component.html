@@ -1,0 +1,30 @@
+<!-- TODO: Translate -->
+<div class="neat-container">
+    <mat-form-field class="neat-container full-width tiny-margin-top">
+        <mat-select [formControl]="skillControl" placeholder="s1" #singleSelect (selectionChange)="calculateChart()">
+            <mat-option *ngFor="let skill of heroSkills" [value]="skill">
+                {{skill | translate:'skills':languageService.language.value}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <div class="full-width flex-aligned flex-between" [ngClass]="!screenService.mediumSmallScreen.value ? 'flex-row' : 'flex-column'">
+        <mat-radio-group [formControl]="hitTypeControl" (change)="setChartHitType($event.value)" aria-label="Hit type">
+            <mat-radio-button [disabled]="onlyMiss || noCrit" [class.pointer]="!onlyMiss && !noCrit" value="crit">{{'criticalHit' | translate:'ui':languageService.language.value}}</mat-radio-button>
+            <mat-radio-button [disabled]="onlyMiss || noCrit || onlyCrit" [class.pointer]="!onlyMiss && !noCrit && !onlyCrit" value="crush">{{'crushingHit' | translate:'ui':languageService.language.value}}</mat-radio-button>
+            <mat-radio-button [disabled]="onlyMiss || onlyCrit" [class.pointer]="!onlyMiss && !onlyCrit" value="normal">{{'normalHit' | translate:'ui':languageService.language.value}}</mat-radio-button>
+            <mat-radio-button [disabled]="noMiss" [class.pointer]="!noMiss" value="miss">{{'miss' | translate:'ui':languageService.language.value}}</mat-radio-button>
+        </mat-radio-group>
+        <div class="flex-row flex-aligned flex-wrap">
+            <span class="small-margin-right large-text bold-text">
+                {{'oneshot' | translate:'ui':languageService.language.value}}:
+            </span>
+            <app-number-input-group [value]="oneshotHP" [max]="10000000" [min]="1" (valueChange)="setOneshotHP($event)"></app-number-input-group>
+        </div>
+    </div>
+    <div class="canvas-holder">
+        <canvas baseChart class="chart"
+            [data]="damageData" [labels]="labels"
+            [options]="options" [type]="'line'">
+        </canvas>
+    </div>
+</div>

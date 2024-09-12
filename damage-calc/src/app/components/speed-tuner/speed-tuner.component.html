@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<div class="page-container">
+    <span class="page-body">
+        <app-dismissible [content]="'speed_tuner_instructions' | translate:'info':languageService.language.value" [color]="DismissibleColorOption.instructions"></app-dismissible>
+        <mat-slide-toggle #fasterPushesSlowerSwitch class="pointer small-margin-top" (click)="toggleFasterPushesSlower()" [checked]="this.fasterPushesSlower">{{'faster_pushes_slower' | translate:'form':languageService.language.value}}</mat-slide-toggle>
+        <div class="neat-container full-width" [class.column-2]="!screenService.mediumSmallScreen.value" [class.full-width-number-input]="!screenService.largeScreen.value">
+            <div [class.full-width]="screenService.mediumSmallScreen.value">
+                <app-slide-input
+                    [label]="'slower_unit_speed' | translate:'form':languageService.language.value"
+                    [max]="400" [min]="90" [default]="200" (valueChange)="slowerSpeedChange($event)"
+                    [column]="!screenService.largeScreen.value" [hint]="'slower_unit_speed_hint' | translate:'form':languageService.language.value">
+                </app-slide-input>
+                <app-slide-input
+                    [label]="'slower_unit_cr_push' | translate:'form':languageService.language.value"
+                    [max]="100" [min]="0" [default]="0" (valueChange)="slowerCRPushChange($event)"
+                    [column]="!screenService.largeScreen.value" [hint]="'slower_unit_cr_push_hint' | translate:'form':languageService.language.value">
+                </app-slide-input>
+            </div>
+            <div [class.full-width]="screenService.mediumSmallScreen.value">
+                <app-slide-input
+                    [label]="'faster_unit_speed' | translate:'form':languageService.language.value"
+                    [max]="400" [min]="90" [default]="220" (valueChange)="fasterSpeedChange($event)"
+                    [column]="!screenService.largeScreen.value" [hint]="'faster_unit_speed_hint' | translate:'form':languageService.language.value">
+                </app-slide-input>
+                <app-slide-input
+                    [class.hidden]="fasterPushesSlower"
+                    [label]="'faster_unit_cr_push' | translate:'form':languageService.language.value"
+                    [max]="100" [min]="0" [default]="0" (valueChange)="fasterCRPushChange($event)"
+                    [column]="!screenService.largeScreen.value" [hint]="'faster_unit_cr_push_hint' | translate:'form':languageService.language.value">
+                </app-slide-input>
+                <app-slide-input
+                    [class.hidden]="fasterPushesSlower"
+                    [label]="'faster_unit_turns' | translate:'form':languageService.language.value"
+                    [max]="3" [min]="1" [default]="1" (valueChange)="fasterTurnsChange($event)"
+                    [column]="!screenService.largeScreen.value" [hint]="'faster_unit_turns_hint' | translate:'form':languageService.language.value">
+                </app-slide-input>
+            </div>
+        </div>
+        <mat-checkbox class="small-margin-top" (click)="toggleStigmaPolitis()" [checked]="this.stigmaPolitis">
+            <span class="neat-container">
+                <img class="png-icon medium tiny-margin-right" src="assets/debuffs/stigma-debuff.png">
+                {{'stigma_speed_tuner' | translate:'form':languageService.language.value}} /
+                <img  class="png-icon medium tiny-margin-left tiny-margin-right" src="assets/heroes/politis-icon.png">
+                {{'politis_speed_tuner' | translate:'form':languageService.language.value}}
+            </span>
+        </mat-checkbox>
+        <div class="result-cards neat-container full-width" [ngClass]="screenService.mediumSmallScreen.value ? 'flex-column' : 'column-2'">
+            <app-header-card [class.full-width]="screenService.mediumSmallScreen.value"
+                [fullWidth]="true" [left]="true"
+                [header]="slowerHeader | translate:'form':languageService.language.value"
+                [content]="slowerSpeedText" [color]="displayColor" [contentSize]="HeaderCardComponentSizeOption.large">
+            </app-header-card>
+            <app-header-card [class.full-width]="screenService.mediumSmallScreen.value"
+                [fullWidth]="true" [left]="true"
+                [header]="fasterHeader | translate:'form':languageService.language.value"
+                [content]="fasterSpeedText" [color]="displayColor" [contentSize]="HeaderCardComponentSizeOption.large">
+            </app-header-card>
+        </div>
+        <div class="recommendation-card neat-container">
+            <app-header-card
+                class="full-width" [fullWidth]="true" [left]="true"
+                [header]="'recommendation' | translate:'form':languageService.language.value"
+                [content]="recommendationText" [subContent]="recommendationSubText" [normalWeight]="true"
+                [color]="HeaderCardComponentColorOption.none" [contentSize]="HeaderCardComponentSizeOption.large">
+            </app-header-card>
+        </div>
+    </span>
+</div>
