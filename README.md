@@ -1,6 +1,6 @@
 ## Contributing a Translation
 
-To submit a translation, please make a copy of the [English translation file](https://github.com/tyopoyt/e7calc-beta/blob/gh-pages/damage-calc/src/assets/i18n/us.json) and fill out the values with the translations for the new language.  For example if you were creating a translation for French, `"attack": "Attack"` might become `"attack": "Attaque"`.
+To submit a translation, please make a copy of the [English translation file](https://github.com/tyopoyt/epic7-damage-calc/blob/master/damage-calc/src/assets/i18n/us.json) and fill out the values with the translations for the new language.  For example if you were creating a translation for French, `"attack": "Attack"` might become `"attack": "Attaque"`.
 
 To test your translation locally, there is a hidden option to load a custom translation file.  If you select the active language from the selector three times in a row you will be prompted asking if you'd like to upload a file.  If you then upload a tranlsation file it will be applied to the UI. This works with both the large and small screen language selectors.  Here is an example:
 
