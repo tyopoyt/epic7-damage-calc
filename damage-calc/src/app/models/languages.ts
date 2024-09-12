@@ -64,4 +64,10 @@ export const Languages: Record<string, Language> = {
         code: 'pt',
         countryCode: 'br'
     },
+    'ptBR': {
+        name: 'Portuguese',
+        localName: 'Português (BR)',
+        code: 'pt',
+        countryCode: 'br'
+    },
 }
