@@ -70,4 +70,10 @@ export const Languages: Record<string, Language> = {
         code: 'pt',
         countryCode: 'br'
     },
+    'zh': {
+        name: 'Chinese (Simplified)',
+        localName: '简体中文',
+        code: 'zh',
+        countryCode: 'cn'
+    },
 }
