@@ -10,6 +10,7 @@ To test your translation locally, there is a hidden option to load a custom tran
 
 ### <strong>Sep 26 2024 Update:</strong>
 - Added Inheritor Amiki and Seal of Capture and Pure White Trust and made Magic Nail always available.
+- Also added Milim's missing s2 ee
 ### <strong>Sep 12 2024 Update:</strong>
 - E7Calc 2.0 officially out of Beta! (finally...)
 - Also added Revna, Fenris, Harsetti, and Renewed Will, and updated Judge Kise with Balance Patch changes.

@@ -6613,6 +6613,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1359,
     baseHP: 4895,
     baseDefense: 652,
+    heroSpecific: ['exclusiveEquipment2'],
     skills: {
       s1: new Skill({
         id: 's1',
@@ -6625,6 +6626,7 @@ export const Heroes: Record<string, Hero> = {
         id: 's2',
         rate: () => 1,
         pow: () => 1.3,
+        exclusiveEquipmentMultiplier: (inputValues: DamageFormData) => inputValues.exclusiveEquipment2 ? 0.1 : 0,
         isAOE: () => true,
       }),
       s3: new Skill({
