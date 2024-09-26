@@ -118,13 +118,15 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
   artifactSpecificNumberInputs: string[] = [];
   artifactSpecificBooleanInputs: string[] = [];
   artifactSpecificMaximums: Record<string, number> = {};
+
+  debuffSpecificNumberInputs: string[] = [];
   // ====================================================================
 
   // For damage block ++++++++++++++++++++++++++++++++++++++++++++++++++++++
   displayedColumns: string[] = ['skill', 'crit', 'crush', 'normal', 'miss']
   damageData = new MatTableDataSource<DamageRow>();
   heroDots: DoT[] = [];
-  dotDamages = {'bleed': 0, 'bomb': 0, 'burn': 0};
+  dotDamages = {'bleed': 0, 'bomb': 0, 'burn': 0, 'nail': 0};
   artifactDamage = 0;
   barriers: {label: string, value: number}[]  = []
   // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -373,6 +375,8 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
     this.heroSpecificMaximums = this.hero.heroSpecificMaximums;
     this.artifactSpecificMaximums = this.artifact.artifactSpecificMaximums;
 
+    this.debuffSpecificNumberInputs = this.inputValues.targetMagicNailed ? ['targetMaxHP'] : []
+
     this.addAddtionalBooleanInputs();
   }
 
@@ -424,6 +428,7 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
     if (this.hero.getDoT(this.artifact).includes(DoT.burn)) {
       this.heroSpecificBooleanInputs.push('beehooPassive');
     }
+
     this.dedupeForm();
   }
 
@@ -440,6 +445,9 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
       return !this.heroSpecificNumberInputs.includes(input);
     })
 
+    this.debuffSpecificNumberInputs = this.debuffSpecificNumberInputs.filter(input => {
+      return !this.heroSpecificNumberInputs.includes(input) && !this.artifactSpecificNumberInputs.includes(input);
+    })
   }
 
   // Handle user form input
@@ -631,9 +639,15 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
   updateDots() {
     Promise.resolve().then(() => {
       this.heroDots = [...(new Set(this.hero.getDoT(this.artifact)))];
+
+      if (this.inputValues.targetMagicNailed) {
+        this.heroDots.push(DoT.nail)
+      }
+
       this.dotDamages['bleed'] = this.heroDots.includes(DoT.bleed) ? Math.round(this.damageService.getDotDamage(DoTSkill, DoT.bleed)) : 0;
       this.dotDamages['bomb'] = this.heroDots.includes(DoT.bomb) ? Math.round(this.damageService.getDotDamage(DoTSkill, DoT.bomb)) : 0;
       this.dotDamages['burn'] = this.heroDots.includes(DoT.burn) ? Math.round(this.damageService.getDotDamage(DoTSkill, DoT.burn)) : 0;
+      this.dotDamages['nail'] = this.heroDots.includes(DoT.nail) ? Math.round(this.damageService.getDotDamage(DoTSkill, DoT.nail)) : 0;
     });
   }
 

@@ -5,7 +5,8 @@ import { Artifact } from './artifact';
 export enum DoT {
     bleed = 'bleed',
     burn = 'burn',
-    bomb = 'bomb'
+    bomb = 'bomb',
+    nail = 'nail'
 }
 
 export enum HitType {

@@ -137,7 +137,7 @@ export class DamageService {
       penTip: this.languageService.getSkillModTip(skill.penetrateTip(soulburn)),
     };
   }
-
+// TODO: finish magic nail
   // Calculate caster's base damage
   offensivePower(skill: Skill, soulburn = false, isExtra = false) {
     const rate = skill.rate(soulburn, this.damageForm, isExtra);
@@ -172,6 +172,8 @@ export class DamageService {
         return this.currentHero.getAttack(this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill) * 0.6 * BattleConstants.damageConstant * (this.damageForm.beehooPassive ? this.dataService.heroConstants.beehooBurnMult : 1) * this.dataService.currentTarget.defensivePower(DoTSkill, this.damageForm, this.getGlobalDefenseMult(), this.currentArtifact, false, casterAttack, casterSpeed, true);
       case DoT.bomb:
         return this.currentHero.getAttack(this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill) * 1.5 * BattleConstants.damageConstant * this.dataService.currentTarget.defensivePower(DoTSkill, this.damageForm, this.getGlobalDefenseMult(), this.currentArtifact, false, casterAttack, casterSpeed, true);
+      case DoT.nail:
+        return this.damageForm.targetMaxHP * 0.02;
       default: return 0;
     }
   }
@@ -190,10 +192,11 @@ export class DamageService {
   // Calculate aftermath (additional) damage
   getAfterMathDamage(skill: Skill, hitType: HitType, soulburn: boolean) {
     const detonation = this.getDetonateDamage(skill);
+    const debuffDamage = this.damageForm.targetMagicNailed ? this.damageForm.targetFinalMaxHP() * 0.02 : 0
     const artiDamage: number = this.currentHero.getAfterMathArtifactDamage(skill, this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), this.getGlobalDefenseMult(), this.dataService.currentTarget) || 0;
     const skillDamage = this.currentHero.getAfterMathSkillDamage(skill, hitType, soulburn, this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), this.getGlobalDefenseMult(), this.dataService.currentTarget);
     // if more of these buffs get added, would probably be better to handle this iteratively over a list of key: value pairs
-    return detonation + artiDamage + skillDamage + (this.damageForm.casterHasCascade ? 2500 : 0) + (this.damageForm.casterHasOathOfPunishment ? 2500 : 0);
+    return detonation + debuffDamage + artiDamage + skillDamage + (this.damageForm.casterHasCascade ? 2500 : 0) + (this.damageForm.casterHasOathOfPunishment ? 2500 : 0);
   }
 
   // Get the final damage numbers to be displayed in the table

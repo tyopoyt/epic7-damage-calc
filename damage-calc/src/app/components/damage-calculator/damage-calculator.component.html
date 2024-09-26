@@ -311,6 +311,12 @@
                         {{'target' | translate:'form':languageService.language.value}}
                     </span>
                 </mat-checkbox>
+                <mat-checkbox class="small-margin-top" [checked]="inputValues.targetMagicNailed" (change)="inputChange('targetMagicNailed', $event.checked); updateFormInputs()">
+                    <span class="neat-container">
+                        <img class="png-icon medium tiny-margin-right" src="assets/debuffs/nail-debuff.png" alt="Target debuff">
+                        {{'targetMagicNailed' | translate:'form':languageService.language.value}}
+                    </span>
+                </mat-checkbox>
             </div>
         </div>
         <!-- Hero-specific inputs form -->
@@ -338,6 +344,22 @@
                             <img class="icon tiny tiny-margin-left" *ngIf="formDefaults[input]?.hint" src="assets/icons/help-circle-outline.svg" alt="Hint" matTooltip="{{(formDefaults[input]?.hint || '') | translate:'form':languageService.language.value}}">
                         </span>
                     </mat-checkbox>
+                </div>
+            </div>
+        </div>
+        <!-- debuff-specific inputs form -->
+        <div *ngIf="debuffSpecificNumberInputs.length" class="debuff-specific-block header-block">
+            <h1>{{'debuffSpecific' | translate:'ui':languageService.language.value}}</h1>
+            <div class="neat-container full-width">
+                <div *ngFor="let input of debuffSpecificNumberInputs" class="full-width">
+                    <app-slide-input #slideInput
+                        [label]="input | translate:'form':languageService.language.value"
+                        [max]="formDefaults[input]?.max || 10000"
+                        [min]="formDefaults[input]?.min || 0" [step]="formDefaults[input]?.step || 1"
+                        [default]="formDefaults[input]?.defaultValue || 0"
+                        (valueChange)="inputChange(input, $event)"
+                        [column]="screenService.mediumScreen.value">
+                    </app-slide-input>
                 </div>
             </div>
         </div>
