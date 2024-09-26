@@ -5108,7 +5108,7 @@ export const Heroes: Record<string, Hero> = {
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + inputValues.targetNumberOfDebuffs * 0.2,
         multTip: () => ({ per_target_debuff: 20 }),
         enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.05],
-        isAOE: () => true,
+        isSingle: () => true,
       })
     }
   }),
