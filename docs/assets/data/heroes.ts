@@ -2424,8 +2424,6 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1177,
     baseHP: 5542,
     baseDefense: 553,
-    // TODO: add magic nail dot damage?
-    heroSpecific: ['targetMagicNailed'],
     skills: {
       s1: new Skill({
         id: 's1',
@@ -4771,6 +4769,41 @@ export const Heroes: Record<string, Hero> = {
         id: 's2',
         enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.1]
       }),
+    }
+  }),
+  inheritor_amiki: new Hero({
+    element: HeroElement.ice,
+    class: HeroClass.warrior,
+    baseAttack: 1019,
+    baseHP: 5738,
+    baseDefense: 571,
+    heroSpecific: ['casterBelow30PercentHP', 'skillTreeCompleted'],
+    attackIncrease: (inputValues: DamageFormData) => inputValues.skillTreeCompleted ? 1.2 : 1,
+    skills: {
+      s1: new Skill({
+        id: 's1',
+        rate: () => 0.6,
+        pow: () => 1,
+        mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + (inputValues.skillTreeCompleted ? 0.1 : 0),
+        multTip: () => ({skill_tree: 10}),
+        enhance: [0.05, 0.05, 0, 0.05, 0, 0.15],
+        noCrit: true,
+        isSingle: () => true,
+        penetrate: () => 0.3,
+        canExtra: true
+      }),
+      s3: new Skill({
+        id: 's3',
+        soulburn: true,
+        rate: (soulburn: boolean) => soulburn ? 1.5 : 1.1,
+        pow: () => 0.95,
+        enhance: [0.05, 0.05, 0.05, 0, 0.1, 0.1],
+        noCrit: true,
+        isSingle: () => true,
+        penetrate: (soulburn: boolean, inputValues: DamageFormData) => inputValues.casterBelow30PercentHP ? 0.7 : 0.3,
+        afterMath: (hitType: HitType, inputValues: DamageFormData, soulburn: boolean) => hitType !== HitType.miss ? (soulburn ? new AftermathSkill({ attackPercent: 0.7 }) : new AftermathSkill({ attackPercent: 0.35 })) : null,
+        mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + (inputValues.skillTreeCompleted ? 0.1 : 0),
+        multTip: () => ({skill_tree: 10}),})
     }
   }),
   iseria: new Hero({
