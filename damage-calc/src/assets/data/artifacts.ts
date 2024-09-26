@@ -308,6 +308,13 @@ export const Artifacts: Record<string, Artifact> = {
     value: () => 0.2,
     type: ArtifactDamageType.damage
   }),
+  pure_white_trust: new Artifact({
+    id: 'pure_white_trust',
+    name: 'Pure White Trust',
+    scale: [0.15, 0.17, 0.18, 0.2, 0.21, 0.23, 0.24, 0.26, 0.27, 0.29, 0.3],
+    type: ArtifactDamageType.critDamageBoost,
+    exclusive: HeroClass.warrior,
+  }),
   otherworldly_machinery: new Artifact({
     id: 'otherworldly_machinery',
     name: 'Otherworldly Machinery',
