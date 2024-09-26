@@ -372,6 +372,13 @@ export const Artifacts: Record<string, Artifact> = {
     type: ArtifactDamageType.damage,
     exclusive: HeroClass.mage
   }),
+  seal_of_capture: new Artifact({
+    id: 'seal_of_capture',
+    name: 'Seal of Capture',
+    type: ArtifactDamageType.dot,
+    dot: [DoT.burn],
+    exclusive: HeroClass.ranger
+  }),
   severed_horn_wand: new Artifact({
     id: 'severed_horn_wand',
     name: 'Severed Horn Wand',
