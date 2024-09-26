@@ -10267,7 +10267,7 @@ export const Heroes: Record<string, Hero> = {
       s3: new Skill({
         id: 's3',
         hpScaling: true,
-        rate: 0.5,
+        rate: () => 0.5,
         pow: () => 1,
         flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * 0.12,
         flatTip: () => ({ casterMaxHP: 12 }),
