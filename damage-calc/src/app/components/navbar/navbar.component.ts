@@ -21,7 +21,7 @@ export class NavbarComponent implements OnInit  {
 
   customLanguage = CustomLanguage
 
-  languages = Object.values(Object.entries(Languages).filter(entry => entry[0].length <= 2).map(([key, value]) => value));
+  languages = Object.values(Object.entries(Languages).filter(entry => entry[0].length <= 2 && entry[0] !== 'zh').map(([key, value]) => value));
   countries = Object.entries(Languages).map(([key, value]) => value.countryCode)
   toolTitles: string[] = [];
   languageSelection = new UntypedFormControl(Languages.us);

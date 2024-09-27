@@ -4801,9 +4801,19 @@ export const Heroes: Record<string, Hero> = {
         noCrit: true,
         isSingle: () => true,
         penetrate: (soulburn: boolean, inputValues: DamageFormData) => inputValues.casterBelow30PercentHP ? 0.7 : 0.3,
-        afterMath: (hitType: HitType, inputValues: DamageFormData, soulburn: boolean) => hitType !== HitType.miss ? (soulburn ? new AftermathSkill({ attackPercent: 0.7 }) : new AftermathSkill({ attackPercent: 0.35 })) : null,
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + (inputValues.skillTreeCompleted ? 0.1 : 0),
-        multTip: () => ({skill_tree: 10}),})
+        multTip: () => ({skill_tree: 10}),
+      }),
+      s3_splash: new Skill({
+        id: 's3_splash',
+        name: 's3_splash',
+        rate: () => 0,
+        pow: () => 0,
+        soulburn: true,
+        afterMath: (hitType: HitType, inputValues: DamageFormData, soulburn: boolean) => hitType !== HitType.miss ? (soulburn ? new AftermathSkill({ attackPercent: 0.8 }) : new AftermathSkill({ attackPercent: 0.6 })) : null,
+        noCrit: true,
+        noMiss: true,
+      })
     }
   }),
   iseria: new Hero({
