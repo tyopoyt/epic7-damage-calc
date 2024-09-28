@@ -4570,7 +4570,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1119,
     baseHP: 6226,
     baseDefense: 627,
-    heroSpecific: ['targetAttack'],
+    heroSpecific: ['exclusiveEquipment1', 'exclusiveEquipment3', 'targetAttack'],
     barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number) => hero.getAttack(artifact, inputValues, attackMultiplier, skill) * 0.8,
     skills: {
       s1: new Skill({
@@ -4578,6 +4578,7 @@ export const Heroes: Record<string, Hero> = {
         rate: (soulburn: boolean) => soulburn ? 1.2 : 0.8,
         pow: () => 1,
         afterMath: (hitType: HitType, inputValues: DamageFormData, soulburn: boolean) => hitType !== HitType.miss ? (soulburn ? new AftermathSkill({ attackPercent: 0.7 }) : new AftermathSkill({ attackPercent: 0.35 })) : null,
+        exclusiveEquipmentMultiplier: (inputValues: DamageFormData) => inputValues.exclusiveEquipment1 ? 0.2 : 0,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
         isSingle: () => true,
         noCrit: true,
@@ -4595,6 +4596,7 @@ export const Heroes: Record<string, Hero> = {
           return Math.min(Math.max(0, penDiff), 1);
         },
         penetrateTip: () => ({caster_target_atk_diff: 0.0196}),
+        exclusiveEquipmentMultiplier: (inputValues: DamageFormData) => inputValues.exclusiveEquipment3 ? 0.1 : 0,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
         isSingle: () => true,
         noCrit: true,
@@ -9100,14 +9102,13 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1203,
     baseHP: 5704,
     baseDefense: 585,
-    heroSpecific: ['targetBombDetonate'],
+    heroSpecific: ['exclusiveEquipment2', 'targetBombDetonate'],
     dot: [DoT.bomb],
     innateAttackIncrease: (inputValues: DamageFormData) => {
       let boost = 0.35;
       for (let i = 0; i < inputValues.molagoras2; i++) {
         boost += Heroes.summertime_iseria.skills.s2.enhance[i];
       }
-
       return boost;
     },
     skills: {
@@ -9115,6 +9116,8 @@ export const Heroes: Record<string, Hero> = {
         id: 's1',
         rate: () => 1,
         pow: () => 1,
+        detonate: DoT.bomb,
+        detonation: (inputValues: DamageFormData) => inputValues.exclusiveEquipment2 ? 1.1 : 0,
         enhance: [0.05, 0, 0.1, 0, 0.15],
         isSingle: () => true,
         noCrit: true,

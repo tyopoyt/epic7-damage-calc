@@ -42,7 +42,7 @@ export class Skill {
     canExtra: boolean;
     critDmgBoost: Function;
     critDmgBoostTip: Function;
-    detonation: Function;
+    detonation: (inputValues: DamageFormData) => number;
     elementalAdvantage: (inputValues: DamageFormData) => boolean;
     enhance: number[];
     enhanceFrom: string;

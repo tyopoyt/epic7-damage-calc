@@ -8,6 +8,8 @@ To test your translation locally, there is a hidden option to load a custom tran
 
 ## Changelog
 
+### <strong>Sep 28 2024 Update:</strong>
+- Added Hwayoung and Summertime Iseria EEs
 ### <strong>Sep 26 2024 Update:</strong>
 - Added Inheritor Amiki and Seal of Capture and Pure White Trust and made Magic Nail always available.
 - Also added Milim's missing s2 ee

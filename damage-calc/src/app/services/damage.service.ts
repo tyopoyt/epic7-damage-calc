@@ -126,7 +126,8 @@ export class DamageService {
       afterMathFormula: Object.keys(formattedAftermathFormula).length ? this.languageService.getSkillModTip(formattedAftermathFormula) : '',
       critBoost: (skill.critDmgBoost(soulburn) * 100),
       critBoostTip: this.languageService.getSkillModTip(skill.critDmgBoostTip(soulburn)),
-      detonation: skill.detonation() ? Math.round((skill.detonation() - 1) * 100) : 0,
+      // TODO: is there any reason this is called twice w/ ternary rather than just seting the value?
+      detonation: skill.detonation(this.damageForm) ? Math.round((skill.detonation(this.damageForm) - 1) * 100) : 0,
       elementalAdvantage: skill.elementalAdvantage(this.damageForm),
       exEq: skill.exclusiveEquipmentMultiplier(this.damageForm) * 100,
       fixed: Math.round(skill.fixed(HitType.crit, this.damageForm)),
@@ -182,9 +183,9 @@ export class DamageService {
   getDetonateDamage(skill: Skill) {
     let damage = 0;
 
-    if (skill.detonate.includes(DoT.bleed)) damage += this.damageForm.targetBleedDetonate * skill.detonation() * this.getDotDamage(skill, DoT.bleed);
-    if (skill.detonate.includes(DoT.burn)) damage += this.damageForm.targetBurnDetonate * skill.detonation() * this.getDotDamage(skill, DoT.burn);
-    if (skill.detonate.includes(DoT.bomb)) damage += this.damageForm.targetBombDetonate * skill.detonation() * this.getDotDamage(skill, DoT.bomb);
+    if (skill.detonate.includes(DoT.bleed)) damage += this.damageForm.targetBleedDetonate * skill.detonation(this.damageForm) * this.getDotDamage(skill, DoT.bleed);
+    if (skill.detonate.includes(DoT.burn)) damage += this.damageForm.targetBurnDetonate * skill.detonation(this.damageForm) * this.getDotDamage(skill, DoT.burn);
+    if (skill.detonate.includes(DoT.bomb)) damage += this.damageForm.targetBombDetonate * skill.detonation(this.damageForm) * this.getDotDamage(skill, DoT.bomb);
 
     return damage;
   }
@@ -229,7 +230,7 @@ export class DamageService {
     const newDamages: DamageRow[] = []
     for (const skill of Object.values(this.currentHero.skills)) {
       // probably will never happen but if a hero is made whose rate is 0 unless extra, this logic will need to change
-      if (skill.rate(false, this.damageForm, false) || skill.pow(false, this.damageForm) || skill.afterMath(HitType.crit, this.damageForm, false) || skill.detonation()) {
+      if (skill.rate(false, this.damageForm, false) || skill.pow(false, this.damageForm) || skill.afterMath(HitType.crit, this.damageForm, false) || skill.detonation(this.damageForm)) {
         newDamages.push(this.getDamage(skill, false, false));
 
         if (skill.soulburn) {
