@@ -131,6 +131,13 @@ export const Artifacts: Record<string, Artifact> = {
     type: ArtifactDamageType.critDamageBoost,
     exclusive: HeroClass.warrior
   }),
+  dreamlike_holiday: new Artifact({
+    id: 'dreamlike_holiday',
+    name: 'Dreamlike Holiday',
+    scale: [0.15, 0.17, 0.18, 0.2, 0.21, 0.23, 0.24, 0.26, 0.27, 0.29, 0.3],
+    type: ArtifactDamageType.critDamageBoost,
+    exclusive: HeroClass.ranger,
+  }),
   dux_noctis: new Artifact({
     id: 'dux_noctis',
     name: 'Dux Noctis',

@@ -336,6 +336,40 @@ export const Heroes: Record<string, Hero> = {
       }),
     }
   }),
+  afternoon_soak_flan: new Hero({
+    element: HeroElement.fire,
+    class: HeroClass.ranger,
+    baseAtk: 1182,
+    baseHP: 5299,
+    baseDef: 571,
+    skills: {
+      s1: new Skill({
+        id: 's1',
+        rate: () => 1.1,
+        pow: () => 1,
+        enhance: [0.05, 0.05, 0, 0.1, 0.1],
+        onlyCrit: () => true,
+        isSingle: () => true,
+      }),
+      s1_bis: new Skill({
+        name: 'afternoon_soak_flan_its_a_whopper',
+        id: 's1_bis',
+        enhanceFrom: 's1',
+        rate: () => 0.7,
+        pow: () => 1,
+        onlyCrit: () => true,
+        isAOE: () => true,
+      }),
+      s3: new Skill({
+        id: 's3',
+        rate: () => 1.5,
+        pow: () => 1,
+        enhance: [0.05, 0.05, 0, 0.1, 0.1],
+        isSingle: () => true,
+        onlyCrit: () => true
+      })
+    }
+  }),
   ainos: new Hero({
     element: HeroElement.dark,
     class: HeroClass.soul_weaver,

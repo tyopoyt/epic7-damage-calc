@@ -7,7 +7,8 @@ To test your translation locally, there is a hidden option to load a custom tran
 <img src="./language_custom.gif" alt="image" width="800" height="auto">
 
 ## Changelog
-
+### <strong>Oct 10 2024 Update:</strong>
+- Added Afternoon Soak Flan and Dreamlike Holiday.
 ### <strong>Sep 28 2024 Update:</strong>
 - Added Hwayoung and Summertime Iseria EEs
 ### <strong>Sep 26 2024 Update:</strong>
