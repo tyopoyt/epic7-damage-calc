@@ -120,6 +120,7 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
   artifactSpecificMaximums: Record<string, number> = {};
 
   debuffSpecificNumberInputs: string[] = [];
+  buffSpecificNumberInputs: string[] = [];
   // ====================================================================
 
   // For damage block ++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -376,6 +377,7 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
     this.artifactSpecificMaximums = this.artifact.artifactSpecificMaximums;
 
     this.debuffSpecificNumberInputs = this.inputValues.targetMagicNailed ? ['targetMaxHP'] : []
+    this.buffSpecificNumberInputs = this.inputValues.casterHasChallenge ? ['targetMaxHP'] : []
 
     this.addAddtionalBooleanInputs();
   }
@@ -447,6 +449,12 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
 
     this.debuffSpecificNumberInputs = this.debuffSpecificNumberInputs.filter(input => {
       return !this.heroSpecificNumberInputs.includes(input) && !this.artifactSpecificNumberInputs.includes(input);
+    })
+
+    this.buffSpecificNumberInputs = this.buffSpecificNumberInputs.filter(input => {
+      return !this.heroSpecificNumberInputs.includes(input) 
+          && !this.artifactSpecificNumberInputs.includes(input)
+          && !this.debuffSpecificNumberInputs.includes(input);
     })
   }
 
@@ -525,6 +533,11 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
       if (skill[1].soulburn) {
         multipliers = this.damageService.getModifiers(skill[1], true, skill[0].endsWith('_extra'));
         this.skillMultiplierTips[skill[0] + '_soulburn'] = multipliers;
+      }
+
+      if ((skill[1].canCounter || skill[0] === 's1') && this.damageService.damageForm.casterHasChallenge) {
+        multipliers = this.damageService.getModifiers(skill[1], true, false, skill[0].endsWith('_counter'));
+        this.skillMultiplierTips[skill[0] + '_counter'] = multipliers;
       }
     }
   }

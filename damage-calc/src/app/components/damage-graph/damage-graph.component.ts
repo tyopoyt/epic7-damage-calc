@@ -416,7 +416,7 @@ export class DamageGraphComponent implements OnInit, OnDestroy, AfterViewInit {
     while (this.damageData.datasets[statDataIndex].data.length < stepCount && this.calculationValues[stat] <= maxStat) {
       // Get the damage
       // TODO: handle extra attacks when applicable (prayer of solitude)
-      const damage = this.damageService.getDamage(skill, soulburn, false, this.calculationValues)
+      const damage = this.damageService.getDamage(skill, soulburn, false, false, this.calculationValues)
       const finalDam = (damage[this.damageToUse as keyof DamageRow] || 0) as number;
 
       // Create dataset if needed

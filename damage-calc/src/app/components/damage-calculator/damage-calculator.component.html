@@ -130,6 +130,13 @@
                     {{'cascade' | translate:'form':languageService.language.value}}
                 </span>
             </mat-checkbox>
+            <!-- TODO: add challenge translations when available -->
+            <mat-checkbox class="small-margin-top" [checked]="inputValues.casterHasChallenge" (change)="inputChange('casterHasChallenge', $event.checked); updateFormInputs()">
+                <span class="neat-container">
+                    <img class="png-icon medium tiny-margin-right" src="assets/buffs/challenge-buff.png" alt="challenge buff">
+                    {{'challenge' | translate:'form':languageService.language.value}}
+                </span>
+            </mat-checkbox>
             <!-- TODO: edit set pngs to have no margin -->
             <mat-checkbox class="small-margin-top" [checked]="inputValues.rageSet" (change)="inputChange('rageSet', $event.checked)">
                 <span class="neat-container">
@@ -159,6 +166,22 @@
                         [label]="set | translate:'form':languageService.language.value"
                         [max]="3" [min]="1" [default]="1"
                         (valueChange)="inputChange(set, $event)"
+                        [column]="screenService.mediumScreen.value">
+                    </app-slide-input>
+                </div>
+            </div>
+        </div>
+        <!-- buff-specific inputs form -->
+        <div *ngIf="buffSpecificNumberInputs.length" class="buff-specific-block header-block">
+            <h1>{{'buffSpecific' | translate:'ui':languageService.language.value}}</h1>
+            <div class="neat-container full-width">
+                <div *ngFor="let input of buffSpecificNumberInputs" class="full-width">
+                    <app-slide-input #slideInput
+                        [label]="input | translate:'form':languageService.language.value"
+                        [max]="formDefaults[input]?.max || 10000"
+                        [min]="formDefaults[input]?.min || 0" [step]="formDefaults[input]?.step || 1"
+                        [default]="formDefaults[input]?.defaultValue || 0"
+                        (valueChange)="inputChange(input, $event)"
                         [column]="screenService.mediumScreen.value">
                     </app-slide-input>
                 </div>
@@ -517,6 +540,7 @@
         <b>{{'elementalAdvantage' | translate:'ui':languageService.language.value}}:</b><img class="icon tiny tiny-margin-left svg-icon link" src="assets/icons/open-in-new.svg" alt="Elemental advantage">
     </span> -->
     <!-- TODO: implement custom multis? like apoc's per dead enemy? -->
+     <!-- TODO: add challenge? -->
     <span *ngIf="skillMultiplierTips[i]?.flat || skillMultiplierTips[i]?.flatTip" class="flex-aligned flex-between">
         <b>{{'flat' | translate:'ui':languageService.language.value}}:</b><p class="no-margin">&nbsp;{{skillMultiplierTips[i]?.flatTip}}</p>&nbsp;<p class="no-margin">{{skillMultiplierTips[i]?.flat}}</p>
     </span>

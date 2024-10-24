@@ -184,6 +184,10 @@ export const FormDefaults: Record<string, {max?: number, min?: number, defaultVa
         icon: 'buffs/cascade-buff.png',
         default: false
     },
+    casterHasChallenge: {
+        icon: 'buffs/challenge-buff.png',
+        default: false
+    },
     casterHasOathOfPunishment: {
         icon: 'buffs/oath-of-punishment.png',
         default: false
@@ -459,6 +463,7 @@ export class DamageFormData {
     casterBuffed: boolean;
     casterHasBzzt: boolean;
     casterHasCascade: boolean;
+    casterHasChallenge: boolean;
     casterHasOathOfPunishment: boolean;
     casterHasBloodAura: boolean;
     casterHasFlameAlchemist: boolean;
@@ -595,6 +600,7 @@ export class DamageFormData {
         this.casterBuffed = _.get(data, 'casterBuffed', false);
         this.casterHasBzzt = _.get(data, 'casterHasBzzt', true);
         this.casterHasCascade = _.get(data, 'casterHasCascade', false);
+        this.casterHasChallenge = _.get(data, 'casterHasChallenge', false);
         this.casterHasOathOfPunishment = _.get(data, 'casterHasOathOfPunishment', false);
         this.casterHasBloodAura = _.get(data, 'casterHasBloodAura', false);
         this.casterHasFlameAlchemist = _.get(data, 'casterHasFlameAlchemist', true);

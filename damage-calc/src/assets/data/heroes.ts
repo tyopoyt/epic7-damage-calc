@@ -91,6 +91,7 @@ export const Heroes: Record<string, Hero> = {
         penetrate: () => 0.7,
         enhanceFrom: 's1',
         isSingle: () => true,
+        canCounter: true
       }),
       s1_bis_soulburn: new Skill({
         name: 'abyssal_yufine_unbridled_outburst_soulburn',
@@ -508,6 +509,7 @@ export const Heroes: Record<string, Hero> = {
         flatTip: () => ({casterMaxHP: 7}),
         isExtra: true,
         isAOE: () => true,
+        isCounter: true
       }),
       s3: new Skill({
         id: 's3',
@@ -2372,6 +2374,7 @@ export const Heroes: Record<string, Hero> = {
         flatTip: () => ({ casterMaxHP: 8 }),
         enhance: [0.05, 0.05, 0.1, 0.15],
         isAOE: () => true,
+        canCounter: true,
       }),
       s3: new Skill({
         id: 's3',
@@ -4519,6 +4522,23 @@ export const Heroes: Record<string, Hero> = {
       })
     }
   }),
+  // TODO: translate cn when available
+  hellion_lua: new Hero({
+    element: HeroElement.dark,
+    class: HeroClass.ranger,
+    baseAttack: 993,
+    baseHP: 6002,
+    baseDefense: 611,
+    skills: {
+      s1: new Skill({
+        id: 's1',
+        rate: () => 1,
+        pow: () => 1,
+        enhance: [0.05, 0, 0.05, 0, 0.1, 0.1],
+        isSingle: () => true,
+      })
+    }
+  }),
   holiday_yufine: new Hero({
     element: HeroElement.fire,
     class: HeroClass.warrior,
@@ -4565,6 +4585,7 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 0.8,
         pow: () => 1,
         isAOE: () => true,
+        isCounter: true,
       }),
       s3: new Skill({
         id: 's3',
@@ -6389,6 +6410,7 @@ export const Heroes: Record<string, Hero> = {
         penetrate: () => 0.4,
         enhance: [0.05, 0.1, 0.15],
         isSingle: () => true,
+        isCounter: true
       }),
       s3: new Skill({
         id: 's3',
@@ -6920,6 +6942,7 @@ export const Heroes: Record<string, Hero> = {
         pow: () => 1,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
         isSingle: () => true,
+        isCounter: true,
       }),
       s3: new Skill({
         id: 's3',
@@ -7471,6 +7494,7 @@ export const Heroes: Record<string, Hero> = {
         flatTip: () => ({ casterMaxHP: 5 }),
         enhanceFrom: 's1',
         isAOE: () => true,
+        isCounter: true
       }),
       s3: new Skill({
         id: 's3',
@@ -7707,7 +7731,8 @@ export const Heroes: Record<string, Hero> = {
         id: 's2',
         rate: () => 0.8, 
         pow: () => 1.3,
-        isAOE: () => true
+        isAOE: () => true,
+        isCounter: true
       }),
       s3: new Skill({
         id: 's3',
@@ -8279,6 +8304,7 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 0.7,
         pow: () => 1.3,
         isAOE: () => true,
+        isCounter: true
       }),
       s3: new Skill({
         id: 's3',

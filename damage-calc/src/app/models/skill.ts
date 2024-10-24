@@ -40,6 +40,7 @@ export class Skill {
     atk: (inputValues: DamageFormData) => number;
     afterMath: (hitType: HitType, inputValues: DamageFormData, soulburn: boolean) => AftermathSkill;
     canExtra: boolean;
+    canCounter: boolean;
     critDmgBoost: Function;
     critDmgBoostTip: Function;
     detonation: (inputValues: DamageFormData) => number;
@@ -55,6 +56,7 @@ export class Skill {
     ignoreDamageTransfer: (inputValuse: DamageFormData) => boolean;
     isAOE: (inputValues: DamageFormData) => boolean;
     isExtra: boolean;
+    isCounter: boolean;
     extraModifier: boolean;
     isSingle: (inputValues: DamageFormData) => boolean;
     mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact, heroAttack: number) => number;
@@ -83,6 +85,7 @@ export class Skill {
         this.atk = _.get(data, 'atk', () => 0)
         this.afterMath = _.get(data, 'afterMath', () => null);
         this.canExtra = _.get(data, 'canExtra', false);
+        this.canCounter = _.get(data, 'canCounter', false);
         this.extraModifier = _.get(data, 'extraModifier', false);
         this.critDmgBoost = _.get(data, 'critDmgBoost', () => 0);
         this.critDmgBoostTip = _.get(data, 'critDmgBoostTip', () => null);
@@ -99,6 +102,7 @@ export class Skill {
         this.ignoreDamageTransfer = _.get(data, 'ignoreDamageTransfer', () => false);
         this.isAOE = _.get(data, 'isAOE', () => false);
         this.isExtra = _.get(data, 'isExtra', false);
+        this.isCounter = _.get(data, 'isCounter', false);
         this.isSingle = _.get(data, 'isSingle', () => false);
         this.mult = _.get(data, 'mult', () => 1);
         this.name = _.get(data, 'name', null);

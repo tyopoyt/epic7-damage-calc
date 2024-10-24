@@ -1,7 +1,7 @@
 import { Artifact } from "./artifact";
 import { Target } from "./target";
 import { DamageFormData } from "./forms";
-import { DoT, HitType, Skill } from "./skill";
+import { AftermathSkill, DoT, HitType, Skill } from "./skill";
 import { BattleConstants } from "../../assets/data/constants"
 import * as _ from 'lodash-es'
 
@@ -128,7 +128,7 @@ export class Hero {
   }
 
   // Get the hero's aftermath (additional) damage
-  getAfterMathSkillDamage(skill: Skill, hitType: HitType, soulburn: boolean, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number, defenseMultiplier: number, target: Target, isExtra = false) {
+  getAfterMathSkillDamage(skill: Skill, hitType: HitType, soulburn: boolean, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number, defenseMultiplier: number, target: Target, isExtra = false, isCounter = false) {
     let skillDamage = 0;
     const skillMultipliers = skill.afterMath(hitType, inputValues, soulburn);
     const attack = this.getAttack(artifact, inputValues, attackMultiplier, skill, isExtra)
