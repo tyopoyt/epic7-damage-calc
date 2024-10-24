@@ -11,6 +11,11 @@ export const FormDefaults: Record<string, {max?: number, min?: number, defaultVa
         min: 200,
         defaultValue: 2500
     },
+    casterEffectiveness: {
+        max: 500,
+        min: 0,
+        defaultValue: 100
+    },
     artifactLevel: {
         max: 30,
         min: 0,
@@ -453,6 +458,7 @@ export class DamageFormData {
     casterDefenseUp: boolean;
     casterDefenseDown: boolean;
     casterElementalWisdomStack: number;
+    casterEffectiveness: number;
     casterPromotionStack: number;
     casterEnraged: boolean;
     casterFocus: number;
@@ -590,6 +596,7 @@ export class DamageFormData {
         this.casterDefenseUp = _.get(data, 'casterDefenseUp', false);
         this.casterDefenseDown = _.get(data, 'casterDefenseDown', false);
         this.casterEnraged = _.get(data, 'casterEnraged', false);
+        this.casterEffectiveness = _.get(data, 'casterEffectiveness', 100);
         this.casterElementalWisdomStack = _.get(data, 'casterElementalWisdomStack', 0);
         this.casterPromotionStack = _.get(data, 'casterPromotionStack', 0);
         this.casterFocus = _.get(data, 'casterFocus', 0);

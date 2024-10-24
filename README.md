@@ -8,7 +8,7 @@ To test your translation locally, there is a hidden option to load a custom tran
 
 ## Changelog
 ### <strong>Oct 24 2024 Update:</strong>
-- Added Afternoon Hellion Lua.  Updated heroes for 10/24 balance patch.
+- Added Hellion Lua and Challenge buff.  Updated heroes for 10/24 balance patch.
 ### <strong>Oct 10 2024 Update:</strong>
 - Added Afternoon Soak Flan and Dreamlike Holiday.
 ### <strong>Sep 28 2024 Update:</strong>

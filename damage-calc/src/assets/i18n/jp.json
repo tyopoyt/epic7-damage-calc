@@ -551,6 +551,7 @@
     "casterDefenseUp": "自身に防御力UP",
     "casterDefenseDown": "防御の減少",
     "casterEnraged": "自身に狂気バフあり",
+    "casterEffectiveness": "自身の効果命中率",
     "casterFocus": "集中",
     "casterFullFightingSpirit": "完全な戦いの精神",
     "casterFightingSpirit": "闘志",

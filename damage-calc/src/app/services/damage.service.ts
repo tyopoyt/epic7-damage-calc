@@ -284,7 +284,7 @@ export class DamageService {
 
   getChallengeAftermathSkill(isCounter = false) {
     if (this.damageForm.casterHasChallenge && isCounter) {
-      return new Skill({afterMath: (hitType: HitType) => (hitType !== HitType.miss) ? new AftermathSkill({ hpPercent: 0.08 }) : null});
+      return new Skill({afterMath: (hitType: HitType) => (hitType !== HitType.miss) ? new AftermathSkill({ targetMaxHPPercent: 0.08 }) : null});
     } else {
       return new Skill({});
     }
