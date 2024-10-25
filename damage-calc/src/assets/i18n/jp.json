@@ -608,6 +608,7 @@
     "targetBleedDetonate": "出血激爆",
     "targetBombDetonate": "爆発する爆弾",
     "targetBurnDetonate": "火傷激爆",
+    "targetAboveHalfHP": "ターゲットのHPが半分以上",
     "targetCurrentHP": "ターゲットの生命力",
     "targetCurrentHPPercent": "ターゲットの生命力割合(%)",
     "targetEnraged": "ターゲットには怒りがあります",

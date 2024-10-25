@@ -785,6 +785,7 @@
     "targetBleedDetonate": "Bleeds to Detonate",
     "targetBombDetonate": "Bombs to Detonate",
     "targetBurnDetonate": "Burns to Detonate",
+    "targetAboveHalfHP": "Target Above Half HP",
     "targetCurrentHP": "Target's Current HP",
     "targetCurrentHPPercent": "Target's Current HP %",
     "targetEnraged": "Target has Rage",

@@ -607,6 +607,7 @@
         "targetHasBleed": "目標流血",
         "targetBleedDetonate": "流血引爆",
         "targetBombDetonate": "炸彈引爆",
+        "targetAboveHalfHP": "目標HP一半以上",
         "targetBurnDetonate": "燃燒爆炸",
         "targetCurrentHP": "Target的當前HP",
         "targetCurrentHPPercent": "Target的當前HP％",

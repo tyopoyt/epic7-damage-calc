@@ -606,6 +606,7 @@
         "targetBleedDetonate": "격폭 (출혈)",
         "targetBombDetonate": "격폭 (폭탄)",
         "targetBurnDetonate": "격폭 (화상)",
+        "targetAboveHalfHP": "목표물 HP의 절반 이상",
         "targetCurrentHP": "대상의 현재의 생명력",
         "targetCurrentHPPercent": "대상의 현재의 생명력 비례(%)",
         "targetEnraged": "분노",

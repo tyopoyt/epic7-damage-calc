@@ -184,7 +184,7 @@ export const Artifacts: Record<string, Artifact> = {
     scale: [750, 825, 900, 975, 1050, 1125, 1200, 1275, 1350, 1425, 1500],
     exclusive: HeroClass.mage,
     applies: (skill: Skill, inputValues: DamageFormData) => skill.isExtra || inputValues.extraDualOrCounter,
-    value: (artiScale: number, inputValues: DamageFormData) => artiScale
+    value: (artiScale: number) => artiScale
   }),
   frame_of_light: new Artifact({
     id: 'frame_of_light',
@@ -213,9 +213,12 @@ export const Artifacts: Record<string, Artifact> = {
   hostess_of_the_banquet: new Artifact({
     id: 'hostess_of_the_banquet',
     name: 'Hostess of the Banquet',
-    scale: [0.08, 0.088, 0.096, 0.104, 0.112, 0.12, 0.128, 0.136, 0.144, 0.152, 0.16],
+    artifactSpecific:['targetAboveHalfHP'],
+    scale: [0.05, 0.055, 0.06, 0.065, 0.07, 0.075, 0.08, 0.085, 0.09, 0.095, 0.1],
+    additional: [0.04, 0.044, 0.048, 0.052, 0.056, 0.06, 0.064, 0.068, 0.072, 0.076, 0.08],
     type: ArtifactDamageType.damage,
-    exclusive: HeroClass.thief
+    exclusive: HeroClass.thief,
+    value: (artiScale: number, inputValues: DamageFormData) => artiScale + (inputValues.targetAboveHalfHP ? Artifacts.hostess_of_the_banquet.additional[Artifacts.hostess_of_the_banquet.scale.indexOf(artiScale)] : 0) ,
   }),
   ignition_cloth_gloves: new Artifact({
     id: 'ignition_cloth_gloves',
@@ -314,13 +317,6 @@ export const Artifacts: Record<string, Artifact> = {
     name: 'Prelude to a New Era',
     value: () => 0.2,
     type: ArtifactDamageType.damage
-  }),
-  pure_white_trust: new Artifact({
-    id: 'pure_white_trust',
-    name: 'Pure White Trust',
-    scale: [0.15, 0.17, 0.18, 0.2, 0.21, 0.23, 0.24, 0.26, 0.27, 0.29, 0.3],
-    type: ArtifactDamageType.critDamageBoost,
-    exclusive: HeroClass.warrior,
   }),
   otherworldly_machinery: new Artifact({
     id: 'otherworldly_machinery',

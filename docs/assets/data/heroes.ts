@@ -1769,11 +1769,15 @@ export const Heroes: Record<string, Hero> = {
         flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * 0.3,
         flatTip: () => ({ casterMaxHP: 30 }),
         penetrate: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact, casterAttack: number, casterSpeed: number) => {
+          let penetration = 0.5;
+          let penDiff = 0;
           const targetSpeed = inputValues.targetFinalSpeed();
 
-          const penDiff = (casterSpeed - targetSpeed) * 0.0059;
+          if (targetSpeed < casterSpeed) {
+            penDiff = (casterSpeed - targetSpeed) * 0.0059;
+          }
 
-          return Math.min(Math.max(0, penDiff), 1);
+          return Math.min(Math.max(0, penDiff + penetration), 1);
         },
         penetrateTip: () => ({caster_target_spd_diff: 0.0059}),
         isSingle: () => true,
@@ -6844,7 +6848,7 @@ export const Heroes: Record<string, Hero> = {
     barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number) => {
       return inputValues.casterFinalMaxHP(artifact) * 0.12;
     },
-    heroSpecific: ['exclusiveEquipment3', 'casterMaxHP'],
+    heroSpecific: ['exclusiveEquipment3', 'casterMaxHP', 'targetIsHighestMaxHP'],
     skills: {
       s1: new Skill({
         id: 's1',
@@ -6864,6 +6868,7 @@ export const Heroes: Record<string, Hero> = {
         flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * 0.15,
         flatTip: () => ({ casterMaxHP: 15 }),
         exclusiveEquipmentMultiplier: (inputValues: DamageFormData) => inputValues.exclusiveEquipment3 ? 0.1 : 0,
+        penetrate: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact, heroAttack: number) => inputValues.targetIsHighestMaxHP ? 0.7 : 0,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
         isAOE: () => true,
       })
@@ -7332,6 +7337,7 @@ export const Heroes: Record<string, Hero> = {
         flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalDefense() * 0.8,
         flatTip: () => ({ casterDefense: 80 }),
         enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.1],
+        canExtra: true,
         isSingle: () => true,
       }),
       s3: new Skill({
@@ -7341,15 +7347,7 @@ export const Heroes: Record<string, Hero> = {
         pow: () => 0.9,
         flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalDefense() * 1.3,
         flatTip: () => ({ casterDefense: 130 }),
-        penetrate: (soulburn: boolean, inputValues: DamageFormData) => {
-          const targetDef = inputValues.targetFinalDefense();
-          const casterDef = inputValues.casterFinalDefense();
-
-          const penDiffMult = (casterDef - targetDef) * 0.00032;
-
-          return Math.min(Math.max(0, penDiffMult), 0.6);
-        },
-        penetrateTip: () => ({caster_target_def_diff: 0.032}),
+        penetrate: (soulburn: boolean, inputValues: DamageFormData) => 0.6,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.1],
         isAOE: () => true,
       }),

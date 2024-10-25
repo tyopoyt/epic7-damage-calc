@@ -276,6 +276,10 @@ export const FormDefaults: Record<string, {max?: number, min?: number, defaultVa
         min: 0,
         defaultValue: 0
     },
+    targetAboveHalfHP: {
+        icon: 'icons/half-hp.png',
+        default: true
+    },
     casterCurrentHPPercent: {
         max: 100,
         min: 1,
@@ -537,6 +541,7 @@ export class DamageFormData {
     targetBleedDetonate: number;
     targetBombDetonate: number;
     targetBurnDetonate: number;
+    targetAboveHalfHP: boolean;
     targetCurrentHP: number;
     targetCurrentHPPercent: number;
     targetDefense: number;
@@ -675,6 +680,7 @@ export class DamageFormData {
         this.targetBleedDetonate = _.get(data, 'targetBleedDetonate', 0);
         this.targetBombDetonate = _.get(data, 'targetBombDetonate', 0);
         this.targetBurnDetonate = _.get(data, 'targetBurnDetonate', 0);
+        this.targetAboveHalfHP = _.get(data, 'targetAboveHalfHP', true);
         this.targetCurrentHP = _.get(data, 'targetCurrentHP', 10000);
         this.targetCurrentHPPercent = _.get(data, 'targetCurrentHPPercent', 100);
         this.targetDefense = _.get(data, 'targetDefense', 1000);
