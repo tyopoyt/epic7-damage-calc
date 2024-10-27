@@ -6528,7 +6528,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1412,
     baseHP: 4248,
     baseDefense: 645,
-    heroSpecific: ['exclusiveEquipment2', 'casterCurrentHPPercent'],
+    heroSpecific: ['exclusiveEquipment2'],
     skills: {
       s1: new Skill({
         id: 's1',
@@ -6541,10 +6541,8 @@ export const Heroes: Record<string, Hero> = {
       }),
       s2: new Skill({
         id: 's2',
-        rate: () => 1.5,
+        rate: () => 1.8,
         pow: () => 0.95,
-        mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + (100 - inputValues.casterCurrentHPPercent) * 0.003,
-        multTip: () => ({ caster_lost_hp_pc: 0.3 }),
         enhance: [0.05, 0.05, 0.05, 0.1, 0.1],
         exclusiveEquipmentMultiplier: (inputValues: DamageFormData) => inputValues.exclusiveEquipment2 ? 0.1 : 0,
         isSingle: () => true,
@@ -6564,7 +6562,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1412,
     baseHP: 4248,
     baseDefense: 645,
-    heroSpecific: ['exclusiveEquipment2'],
+    heroSpecific: ['exclusiveEquipment2', 'casterCurrentHPPercent'],
     skills: {
       s1: new Skill({
         id: 's1',
@@ -6577,8 +6575,10 @@ export const Heroes: Record<string, Hero> = {
       }),
       s2: new Skill({
         id: 's2',
-        rate: () => 1.8,
+        rate: () => 1.5,
         pow: () => 0.95,
+        mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + (100 - inputValues.casterCurrentHPPercent) * 0.003,
+        multTip: () => ({ caster_lost_hp_pc: 0.3 }),
         enhance: [0.05, 0.05, 0.05, 0.1, 0.1],
         exclusiveEquipmentMultiplier: (inputValues: DamageFormData) => inputValues.exclusiveEquipment2 ? 0.1 : 0,
         isSingle: () => true,
