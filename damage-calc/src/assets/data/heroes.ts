@@ -8382,6 +8382,34 @@ export const Heroes: Record<string, Hero> = {
       }),
     }
   }),
+  // TODO: update cn translation when available
+  schniel: new Hero({
+    element: HeroElement.earth,
+    class: HeroClass.soul_weaver,
+    baseAttack: 694,
+    baseHP: 4855,
+    baseDefense: 655,
+    heroSpecific: ['skill3Stack'],
+    heroSpecificMaximums: {'skill3Stack': 2},
+    skills: {
+      s1: new Skill({
+        id: 's1',
+        rate: () => 1,
+        pow: () => 0.9,
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.1],
+        isSingle: () => true,
+      }),
+      s3: new Skill({
+        id: 's3',
+        rate: () => 1,
+        pow: () => 1,
+        fixed: (hitType: HitType, inputValues: DamageFormData) => (hitType !== HitType.miss) ? 4000 * (inputValues.skill3Stack + 1)  : 0,
+        fixedTip: () => ({fixed: 4000, fixed_per_stack: 4000 }),
+        enhance: [0.05, 0.05, 0.05, 0, 0.1, 0.1, 0.1],
+        isAOE: () => true,
+      }),
+    }
+  }),
   schuri: new Hero({
     element: HeroElement.fire,
     class: HeroClass.ranger,

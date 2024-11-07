@@ -7,6 +7,8 @@ To test your translation locally, there is a hidden option to load a custom tran
 <img src="./language_custom.gif" alt="image" width="800" height="auto">
 
 ## Changelog
+### <strong>Nov 7 2024 Update:</strong>
+- Added Schniel.
 ### <strong>Oct 24 2024 Update:</strong>
 - Added Hellion Lua and Challenge buff.  Updated heroes for 10/24 balance patch.
 ### <strong>Oct 10 2024 Update:</strong>
