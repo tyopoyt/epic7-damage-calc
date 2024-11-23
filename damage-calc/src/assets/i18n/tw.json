@@ -332,6 +332,7 @@
         "wanderer_silk": "流浪者席可",
         "wandering_prince_cidd": "流浪王子席德",
         "watcher_schuri": "注視者修里",
+        "westwind_executioner_schuri": "西風處刑者修里",
         "yoonryoung": "尹凌",
         "yufine": "優芬妮",
         "yulha": "律荷",
@@ -519,6 +520,7 @@
         "increasedAttackGreat": "攻擊力增加 (大幅)",
         "increasedCritDamage": "暴擊傷害增加",
         "vigor": "魄力",
+        "explosives": "爆炸物",
         "rageSet": "憤怒套裝",
         "penetrationSet": "穿透套裝",
         "torrentSet": "激流套裝",
@@ -710,6 +712,7 @@
         "s3_extra": "3技能 額外的攻擊",
         "sez_explosion": "爆炸",
         "wandering_prince_cidd_continuous_strike": "連續打擊",
+        "westwind_schuri_annihilate": "湮滅",
         "yoonryoung_slash": "閃光砍擊",
         "zio_disappear": "灰飛煙滅",
         "custom": {

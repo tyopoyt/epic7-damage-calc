@@ -535,10 +535,10 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
         this.skillMultiplierTips[skill[0] + '_soulburn'] = multipliers;
       }
 
-      if ((skill[1].canCounter || skill[0] === 's1') && this.damageService.damageForm.casterHasChallenge) {
-        multipliers = this.damageService.getModifiers(skill[1], true, false, skill[0].endsWith('_counter'));
-        this.skillMultiplierTips[skill[0] + '_counter'] = multipliers;
-      }
+      // if (skill[0] === 's1' && this.damageService.damageForm.casterHasChallenge) {
+      //   multipliers = this.damageService.getModifiers(skill[1], true, false, skill[0].endsWith('_counter'));
+      //   this.skillMultiplierTips[skill[0] + '_counter'] = multipliers;
+      // }
     }
   }
 
@@ -655,6 +655,10 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
 
       if (this.inputValues.targetMagicNailed) {
         this.heroDots.push(DoT.nail)
+      }
+
+      if (this.inputValues.casterHasExplosives && !this.heroDots.includes(DoT.bomb)) {
+        this.heroDots.push(DoT.bomb)
       }
 
       this.dotDamages['bleed'] = this.heroDots.includes(DoT.bleed) ? Math.round(this.damageService.getDotDamage(DoTSkill, DoT.bleed)) : 0;

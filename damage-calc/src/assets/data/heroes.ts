@@ -10336,6 +10336,43 @@ export const Heroes: Record<string, Hero> = {
       })
     }
   }),
+  westwind_executioner_schuri: new Hero({
+    element: HeroElement.dark,
+    class: HeroClass.ranger,
+    baseAttack: 1088,
+    baseHP: 5016,
+    baseDefense: 553,
+    dot: [DoT.burn],
+    heroSpecific: ['targetBurnDetonate'],
+    skills: {
+      s1: new Skill({
+        id: 's1',
+        rate: () => 1,
+        pow: () => 1,
+        enhance: [0.05, 0, 0.1, 0, 0.15],
+        isSingle: () => true,
+      }),
+      s1_bis: new Skill({
+        id: 's1_bis',
+        name: 'westwind_schuri_annihilate',
+        rate: () => 1,
+        pow: () => 1,
+        enhanceFrom: 's1',
+        detonate: [DoT.burn],
+        detonation: () => 1,
+        isSingle: () => true,
+      }),
+      s3: new Skill({
+        id: 's3',
+        rate: () => 1.2,
+        pow: () => 1,
+        detonate: [DoT.burn],
+        detonation: () => 1,
+        enhance: [0.05, 0, 0.1, 0, 0.15],
+        isAOE: () => true,
+      })
+    }
+  }),
   yoonryoung: new Hero({
     element: HeroElement.light,
     class: HeroClass.knight,

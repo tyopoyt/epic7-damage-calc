@@ -332,6 +332,7 @@
         "wanderer_silk": "방랑자 실크",
         "wandering_prince_cidd": "떠돌이 왕자 시더",
         "watcher_schuri": "주시자 슈리",
+        "westwind_executioner_schuri": "서풍의 처형자 슈리",
         "yoonryoung": "윤령",
         "yufine": "유피네",
         "yulha": "율하",
@@ -518,6 +519,7 @@
         "increasedAttackGreat": "공격력 증가 (대)",
         "increasedCritDamage": "치명 피해량 증가",
         "vigor": "패기",
+        "explosives": "폭발물",
         "rageSet": "분노의 세트 적용",
         "penetrationSet": "관통의 세트",
         "torrentSet": "격류의 세트",
@@ -709,6 +711,7 @@
         "s3_extra": "스킬 3 추가 공격",
         "sez_explosion": "컨빅션 폭발",
         "wandering_prince_cidd_continuous_strike": "연속타격",
+        "westwind_schuri_annihilate": "인멸",
         "yoonryoung_slash": "섬광베기",
         "zio_disappear": "사라져라",
         "custom": {

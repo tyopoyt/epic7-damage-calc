@@ -191,10 +191,10 @@ export class DamageService {
   }
 
   // Calculate aftermath (additional) damage
-  getAfterMathDamage(skill: Skill, hitType: HitType, soulburn: boolean, isCounter: boolean) {
+  getAfterMathDamage(skill: Skill, hitType: HitType, soulburn: boolean) {
     const detonation = this.getDetonateDamage(skill);
     const debuffDamage = this.damageForm.targetMagicNailed ? this.damageForm.targetFinalMaxHP() * 0.02 : 0
-    const buffDamage = this.currentHero.getAfterMathSkillDamage(this.getChallengeAftermathSkill(isCounter), hitType, soulburn, this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), this.getGlobalDefenseMult(), this.dataService.currentTarget);
+    const buffDamage = this.currentHero.getAfterMathSkillDamage(this.getChallengeAftermathSkill(skill), hitType, soulburn, this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), this.getGlobalDefenseMult(), this.dataService.currentTarget);
     const artiDamage: number = this.currentHero.getAfterMathArtifactDamage(skill, this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), this.getGlobalDefenseMult(), this.dataService.currentTarget) || 0;
     const skillDamage = this.currentHero.getAfterMathSkillDamage(skill, hitType, soulburn, this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), this.getGlobalDefenseMult(), this.dataService.currentTarget);
     // if more of these buffs get added, would probably be better to handle this iteratively over a list of key: value pairs
@@ -218,10 +218,11 @@ export class DamageService {
 
     return {
       skill: (skill.name || skill.id) + (soulburn ? '_soulburn' : (isExtra ? '_extra' : (isCounter && !skill.isCounter ? '_counter': ''))),
-      crit: skill.noCrit || skill.onlyMiss ? null : Math.round(hit * critDmg + (skill.fixed !== undefined ? skill.fixed(HitType.crit, this.damageForm) : 0) + this.getAfterMathDamage(skill, HitType.crit, soulburn, isCounter)),
-      crush: skill.noCrit || skill.onlyCrit(soulburn) || skill.onlyMiss ? null : Math.round(hit * 1.3 + (skill.fixed !== undefined ? skill.fixed(HitType.crush, this.damageForm) : 0) + this.getAfterMathDamage(skill, HitType.crush, soulburn, isCounter)),
-      normal: skill.onlyCrit(soulburn) || skill.onlyMiss ? null : Math.round(hit + (skill.fixed !== undefined ? skill.fixed(HitType.normal, this.damageForm) : 0) + this.getAfterMathDamage(skill, HitType.normal, soulburn, isCounter)),
-      miss: skill.noMiss ? null : Math.round(hit * 0.75 + (skill.fixed !== undefined ? skill.fixed(HitType.miss, this.damageForm) : 0) + this.getAfterMathDamage(skill, HitType.miss, soulburn, isCounter))
+      // these 4 need isCounter back at the end if new skill that cares about it is added
+      crit: skill.noCrit || skill.onlyMiss ? null : Math.round(hit * critDmg + (skill.fixed !== undefined ? skill.fixed(HitType.crit, this.damageForm) : 0) + this.getAfterMathDamage(skill, HitType.crit, soulburn)),
+      crush: skill.noCrit || skill.onlyCrit(soulburn) || skill.onlyMiss ? null : Math.round(hit * 1.3 + (skill.fixed !== undefined ? skill.fixed(HitType.crush, this.damageForm) : 0) + this.getAfterMathDamage(skill, HitType.crush, soulburn)),
+      normal: skill.onlyCrit(soulburn) || skill.onlyMiss ? null : Math.round(hit + (skill.fixed !== undefined ? skill.fixed(HitType.normal, this.damageForm) : 0) + this.getAfterMathDamage(skill, HitType.normal, soulburn)),
+      miss: skill.noMiss ? null : Math.round(hit * 0.75 + (skill.fixed !== undefined ? skill.fixed(HitType.miss, this.damageForm) : 0) + this.getAfterMathDamage(skill, HitType.miss, soulburn))
     };
   }
 
@@ -240,10 +241,6 @@ export class DamageService {
   
         if (skill.canExtra && (this.currentArtifact.extraAttackBonus || skill.extraModifier)) {
           newDamages.push(this.getDamage(skill, false, true));
-        }
-
-        if ((skill.canCounter || skill.id === 's1') && this.damageForm.casterHasChallenge) {
-          newDamages.push(this.getDamage(skill, false, false, true));
         }
       }
     }
@@ -282,9 +279,9 @@ export class DamageService {
     return Math.round(this.currentHero.getAfterMathArtifactDamage(new Skill({id: 's1', isAOE: () => true, isSingle: () => true}), this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), this.getGlobalDefenseMult(), this.dataService.currentTarget) || 0);
   }
 
-  getChallengeAftermathSkill(isCounter = false) {
-    if (this.damageForm.casterHasChallenge && isCounter) {
-      return new Skill({afterMath: (hitType: HitType) => (hitType !== HitType.miss) ? new AftermathSkill({ targetMaxHPPercent: 0.08 }) : null});
+  getChallengeAftermathSkill(skill: Skill) {
+    if (this.damageForm.casterHasChallenge && skill.id == 's1') {
+      return new Skill({afterMath: (hitType: HitType) => (hitType !== HitType.miss) ? new AftermathSkill({ targetMaxHPPercent: 0.1 }) : null});
     } else {
       return new Skill({});
     }

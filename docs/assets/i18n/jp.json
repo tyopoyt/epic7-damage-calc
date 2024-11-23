@@ -333,6 +333,7 @@
     "wanderer_silk": "流浪者 シルク",
     "wandering_prince_cidd": "さすらいの王子シダ ー",
     "watcher_schuri": "監視者 シュリ",
+    "westwind_executioner_schuri": "西風の処刑人 シュリ",
     "yoonryoung": "ユーリ",
     "yufine": "ユピネ",
     "yulha": "ユルハ",
@@ -649,7 +650,8 @@
     "targetAttackUpGreat": "ターゲットが攻撃を増やしている（大）",
     "targetNumberofBuffs": "ターゲットのバフ数",
     "s3Stack": "スキル3使用回数",
-    "allAlliesFire": "味方全員火属性"
+    "allAlliesFire": "味方全員火属性",
+    "explosives": "爆発物"
   },
   "skills": {
     "nonApplicable": "-",
@@ -711,6 +713,7 @@
     "s3_extra": "S3 追加攻撃",
     "sez_explosion": "爆発",
     "wandering_prince_cidd_continuous_strike": "連続打撃",
+    "westwind_schuri_annihilate": "火傷",
     "yoonryoung_slash": "閃光斬り",
     "zio_disappear": "消える",
     "custom": {

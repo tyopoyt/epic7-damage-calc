@@ -7,6 +7,8 @@ To test your translation locally, there is a hidden option to load a custom tran
 <img src="./language_custom.gif" alt="image" width="800" height="auto">
 
 ## Changelog
+### <strong>Nov 22 2024 Update:</strong>
+- Added Westwind Executioner Schuri and Explosives.
 ### <strong>Nov 7 2024 Update:</strong>
 - Added Schniel.
 ### <strong>Oct 24 2024 Update:</strong>
