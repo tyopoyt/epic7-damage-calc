@@ -8,7 +8,7 @@ To test your translation locally, there is a hidden option to load a custom tran
 
 ## Changelog
 ### <strong>Nov 22 2024 Update:</strong>
-- Added Westwind Executioner Schuri and Explosives.
+- Added Westwind Executioner Schuri and Explosives. Added Wukong EE.
 ### <strong>Nov 7 2024 Update:</strong>
 - Added Schniel.
 ### <strong>Oct 24 2024 Update:</strong>

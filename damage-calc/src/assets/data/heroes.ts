@@ -4766,7 +4766,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1208,
     baseHP: 6488,
     baseDefense: 616,
-    heroSpecific: ['casterAttackedStack', 'targetAttack'],
+    heroSpecific: ['exclusiveEquipment3', 'casterAttackedStack', 'targetAttack'],
     heroSpecificMaximums: {'casterAttackedStack': 3},
     attackIncrease: (inputValues: DamageFormData) => 1 + inputValues.casterAttackedStack * 0.2,
     barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number) => hero.getAttack(artifact, inputValues, attackMultiplier, skill) * 0.3,
@@ -4799,6 +4799,7 @@ export const Heroes: Record<string, Hero> = {
           return Math.min(Math.max(multDiff + 1, 1), 1.7);
         },
         multTip: () => ({caster_target_atk_diff: 0.0175}),
+        exclusiveEquipmentMultiplier: (inputValues: DamageFormData) => inputValues.exclusiveEquipment3 ? 0.2 : 0,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
         isSingle: () => true,
       }),
