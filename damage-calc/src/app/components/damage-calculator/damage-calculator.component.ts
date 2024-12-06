@@ -379,6 +379,10 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
     this.debuffSpecificNumberInputs = this.inputValues.targetMagicNailed ? ['targetMaxHP'] : []
     this.buffSpecificNumberInputs = this.inputValues.casterHasChallenge ? ['targetMaxHP'] : []
 
+    if (this.inputValues.casterHasSpecialFriendship) {
+      this.buffSpecificNumberInputs.push('casterMaxHP')
+    }
+
     this.addAddtionalBooleanInputs();
     this.addAddtionalNumberInputs();
   }
