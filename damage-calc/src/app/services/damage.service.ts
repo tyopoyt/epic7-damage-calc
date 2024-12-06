@@ -290,7 +290,7 @@ export class DamageService {
 
   getSpecialFriendshipAftermathSkill() {
     if (this.damageForm.casterHasSpecialFriendship) {
-      return new Skill({afterMath: (hitType: HitType) => (hitType === HitType.crit) ? new AftermathSkill({ hpPercent: 0.15 }) : null});
+      return new Skill({afterMath: (hitType: HitType) => (hitType === HitType.crit) ? new AftermathSkill({ hpPercent: 0.08 }) : null});
     } else {
       return new Skill({});
     }
