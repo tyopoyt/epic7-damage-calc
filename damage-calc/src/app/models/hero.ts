@@ -130,7 +130,7 @@ export class Hero {
   // Get the hero's aftermath (additional) damage
   getAfterMathSkillDamage(skill: Skill, hitType: HitType, soulburn: boolean, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number, defenseMultiplier: number, target: Target, isExtra = false, isCounter = false) {
     let skillDamage = 0;
-    const skillMultipliers = skill.afterMath(hitType, inputValues, soulburn);
+    let skillMultipliers = skill.afterMath(hitType, inputValues, soulburn);
     const attack = this.getAttack(artifact, inputValues, attackMultiplier, skill, isExtra)
     const speed = this.getSpeed(inputValues)
     // TODO: can aftermath skills just use the same skill as DoTSkill now?
@@ -146,8 +146,33 @@ export class Hero {
       } else if (skillMultipliers.targetMaxHPPercent) {
         // TODO: should this also be affected by target's defensive power?
         skillDamage = inputValues.targetFinalMaxHP() * skillMultipliers.targetMaxHPPercent;
+      } else if (skillMultipliers.allyHPPercent) {
+        skillDamage = inputValues.allyMaxHP * skillMultipliers.allyHPPercent * BattleConstants.damageConstant * target.defensivePower(new Skill({ id: 'FixedPenetration', penetrate: () => skillMultipliers.penetrate }), inputValues, defenseMultiplier, artifact, false, attack, speed, true);
       }
     }
+
+    // this is ugly I know but it's the easiest way to accomodate young senya's dual-scaling aftermath damage
+    if (skill.afterMath2(hitType, inputValues, soulburn)) {
+      skillMultipliers = skill.afterMath2(hitType, inputValues, soulburn);
+
+      if (skillMultipliers !== null) {
+        if (skillMultipliers.attackPercent) {
+          skillDamage += this.getAttack(artifact, inputValues, attackMultiplier, skill, isExtra) * skillMultipliers.attackPercent * BattleConstants.damageConstant * target.defensivePower(new Skill({ id: 'FixedPenetration', penetrate: () => skillMultipliers.penetrate }), inputValues, defenseMultiplier, artifact, false, attack, speed, true);
+        } else if (skillMultipliers.defensePercent) {
+          skillDamage += inputValues.casterFinalDefense() * skillMultipliers.defensePercent * BattleConstants.damageConstant * target.defensivePower(new Skill({ id: 'FixedPenetration', penetrate: () => skillMultipliers.penetrate }), inputValues, defenseMultiplier, artifact, false, attack, speed, true);
+        } else if (skillMultipliers.hpPercent) {
+          skillDamage += inputValues.casterFinalMaxHP(artifact) * skillMultipliers.hpPercent * BattleConstants.damageConstant * target.defensivePower(new Skill({ id: 'FixedPenetration', penetrate: () => skillMultipliers.penetrate }), inputValues, defenseMultiplier, artifact, false, attack, speed, true);
+        } else if (skillMultipliers.injuryPercent) {
+          skillDamage += inputValues.targetInjuries * skillMultipliers.injuryPercent * BattleConstants.damageConstant * target.defensivePower(new Skill({ id: 'FixedPenetration', penetrate: () => skillMultipliers.penetrate }), inputValues, defenseMultiplier, artifact, false, attack, speed, true);
+        } else if (skillMultipliers.targetMaxHPPercent) {
+          // TODO: should this also be affected by target's defensive power?
+          skillDamage += inputValues.targetFinalMaxHP() * skillMultipliers.targetMaxHPPercent;
+        } else if (skillMultipliers.allyHPPercent) {
+          skillDamage += inputValues.allyMaxHP * skillMultipliers.allyHPPercent * BattleConstants.damageConstant * target.defensivePower(new Skill({ id: 'FixedPenetration', penetrate: () => skillMultipliers.penetrate }), inputValues, defenseMultiplier, artifact, false, attack, speed, true);
+        }
+      }
+    }
+
     return skillDamage;
   }
 

@@ -19,6 +19,7 @@ export enum HitType {
 export class AftermathSkill {
     defensePercent?: number
     hpPercent?: number
+    allyHPPercent?: number
     attackPercent?: number
     injuryPercent?: number
     targetMaxHPPercent?: number
@@ -27,6 +28,7 @@ export class AftermathSkill {
     constructor(data: any) {
         this.defensePercent = data.defensePercent;
         this.hpPercent = data.hpPercent;
+        this.allyHPPercent = data.allyHPPercent;
         this.attackPercent = data.attackPercent;
         this.injuryPercent = data.injuryPercent;
         this.targetMaxHPPercent = data.targetMaxHPPercent;
@@ -39,6 +41,7 @@ export class Skill {
     // TODO: refactor this name
     atk: (inputValues: DamageFormData) => number;
     afterMath: (hitType: HitType, inputValues: DamageFormData, soulburn: boolean) => AftermathSkill;
+    afterMath2: (hitType: HitType, inputValues: DamageFormData, soulburn: boolean) => AftermathSkill;
     canExtra: boolean;
     canCounter: boolean;
     critDmgBoost: Function;
@@ -85,6 +88,7 @@ export class Skill {
         this.id = _.get(data, 'id', 's1');
         this.atk = _.get(data, 'atk', () => 0)
         this.afterMath = _.get(data, 'afterMath', () => null);
+        this.afterMath2 = _.get(data, 'afterMath2', () => null);
         this.canExtra = _.get(data, 'canExtra', false);
         this.canCounter = _.get(data, 'canCounter', false);
         this.extraModifier = _.get(data, 'extraModifier', false);
