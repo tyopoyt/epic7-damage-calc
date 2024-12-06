@@ -54,6 +54,7 @@ export class Skill {
     flat2: Function;
     flatTip: Function;
     ignoreDamageTransfer: (inputValuse: DamageFormData) => boolean;
+    ignoreDamageReduction: (inputValuse: DamageFormData) => boolean;
     isAOE: (inputValues: DamageFormData) => boolean;
     isExtra: boolean;
     isCounter: boolean;
@@ -100,6 +101,7 @@ export class Skill {
         this.flat2 = _.get(data, 'flat2', () => 0); // TODO: remove this if unncessary (only sc alexa has it)
         this.flatTip = _.get(data, 'flatTip', () => null);
         this.ignoreDamageTransfer = _.get(data, 'ignoreDamageTransfer', () => false);
+        this.ignoreDamageReduction = _.get(data, 'ignoreDamageReduction', () => false);
         this.isAOE = _.get(data, 'isAOE', () => false);
         this.isExtra = _.get(data, 'isExtra', false);
         this.isCounter = _.get(data, 'isCounter', false);

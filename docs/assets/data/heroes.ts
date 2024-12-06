@@ -1919,6 +1919,35 @@ export const Heroes: Record<string, Hero> = {
       }),
     }
   }),
+  bystander_hwayoung: new Hero({
+    element: HeroElement.dark,
+    class: HeroClass.warrior,
+    baseAttack: 1208,
+    baseHP: 6488,
+    baseDefense: 616,
+    skills: {
+      s1: new Skill({
+        id: 's1',
+        rate: () => 1.2,
+        pow: () => 1,
+        enhance: [0.05, 0.05, 0, 0.05, 0, 0.05, 0.1],
+        isSingle: () => true,
+      }),
+      s3: new Skill({
+        id: 's3',
+        soulburn: true,
+        rate: (soulburn: boolean) => soulburn ? 2.3 : 1.8,
+        pow: () => 0.95,
+        mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.elementalAdvantage ? (soulburn ? 2.2 : 2) : 1,
+        multTip: (soulburn: boolean) => ({ elementalAdvantage: soulburn ? 120 : 100 }),
+        enhance: [0.05, 0.05, 0.05, 0, 0.05, 0.05, 0.1],
+        ignoreDamageTransfer: () => true,
+        ignoreDamageReduction: () => true,
+        canExtra: true,
+        isSingle: () => true,
+      })
+    }
+  }),
   camilla: new Hero({
     element: HeroElement.light,
     class: HeroClass.warrior,
@@ -10395,6 +10424,35 @@ export const Heroes: Record<string, Hero> = {
         pow: () => 1,
         enhanceFrom: 's1',
         isSingle: () => true,
+      })
+    }
+  }),
+  young_senya: new Hero({
+    element: HeroElement.earth,
+    class: HeroClass.soul_weaver,
+    baseAttack: 621,
+    baseHP: 5474,
+    baseDefense: 802,
+    heroSpecific: ['casterMaxHP', 'allyMaxHP'],
+    skills: {
+      s1: new Skill({
+        id: 's1',
+        rate: () => 1,
+        pow: () => 1,
+        enhance: [0.05, 0, 0.1, 0, 0.15],
+        isSingle: () => true,
+      }),
+      s2: new Skill({
+        id: 's2',
+        name: 'young_senya_help',
+        hpScaling: true,
+        rate: () => 1,
+        pow: () => 1,
+        flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * 0.15 + inputValues.allyMaxHP * 0.15,
+        flatTip: () => ({casterMaxHP: 15, allyMaxHP: 15}),
+        enhance: [0.05, 0, 0.1, 0, 0.15],
+        isExtra: true,
+        isAOE: () => true,
       })
     }
   }),

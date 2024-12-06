@@ -25,7 +25,7 @@ export class Target {
     }
   
     defensivePower(skill: Skill, inputValues: DamageFormData, globalDefMult: number, artifact: Artifact, soulburn: boolean, casterAttack: number, casterSpeed: number, noReduc = false) {
-      const dmgReduc = noReduc ? 0 : inputValues.damageReduction / 100;
+      const dmgReduc = noReduc || skill.ignoreDamageReduction(inputValues) ? 0 : inputValues.damageReduction / 100;
       const dmgTrans = skill.ignoreDamageTransfer(inputValues) ? 0 : inputValues.damageTransfer / 100;
       return ((1 - dmgReduc) * (1 - dmgTrans)) / (((this.getDefense(inputValues, globalDefMult) / 300) * this.getPenetration(skill, inputValues, artifact, soulburn, casterAttack, casterSpeed)) + 1);
     }

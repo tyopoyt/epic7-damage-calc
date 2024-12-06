@@ -64,6 +64,7 @@
     "brieg": "Brieg",
     "butcher_corps_inquisitor": "Butcher Corps Inquisitor",
     "byblis": "Byblis",
+    "bystander_hwayoung": "Bystander Hwayoung",
     "captain_rikoris": "Captain Rikoris",
     "carmainerose": "Carmainerose",
     "carrot": "Carrot",
@@ -858,7 +859,7 @@
     "yoonryoung_slash": "Dazzling Slash",
     "zio_disappear": "Disappear",
     "speed_tuner_instructions": "To use the speed tuner, input the current speed of your slower and/or faster unit, as well as any Combat Readiness increase that will be applied.\nThe tuner will calculate how the units' speeds need to be adjusted to guarantee turn order.\n\nIn Faster Unit Pushes mode, set the speed of the slower and/or faster unit and the CR push to calculate the speed needed for the slower unit to move next.",
-    "damageCalculatorUpdates": "Nov 22 2024 Update: Added Westwind Executioner Schuri and Explosives. Added Wukong EE.\n\nPlease reach out to me if you find any bugs! @tyopoyt on Discord or Reddit.",
+    "damageCalculatorUpdates": "Dec 6 2024 Update: Added Bystander Hwayoung, Young Senya, and Proof of Friendship.\n\nPlease reach out to me if you find any bugs! @tyopoyt on Discord or Reddit.",
     "harsettiWarning": "Harsetti's Skill 3 description says that it has HP scaling, but the multiplier does not yet seem to include it, so her Skill 3 damage here will probably be incorrect until we know her HP scaling."
   },
   "titles": {
