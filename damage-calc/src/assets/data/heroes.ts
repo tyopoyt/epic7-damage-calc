@@ -10398,6 +10398,35 @@ export const Heroes: Record<string, Hero> = {
       })
     }
   }),
+  young_senya: new Hero({
+    element: HeroElement.earth,
+    class: HeroClass.soul_weaver,
+    baseAttack: 621,
+    baseHP: 5474,
+    baseDefense: 802,
+    heroSpecific: ['casterMaxHP', 'allyMaxHP'],
+    skills: {
+      s1: new Skill({
+        id: 's1',
+        rate: () => 1,
+        pow: () => 1,
+        enhance: [0.05, 0, 0.1, 0, 0.15],
+        isSingle: () => true,
+      }),
+      s2: new Skill({
+        id: 's2',
+        name: 'young_senya_help',
+        hpScaling: true,
+        rate: () => 1,
+        pow: () => 1,
+        flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * 0.15 + inputValues.allyMaxHP * 0.15,
+        flatTip: () => ({casterMaxHP: 15, allyMaxHP: 15}),
+        enhance: [0.05, 0, 0.1, 0, 0.15],
+        isExtra: true,
+        isAOE: () => true,
+      })
+    }
+  }),
   yufine: new Hero({
     element: HeroElement.earth,
     class: HeroClass.warrior,

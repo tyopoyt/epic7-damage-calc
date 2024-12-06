@@ -194,7 +194,8 @@ export class DamageService {
   getAfterMathDamage(skill: Skill, hitType: HitType, soulburn: boolean) {
     const detonation = this.getDetonateDamage(skill);
     const debuffDamage = this.damageForm.targetMagicNailed ? this.damageForm.targetFinalMaxHP() * 0.02 : 0
-    const buffDamage = this.currentHero.getAfterMathSkillDamage(this.getChallengeAftermathSkill(skill), hitType, soulburn, this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), this.getGlobalDefenseMult(), this.dataService.currentTarget);
+    const buffDamage = this.currentHero.getAfterMathSkillDamage(this.getChallengeAftermathSkill(skill), hitType, soulburn, this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), this.getGlobalDefenseMult(), this.dataService.currentTarget)
+                     + this.currentHero.getAfterMathSkillDamage(this.getSpecialFriendshipAftermathSkill(), hitType, soulburn, this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), this.getGlobalDefenseMult(), this.dataService.currentTarget);
     const artiDamage: number = this.currentHero.getAfterMathArtifactDamage(skill, this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), this.getGlobalDefenseMult(), this.dataService.currentTarget) || 0;
     const skillDamage = this.currentHero.getAfterMathSkillDamage(skill, hitType, soulburn, this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), this.getGlobalDefenseMult(), this.dataService.currentTarget);
     // if more of these buffs get added, would probably be better to handle this iteratively over a list of key: value pairs
@@ -282,6 +283,14 @@ export class DamageService {
   getChallengeAftermathSkill(skill: Skill) {
     if (this.damageForm.casterHasChallenge && skill.id == 's1') {
       return new Skill({afterMath: (hitType: HitType) => (hitType !== HitType.miss) ? new AftermathSkill({ targetMaxHPPercent: 0.1 }) : null});
+    } else {
+      return new Skill({});
+    }
+  }
+
+  getSpecialFriendshipAftermathSkill() {
+    if (this.damageForm.casterHasSpecialFriendship) {
+      return new Skill({afterMath: (hitType: HitType) => (hitType === HitType.crit) ? new AftermathSkill({ hpPercent: 0.15 }) : null});
     } else {
       return new Skill({});
     }

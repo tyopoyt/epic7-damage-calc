@@ -144,6 +144,13 @@
                     {{'explosives' | translate:'form':languageService.language.value}}
                 </span>
             </mat-checkbox>
+            <!-- TODO: add special friendship translations when available -->
+            <mat-checkbox class="small-margin-top" [checked]="inputValues.casterHasSpecialFriendship" (change)="inputChange('casterHasSpecialFriendship', $event.checked); updateFormInputs()">
+                <span class="neat-container">
+                    <img class="png-icon medium tiny-margin-right" src="assets/buffs/special-friendship-buff.png" alt="special friendship buff">
+                    {{'special_friendship' | translate:'form':languageService.language.value}}
+                </span>
+            </mat-checkbox>
             <!-- TODO: edit set pngs to have no margin -->
             <mat-checkbox class="small-margin-top" [checked]="inputValues.rageSet" (change)="inputChange('rageSet', $event.checked)">
                 <span class="neat-container">

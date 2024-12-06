@@ -318,6 +318,13 @@ export const Artifacts: Record<string, Artifact> = {
     value: () => 0.2,
     type: ArtifactDamageType.damage
   }),
+  proof_of_friendship: new Artifact({
+    id: 'proof_of_friendship',
+    name: 'Proof of Friendship',
+    scale: [1.05, 1.055, 1.06, 1.065, 1.07, 1.075, 1.08, 1.085, 1.09, 1.095, 1.1],
+    exclusive: HeroClass.soul_weaver,
+    type: ArtifactDamageType.health_only
+  }),
   otherworldly_machinery: new Artifact({
     id: 'otherworldly_machinery',
     name: 'Otherworldly Machinery',

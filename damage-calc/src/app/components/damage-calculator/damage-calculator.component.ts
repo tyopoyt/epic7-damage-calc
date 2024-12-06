@@ -380,6 +380,7 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
     this.buffSpecificNumberInputs = this.inputValues.casterHasChallenge ? ['targetMaxHP'] : []
 
     this.addAddtionalBooleanInputs();
+    this.addAddtionalNumberInputs();
   }
 
   // Add additional boolean inputs needed based on the hero and artifact specific number inputs
@@ -430,6 +431,24 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
     if (this.hero.getDoT(this.artifact).includes(DoT.burn)) {
       this.heroSpecificBooleanInputs.push('beehooPassive');
     }
+
+    this.dedupeForm();
+  }
+
+  addAddtionalNumberInputs() {
+    // Extra checkboxes for hero
+    this.heroSpecificNumberInputs.forEach(input => {
+      if (input === 'casterMaxHP') {
+        this.heroSpecificNumberInputs.push('casterMaxHPIncrease')
+      }
+    })
+
+    // Extra checkboxes for artifact
+    this.artifactSpecificNumberInputs.forEach(input => {
+      if (input === 'casterMaxHP') {
+        this.artifactSpecificNumberInputs.push('casterMaxHPIncrease')
+      }
+    })
 
     this.dedupeForm();
   }

@@ -36,6 +36,16 @@ export const FormDefaults: Record<string, {max?: number, min?: number, defaultVa
         min: 1000,
         defaultValue: 10000
     },
+    casterMaxHPIncrease: {
+        max: 10,
+        min: 0,
+        defaultValue: 0
+    },
+    allyMaxHP: {
+        max: 50000,
+        min: 1000,
+        defaultValue: 10000
+    },
     casterDefenseUp: {
         icon: 'buffs/defense-buff.png'
     },
@@ -44,6 +54,9 @@ export const FormDefaults: Record<string, {max?: number, min?: number, defaultVa
     },
     casterHasStarsBlessing: {
         icon: 'buffs/stars-blessing-buff.png'
+    },
+    casterHasSpecialFriendship: {
+        icon: 'buffs/special-friendship-buff.png'
     },
     casterHasPossession: {
         icon: 'buffs/possession-buff.png'
@@ -489,9 +502,12 @@ export class DamageFormData {
     casterHasStealth: boolean;
     casterHasTrauma: boolean;
     casterHasStarsBlessing: boolean;
+    casterHasSpecialFriendship: boolean;
     casterHasPossession: boolean;
     casterInvincible: boolean;
     casterMaxHP: number;
+    casterMaxHPIncrease: number;
+    allyMaxHP: number;
     casterNumberOfBuffs: number;
     alliesNumberOfBuffs: number;
     casterPerception: boolean;
@@ -629,9 +645,12 @@ export class DamageFormData {
         this.casterHasStealth = _.get(data, 'casterHasStealth', false);
         this.casterHasTrauma = _.get(data, 'casterHasTrauma', false);
         this.casterHasStarsBlessing = _.get(data, 'casterHasStarsBlessing', false);
+        this.casterHasSpecialFriendship = _.get(data, 'casterHasSpecialFriendship', false);
         this.casterHasPossession = _.get(data, 'casterHasPossession', false);
         this.casterInvincible = _.get(data, 'casterInvincible', false);
         this.casterMaxHP = _.get(data, 'casterMaxHP', 10000);
+        this.casterMaxHPIncrease = _.get(data, 'casterMaxHPIncrease', 0);
+        this.allyMaxHP = _.get(data, 'allyMaxHP', 10000);
         this.casterNumberOfBuffs = _.get(data, 'casterNumberOfBuffs', 0)
         this.alliesNumberOfBuffs = _.get(data, 'alliesNumberOfBuffs', 0)
         this.casterPerception = _.get(data, 'casterPerception', false);
@@ -772,7 +791,7 @@ export class DamageFormData {
     // Get the caster's final max HP after modifiers
     casterFinalMaxHP = (artifact: Artifact) => {
         const artifactHP = (artifact.type === ArtifactDamageType.health_only && artifact.scale?.length) ? artifact.scale[Math.floor(this.artifactLevel/3)] : artifact.maxHP;
-        return (this.inputOverrides['casterMaxHP'] ? this.inputOverrides['casterMaxHP'] : this.casterMaxHP) * (this.inBattleHP ? 1 : artifactHP);
+        return (this.inputOverrides['casterMaxHP'] ? this.inputOverrides['casterMaxHP'] : this.casterMaxHP) * ((this.inBattleHP ? 1 : artifactHP) + this.casterMaxHPIncrease / 100);
     }
 
     // Get the target's final max HP after modifiers
