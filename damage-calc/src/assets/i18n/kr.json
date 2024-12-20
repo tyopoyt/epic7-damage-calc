@@ -350,6 +350,7 @@
         "ae_winter": "ae윈터"
     },
     "artifacts": {
+        "pre_balance": "(이전 버전)",
         "noProc": "아티팩트 효과 없음",
         "air_to_surface_missile_misha": "공대지 미사일: 미샤",
         "a_little_queens_crown": "작은 여왕의 거대 왕관",

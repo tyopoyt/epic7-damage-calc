@@ -117,6 +117,8 @@ export class DamageService {
       }
     }
 
+    const fixedDamage = Math.round(skill.fixed(HitType.crit, this.damageForm, this.currentArtifact)) + Math.round(skill.fixed2(HitType.crit, this.damageForm, this.currentArtifact))
+
     return {
       rate: skill.rate(soulburn, this.damageForm, isExtra),
       pow: skill.pow(soulburn, this.damageForm),
@@ -130,8 +132,8 @@ export class DamageService {
       detonation: skill.detonation(this.damageForm) ? Math.round((skill.detonation(this.damageForm) - 1) * 100) : 0,
       elementalAdvantage: skill.elementalAdvantage(this.damageForm),
       exEq: skill.exclusiveEquipmentMultiplier(this.damageForm) * 100,
-      fixed: Math.round(skill.fixed(HitType.crit, this.damageForm)),
-      fixedTip: this.languageService.getSkillModTip(skill.fixedTip(skill.fixed(HitType.crit, this.damageForm), this.damageForm)),
+      fixed: fixedDamage,
+      fixedTip: this.languageService.getSkillModTip(skill.fixedTip(fixedDamage, this.damageForm)),
       flat: Math.round(skill.flat(soulburn, this.damageForm, this.currentArtifact)),
       flatTip: this.languageService.getSkillModTip(skill.flatTip(soulburn)),
       pen: Math.max((skill.penetrate(soulburn, this.damageForm, this.currentArtifact, this.currentHero.getAttack(this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill), this.currentHero.getSpeed(this.damageForm)) * 100) - this.damageForm.penetrationResistance, 0).toFixed(2),
@@ -220,10 +222,10 @@ export class DamageService {
     return {
       skill: (skill.name || skill.id) + (soulburn ? '_soulburn' : (isExtra ? '_extra' : (isCounter && !skill.isCounter ? '_counter': ''))),
       // these 4 need isCounter back at the end if new skill that cares about it is added
-      crit: skill.noCrit || skill.onlyMiss ? null : Math.round(hit * critDmg + (skill.fixed !== undefined ? skill.fixed(HitType.crit, this.damageForm) : 0) + this.getAfterMathDamage(skill, HitType.crit, soulburn)),
-      crush: skill.noCrit || skill.onlyCrit(soulburn) || skill.onlyMiss ? null : Math.round(hit * 1.3 + (skill.fixed !== undefined ? skill.fixed(HitType.crush, this.damageForm) : 0) + this.getAfterMathDamage(skill, HitType.crush, soulburn)),
-      normal: skill.onlyCrit(soulburn) || skill.onlyMiss ? null : Math.round(hit + (skill.fixed !== undefined ? skill.fixed(HitType.normal, this.damageForm) : 0) + this.getAfterMathDamage(skill, HitType.normal, soulburn)),
-      miss: skill.noMiss ? null : Math.round(hit * 0.75 + (skill.fixed !== undefined ? skill.fixed(HitType.miss, this.damageForm) : 0) + this.getAfterMathDamage(skill, HitType.miss, soulburn))
+      crit: skill.noCrit || skill.onlyMiss ? null : Math.round(hit * critDmg + skill.fixed(HitType.crit, this.damageForm, this.currentArtifact) + skill.fixed2(HitType.crit, this.damageForm, this.currentArtifact) + this.getAfterMathDamage(skill, HitType.crit, soulburn)),
+      crush: skill.noCrit || skill.onlyCrit(soulburn) || skill.onlyMiss ? null : Math.round(hit * 1.3 + skill.fixed(HitType.crush, this.damageForm, this.currentArtifact) + skill.fixed2(HitType.crit, this.damageForm, this.currentArtifact) + this.getAfterMathDamage(skill, HitType.crush, soulburn)),
+      normal: skill.onlyCrit(soulburn) || skill.onlyMiss ? null : Math.round(hit + skill.fixed(HitType.normal, this.damageForm, this.currentArtifact) + skill.fixed2(HitType.crit, this.damageForm, this.currentArtifact) + this.getAfterMathDamage(skill, HitType.normal, soulburn)),
+      miss: skill.noMiss ? null : Math.round(hit * 0.75 + skill.fixed(HitType.miss, this.damageForm, this.currentArtifact) + skill.fixed2(HitType.crit, this.damageForm, this.currentArtifact) + this.getAfterMathDamage(skill, HitType.miss, soulburn))
     };
   }
 

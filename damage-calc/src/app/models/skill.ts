@@ -51,7 +51,8 @@ export class Skill {
     enhance: number[];
     enhanceFrom: string;
     exclusiveEquipmentMultiplier: (inputValues: DamageFormData) => number;
-    fixed: (hitType: HitType, inputValues: DamageFormData) => number;
+    fixed: (hitType: HitType, inputValues: DamageFormData, artifact: Artifact) => number;
+    fixed2: (hitType: HitType, inputValues: DamageFormData, artifact: Artifact) => number;
     fixedTip: (fixedDamage: number, inputValues: DamageFormData) => Record<string, number>;
     flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => number;
     flat2: Function;
@@ -100,6 +101,7 @@ export class Skill {
         this.enhanceFrom = _.get(data, 'enhanceFrom', '');
         this.exclusiveEquipmentMultiplier = _.get(data, 'exclusiveEquipmentMultiplier', () => 0);
         this.fixed = _.get(data, 'fixed', () => 0);
+        this.fixed2 = _.get(data, 'fixed2', () => 0);
         this.fixedTip = _.get(data, 'fixedTip', () => null);
         this.flat = _.get(data, 'flat', () => 0); //TODO: give these appropriate params
         this.flat2 = _.get(data, 'flat2', () => 0); // TODO: remove this if unncessary (only sc alexa has it)

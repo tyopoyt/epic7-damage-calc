@@ -348,6 +348,7 @@
         "ae_winter": "aewinter"
     },
     "artifacts": {
+        "pre_balance": "(以前的版本)",
         "noProc": "无神器",
         "air_to_surface_missile_misha": "空对地导弹: 美莎",
         "a_little_queens_crown": "小小女王的巨大王冠",

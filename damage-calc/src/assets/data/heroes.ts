@@ -10373,8 +10373,8 @@ export const Heroes: Record<string, Hero> = {
         hpScaling: true,
         rate: () => 1,
         pow: () => 1,
-        afterMath: (hitType: HitType) => (hitType !== HitType.miss) ? new AftermathSkill({ hpPercent: 0.15 }) : null,
-        afterMath2: (hitType: HitType) => (hitType !== HitType.miss) ? new AftermathSkill({ allyHPPercent: 0.15 }) : null,
+        fixed: (hitType: HitType, inputValues: DamageFormData, artifact: Artifact) => (hitType !== HitType.miss) ? inputValues.casterFinalMaxHP(artifact) * 0.15 : 0,
+        fixed2: (hitType: HitType, inputValues: DamageFormData) => (hitType !== HitType.miss) ? inputValues.allyMaxHP * 0.15 : 0,
         isExtra: true,
         isAOE: () => true,
       })

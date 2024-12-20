@@ -350,6 +350,7 @@
         "ae_winter": "aewinter"
     },
     "artifacts": {
+        "pre_balance": "(以前的版本)",
         "noProc": "無神器",
         "a_little_queens_crown": "小小女王的巨大王冠",
         "a_symbol_of_unity": "團結的象徵",
