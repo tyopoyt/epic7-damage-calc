@@ -351,6 +351,8 @@
     "ae_winter": "aewinter"
   },
   "artifacts": {
+    "pre_balance": "前のバージョン",
+
     "noProc": "遺物効果なし",
     "air_to_surface_missile_misha": "広域殲滅爆弾ミシャ",
     "a_little_queens_crown": "小さな女王の大きな王冠",

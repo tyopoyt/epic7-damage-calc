@@ -427,6 +427,13 @@ export const Artifacts: Record<string, Artifact> = {
     id: 'sigurd_scythe',
     name: 'Sigurd Scythe',
     type: ArtifactDamageType.attack,
+    scale: [0.1, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2],
+    exclusive: HeroClass.warrior,
+  }),
+  sigurd_scythe_old: new Artifact({
+    id: 'sigurd_scythe',
+    name: 'Sigurd Scythe',
+    type: ArtifactDamageType.attack,
     exclusive: HeroClass.warrior,
     value: () => 0.25
   }),
