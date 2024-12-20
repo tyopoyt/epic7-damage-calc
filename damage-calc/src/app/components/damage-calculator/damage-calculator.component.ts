@@ -376,7 +376,7 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
     this.heroSpecificMaximums = this.hero.heroSpecificMaximums;
     this.artifactSpecificMaximums = this.artifact.artifactSpecificMaximums;
 
-    this.debuffSpecificNumberInputs = this.inputValues.targetMagicNailed ? ['targetMaxHP'] : []
+    this.debuffSpecificNumberInputs = []
     this.buffSpecificNumberInputs = this.inputValues.casterHasChallenge ? ['targetMaxHP'] : []
 
     if (this.inputValues.casterHasSpecialFriendship) {
