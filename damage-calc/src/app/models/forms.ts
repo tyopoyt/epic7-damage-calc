@@ -328,7 +328,9 @@ export const FormDefaults: Record<string, {max?: number, min?: number, defaultVa
         defaultValue: 0
     },
     casterTurn: {
-        default: true
+        default: true,
+        icon: 'icons/alarm.svg',
+        svgIcon: true
     },
     // TODO: default of casterBuffed depending on other buff boxes
     casterBuffed: {
@@ -507,6 +509,7 @@ export class DamageFormData {
     casterInvincible: boolean;
     casterMaxHP: number;
     casterMaxHPIncrease: number;
+    casterTurn: boolean;
     allyMaxHP: number;
     casterNumberOfBuffs: number;
     alliesNumberOfBuffs: number;
@@ -654,6 +657,7 @@ export class DamageFormData {
         this.casterNumberOfBuffs = _.get(data, 'casterNumberOfBuffs', 0)
         this.alliesNumberOfBuffs = _.get(data, 'alliesNumberOfBuffs', 0)
         this.casterPerception = _.get(data, 'casterPerception', false);
+        this.casterTurn = _.get(data, 'casterTurn', true);
         this.casterSpeed = _.get(data, 'casterSpeed', 150);
         this.casterSpeedUp = _.get(data, 'casterSpeedUp', false);
         this.casterSpeedDown = _.get(data, 'casterSpeedDown', false);

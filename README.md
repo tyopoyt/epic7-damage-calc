@@ -7,6 +7,8 @@ To test your translation locally, there is a hidden option to load a custom tran
 <img src="./language_custom.gif" alt="image" width="800" height="auto">
 
 ## Changelog
+### <strong>Jan 5 2025 Update:</strong>
+- Happy New Year! Added New Kid Adin, and fixed a few small bugs. 
 ### <strong>Nov 22 2024 Update:</strong>
 - Added Bystander Hwayoung, Young Senya, and Proof of Friendship.
 ### <strong>Nov 22 2024 Update:</strong>

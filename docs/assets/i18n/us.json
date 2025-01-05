@@ -234,6 +234,7 @@
     "nahkwol": "Nahkwol",
     "navy_captain_landy": "Navy Captain Landy",
     "nemunas": "Nemunas",
+    "new_kid_adin": "New Kid Adin",
     "new_moon_luna": "New Moon Luna",
     "ocean_breeze_luluca": "Ocean Breeze Luluca",
     "operator_sigret": "Operator Sigret",
@@ -704,6 +705,7 @@
     "special_friendship": "Special Friendship",
     "casterHasOathOfPunishment": "Oath of Punishment",
     "casterHasBloodAura": "Blood Aura",
+    "casterTurn": "Caster's Turn",
     "rageSet": "Rage Set Proc",
     "penetrationSet": "Penetration Set",
     "torrentSet": "Torrent Set",
@@ -859,7 +861,7 @@
     "yoonryoung_slash": "Dazzling Slash",
     "zio_disappear": "Disappear",
     "speed_tuner_instructions": "To use the speed tuner, input the current speed of your slower and/or faster unit, as well as any Combat Readiness increase that will be applied.\nThe tuner will calculate how the units' speeds need to be adjusted to guarantee turn order.\n\nIn Faster Unit Pushes mode, set the speed of the slower and/or faster unit and the CR push to calculate the speed needed for the slower unit to move next.",
-    "damageCalculatorUpdates": "Dec 20 2024 Update: Updated heroes in 12/19 Balance Patch. Updated Young Senya's Help! skill to deal fixed damage rather than additional damage.\n\nPlease reach out to me if you find any bugs! @tyopoyt on Discord or Reddit.",
+    "damageCalculatorUpdates": "Jan 5 2025 Update: Happy New Year! Added New Kid Adin, and fixed a few small bugs.\n\nPlease reach out to me if you find any bugs! @tyopoyt on Discord or Reddit.",
     "harsettiWarning": "Harsetti's Skill 3 description says that it has HP scaling, but the multiplier does not yet seem to include it, so her Skill 3 damage here will probably be incorrect until we know her HP scaling."
   },
   "titles": {

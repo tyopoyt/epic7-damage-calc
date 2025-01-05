@@ -7191,6 +7191,32 @@ export const Heroes: Record<string, Hero> = {
       })
     }
   }),
+  new_kid_adin: new Hero({
+    element: HeroElement.dark,
+    class: HeroClass.thief,
+    baseAttack: 1068,
+    baseHP: 4733,
+    baseDefense: 515,
+    heroSpecific: ['casterTurn', 'targetInjuries'],
+    skills: {
+      s1: new Skill({
+        id: 's1',
+        rate: () => 0.9,
+        pow: () => 1,
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        isSingle: (inputValues: DamageFormData) => !inputValues.casterTurn || !inputValues.casterVigor,
+        isAOE: (inputValues: DamageFormData) => inputValues.casterTurn && inputValues.casterVigor
+      }),
+      s3: new Skill({
+        id: 's3',
+        rate: () => 1.4,
+        pow: () => 1,
+        afterMath: (hitType: HitType, inputValues: DamageFormData) => inputValues.casterVigor ? new AftermathSkill({ injuryPercent: 1 }) : null,
+        enhance: [0.05, 0.05, 0, 0.1, 0.1],
+        isSingle: () => true,
+      }),
+    }
+  }),
   new_moon_luna: new Hero({
     element: HeroElement.light,
     class: HeroClass.mage,
@@ -9394,7 +9420,7 @@ export const Heroes: Record<string, Hero> = {
         id: 's3',
         rate: () => 1.8,
         pow: () => 0.8,
-        mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.targetNumberOfBleeds > 0 ? 1.25 + (Math.min(inputValues.targetNumberOfBleeds, 5) - 1) * 0.25 : 1,
+        mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.targetNumberOfBleeds > 0 ? 1.4 + (Math.min(inputValues.targetNumberOfBleeds, 5) - 1) * 0.15 : 1,
         multTip: () => ({ per_bleed: 25 }),
         enhance: [0.1, 0.1, 0, 0.15, 0.15],
         isSingle: () => true,

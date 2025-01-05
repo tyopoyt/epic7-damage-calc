@@ -279,6 +279,20 @@ export const Artifacts: Record<string, Artifact> = {
     exclusive: HeroClass.warrior,
     applies: (skill: Skill, inputValues: DamageFormData) => skill.isSingle(inputValues),
   }),
+  otherworldly_machinery: new Artifact({
+    id: 'otherworldly_machinery',
+    name: 'Otherworldly Machinery',
+    scale: [0.08, 0.088, 0.096, 0.104, 0.112, 0.12, 0.128, 0.136, 0.144, 0.152, 0.16],
+    type: ArtifactDamageType.damage,
+    exclusive: HeroClass.ranger,
+    applies: (skill: Skill, inputValues: DamageFormData) => skill.isAOE(inputValues),
+  }),
+  our_beautiful_seasons: new Artifact({
+    id: 'our_beautiful_seasons',
+    name: 'Our Beautiful Seasons',
+    value: () => 0.2,
+    type: ArtifactDamageType.damage
+  }),
   pipette_lance: new Artifact({
     id: 'pipette_lance',
     name: 'Pipette Lance',
@@ -324,20 +338,6 @@ export const Artifacts: Record<string, Artifact> = {
     scale: [1.05, 1.055, 1.06, 1.065, 1.07, 1.075, 1.08, 1.085, 1.09, 1.095, 1.1],
     exclusive: HeroClass.soul_weaver,
     type: ArtifactDamageType.health_only
-  }),
-  otherworldly_machinery: new Artifact({
-    id: 'otherworldly_machinery',
-    name: 'Otherworldly Machinery',
-    scale: [0.08, 0.088, 0.096, 0.104, 0.112, 0.12, 0.128, 0.136, 0.144, 0.152, 0.16],
-    type: ArtifactDamageType.damage,
-    exclusive: HeroClass.ranger,
-    applies: (skill: Skill, inputValues: DamageFormData) => skill.isAOE(inputValues),
-  }),
-  our_beautiful_seasons: new Artifact({
-    id: 'our_beautiful_seasons',
-    name: 'Our Beautiful Seasons',
-    value: () => 0.2,
-    type: ArtifactDamageType.damage
   }),
   radiant_forever: new Artifact({
     id: 'radiant_forever',
@@ -472,7 +472,7 @@ export const Artifacts: Record<string, Artifact> = {
     name: 'Sword of Cycling Seasons',
     value: () => 0.25,
     type: ArtifactDamageType.damage,
-    heroExclusive: ['adin', 'savior_adin', 'holy_flame_adin', 'serene_purity_adin', 'verdant_adin'],
+    heroExclusive: ['adin', 'savior_adin', 'holy_flame_adin', 'serene_purity_adin', 'verdant_adin', 'new_kid_adin'],
     applies: (skill: Skill, inputValues: DamageFormData) => {
       return inputValues.elementalAdvantage || skill.elementalAdvantage(inputValues);
     },
