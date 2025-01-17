@@ -6318,6 +6318,11 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 885,
     baseHP: 6149,
     baseDefense: 613,
+    heroSpecific: ['turnStack'],
+    heroSpecificMaximums: {'turnStack': 5},
+    attackIncrease: (inputValues: DamageFormData) => {
+      return 1 + (0.2 * Math.min(5, inputValues.turnStack));
+    },
     skills: {
       s1: new Skill({
         id: 's1',
@@ -6325,6 +6330,7 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0.05, 0.05, 0, 0.15],
+        afterMath: (hitType: HitType) => hitType !== HitType.miss ? new AftermathSkill(({ attackPercent: 0.25 })) : null,
         isSingle: (inputValues: DamageFormData, soulburn: boolean) => !soulburn,
         isAOE: (inputValues: DamageFormData, soulburn: boolean) => soulburn,
       })
@@ -9545,7 +9551,7 @@ export const Heroes: Record<string, Hero> = {
         pow: () => 1,
         enhanceFrom: 's1',
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + (100 - inputValues.casterCurrentHPPercent) * 0.003,
-        multTip: () => ({ casterSpeed: 0.3 }),
+        multTip: () => ({ casterCurrentHPPercent: 0.3 }),
         isSingle: () => true,
       }),
       s3: new Skill({

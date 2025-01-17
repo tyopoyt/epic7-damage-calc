@@ -24,6 +24,7 @@ export const BattleConstants: Record<string, number> = {
   'casterEnraged': 1.2,
   'targetEnraged': 1.2,
   'perception': 0.15,
+  'rampage': 0.2,
   'casterPromotionStack': 0.05,
   'casterHasStarsBlessing': 1.15,
   'trauma': -0.7,

@@ -8,7 +8,7 @@ import { DismissibleColorOption } from '../ui-elements/dismissible/dismissible.c
 import { DamageRow, DamageService } from 'src/app/services/damage.service';
 import { DataService } from 'src/app/services/data.service';
 import { Heroes } from 'src/assets/data/heroes';
-import { Hero, HeroClass } from 'src/app/models/hero';
+import { Hero, HeroClass, HeroElement } from 'src/app/models/hero';
 import { TranslationPipe } from 'src/app/pipes/translation.pipe';
 import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
@@ -172,6 +172,8 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
   translationPipe: TranslationPipe;
   // TODO: ideally fix it so on intial load each slide only emits once
   firstRoundLoaded = false;
+
+  HeroElement = HeroElement
   
   // Getters
   get inputValues() {
@@ -402,6 +404,7 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
           this.heroSpecificBooleanInputs.push('highestAllyAttackUpGreat')
         } else if (input === 'targetSpeed') {
           this.heroSpecificBooleanInputs.push('targetEnraged')
+          this.heroSpecificBooleanInputs.push('targetRampage')
         }
       }
     })

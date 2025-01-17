@@ -706,6 +706,8 @@
     "cascade": "Cascade",
     "challenge": "Challenge",
     "explosives": "Explosives",
+    "rampage": "Rampage",
+    "targetRampage": "Target Has Rampage",
     "special_friendship": "Special Friendship",
     "casterHasOathOfPunishment": "Oath of Punishment",
     "casterHasBloodAura": "Blood Aura",

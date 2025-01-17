@@ -91,6 +91,12 @@ export const FormDefaults: Record<string, {max?: number, min?: number, defaultVa
     casterSpeedUp: {
         icon: 'buffs/speed-buff.png'
     },
+    casterRampage: {
+        icon: 'buffs/rampage-buff.png'
+    },
+    targetRampage: {
+        icon: 'buffs/rampage-buff.png'
+    },
     targetSpeedUp: {
         icon: 'buffs/speed-buff.png'
     },
@@ -522,6 +528,7 @@ export class DamageFormData {
     casterPerception: boolean;
     casterSpeed: number;
     casterSpeedUp: boolean;
+    casterRampage: boolean;
     casterSpeedDown: boolean;
     casterVigor: boolean;
     critDamage: number;
@@ -668,6 +675,7 @@ export class DamageFormData {
         this.casterSpeed = _.get(data, 'casterSpeed', 150);
         this.casterSpeedUp = _.get(data, 'casterSpeedUp', false);
         this.casterSpeedDown = _.get(data, 'casterSpeedDown', false);
+        this.casterRampage = _.get(data, 'casterRampage', false);
         this.casterVigor = _.get(data, 'casterVigor', false);
         this.critDamage = _.get(data, 'critDamage', 250);
         this.increasedCritDamage = _.get(data, 'increasedCritDamage', false);
@@ -740,6 +748,7 @@ export class DamageFormData {
         this.targetSpeed = _.get(data, 'targetSpeed', 150);
         this.targetSpeedUp = _.get(data, 'targetSpeedUp', false);
         this.targetSpeedDown = _.get(data, 'targetSpeedDown', false);
+        this.targetRampage = _.get(data, 'targetRampage', false);
         this.targetStunned = _.get(data, 'targetStunned', false);
         this.targetTargeted = _.get(data, 'targetTargeted', false);
         this.targetVigor = _.get(data, 'targetVigor', false);
@@ -752,14 +761,16 @@ export class DamageFormData {
     casterFinalSpeed = () => {
         return Math.floor((this.inputOverrides['casterSpeed'] ? this.inputOverrides['casterSpeed'] : this.casterSpeed) * (1 + (this.casterSpeedUp ? BattleConstants.spdUp - 1 : 0)
            + (this.casterSpeedDown ? 1 - BattleConstants.spdUp : 0)
-           + (this.casterEnraged ? BattleConstants.casterEnraged - 1 : 0)));
+           + (this.casterEnraged ? BattleConstants.casterEnraged - 1 : 0)
+           + (this.casterRampage ? BattleConstants.rampage : 0)));
     }
 
     // Get the target's final speed after modifiers
     targetFinalSpeed = () => {
         return Math.floor(this.targetSpeed * (1 + (this.targetSpeedUp ? BattleConstants.spdUp - 1 : 0)
            + (this.targetSpeedDown ? 1 - BattleConstants.spdUp : 0)
-           + (this.targetEnraged ? BattleConstants.targetEnraged - 1 : 0)));
+           + (this.targetEnraged ? BattleConstants.targetEnraged - 1 : 0)
+           + (this.targetRampage ? BattleConstants.rampage : 0)));
     }
 
     // Get the caster's final defense after modifiers

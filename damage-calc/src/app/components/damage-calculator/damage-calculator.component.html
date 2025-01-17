@@ -151,6 +151,13 @@
                     {{'special_friendship' | translate:'form':languageService.language.value}}
                 </span>
             </mat-checkbox>
+            <!-- TODO: add rampage translations when available -->
+            <mat-checkbox *ngIf="hero.element === HeroElement.dark" class="small-margin-top" [checked]="inputValues.casterRampage" (change)="inputChange('casterRampage', $event.checked); updateFormInputs()">
+                <span class="neat-container">
+                    <img class="png-icon medium tiny-margin-right" src="assets/buffs/rampage-buff.png" alt="rampage buff">
+                    {{'rampage' | translate:'form':languageService.language.value}}
+                </span>
+            </mat-checkbox>
             <!-- TODO: edit set pngs to have no margin -->
             <mat-checkbox class="small-margin-top" [checked]="inputValues.rageSet" (change)="inputChange('rageSet', $event.checked)">
                 <span class="neat-container">
