@@ -249,7 +249,7 @@ export const FormDefaults: Record<string, {max?: number, min?: number, defaultVa
         defaultValue: 10000
     },
     targetInjuries: {
-        max: 50000,
+        max: 25000,
         min: 0,
         defaultValue: 0
     },

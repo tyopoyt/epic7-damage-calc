@@ -51,8 +51,8 @@ export class Skill {
     enhance: number[];
     enhanceFrom: string;
     exclusiveEquipmentMultiplier: (inputValues: DamageFormData) => number;
-    fixed: (hitType: HitType, inputValues: DamageFormData, artifact: Artifact) => number;
-    fixed2: (hitType: HitType, inputValues: DamageFormData, artifact: Artifact) => number;
+    fixed: (hitType: HitType, inputValues: DamageFormData, artifact: Artifact, soulburn: boolean) => number;
+    fixed2: (hitType: HitType, inputValues: DamageFormData, artifact: Artifact, soulburn: boolean) => number;
     fixedTip: (fixedDamage: number, inputValues: DamageFormData) => Record<string, number>;
     flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => number;
     flat2: Function;
