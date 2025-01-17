@@ -22,7 +22,7 @@ export class Artifact {
     exclusive: HeroClass;
     heroExclusive: string[];
     type: ArtifactDamageType;
-    applies: (skill: Skill, inputValues: DamageFormData) => boolean; // Pass Skill
+    applies: (skill: Skill, inputValues: DamageFormData, soulburn: boolean) => boolean; // Pass Skill
     value: (artiScale: number, inputValues: DamageFormData, skill: Skill, isExtra: boolean) => number; // Pass Skill and DamageFormData (and optionally isExtra)
     scale: number[];
     additional: number[];
@@ -65,8 +65,8 @@ export class Artifact {
         this.artifactSpecificMaximums = _.get(data, 'artifactSpecificMaximums', {});
     }
 
-    getDefensePenetration(level: number, inputValues: DamageFormData, skill: Skill, isExtra = false): number {
-      if (!(this.id && this.type === ArtifactDamageType.penetrate && this.applies(skill, inputValues))) {
+    getDefensePenetration(level: number, inputValues: DamageFormData, skill: Skill, soulburn: boolean, isExtra = false): number {
+      if (!(this.id && this.type === ArtifactDamageType.penetrate && this.applies(skill, inputValues, soulburn))) {
         return 0;
       }
       return this.value(this.getScale(level), inputValues, skill, isExtra);
@@ -88,8 +88,8 @@ export class Artifact {
         return this.flat(this.value(this.getScale(level), inputValues, skill, isExtra), inputValues);
     }
 
-    getDamageMultiplier(level: number, inputValues: DamageFormData, skill: Skill, isExtra = false) {
-      if(!this.applies(skill, inputValues)) return 0;
+    getDamageMultiplier(level: number, inputValues: DamageFormData, skill: Skill, soulburn: boolean, isExtra = false) {
+      if(!this.applies(skill, inputValues, soulburn)) return 0;
       if (this.id === undefined || this.type !== ArtifactDamageType.damage) {
         return 0;
       }
@@ -113,8 +113,8 @@ export class Artifact {
       return this.value(this.getScale(level), inputValues, skill, isExtra);
     }
 
-    getAfterMathMultipliers(skill: Skill, inputValues: DamageFormData, isExtra: boolean) {
-        if(!this.applies(skill, inputValues)) return null;
+    getAfterMathMultipliers(skill: Skill, inputValues: DamageFormData, soulburn: boolean, isExtra: boolean) {
+        if(!this.applies(skill, inputValues, soulburn)) return null;
         if (this.id === undefined || ![ArtifactDamageType.aftermath, ArtifactDamageType.fixedDamage].includes(this.type)  || (this.attackPercent === undefined && this.defensePercent === undefined && this.hpPercent === undefined) || this.penetrate === undefined) {
           return null;
         }

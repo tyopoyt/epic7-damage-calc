@@ -4039,6 +4039,48 @@ export const Heroes: Record<string, Hero> = {
       })
     }
   }),
+  fenne: new Hero({
+    element: HeroElement.ice,
+    class: HeroClass.soul_weaver,
+    heroSpecific: ['casterMaxHP', 'casterInjury'],
+    baseAttack: 621,
+    baseHP: 6034,
+    baseDefense: 775,
+    barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number) => {
+      return hero.getAttack(artifact, inputValues, attackMultiplier, skill) * 2.5;
+    },
+    attackIncrease: (inputValues: DamageFormData) => {
+      return 1 + Math.min(inputValues.casterInjury / Math.max(inputValues.casterMaxHP, 1), 1);
+    },
+    skills: {
+      s1: new Skill({
+        id: 's1',
+        rate: () => 1.5,
+        pow: () => 1,
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        isSingle: () => true,
+      }),
+      s1_extra: new Skill({
+        id: 's1_extra',
+        name: 'fenneEmbrace',
+        rate: () => 0.7,
+        pow: () => 1,
+        flat: (soulburn: boolean, inputValues: DamageFormData) => inputValues.casterInjury * 1,
+        flatTip: () => ({ casterInjury: 100 }),
+        isSingle: () => true,
+        isExtra: true,
+      }),
+      s3: new Skill({
+        id: 's3',
+        rate: () => 2,
+        pow: () => 1,
+        flat: (soulburn: boolean, inputValues: DamageFormData) => inputValues.casterInjury * 1.5,
+        flatTip: () => ({ casterInjury: 150 }),
+        isSingle: () => true,
+        enhance: [0.05, 0.05, 0, 0.05, 0.15],
+      })
+    }
+  }),
   fenris: new Hero({
     element: HeroElement.earth,
     class: HeroClass.ranger,
@@ -4110,25 +4152,6 @@ export const Heroes: Record<string, Hero> = {
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.05, 0.05, 0, 0.1],
         isAOE: () => true,
-      })
-    }
-  }),
-  frida: new Hero({
-    element: HeroElement.ice,
-    class: HeroClass.soul_weaver,
-    baseAttack: 694,
-    baseDefense: 613,
-    baseHP: 4855,
-    barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number) => {
-      return inputValues.casterFinalMaxHP(artifact) * 0.2;
-    },
-    skills: {
-      s1: new Skill({
-        id: 's1',
-        rate: () => 1,
-        pow: () => 1,
-        enhance: [0.05, 0, 0.05, 0, 0.1, 0.1],
-        isSingle: () => true,
       })
     }
   }),
@@ -4212,6 +4235,25 @@ export const Heroes: Record<string, Hero> = {
         enhance: [0.05, 0.05, 0, 0.05, 0.05, 0.05, 0.15],
         flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.targetFinalMaxHP() * 0.04,
         flatTip: () => ({ targetMaxHP: 4 }),
+        isSingle: () => true,
+      })
+    }
+  }),
+  frida: new Hero({
+    element: HeroElement.ice,
+    class: HeroClass.soul_weaver,
+    baseAttack: 694,
+    baseDefense: 613,
+    baseHP: 4855,
+    barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number) => {
+      return inputValues.casterFinalMaxHP(artifact) * 0.2;
+    },
+    skills: {
+      s1: new Skill({
+        id: 's1',
+        rate: () => 1,
+        pow: () => 1,
+        enhance: [0.05, 0, 0.05, 0, 0.1, 0.1],
         isSingle: () => true,
       })
     }
@@ -6107,7 +6149,6 @@ export const Heroes: Record<string, Hero> = {
       })
     }
   }),
-
   lilibet: new Hero({
     element: HeroElement.earth,
     class: HeroClass.warrior,
@@ -6268,6 +6309,24 @@ export const Heroes: Record<string, Hero> = {
         pow: () => 1,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
         isSingle: () => true,
+      })
+    }
+  }),
+  lone_wolf_peira: new Hero({
+    element: HeroElement.dark,
+    class: HeroClass.warrior,
+    baseAttack: 885,
+    baseHP: 6149,
+    baseDefense: 613,
+    skills: {
+      s1: new Skill({
+        id: 's1',
+        soulburn: true,
+        rate: () => 1,
+        pow: () => 1,
+        enhance: [0.05, 0, 0.05, 0.05, 0, 0.15],
+        isSingle: (inputValues: DamageFormData, soulburn: boolean) => !soulburn,
+        isAOE: (inputValues: DamageFormData, soulburn: boolean) => soulburn,
       })
     }
   }),

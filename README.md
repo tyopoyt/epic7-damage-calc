@@ -7,6 +7,8 @@ To test your translation locally, there is a hidden option to load a custom tran
 <img src="./language_custom.gif" alt="image" width="800" height="auto">
 
 ## Changelog
+### <strong>Jan 16 2025 Update:</strong>
+- Added Fenne and Lone Wolf Peira.
 ### <strong>Jan 5 2025 Update:</strong>
 - Happy New Year! Added New Kid Adin, and fixed a few small bugs. 
 ### <strong>Nov 22 2024 Update:</strong>

@@ -41,6 +41,11 @@ export const FormDefaults: Record<string, {max?: number, min?: number, defaultVa
         min: 0,
         defaultValue: 0
     },
+    casterInjury: {
+        max: 25000,
+        min: 1000,
+        defaultValue: 0
+    },
     allyMaxHP: {
         max: 50000,
         min: 1000,
@@ -506,6 +511,7 @@ export class DamageFormData {
     casterHasStarsBlessing: boolean;
     casterHasSpecialFriendship: boolean;
     casterHasPossession: boolean;
+    casterInjury: number;
     casterInvincible: boolean;
     casterMaxHP: number;
     casterMaxHPIncrease: number;
@@ -651,6 +657,7 @@ export class DamageFormData {
         this.casterHasSpecialFriendship = _.get(data, 'casterHasSpecialFriendship', false);
         this.casterHasPossession = _.get(data, 'casterHasPossession', false);
         this.casterInvincible = _.get(data, 'casterInvincible', false);
+        this.casterInjury = _.get(data, 'casterInjury', 0);
         this.casterMaxHP = _.get(data, 'casterMaxHP', 10000);
         this.casterMaxHPIncrease = _.get(data, 'casterMaxHPIncrease', 0);
         this.allyMaxHP = _.get(data, 'allyMaxHP', 10000);

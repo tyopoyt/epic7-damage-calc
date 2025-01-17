@@ -12,8 +12,8 @@ export class Target {
   
     getPenetration(skill: Skill, inputValues: DamageFormData, artifact: Artifact, soulburn: boolean, casterAttack: number, casterSpeed: number) {
       const base = skill.penetrate(soulburn, inputValues, artifact, casterAttack, casterSpeed);
-      const artifactPenetration = artifact.getDefensePenetration(inputValues.artifactLevel, inputValues, skill);
-      const set = (skill.isSingle(inputValues)) && inputValues.penetrationSet ? BattleConstants.penetrationSet : 0;
+      const artifactPenetration = artifact.getDefensePenetration(inputValues.artifactLevel, inputValues, skill, soulburn);
+      const set = (skill.isSingle(inputValues, soulburn)) && inputValues.penetrationSet ? BattleConstants.penetrationSet : 0;
       const penResist = skill.id !== 'FixedPenetration' ? inputValues.penetrationResistance / 100 : 0;
 
       // Each source of penetration is mitigated by pen resist

@@ -666,7 +666,7 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
   updateDamageBlockHeader() { 
     this.updateDots();
     this.updateBarriers();
-    this.artifactDamage = this.damageService.getArtifactDamage();
+    this.artifactDamage = Math.max(this.damageService.getArtifactDamage(false), this.damageService.getArtifactDamage(true));
   }
 
   // Update dot values

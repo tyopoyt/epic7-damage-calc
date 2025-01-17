@@ -298,7 +298,7 @@ export class DamageGraphComponent implements OnInit, OnDestroy, AfterViewInit {
       (this.options.plugins.annotation.annotations as {value: number}[])[0].value = intersectionPoint;
     }
     
-    const artifactApplies = this.dataService.currentArtifact.value.applies(skill, this.dataService.damageInputValues);
+    const artifactApplies = this.dataService.currentArtifact.value.applies(skill, this.dataService.damageInputValues, soulburn);
   
     // Filter out any unneeded datasets for unused stats ============================================================
     const attackLabel = this.translationPipe.transform('attack', 'graph', this.languageService.language.value);

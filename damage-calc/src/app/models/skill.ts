@@ -59,11 +59,11 @@ export class Skill {
     flatTip: Function;
     ignoreDamageTransfer: (inputValuse: DamageFormData) => boolean;
     ignoreDamageReduction: (inputValuse: DamageFormData) => boolean;
-    isAOE: (inputValues: DamageFormData) => boolean;
+    isAOE: (inputValues: DamageFormData, soulburn: boolean) => boolean;
     isExtra: boolean;
     isCounter: boolean;
     extraModifier: boolean;
-    isSingle: (inputValues: DamageFormData) => boolean;
+    isSingle: (inputValues: DamageFormData, soulburn: boolean) => boolean;
     mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact, heroAttack: number) => number;
     multTip: Function;
     name: string | null;

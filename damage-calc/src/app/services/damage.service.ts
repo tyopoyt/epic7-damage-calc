@@ -81,7 +81,7 @@ export class DamageService {
   }
 
   // Calculate the global damage multiplier
-  getGlobalDamageMult(skill: Skill): number {
+  getGlobalDamageMult(skill: Skill, soulburn: boolean): number {
     let mult = 0.0;
     this.dataService.damageMultSets.forEach((set) => {
       mult += (this.damageForm[set as keyof DamageFormData] || !!this.damageForm[`${set}Stack` as keyof DamageFormData]) ? _.get(BattleConstants, set) * (_.get(this.damageForm, `${set}Stack`, 1) as number) : 0.0;
@@ -93,10 +93,10 @@ export class DamageService {
       mult += (this.damageForm.defensePreset?.extraDamageMultiplier || 1) - 1;
     }
 
-    if (skill.isSingle(this.damageForm) && this.damageForm.defensePreset?.singleAttackMultiplier) {
+    if (skill.isSingle(this.damageForm, soulburn) && this.damageForm.defensePreset?.singleAttackMultiplier) {
       mult += this.damageForm.defensePreset.singleAttackMultiplier - 1;
     }
-    if (!skill.isSingle(this.damageForm) && this.damageForm.defensePreset?.nonSingleAttackMultiplier) {
+    if (!skill.isSingle(this.damageForm, soulburn) && this.damageForm.defensePreset?.nonSingleAttackMultiplier) {
       mult += this.damageForm.defensePreset.nonSingleAttackMultiplier - 1;
     }
 
@@ -156,9 +156,9 @@ export class DamageService {
     }
     const target = this.damageForm.targetTargeted ? BattleConstants.target : 1.0;
     const dmgMod = 1.0
-        + this.getGlobalDamageMult(skill)
+        + this.getGlobalDamageMult(skill, soulburn)
         + this.damageForm.damageIncrease / 100
-        + this.currentArtifact.getDamageMultiplier(this.damageForm.artifactLevel, this.damageForm, skill, isExtra)
+        + this.currentArtifact.getDamageMultiplier(this.damageForm.artifactLevel, this.damageForm, skill, soulburn, isExtra)
         + (skill.mult ? skill.mult(soulburn, this.damageForm, this.currentArtifact, this.currentHero.getAttack(this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill)) - 1 : 0);
     return ((this.currentHero.getAttack(this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill, isExtra) * rate + flatMod) * BattleConstants.damageConstant + flatMod2) * pow * skillEnhance * elementalAdvantage * target * dmgMod;
   }
@@ -198,7 +198,7 @@ export class DamageService {
     const debuffDamage = this.damageForm.targetMagicNailed ? this.damageForm.targetFinalMaxHP() * 0.02 : 0
     const buffDamage = this.currentHero.getAfterMathSkillDamage(this.getChallengeAftermathSkill(skill), hitType, soulburn, this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), this.getGlobalDefenseMult(), this.dataService.currentTarget)
                      + this.currentHero.getAfterMathSkillDamage(this.getSpecialFriendshipAftermathSkill(), hitType, soulburn, this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), this.getGlobalDefenseMult(), this.dataService.currentTarget);
-    const artiDamage: number = this.currentHero.getAfterMathArtifactDamage(skill, this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), this.getGlobalDefenseMult(), this.dataService.currentTarget) || 0;
+    const artiDamage: number = this.currentHero.getAfterMathArtifactDamage(skill, this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), this.getGlobalDefenseMult(), this.dataService.currentTarget, soulburn) || 0;
     const skillDamage = this.currentHero.getAfterMathSkillDamage(skill, hitType, soulburn, this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), this.getGlobalDefenseMult(), this.dataService.currentTarget);
     // if more of these buffs get added, would probably be better to handle this iteratively over a list of key: value pairs
     return detonation + debuffDamage + buffDamage + artiDamage + skillDamage + (this.damageForm.casterHasCascade ? 2500 : 0) + (this.damageForm.casterHasOathOfPunishment ? 2500 : 0);
@@ -278,8 +278,8 @@ export class DamageService {
   }
 
   // Get damage from the artifact
-  getArtifactDamage(): number {
-    return Math.round(this.currentHero.getAfterMathArtifactDamage(new Skill({id: 's1', isAOE: () => true, isSingle: () => true}), this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), this.getGlobalDefenseMult(), this.dataService.currentTarget) || 0);
+  getArtifactDamage(soulburn: boolean): number {
+    return Math.round(this.currentHero.getAfterMathArtifactDamage(new Skill({id: 's1', isAOE: () => true, isSingle: () => true}), this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), this.getGlobalDefenseMult(), this.dataService.currentTarget, soulburn) || 0);
   }
 
   getChallengeAftermathSkill(skill: Skill) {

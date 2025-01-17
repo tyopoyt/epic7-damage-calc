@@ -177,8 +177,8 @@ export class Hero {
   }
 
   // Get aftermath damage from the artifact. This belongs to hero because it calls hero's getAtk and getDef
-  getAfterMathArtifactDamage(skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number, defenseMultiplier: number, target: Target, isExtra = false) {
-    const artiMultipliers = artifact.getAfterMathMultipliers(skill, inputValues, isExtra);
+  getAfterMathArtifactDamage(skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number, defenseMultiplier: number, target: Target, soulburn: boolean, isExtra = false) {
+    const artiMultipliers = artifact.getAfterMathMultipliers(skill, inputValues, soulburn, isExtra);
     const attack = this.getAttack(artifact, inputValues, attackMultiplier, skill, isExtra)
     const speed = this.getSpeed(inputValues)
     // TODO: can aftermath skills just use the same skill as DoTSkill now?
