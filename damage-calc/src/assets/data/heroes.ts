@@ -4050,7 +4050,7 @@ export const Heroes: Record<string, Hero> = {
       return hero.getAttack(artifact, inputValues, attackMultiplier, skill) * 2.5;
     },
     attackIncrease: (inputValues: DamageFormData) => {
-      return 1 + Math.min(inputValues.casterInjury / Math.max(inputValues.casterMaxHP, 1), 1);
+      return 1 + Math.min(inputValues.casterInjury / Math.max(inputValues.casterMaxHP, 1), 1) * 3;
     },
     skills: {
       s1: new Skill({
