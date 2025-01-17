@@ -838,6 +838,7 @@
         "artifact": "아티팩트",
         "target": "대상",
         "artifactDamageHint": "아티팩트로 인한 손상으로 아래 표에 이미 포함되어 있습니다",
+        "attackIncreaseHint": "아룬카 또는 군터와 같은 패시브의 공격 증가",
         "heroSpecific": "영웅 특성",
         "debuffSpecific": "약화효과 특성",
         "buffSpecific": "버프 특성",

@@ -889,6 +889,7 @@
     "artifact": "Artifact",
     "target": "Target",
     "artifactDamageHint": "Damage from Artifact, already included in the table below",
+    "attackIncreaseHint": "Attack increase from passives such as Arunka or Gunther",
     "skillEnhance": "Skill Enhance",
     "heroSpecific": "Hero Specific",
     "debuffSpecific": "Debuff Specific",

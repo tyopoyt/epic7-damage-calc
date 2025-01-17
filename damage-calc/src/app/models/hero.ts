@@ -41,7 +41,7 @@ export class Hero {
     element: HeroElement;
     heroSpecific: string[];
     heroSpecificMaximums: Record<string, number>;
-    innateAttackIncrease?: (inputValues: DamageFormData) => number;
+    innateAttackIncrease: (inputValues: DamageFormData) => number;
     innateHPIncrease?: (inputValues: DamageFormData) => number;
     skills: Record<string, Skill>;
     exclusiveEquipmentMultiplier?: (inputValues: DamageFormData) => number;
@@ -101,6 +101,7 @@ export class Hero {
 
   // Get the hero's attack if it's modified
   getAttack(artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number, skill: Skill, isExtra = false): number {
+    // skill.atk is for lilias
     let atk = skill?.atk(inputValues) || inputValues.casterFinalAttack;
 
     // TODO: check if this is innateAttackIncrease val is added twice? doesn't seem to be though

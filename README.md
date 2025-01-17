@@ -7,6 +7,8 @@ To test your translation locally, there is a hidden option to load a custom tran
 <img src="./language_custom.gif" alt="image" width="800" height="auto">
 
 ## Changelog
+### <strong>Jan 17 2025 Update:</strong>
+- Added attack increase bubble to damage block header.
 ### <strong>Jan 16 2025 Update:</strong>
 - Added Fenne and Lone Wolf Peira.
 ### <strong>Jan 5 2025 Update:</strong>

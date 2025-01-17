@@ -841,6 +841,7 @@
     "artifact": "遺物",
     "target": "ターゲット",
     "artifactDamageHint": "遺物によるダメージ (以下の表には加算済み)",
+    "attackIncreaseHint": "攻撃は、アルンカやガンサーなどのパッシブから増加します",
     "heroSpecific": "英雄別項目",
     "debuffSpecific": "デバフ別項目",
     "buffSpecific": "バフ別項目",
