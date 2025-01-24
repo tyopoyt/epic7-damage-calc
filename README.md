@@ -7,6 +7,8 @@ To test your translation locally, there is a hidden option to load a custom tran
 <img src="./language_custom.gif" alt="image" width="800" height="auto">
 
 ## Changelog
+### <strong>Jan 24 2025 Update:</strong>
+- Added Sez and B.Lidica EE.
 ### <strong>Jan 17 2025 Update:</strong>
 - Added attack increase bubble to damage block header.
 ### <strong>Jan 16 2025 Update:</strong>

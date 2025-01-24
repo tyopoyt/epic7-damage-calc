@@ -1764,7 +1764,7 @@ export const Heroes: Record<string, Hero> = {
   blooming_lidica: new Hero({
     element: HeroElement.earth,
     class: HeroClass.thief,
-    heroSpecific: ['casterSpeed', 'casterMaxHP', 'enemyNumberOfDebuffs', 'targetSpeed'],
+    heroSpecific: ['casterSpeed', 'casterMaxHP', 'enemyNumberOfDebuffs', 'targetSpeed', 'exclusiveEquipment3'],
     baseAttack: 1057,
     baseHP: 5542,
     baseDefense: 532,
@@ -1800,6 +1800,7 @@ export const Heroes: Record<string, Hero> = {
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
         flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * 0.3,
         flatTip: () => ({ casterMaxHP: 30 }),
+        exclusiveEquipmentMultiplier: (inputValues: DamageFormData) => inputValues.exclusiveEquipment3 ? 0.1 : 0,
         penetrate: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact, casterAttack: number, casterSpeed: number) => {
           let penetration = 0.5;
           let penDiff = 0;
@@ -8856,7 +8857,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1228,
     baseHP: 6266,
     baseDefense: 473,
-    heroSpecific: ['targetCurrentHPPercent'],
+    heroSpecific: ['targetCurrentHPPercent', 'exclusiveEquipment1', 'exclusiveEquipment3'],
     skills: {
       s1: new Skill({
         id: 's1',
@@ -8864,6 +8865,7 @@ export const Heroes: Record<string, Hero> = {
         pow: () => 0.95,
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + (100 - inputValues.targetCurrentHPPercent) * 0.002,
         multTip: () => ({ target_lost_hp_pc: 0.2 }),
+        exclusiveEquipmentMultiplier: (inputValues: DamageFormData) => inputValues.exclusiveEquipment1 ? 0.2 : 0,
         enhance: [0.05, 0.05, 0.05, 0.1, 0.1],
         isSingle: () => true,
       }),
@@ -8874,7 +8876,7 @@ export const Heroes: Record<string, Hero> = {
         pow: () => 1.3,
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + (100 - inputValues.targetCurrentHPPercent) * 0.003,
         multTip: () => ({ target_lost_hp_pc: 0.3 }),
-        enhanceFrom: 's1',
+        exclusiveEquipmentMultiplier: (inputValues: DamageFormData) => inputValues.exclusiveEquipment3 ? 0.2 : 0,
         isAOE: () => true,
       }),
       s3: new Skill({
