@@ -370,7 +370,7 @@
             <div class="neat-container full-width">
                 <div *ngFor="let input of heroSpecificNumberInputs" class="full-width">
                     <app-slide-input #slideInput
-                        [label]="input | translate:'form':languageService.language.value"
+                        [label]="(input | translate:'form':languageService.language.value) + ((input === 'casterInjury') ? (' (' + Math.trunc((inputValues.casterInjury / inputValues.casterMaxHP) * 100) + '%)') : '')"
                         [max]="heroSpecificMaximums[input] || formDefaults[input]?.max || 10000"
                         [min]="formDefaults[input]?.min || 0" [step]="formDefaults[input]?.step || 1"
                         [default]="formDefaults[input]?.defaultValue || 0"

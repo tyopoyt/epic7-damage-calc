@@ -43,7 +43,7 @@ export const FormDefaults: Record<string, {max?: number, min?: number, defaultVa
     },
     casterInjury: {
         max: 25000,
-        min: 1000,
+        min: 0,
         defaultValue: 0
     },
     allyMaxHP: {

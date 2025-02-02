@@ -68,6 +68,8 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
     }
   }
 
+  Math = Math
+
   // For form =======================================================
   // All hero entries
   heroes: [string, Hero][] = Object.entries(Heroes);
