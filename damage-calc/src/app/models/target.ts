@@ -1,7 +1,7 @@
 import { BattleConstants } from "src/assets/data/constants";
 import { Artifact } from "./artifact";
 import { DamageFormData } from "./forms";
-import { Skill } from "./skill";
+import { HitType, Skill } from "./skill";
 
 export class Target {
 
@@ -10,9 +10,9 @@ export class Target {
       return inputValues.targetDefense * defMult;
     }
   
-    getPenetration(skill: Skill, inputValues: DamageFormData, artifact: Artifact, soulburn: boolean, casterAttack: number, casterSpeed: number) {
+    getPenetration(skill: Skill, inputValues: DamageFormData, artifact: Artifact, soulburn: boolean, casterAttack: number, casterSpeed: number, hitType: HitType) {
       const base = skill.penetrate(soulburn, inputValues, artifact, casterAttack, casterSpeed);
-      const artifactPenetration = artifact.getDefensePenetration(inputValues.artifactLevel, inputValues, skill, soulburn);
+      const artifactPenetration = artifact.getDefensePenetration(inputValues.artifactLevel, inputValues, skill, soulburn, hitType);
       const set = (skill.isSingle(inputValues, soulburn)) && inputValues.penetrationSet ? BattleConstants.penetrationSet : 0;
       const penResist = skill.id !== 'FixedPenetration' ? inputValues.penetrationResistance / 100 : 0;
 
@@ -24,9 +24,9 @@ export class Target {
       return Math.min(1, totalPenetration);
     }
   
-    defensivePower(skill: Skill, inputValues: DamageFormData, globalDefMult: number, artifact: Artifact, soulburn: boolean, casterAttack: number, casterSpeed: number, noReduc = false) {
+    defensivePower(skill: Skill, inputValues: DamageFormData, globalDefMult: number, artifact: Artifact, soulburn: boolean, casterAttack: number, casterSpeed: number, hitType: HitType, noReduc = false) {
       const dmgReduc = noReduc || skill.ignoreDamageReduction(inputValues) ? 0 : inputValues.damageReduction / 100;
       const dmgTrans = skill.ignoreDamageTransfer(inputValues) ? 0 : inputValues.damageTransfer / 100;
-      return ((1 - dmgReduc) * (1 - dmgTrans)) / (((this.getDefense(inputValues, globalDefMult) / 300) * this.getPenetration(skill, inputValues, artifact, soulburn, casterAttack, casterSpeed)) + 1);
+      return ((1 - dmgReduc) * (1 - dmgTrans)) / (((this.getDefense(inputValues, globalDefMult) / 300) * this.getPenetration(skill, inputValues, artifact, soulburn, casterAttack, casterSpeed, hitType)) + 1);
     }
   }

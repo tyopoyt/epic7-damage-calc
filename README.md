@@ -7,6 +7,9 @@ To test your translation locally, there is a hidden option to load a custom tran
 <img src="./language_custom.gif" alt="image" width="800" height="auto">
 
 ## Changelog
+### <strong>Feb 11 2025 Update:</strong>
+- Added Tori and Feed of Criticism and updated with 2/13 Balance Patch.
+- Added the option to correctly check additional damage when defense break is applied after main skill damage (e.g. Karina S3 or 3F).
 ### <strong>Jan 24 2025 Update:</strong>
 - Added Sez and B.Lidica EE.
 ### <strong>Jan 17 2025 Update:</strong>

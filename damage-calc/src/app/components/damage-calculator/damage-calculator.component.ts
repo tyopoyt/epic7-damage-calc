@@ -18,7 +18,7 @@ import { Artifact } from 'src/app/models/artifact';
 import { SlideInputComponent } from '../ui-elements/slide-input/slide-input.component';
 import { DamageFormData, FormDefaults } from 'src/app/models/forms';
 import { MatTableDataSource } from '@angular/material/table';
-import { DoT, DoTSkill } from 'src/app/models/skill';
+import { DoT, DoTSkill, HitType } from 'src/app/models/skill';
 import { MatDialog } from '@angular/material/dialog';
 import { CompareSaveComponent } from '../compare-save/compare-save.component';
 import { animate, style, transition, trigger } from '@angular/animations';
@@ -672,7 +672,7 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
   updateDamageBlockHeader() { 
     this.updateDots();
     this.updateBarriers();
-    this.artifactDamage = Math.max(this.damageService.getArtifactDamage(false), this.damageService.getArtifactDamage(true));
+    this.artifactDamage = Math.max(this.damageService.getArtifactDamage(false, HitType.crit), this.damageService.getArtifactDamage(true, HitType.crit));
     this.attackIncrease = Math.round(((this.hero.attackIncrease(this.inputValues) - 1) + this.hero.innateAttackIncrease(this.inputValues)) * this.inputValues.attack);
   }
 

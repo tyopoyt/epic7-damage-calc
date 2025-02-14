@@ -31,6 +31,11 @@ export const FormDefaults: Record<string, {max?: number, min?: number, defaultVa
         min: 200,
         defaultValue: 1000
     },
+    targetDefenseDownAftermath: {
+        icon: 'debuffs/defense-debuff.png',
+        hint: 'targetDefenseDownAftermathHint',
+        default: false
+    },
     casterMaxHP: {
         max: 50000,
         min: 1000,
@@ -584,6 +589,7 @@ export class DamageFormData {
     targetDefense: number;
     targetDefenseIncrease: number;
     targetDefenseDown: boolean;
+    targetDefenseDownAftermath: boolean;
     targetDefenseUp: boolean;
     targetEnraged: boolean;
     targetFury: boolean;
@@ -730,6 +736,7 @@ export class DamageFormData {
         this.targetDefense = _.get(data, 'targetDefense', 1000);
         this.targetDefenseIncrease = _.get(data, 'targetDefenseIncrease', 0);
         this.targetDefenseDown = _.get(data, 'targetDefenseDown', false);
+        this.targetDefenseDownAftermath = _.get(data, 'targetDefenseDownAftermath', false);
         this.targetDefenseUp = _.get(data, 'targetDefenseUp', false);
         this.targetEnraged = _.get(data, 'targetEnraged', false);
         this.targetFury = _.get(data, 'targetFury', false);
@@ -793,7 +800,7 @@ export class DamageFormData {
         // return Math.floor((this.inputOverrides['casterDefense'] ? this.inputOverrides['casterDefense'] : this.casterDefense) * defenseMultiplier);
     }
 
-    // Get the target's final speed after modifiers
+    // Get the target's final defense after modifiers
     // TODO: add indomitable for peacemaker. Also just fix peacemaker lol
     targetFinalDefense = () => {
         let defenseMultiplier = (1 + (this.targetDefenseUp ? BattleConstants.targetDefenseUp : 0)

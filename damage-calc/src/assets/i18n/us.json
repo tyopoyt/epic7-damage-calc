@@ -322,6 +322,7 @@
     "tenebria": "Tenebria",
     "tieria": "Tieria",
     "top_model_luluca": "Top Model Luluca",
+    "tori": "Tori",
     "troublemaker_crozet": "Troublemaker Crozet",
     "twisted_eidolon_kayron": "Twisted Eidolon Kayron",
     "tywin": "Tywin",
@@ -373,6 +374,7 @@
     "exorcist_tonfa": "Exorcist's Tonfa",
     "golden_rose": "Golden Rose",
     "fairy_tale_for_a_nightmare": "Fairytale For a Nightmare",
+    "feed_of_criticism": "Feed of Criticism",
     "frame_of_light": "Frame of Light",
     "hell_cutter": "Hell Cutter",
     "hostess_of_the_banquet": "Hostess of the Banquet",
@@ -719,6 +721,8 @@
     "numberOfSets": "Number of Sets",
     "increasedDefense": "Increased Defense",
     "decreasedDefense": "Decreased Defense",
+    "targetDefenseDownAftermath": "Target Decreased Defense after Skill",
+    "targetDefenseDownAftermathHint": "Check this box to see damage if the target's defense becomes decreased after the main skill damage but before the additional damage (e.g. ae-Karina S3)",
     "targetHasTrauma": "Trauma",
     "trauma": "Trauma",
     "target": "Target",
@@ -868,7 +872,7 @@
     "yoonryoung_slash": "Dazzling Slash",
     "zio_disappear": "Disappear",
     "speed_tuner_instructions": "To use the speed tuner, input the current speed of your slower and/or faster unit, as well as any Combat Readiness increase that will be applied.\nThe tuner will calculate how the units' speeds need to be adjusted to guarantee turn order.\n\nIn Faster Unit Pushes mode, set the speed of the slower and/or faster unit and the CR push to calculate the speed needed for the slower unit to move next.",
-    "damageCalculatorUpdates": "Jan 24 2025 Update: Added Sez and Blooming Lidica's EE.\n\nPlease reach out to me if you find any bugs! @tyopoyt on Discord or Reddit.",
+    "damageCalculatorUpdates": "Feb 11 2025 Update: Added Tori, Feed of Criticism and updated with 2/13 Balance Patch. Also added the option to correctly check additional damage when defense break is applied after main skill damage (e.g. Karina S3 or 3F).\n\nPlease reach out to me if you find any bugs! @tyopoyt on Discord or Reddit.",
     "harsettiWarning": "Harsetti's Skill 3 description says that it has HP scaling, but the multiplier does not yet seem to include it, so her Skill 3 damage here will probably be incorrect until we know her HP scaling."
   },
   "titles": {

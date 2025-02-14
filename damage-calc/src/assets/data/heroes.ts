@@ -203,6 +203,45 @@ export const Heroes: Record<string, Hero> = {
         hpScaling: true,
         rate: () => 0.9,
         pow: () => 1,
+        flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * 0.08,
+        flatTip: () => ({ casterMaxHP: 4 }),
+        mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + (inputValues.skillTreeCompleted ? 0.1 : 0),
+        multTip: () => ({ skill_tree: 10 }),
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        isSingle: () => true,
+      }),
+      s2: new Skill({
+        id: 's2',
+        rate: () => 1.5,
+        pow: () => 1,
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        isSingle: () => true,
+      }),
+      s3: new Skill({
+        id: 's3',
+        hpScaling: true,
+        rate: () => 0.9,
+        pow: () => 1,
+        flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * 0.12,
+        flatTip: () => ({ casterMaxHP: 4 }),
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        isAOE: () => true,
+      }),
+    }
+  }),
+  adventurer_ras_old: new Hero({
+    element: HeroElement.fire,
+    class: HeroClass.knight,
+    baseAttack: 758,
+    baseHP: 5826,
+    baseDefense: 672,
+    heroSpecific: ['casterMaxHP', 'skillTreeCompleted'],
+    skills: {
+      s1: new Skill({
+        id: 's1',
+        hpScaling: true,
+        rate: () => 0.9,
+        pow: () => 1,
         flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * 0.04,
         flatTip: () => ({ casterMaxHP: 4 }),
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + (inputValues.skillTreeCompleted ? 0.1 : 0),
@@ -263,7 +302,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 821,
     baseDefense: 648,
     baseHP: 6751,
-    heroSpecific: ['casterDefense'],
+    heroSpecific: ['casterDefense', 'targetDefenseDownAftermath'],
     skills: {
       s1: new Skill({
         id: 's1',
@@ -450,7 +489,7 @@ export const Heroes: Record<string, Hero> = {
   ainz_ooal_gown: new Hero({
     element: HeroElement.dark,
     class: HeroClass.mage,
-    barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number) => hero.getAttack(artifact, inputValues, attackMultiplier, skill) * 0.7,
+    barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number) => hero.getAttack(artifact, inputValues, attackMultiplier, skill, HitType.normal) * 0.7,
     baseAttack: 1039,
     baseHP: 5299,
     baseDefense: 673,
@@ -486,7 +525,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 894,
     baseHP: 6840,
     baseDefense: 694,
-    heroSpecific: ['casterMaxHP'],
+    heroSpecific: ['casterMaxHP', 'targetDefenseDownAftermath'],
     skills: {
       s1: new Skill({
         id: 's1',
@@ -799,7 +838,7 @@ export const Heroes: Record<string, Hero> = {
     baseDefense: 683,
     heroSpecific: ['targetBurnDetonate'],
     dot: [DoT.burn],
-    barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number) => hero.getAttack(artifact, inputValues, attackMultiplier, skill) * 1.2,
+    barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number) => hero.getAttack(artifact, inputValues, attackMultiplier, skill, HitType.normal) * 1.2,
     skills: {
       s1: new Skill({
         id: 's1',
@@ -862,6 +901,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1316,
     baseHP: 4777,
     baseDefense: 715,
+    heroSpecific: ['targetDefenseDownAftermath'],
     dot: [DoT.burn],
     skills: {
       s1: new Skill({
@@ -876,37 +916,6 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 0.45,
         pow: () => 1.3,
         afterMath: (hitType: HitType) => (hitType !== HitType.miss) ? new AftermathSkill({ attackPercent: 0.4 }) : null,
-        isAOE: () => true,
-        isExtra: true
-      }),
-      s3: new Skill({
-        id: 's3',
-        rate: () => 1,
-        pow: () => 1,
-        enhance: [0.05, 0, 0.1, 0, 0.15],
-        isAOE: () => true,
-      })
-    }
-  }),
-  archdemon_shadow_old: new Hero({
-    element: HeroElement.dark,
-    class: HeroClass.mage,
-    baseAttack: 1316,
-    baseHP: 4777,
-    baseDefense: 715,
-    dot: [DoT.burn],
-    skills: {
-      s1: new Skill({
-        id: 's1',
-        rate: () => 1,
-        pow: () => 1,
-        enhance: [0.05, 0, 0.1, 0, 0.15],
-        isSingle: () => true,
-      }),
-      s2: new Skill({
-        id: 's2',
-        rate: () => 0.6,
-        pow: () => 1.3,
         isAOE: () => true,
         isExtra: true
       }),
@@ -1824,6 +1833,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1182,
     baseHP: 5299,
     baseDefense: 571,
+    heroSpecific: ['targetDefenseDownAftermath'],
     skills: {
       s1: new Skill({
         id: 's1',
@@ -2068,7 +2078,7 @@ export const Heroes: Record<string, Hero> = {
     baseDefense: 606,
     heroSpecific: ['targetBurnDetonate'],
     dot: [DoT.burn],
-    barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number) => hero.getAttack(artifact, inputValues, attackMultiplier, skill) * 0.6,
+    barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number) => hero.getAttack(artifact, inputValues, attackMultiplier, skill, HitType.normal) * 0.6,
     barrierEnhance: 's2',
     skills: {
       s1: new Skill({
@@ -2236,7 +2246,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1228,
     baseHP: 6267,
     baseDefense: 473,
-    barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number) => hero.getAttack(artifact, inputValues, attackMultiplier, skill) * 0.5,
+    barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number) => hero.getAttack(artifact, inputValues, attackMultiplier, skill, HitType.normal) * 0.5,
     skills: {
       s1: new Skill({
         id: 's1',
@@ -2554,43 +2564,6 @@ export const Heroes: Record<string, Hero> = {
       })
     }
   }),
-  chloe_old: new Hero({
-    element: HeroElement.ice,
-    class: HeroClass.warrior,
-    heroSpecific: ['exclusiveEquipment2'],
-    baseAttack: 1177,
-    baseHP: 5542,
-    baseDefense: 553,
-    skills: {
-      s1: new Skill({
-        id: 's1',
-        rate: () => 1,
-        pow: () => 0.9,
-        mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.targetMagicNailed ? 1.3 : 1,
-        multTip: () => ({ target_magic_nail: 30 }),
-        enhance: [0.05, 0.05, 0.1, 0.1, 0.1],
-        isSingle: () => true,
-      }),
-      s2: new Skill({
-        id: 's2',
-        rate: () => 1.2,
-        pow: () => 0.9,
-        enhance: [0.05, 0.05, 0.1, 0.1, 0.1],
-        isSingle: () => true,
-      }),
-      s3: new Skill({
-        id: 's3',
-        soulburn: true,
-        rate: (soulburn: boolean) => soulburn ? 3 : 1.7,
-        pow: () => 0.8,
-        mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.targetMagicNailed ? 1.35 : 1,
-        multTip: () => ({ target_magic_nail: 35 }),
-        exclusiveEquipmentMultiplier: (inputValues: DamageFormData) => inputValues.exclusiveEquipment2 ? 0.2 : 0,
-        enhance: [0.1, 0.1, 0, 0.15, 0.15],
-        isSingle: () => true,
-      })
-    }
-  }),
   choux: new Hero({
     element: HeroElement.ice,
     class: HeroClass.warrior,
@@ -2805,40 +2778,6 @@ export const Heroes: Record<string, Hero> = {
       s1_alt: new Skill({
         id: 's1_alt',
         rate: () => 1.4,
-        pow: () => 1,
-        mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + (100 - inputValues.targetCurrentHPPercent) * 0.004,
-        multTip: () => ({ target_lost_hp_pc: 0.4 }),
-        enhanceFrom: 's1',
-        isSingle: () => true,
-      }),
-      s3: new Skill({
-        id: 's3',
-        soulburn: true,
-        rate: (soulburn: boolean) => soulburn ? 1.25 : 1,
-        pow: () => 1,
-        enhance: [0.05, 0.05, 0, 0.1, 0.1],
-        isAOE: () => true,
-      })
-    }
-  }),
-  closer_charles_old: new Hero({
-    element: HeroElement.dark,
-    class: HeroClass.thief,
-    baseAttack: 1228,
-    baseHP: 6266,
-    baseDefense: 473,
-    heroSpecific: ['targetCurrentHPPercent', 'casterPerception'],
-    skills: {
-      s1: new Skill({
-        id: 's1',
-        rate: () => 1,
-        pow: () => 1,
-        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
-        isSingle: () => true,
-      }),
-      s1_alt: new Skill({
-        id: 's1_alt',
-        rate: () => 1.2,
         pow: () => 1,
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + (100 - inputValues.targetCurrentHPPercent) * 0.004,
         multTip: () => ({ target_lost_hp_pc: 0.4 }),
@@ -3355,7 +3294,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 957,
     baseHP: 5016,
     baseDefense: 645,
-    barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number) => hero.getAttack(artifact, inputValues, attackMultiplier, skill),
+    barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number) => hero.getAttack(artifact, inputValues, attackMultiplier, skill, HitType.normal),
     skills: {
       s1: new Skill({
         id: 's1',
@@ -3614,45 +3553,6 @@ export const Heroes: Record<string, Hero> = {
       })
     }
   }),
-  eligos_old: new Hero({
-    element: HeroElement.fire,
-    class: HeroClass.ranger,
-    heroSpecific: ['casterSpeed', 'casterPerception', 'targetSpeed'],
-    baseAttack: 1283,
-    baseHP: 4976,
-    baseDefense: 536,
-    skills: {
-      s1: new Skill({
-        id: 's1',
-        speedScaling: true,
-        rate: () => 0.95,
-        pow: () => 0.9,
-        mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + inputValues.casterFinalSpeed() * 0.00075,
-        multTip: () => ({ casterSpeed: 0.075 }),
-        enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.1],
-        isSingle: () => true,
-      }),
-      s2: new Skill({
-        id: 's2',
-        speedScaling: true,
-        rate: () => 0.75,
-        pow: () => 1.3,
-        mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => {
-          const spdDiff = (inputValues.casterFinalSpeed() - inputValues.targetFinalSpeed()) * 0.025;
-          return 1 + Math.min(Math.max(0, spdDiff), 2);
-        },
-        multTip: () => ({ caster_target_spd_diff: 0.25 }),
-        isSingle: () => true,
-      }),
-      s3: new Skill({
-        id: 's3',
-        rate: () => 1.5,
-        pow: () => 1,
-        enhance: [0.05, 0.05, 0, 0, 0, 0.1, 0.1],
-        isSingle: () => true,
-      })
-    }
-  }),
   elphelt_valentine: new Hero({
     element: HeroElement.fire,
     class: HeroClass.ranger,
@@ -3830,7 +3730,7 @@ export const Heroes: Record<string, Hero> = {
     baseHP: 6266,
     baseDefense: 473,
     heroSpecific: ['casterMaxHP', 'targetMaxHP'],
-    barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number) => hero.getAttack(artifact, inputValues, attackMultiplier, skill) * 1.2,
+    barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number) => hero.getAttack(artifact, inputValues, attackMultiplier, skill, HitType.normal) * 1.2,
     skills: {
       s1: new Skill({
         id: 's1',
@@ -4048,7 +3948,7 @@ export const Heroes: Record<string, Hero> = {
     baseHP: 6034,
     baseDefense: 775,
     barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number) => {
-      return hero.getAttack(artifact, inputValues, attackMultiplier, skill) * 2.5;
+      return hero.getAttack(artifact, inputValues, attackMultiplier, skill, HitType.normal) * 2.5;
     },
     attackIncrease: (inputValues: DamageFormData) => {
       return 1 + Math.min(inputValues.casterInjury / Math.max(inputValues.casterMaxHP, 1), 1) * 3;
@@ -4433,7 +4333,7 @@ export const Heroes: Record<string, Hero> = {
     baseDefense: 536,
     heroSpecific: ['exclusiveEquipment1', 'dualAttackStack'],
     heroSpecificMaximums: {'dualAttackStack': 5},
-    barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number) => hero.getAttack(artifact, inputValues, attackMultiplier, skill) * 0.5,
+    barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number) => hero.getAttack(artifact, inputValues, attackMultiplier, skill, HitType.normal) * 0.5,
     attackIncrease: (inputValues: DamageFormData) => 1 + inputValues.dualAttackStack * 0.15,
     skills: {
       s1: new Skill({
@@ -4453,7 +4353,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1252,
     baseHP: 4612,
     baseDefense: 627,
-    barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number) => hero.getAttack(artifact, inputValues, attackMultiplier, skill) * 0.6,
+    barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number) => hero.getAttack(artifact, inputValues, attackMultiplier, skill, HitType.normal) * 0.6,
     skills: {
       s1: new Skill({
         id: 's1',
@@ -4841,8 +4741,8 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1119,
     baseHP: 6226,
     baseDefense: 627,
-    heroSpecific: ['exclusiveEquipment1', 'exclusiveEquipment3', 'targetAttack'],
-    barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number) => hero.getAttack(artifact, inputValues, attackMultiplier, skill) * 0.8,
+    heroSpecific: ['exclusiveEquipment1', 'exclusiveEquipment3', 'targetAttack', 'targetDefenseDownAftermath'],
+    barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number) => hero.getAttack(artifact, inputValues, attackMultiplier, skill, HitType.normal) * 0.8,
     skills: {
       s1: new Skill({
         id: 's1',
@@ -4949,7 +4849,7 @@ export const Heroes: Record<string, Hero> = {
     heroSpecific: ['exclusiveEquipment3', 'casterAttackedStack', 'targetAttack'],
     heroSpecificMaximums: {'casterAttackedStack': 3},
     attackIncrease: (inputValues: DamageFormData) => 1 + inputValues.casterAttackedStack * 0.2,
-    barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number) => hero.getAttack(artifact, inputValues, attackMultiplier, skill) * 0.3,
+    barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number) => hero.getAttack(artifact, inputValues, attackMultiplier, skill, HitType.normal) * 0.3,
     skills: {
       s1: new Skill({
         id: 's1',
@@ -5051,7 +4951,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1019,
     baseHP: 5738,
     baseDefense: 571,
-    heroSpecific: ['casterBelow30PercentHP', 'skillTreeCompleted'],
+    heroSpecific: ['casterBelow30PercentHP', 'skillTreeCompleted', 'targetDefenseDownAftermath'],
     attackIncrease: (inputValues: DamageFormData) => inputValues.skillTreeCompleted ? 1.2 : 1,
     skills: {
       s1: new Skill({
@@ -5229,7 +5129,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1228,
     baseHP: 6266,
     baseDefense: 473,
-    /*heroSpecific: ['casterEnraged'],*/
+    heroSpecific: ['targetDefenseDownAftermath'],
     skills: {
       s1: new Skill({
         id: 's1',
@@ -5540,7 +5440,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 957,
     baseHP: 4653,
     baseDefense: 515,
-    heroSpecific: ['targetHasDebuff', 'casterSpeed'],
+    heroSpecific: ['targetHasDebuff', 'casterSpeed', 'targetDefenseDownAftermath'],
     dot: [DoT.bleed],
     skills: {
       s1: new Skill({
@@ -5656,7 +5556,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1283,
     baseHP: 5138,
     baseDefense: 522,
-    barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number) => hero.getAttack(artifact, inputValues, attackMultiplier, skill) * 0.65,
+    barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number) => hero.getAttack(artifact, inputValues, attackMultiplier, skill, HitType.normal) * 0.65,
     heroSpecific: ['exclusiveEquipment2', 'casterHasStealth', 'casterCurrentHPPercent', 'targetHasBuff'],
     skills: {
       s1: new Skill({
@@ -5803,6 +5703,49 @@ export const Heroes: Record<string, Hero> = {
         noCrit: true,
         rate: () => 0.3,
         pow: () => 1,
+        soulburn: true,
+        flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => (soulburn ? 0.26785 : 0.53571) * Math.max(inputValues.casterFinalMaxHP(artifact) - inputValues.casterCurrentHP, 0),
+        flatTip: (soulburn: boolean) => ({ caster_lost_hp: soulburn ? 26.785 : 53.571 }),
+        penetrate: () => 1.0,
+        isSingle: (inputValues: DamageFormData, soulburn: boolean) => !soulburn,
+        isAOE: (inputValues: DamageFormData, soulburn: boolean) => soulburn,
+      })
+    }
+  }),
+  krau_old: new Hero({
+    element: HeroElement.ice,
+    class: HeroClass.knight,
+    baseAttack: 839,
+    baseHP: 6405,
+    baseDefense: 752,
+    heroSpecific: ['casterMaxHP', 'casterCurrentHP'],
+    skills: {
+      s1: new Skill({
+        id: 's1',
+        hpScaling: true,
+        rate: () => 0.7,
+        pow: () => 1,
+        flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 0.085 * inputValues.casterFinalMaxHP(artifact),
+        flatTip: () => ({ casterMaxHP: 8.5 }),
+        enhance: [0.05, 0, 0, 0.1, 0, 0.15],
+        isSingle: () => true,
+      }),
+      s2: new Skill({
+        id: 's2',
+        hpScaling: true,
+        rate: () => 0.8,
+        pow: () => 1,
+        flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 0.13 * inputValues.casterFinalMaxHP(artifact),
+        flatTip: () => ({ casterMaxHP: 13 }),
+        enhance: [0.05, 0, 0.05, 0, 0, 0.1, 0.1],
+        isSingle: () => true,
+      }),
+      s3: new Skill({
+        id: 's3',
+        hpScaling: true,
+        noCrit: true,
+        rate: () => 0.3,
+        pow: () => 1,
         flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 0.53571 * Math.max(inputValues.casterFinalMaxHP(artifact) - inputValues.casterCurrentHP, 0),
         flatTip: () => ({ caster_lost_hp: 53.571 }),
         penetrate: () => 1.0,
@@ -5887,7 +5830,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1029,
     baseHP: 5097,
     baseDefense: 473,
-    barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number) => hero.getAttack(artifact, inputValues, attackMultiplier, skill) * 0.65,
+    barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number) => hero.getAttack(artifact, inputValues, attackMultiplier, skill, HitType.normal) * 0.65,
     heroSpecific: ['casterSpeed', 'targetMaxHP', 'casterHasNeoPhantomSword'],
     skills: {
       s1: new Skill({
@@ -6122,6 +6065,40 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 821,
     baseHP: 6751,
     baseDefense: 648,
+    heroSpecific: ['casterMaxHP', 'highestAllyAttack', 'targetProvoked'],
+    skills: {
+      s1: new Skill({
+        id: 's1',
+        hpScaling: true,
+        rate: () => 0.8,
+        pow: () => 0.95,
+        flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * 0.12,
+        flatTip: () => ({ casterMaxHP: 12 }),
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.1],
+        isSingle: () => true,
+      }),
+      s3: new Skill({
+        id: 's3',
+        rate: (soulburn: boolean, inputValues: DamageFormData) => inputValues.targetProvoked ? 1.8 : 1,
+        pow: () => 1,
+        atk: (inputValues: DamageFormData) => {
+          return inputValues.highestAllyAttack * (1 + (inputValues.highestAllyAttackUp ? BattleConstants.attackUp - 1 : 0)
+                                                    + (inputValues.highestAllyAttackUpGreat ? BattleConstants.attackUpGreat - 1 : 0)
+                                                    - (inputValues.highestAllyAttackDown ? BattleConstants.decreasedAttack : 0))
+                                               * 1.1;
+        },
+        noBuff: true,
+        enhance: [0.05, 0.05, 0, 0.05, 0.05, 0.1],
+        isAOE: () => true,
+      })
+    }
+  }),
+  lilias_old: new Hero({
+    element: HeroElement.fire,
+    class: HeroClass.knight,
+    baseAttack: 821,
+    baseHP: 6751,
+    baseDefense: 648,
     heroSpecific: ['casterMaxHP', 'highestAllyAttack', 'exclusiveEquipment3'],
     skills: {
       s1: new Skill({
@@ -6246,6 +6223,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1119,
     baseHP: 6266,
     baseDefense: 627,
+    heroSpecific: ['targetDefenseDownAftermath'],
     skills: {
       s1: new Skill({
         id: 's1',
@@ -6319,7 +6297,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 885,
     baseHP: 6149,
     baseDefense: 613,
-    heroSpecific: ['turnStack'],
+    heroSpecific: ['turnStack', 'targetDefenseDownAftermath'],
     heroSpecificMaximums: {'turnStack': 5},
     attackIncrease: (inputValues: DamageFormData) => {
       return 1 + (0.2 * Math.min(5, inputValues.turnStack));
@@ -6448,7 +6426,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1412,
     baseHP: 4248,
     baseDefense: 645,
-    heroSpecific: ['exclusiveEquipment1', 'exclusiveEquipment3', 'casterInvincible'],
+    heroSpecific: ['exclusiveEquipment3', 'casterInvincible'],
     skills: {
       s1: new Skill({
         id: 's1',
@@ -6483,7 +6461,7 @@ export const Heroes: Record<string, Hero> = {
     baseHP: 4777,
     baseDefense: 715,
     heroSpecific: ['targetCurrentHPPercent', 'skill3Stack'],
-    barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number) => hero.getAttack(artifact, inputValues, attackMultiplier, skill) * (1 + inputValues.skill3Stack * 0.2) * 0.375,
+    barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number) => hero.getAttack(artifact, inputValues, attackMultiplier, skill, HitType.normal) * (1 + inputValues.skill3Stack * 0.2) * 0.375,
     barrierEnhance: 's2',
     attackIncrease: (inputValues: DamageFormData) => 1 + inputValues.skill3Stack * 0.2,
     skills: {
@@ -7289,7 +7267,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1039,
     baseHP: 6034,
     baseDefense: 613,
-    heroSpecific: ['casterMaxHP'],
+    heroSpecific: ['casterMaxHP', 'targetDefenseDownAftermath'],
     skills: {
       s1: new Skill({
         id: 's1',
@@ -7612,7 +7590,7 @@ export const Heroes: Record<string, Hero> = {
   pernilla: new Hero({
     element: HeroElement.dark,
     class: HeroClass.warrior,
-    barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number) => hero.getAttack(artifact, inputValues, attackMultiplier, skill) * 0.7,
+    barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number) => hero.getAttack(artifact, inputValues, attackMultiplier, skill, HitType.normal) * 0.7,
     barrierEnhance: 's2',
     baseAttack: 1144,
     baseHP: 4895,
@@ -7869,6 +7847,43 @@ export const Heroes: Record<string, Hero> = {
         hpScaling: true,
         rate: () => 0.9,
         pow: () => 1,
+        flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * 0.08,
+        flatTip: () => ({ casterMaxHP: 4 }),
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        isSingle: () => true,
+      }),
+      s2: new Skill({
+        id: 's2',
+        rate: () => 1.5,
+        pow: () => 1,
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        isSingle: () => true,
+      }),
+      s3: new Skill({
+        id: 's3',
+        hpScaling: true,
+        rate: () => 0.9,
+        pow: () => 1,
+        flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * 0.12,
+        flatTip: () => ({ casterMaxHP: 4 }),
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        isAOE: () => true,
+      }),
+    }
+  }),
+  ras_old: new Hero({
+    element: HeroElement.fire,
+    class: HeroClass.knight,
+    baseAttack: 758,
+    baseHP: 5826,
+    baseDefense: 672,
+    heroSpecific: ['casterMaxHP'],
+    skills: {
+      s1: new Skill({
+        id: 's1',
+        hpScaling: true,
+        rate: () => 0.9,
+        pow: () => 1,
         flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * 0.04,
         flatTip: () => ({ casterMaxHP: 4 }),
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
@@ -7986,6 +8001,30 @@ export const Heroes: Record<string, Hero> = {
       }),
       s3: new Skill({
         id: 's3',
+        rate: () => 1.5,
+        pow: () => 1,
+        penetrate: () => 0.5,
+        enhance: [0.05, 0.05, 0, 0.1, 0.1],
+        isSingle: () => true,
+      })
+    }
+  }),
+  remnant_violet_old: new Hero({
+    element: HeroElement.dark,
+    class: HeroClass.thief,
+    baseAttack: 1283,
+    baseHP: 5138,
+    baseDefense: 522,
+    skills: {
+      s1: new Skill({
+        id: 's1',
+        rate: () => 1.2,
+        pow: () => 1,
+        enhance: [0.05, 0, 0.1, 0, 0.15],
+        isSingle: () => true,
+      }),
+      s3: new Skill({
+        id: 's3',
         rate: () => 1.4,
         pow: () => 1,
         penetrate: () => 0.5,
@@ -8000,6 +8039,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1316,
     baseHP: 4777,
     baseDefense: 715,
+    heroSpecific: ['targetDefenseDownAftermath'],
     skills: {
       s1: new Skill({
         id: 's1',
@@ -8053,7 +8093,7 @@ export const Heroes: Record<string, Hero> = {
     baseDefense: 606,
     heroSpecific: ['targetBurnDetonate'],
     dot: [DoT.burn],
-    barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number) => hero.getAttack(artifact, inputValues, attackMultiplier, skill) * 0.6,
+    barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number) => hero.getAttack(artifact, inputValues, attackMultiplier, skill, HitType.normal) * 0.6,
     barrierEnhance: 's2',
     skills: {
       s1: new Skill({
@@ -8602,8 +8642,9 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1445,
     baseDefense: 645,
     baseHP: 6321,
+    heroSpecific: ['targetDefenseDownAftermath'],
     innateAttackIncrease: () => 0.3,
-    barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number) => hero.getAttack(artifact, inputValues, attackMultiplier, skill) * 0.25,
+    barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number) => hero.getAttack(artifact, inputValues, attackMultiplier, skill, HitType.normal) * 0.25,
     skills: {
       s1: new Skill({
         id: 's1',
@@ -8857,7 +8898,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1228,
     baseHP: 6266,
     baseDefense: 473,
-    heroSpecific: ['targetCurrentHPPercent', 'exclusiveEquipment1', 'exclusiveEquipment3'],
+    heroSpecific: ['targetCurrentHPPercent', 'exclusiveEquipment1', 'exclusiveEquipment3', 'targetDefenseDownAftermath'],
     skills: {
       s1: new Skill({
         id: 's1',
@@ -9119,7 +9160,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1177,
     baseHP: 5542,
     baseDefense: 553,
-    heroSpecific: ['targetHasBuff', 'targetMaxHP'],
+    heroSpecific: ['targetHasBuff', 'targetMaxHP', 'targetDefenseDownAftermath'],
     skills: {
       s1: new Skill({
         id: 's1',
@@ -9673,7 +9714,7 @@ export const Heroes: Record<string, Hero> = {
   talia: new Hero({
     element: HeroElement.light,
     class: HeroClass.thief,
-    barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number) => hero.getAttack(artifact, inputValues, attackMultiplier, skill) * 0.7,
+    barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number) => hero.getAttack(artifact, inputValues, attackMultiplier, skill, HitType.normal) * 0.7,
     baseAttack: 903,
     baseHP: 4895,
     baseDefense: 501,
@@ -9888,6 +9929,24 @@ export const Heroes: Record<string, Hero> = {
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + inputValues.casterFinalSpeed() * 0.0015,
         multTip: () => ({ casterSpeed: 0.15 }),
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
+        isSingle: () => true,
+      })
+    }
+  }),
+  tori: new Hero({
+    element: HeroElement.fire,
+    class: HeroClass.thief,
+    baseAttack: 1283,
+    baseHP: 5138,
+    baseDefense: 522,
+    barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number) => hero.getAttack(artifact, inputValues, attackMultiplier, skill, HitType.normal) * 0.5,
+    skills: {
+      s1: new Skill({
+        id: 's1',
+        rate: (soulburn: boolean) => soulburn ? 2.3 : 1.2,
+        pow: () => 0.9,
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.1],
+        soulburn: true,
         isSingle: () => true,
       })
     }
@@ -10501,38 +10560,6 @@ export const Heroes: Record<string, Hero> = {
         pow: () => 0.95,
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.targetHasDebuff ? 1.5 : 1,
         multTip: () => ({ targetHasDebuff: 0.5 }),
-        enhance: [0.05, 0.05, 0, 0.05, 0.1, 0.1],
-        isSingle: () => true,
-      })
-    }
-  }),
-  yufine_old: new Hero({
-    element: HeroElement.earth,
-    class: HeroClass.warrior,
-    baseAttack: 1228,
-    baseHP: 5784,
-    baseDefense: 553,
-    heroSpecific: ['exclusiveEquipment2', 'targetSilenced'],
-    skills: {
-      s1: new Skill({
-        id: 's1',
-        rate: () => 1,
-        pow: () => 1,
-        exclusiveEquipmentMultiplier: (inputValues: DamageFormData) => inputValues.exclusiveEquipment2 ? 0.3 : 0,
-        enhance: [0.05, 0.05, 0, 0.05, 0, 0.15],
-        isSingle: () => true,
-      }),
-      s2: new Skill({
-        id: 's2',
-        rate: () => 0.9,
-        pow: () => 1,
-        isAOE: () => true,
-      }),
-      s3: new Skill({
-        id: 's3',
-        rate: () => 2,
-        pow: () => 0.95,
-        penetrate: (soulburn: boolean, inputValues: DamageFormData) => inputValues.targetSilenced ? 0.7 : 0,
         enhance: [0.05, 0.05, 0, 0.05, 0.1, 0.1],
         isSingle: () => true,
       })

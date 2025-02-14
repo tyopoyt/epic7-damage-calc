@@ -1992,3 +1992,178 @@
       //     }),
       //   }
       // }),
+      // yufine_old: new Hero({
+      //   element: HeroElement.earth,
+      //   class: HeroClass.warrior,
+      //   baseAttack: 1228,
+      //   baseHP: 5784,
+      //   baseDefense: 553,
+      //   heroSpecific: ['exclusiveEquipment2', 'targetSilenced'],
+      //   skills: {
+      //     s1: new Skill({
+      //       id: 's1',
+      //       rate: () => 1,
+      //       pow: () => 1,
+      //       exclusiveEquipmentMultiplier: (inputValues: DamageFormData) => inputValues.exclusiveEquipment2 ? 0.3 : 0,
+      //       enhance: [0.05, 0.05, 0, 0.05, 0, 0.15],
+      //       isSingle: () => true,
+      //     }),
+      //     s2: new Skill({
+      //       id: 's2',
+      //       rate: () => 0.9,
+      //       pow: () => 1,
+      //       isAOE: () => true,
+      //     }),
+      //     s3: new Skill({
+      //       id: 's3',
+      //       rate: () => 2,
+      //       pow: () => 0.95,
+      //       penetrate: (soulburn: boolean, inputValues: DamageFormData) => inputValues.targetSilenced ? 0.7 : 0,
+      //       enhance: [0.05, 0.05, 0, 0.05, 0.1, 0.1],
+      //       isSingle: () => true,
+      //     })
+      //   }
+      // }),
+      // archdemon_shadow_old: new Hero({
+        //   element: HeroElement.dark,
+        //   class: HeroClass.mage,
+        //   baseAttack: 1316,
+        //   baseHP: 4777,
+        //   baseDefense: 715,
+        //   dot: [DoT.burn],
+        //   skills: {
+        //     s1: new Skill({
+        //       id: 's1',
+        //       rate: () => 1,
+        //       pow: () => 1,
+        //       enhance: [0.05, 0, 0.1, 0, 0.15],
+        //       isSingle: () => true,
+        //     }),
+        //     s2: new Skill({
+        //       id: 's2',
+        //       rate: () => 0.6,
+        //       pow: () => 1.3,
+        //       isAOE: () => true,
+        //       isExtra: true
+        //     }),
+        //     s3: new Skill({
+        //       id: 's3',
+        //       rate: () => 1,
+        //       pow: () => 1,
+        //       enhance: [0.05, 0, 0.1, 0, 0.15],
+        //       isAOE: () => true,
+        //     })
+        //   }
+        // }),
+         // chloe_old: new Hero({
+  //   element: HeroElement.ice,
+  //   class: HeroClass.warrior,
+  //   heroSpecific: ['exclusiveEquipment2'],
+  //   baseAttack: 1177,
+  //   baseHP: 5542,
+  //   baseDefense: 553,
+  //   skills: {
+  //     s1: new Skill({
+  //       id: 's1',
+  //       rate: () => 1,
+  //       pow: () => 0.9,
+  //       mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.targetMagicNailed ? 1.3 : 1,
+  //       multTip: () => ({ target_magic_nail: 30 }),
+  //       enhance: [0.05, 0.05, 0.1, 0.1, 0.1],
+  //       isSingle: () => true,
+  //     }),
+  //     s2: new Skill({
+  //       id: 's2',
+  //       rate: () => 1.2,
+  //       pow: () => 0.9,
+  //       enhance: [0.05, 0.05, 0.1, 0.1, 0.1],
+  //       isSingle: () => true,
+  //     }),
+  //     s3: new Skill({
+  //       id: 's3',
+  //       soulburn: true,
+  //       rate: (soulburn: boolean) => soulburn ? 3 : 1.7,
+  //       pow: () => 0.8,
+  //       mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.targetMagicNailed ? 1.35 : 1,
+  //       multTip: () => ({ target_magic_nail: 35 }),
+  //       exclusiveEquipmentMultiplier: (inputValues: DamageFormData) => inputValues.exclusiveEquipment2 ? 0.2 : 0,
+  //       enhance: [0.1, 0.1, 0, 0.15, 0.15],
+  //       isSingle: () => true,
+  //     })
+  //   }
+  // }),
+
+  // closer_charles_old: new Hero({
+  //   element: HeroElement.dark,
+  //   class: HeroClass.thief,
+  //   baseAttack: 1228,
+  //   baseHP: 6266,
+  //   baseDefense: 473,
+  //   heroSpecific: ['targetCurrentHPPercent', 'casterPerception'],
+  //   skills: {
+  //     s1: new Skill({
+  //       id: 's1',
+  //       rate: () => 1,
+  //       pow: () => 1,
+  //       enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+  //       isSingle: () => true,
+  //     }),
+  //     s1_alt: new Skill({
+  //       id: 's1_alt',
+  //       rate: () => 1.2,
+  //       pow: () => 1,
+  //       mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + (100 - inputValues.targetCurrentHPPercent) * 0.004,
+  //       multTip: () => ({ target_lost_hp_pc: 0.4 }),
+  //       enhanceFrom: 's1',
+  //       isSingle: () => true,
+  //     }),
+  //     s3: new Skill({
+  //       id: 's3',
+  //       soulburn: true,
+  //       rate: (soulburn: boolean) => soulburn ? 1.25 : 1,
+  //       pow: () => 1,
+  //       enhance: [0.05, 0.05, 0, 0.1, 0.1],
+  //       isAOE: () => true,
+  //     })
+  //   }
+  // }),
+
+    // eligos_old: new Hero({
+  //   element: HeroElement.fire,
+  //   class: HeroClass.ranger,
+  //   heroSpecific: ['casterSpeed', 'casterPerception', 'targetSpeed'],
+  //   baseAttack: 1283,
+  //   baseHP: 4976,
+  //   baseDefense: 536,
+  //   skills: {
+  //     s1: new Skill({
+  //       id: 's1',
+  //       speedScaling: true,
+  //       rate: () => 0.95,
+  //       pow: () => 0.9,
+  //       mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + inputValues.casterFinalSpeed() * 0.00075,
+  //       multTip: () => ({ casterSpeed: 0.075 }),
+  //       enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.1],
+  //       isSingle: () => true,
+  //     }),
+  //     s2: new Skill({
+  //       id: 's2',
+  //       speedScaling: true,
+  //       rate: () => 0.75,
+  //       pow: () => 1.3,
+  //       mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => {
+  //         const spdDiff = (inputValues.casterFinalSpeed() - inputValues.targetFinalSpeed()) * 0.025;
+  //         return 1 + Math.min(Math.max(0, spdDiff), 2);
+  //       },
+  //       multTip: () => ({ caster_target_spd_diff: 0.25 }),
+  //       isSingle: () => true,
+  //     }),
+  //     s3: new Skill({
+  //       id: 's3',
+  //       rate: () => 1.5,
+  //       pow: () => 1,
+  //       enhance: [0.05, 0.05, 0, 0, 0, 0.1, 0.1],
+  //       isSingle: () => true,
+  //     })
+  //   }
+  // }),
