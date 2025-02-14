@@ -1,7 +1,7 @@
 import { Artifact } from "src/app/models/artifact";
 import { DamageFormData } from "src/app/models/forms";
 import { HeroClass, HeroElement } from "src/app/models/hero";
-import { DoT, Skill } from "src/app/models/skill";
+import { DoT, HitType, Skill } from "src/app/models/skill";
 import { Heroes } from "./heroes";
 import { ArtifactDamageType } from "src/app/models/artifact"
 
@@ -12,7 +12,7 @@ export const Artifacts: Record<string, Artifact> = {
     id: 'three_f',
     name: '3F',
     type: ArtifactDamageType.aftermath,
-    artifactSpecific:['casterMaxHP'],
+    artifactSpecific:['casterMaxHP', 'targetDefenseDownAftermath'],
     hpScaling: true,
     hpPercent: 0.09,
     penetrate: 0.7,
@@ -186,6 +186,13 @@ export const Artifacts: Record<string, Artifact> = {
     applies: (skill: Skill, inputValues: DamageFormData) => skill.isExtra || inputValues.extraDualOrCounter,
     value: (artiScale: number) => artiScale
   }),
+  feed_of_criticism: new Artifact({
+    id: 'feed_of_criticism',
+    name: 'Feed of Criticism',
+    type: ArtifactDamageType.attack,
+    scale: [0.1, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2],
+    exclusive: HeroClass.thief
+  }),
   frame_of_light: new Artifact({
     id: 'frame_of_light',
     name: 'Frame of Light',
@@ -344,6 +351,7 @@ export const Artifacts: Record<string, Artifact> = {
     id: 'reingar_special_drink',
     name: 'Reingar\'s Special Drink',
     type: ArtifactDamageType.aftermath,
+    artifactSpecific:['targetDefenseDownAftermath'],
     attackPercent: 0.3,
     penetrate: 0.7,
     exclusive: HeroClass.ranger,
@@ -360,7 +368,7 @@ export const Artifacts: Record<string, Artifact> = {
     id: 'rocket_punch_gauntlet',
     name: 'Rocket Punch Gauntlet',
     type: ArtifactDamageType.aftermath,
-    artifactSpecific:['casterDefense'],
+    artifactSpecific:['casterDefense', 'targetDefenseDownAftermath'],
     defenseScaling: true,
     defensePercent: 1.0,
     penetrate: 0.7,
@@ -434,6 +442,7 @@ export const Artifacts: Record<string, Artifact> = {
     id: 'spear_of_a_new_dawn',
     name: 'Spear of a New Dawn',
     type: ArtifactDamageType.aftermath,
+    artifactSpecific:['targetDefenseDownAftermath'],
     attackPercent: 0.4,
     penetrate: 0.7,
     exclusive: HeroClass.knight,
@@ -535,10 +544,10 @@ export const Artifacts: Record<string, Artifact> = {
     id: 'uberius_tooth',
     name: 'Uberius\'s Tooth',
     type: ArtifactDamageType.aftermath,
+    artifactSpecific:['targetDefenseDownAftermath'],
     attackPercent: 0.45,
     penetrate: 0.7,
-    exclusive: HeroClass.warrior,
-    applies: (skill: Skill, inputValues: DamageFormData, soulburn: boolean) => skill.isSingle(inputValues, soulburn),
+    exclusive: HeroClass.warrior
   }),
   victorious_flag: new Artifact({
     id: 'victorious_flag',
@@ -577,8 +586,12 @@ export const Artifacts: Record<string, Artifact> = {
   wings_of_light_and_shadow: new Artifact({
     id: 'wings_of_light_and_shadow',
     name: 'Wings of Light and Shadow',
-    scale: [0.1, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2],
+    scale: [0.07, 0.077, 0.084, 0.091, 0.098, 0.105, 0.112, 0.119, 0.126, 0.133, 0.14],
+    additional: [0.04, 0.044, 0.048, 0.052, 0.056, 0.06, 0.064, 0.068, 0.072, 0.076, 0.08],
     type: ArtifactDamageType.damage,
     exclusive: HeroClass.knight,
+    value: (artiScale: number, inputValues: DamageFormData, skill: Skill, isExtra: boolean, hitType: HitType) => {
+      return artiScale + (hitType === HitType.crit ? Artifacts.wings_of_light_and_shadow.additional[Artifacts.wings_of_light_and_shadow.scale.indexOf(artiScale)] : 0);
+    }
   }),
 };
