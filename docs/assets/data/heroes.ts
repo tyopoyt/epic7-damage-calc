@@ -9101,7 +9101,6 @@ export const Heroes: Record<string, Hero> = {
       })
     }
   }),
-
   silver_blade_aramintha: new Hero({
     element: HeroElement.light,
     class: HeroClass.mage,
@@ -9386,6 +9385,32 @@ export const Heroes: Record<string, Hero> = {
         penetrateTip: () => ({caster_target_atk_diff: 0.035}),
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
         isAOE: () => true,
+      }),
+    }
+  }),
+  successor_taeyou: new Hero({
+    element: HeroElement.light,
+    class: HeroClass.warrior,
+    baseAttack: 1119,
+    baseHP: 6266,
+    baseDefense: 627,
+    heroSpecific: ['casterHasPossession'],
+    skills: {
+      s1: new Skill({
+        id: 's1',
+        rate: () => 1,
+        pow: () => 1,
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        onlyCrit: () => true,
+        isSingle: () => true
+      }),
+      s1_bis: new Skill({
+        id: 's1_bis',
+        name: 'taeyouRoaringSpiritfall',
+        rate: () => 1.85,
+        pow: () => 1,
+        onlyCrit: () => true,
+        isSingle: () => true
       }),
     }
   }),
