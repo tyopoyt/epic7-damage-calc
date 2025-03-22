@@ -5234,7 +5234,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1359,
     baseHP: 5542,
     baseDef: 585,
-    heroSpecific: [/*'casterEnraged',*/ 'targetNumberOfDebuffs'],
+    heroSpecific: ['targetNumberOfDebuffs'],
     dot: [DoT.bleed],
     skills: {
       s1: new Skill({
