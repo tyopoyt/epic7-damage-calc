@@ -47,7 +47,7 @@ export const Heroes: Record<string, Hero> = {
     name: 'Abyssal Yufine',
     element: HeroElement.dark,
     class: HeroClass.knight,
-    baseAtk: 830,
+    baseAttack: 830,
     baseHP: 6619,
     baseDef: 713,
     heroSpecific: ['casterDefense', 'casterHasTrauma'],
@@ -379,7 +379,7 @@ export const Heroes: Record<string, Hero> = {
   afternoon_soak_flan: new Hero({
     element: HeroElement.fire,
     class: HeroClass.ranger,
-    baseAtk: 1182,
+    baseAttack: 1182,
     baseHP: 5299,
     baseDef: 571,
     skills: {
@@ -3985,7 +3985,7 @@ export const Heroes: Record<string, Hero> = {
   fenris: new Hero({
     element: HeroElement.earth,
     class: HeroClass.ranger,
-    baseAtk: 1327,
+    baseAttack: 1327,
     baseHP: 5138,
     baseDef: 582,
     heroSpecific: ['casterMaxHP', 'targetMaxHP'],
@@ -5231,7 +5231,7 @@ export const Heroes: Record<string, Hero> = {
   kane: new Hero({
     element: HeroElement.fire,
     class: HeroClass.warrior,
-    baseAtk: 1359,
+    baseAttack: 1359,
     baseHP: 5542,
     baseDef: 585,
     heroSpecific: [/*'casterEnraged',*/ 'targetNumberOfDebuffs'],
@@ -6801,7 +6801,7 @@ export const Heroes: Record<string, Hero> = {
     name: 'Midnight Gala Lilias',
     element: HeroElement.earth,
     class: HeroClass.thief,
-    baseAtk: 1208,
+    baseAttack: 1208,
     baseHP: 5178,
     baseDef: 508,
     heroSpecific: ['casterMaxHP', 'targetMaxHP'],
@@ -7144,7 +7144,7 @@ export const Heroes: Record<string, Hero> = {
     name: 'Nahkwol',
     element: HeroElement.fire,
     class: HeroClass.ranger,
-    baseAtk: 1003,
+    baseAttack: 1003,
     baseHP: 5704,
     baseDef: 585,
     skills: {
