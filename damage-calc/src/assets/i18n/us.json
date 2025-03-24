@@ -843,7 +843,9 @@
     "targetSpeedDown": "Target has Decreased Speed",
     "targetStunned": "Target is Stunned",
     "turnStack": "Turn Stack",
-    "enemyNumberOfDebuffs": "Number of Debuffs on Enemies"
+    "enemyNumberOfDebuffs": "Number of Debuffs on Enemies",
+    "speed_probabilities": "Speed Probabilities",
+    "speed_probabilities_hint": "How likely each speed range is. Hover over a bar to see the chances the speed falls within that distance from the average."
   },
   "graph": {
     "attack": "Attack",
@@ -851,7 +853,9 @@
     "casterMaxHP": "HP",
     "casterSpeed": "Speed",
     "casterDefense": "Defense",
-    "withMore": "With more"
+    "withMore": "With more",
+    "chanceSpeed": "chance speed",
+    "chanceSpeedBetween": "chance speed between"
   },
   "info": {
     "abyssal_yufine_unbridled_outburst": "Unbridled Outburst",

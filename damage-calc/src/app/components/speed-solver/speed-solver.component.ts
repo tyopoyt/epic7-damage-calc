@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Languages } from 'src/app/models/languages';
 import { LanguageService } from 'src/app/services/language.service';
-import { ScreenService } from 'src/app/services/screen.service';
+import { ScreenService, Theme } from 'src/app/services/screen.service';
 import { HeaderCardComponentColorOption, HeaderCardComponentSizeOption } from '../ui-elements/header-card/header-card.component';
 import { TranslationPipe } from 'src/app/pipes/translation.pipe';
 import { DismissibleColorOption } from '../ui-elements/dismissible/dismissible.component';
 import { FormControl } from '@angular/forms';
+import { ChartConfiguration, ChartData, ChartOptions } from 'chart.js';
+import { DisplayConstants } from 'src/assets/data/constants';
 
 @Component({
   selector: 'app-speed-solver',
@@ -33,6 +35,67 @@ export class SpeedSolverComponent implements OnInit {
   speedRangeText = '210 - 237';
 
   DismissibleColorOption = DismissibleColorOption;
+
+  // Graphing stuff
+  public speedData: ChartConfiguration['data'] = {datasets: [], labels: []};
+  // public speedData: ChartConfiguration['data'] = {};
+  labels: string[] = ['one', 'two', 'three', 'four', 'five'];
+  probabilityData = [1/36, 2/36, 3/36, 4/36, 5/36, 6/36, 5/36, 4/36, 3/36, 2/36, 1/36];
+  colorSeries = ['#ff0000', '#fc7a00', '#f9ff00', '#bbff00', '#85ff00', '#4eff00', '#85ff00', '#bbff00', '#f9ff00', '#fc7a00', '#ff0000']
+  probabilitySeries = [
+    {
+      backgroundColor: this.colorSeries,
+      // label: "speeds",
+      barPercentage: 1,
+      categoryPercentage: 1,
+      data: this.probabilityData,
+    }
+  ]
+
+  options: ChartOptions = {
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          labels: {
+            generateLabels: () => {return []}
+          }
+        },
+        tooltip: {
+          callbacks: {
+            // TODO: translate, obviously
+            label: (item: any) => {
+              // return `${this.translationPipe.transform('withMore', 'graph', this.languageService.language.value)} ${item.dataset.label}: ${item.formattedValue}`// TODO: define type?            
+              const dataDiff = Math.abs(5 - item.dataIndex)
+              const minData = 5 - dataDiff;
+              const maxData = dataDiff + 5
+              const labels = this.speedData.labels || []
+              const cumulativeProbability = this.probabilityData.slice(minData, maxData + 1).reduce((sum, value) => Number(sum) + Number(value), 0)
+              return `${(item.formattedValue * 100).toFixed(1)}% ${this.translationPipe.transform('chanceSpeed', 'graph', this.languageService.language.value)} ≈${item.label}${dataDiff !== 0 ? ('\n|\n' + (cumulativeProbability * 100).toFixed(1) + '% ' + this.translationPipe.transform('chanceSpeedBetween', 'graph', this.languageService.language.value) + ' ' + labels[minData] +  '~' + labels[maxData]) : ''}`
+            }
+          },
+        },
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          grid: {
+            color: this.screenService.theme === Theme.dark ? '#5f5f5f': '#898989'
+          },
+          ticks: {
+            color: this.screenService.theme === Theme.dark ? '#DDDDDD': '#898989'
+          }
+        },
+        x: {
+          grid: {
+            color: this.screenService.theme === Theme.dark ? '#5f5f5f': '#898989'
+          },
+          ticks: {
+            color: this.screenService.theme === Theme.dark ? '#DDDDDD': '#898989'
+          }
+        }
+      }
+    }
+  
 
   constructor(public screenService: ScreenService,
               public languageService: LanguageService,
@@ -97,19 +160,37 @@ export class SpeedSolverComponent implements OnInit {
     let solveUnitMinSpeed, solveUnitMaxSpeed, solveUnitAvgSpeed;
 
     if (this.solverTypeControl.value === 'slower') {
+      const breakPointSpeeds = []
       const slowerUnitCR = this.slowerCR / 100;
-      // const fasterUnitCR = 1;
-      const minCRRatio = slowerUnitCR - 0.05; // divided by 1
-      const avgCRRatio = slowerUnitCR; // divided by 1
-      const maxCRRatio = slowerUnitCR / 0.95;
+      const minCRRatio = slowerUnitCR - 0.05;
+      const avgCRRatio = slowerUnitCR;
+      const maxCRRatio = slowerUnitCR / 0.95; 
 
       solveUnitMinSpeed = this.fasterSpeed * minCRRatio;
       solveUnitAvgSpeed = this.fasterSpeed * avgCRRatio;
       solveUnitMaxSpeed = this.fasterSpeed * maxCRRatio;
+
+      for (let i = 0; i < 11; i++) {
+        const crDiff = (i - 5) / 100;
+        if (crDiff < 0) {
+          breakPointSpeeds.push(`${Math.ceil(this.fasterSpeed * (slowerUnitCR + crDiff))}`)
+        } else if (crDiff > 0) {
+          breakPointSpeeds.push(`${Math.floor(this.fasterSpeed * (slowerUnitCR / (1 - crDiff)))}`)
+        } else {
+          breakPointSpeeds.push(`${Math.ceil(this.fasterSpeed * slowerUnitCR)}`)
+        }
+      }
   
-      this.speedRangeText = `${Math.floor(solveUnitMinSpeed)} - ${Math.ceil(solveUnitMaxSpeed)}`;
+      this.speedRangeText = `${Math.ceil(solveUnitMinSpeed)} - ${Math.floor(solveUnitMaxSpeed)}`;
       this.avgSpeedText = `~${Math.ceil(solveUnitAvgSpeed)}`;
+
+      this.speedData = {
+        labels: breakPointSpeeds,
+        datasets: this.probabilitySeries,
+      }
     } else {
+      const breakPointSpeeds = []
+
       const slowerUnitCR = this.slowerCR / 100;
       const fasterUnitCR = this.fasterCR / 100;
 
@@ -120,13 +201,28 @@ export class SpeedSolverComponent implements OnInit {
       solveUnitMinSpeed = this.slowerSpeed * minCRRatio;
       solveUnitAvgSpeed = this.slowerSpeed * avgCRRatio;
       solveUnitMaxSpeed = this.slowerSpeed * maxCRRatio;
+
+      for (let i = 0; i < 11; i++) {
+        const crDiff = (i - 5) / 100;
+        if (crDiff < 0) {
+          breakPointSpeeds.push(`${Math.ceil(this.slowerSpeed * ((fasterUnitCR + crDiff) / slowerUnitCR))}`)
+        } else if (crDiff > 0) {
+          breakPointSpeeds.push(`${Math.floor(this.slowerSpeed * (fasterUnitCR /(slowerUnitCR - crDiff)))}`)
+        } else {
+          breakPointSpeeds.push(`${Math.ceil(this.slowerSpeed / (slowerUnitCR / fasterUnitCR))}`)
+        }
+      }
   
-      this.speedRangeText = `${Math.floor(solveUnitMinSpeed)} - ${Math.ceil(solveUnitMaxSpeed)}`;
+      this.speedRangeText = `${Math.ceil(solveUnitMinSpeed)} - ${Math.floor(solveUnitMaxSpeed)}`;
       this.avgSpeedText = `~${Math.ceil(solveUnitAvgSpeed)}`;
+
+      this.speedData = {
+        labels: breakPointSpeeds,
+        datasets: this.probabilitySeries,
+      }
     }
   
     //TODO: enable when queryparams work?
     // debounce('updateQueryParams', updateQueryParams, [false]);
   }
-
 }

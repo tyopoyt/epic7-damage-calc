@@ -672,7 +672,9 @@
         "targetAttackUpGreat": "대상의 공격력 증가 (대)",
         "targetNumberofBuffs": "대상의 강화효과 개수",
         "s3Stack": "3스킬 스택",
-        "allAlliesFire": "모든 아군이 화염속성"
+        "allAlliesFire": "모든 아군이 화염속성",
+        "speed_probabilities": "속도 확률",
+        "speed_probabilities_hint": "각 속도 범위가 얼마나 될지.속도가 평균과의 거리에 속하는 기회를 확인하기 위해 막대 위로 마우스를 가져옵니다."
     },
     "skills": {
         "nonApplicable": "해당사항 없음",
@@ -802,7 +804,9 @@
         "casterMaxHP": "생명력",
         "casterSpeed": "속도",
         "casterDefense": "방어력",
-        "withMore": "증액된"
+        "withMore": "증액된",
+        "chanceSpeed": "속도가 될 가능성",
+        "chanceSpeedBetween": "속도가 사이에있을 가능성"
     },
     "info": {
         "abyssal_yufine_unbridled_outburst": "폭주",

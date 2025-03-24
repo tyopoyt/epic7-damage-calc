@@ -3,3 +3,35 @@
 .has-radio-buttons {
     margin-top: $gutter;
 }
+
+mat-card {
+    height: 100%;
+    width: 13.75rem;
+    padding: 0;
+
+    &.left {
+        margin-left: 0;
+    }
+
+    &.full-width {
+        width: 100%;
+    }
+
+    span.header {
+        height: 2rem;
+        width: calc(100% - 1.5rem);
+        padding: 0 0.75rem 0 0.75rem;
+        border-radius: 0.5rem 0.5rem 0 0;
+    }
+
+    span.content {
+        padding: 0.75rem;
+        height: calc(100% - 2rem);
+    }
+
+    .icon {
+        cursor: help;
+    }
+
+    background-color: $ui-medium-dark-color;
+}

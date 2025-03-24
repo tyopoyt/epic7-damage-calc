@@ -666,7 +666,9 @@
         "targetAttackUpGreat": "目标增加了攻击（伟大）",
         "targetNumberofBuffs": "目标上的增益次数",
         "s3Stack": "技能3 堆栈",
-        "allAlliesFire": "所有盟友都是火元素"
+        "allAlliesFire": "所有盟友都是火元素",
+        "speed_probabilities": "速度概率",
+        "speed_probabilities_hint": "每个速度范围的可能性。悬停在酒吧上，以查看速度与平均值距离之内的机会。"
     },
     "skills": {
         "nonApplicable": "无",
@@ -794,7 +796,9 @@
         "casterMaxHP": "最大生命值",
         "casterSpeed": "速度",
         "casterDefense": "防御力",
-        "withMore": "还有更多"
+        "withMore": "还有更多",
+        "chanceSpeed": "速度是",
+        "chanceSpeedBetween": "有机会介于"
     },
     "info": {
         "abyssal_yufine_unbridled_outburst": "暴走",

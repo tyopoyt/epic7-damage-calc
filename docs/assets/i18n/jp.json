@@ -674,7 +674,9 @@
     "s3Stack": "スキル3使用回数",
     "allAlliesFire": "味方全員火属性",
     "explosives": "爆発物",
-    "special_friendship": "特別な友情"
+    "special_friendship": "特別な友情",
+    "speed_probabilities": "速度確率",
+    "speed_probabilities_hint": "各速度範囲の可能性。速度が平均からその距離内にある可能性を確認するためにバーの上にホバリングします。"
   },
   "skills": {
     "nonApplicable": "-",
@@ -804,7 +806,9 @@
     "casterMaxHP": "生命力上限値",
     "casterSpeed": "スピード",
     "casterDefense": "防御力",
-    "withMore": "もっと"
+    "withMore": "もっと",
+    "chanceSpeed": "速度がある可能性",
+    "chanceSpeedBetween": "速度が間にある可能性"
   },
   "info": {
     "abyssal_yufine_unbridled_outburst": "暴走",

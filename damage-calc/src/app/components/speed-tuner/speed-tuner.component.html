@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <div class="page-container">
     <span class="page-body">
-        <app-dismissible [content]="'speed_tuner_instructions' | translate:'info':languageService.language.value" [color]="DismissibleColorOption.instructions"></app-dismissible>
+        <app-dismissible [content]="'speed_tuner_instructions' | translate:'info':languageService.language.value" [color]="DismissibleColorOption.instructions" [key]="'speedTunerInstructions'"></app-dismissible>
         <mat-slide-toggle #fasterPushesSlowerSwitch class="pointer small-margin-top" (click)="toggleFasterPushesSlower()" [checked]="this.fasterPushesSlower">{{'faster_pushes_slower' | translate:'form':languageService.language.value}}</mat-slide-toggle>
         <div class="neat-container full-width" [class.column-2]="!screenService.mediumSmallScreen.value" [class.full-width-number-input]="!screenService.largeScreen.value">
             <div [class.full-width]="screenService.mediumSmallScreen.value">

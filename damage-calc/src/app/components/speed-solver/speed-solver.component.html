@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <div class="page-container">
     <span class="page-body">
-        <app-dismissible [content]="'speed_solver_instructions' | translate:'info':languageService.language.value" [color]="DismissibleColorOption.instructions"></app-dismissible>
+        <app-dismissible [content]="'speed_solver_instructions' | translate:'info':languageService.language.value" [color]="DismissibleColorOption.instructions" [key]="'speedSolverInstructions'"></app-dismissible>
         <div class="full-width flex-aligned flex-between has-radio-buttons" [ngClass]="!screenService.mediumSmallScreen.value ? 'flex-row' : 'flex-column'">
             <mat-radio-group [formControl]="solverTypeControl" (change)="setSolverType($event.value)" aria-label="Hit type">
                 <mat-radio-button class="pointer" value="slower">{{'solveSlower' | translate:'ui':languageService.language.value}}</mat-radio-button>
@@ -53,6 +53,21 @@
                 [content]="avgSpeedText" [color]="displayColor" [contentSize]="HeaderCardComponentSizeOption.large"
                 [hint]="'probable_speed_hint' | translate:'form':languageService.language.value">
             </app-header-card>
+        </div>
+        <div class="neat-container canvas-holder">
+            <mat-card class="left full-width">
+                <span class="header flex-centered bold-text">
+                    {{'speed_probabilities' | translate:'form':languageService.language.value}}
+                    <img class="icon tiny tiny-margin-left" src="assets/icons/help-circle-outline.svg" alt="Hint"
+                         matTooltip="{{'speed_probabilities_hint' | translate:'form':languageService.language.value}}">
+                </span>
+                <span class="content flex-centered bold-text flex-column">
+                    <canvas baseChart class="chart"
+                        [data]="speedData" [labels]="labels"
+                        [options]="options" [type]="'bar'">
+                    </canvas>
+                </span>
+            </mat-card>
         </div>
     </span>
 </div>

@@ -283,6 +283,12 @@ html, body {
     }
   }
 
+  .canvas-holder {
+    height: 30dvh;
+    width: 100%;
+    margin-bottom: $gutter-small;
+  }
+
   // TODO: get the slider thumb hover indicators not to be clipped
   .multi-slide {
     border-radius: $gutter;

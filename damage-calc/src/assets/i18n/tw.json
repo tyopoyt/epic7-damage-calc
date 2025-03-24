@@ -672,7 +672,9 @@
         "casterElementalWisdomStack": "元素智慧堆棧",
         "casterPromotionStack": "升級堆棧",
         "targetNumberofBuffs": "目標上的增益次數",
-        "s3Stack": "技能3堆棧"
+        "s3Stack": "技能3堆棧",
+        "speed_probabilities": "速度概率",
+        "speed_probabilities_hint": "每個速度範圍的可能性。懸停在酒吧上，以查看速度與平均值距離之內的機會。"
     },
     "skills": {
         "nonApplicable": "無",
@@ -802,7 +804,9 @@
         "casterMaxHP": "最大生命值",
         "casterSpeed": "速度",
         "casterDefense": "防禦力",
-        "withMore": "有更多"
+        "withMore": "有更多",
+        "chanceSpeed": "速度是",
+        "chanceSpeedBetween": "有機會介於"
     },
     "info": {
         "abyssal_yufine_unbridled_outburst": "暴走",
