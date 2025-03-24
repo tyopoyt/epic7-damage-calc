@@ -618,6 +618,12 @@
         "skill3Stack": "技能3堆棧",
         "skill1Stack": "技能1堆棧",
         "skillTreeCompleted": "技能樹完成了",
+        "slower_unit_cr": "較慢的單位戰鬥準備",
+        "faster_unit_cr": "更快的單位戰鬥準備",
+        "speed_range": "速度範圍",
+        "speed_range_hint": "目標單元可能的速度範圍取決於初始隨機戰鬥準備。",
+        "probable_speed": "可能的速度",
+        "probable_speed_hint": "最有可能的速度，假設兩個單元都接受了相同的初始戰鬥準備.  目標單元的實際速度可能比速度範圍的末端更接近此數字。",
         "targetAsleep": "目標睡著了",
         "targetAttack": "目標的攻擊",
         "targetHasBleed": "目標流血",
@@ -819,6 +825,7 @@
         "victorious_flag": "必須勾選屬性克製才能看到效果, 對光暗英雄無效.",
         "yoonryoung_slash": "閃光砍擊",
         "speed_tuner_instructions": "要使用速度调谐器，请输入较慢和/或较快单位的当前速度，以及将应用的任何战斗准备增加。\n调谐器将计算需要如何调整单位的速度以保证转弯顺序。\n\n在更快单位推动模式下，设置较慢和/或较快单位的速度和 CR 推动以计算较慢单位下一步移动所需的速度。",
+        "speed_solver_instructions": "使用速度求解器：\n\n在求解較慢的模式下，輸入更快的單元的速度和較慢單元的戰鬥準備。然後，速度求解器將告訴您更快的單元以及最可能的速度的可能速度範圍。\n\n在求解器模式下，輸入較慢的單元的速度以及兩個單元的戰鬥準備。然後，速度求解器將告訴您更快的單元的可能速度。\n\n例如，如果更快的單位處於100％的戰鬥準備狀態（例如，如果您在RTA中出現並在敵人進行轉彎之前檢查了戰鬥準備），則可以將戰鬥準備就緒以100％的速度離開，並輸入較慢的單位速度和戰鬥準備就緒。\n\n或者，如果您出現了，並且更快的單元已經移動，並且現在已進入下一個回合10％，則將110％的速度作為更快的單元的戰鬥準備就緒。\n\n速度求解器假設不適用戰鬥準備就緒或減少，因此，如果要考慮這些問題，則可以相應地調整輸入。",
         "albedo_lets_go_bicom": "去吧!雙角獸",
         "festive_eda_expected_outcome": "結局已定",
         "s2_splash": "2技能 飛濺傷害",
@@ -832,7 +839,8 @@
         "damage_calculator": "傷害計算器",
         "effectiveness_checker": "效果命中與抵抗計算",
         "ehp_calculator": "有效的HP",
-        "speed_tuner": "快速調諧器"
+        "speed_tuner": "快速調諧器",
+        "speed_solver": "速度求解器"
     },
     "ui": {
         "dark_mode": "深色模式",
@@ -896,7 +904,9 @@
         "noMultiBuilds": "沒有為多機能保存構建。",
         "multiCompare": "多機能",
         "hero": "英雄",
-        "extraSkillHint": "英雄的第一個額外技能或額外的攻擊。示例：艾蓮西雅的踐踏，梅賽德斯S2 Wave 2"
+        "extraSkillHint": "英雄的第一個額外技能或額外的攻擊。示例：艾蓮西雅的踐踏，梅賽德斯S2 Wave 2",
+        "solveSlower": "解決較慢的單元的速度",
+        "solveFaster": "解決更快的單位的速度"
     },
     "defensePreset": {
         "default": "默认",

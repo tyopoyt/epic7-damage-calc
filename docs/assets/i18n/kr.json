@@ -619,6 +619,12 @@
         "skill3Stack": "3스킬 스택",
         "skill1Stack": "1스킬 스택",
         "skillTreeCompleted": "스킬 트리 완성",
+        "slower_unit_cr": "느린 단위 전투 준비",
+        "faster_unit_cr": "더 빠른 유닛 전투 준비",
+        "speed_range": "속도 범위",
+        "speed_range_hint": "초기 임의의 전투 준비에 따라 대상 단위의 가능한 속도 범위.",
+        "probable_speed": "가능한 속도",
+        "probable_speed_hint": "두 유닛 모두 동일한 초기 전투 준비를 받았다고 가정하는 가장 가능성이 높은 속도.대상 장치의 실제 속도는 속도 범위의 끝 보다이 숫자에 더 가깝습니다.",
         "targetAsleep": "대상이 수면상태",
         "targetHasBleed": "대상에게 출혈효과가 있음",
         "targetAttack": "대상의 공격력",
@@ -819,6 +825,7 @@
         "victorious_flag": "아티팩트의 효과를 보려면 상성 우위가 활성화되어야 합니다; 암/광속성에는 적용되지 않습니다.",
         "yoonryoung_slash": "섬광베기",
         "speed_tuner_instructions": "속도 튜너를 사용하려면 더 느리거나 더 빠른 장치의 현재 속도와 적용될 전투 준비 상태 증가를 입력합니다.\n튜너는 턴 순서를 보장하기 위해 유닛의 속도를 조정해야 하는 방법을 계산합니다\n\nFaster Unit Push 모드에서 Slower 및/또는 Faster Unit의 속도와 CR Push를 설정하여 Slower Unit이 다음에 이동하는 데 필요한 속도를 계산합니다.",
+        "speed_solver_instructions": "스피드 솔버를 사용하려면 :\n\n느린 모드를 해결하면 더 빠른 장치의 속도와 느린 장치의 전투 준비를 입력하십시오.그런 다음 스피드 솔버는 더 빠른 장치의 가능한 속도와 가장 가능한 속도를 알려줍니다.\n\n솔버 더 빠른 모드에서는 느린 장치의 속도와 두 장치의 전투 준비를 입력하십시오.그런 다음 속도 솔버는 더 빠른 장치의 가능한 속도를 알려줍니다.\n\n예를 들어, 더 빠른 장치가 100% 전투 준비 상태 인 경우 (예를 들어 RTA에서 나와 적의 전투 준비를 확인한 경우) 전투 ​​준비를 100%로 떠나고 속도가 느리고 전투 준비를 입력 할 수 있습니다.\n\n또는 더 빠른 유닛이 이미 움직여서 다음 턴으로 10% 인 경우 더 빠른 유닛의 전투 준비 상태로 110%를 올릴 수 있습니다.\n\n속도 솔버는 전투 준비가 증가하거나 감소하지 않는다고 가정하므로 입력을 고려하려면 입력을 조정할 수 있습니다.",
         "albedo_lets_go_bicom": "가자! 쌍각수",
         "festive_eda_expected_outcome": "예정된 결말",
         "s2_splash": "스킬 2 스플래시",
@@ -832,7 +839,8 @@
         "damage_calculator": "데미지 계산기",
         "effectiveness_checker": "효과적중 확률 계산기",
         "ehp_calculator": "유효 생명력 계산기",
-        "speed_tuner": "스피드 튜너"
+        "speed_tuner": "스피드 튜너",
+        "speed_solver": "스피드 솔버"
     },
     "ui": {
         "dark_mode": "다크 모드",
@@ -896,7 +904,9 @@
         "noMultiBuilds": "다중 비교를 위해 저장된 빌드가 없습니다.",
         "multiCompare": "다중 비교",
         "hero": "영웅",
-        "extraSkillHint": "영웅의 첫 추가 스킬 또는 추가 공격 예: 알렌시아의 압살, 메르세데스의 S2 웨이브 2"
+        "extraSkillHint": "영웅의 첫 추가 스킬 또는 추가 공격 예: 알렌시아의 압살, 메르세데스의 S2 웨이브 2",
+        "solveSlower": "느린 단위의 속도를 해결하십시오",
+        "solveFaster": "더 빠른 단위의 속도를 해결하십시오"
     },
     "defensePreset": {
         "default": "체납",

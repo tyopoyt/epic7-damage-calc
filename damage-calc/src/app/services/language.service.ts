@@ -29,10 +29,11 @@ export class LanguageService {
 
   sameLanguageCount = 0;
 
-  toolTitles: string[] = ['damage_calculator', 'speed_tuner', 'ehp_calculator', 'effectiveness_checker']
+  toolTitles: string[] = ['damage_calculator', 'speed_tuner','speed_solver', 'ehp_calculator', 'effectiveness_checker']
   toolTitleToPathMap: Record<string, string> = {
     'damage_calculator': '',
-  'speed_tuner': 'speed-tuner',
+    'speed_tuner': 'speed-tuner',
+    'speed_solver': 'speed-solver',
     'ehp_calculator': 'ehp-calculator',
     'effectiveness_checker': 'effectiveness'
   }

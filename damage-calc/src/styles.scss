@@ -463,7 +463,8 @@ html, body {
     
   }
 
-  .damage-block {
+  .damage-block,
+  .has-radio-buttons {
     .mat-mdc-form-field {
       &.number-input-field {
         .mat-mdc-text-field-wrapper {

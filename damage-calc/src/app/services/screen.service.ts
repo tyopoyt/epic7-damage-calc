@@ -18,9 +18,9 @@ export class ScreenService {
   microscopic = 355;
   tiny = 480;
   small = 580;
-  mediumSmall = 720;
-  medium = 930;
-  extraLarge = 1715;
+  mediumSmall = 830;
+  medium = 980;
+  extraLarge = 1868;
 
   microscopicScreen: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   tinyScreen: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);

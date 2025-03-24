@@ -7,6 +7,8 @@ To test your translation locally, there is a hidden option to load a custom tran
 <img src="./language_custom.gif" alt="image" width="800" height="auto">
 
 ## Changelog
+### <strong>Mar 23 2025 Update:</strong>
+- Added Speed Solver tool.
 ### <strong>Feb 27 2025 Update:</strong>
 - Added Successor Taeyou.
 ### <strong>Feb 13 2025 Update:</strong>

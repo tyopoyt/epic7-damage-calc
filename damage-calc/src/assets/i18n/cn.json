@@ -614,6 +614,12 @@
         "skill3Stack": "技能3堆栈",
         "skill1Stack": "技能1堆栈",
         "skillTreeCompleted": "技能树完成了",
+        "slower_unit_cr": "较慢的单位战斗准备",
+        "faster_unit_cr": "更快的单位战斗准备",
+        "speed_range": "速度范围",
+        "speed_range_hint": "目标单元可能的速度范围取决于初始随机战斗准备。",
+        "probable_speed": "可能的速度",
+        "probable_speed_hint": "最有可能的速度假设两个单元都获得了相同的初始战斗准备。目标单元的实际速度可能比速度范围的末端更接近此数字。",
         "targetAsleep": "目标睡着了",
         "targetAttack": "目标的攻击",
         "targetBleedDetonate": "流血引爆",
@@ -811,6 +817,7 @@
         "victorious_flag": "必须勾选属性克制才能看到效果, 对光暗英雄无效.",
         "yoonryoung_slash": "闪光砍击",
         "speed_tuner_instructions": "要使用速度调谐器，请输入较慢和/或更快的单元的当前速度，以及将应用的任何战斗准备增加。\n调谐器将计算如何调整单元的速度以确保转弯订单。\n\n在更快的单元推动模式下，设置较慢和/或更快的单元的速度，并将CR推动以计算较慢单元接下来移动所需的速度。",
+        "speed_solver_instructions": "使用速度求解器：\n\n在求解较慢的模式下，输入更快的单元的速度和较慢单元的战斗准备。然后，速度求解器将告诉您更快的单元以及最可能的速度的可能速度范围。\n\n在求解器模式下，输入较慢的单元的速度以及两个单元的战斗准备。然后，速度求解器将告诉您更快的单元的可能速度。\n\n例如，如果更快的单位处于100％的战斗准备状态（例如，如果您在RTA中出现并在敌人进行转弯之前检查了战斗准备），则可以将战斗准备就绪以100％的速度离开，并输入较慢的单位速度和战斗准备就绪。\n\n或者，如果您出现了，并且更快的单元已经移动，并且现在已进入下一个回合10％，则将110％的速度作为更快的单元的战斗准备就绪。\n\n速度求解器假设不适用战斗准备就绪或减少，因此，如果要考虑这些问题，则可以相应地调整输入。",
         "albedo_lets_go_bicom": "去吧！双角兽",
         "festive_eda_expected_outcome": "结局已定",
         "s2_splash": "S2飞溅",
@@ -824,7 +831,8 @@
         "damage_calculator": "伤害计算器",
         "effectiveness_checker": "效果命中与抵抗计算",
         "ehp_calculator": "有效的HP计算器",
-        "speed_tuner": "快速调谐器"
+        "speed_tuner": "快速调谐器",
+        "speed_solver": "速度求解器"
     },
     "ui": {
         "dark_mode": "深色模式",
@@ -888,7 +896,9 @@
         "noMultiBuilds": "没有为多机能保存构建。",
         "multiCompare": "多机能",
         "hero": "英雄",
-        "extraSkillHint": "英雄的第一个额外技能或额外的攻击。示例：艾莲西雅的践踏，梅赛德斯S2 Wave 2"
+        "extraSkillHint": "英雄的第一个额外技能或额外的攻击。示例：艾莲西雅的践踏，梅赛德斯S2 Wave 2",
+        "solveSlower": "解决较慢的单元的速度",
+        "solveFaster": "解决更快的单位的速度"
     },
     "defensePreset": {
         "default": "默认",

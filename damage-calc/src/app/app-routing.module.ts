@@ -5,6 +5,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { EffectivenessCheckerComponent } from './components/effectiveness-checker/effectiveness-checker.component';
 import { SpeedTunerComponent } from './components/speed-tuner/speed-tuner.component';
 import { EHPCalculatorComponent } from './components/ehp-calculator/ehp-calculator.component';
+import { SpeedSolverComponent } from './components/speed-solver/speed-solver.component';
 
 const routes: Routes = [
   //TODO: handle old zh urls (zhCN => cn, zhTW => tw)
@@ -31,6 +32,14 @@ const routes: Routes = [
   {
     path: 'speed-tuner',
     component: SpeedTunerComponent
+  },
+  {
+    path: ':lang/speed-solver',
+    component: SpeedSolverComponent
+  },
+  {
+    path: 'speed-solver',
+    component: SpeedSolverComponent
   },
   {
     path: ':lang/ehp-calculator',

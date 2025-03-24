@@ -807,6 +807,12 @@
     "skill3Stack": "Skill 3 Stack",
     "skill1Stack": "Skill 1 Stack",
     "skillTreeCompleted": "Skill Tree Completed",
+    "slower_unit_cr": "Slower Unit Combat Readiness",
+    "faster_unit_cr": "Faster Unit Combat Readiness",
+    "speed_range": "Speed Range",
+    "speed_range_hint": "The range of possible speeds of the target unit depending on initial random combat readiness.",
+    "probable_speed": "Probable Speed",
+    "probable_speed_hint": "The most likely speed, which assumes both units received the same initial combat readiness.  The target unit's actual speed is likely closer to this number than to the ends of the speed range.",
     "targetAsleep": "Target is Asleep",
     "targetAttack": "Target's Attack",
     "targetBleedDetonate": "Bleeds to Detonate",
@@ -873,8 +879,9 @@
     "victorious_flag": "Elemental advantage must be enabled to see benefits from this artifact; doesn't apply to light and dark heroes",
     "yoonryoung_slash": "Dazzling Slash",
     "zio_disappear": "Disappear",
-    "speed_tuner_instructions": "To use the speed tuner, input the current speed of your slower and/or faster unit, as well as any Combat Readiness increase that will be applied.\nThe tuner will calculate how the units' speeds need to be adjusted to guarantee turn order.\n\nIn Faster Unit Pushes mode, set the speed of the slower and/or faster unit and the CR push to calculate the speed needed for the slower unit to move next.",
-    "damageCalculatorUpdates": "Feb 27 2025 Update: Added Successor Taeyou.\n\nPlease reach out to me if you find any bugs! @tyopoyt on Discord or Reddit.",
+    "speed_tuner_instructions": "To use the Speed Tuner, input the current speed of your slower and/or faster unit, as well as any Combat Readiness increase that will be applied.\nThe tuner will calculate how the units' speeds need to be adjusted to guarantee turn order.\n\nIn Faster Unit Pushes mode, set the speed of the slower and/or faster unit and the CR push to calculate the speed needed for the slower unit to move next.",
+    "speed_solver_instructions": "To use the Speed Solver:\n\nIn Solve Slower mode, input the speed of the faster unit and the Combat Readiness of the slower unit. The Speed Solver will then tell you the range of possible speeds for the faster unit as well as the most probable speed.\n\nIn Solver Faster mode, input the speed of the slower unit as well as the Combat Readiness of both units. The Speed Solver will then tell you the possible speeds of the faster unit.\n\nFor example, if the faster unit is at 100% combat readiness (such as if you were outsped in RTA and have checked the Combat Readiness before the enemy takes a turn) you may leave the combat readiness at 100% and input your slower unit's speed and Combat Readiness.\n\nOr, if you got outsped and the faster unit has already moved and is now 10% into its next turn, you would put 110% as the faster unit's Combat Readiness.\n\nThe speed solver assumes no Combat Readiness increases or decreases have applied, so if you want to account for those you may adjust the inputs accordingly.",
+    "damageCalculatorUpdates": "Mar 23 2025 Update: Added Speed Solver tool.  This tool can help you estimate the speeds of units based on Combat Readiness.\n\nFeb 27 2025 Update: Added Successor Taeyou.\n\nPlease reach out to me if you find any bugs! @tyopoyt on Discord or Reddit.",
     "harsettiWarning": "Harsetti's Skill 3 description says that it has HP scaling, but the multiplier does not yet seem to include it, so her Skill 3 damage here will probably be incorrect until we know her HP scaling."
   },
   "titles": {
@@ -883,7 +890,8 @@
     "damage_calculator": "Damage Calculator",
     "ehp_calculator": "Effective HP",
     "effectiveness_checker": "Effect Chance",
-    "speed_tuner": "Speed Tuner"
+    "speed_tuner": "Speed Tuner",
+    "speed_solver": "Speed Solver"
   },
   "ui": {
     "dark_mode": "Dark Mode",
@@ -947,7 +955,9 @@
     "noMultiBuilds": "No builds have been saved for Multi-Compare.",
     "multiCompare": "Multi-Compare",
     "hero": "Hero",
-    "extraSkillHint": "The hero's first additional skill or extra attack.  Examples: Alencia's Trample, Mercedes S2 Wave 2"
+    "extraSkillHint": "The hero's first additional skill or extra attack.  Examples: Alencia's Trample, Mercedes S2 Wave 2",
+    "solveSlower": "Solve Slower Unit's Speed",
+    "solveFaster": "Solve Faster Unit's Speed"
   },
   "defensePreset": {
     "default": "Default",
