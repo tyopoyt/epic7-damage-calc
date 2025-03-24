@@ -108,7 +108,7 @@ export class SpeedSolverComponent implements OnInit {
       solveUnitMaxSpeed = this.fasterSpeed * maxCRRatio;
   
       this.speedRangeText = `${Math.floor(solveUnitMinSpeed)} - ${Math.ceil(solveUnitMaxSpeed)}`;
-      this.avgSpeedText = `${Math.ceil(solveUnitAvgSpeed)}`;
+      this.avgSpeedText = `~${Math.ceil(solveUnitAvgSpeed)}`;
     } else {
       const slowerUnitCR = this.slowerCR / 100;
       const fasterUnitCR = this.fasterCR / 100;
@@ -122,7 +122,7 @@ export class SpeedSolverComponent implements OnInit {
       solveUnitMaxSpeed = this.slowerSpeed * maxCRRatio;
   
       this.speedRangeText = `${Math.floor(solveUnitMinSpeed)} - ${Math.ceil(solveUnitMaxSpeed)}`;
-      this.avgSpeedText = `${Math.ceil(solveUnitAvgSpeed)}`;
+      this.avgSpeedText = `~${Math.ceil(solveUnitAvgSpeed)}`;
     }
   
     //TODO: enable when queryparams work?
