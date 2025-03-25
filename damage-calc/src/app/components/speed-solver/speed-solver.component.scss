@@ -9,6 +9,11 @@ mat-card {
     width: 13.75rem;
     padding: 0;
 
+    div.team {
+        padding: $gutter;
+        width: calc(100% - $gutter * 2);
+    }
+
     &.left {
         margin-left: 0;
     }

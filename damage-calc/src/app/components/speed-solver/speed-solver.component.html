@@ -2,13 +2,14 @@
 <div class="page-container">
     <span class="page-body">
         <app-dismissible [content]="'speed_solver_instructions' | translate:'info':languageService.language.value" [color]="DismissibleColorOption.instructions" [key]="'speedSolverInstructions'"></app-dismissible>
-        <div class="full-width flex-aligned flex-between has-radio-buttons" [ngClass]="!screenService.mediumSmallScreen.value ? 'flex-row' : 'flex-column'">
+        <mat-slide-toggle #teamModeSwitch class="pointer small-margin-top" (click)="toggleTeamMode()" [checked]="this.teamMode">{{'team_mode' | translate:'form':languageService.language.value}}</mat-slide-toggle>
+        <div *ngIf="!teamMode" class="full-width flex-aligned flex-between has-radio-buttons" [ngClass]="!screenService.mediumSmallScreen.value ? 'flex-row' : 'flex-column'">
             <mat-radio-group [formControl]="solverTypeControl" (change)="setSolverType($event.value)" aria-label="Hit type">
                 <mat-radio-button class="pointer" value="slower">{{'solveSlower' | translate:'ui':languageService.language.value}}</mat-radio-button>
                 <mat-radio-button class="pointer" value="faster">{{'solveFaster' | translate:'ui':languageService.language.value}}</mat-radio-button>
             </mat-radio-group>
         </div>
-        <div class="neat-container full-width" [class.column-2]="!screenService.mediumSmallScreen.value" [class.full-width-number-input]="!screenService.largeScreen.value">
+        <div *ngIf="!teamMode" class="neat-container full-width" [class.column-2]="!screenService.mediumSmallScreen.value" [class.full-width-number-input]="!screenService.largeScreen.value">
             <div [class.full-width]="screenService.mediumSmallScreen.value">
                 <app-slide-input
                     [label]="'slower_unit_cr' | translate:'form':languageService.language.value"
@@ -36,6 +37,77 @@
                     [column]="!screenService.largeScreen.value">
                 </app-slide-input>
             </div>
+        </div>
+        <div *ngIf="teamMode">
+            <mat-card class="left full-width">
+                <span class="header flex-centered bold-text">
+                    {{'your_team' | translate:'form':languageService.language.value}}
+                    <img class="icon tiny tiny-margin-left" src="assets/icons/help-circle-outline.svg" alt="Hint"
+                         matTooltip="{{'your_team_hint' | translate:'form':languageService.language.value}}">
+                </span>
+                <div class="neat-container full-width team" [class.column-2]="!screenService.mediumSmallScreen.value" [class.full-width-number-input]="!screenService.largeScreen.value">
+                    <div class="neat-container" [class.full-width]="screenService.mediumSmallScreen.value">
+                        <app-slide-input
+                            [label]="'unit_1_cr' | translate:'form':languageService.language.value"
+                            [max]="100" [min]="0" [default]="100" (valueChange)="unitCRChange($event, 1)"
+                            [column]="!screenService.largeScreen.value">
+                        </app-slide-input>
+                        <app-slide-input
+                            [label]="'unit_2_cr' | translate:'form':languageService.language.value"
+                            [max]="100" [min]="0" [default]="89" (valueChange)="unitCRChange($event, 2)"
+                            [column]="!screenService.largeScreen.value">
+                        </app-slide-input>
+                        <app-slide-input
+                            [label]="'unit_3_cr' | translate:'form':languageService.language.value"
+                            [max]="100" [min]="0" [default]="85" (valueChange)="unitCRChange($event, 3)"
+                            [column]="!screenService.largeScreen.value">
+                        </app-slide-input>
+                        <app-slide-input
+                            [label]="'unit_4_cr' | translate:'form':languageService.language.value"
+                            [max]="100" [min]="0" [default]="71" (valueChange)="unitCRChange($event, 4)"
+                            [column]="!screenService.largeScreen.value">
+                        </app-slide-input>
+                    </div>
+                    <div class="neat-container" [class.full-width]="screenService.mediumSmallScreen.value">
+                        <app-slide-input
+                            [label]="'unit_1_speed' | translate:'form':languageService.language.value"
+                            [max]="400" [min]="90" [default]="308" (valueChange)="unitSpeedChange($event, 1)"
+                            [column]="!screenService.largeScreen.value">
+                        </app-slide-input>
+                        <app-slide-input
+                            [label]="'unit_2_speed' | translate:'form':languageService.language.value"
+                            [max]="400" [min]="90" [default]="269" (valueChange)="unitSpeedChange($event, 2)"
+                            [column]="!screenService.largeScreen.value">
+                        </app-slide-input>
+                        <app-slide-input
+                            [label]="'unit_3_speed' | translate:'form':languageService.language.value"
+                            [max]="400" [min]="90" [default]="257" (valueChange)="unitSpeedChange($event, 3)"
+                            [column]="!screenService.largeScreen.value">
+                        </app-slide-input>
+                        <app-slide-input
+                            [label]="'unit_4_speed' | translate:'form':languageService.language.value"
+                            [max]="400" [min]="90" [default]="217" (valueChange)="unitSpeedChange($event, 4)"
+                            [column]="!screenService.largeScreen.value">
+                        </app-slide-input>
+                    </div>
+                </div>
+            </mat-card>
+            <mat-card class="left full-width">
+                <span class="header flex-centered bold-text">
+                    {{'enemy_unit' | translate:'form':languageService.language.value}}
+                    <img class="icon tiny tiny-margin-left" src="assets/icons/help-circle-outline.svg" alt="Hint"
+                         matTooltip="{{'enemy_unit_hint' | translate:'form':languageService.language.value}}">
+                </span>
+                <div class="neat-container full-width team full-width-number-input">
+                    <div class="neat-container full-width">
+                        <app-slide-input
+                            [label]="'enemy_cr' | translate:'form':languageService.language.value"
+                            [max]="100" [min]="0" [default]="95" (valueChange)="enemyCRChange($event)"
+                            [column]="!screenService.largeScreen.value">
+                        </app-slide-input>
+                    </div>
+                </div>
+            </mat-card>
         </div>
         <div class="neat-container">
             <app-header-card
