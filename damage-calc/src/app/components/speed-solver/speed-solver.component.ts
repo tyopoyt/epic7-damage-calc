@@ -55,6 +55,21 @@ export class SpeedSolverComponent implements OnInit {
   ]
 
   fullPossibleCRRolls = [0,1,2,3,4,5]
+  fullCRRollCounts    = [6,6,6,6,6,6]
+
+  unitRanges = {
+    'maximums': [4000, 4000, 4000, 4000],
+    'minimums': [-100, -100, -100, -100]
+  }
+
+  initialSpeedMatrix = [
+    [Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY],
+    [Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY],
+    [Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY],
+    [Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY],
+    [Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY],
+    [Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY]
+  ]
 
   // Graphing stuff
   public speedData: ChartConfiguration['data'] = {datasets: [], labels: []};
@@ -189,6 +204,43 @@ export class SpeedSolverComponent implements OnInit {
     return this.translationPipe.transform(key, 'form', this.languageService.language.value);
   }
 
+  // TODO: use calculateEnemySpeed in this fxn
+  calculateRange(unitSpeed: number, unitCR: number, enemyCR: number) {
+    let solveUnitMinSpeed, solveUnitMaxSpeed, solveUnitAvgSpeed;
+
+    if (enemyCR <= unitCR) { // enemy is slower
+      const slowerUnitCR = enemyCR / 100;
+      const minCRRatio = slowerUnitCR - 0.05;
+      const avgCRRatio = slowerUnitCR;
+      const maxCRRatio = slowerUnitCR / 0.95;
+
+      console.log(`enemy slower: unitspeed ${unitSpeed} unitcr ${unitCR} enemycr ${enemyCR}`)
+
+      solveUnitMinSpeed = unitSpeed * minCRRatio;
+      solveUnitAvgSpeed = unitSpeed * avgCRRatio;
+      solveUnitMaxSpeed = unitSpeed * maxCRRatio;
+    } else { // unit is slower
+      const slowerUnitCR = unitCR / 100;
+      const fasterUnitCR = enemyCR / 100;
+
+      const minCRRatio = (fasterUnitCR - 0.05) / slowerUnitCR;
+      const avgCRRatio = fasterUnitCR / slowerUnitCR;
+      const maxCRRatio = fasterUnitCR / (slowerUnitCR - 0.05);
+      console.log(`enemy faster: unitspeed ${unitSpeed} unitcr ${unitCR} enemycr ${enemyCR}`)
+
+      solveUnitMinSpeed = unitSpeed * minCRRatio;
+      solveUnitAvgSpeed = unitSpeed * avgCRRatio;
+      solveUnitMaxSpeed = unitSpeed * maxCRRatio;
+    }
+
+    return [solveUnitMinSpeed, solveUnitAvgSpeed, solveUnitMaxSpeed]
+  }
+
+  calculateEnemySpeed(unitSpeed: number, unitCR: number, enemyCR: number) {
+    console.log(`${unitSpeed} / (${unitCR} / ${enemyCR}) = ${unitSpeed / (unitCR / enemyCR)}`)
+    return unitSpeed / (unitCR / enemyCR);
+  }
+
   calculate() {
     //   if (loadingQueryParams) {
     //     return; // don't resolve until params are loaded
@@ -211,13 +263,27 @@ export class SpeedSolverComponent implements OnInit {
       // initialize data
       const unitProbabilities:[number, number][][][] = [[], [], [], []]
       const unitPossibleCRRolls: number[][] = [[], [], [], []]
+      const unitSpeedMatrix: number[][][] = [[], [], [], []]
+      const unitCRRollCounts: number[][] = [[], [], [], []]
 
       for (const unit in this.unitCRs) {
         if (this.unitCRs[unit]) {
           unitProbabilities[unit] = structuredClone(this.fullCRCombinations)
           unitPossibleCRRolls[unit] = structuredClone(this.fullPossibleCRRolls)
+          unitSpeedMatrix[unit] = structuredClone(this.initialSpeedMatrix)
+          unitCRRollCounts[unit] = structuredClone(this.fullCRRollCounts)
+
+          for (let unitRoll = 0; unitRoll < 6; unitRoll++) {
+            for (let enemyRoll = 0; enemyRoll < 6; enemyRoll++) {
+              unitSpeedMatrix[unit][unitRoll][enemyRoll] = this.calculateEnemySpeed(this.unitSpeeds[unit], (this.unitCRs[unit] * 100) - unitRoll, (this.enemyCR * 100) - enemyRoll)
+            }
+          }
         }
       }
+
+      // console.log('****************&&&&&&&&&&&&&&&&&&&&&*********************')
+      // console.log(unitSpeedMatrix)
+      // console.log('****************&&&&&&&&&&&&&&&&&&&&&*********************')
 
       // calculate possible unit CR Rolls
 
@@ -239,26 +305,96 @@ export class SpeedSolverComponent implements OnInit {
       unitPossibleCRRolls[fastestUnit] = unitPossibleCRRolls[fastestUnit].filter(val => 5 - val >= maxDiff)
       unitPossibleCRRolls[fastestUnit] = unitPossibleCRRolls[fastestUnit].filter(val => val + minDiff >= 0)
 
+      for (let i = 0; i < 6; i++) {
+        if (!unitPossibleCRRolls[fastestUnit].includes(i)) {
+          unitCRRollCounts[fastestUnit][i] = 0;
+        }
+      }
+
+      // remove impossible probabilities for fastest unit
+      for (const differential in unitProbabilities[fastestUnit]) {
+        unitProbabilities[fastestUnit][differential] = unitProbabilities[fastestUnit][differential].filter(combo => unitPossibleCRRolls[fastestUnit].includes(combo[0]))
+      }
+
       // for each slower unit, filter out rolls that are incompatible with available rolls of fastest unit
       for (const unit in this.unitCRs) {
         // why does `in` yield strings and not numbers...???
         if (this.unitCRs[unit] && Number(unit) !== fastestUnit) {
           unitPossibleCRRolls[unit] = unitPossibleCRRolls[unit].filter(val => val - CRDiffs[unit] in unitPossibleCRRolls[fastestUnit])
+
+          for (let i = 0; i < 6; i++) {
+            if (!unitPossibleCRRolls[unit].includes(i)) {
+              unitCRRollCounts[unit][i] = 0;
+            }
+          }
+
+          // filter out invalid combos
+          for (const differential in unitProbabilities[unit]) {
+            unitProbabilities[unit][differential] = unitProbabilities[unit][differential].filter(combo => unitPossibleCRRolls[unit].includes(combo[0]))
+          }
         }
       }
-      console.log(unitPossibleCRRolls)
+      
+      // calculate speed ranges per-unit
+      for (const unit in this.unitCRs) {
+        if (this.unitCRs[unit]) {
+          let minFound = false;
+          let maxFound = false;
+          let minRangeCombo = [0, 5];
+          let maxRangeCombo = [5, 0];
+          for (let i = 0; i < unitProbabilities[unit].length; i++) {
+            if (!maxFound && unitProbabilities[unit][i].length) {
+              maxRangeCombo = unitProbabilities[unit][i][0];
+              maxFound = true
+            }
+            if (!minFound && unitProbabilities[unit][unitProbabilities[unit].length - (1 + i)].length) {
+              // i love not having negative indexing
+              minRangeCombo = unitProbabilities[unit][unitProbabilities[unit].length - (1 + i)][unitProbabilities[unit][unitProbabilities[unit].length - (1 + i)].length - 1];
+              minFound = true
+            }
+
+            if (maxFound && minFound) {
+              break;
+            }
+          }
+
+          this.unitRanges.minimums[unit] = unitSpeedMatrix[unit][minRangeCombo[0]][minRangeCombo[1]];
+          this.unitRanges.maximums[unit] = unitSpeedMatrix[unit][maxRangeCombo[0]][maxRangeCombo[1]];
+          console.log('==============================================')
+          console.log(`unit ${unit} min range combo: ${minRangeCombo} | max range combo: ${maxRangeCombo}`)
+          console.log(`unit ${unit} min: ${this.unitRanges.minimums[unit]} | max: ${this.unitRanges.maximums[unit]}`)
+          console.log('-------------------------------------------')
+        }
+      }
+
+      let narrowestRange = [Math.ceil(Math.max(...this.unitRanges.minimums)), Math.floor(Math.min(...this.unitRanges.maximums))]
+      console.log(narrowestRange)
+
+      for (const unit in this.unitCRs) {
+        if (this.unitCRs[unit]) {
+          for (const differential in unitProbabilities[unit]) {
+            for (const probability in unitProbabilities[unit][differential]) {
+              const prob = unitProbabilities[unit][differential][probability]
+              const speed = unitSpeedMatrix[unit][prob[0]][prob[1]]
+              if (speed > narrowestRange[1] || speed < narrowestRange[0]) {
+                console.log(`removing ${prob} from unit ${unit} (spd = ${speed})`)
+              }
+            }
+          }
+        }
+      }
+
       return
     } else {
       if (this.solverTypeControl.value === 'slower') {
         const breakPointSpeeds = []
         const slowerUnitCR = this.slowerCR / 100;
-        const minCRRatio = slowerUnitCR - 0.05;
-        const avgCRRatio = slowerUnitCR;
-        const maxCRRatio = slowerUnitCR / 0.95;
+
+        const targetSpeedRange = this.calculateRange(this.fasterSpeed, 100, this.slowerCR)
   
-        solveUnitMinSpeed = this.fasterSpeed * minCRRatio;
-        solveUnitAvgSpeed = this.fasterSpeed * avgCRRatio;
-        solveUnitMaxSpeed = this.fasterSpeed * maxCRRatio;
+        solveUnitMinSpeed = targetSpeedRange[0];
+        solveUnitAvgSpeed = targetSpeedRange[1];
+        solveUnitMaxSpeed = targetSpeedRange[2];
   
         for (let i = 0; i < 11; i++) {
           const crDiff = (i - 5) / 100;
@@ -284,13 +420,11 @@ export class SpeedSolverComponent implements OnInit {
         const slowerUnitCR = this.slowerCR / 100;
         const fasterUnitCR = this.fasterCR / 100;
   
-        const minCRRatio = (fasterUnitCR - 0.05) / slowerUnitCR;
-        const avgCRRatio = fasterUnitCR / slowerUnitCR;
-        const maxCRRatio = fasterUnitCR / (slowerUnitCR - 0.05);
+        const targetSpeedRange = this.calculateRange(this.slowerSpeed, this.slowerCR, this.fasterCR)
   
-        solveUnitMinSpeed = this.slowerSpeed * minCRRatio;
-        solveUnitAvgSpeed = this.slowerSpeed * avgCRRatio;
-        solveUnitMaxSpeed = this.slowerSpeed * maxCRRatio;
+        solveUnitMinSpeed = targetSpeedRange[0];
+        solveUnitAvgSpeed = targetSpeedRange[1];
+        solveUnitMaxSpeed = targetSpeedRange[2];
   
         for (let i = 0; i < 11; i++) {
           const crDiff = (i - 5) / 100;
