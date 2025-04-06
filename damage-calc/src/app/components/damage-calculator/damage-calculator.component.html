@@ -316,12 +316,21 @@
                     </app-slide-input>
                 </div>
             </div>
-            <div class="neat-container full-width">
-                <app-slide-input #slideInput
-                    [label]="'penetrationResistance' | translate:'form':languageService.language.value"
-                    [max]="100" [min]="0" [default]="0" (valueChange)="inputChange('penetrationResistance', $event)"
-                    [column]="screenService.mediumScreen.value">
-                </app-slide-input>
+            <div class="neat-container full-width" [class.column-2]="!screenService.mediumSmallScreen.value" [class.full-width-number-input]="!screenService.mediumScreen.value">
+                <div [class.full-width]="screenService.mediumSmallScreen.value">
+                    <app-slide-input #slideInput
+                        [label]="'additionalDamageReduction' | translate:'form':languageService.language.value"
+                        [max]="100" [min]="0" [default]="0" (valueChange)="inputChange('additionalDamageReduction', $event)"
+                        [column]="screenService.mediumScreen.value">
+                    </app-slide-input>
+                </div>
+                <div [class.full-width]="screenService.mediumSmallScreen.value">
+                    <app-slide-input #slideInput
+                        [label]="'penetrationResistance' | translate:'form':languageService.language.value"
+                        [max]="100" [min]="0" [default]="0" (valueChange)="inputChange('penetrationResistance', $event)"
+                        [column]="screenService.mediumScreen.value">
+                    </app-slide-input>
+                </div>
             </div>
             <div class="checkbox-holder">
                 <!-- <mat-checkbox class="small-margin-top" (click)="toggleStigmaPolitis()" [checked]="this.stigmaPolitis"> -->

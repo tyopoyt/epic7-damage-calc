@@ -120,13 +120,13 @@ export class DamageService {
         }
       }
     }
-
+    const additionalDamageReduction = 1 - (this.damageForm.additionalDamageReduction / 100)
     const fixedDamage = Math.round(skill.fixed(HitType.crit, this.damageForm, this.currentArtifact, soulburn)) + Math.round(skill.fixed2(HitType.crit, this.damageForm, this.currentArtifact, soulburn))
 
     return {
       rate: skill.rate(soulburn, this.damageForm, isExtra),
       pow: skill.pow(soulburn, this.damageForm),
-      mult: Math.round(((skill.mult(soulburn, this.damageForm, this.currentArtifact, this.currentHero.getAttack(this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill, HitType.crit)) - 1) * 100)), // TODO: change anything checking for this to be null to check for -1
+      mult: Math.round(((skill.mult(soulburn, this.damageForm, this.currentArtifact, this.currentHero.getAttack(this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill, soulburn, HitType.crit)) - 1) * 100)), // TODO: change anything checking for this to be null to check for -1
       multTip: this.languageService.getSkillModTip(skill.multTip(soulburn)),
       afterMathDmg: Math.round(this.currentHero.getAfterMathSkillDamage(skill, HitType.crit, soulburn, this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), this.getGlobalDefenseMult(true), this.dataService.currentTarget)),
       afterMathFormula: Object.keys(formattedAftermathFormula).length ? this.languageService.getSkillModTip(formattedAftermathFormula) : '',
@@ -136,11 +136,11 @@ export class DamageService {
       detonation: skill.detonation(this.damageForm) ? Math.round((skill.detonation(this.damageForm) - 1) * 100) : 0,
       elementalAdvantage: skill.elementalAdvantage(this.damageForm),
       exEq: skill.exclusiveEquipmentMultiplier(this.damageForm) * 100,
-      fixed: fixedDamage,
+      fixed: fixedDamage * additionalDamageReduction,
       fixedTip: this.languageService.getSkillModTip(skill.fixedTip(fixedDamage, this.damageForm)),
       flat: Math.round(skill.flat(soulburn, this.damageForm, this.currentArtifact)),
       flatTip: this.languageService.getSkillModTip(skill.flatTip(soulburn)),
-      pen: Math.max((skill.penetrate(soulburn, this.damageForm, this.currentArtifact, this.currentHero.getAttack(this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill, HitType.crit), this.currentHero.getSpeed(this.damageForm)) * 100) - this.damageForm.penetrationResistance, 0).toFixed(2),
+      pen: Math.max((skill.penetrate(soulburn, this.damageForm, this.currentArtifact, this.currentHero.getAttack(this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill, soulburn, HitType.crit), this.currentHero.getSpeed(this.damageForm)) * 100) - this.damageForm.penetrationResistance, 0).toFixed(2),
       penTip: this.languageService.getSkillModTip(skill.penetrateTip(soulburn)),
     };
   }
@@ -150,7 +150,7 @@ export class DamageService {
     const rate = skill.rate(soulburn, this.damageForm, isExtra);
     const flatMod = skill.flat(soulburn, this.damageForm, this.currentArtifact);
     //TODO: rename this
-    const flatMod2 = this.currentArtifact.getFlatMult(this.damageForm.artifactLevel, this.damageForm, skill, hitType, isExtra) + (skill.flat2(this.damageForm));
+    const flatMod2 = this.currentArtifact.getFlatMult(this.damageForm.artifactLevel, this.damageForm, skill, soulburn, hitType, isExtra) + (skill.flat2(this.damageForm));
 
     const pow = (typeof skill.pow === 'function') ? skill.pow(soulburn, this.damageForm) : skill.pow;
     const skillEnhance = this.currentHero.getSkillEnhanceMult(skill, this.damageForm);
@@ -163,24 +163,24 @@ export class DamageService {
         + this.getGlobalDamageMult(skill, soulburn)
         + this.damageForm.damageIncrease / 100
         + this.currentArtifact.getDamageMultiplier(this.damageForm.artifactLevel, this.damageForm, skill, soulburn, hitType, isExtra)
-        + (skill.mult ? skill.mult(soulburn, this.damageForm, this.currentArtifact, this.currentHero.getAttack(this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill, hitType)) - 1 : 0);
-    return ((this.currentHero.getAttack(this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill, hitType, isExtra) * rate + flatMod) * BattleConstants.damageConstant + flatMod2) * pow * skillEnhance * elementalAdvantage * target * dmgMod;
+        + (skill.mult ? skill.mult(soulburn, this.damageForm, this.currentArtifact, this.currentHero.getAttack(this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill, soulburn, hitType)) - 1 : 0);
+    return ((this.currentHero.getAttack(this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill, soulburn, hitType, isExtra) * rate + flatMod) * BattleConstants.damageConstant + flatMod2) * pow * skillEnhance * elementalAdvantage * target * dmgMod;
   }
 
   // This getAtk is called because of lilias
   getDotDamage(skill: Skill, type: DoT) {
     // TODO: is it necessary to pass skill in here? or can just use DoTSkill?
-    const casterAttack = this.currentHero.getAttack(this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill, HitType.normal);
+    const casterAttack = this.currentHero.getAttack(this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill, false, HitType.normal);
     const casterSpeed = this.currentHero.getSpeed(this.damageForm) // TODO: refactor so this isn't needed?  DotDamage probably shouldn't require the caster's speed...
     switch (type) {
       case DoT.bleed:
-        return this.currentHero.getAttack(this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill, HitType.normal) * 0.3 * BattleConstants.damageConstant * this.dataService.currentTarget.defensivePower(DoTSkill, this.damageForm, this.getGlobalDefenseMult(), this.currentArtifact, false, casterAttack, casterSpeed, HitType.normal, true);
+        return this.currentHero.getAttack(this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill, false, HitType.normal) * 0.3 * BattleConstants.damageConstant * this.dataService.currentTarget.defensivePower(DoTSkill, this.damageForm, this.getGlobalDefenseMult(), this.currentArtifact, false, casterAttack, casterSpeed, HitType.normal, true);
       case DoT.burn:
-        return this.currentHero.getAttack(this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill, HitType.normal) * 0.6 * BattleConstants.damageConstant * (this.damageForm.beehooPassive ? this.dataService.heroConstants.beehooBurnMult : 1) * this.dataService.currentTarget.defensivePower(DoTSkill, this.damageForm, this.getGlobalDefenseMult(), this.currentArtifact, false, casterAttack, casterSpeed, HitType.normal, true);
+        return this.currentHero.getAttack(this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill, false, HitType.normal) * 0.6 * BattleConstants.damageConstant * (this.damageForm.beehooPassive ? this.dataService.heroConstants.beehooBurnMult : 1) * this.dataService.currentTarget.defensivePower(DoTSkill, this.damageForm, this.getGlobalDefenseMult(), this.currentArtifact, false, casterAttack, casterSpeed, HitType.normal, true);
       case DoT.bomb:
-        return this.currentHero.getAttack(this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill, HitType.normal) * 1.5 * BattleConstants.damageConstant * this.dataService.currentTarget.defensivePower(DoTSkill, this.damageForm, this.getGlobalDefenseMult(), this.currentArtifact, false, casterAttack, casterSpeed, HitType.normal, true);
+        return this.currentHero.getAttack(this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill, false, HitType.normal) * 1.5 * BattleConstants.damageConstant * this.dataService.currentTarget.defensivePower(DoTSkill, this.damageForm, this.getGlobalDefenseMult(), this.currentArtifact, false, casterAttack, casterSpeed, HitType.normal, true);
       case DoT.nail:
-        return this.currentHero.getAttack(this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill, HitType.normal) * 0.8 * BattleConstants.damageConstant * this.dataService.currentTarget.defensivePower(DoTSkill, this.damageForm, this.getGlobalDefenseMult(), this.currentArtifact, false, casterAttack, casterSpeed, HitType.normal, true);
+        return this.currentHero.getAttack(this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill, false, HitType.normal) * 0.8 * BattleConstants.damageConstant * this.dataService.currentTarget.defensivePower(DoTSkill, this.damageForm, this.getGlobalDefenseMult(), this.currentArtifact, false, casterAttack, casterSpeed, HitType.normal, true);
       default: return 0;
     }
   }
@@ -205,7 +205,7 @@ export class DamageService {
     const artiDamage: number = this.currentHero.getAfterMathArtifactDamage(skill, this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), this.getGlobalDefenseMult(true), this.dataService.currentTarget, soulburn, hitType) || 0;
     const skillDamage = this.currentHero.getAfterMathSkillDamage(skill, hitType, soulburn, this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), this.getGlobalDefenseMult(true), this.dataService.currentTarget);
     // if more of these buffs get added, would probably be better to handle this iteratively over a list of key: value pairs
-    return detonation + debuffDamage + buffDamage + artiDamage + skillDamage + (this.damageForm.casterHasCascade ? 2500 : 0) + (this.damageForm.casterHasOathOfPunishment ? 2500 : 0);
+    return detonation + debuffDamage + buffDamage + artiDamage + skillDamage + (this.damageForm.casterHasCascade ? 4000 : 0) + (this.damageForm.casterHasOathOfPunishment ? 2500 : 0);
   }
 
   // Get the final damage numbers to be displayed in the table
@@ -213,7 +213,8 @@ export class DamageService {
   getDamage(skill: Skill, soulburn = false, isExtra = false, isCounter = false, inputOverrides: Record<string, number> | null = null): DamageRow {
     this.damageForm.inputOverrides = inputOverrides ? inputOverrides : {};
 
-    const casterAttack = this.currentHero.getAttack(this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill, HitType.normal);
+    const additionalDamageReduction = 1 - (this.damageForm.additionalDamageReduction / 100)
+    const casterAttack = this.currentHero.getAttack(this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill, soulburn, HitType.normal);
     const casterSpeed = this.currentHero.getSpeed(this.damageForm)
     let critDmgBuff = this.damageForm.increasedCritDamage ? BattleConstants.increasedCritDamage : 0.0;
     critDmgBuff += this.damageForm.casterHasStarsBlessing ? BattleConstants.casterHasStarsBlessing - 1 : 0;
@@ -221,16 +222,16 @@ export class DamageService {
     const critHit = this.offensivePower(skill, HitType.crit, soulburn, isExtra) * this.dataService.currentTarget.defensivePower(skill, this.damageForm, this.getGlobalDefenseMult(), this.currentArtifact, soulburn, casterAttack, casterSpeed, HitType.crit);
     const critDmg = Math.min((this.damageForm.casterFinalCritDamage / 100) + critDmgBuff, 3.5)
         + (skill.critDmgBoost ? skill.critDmgBoost(soulburn) : 0)
-        + (this.currentArtifact.getCritDmgBoost(this.damageForm.artifactLevel, this.damageForm, skill, HitType.crit, isExtra) || 0)
+        + (this.currentArtifact.getCritDmgBoost(this.damageForm.artifactLevel, this.damageForm, skill, soulburn, HitType.crit, isExtra) || 0)
         + (this.damageForm.casterPerception ? BattleConstants.perception : 0);
 
     return {
       skill: (skill.name || skill.id) + (soulburn ? '_soulburn' : (isExtra ? '_extra' : (isCounter && !skill.isCounter ? '_counter': ''))),
       // these 4 need isCounter back at the end if new skill that cares about it is added
-      crit: skill.noCrit || skill.onlyMiss ? null : Math.round(critHit * critDmg + skill.fixed(HitType.crit, this.damageForm, this.currentArtifact, soulburn) + skill.fixed2(HitType.crit, this.damageForm, this.currentArtifact, soulburn) + this.getAfterMathDamage(skill, HitType.crit, soulburn)),
-      crush: skill.noCrit || skill.onlyCrit(soulburn) || skill.onlyMiss ? null : Math.round(hit * 1.3 + skill.fixed(HitType.crush, this.damageForm, this.currentArtifact, soulburn) + skill.fixed2(HitType.crit, this.damageForm, this.currentArtifact, soulburn) + this.getAfterMathDamage(skill, HitType.crush, soulburn)),
-      normal: skill.onlyCrit(soulburn) || skill.onlyMiss ? null : Math.round(hit + skill.fixed(HitType.normal, this.damageForm, this.currentArtifact, soulburn) + skill.fixed2(HitType.crit, this.damageForm, this.currentArtifact, soulburn) + this.getAfterMathDamage(skill, HitType.normal, soulburn)),
-      miss: skill.noMiss ? null : Math.round(hit * 0.75 + skill.fixed(HitType.miss, this.damageForm, this.currentArtifact, soulburn) + skill.fixed2(HitType.crit, this.damageForm, this.currentArtifact, soulburn) + this.getAfterMathDamage(skill, HitType.miss, soulburn))
+      crit: skill.noCrit || skill.onlyMiss ? null : Math.round(critHit * critDmg + ((skill.fixed(HitType.crit, this.damageForm, this.currentArtifact, soulburn) + skill.fixed2(HitType.crit, this.damageForm, this.currentArtifact, soulburn)) * additionalDamageReduction) + this.getAfterMathDamage(skill, HitType.crit, soulburn)),
+      crush: skill.noCrit || skill.onlyCrit(soulburn) || skill.onlyMiss ? null : Math.round(hit * 1.3 + ((skill.fixed(HitType.crit, this.damageForm, this.currentArtifact, soulburn) + skill.fixed2(HitType.crit, this.damageForm, this.currentArtifact, soulburn)) * additionalDamageReduction) + this.getAfterMathDamage(skill, HitType.crush, soulburn)),
+      normal: skill.onlyCrit(soulburn) || skill.onlyMiss ? null : Math.round(hit + ((skill.fixed(HitType.crit, this.damageForm, this.currentArtifact, soulburn) + skill.fixed2(HitType.crit, this.damageForm, this.currentArtifact, soulburn)) * additionalDamageReduction) + this.getAfterMathDamage(skill, HitType.normal, soulburn)),
+      miss: skill.noMiss ? null : Math.round(hit * 0.75 + ((skill.fixed(HitType.crit, this.damageForm, this.currentArtifact, soulburn) + skill.fixed2(HitType.crit, this.damageForm, this.currentArtifact, soulburn)) * additionalDamageReduction) + this.getAfterMathDamage(skill, HitType.miss, soulburn))
     };
   }
 
@@ -265,8 +266,11 @@ export class DamageService {
           barrierEnhanceMultiplier += this.currentHero.skills[this.currentHero.barrierEnhance].enhance[i];
         }
       }
+
+      const barrierLabel = this.currentHero.barrierSkills ? this.currentHero.barrierSkills[0] : 'S1'
+      const soulburn = barrierLabel.endsWith('Soulburn')
       
-      barriers.push({label: this.currentHero.barrierSkills ? this.currentHero.barrierSkills[0] : 'S1', value: Math.round(this.currentHero.barrier(this.currentHero, new Skill({}), this.currentArtifact, this.damageForm, this.getGlobalAttackMult()) * barrierEnhanceMultiplier)})
+      barriers.push({label: barrierLabel, value: Math.round(this.currentHero.barrier(this.currentHero, new Skill({}), this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), soulburn) * barrierEnhanceMultiplier)})
     }
 
     if (this.currentHero.barrier2) {
@@ -276,7 +280,10 @@ export class DamageService {
           barrierEnhanceMultiplier += this.currentHero.skills[this.currentHero.barrier2Enhance].enhance[i];
         }
       }
-      barriers.push({label: this.currentHero.barrierSkills ? this.currentHero.barrierSkills[1] : 'S2', value: Math.round(this.currentHero.barrier2(this.currentHero, new Skill({}), this.currentArtifact, this.damageForm, this.getGlobalAttackMult()) * barrierEnhanceMultiplier)})
+
+      const barrierLabel = this.currentHero.barrierSkills ? this.currentHero.barrierSkills[1] : 'S2'
+      const soulburn = barrierLabel.endsWith('Soulburn')
+      barriers.push({label: barrierLabel, value: Math.round(this.currentHero.barrier2(this.currentHero, new Skill({}), this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), soulburn) * barrierEnhanceMultiplier)})
     }
 
     return barriers;

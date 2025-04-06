@@ -179,12 +179,13 @@ export const Artifacts: Record<string, Artifact> = {
     id: 'fairy_tale_for_a_nightmare',
     name: 'Fairy Tale for a Nightmare',
     type: ArtifactDamageType.fixedDamage,
+    extraAttackBonus: true,
     artifactSpecific: ['extraDualOrCounter'],
     penetrate: 1,
-    scale: [750, 825, 900, 975, 1050, 1125, 1200, 1275, 1350, 1425, 1500],
+    scale: [1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000],
     exclusive: HeroClass.mage,
     applies: (skill: Skill, inputValues: DamageFormData) => skill.isExtra || inputValues.extraDualOrCounter,
-    value: (artiScale: number) => artiScale
+    value: (artiScale: number, inputValues: DamageFormData, skill: Skill, isExtra: boolean) => (skill.isExtra || isExtra || inputValues.extraDualOrCounter) ? artiScale : 0
   }),
   feed_of_criticism: new Artifact({
     id: 'feed_of_criticism',
@@ -509,6 +510,15 @@ export const Artifacts: Record<string, Artifact> = {
     artifactSpecificMaximums:{'AOEStack': 5},
     exclusive: HeroClass.mage,
     value: (artiScale: number, inputValues: DamageFormData) => inputValues.AOEStack * artiScale
+  }),
+  thorn_of_the_blue_rose: new Artifact({
+    id: 'thorn_of_the_blue_rose',
+    name: 'Thorn of the Blue Rose',
+    scale: [0.05, 0.055, 0.06, 0.065, 0.07, 0.075, 0.08, 0.085, 0.09, 0.095, 0.1],
+    additional: [0.1, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2],
+    type: ArtifactDamageType.damage,
+    exclusive: HeroClass.warrior,
+    value: (artiScale: number, inputValues: DamageFormData, skill: Skill, isExtra: boolean, hitType: HitType, soulburn: boolean) => artiScale + (soulburn ? Artifacts.thorn_of_the_blue_rose.additional[Artifacts.thorn_of_the_blue_rose.scale.indexOf(artiScale)] : 0)
   }),
   time_matter: new Artifact({
     id: 'time_matter',
