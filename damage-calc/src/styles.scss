@@ -349,12 +349,12 @@ html, body {
       color: $font-light-color !important;
     }
     ::placeholder {
-      color: $font-light-color;
+      color: $font-light-color !important;
       opacity: 1; /* Firefox */
     }
     
     ::-ms-input-placeholder { /* Edge 12 -18 */
-      color: $font-light-color;
+      color: $font-light-color !important;
     }
   }
 
