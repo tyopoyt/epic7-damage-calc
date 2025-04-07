@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <div class="page-container">
     <div class="filter-select-container full-width neat-container" [ngClass]="!screenService.mediumSmallScreen.value ? 'column-3' : 'flex-column'">
-        <mat-form-field class="neat-container has-icons-3">
+        <mat-form-field class="neat-container has-icons-3" [class.full-width]="screenService.mediumSmallScreen.value">
             <img class="png-icon medium tiny-margin-right select-icon" src="assets/heroes/{{hero1ID | removeOld}}-icon.png" alt="{{hero1ID}} portrait">
             <img class="png-icon medium tiny-margin-right select-icon-2" src="assets/elements/{{Heroes[hero1ID].element}}.png" alt="{{Heroes[hero1ID].element}}">
             <img class="png-icon medium tiny-margin-right select-icon-3" src="assets/classes/{{Heroes[hero1ID].class}}.png" alt="{{Heroes[hero1ID].class}}">
@@ -17,7 +17,7 @@
                 </mat-option>
             </mat-select>
         </mat-form-field>
-        <mat-form-field class="neat-container has-icons-3">
+        <mat-form-field class="neat-container has-icons-3" [class.full-width]="screenService.mediumSmallScreen.value">
             <img class="png-icon medium tiny-margin-right select-icon" src="assets/heroes/{{hero2ID | removeOld}}-icon.png" alt="{{hero2ID}} portrait">
             <img class="png-icon medium tiny-margin-right select-icon-2" src="assets/elements/{{Heroes[hero2ID].element}}.png" alt="{{Heroes[hero2ID].element}}">
             <img class="png-icon medium tiny-margin-right select-icon-3" src="assets/classes/{{Heroes[hero2ID].class}}.png" alt="{{Heroes[hero2ID].class}}">
@@ -33,7 +33,7 @@
                 </mat-option>
             </mat-select>
         </mat-form-field>
-        <mat-form-field class="neat-container has-icons-3">
+        <mat-form-field class="neat-container has-icons-3" [class.full-width]="screenService.mediumSmallScreen.value">
             <img class="png-icon medium tiny-margin-right select-icon" src="assets/heroes/{{hero3ID | removeOld}}-icon.png" alt="{{hero3ID}} portrait">
             <img class="png-icon medium tiny-margin-right select-icon-2" src="assets/elements/{{Heroes[hero3ID].element}}.png" alt="{{Heroes[hero3ID].element}}">
             <img class="png-icon medium tiny-margin-right select-icon-3" src="assets/classes/{{Heroes[hero3ID].class}}.png" alt="{{Heroes[hero3ID].class}}">
@@ -70,9 +70,7 @@
         </div>
     </div>
     <button type="button" class="color-blue save-image" (click)="downloadImage()" mat-flat-button>
-        <img class="svg-icon icon" [class.tiny-margin-right]="!screenService.mediumScreen.value" src="assets/icons/save.svg" alt="compare">
-        <ng-container *ngIf="!screenService.mediumScreen.value">
-            Save Image
-        </ng-container>
+        <img class="svg-icon icon tiny-margin-right" src="assets/icons/save.svg" alt="save image">
+        Save Image
     </button>
 </div>

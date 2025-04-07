@@ -1,6 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import html2canvas from 'html2canvas';
+import domtoimage from 'dom-to-image-more';
 import * as _ from 'lodash';
 import { Subscription } from 'rxjs';
 import { Hero } from 'src/app/models/hero';
@@ -15,7 +15,7 @@ import { Heroes } from 'src/assets/data/heroes';
   styleUrls: ['./gw-archive.component.scss']
 })
 export class GwArchiveComponent {
-  @ViewChild('gwArchiveExport', { static: false }) captureMe!: ElementRef;
+  @ViewChild('gwArchiveExport', { static: false }) gwArchiveExport!: ElementRef;
 
 
   hero1ID = 'abigail';
@@ -108,21 +108,21 @@ export class GwArchiveComponent {
     }
   }
 
-  downloadImage() {
-      const element = this.captureMe.nativeElement;
+  async downloadImage() {
+    const element = this.gwArchiveExport.nativeElement;
   
-      html2canvas(element, { scale: 1 }).then(canvas => {
-        // Convert to PNG
-        const imgData = canvas.toDataURL('image/png');
-  
-        // Create a link and trigger download
-        const link = document.createElement('a');
-        link.href = imgData;
-        link.download = `${this.hero1ID}-${this.hero2ID}-${this.hero3ID}.png`;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      });
-    }
+    const dataUrl = await domtoimage.toPng(element, {
+      bgcolor: '#121212',
+      width: 720,
+      height: 360
+    })
+
+    const link = document.createElement('a');
+    link.href = dataUrl;
+    link.download = `${this.hero1ID}-${this.hero2ID}-${this.hero3ID}.png`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
 
 }

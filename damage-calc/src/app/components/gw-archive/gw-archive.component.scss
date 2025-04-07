@@ -1,7 +1,19 @@
 @import "../../../variables.scss";
 
+.page-container {
+    overflow-x: hidden;
+}
+
 .filter-select-container {
     margin-top: $gutter;
+    margin-bottom: $gutter;
+
+    &.flex-column {
+        margin-bottom: 0;
+    }
+}
+
+.neat-container.has-icons-3.full-width {
     margin-bottom: $gutter;
 }
 
