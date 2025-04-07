@@ -6,6 +6,7 @@ import { EffectivenessCheckerComponent } from './components/effectiveness-checke
 import { SpeedTunerComponent } from './components/speed-tuner/speed-tuner.component';
 import { EHPCalculatorComponent } from './components/ehp-calculator/ehp-calculator.component';
 import { SpeedSolverComponent } from './components/speed-solver/speed-solver.component';
+import { GwArchiveComponent } from './components/gw-archive/gw-archive.component';
 
 const routes: Routes = [
   //TODO: handle old zh urls (zhCN => cn, zhTW => tw)
@@ -49,6 +50,15 @@ const routes: Routes = [
     path: 'ehp-calculator',
     component: EHPCalculatorComponent
   },
+  {
+    path: ':lang/gw-archive-helper',
+    component: GwArchiveComponent
+  },
+  {
+    path: 'gw-archive-helper',
+    component: GwArchiveComponent
+  },
+  
 
   // .html, index, and extra paths are provided for compatability with any bookmarks people may have saved from previous calculator version
   {
