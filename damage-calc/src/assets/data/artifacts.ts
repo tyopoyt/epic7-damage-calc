@@ -353,6 +353,16 @@ export const Artifacts: Record<string, Artifact> = {
     name: 'Reingar\'s Special Drink',
     type: ArtifactDamageType.aftermath,
     artifactSpecific:['targetDefenseDownAftermath'],
+    attackPercent: 0.45,
+    penetrate: 0.7,
+    exclusive: HeroClass.ranger,
+    applies: (skill: Skill, inputValues: DamageFormData, soulburn: boolean) => skill.isAOE(inputValues, soulburn)
+  }),
+  reingar_special_drink_old: new Artifact({
+    id: 'reingar_special_drink',
+    name: 'Reingar\'s Special Drink',
+    type: ArtifactDamageType.aftermath,
+    artifactSpecific:['targetDefenseDownAftermath'],
     attackPercent: 0.3,
     penetrate: 0.7,
     exclusive: HeroClass.ranger,

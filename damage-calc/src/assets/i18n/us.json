@@ -60,6 +60,7 @@
     "blood_blade_karin": "Blood Blade Karin",
     "blood_moon_haste": "Blood Moon Haste",
     "blooming_lidica": "Blooming Lidica",
+    "boss_arunka": "Boss Arunka",
     "briar_witch_iseria": "Briar Witch Iseria",
     "brieg": "Brieg",
     "butcher_corps_inquisitor": "Butcher Corps Inquisitor",
@@ -890,7 +891,7 @@
     "zio_disappear": "Disappear",
     "speed_tuner_instructions": "To use the Speed Tuner, input the current speed of your slower and/or faster unit, as well as any Combat Readiness increase that will be applied.\nThe tuner will calculate how the units' speeds need to be adjusted to guarantee turn order.\n\nIn Faster Unit Pushes mode, set the speed of the slower and/or faster unit and the CR push to calculate the speed needed for the slower unit to move next.",
     "speed_solver_instructions": "To use the Speed Solver:\n\nIn Solve Slower mode, input the speed of the faster unit and the Combat Readiness of the slower unit. The Speed Solver will then tell you the range of possible speeds for the faster unit as well as the most probable speed.\n\nIn Solve Faster mode, input the speed of the slower unit as well as the Combat Readiness of both units. The Speed Solver will then tell you the possible speeds of the faster unit.\n\nFor example, if the faster unit is at 100% combat readiness (such as if you were outsped in RTA and have checked the Combat Readiness before the enemy takes a turn) you may leave the combat readiness at 100% and input your slower unit's speed and Combat Readiness.\n\nOr, if you got outsped and the faster unit has already moved and is now 10% into its next turn, you would put 110% as the faster unit's Combat Readiness.\n\nThe speed solver assumes no Combat Readiness increases or decreases have applied, so if you want to account for those you may adjust the inputs accordingly.",
-    "damageCalculatorUpdates": "Mar 23 2025 Update: Added Speed Solver tool.  This tool can help you estimate the speeds of units based on Combat Readiness.\n\nFeb 27 2025 Update: Added Successor Taeyou.\n\nPlease reach out to me if you find any bugs! @tyopoyt on Discord or Reddit.",
+    "damageCalculatorUpdates": "Apr 10 2025 Update: Added Guard Captain Krau, Boss Arunka, and Victorika.  Updated units and artifacts from the 4/10 balance patch.\n\nPlease reach out to me if you find any bugs! @tyopoyt on Discord or Reddit.",
     "harsettiWarning": "Harsetti's Skill 3 description says that it has HP scaling, but the multiplier does not yet seem to include it, so her Skill 3 damage here will probably be incorrect until we know her HP scaling."
   },
   "titles": {
