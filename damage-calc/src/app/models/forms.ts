@@ -540,6 +540,7 @@ export class DamageFormData {
     increasedCritDamage: boolean;
     criticalHitStack: number;
     damageReduction: number;
+    additionalDamageReduction: number;
     damageTransfer: number
     penetrationResistance: number
     defensePercentUp: number;
@@ -687,6 +688,7 @@ export class DamageFormData {
         this.increasedCritDamage = _.get(data, 'increasedCritDamage', false);
         this.criticalHitStack = _.get(data, 'criticalHitStack', 0)
         this.damageReduction = _.get(data, 'damageReduction', 0);
+        this.additionalDamageReduction = _.get(data, 'additionalDamageReduction', 0);
         this.damageTransfer = _.get(data, 'damageTransfer', 0);
         this.penetrationResistance = _.get(data, 'penetrationResistance', 0);
         this.defensePercentUp = _.get(data, 'defensePercentUp', 0);

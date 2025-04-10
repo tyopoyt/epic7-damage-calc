@@ -23,7 +23,7 @@ export class Artifact {
     heroExclusive: string[];
     type: ArtifactDamageType;
     applies: (skill: Skill, inputValues: DamageFormData, soulburn: boolean) => boolean; // Pass Skill
-    value: (artiScale: number, inputValues: DamageFormData, skill: Skill, isExtra: boolean, hitType: HitType) => number; // Pass Skill and DamageFormData (and optionally isExtra)
+    value: (artiScale: number, inputValues: DamageFormData, skill: Skill, isExtra: boolean, hitType: HitType, soulburn: boolean) => number; // Pass Skill and DamageFormData (and optionally isExtra)
     scale: number[];
     additional: number[];
     maxHP: number;
@@ -69,7 +69,7 @@ export class Artifact {
       if (!(this.id && this.type === ArtifactDamageType.penetrate && this.applies(skill, inputValues, soulburn))) {
         return 0;
       }
-      return this.value(this.getScale(level), inputValues, skill, isExtra, hitType);
+      return this.value(this.getScale(level), inputValues, skill, isExtra, hitType, soulburn);
     }
 
     getScale(level: number): number {
@@ -80,12 +80,12 @@ export class Artifact {
       return (this.id && this.type === ArtifactDamageType.dot) ? this.dot : [];
     }
 
-    getFlatMult(level: number, inputValues: DamageFormData, skill: Skill, hitType: HitType, isExtra = false) {
+    getFlatMult(level: number, inputValues: DamageFormData, skill: Skill, soulburn: boolean, hitType: HitType, isExtra = false) {
         if (this.type !== ArtifactDamageType.flat) {
             return 0;
         }
 
-        return this.flat(this.value(this.getScale(level), inputValues, skill, isExtra, hitType), inputValues);
+        return this.flat(this.value(this.getScale(level), inputValues, skill, isExtra, hitType, soulburn), inputValues);
     }
 
     getDamageMultiplier(level: number, inputValues: DamageFormData, skill: Skill, soulburn: boolean, hitType: HitType, isExtra = false) {
@@ -94,23 +94,23 @@ export class Artifact {
         return 0;
       }
 
-      return this.value(this.getScale(level), inputValues, skill, isExtra, hitType);
+      return this.value(this.getScale(level), inputValues, skill, isExtra, hitType, soulburn);
     }
 
-    getCritDmgBoost(level: number, inputValues: DamageFormData, skill: Skill, hitType: HitType, isExtra = false) {
+    getCritDmgBoost(level: number, inputValues: DamageFormData, skill: Skill, soulburn: boolean, hitType: HitType, isExtra = false) {
       if (this.id === undefined || this.type !== ArtifactDamageType.critDamageBoost) {
         return 0;
       }
 
-      return this.value(this.getScale(level), inputValues, skill, isExtra, hitType);
+      return this.value(this.getScale(level), inputValues, skill, isExtra, hitType, soulburn);
     }
 
-    getAttackBoost(level: number, inputValues: DamageFormData, skill: Skill, hitType: HitType, isExtra = false) {
+    getAttackBoost(level: number, inputValues: DamageFormData, skill: Skill, soulburn: boolean, hitType: HitType, isExtra = false) {
       if (this.id === undefined || this.type !== ArtifactDamageType.attack) {
         return 0;
       }
 
-      return this.value(this.getScale(level), inputValues, skill, isExtra, hitType);
+      return this.value(this.getScale(level), inputValues, skill, isExtra, hitType, soulburn);
     }
 
     getAfterMathMultipliers(skill: Skill, inputValues: DamageFormData, soulburn: boolean, isExtra: boolean, hitType: HitType) {
@@ -123,7 +123,7 @@ export class Artifact {
           attackPercent: this.attackPercent,
           defensePercent: this.defensePercent,
           hpPercent: this.hpPercent,
-          fixedDamage: this.type === ArtifactDamageType.fixedDamage ? this.value(this.getScale(inputValues.artifactLevel), inputValues, skill, isExtra, hitType) : 0,
+          fixedDamage: this.type === ArtifactDamageType.fixedDamage ? this.value(this.getScale(inputValues.artifactLevel), inputValues, skill, isExtra, hitType, soulburn) : 0,
           penetrate: this.penetrate
         };
       }

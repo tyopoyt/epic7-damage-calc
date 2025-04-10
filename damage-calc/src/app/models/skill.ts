@@ -62,6 +62,7 @@ export class Skill {
     isAOE: (inputValues: DamageFormData, soulburn: boolean) => boolean;
     isExtra: boolean;
     isCounter: boolean;
+    isAdditional: boolean;
     extraModifier: boolean;
     isSingle: (inputValues: DamageFormData, soulburn: boolean) => boolean;
     mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact, heroAttack: number) => number;
@@ -111,6 +112,7 @@ export class Skill {
         this.isAOE = _.get(data, 'isAOE', () => false);
         this.isExtra = _.get(data, 'isExtra', false);
         this.isCounter = _.get(data, 'isCounter', false);
+        this.isAdditional = _.get(data, 'isAdditional', false);
         this.isSingle = _.get(data, 'isSingle', () => false);
         this.mult = _.get(data, 'mult', () => 1);
         this.name = _.get(data, 'name', null);

@@ -28,8 +28,8 @@ export class Hero {
     flatAttackIncrease: (inputValues: DamageFormData, artifact: Artifact) => number;
     defenseIncrease: (inputValues: DamageFormData) => number;
     speedIncrease: (inputValues: DamageFormData) => number;
-    barrier?: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number) => number;
-    barrier2?: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number) => number;
+    barrier?: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number, soulburn: boolean) => number;
+    barrier2?: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number, soulburn: boolean) => number;
     barrier2Enhance?: string;
     barrierEnhance?: string;
     barrierSkills?: string[];
@@ -100,7 +100,7 @@ export class Hero {
   }
 
   // Get the hero's attack if it's modified
-  getAttack(artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number, skill: Skill, hitType: HitType, isExtra = false): number {
+  getAttack(artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number, skill: Skill, soulburn: boolean, hitType: HitType, isExtra = false): number {
     // skill.atk is for lilias
     let atk = skill?.atk(inputValues) || inputValues.casterFinalAttack;
 
@@ -117,7 +117,7 @@ export class Hero {
           + attackMultiplier
           + (this.attackIncrease !== undefined ? this.attackIncrease(inputValues) - 1 : 0)
           + (this.innateAttackIncrease !== undefined ? this.innateAttackIncrease(inputValues) : 0)
-          + artifact.getAttackBoost(inputValues.artifactLevel, inputValues, skill, hitType, isExtra);
+          + artifact.getAttackBoost(inputValues.artifactLevel, inputValues, skill, soulburn, hitType, isExtra);
     }
 
     return ((atk + atkImprint) * atkMod) + this.flatAttackIncrease(inputValues, artifact);
@@ -132,12 +132,12 @@ export class Hero {
   getAfterMathSkillDamage(skill: Skill, hitType: HitType, soulburn: boolean, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number, defenseMultiplier: number, target: Target, isExtra = false, isCounter = false) {
     let skillDamage = 0;
     let skillMultipliers = skill.afterMath(hitType, inputValues, soulburn);
-    const attack = this.getAttack(artifact, inputValues, attackMultiplier, skill, hitType, isExtra)
+    const attack = this.getAttack(artifact, inputValues, attackMultiplier, skill, soulburn, hitType, isExtra)
     const speed = this.getSpeed(inputValues)
     // TODO: can aftermath skills just use the same skill as DoTSkill now?
     if (skillMultipliers !== null) {
       if (skillMultipliers.attackPercent) {
-        skillDamage = this.getAttack(artifact, inputValues, attackMultiplier, skill, hitType, isExtra) * skillMultipliers.attackPercent * BattleConstants.damageConstant * target.defensivePower(new Skill({ id: 'FixedPenetration', penetrate: () => skillMultipliers.penetrate }), inputValues, defenseMultiplier, artifact, false, attack, speed, hitType, true);
+        skillDamage = this.getAttack(artifact, inputValues, attackMultiplier, skill, soulburn, hitType, isExtra) * skillMultipliers.attackPercent * BattleConstants.damageConstant * target.defensivePower(new Skill({ id: 'FixedPenetration', penetrate: () => skillMultipliers.penetrate }), inputValues, defenseMultiplier, artifact, false, attack, speed, hitType, true);
       } else if (skillMultipliers.defensePercent) {
         skillDamage = inputValues.casterFinalDefense() * skillMultipliers.defensePercent * BattleConstants.damageConstant * target.defensivePower(new Skill({ id: 'FixedPenetration', penetrate: () => skillMultipliers.penetrate }), inputValues, defenseMultiplier, artifact, false, attack, speed, hitType, true);
       } else if (skillMultipliers.hpPercent) {
@@ -158,7 +158,7 @@ export class Hero {
 
       if (skillMultipliers !== null) {
         if (skillMultipliers.attackPercent) {
-          skillDamage += this.getAttack(artifact, inputValues, attackMultiplier, skill, hitType, isExtra) * skillMultipliers.attackPercent * BattleConstants.damageConstant * target.defensivePower(new Skill({ id: 'FixedPenetration', penetrate: () => skillMultipliers.penetrate }), inputValues, defenseMultiplier, artifact, false, attack, speed, hitType, true);
+          skillDamage += this.getAttack(artifact, inputValues, attackMultiplier, skill, soulburn, hitType, isExtra) * skillMultipliers.attackPercent * BattleConstants.damageConstant * target.defensivePower(new Skill({ id: 'FixedPenetration', penetrate: () => skillMultipliers.penetrate }), inputValues, defenseMultiplier, artifact, false, attack, speed, hitType, true);
         } else if (skillMultipliers.defensePercent) {
           skillDamage += inputValues.casterFinalDefense() * skillMultipliers.defensePercent * BattleConstants.damageConstant * target.defensivePower(new Skill({ id: 'FixedPenetration', penetrate: () => skillMultipliers.penetrate }), inputValues, defenseMultiplier, artifact, false, attack, speed, hitType, true);
         } else if (skillMultipliers.hpPercent) {
@@ -174,24 +174,27 @@ export class Hero {
       }
     }
 
-    return skillDamage;
+    const additionalDamageReduction = 1 - (inputValues.additionalDamageReduction / 100)
+    return skillDamage * additionalDamageReduction;
   }
 
   // Get aftermath damage from the artifact. This belongs to hero because it calls hero's getAtk and getDef
   getAfterMathArtifactDamage(skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number, defenseMultiplier: number, target: Target, soulburn: boolean, hitType: HitType, isExtra = false) {
-    const artiMultipliers = artifact.getAfterMathMultipliers(skill, inputValues, soulburn, isExtra, hitType);
-    const attack = this.getAttack(artifact, inputValues, attackMultiplier, skill, hitType, isExtra)
+
+    const artiMultipliers = artifact.getAfterMathMultipliers(skill, inputValues, soulburn, isExtra || skill.id.endsWith('extra'), hitType);
+    const attack = this.getAttack(artifact, inputValues, attackMultiplier, skill, soulburn, hitType, isExtra || skill.id.endsWith('extra'))
     const speed = this.getSpeed(inputValues)
+    const additionalDamageReduction = 1 - (inputValues.additionalDamageReduction / 100)
     // TODO: can aftermath skills just use the same skill as DoTSkill now?
     if (artiMultipliers !== null) {
       if (artiMultipliers.attackPercent) {
-        return this.getAttack(artifact, inputValues, attackMultiplier, skill, hitType, isExtra) * artiMultipliers.attackPercent * BattleConstants.damageConstant * target.defensivePower(new Skill({ id: 'FixedPenetration', penetrate: () => artiMultipliers.penetrate }), inputValues, defenseMultiplier, artifact, false, attack, speed, hitType, true);
+        return additionalDamageReduction * this.getAttack(artifact, inputValues, attackMultiplier, skill, soulburn, hitType, isExtra) * artiMultipliers.attackPercent * BattleConstants.damageConstant * target.defensivePower(new Skill({ id: 'FixedPenetration', penetrate: () => artiMultipliers.penetrate }), inputValues, defenseMultiplier, artifact, false, attack, speed, hitType, true);
       } else if (artiMultipliers.defensePercent) {
-        return inputValues.casterFinalDefense(this.defenseIncrease(inputValues)) * artiMultipliers.defensePercent * BattleConstants.damageConstant * target.defensivePower(new Skill({ id: 'FixedPenetration', penetrate: () => artiMultipliers.penetrate }), inputValues, defenseMultiplier, artifact, false, attack, speed, hitType, true);
+        return additionalDamageReduction * inputValues.casterFinalDefense(this.defenseIncrease(inputValues)) * artiMultipliers.defensePercent * BattleConstants.damageConstant * target.defensivePower(new Skill({ id: 'FixedPenetration', penetrate: () => artiMultipliers.penetrate }), inputValues, defenseMultiplier, artifact, false, attack, speed, hitType, true);
       } else if (artiMultipliers.hpPercent) {
-        return inputValues.casterFinalMaxHP(artifact) * artiMultipliers.hpPercent * BattleConstants.damageConstant * target.defensivePower(new Skill({ id: 'FixedPenetration', penetrate: () => artiMultipliers.penetrate }), inputValues, defenseMultiplier, artifact, false, attack, speed, hitType, true);
+        return additionalDamageReduction * inputValues.casterFinalMaxHP(artifact) * artiMultipliers.hpPercent * BattleConstants.damageConstant * target.defensivePower(new Skill({ id: 'FixedPenetration', penetrate: () => artiMultipliers.penetrate }), inputValues, defenseMultiplier, artifact, false, attack, speed, hitType, true);
       } else if (artiMultipliers.fixedDamage) {
-        return artiMultipliers.fixedDamage
+        return additionalDamageReduction * artiMultipliers.fixedDamage
       }
     }
 

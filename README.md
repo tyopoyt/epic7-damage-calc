@@ -7,6 +7,9 @@ To test your translation locally, there is a hidden option to load a custom tran
 <img src="./language_custom.gif" alt="image" width="800" height="auto">
 
 ## Changelog
+### <strong>Apr 10 2025 Update:</strong>
+- Added Guard Captain Krau, Boss Arunka, and Victorika.
+- Updated units and artifacts from the 4/10 balance patch.
 ### <strong>Mar 24 2025 Update:</strong>
 - Added probability chart to Speed Solver tool.
 - Made dismissibles stay dismissed (except announcements)
