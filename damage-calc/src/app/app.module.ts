@@ -43,6 +43,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { CompareSaveComponent } from './components/compare-save/compare-save.component';
 import { RemoveOldPipe } from './pipes/remove-old.pipe';
 import { SpeedSolverComponent } from './components/speed-solver/speed-solver.component';
+import { GwArchiveComponent } from './components/gw-archive/gw-archive.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { SpeedSolverComponent } from './components/speed-solver/speed-solver.com
     DamageGraphComponent,
     CompareSaveComponent,
     RemoveOldPipe,
-    SpeedSolverComponent
+    SpeedSolverComponent,
+    GwArchiveComponent
   ],
   imports: [
     AppRoutingModule,

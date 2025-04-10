@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<div class="page-container">
+    <div class="filter-select-container full-width neat-container" [ngClass]="!screenService.mediumSmallScreen.value ? 'column-3' : 'flex-column'">
+        <mat-form-field class="neat-container has-icons-3" [class.full-width]="screenService.mediumSmallScreen.value">
+            <img class="png-icon medium tiny-margin-right select-icon" src="assets/heroes/{{hero1ID | removeOld}}-icon.png" alt="{{hero1ID}} portrait">
+            <img class="png-icon medium tiny-margin-right select-icon-2" src="assets/elements/{{Heroes[hero1ID].element}}.png" alt="{{Heroes[hero1ID].element}}">
+            <img class="png-icon medium tiny-margin-right select-icon-3" src="assets/classes/{{Heroes[hero1ID].class}}.png" alt="{{Heroes[hero1ID].class}}">
+            <mat-select [formControl]="hero1Control" placeholder="" #singleSelect (selectionChange)="selectHero(1, $event.value)">
+                <mat-option>
+                    <ngx-mat-select-search spellcheck="false" [formControl]="heroFilterControl" placeholderLabel="Find hero..."></ngx-mat-select-search>
+                </mat-option>
+                <mat-option *ngFor="let hero of filteredHeroes" class="has-icons-3" [value]="hero[0]">
+                    <img class="png-icon medium tiny-margin-right select-option-icon" src="assets/heroes/{{hero[0] | removeOld}}-icon.png" alt="{{hero[0]}} portrait">
+                    <img class="png-icon medium tiny-margin-right select-option-icon-2" src="assets/elements/{{hero[1].element}}.png" alt="{{hero[1].element}}">
+                    <img class="png-icon medium tiny-margin-right select-option-icon-3" src="assets/classes/{{hero[1].class}}.png" alt="{{hero[1].class}}">
+                    {{hero[0] | translate:'heroes':languageService.language.value}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="neat-container has-icons-3" [class.full-width]="screenService.mediumSmallScreen.value">
+            <img class="png-icon medium tiny-margin-right select-icon" src="assets/heroes/{{hero2ID | removeOld}}-icon.png" alt="{{hero2ID}} portrait">
+            <img class="png-icon medium tiny-margin-right select-icon-2" src="assets/elements/{{Heroes[hero2ID].element}}.png" alt="{{Heroes[hero2ID].element}}">
+            <img class="png-icon medium tiny-margin-right select-icon-3" src="assets/classes/{{Heroes[hero2ID].class}}.png" alt="{{Heroes[hero2ID].class}}">
+            <mat-select [formControl]="hero2Control" placeholder="" #singleSelect (selectionChange)="selectHero(2, $event.value)">
+                <mat-option>
+                    <ngx-mat-select-search spellcheck="false" [formControl]="heroFilterControl" placeholderLabel="Find hero..."></ngx-mat-select-search>
+                </mat-option>
+                <mat-option *ngFor="let hero of filteredHeroes" class="has-icons-3" [value]="hero[0]">
+                    <img class="png-icon medium tiny-margin-right select-option-icon" src="assets/heroes/{{hero[0] | removeOld}}-icon.png" alt="{{hero[0]}} portrait">
+                    <img class="png-icon medium tiny-margin-right select-option-icon-2" src="assets/elements/{{hero[1].element}}.png" alt="{{hero[1].element}}">
+                    <img class="png-icon medium tiny-margin-right select-option-icon-3" src="assets/classes/{{hero[1].class}}.png" alt="{{hero[1].class}}">
+                    {{hero[0] | translate:'heroes':languageService.language.value}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="neat-container has-icons-3" [class.full-width]="screenService.mediumSmallScreen.value">
+            <img class="png-icon medium tiny-margin-right select-icon" src="assets/heroes/{{hero3ID | removeOld}}-icon.png" alt="{{hero3ID}} portrait">
+            <img class="png-icon medium tiny-margin-right select-icon-2" src="assets/elements/{{Heroes[hero3ID].element}}.png" alt="{{Heroes[hero3ID].element}}">
+            <img class="png-icon medium tiny-margin-right select-icon-3" src="assets/classes/{{Heroes[hero3ID].class}}.png" alt="{{Heroes[hero3ID].class}}">
+            <mat-select [formControl]="hero3Control" placeholder="" #singleSelect (selectionChange)="selectHero(3, $event.value)">
+                <mat-option>
+                    <ngx-mat-select-search spellcheck="false" [formControl]="heroFilterControl" placeholderLabel="Find hero..."></ngx-mat-select-search>
+                </mat-option>
+                <mat-option *ngFor="let hero of filteredHeroes" class="has-icons-3" [value]="hero[0]">
+                    <img class="png-icon medium tiny-margin-right select-option-icon" src="assets/heroes/{{hero[0] | removeOld}}-icon.png" alt="{{hero[0]}} portrait">
+                    <img class="png-icon medium tiny-margin-right select-option-icon-2" src="assets/elements/{{hero[1].element}}.png" alt="{{hero[1].element}}">
+                    <img class="png-icon medium tiny-margin-right select-option-icon-3" src="assets/classes/{{hero[1].class}}.png" alt="{{hero[1].class}}">
+                    {{hero[0] | translate:'heroes':languageService.language.value}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div #gwArchiveExport class="gw-export">
+        <div class="flex-row">
+            <div class="stacked-icon">
+                <img class="hero-icon" src="assets/heroes/{{hero1ID | removeOld}}-icon.png" alt="{{hero1ID}} portrait">
+                <img class="hero-frame" src="assets/icons/hero_frame.png" alt="hero frame">
+                <img class="hero-bg" src="assets/icons/hero_bg.png" alt="hero background">
+            </div>
+            <div class="stacked-icon">
+                <img class="hero-icon" src="assets/heroes/{{hero2ID | removeOld}}-icon.png" alt="{{hero2ID}} portrait">
+                <img class="hero-frame" src="assets/icons/hero_frame.png" alt="hero frame">
+                <img class="hero-bg" src="assets/icons/hero_bg.png" alt="hero background">
+            </div>
+            <div class="stacked-icon">
+                <img class="hero-icon" src="assets/heroes/{{hero3ID | removeOld}}-icon.png" alt="{{hero3ID}} portrait">
+                <img class="hero-frame" src="assets/icons/hero_frame.png" alt="hero frame">
+                <img class="hero-bg" src="assets/icons/hero_bg.png" alt="hero background">
+            </div>
+        </div>
+    </div>
+    <button type="button" class="color-blue save-image" (click)="downloadImage()" mat-flat-button>
+        <img class="svg-icon icon tiny-margin-right" src="assets/icons/save.svg" alt="save image">
+        Save Image
+    </button>
+</div>

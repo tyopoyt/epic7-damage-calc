@@ -1788,6 +1788,36 @@ export const Heroes: Record<string, Hero> = {
       })
     }
   }),
+  boss_arunka: new Hero({
+    element: HeroElement.light,
+    class: HeroClass.knight,
+    baseAttack: 776,
+    baseDefense: 822,
+    baseHP: 6593,
+    heroSpecific: ['casterDefense'],
+    skills: {
+      s1: new Skill({
+        id: 's1',
+        defenseScaling: true,
+        rate: () => 0.6,
+        pow: () => 1,
+        flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) =>  inputValues.casterFinalDefense() * 1.0,
+        flatTip: () => ({ casterDefense: 100 }),
+        enhance: [0.05, 0, 0.05, 0.05, 0, 0.15],
+        isSingle: () => true,
+      }),
+      s3: new Skill({
+        id: 's3',
+        defenseScaling: true,
+        rate: () => 0.6,
+        pow: () => 0.95,
+        flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalDefense() * 2,
+        flatTip: () => ({ casterDefense: 200 }),
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.1],
+        isSingle: () => true,
+      }),
+    }
+  }),
   briar_witch_iseria: new Hero({
     element: HeroElement.dark,
     class: HeroClass.ranger,
@@ -9409,15 +9439,19 @@ export const Heroes: Record<string, Hero> = {
         id: 's1',
         rate: () => 1,
         pow: () => 0.9,
+        soulburn: true,
+        mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + (soulburn ? 0.5 : 0),
         enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.1],
         isSingle: () => true,
       }),
       s1_bis: new Skill({
         id: 's1_bis',
         name: 'ml_celine_nimble_sword',
+        soulburn: true,
         rate: () => 1,
         pow: () => 0.9,
         penetrate: () => 0.5,
+        mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + (soulburn ? 0.5 : 0),
         enhanceFrom: 's1',
         isSingle: () => true,
       }),
