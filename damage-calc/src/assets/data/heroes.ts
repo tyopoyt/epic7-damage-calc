@@ -4340,7 +4340,7 @@ export const Heroes: Record<string, Hero> = {
     }
   }),
   guard_captain_krau: new Hero({
-    element: HeroElement.ice,
+    element: HeroElement.fire,
     class: HeroClass.warrior,
     baseAttack: 984,
     baseDefense: 637,
