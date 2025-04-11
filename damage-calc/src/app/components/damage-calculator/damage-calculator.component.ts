@@ -151,6 +151,8 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
 
   // State management =================================================
   collapsed = false;
+  moreBuffsCollapsed = true;
+  setsCollapsed = true;
   savedBuildsCount = 0;
   showGraph = false;
   loading = true;
@@ -865,6 +867,16 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
   // Show/hide damage table
   toggleTable() {
     this.collapsed = !this.collapsed;
+  }
+
+  // Show/hide extra buffs
+  toggleMoreBuffs() {
+    this.moreBuffsCollapsed = !this.moreBuffsCollapsed;
+  }
+
+  // Show/hide extra buffs
+  toggleSets() {
+    this.setsCollapsed = !this.setsCollapsed;
   }
 
   // Show/hide damage graph

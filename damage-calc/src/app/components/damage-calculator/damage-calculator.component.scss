@@ -19,6 +19,22 @@
             margin-bottom: $gutter;
         }
     }
+
+    &.more-buffs, &.sets {
+        h2 {
+            margin-bottom: 0;
+        }
+
+        background-color: $ui-dark-color;
+        border-radius: $gutter;
+        padding: $gutter;
+        margin-top: $gutter;
+    }
+
+    .header-collapse {
+        display: flex;
+        align-items: center;
+    }
 }
 
 .damage-block {

@@ -106,79 +106,95 @@
                     {{'increasedAttackGreat' | translate:'form':languageService.language.value}}
                 </span>
             </mat-checkbox>
-            <mat-checkbox class="small-margin-top" [checked]="inputValues.increasedCritDamage" (change)="inputChange('increasedCritDamage', $event.checked)">
-                <span class="neat-container">
-                    <img class="png-icon medium tiny-margin-right" src="assets/buffs/critical-hit-damage-buff.png" alt="Crit damage buff">
-                    {{'increasedCritDamage' | translate:'form':languageService.language.value}}
+            <div class="more-buffs header-block">
+                <div class="header-collapse">
+                    <img class="svg-icon large filter pointer collapse-icon" (click)="toggleMoreBuffs()" src="{{moreBuffsCollapsed ? 'assets/icons/chevron-down.svg' : 'assets/icons/chevron-up.svg'}}" alt="collapse">
+                    <h2>{{'More Buffs' | translate:'form':languageService.language.value}}</h2>
+                </div>
+                <span [class.hidden]="moreBuffsCollapsed">
+                    <mat-checkbox class="small-margin-top" [checked]="inputValues.increasedCritDamage" (change)="inputChange('increasedCritDamage', $event.checked)">
+                        <span class="neat-container">
+                            <img class="png-icon medium tiny-margin-right" src="assets/buffs/critical-hit-damage-buff.png" alt="Crit damage buff">
+                            {{'increasedCritDamage' | translate:'form':languageService.language.value}}
+                        </span>
+                    </mat-checkbox>
+                    <mat-checkbox class="small-margin-top" [checked]="inputValues.casterVigor" (change)="inputChange('casterVigor', $event.checked)">
+                        <span class="neat-container">
+                            <img class="png-icon medium tiny-margin-right" src="assets/buffs/vigor-buff.png" alt="vigor buff">
+                            {{'vigor' | translate:'form':languageService.language.value}}
+                        </span>
+                    </mat-checkbox>
+                    <mat-checkbox class="small-margin-top" [checked]="inputValues.casterEnraged" (change)="inputChange('casterEnraged', $event.checked)">
+                        <span class="neat-container">
+                            <img class="png-icon medium tiny-margin-right" src="assets/buffs/rage-buff.png" alt="rage buff">
+                            {{'rage' | translate:'form':languageService.language.value}}
+                        </span>
+                    </mat-checkbox>
+                    <mat-checkbox class="small-margin-top" [checked]="inputValues.casterHasCascade" (change)="inputChange('casterHasCascade', $event.checked)">
+                        <span class="neat-container">
+                            <img class="png-icon medium tiny-margin-right" src="assets/buffs/cascade-buff.png" alt="cascade buff">
+                            {{'cascade' | translate:'form':languageService.language.value}}
+                        </span>
+                    </mat-checkbox>
+                    <!-- TODO: add challenge translations when available -->
+                    <mat-checkbox class="small-margin-top" [checked]="inputValues.casterHasChallenge" (change)="inputChange('casterHasChallenge', $event.checked); updateFormInputs()">
+                        <span class="neat-container">
+                            <img class="png-icon medium tiny-margin-right" src="assets/buffs/challenge-buff.png" alt="challenge buff">
+                            {{'challenge' | translate:'form':languageService.language.value}}
+                        </span>
+                    </mat-checkbox>
+                    <!-- TODO: add explosives translations when available -->
+                    <mat-checkbox class="small-margin-top" [checked]="inputValues.casterHasExplosives" (change)="inputChange('casterHasExplosives', $event.checked); updateFormInputs()">
+                        <span class="neat-container">
+                            <img class="png-icon medium tiny-margin-right" src="assets/buffs/explosives-buff.png" alt="explosives buff">
+                            {{'explosives' | translate:'form':languageService.language.value}}
+                        </span>
+                    </mat-checkbox>
+                    <!-- TODO: add sqecial friendship translations when available -->
+                    <mat-checkbox class="small-margin-top" [checked]="inputValues.casterHasSpecialFriendship" (change)="inputChange('casterHasSpecialFriendship', $event.checked); updateFormInputs()">
+                        <span class="neat-container">
+                            <img class="png-icon medium tiny-margin-right" src="assets/buffs/special-friendship-buff.png" alt="special friendship buff">
+                            {{'special_friendship' | translate:'form':languageService.language.value}}
+                        </span>
+                    </mat-checkbox>
+                    <!-- TODO: add rampage translations when available -->
+                    <mat-checkbox *ngIf="hero.element === HeroElement.dark" class="small-margin-top" [checked]="inputValues.casterRampage" (change)="inputChange('casterRampage', $event.checked); updateFormInputs()">
+                        <span class="neat-container">
+                            <img class="png-icon medium tiny-margin-right" src="assets/buffs/rampage-buff.png" alt="rampage buff">
+                            {{'rampage' | translate:'form':languageService.language.value}}
+                        </span>
+                    </mat-checkbox>
                 </span>
-            </mat-checkbox>
-            <mat-checkbox class="small-margin-top" [checked]="inputValues.casterVigor" (change)="inputChange('casterVigor', $event.checked)">
-                <span class="neat-container">
-                    <img class="png-icon medium tiny-margin-right" src="assets/buffs/vigor-buff.png" alt="vigor buff">
-                    {{'vigor' | translate:'form':languageService.language.value}}
+            </div>
+            <div class="more-buffs header-block" >
+                <div class="header-collapse" (click)="toggleSets()">
+                    <img class="svg-icon large filter pointer collapse-icon" src="{{setsCollapsed ? 'assets/icons/chevron-down.svg' : 'assets/icons/chevron-up.svg'}}" alt="collapse">
+                    <h2>{{'Sets' | translate:'form':languageService.language.value}}</h2>
+                </div>
+                <span [class.hidden]="setsCollapsed">
+                    <!-- TODO: edit set pngs to have no margin -->
+                    <mat-checkbox class="small-margin-top" [checked]="inputValues.rageSet" (change)="inputChange('rageSet', $event.checked)">
+                        <span class="neat-container">
+                            <img class="png-icon medium tiny-margin-right" src="assets/sets/rage-set.png" alt="Rage set">
+                            {{'rageSet' | translate:'form':languageService.language.value}}
+                        </span>
+                    </mat-checkbox>
+                    <mat-checkbox class="small-margin-top" [checked]="inputValues.penetrationSet" (change)="inputChange('penetrationSet', $event.checked)">
+                        <span class="neat-container">
+                            <img class="png-icon medium tiny-margin-right" src="assets/sets/penetration-set.png" alt="Penetration set">
+                            {{'penetrationSet' | translate:'form':languageService.language.value}}
+                        </span>
+                    </mat-checkbox>
+                    <mat-checkbox class="small-margin-top" [checked]="!!inputValues.torrentSetStack" (change)="inputChange('torrentSetStack', ($event.checked ? 1 : 0))">
+                        <span class="neat-container">
+                            <img class="png-icon medium tiny-margin-right" src="assets/sets/torrent-set.png" alt="Torrent set">
+                            {{'torrentSet' | translate:'form':languageService.language.value}}
+                        </span>
+                    </mat-checkbox>
                 </span>
-            </mat-checkbox>
-            <mat-checkbox class="small-margin-top" [checked]="inputValues.casterEnraged" (change)="inputChange('casterEnraged', $event.checked)">
-                <span class="neat-container">
-                    <img class="png-icon medium tiny-margin-right" src="assets/buffs/rage-buff.png" alt="rage buff">
-                    {{'rage' | translate:'form':languageService.language.value}}
-                </span>
-            </mat-checkbox>
-            <mat-checkbox class="small-margin-top" [checked]="inputValues.casterHasCascade" (change)="inputChange('casterHasCascade', $event.checked)">
-                <span class="neat-container">
-                    <img class="png-icon medium tiny-margin-right" src="assets/buffs/cascade-buff.png" alt="cascade buff">
-                    {{'cascade' | translate:'form':languageService.language.value}}
-                </span>
-            </mat-checkbox>
-            <!-- TODO: add challenge translations when available -->
-            <mat-checkbox class="small-margin-top" [checked]="inputValues.casterHasChallenge" (change)="inputChange('casterHasChallenge', $event.checked); updateFormInputs()">
-                <span class="neat-container">
-                    <img class="png-icon medium tiny-margin-right" src="assets/buffs/challenge-buff.png" alt="challenge buff">
-                    {{'challenge' | translate:'form':languageService.language.value}}
-                </span>
-            </mat-checkbox>
-            <!-- TODO: add explosives translations when available -->
-            <mat-checkbox class="small-margin-top" [checked]="inputValues.casterHasExplosives" (change)="inputChange('casterHasExplosives', $event.checked); updateFormInputs()">
-                <span class="neat-container">
-                    <img class="png-icon medium tiny-margin-right" src="assets/buffs/explosives-buff.png" alt="explosives buff">
-                    {{'explosives' | translate:'form':languageService.language.value}}
-                </span>
-            </mat-checkbox>
-            <!-- TODO: add special friendship translations when available -->
-            <mat-checkbox class="small-margin-top" [checked]="inputValues.casterHasSpecialFriendship" (change)="inputChange('casterHasSpecialFriendship', $event.checked); updateFormInputs()">
-                <span class="neat-container">
-                    <img class="png-icon medium tiny-margin-right" src="assets/buffs/special-friendship-buff.png" alt="special friendship buff">
-                    {{'special_friendship' | translate:'form':languageService.language.value}}
-                </span>
-            </mat-checkbox>
-            <!-- TODO: add rampage translations when available -->
-            <mat-checkbox *ngIf="hero.element === HeroElement.dark" class="small-margin-top" [checked]="inputValues.casterRampage" (change)="inputChange('casterRampage', $event.checked); updateFormInputs()">
-                <span class="neat-container">
-                    <img class="png-icon medium tiny-margin-right" src="assets/buffs/rampage-buff.png" alt="rampage buff">
-                    {{'rampage' | translate:'form':languageService.language.value}}
-                </span>
-            </mat-checkbox>
-            <!-- TODO: edit set pngs to have no margin -->
-            <mat-checkbox class="small-margin-top" [checked]="inputValues.rageSet" (change)="inputChange('rageSet', $event.checked)">
-                <span class="neat-container">
-                    <img class="png-icon medium tiny-margin-right" src="assets/sets/rage-set.png" alt="Rage set">
-                    {{'rageSet' | translate:'form':languageService.language.value}}
-                </span>
-            </mat-checkbox>
-            <mat-checkbox class="small-margin-top" [checked]="inputValues.penetrationSet" (change)="inputChange('penetrationSet', $event.checked)">
-                <span class="neat-container">
-                    <img class="png-icon medium tiny-margin-right" src="assets/sets/penetration-set.png" alt="Penetration set">
-                    {{'penetrationSet' | translate:'form':languageService.language.value}}
-                </span>
-            </mat-checkbox>
-            <mat-checkbox class="small-margin-top" [checked]="!!inputValues.torrentSetStack" (change)="inputChange('torrentSetStack', ($event.checked ? 1 : 0))">
-                <span class="neat-container">
-                    <img class="png-icon medium tiny-margin-right" src="assets/sets/torrent-set.png" alt="Torrent set">
-                    {{'torrentSet' | translate:'form':languageService.language.value}}
-                </span>
-            </mat-checkbox>
+            </div>
         </div>
-        <div *ngIf="stackingSets.length" class="artifact-block header-block">
+        <div *ngIf="stackingSets.length" class="sets-block header-block">
             <h1>{{'numberOfSets' | translate:'form':languageService.language.value}}</h1>
             <div class="neat-container full-width">
                 <div *ngFor="let set of stackingSets" class="full-width">
