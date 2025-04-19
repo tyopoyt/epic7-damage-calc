@@ -44,6 +44,7 @@ import { CompareSaveComponent } from './components/compare-save/compare-save.com
 import { RemoveOldPipe } from './pipes/remove-old.pipe';
 import { SpeedSolverComponent } from './components/speed-solver/speed-solver.component';
 import { GwArchiveComponent } from './components/gw-archive/gw-archive.component';
+import { SkillIconPipe } from './pipes/skill-icon.pipe';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { GwArchiveComponent } from './components/gw-archive/gw-archive.component
     CompareSaveComponent,
     RemoveOldPipe,
     SpeedSolverComponent,
-    GwArchiveComponent
+    GwArchiveComponent,
+    SkillIconPipe
   ],
   imports: [
     AppRoutingModule,

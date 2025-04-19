@@ -39,6 +39,7 @@ export class Hero {
     class: HeroClass;
     dot?: DoT[];
     element: HeroElement;
+    gameID: string;
     heroSpecific: string[];
     heroSpecificMaximums: Record<string, number>;
     innateAttackIncrease: (inputValues: DamageFormData) => number;
@@ -66,6 +67,7 @@ export class Hero {
     this.class = _.get(heroValues, 'class', HeroClass.warrior);
     this.dot = _.get(heroValues, 'dot', []);
     this.element = _.get(heroValues, 'element', HeroElement.fire);
+    this.gameID = _.get(heroValues, 'gameID', '0000');
     this.heroSpecific = _.get(heroValues, 'heroSpecific', []);
     this.heroSpecificMaximums = _.get(heroValues, 'heroSpecificMaximums', {});
     this.innateAttackIncrease = _.get(heroValues, 'innateAttackIncrease', () => 0);
