@@ -7,6 +7,8 @@ To test your translation locally, there is a hidden option to load a custom tran
 <img src="./language_custom.gif" alt="image" width="800" height="auto">
 
 ## Changelog
+### <strong>Apr 19 2025 Update:</strong>
+- Added skill icons in damage block.
 ### <strong>Apr 10 2025 Update:</strong>
 - Added Guard Captain Krau, Boss Arunka, and Victorika.
 - Updated units and artifacts from the 4/10 balance patch.

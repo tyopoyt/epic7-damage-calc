@@ -501,7 +501,18 @@
                 <table [@collapseAnimation] *ngIf="!collapsed" [class.tiny-padding]="screenService.mediumSmallScreen.value" mat-table [dataSource]="damageData">
                     <ng-container matColumnDef="skill">
                       <th mat-header-cell *matHeaderCellDef> {{"skill" | translate:'ui':languageService.language.value}} </th>
-                      <td mat-cell *matCellDef="let element"><span class="flex-aligned flex-between">{{element.skill | translate:'skills':languageService.language.value}} <img *ngIf="languageService.language.value" class="icon large tiny-margin-left svg-icon cursor-help" src="assets/icons/square-root.svg" alt="Skill multipliers" [mtxTooltip]="modifierTooltip" [mtxTooltipContext]="element.skill" [mtxTooltipPosition]="'left'" #tooltip="mtxTooltip" (click)="tooltip.toggle()"></span></td>
+                      <td mat-cell *matCellDef="let element"><span (click)="toggleCycling()" class="flex-aligned flex-between">
+                        <span class="skill-holder">
+                            <span class="icons-holder">
+                                <img class="large png-icon" [src]="element.skill | skillIcon:heroID" alt="Skill icon">
+                                <img *ngIf="element.skill.includes('_splash')" class="splash png-icon bottom-right" src="assets/skills/splash.png" alt="Skill multipliers" [mtxTooltip]="modifierTooltip" [mtxTooltipContext]="element.skill" [mtxTooltipPosition]="'left'" #tooltip="mtxTooltip" (click)="tooltip.toggle()">
+                                <img *ngIf="element.skill.includes('_extra')" class="extra png-icon top-right" src="assets/skills/extra_3.png" alt="Skill multipliers" [mtxTooltip]="modifierTooltip" [mtxTooltipContext]="element.skill" [mtxTooltipPosition]="'left'" #tooltip="mtxTooltip" (click)="tooltip.toggle()">
+                                <img *ngIf="element.skill.includes('_soulburn')" class="png-icon bottom-right" [class.splash-soulburn]="element.skill.includes('_splash')" src="assets/skills/soulburn.png" alt="Skill multipliers" [mtxTooltip]="modifierTooltip" [mtxTooltipContext]="element.skill" [mtxTooltipPosition]="'left'" #tooltip="mtxTooltip" (click)="tooltip.toggle()">
+                            </span>
+                            {{element.skill | translate:'skills':languageService.language.value}}
+                        </span>
+                        <img *ngIf="languageService.language.value" class="icon large tiny-margin-left svg-icon cursor-help" src="assets/icons/square-root.svg" alt="Skill multipliers" [mtxTooltip]="modifierTooltip" [mtxTooltipContext]="element.skill" [mtxTooltipPosition]="'left'" #tooltip="mtxTooltip" (click)="tooltip.toggle()"></span>
+                      </td>
                     </ng-container>
 
                     <ng-container matColumnDef="crit">

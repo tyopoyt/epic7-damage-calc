@@ -25,6 +25,49 @@
     position: sticky;
     bottom: env(safe-area-inset-bottom, 0);
     z-index: $damage-block-z-index;
+
+    .skill-holder {
+        align-items: center;
+        display: flex;
+
+        .icons-holder {
+            position: relative;
+        }
+        .png-icon {
+            margin-right: 0.1rem;
+            margin-top: 0.2rem;
+
+            &.splash {
+                height: 1.05rem;
+            }
+
+            &.extra {
+                height: 0.9rem;
+            }
+        }
+
+        .bottom-right {
+            position: absolute;
+            right: 0;
+            bottom: 0.2rem;
+
+            &.splash {
+                bottom: 0;
+
+                &-soulburn {
+                    right: 0.3rem;
+                }
+            }
+        }
+
+        .top-right {
+            position: absolute;
+            right: 0;
+            top: 0;
+            margin: 0;
+        }
+    }
+
     mat-card {
         // TODO: maybe remove elevation if scrolled to below the card? maybe event when credits scroll into view?
         @include mat.elevation(5)

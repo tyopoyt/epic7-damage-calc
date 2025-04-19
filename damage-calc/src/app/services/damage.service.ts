@@ -267,7 +267,7 @@ export class DamageService {
         }
       }
 
-      const barrierLabel = this.currentHero.barrierSkills ? this.currentHero.barrierSkills[0] : 'S1'
+      const barrierLabel = this.currentHero.barrierSkills?.length ? this.currentHero.barrierSkills[0] : 'S1'
       const soulburn = barrierLabel.endsWith('Soulburn')
       
       barriers.push({label: barrierLabel, value: Math.round(this.currentHero.barrier(this.currentHero, new Skill({}), this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), soulburn) * barrierEnhanceMultiplier)})

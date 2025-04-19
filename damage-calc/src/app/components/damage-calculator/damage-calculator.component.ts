@@ -175,6 +175,7 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
   translationPipe: TranslationPipe;
   // TODO: ideally fix it so on intial load each slide only emits once
   firstRoundLoaded = false;
+  cyclingHeroes = false;
 
   HeroElement = HeroElement
   
@@ -985,6 +986,29 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
           }, 1);
         }
       }, 0);
+    }
+  }
+
+  toggleCycling() {
+    this.cyclingHeroes = !this.cyclingHeroes;
+
+    if (this.cyclingHeroes) {
+      this.cycleHeroes()
+    }
+  }
+
+  async cycleHeroes() {
+    const offset = this.heroes.map(hero => hero[0]).indexOf(this.heroID) + 1
+
+    for (const hero in this.heroes) {
+      if (!this.cyclingHeroes || (Number(hero) + offset >= this.heroes.length)) {
+        break;
+      }
+      this.dataService.updateSelectedHero(this.heroes[Number(hero) + offset][0]);
+      this.updateFormInputs();
+      this.dataService.updateDamageInputValues({exclusiveEquipment1: false, exclusiveEquipment2: false, exclusiveEquipment3: false, casterPerception: false, casterEnraged: false, casterHasPossession: false})
+      this.updateDamageBlockHeader();
+      await delay(250)
     }
   }
 

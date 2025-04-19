@@ -451,6 +451,7 @@ export const Heroes: Record<string, Hero> = {
     element: HeroElement.dark,
     class: HeroClass.mage,
     barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number, soulburn: boolean) => hero.getAttack(artifact, inputValues, attackMultiplier, skill, soulburn, HitType.normal) * 0.7,
+    barrierSkills: ['S2'],
     baseAttack: 1039,
     baseHP: 5299,
     baseDefense: 673,
@@ -1529,8 +1530,9 @@ export const Heroes: Record<string, Hero> = {
         enhance: [0.05, 0.05, 0.05, 0.1, 0.15],
         isSingle: () => true,
       }),
-      mana_burst: new Skill({
-        id: 'mana_burst',
+      s1_bis: new Skill({
+        id: 's1_bis',
+        name: 'mana_burst',
         rate: () => 0.5,
         pow: () => 1,
         isAOE: () => true,
@@ -1587,6 +1589,7 @@ export const Heroes: Record<string, Hero> = {
     barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number, soulburn: boolean) => inputValues.casterFinalMaxHP(artifact) * 0.2,
     barrierEnhance: 's2',
     barrier2: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number) => inputValues.casterFinalMaxHP(artifact) * 0.15,
+    barrierSkills: ['S2 (Start of Battle)', 'S2'],
     skills: {
       s1: new Skill({
         id: 's1',
@@ -1640,6 +1643,7 @@ export const Heroes: Record<string, Hero> = {
       })
     }
   }),
+  // TODO: investigate error in console
   blood_blade_karin: new Hero({
     element: HeroElement.dark,
     class: HeroClass.thief,
@@ -2095,6 +2099,7 @@ export const Heroes: Record<string, Hero> = {
       })
     }
   }),
+  // TODO: fix flat tip bug
   cartuja: new Hero({
     element: HeroElement.earth,
     class: HeroClass.warrior,
@@ -3545,6 +3550,7 @@ export const Heroes: Record<string, Hero> = {
       })
     }
   }),
+  // rename to just elphelt
   elphelt_valentine: new Hero({
     element: HeroElement.fire,
     class: HeroClass.ranger,
@@ -5300,6 +5306,7 @@ export const Heroes: Record<string, Hero> = {
       })
     }
   }),
+  // rename to bomb_model_kanna
   kanna: new Hero({
     element: HeroElement.fire,
     class: HeroClass.ranger,
@@ -7739,7 +7746,6 @@ export const Heroes: Record<string, Hero> = {
     element: HeroElement.dark,
     class: HeroClass.warrior,
     barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number, soulburn: boolean) => hero.getAttack(artifact, inputValues, attackMultiplier, skill, soulburn, HitType.normal) * 0.7,
-    barrierEnhance: 's2',
     baseAttack: 1144,
     baseHP: 4895,
     baseDefense: 543,
@@ -9049,9 +9055,9 @@ export const Heroes: Record<string, Hero> = {
         enhance: [0.05, 0.05, 0, 0.1, 0.15],
         isSingle: () => true,
       }),
-      explosion: new Skill({ // TODO: change this to be aftermath on s3 with an input for enemy killed? or not if it's aoe
-        id: 'explosion',
-        name: 'sez_explosion',
+      s3_splash: new Skill({ // TODO: change this to be aftermath on s3 with an input for enemy killed? or not if it's aoe
+        id: 's3_splash',
+        name: 's3_splash',
         rate: () => 0,
         pow: () => 0,
         afterMath: () => new AftermathSkill({ attackPercent: 1.5 }),
@@ -9607,6 +9613,7 @@ export const Heroes: Record<string, Hero> = {
       })
     }
   }),
+  // investigate error in console
   summertime_iseria: new Hero({
     element: HeroElement.fire,
     class: HeroClass.ranger,
