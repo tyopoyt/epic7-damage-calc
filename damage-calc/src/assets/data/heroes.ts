@@ -8380,6 +8380,49 @@ export const Heroes: Record<string, Hero> = {
       })
     }
   }),
+  rinak: new Hero({
+    element: HeroElement.earth,
+    class: HeroClass.thief,
+    baseAttack: 1112,
+    baseHP: 5623,
+    baseDefense: 480,
+    heroSpecific: ['casterSpeed'],
+    skills: {
+      s1: new Skill({
+        id: 's1',
+        speedScaling: true,
+        rate: () => 1.6,
+        pow: () => 1,
+        mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + inputValues.casterFinalSpeed() * 0.0021,
+        multTip: () => ({ casterSpeed: 0.21 }),
+        fixed: (hitType: HitType, inputValues: DamageFormData) => (hitType !== HitType.miss) ? 7000 : 0,
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        isSingle: () => true,
+        penetrate: () => 1,
+        noCrit: true
+      }),
+      s2: new Skill({
+        id: 's2',
+        rate: () => 0.9,
+        pow: () => 0.95,
+        enhance: [0.05, 0, 0.1, 0, 0.15],
+        isSingle: () => true,
+      }),
+      s3: new Skill({
+        id: 's3',
+        speedScaling: true,
+        rate: () => 1.6,
+        pow: () => 1,
+        mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + inputValues.casterFinalSpeed() * 0.0021,
+        multTip: () => ({ casterSpeed: 0.21 }),
+        fixed: (hitType: HitType, inputValues: DamageFormData) => (hitType !== HitType.miss) ? 7000 : 0,
+        enhance: [0.05, 0.05, 0, 0.05, 0.15],
+        isSingle: () => true,
+        penetrate: () => 1,
+        noCrit: true
+      })
+    }
+  }),
   riza_hawkeye: new Hero({
     element: HeroElement.ice,
     class: HeroClass.ranger,
