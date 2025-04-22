@@ -990,6 +990,10 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
   }
 
   toggleCycling() {
+    if (window.location.hostname !== 'localhost') {
+      return;
+    }
+
     this.cyclingHeroes = !this.cyclingHeroes;
 
     if (this.cyclingHeroes) {
