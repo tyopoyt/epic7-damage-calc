@@ -1,0 +1,31 @@
+{
+  "name": "epic7-damage-calc",
+  "version": "1.0.0",
+  "description": "Epic 7 Damage Calculator",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^16.2.1",
+    "jasmine-core": "^3.8.0",
+    "karma-jasmine-html-reporter": "^1.7.0",
+    "@html-eslint/eslint-plugin": "^0.19.1",
+    "@html-eslint/parser": "^0.19.1",
+    "eslint": "^8.48.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tyopoyt/epic7-damage-calc.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tyopoyt/epic7-damage-calc/issues"
+  },
+  "homepage": "https://github.com/tyopoyt/epic7-damage-calc#readme"
+}
