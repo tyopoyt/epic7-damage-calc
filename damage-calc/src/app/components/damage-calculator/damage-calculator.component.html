@@ -6,7 +6,7 @@
         <!-- Hero/arti/preset selector row -->
         <div class="filter-select-container full-width neat-container" [ngClass]="!screenService.mediumSmallScreen.value ? 'column-3' : 'flex-column'">
             <mat-form-field class="neat-container has-icons-3">
-                <img class="png-icon medium tiny-margin-right select-icon" src="assets/heroes/{{heroID | removeOld}}-icon.png" alt="{{dataService.currentHeroID.value}} portrait">
+                <img class="png-icon medium tiny-margin-right select-icon" src="assets/heroes/{{heroID | removeOld}}-icon.png" onerror="this.onerror=null; this.src='assets/heroes/missing.png';" alt="{{dataService.currentHeroID.value}} portrait">
                 <img class="png-icon medium tiny-margin-right select-icon-2" src="assets/elements/{{hero.element}}.png" alt="{{hero.element}}">
                 <img class="png-icon medium tiny-margin-right select-icon-3" src="assets/classes/{{hero.class}}.png" alt="{{hero.class}}">
                 <mat-select [formControl]="heroControl" placeholder="" #singleSelect (selectionChange)="selectHero($event.value)">
@@ -14,7 +14,7 @@
                         <ngx-mat-select-search spellcheck="false" [formControl]="heroFilterControl" placeholderLabel="Find hero..."></ngx-mat-select-search>
                     </mat-option>
                     <mat-option *ngFor="let hero of filteredHeroes" class="has-icons-3" [value]="hero[0]">
-                        <img class="png-icon medium tiny-margin-right select-option-icon" src="assets/heroes/{{hero[0] | removeOld}}-icon.png" alt="{{hero[0]}} portrait">
+                        <img class="png-icon medium tiny-margin-right select-option-icon" src="assets/heroes/{{hero[0] | removeOld}}-icon.png" onerror="this.onerror=null; this.src='assets/heroes/missing.png';" alt="{{hero[0]}} portrait">
                         <img class="png-icon medium tiny-margin-right select-option-icon-2" src="assets/elements/{{hero[1].element}}.png" alt="{{hero[1].element}}">
                         <img class="png-icon medium tiny-margin-right select-option-icon-3" src="assets/classes/{{hero[1].class}}.png" alt="{{hero[1].class}}">
                         {{hero[0] | translate:'heroes':languageService.language.value}}
@@ -22,14 +22,14 @@
                 </mat-select>
             </mat-form-field>
             <mat-form-field class="neat-container has-icons">
-                <img class="png-icon medium tiny-margin-right select-icon" src=" assets/artifacts/{{artifact.id}}.png" alt="{{artifact.id}}">
+                <img class="png-icon medium tiny-margin-right select-icon" src=" assets/artifacts/{{artifact.id}}.png" onerror="this.onerror=null; this.src='assets/artifacts/noProc.png';" alt="{{artifact.id}}">
                 <img class="png-icon medium tiny-margin-right select-icon-2" src=" assets/{{artifact.heroExclusive.length ? 'heroes' : 'classes'}}/{{artifact.heroExclusive.length ? artifact.heroExclusive[0] + '-icon' : artifact.exclusive}}.png" alt="{{artifact.exclusive}}">
                 <mat-select [formControl]="artifactControl" placeholder="" #singleSelect (selectionChange)="selectArtifact($event.value)">
                     <mat-option>
                         <ngx-mat-select-search spellcheck="false" [formControl]="artifactFilterControl" placeholderLabel="Find artifact..."></ngx-mat-select-search>
                     </mat-option>
                     <mat-option *ngFor="let artifact of filteredArtifacts" class="has-icons" [value]="artifact[0]" [disabled]="(artifact[1].exclusive !== 'common' && artifact[1].exclusive !== hero.class) || (!!artifact[1].heroExclusive.length && !(artifact[1].heroExclusive.includes(heroID)))">
-                        <img class="png-icon medium tiny-margin-right select-option-icon" src=" assets/artifacts/{{artifact[1].id}}.png" alt="{{artifact[1].id}}">
+                        <img class="png-icon medium tiny-margin-right select-option-icon" src=" assets/artifacts/{{artifact[1].id}}.png" onerror="this.onerror=null; this.src='assets/artifacts/noProc.png';" alt="{{artifact[1].id}}">
                         <img class="png-icon medium tiny-margin-right select-option-icon-2" src=" assets/{{artifact[1].heroExclusive.length ? 'heroes' : 'classes'}}/{{artifact[1].heroExclusive.length ? artifact[1].heroExclusive[0] + '-icon' : artifact[1].exclusive}}.png" alt="{{artifact[1].exclusive}}">
                         {{artifact[0] | translate:'artifacts':languageService.language.value}}
                     </mat-option>
@@ -104,6 +104,12 @@
                 <span class="neat-container">
                     <img class="png-icon medium tiny-margin-right" src="assets/buffs/greater-attack-buff.png" alt="Greater attack buff">
                     {{'increasedAttackGreat' | translate:'form':languageService.language.value}}
+                </span>
+            </mat-checkbox>
+            <mat-checkbox class="small-margin-top" [checked]="inputValues.casterPilfered" (change)="inputChange('casterPilfered', $event.checked)">
+                <span class="neat-container">
+                    <img class="png-icon medium tiny-margin-right" src="assets/debuffs/pilfer-debuff.png" alt="Defense break">
+                    {{'casterPilfered' | translate:'form':languageService.language.value}}
                 </span>
             </mat-checkbox>
             <mat-checkbox class="small-margin-top" [checked]="inputValues.increasedCritDamage" (change)="inputChange('increasedCritDamage', $event.checked)">
@@ -352,6 +358,12 @@
                         {{'decreasedDefense' | translate:'form':languageService.language.value}}
                     </span>
                 </mat-checkbox>
+                <mat-checkbox class="small-margin-top" [checked]="inputValues.targetPilfered" (change)="inputChange('targetPilfered', $event.checked)">
+                    <span class="neat-container">
+                        <img class="png-icon medium tiny-margin-right" src="assets/debuffs/pilfer-debuff.png" alt="Defense break">
+                        {{'targetPilfered' | translate:'form':languageService.language.value}}
+                    </span>
+                </mat-checkbox>
                 <mat-checkbox class="small-margin-top" [checked]="inputValues.targetHasTrauma" (change)="inputChange('targetHasTrauma', $event.checked)">
                     <span class="neat-container">
                         <img class="png-icon medium tiny-margin-right" src="assets/debuffs/trauma-debuff.png" alt="Trauma debuff">
@@ -504,9 +516,9 @@
                       <td mat-cell *matCellDef="let element"><span (click)="toggleCycling()" class="flex-aligned flex-between">
                         <span class="skill-holder">
                             <span class="icons-holder">
-                                <img class="large png-icon" [src]="element.skill | skillIcon:heroID" alt="Skill icon">
+                                <img class="large png-icon" [src]="element.skill | skillIcon:heroID" onerror="this.onerror=null; this.src='assets/skills/missing.png';" alt="Skill icon">
                                 <img *ngIf="element.skill.includes('_splash')" class="splash png-icon bottom-right" src="assets/skills/splash.png" alt="Skill multipliers" [mtxTooltip]="modifierTooltip" [mtxTooltipContext]="element.skill" [mtxTooltipPosition]="'left'" #tooltip="mtxTooltip" (click)="tooltip.toggle()">
-                                <img *ngIf="element.skill.includes('_extra')" class="extra png-icon top-right" src="assets/skills/extra_3.png" alt="Skill multipliers" [mtxTooltip]="modifierTooltip" [mtxTooltipContext]="element.skill" [mtxTooltipPosition]="'left'" #tooltip="mtxTooltip" (click)="tooltip.toggle()">
+                                <img *ngIf="element.skill.includes('_extra')" class="extra png-icon top-right" src="assets/skills/extra.png" alt="Skill multipliers" [mtxTooltip]="modifierTooltip" [mtxTooltipContext]="element.skill" [mtxTooltipPosition]="'left'" #tooltip="mtxTooltip" (click)="tooltip.toggle()">
                                 <img *ngIf="element.skill.includes('_soulburn')" class="png-icon bottom-right" [class.splash-soulburn]="element.skill.includes('_splash')" src="assets/skills/soulburn.png" alt="Skill multipliers" [mtxTooltip]="modifierTooltip" [mtxTooltipContext]="element.skill" [mtxTooltipPosition]="'left'" #tooltip="mtxTooltip" (click)="tooltip.toggle()">
                             </span>
                             {{element.skill | translate:'skills':languageService.language.value}}

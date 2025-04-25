@@ -9,6 +9,11 @@ export const SkillIDs: Record<string, Record<string, string>> = {
         "s2": "sk_c1002_2",
         "s3": "sk_c1002_3"
     },
+    "rinak": {
+        "s1": "sk_c1168_1",
+        "s2": "sk_c1168_4",
+        "s3": "sk_c1168_3"
+    },
     "rose": {
         "s1": "sk_c1003_1",
         "s2": "sk_c1003_2",

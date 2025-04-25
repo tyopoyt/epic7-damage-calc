@@ -93,6 +93,12 @@ export const Artifacts: Record<string, Artifact> = {
     type: ArtifactDamageType.penetrate,
     exclusive: HeroClass.knight
   }),
+  discreet_hands: new Artifact({
+    id: 'discreet_hands',
+    type: ArtifactDamageType.attack,
+    exclusive: HeroClass.thief,
+    value: () => 0.1
+  }),
   dark_blood_keeper: new Artifact({
     id: 'dark_blood_keeper',
     type: ArtifactDamageType.attack,

@@ -431,10 +431,10 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
 
     // This one is only used for Prayer of solitude for now
     // TODO: can this logic just check the max hp field on the artifact?
-    if (this.heroSpecificNumberInputs.includes('casterMaxHP') && this.dataService.HPIncreaseArtifacts.includes(this.dataService.currentArtifactID.value)) {
+    if (this.heroSpecificNumberInputs.includes('casterMaxHP') && (this.inputValues.casterPilfered || this.dataService.HPIncreaseArtifacts.includes(this.dataService.currentArtifactID.value))) {
       this.heroSpecificBooleanInputs.push('inBattleHP');
     }
-    if (this.artifactSpecificNumberInputs.includes('casterMaxHP') && this.dataService.HPIncreaseArtifacts.includes(this.dataService.currentArtifactID.value)) {
+    if (this.artifactSpecificNumberInputs.includes('casterMaxHP') && (this.inputValues.casterPilfered || this.dataService.HPIncreaseArtifacts.includes(this.dataService.currentArtifactID.value))) {
       this.artifactSpecificBooleanInputs.push('inBattleHP');
     }
 
@@ -552,6 +552,10 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
       window.history.replaceState({}, document.title, window.location.pathname);
     }
     this.shareButtonText = 'share';
+
+    if (field === 'casterPilfered') {
+      this.updateFormInputs();
+    }
   }
 
   // Update info for skill multiplier popup
