@@ -8,7 +8,7 @@ To test your translation locally, there is a hidden option to load a custom tran
 
 ## Changelog
 ### <strong>Apr 25 2025 Update:</strong>
-- Added Rinak and Discreet hands and Pilfer.
+- Added Rinak, Discreet Hands, M.O.A.S., and Pilfer.
 ### <strong>Apr 19 2025 Update:</strong>
 - Added skill icons in damage block.
 ### <strong>Apr 10 2025 Update:</strong>

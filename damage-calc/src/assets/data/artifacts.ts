@@ -286,6 +286,17 @@ export const Artifacts: Record<string, Artifact> = {
     exclusive: HeroClass.warrior,
     applies: (skill: Skill, inputValues: DamageFormData, soulburn: boolean) => skill.isSingle(inputValues, soulburn),
   }),
+  moas: new Artifact({
+    id: 'moas',
+    name: 'M.O.A.S>',
+    type: ArtifactDamageType.aftermath,
+    artifactSpecific:['casterDefense', 'targetDefenseDownAftermath'],
+    defenseScaling: true,
+    defensePercent: 1.0,
+    penetrate: 0.7,
+    exclusive: HeroClass.knight,
+    applies: (skill: Skill, inputValues: DamageFormData, soulburn: boolean) => skill.isSingle(inputValues, soulburn),
+  }),
   otherworldly_machinery: new Artifact({
     id: 'otherworldly_machinery',
     name: 'Otherworldly Machinery',
