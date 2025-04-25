@@ -358,6 +358,11 @@ export const FormDefaults: Record<string, {max?: number, min?: number, defaultVa
         min: 0,
         defaultValue: 0
     },
+    casterSpoilsStack: {
+        max: 4,
+        min: 0,
+        defaultValue: 0
+    },
     casterFightingSpirit: {
         max: 100,
         min: 0,
@@ -503,6 +508,7 @@ export class DamageFormData {
     casterFocus: number;
     casterFullFightingSpirit: boolean;
     casterFightingSpirit: number;
+    casterSpoilsStack: number;
     casterFullFocus: boolean;
     casterFury: boolean;
     casterBuffed: boolean;
@@ -519,6 +525,7 @@ export class DamageFormData {
     casterHasNeoPhantomSword: boolean;
     casterHasStealth: boolean;
     casterHasTrauma: boolean;
+    casterPilfered: boolean;
     casterHasStarsBlessing: boolean;
     casterHasSpecialFriendship: boolean;
     casterHasPossession: boolean;
@@ -590,6 +597,7 @@ export class DamageFormData {
     targetDefense: number;
     targetDefenseIncrease: number;
     targetDefenseDown: boolean;
+    targetPilfered: boolean;
     targetDefenseDownAftermath: boolean;
     targetDefenseUp: boolean;
     targetEnraged: boolean;
@@ -651,6 +659,7 @@ export class DamageFormData {
         this.casterFocus = _.get(data, 'casterFocus', 0);
         this.casterFullFightingSpirit = _.get(data, 'casterFullFightingSpirit', false);
         this.casterFightingSpirit = _.get(data, 'casterFightingSpirit', 0);
+        this.casterSpoilsStack = _.get(data, 'casterSpoilsStack', 0);
         this.casterFullFocus = _.get(data, 'casterFullFocus', false);
         this.casterFury = _.get(data, 'casterFury', false);
         this.casterBuffed = _.get(data, 'casterBuffed', false);
@@ -679,6 +688,7 @@ export class DamageFormData {
         this.alliesNumberOfBuffs = _.get(data, 'alliesNumberOfBuffs', 0)
         this.casterPerception = _.get(data, 'casterPerception', false);
         this.casterTurn = _.get(data, 'casterTurn', true);
+        this.casterPilfered= _.get(data, 'casterPilfered', false);
         this.casterSpeed = _.get(data, 'casterSpeed', 150);
         this.casterSpeedUp = _.get(data, 'casterSpeedUp', false);
         this.casterSpeedDown = _.get(data, 'casterSpeedDown', false);
@@ -738,6 +748,7 @@ export class DamageFormData {
         this.targetDefense = _.get(data, 'targetDefense', 1000);
         this.targetDefenseIncrease = _.get(data, 'targetDefenseIncrease', 0);
         this.targetDefenseDown = _.get(data, 'targetDefenseDown', false);
+        this.targetPilfered= _.get(data, 'targetPilfered', false);
         this.targetDefenseDownAftermath = _.get(data, 'targetDefenseDownAftermath', false);
         this.targetDefenseUp = _.get(data, 'targetDefenseUp', false);
         this.targetEnraged = _.get(data, 'targetEnraged', false);
@@ -787,6 +798,7 @@ export class DamageFormData {
     casterFinalDefense = (heroMultiplier = 0) => {
         let defenseMultiplier = (1 + (this.casterDefenseUp ? BattleConstants.targetDefenseUp : 0)
         + (this.casterDefenseDown ? BattleConstants.targetDefenseDown : 0)
+        + (this.casterPilfered ? BattleConstants.pilfer : 0)
         + (this.casterHasTrauma ? BattleConstants.trauma : 0)
         + (this.casterVigor ? BattleConstants.casterVigor - 1 : 0)
         + (this.casterFury ? BattleConstants['caster-fury'] - 1 : 0)
@@ -807,6 +819,7 @@ export class DamageFormData {
     targetFinalDefense = () => {
         let defenseMultiplier = (1 + (this.targetDefenseUp ? BattleConstants.targetDefenseUp : 0)
         + (this.targetDefenseDown ? BattleConstants.targetDefenseDown : 0)
+        + (this.targetPilfered ? BattleConstants.pilfer : 0)
         + (this.targetHasTrauma ? BattleConstants.trauma : 0)
         + (this.targetVigor ? BattleConstants.casterVigor - 1 : 0)
         + (this.targetFury ? BattleConstants['caster-fury'] - 1 : 0));
@@ -821,8 +834,9 @@ export class DamageFormData {
 
     // Get the caster's final max HP after modifiers
     casterFinalMaxHP = (artifact: Artifact) => {
+
         const artifactHP = (artifact.type === ArtifactDamageType.health_only && artifact.scale?.length) ? artifact.scale[Math.floor(this.artifactLevel/3)] : artifact.maxHP;
-        return (this.inputOverrides['casterMaxHP'] ? this.inputOverrides['casterMaxHP'] : this.casterMaxHP) * ((this.inBattleHP ? 1 : artifactHP) + this.casterMaxHPIncrease / 100);
+        return (this.inputOverrides['casterMaxHP'] ? this.inputOverrides['casterMaxHP'] : this.casterMaxHP) * ((this.inBattleHP ? 1 : artifactHP) + this.casterMaxHPIncrease / 100) * (!this.inBattleHP && this.casterPilfered ? BattleConstants.casterPilfered : 1);
     }
 
     // Get the target's final max HP after modifiers

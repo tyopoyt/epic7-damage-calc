@@ -106,6 +106,12 @@
                     {{'increasedAttackGreat' | translate:'form':languageService.language.value}}
                 </span>
             </mat-checkbox>
+            <mat-checkbox class="small-margin-top" [checked]="inputValues.casterPilfered" (change)="inputChange('casterPilfered', $event.checked)">
+                <span class="neat-container">
+                    <img class="png-icon medium tiny-margin-right" src="assets/debuffs/pilfer-debuff.png" alt="Defense break">
+                    {{'casterPilfered' | translate:'form':languageService.language.value}}
+                </span>
+            </mat-checkbox>
             <mat-checkbox class="small-margin-top" [checked]="inputValues.increasedCritDamage" (change)="inputChange('increasedCritDamage', $event.checked)">
                 <span class="neat-container">
                     <img class="png-icon medium tiny-margin-right" src="assets/buffs/critical-hit-damage-buff.png" alt="Crit damage buff">
@@ -350,6 +356,12 @@
                     <span class="neat-container">
                         <img class="png-icon medium tiny-margin-right" src="assets/debuffs/defense-debuff.png" alt="Defense break">
                         {{'decreasedDefense' | translate:'form':languageService.language.value}}
+                    </span>
+                </mat-checkbox>
+                <mat-checkbox class="small-margin-top" [checked]="inputValues.targetPilfered" (change)="inputChange('targetPilfered', $event.checked)">
+                    <span class="neat-container">
+                        <img class="png-icon medium tiny-margin-right" src="assets/debuffs/pilfer-debuff.png" alt="Defense break">
+                        {{'targetPilfered' | translate:'form':languageService.language.value}}
                     </span>
                 </mat-checkbox>
                 <mat-checkbox class="small-margin-top" [checked]="inputValues.targetHasTrauma" (change)="inputChange('targetHasTrauma', $event.checked)">

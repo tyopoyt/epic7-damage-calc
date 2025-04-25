@@ -52,7 +52,7 @@ export class DamageService {
   getGlobalDefenseMult(isAftermath = false): number {
     let mult = 1.0;
     
-    for (const defenseModifier of ['targetDefenseUp', 'targetDefenseDown', 'targetVigor', 'targetHasTrauma']) {
+    for (const defenseModifier of ['targetDefenseUp', 'targetDefenseDown', 'targetVigor', 'targetHasTrauma', 'targetPilfered']) {
       mult += this.damageForm[defenseModifier as keyof DamageFormData] ? BattleConstants[defenseModifier] : 0.0;
     }
 
@@ -61,6 +61,7 @@ export class DamageService {
     }
 
     // TODO: double check defense + trauma interaction?
+    // TODO: also check pilfer + defbreak interaction
     if (this.damageForm.targetHasTrauma && this.damageForm.targetDefenseDown) {
       mult -= BattleConstants.trauma;
       mult *= 1 + BattleConstants.trauma;
@@ -80,7 +81,6 @@ export class DamageService {
         mult += attackModStack ? BattleConstants[mod] * (attackModStack as number) : 0.0;
       }
     });
-  
     return mult + (this.damageForm.attackIncreasePercent / 100);
   }
 

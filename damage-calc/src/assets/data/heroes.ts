@@ -8386,7 +8386,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1112,
     baseHP: 5623,
     baseDefense: 480,
-    heroSpecific: ['casterSpeed'],
+    heroSpecific: ['casterSpeed', 'casterSpoilsStack'],
     skills: {
       s1: new Skill({
         id: 's1',
@@ -9581,6 +9581,7 @@ export const Heroes: Record<string, Hero> = {
         name: 'taeyouRoaringSpiritfall',
         rate: () => 1.85,
         pow: () => 1,
+        enhanceFrom: 's1',
         onlyCrit: () => true,
         isSingle: () => true
       }),
