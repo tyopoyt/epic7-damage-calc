@@ -1781,12 +1781,12 @@ export const Heroes: Record<string, Hero> = {
           const targetSpeed = inputValues.targetFinalSpeed();
 
           if (targetSpeed < casterSpeed) {
-            penDiff = (casterSpeed - targetSpeed) * 0.0059;
+            penDiff = (casterSpeed - targetSpeed) * 0.00296;
           }
 
           return Math.min(Math.max(0, penDiff + penetration), 1);
         },
-        penetrateTip: () => ({caster_target_spd_diff: 0.0059}),
+        penetrateTip: () => ({caster_target_spd_diff: 0.00296}),
         isSingle: () => true,
         noCrit: true,
       })
