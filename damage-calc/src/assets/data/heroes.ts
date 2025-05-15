@@ -7396,7 +7396,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1068,
     baseHP: 4733,
     baseDefense: 515,
-    heroSpecific: ['casterTurn', 'targetInjuries'],
+    heroSpecific: ['casterTurn', 'targetInjuries', 'exclusiveEquipment3'],
     skills: {
       s1: new Skill({
         id: 's1',
@@ -7410,6 +7410,7 @@ export const Heroes: Record<string, Hero> = {
         id: 's3',
         rate: () => 1.4,
         pow: () => 1,
+        exclusiveEquipmentMultiplier: (inputValues: DamageFormData) => inputValues.exclusiveEquipment3 ? 0.1 : 0,
         fixed: (hitType: HitType, inputValues: DamageFormData) =>(hitType !== HitType.miss && inputValues.casterVigor) ? (inputValues.targetInjuries) : 0,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
         isSingle: () => true,

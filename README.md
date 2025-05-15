@@ -7,6 +7,8 @@ To test your translation locally, there is a hidden option to load a custom tran
 <img src="./language_custom.gif" alt="image" width="800" height="auto">
 
 ## Changelog
+### <strong>May 15 2025 Update:</strong>
+- Add New Kid Adin ee.
 ### <strong>Apr 28 2025 Update:</strong>
 - Fixed bug with BLidica speed penetration on s3.
 ### <strong>Apr 25 2025 Update:</strong>
