@@ -140,7 +140,11 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {
+    canceledNavigationResolution: 'replace',
+    paramsInheritanceStrategy: 'emptyOnly',
+    urlUpdateStrategy: 'deferred'
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}
