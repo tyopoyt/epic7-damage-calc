@@ -1,12 +1,12 @@
-@import "../../../variables.scss";
+@use "../../../variables.scss"  as vars;
 
 .page-container {
     overflow-x: hidden;
 }
 
 .filter-select-container {
-    margin-top: $gutter;
-    margin-bottom: $gutter;
+    margin-top: vars.$gutter;
+    margin-bottom: vars.$gutter;
 
     &.flex-column {
         margin-bottom: 0;
@@ -14,11 +14,11 @@
 }
 
 .neat-container.has-icons-3.full-width {
-    margin-bottom: $gutter;
+    margin-bottom: vars.$gutter;
 }
 
 .save-image {
-    margin-top: $gutter;
+    margin-top: vars.$gutter;
 }
 
 .gw-export {
@@ -26,7 +26,7 @@
     width: 360px;
     height: 120px;
     padding: 120px 180px;
-    border-radius: $gutter-extra-large;
+    border-radius: vars.$gutter-extra-large;
 
     .stacked-icon {
         position: relative;

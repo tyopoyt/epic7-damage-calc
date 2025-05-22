@@ -3,7 +3,8 @@ import { SkillIDs } from 'src/assets/data/skill_ids';
 import { Heroes } from 'src/assets/data/heroes';
 
 @Pipe({
-  name: 'skillIcon'
+    name: 'skillIcon',
+    standalone: false
 })
 export class SkillIconPipe implements PipeTransform {
 

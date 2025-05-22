@@ -10,9 +10,10 @@ import { ScreenService } from 'src/app/services/screen.service';
 import { Heroes } from 'src/assets/data/heroes';
 
 @Component({
-  selector: 'app-gw-archive',
-  templateUrl: './gw-archive.component.html',
-  styleUrls: ['./gw-archive.component.scss']
+    selector: 'app-gw-archive',
+    templateUrl: './gw-archive.component.html',
+    styleUrls: ['./gw-archive.component.scss'],
+    standalone: false
 })
 export class GwArchiveComponent {
   @ViewChild('gwArchiveExport', { static: false }) gwArchiveExport!: ElementRef;

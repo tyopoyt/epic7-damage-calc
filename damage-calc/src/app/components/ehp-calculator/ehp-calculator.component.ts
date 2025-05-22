@@ -7,9 +7,10 @@ import { ScreenService } from 'src/app/services/screen.service';
 import { HeaderCardComponentColorOption, HeaderCardComponentSizeOption } from '../ui-elements/header-card/header-card.component';
 
 @Component({
-  selector: 'app-ehp-calculator',
-  templateUrl: './ehp-calculator.component.html',
-  styleUrls: ['./ehp-calculator.component.scss']
+    selector: 'app-ehp-calculator',
+    templateUrl: './ehp-calculator.component.html',
+    styleUrls: ['./ehp-calculator.component.scss'],
+    standalone: false
 })
 export class EHPCalculatorComponent implements OnInit {
 

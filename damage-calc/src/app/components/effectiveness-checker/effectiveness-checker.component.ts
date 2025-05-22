@@ -7,9 +7,10 @@ import { ScreenService } from 'src/app/services/screen.service';
 import { HeaderCardComponentColorOption, HeaderCardComponentSizeOption } from '../ui-elements/header-card/header-card.component';
 
 @Component({
-  selector: 'app-effectiveness-checker',
-  templateUrl: './effectiveness-checker.component.html',
-  styleUrls: ['./effectiveness-checker.component.scss']
+    selector: 'app-effectiveness-checker',
+    templateUrl: './effectiveness-checker.component.html',
+    styleUrls: ['./effectiveness-checker.component.scss'],
+    standalone: false
 })
 export class EffectivenessCheckerComponent implements OnInit {
 

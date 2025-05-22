@@ -11,9 +11,10 @@ import { ChartConfiguration, ChartData, ChartOptions } from 'chart.js';
 import { DisplayConstants } from 'src/assets/data/constants';
 
 @Component({
-  selector: 'app-speed-solver',
-  templateUrl: './speed-solver.component.html',
-  styleUrls: ['./speed-solver.component.scss']
+    selector: 'app-speed-solver',
+    templateUrl: './speed-solver.component.html',
+    styleUrls: ['./speed-solver.component.scss'],
+    standalone: false
 })
 export class SpeedSolverComponent implements OnInit {
 

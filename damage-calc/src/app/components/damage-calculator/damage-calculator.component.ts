@@ -29,31 +29,22 @@ import { DefensePreset, ReductionPreset, TargetPresetGroups, TargetReductionPres
 import { GoogleTagManagerService } from 'angular-google-tag-manager';
 
 @Component({
-  selector: 'app-damage-calculator',
-  templateUrl: './damage-calculator.component.html',
-  styleUrls: ['./damage-calculator.component.scss'],
-  animations: [
-    trigger('collapseAnimation', 
-      [
-        transition(
-          ':enter', 
-          [
-            style({ height: 0, opacity: 0 }),
-            animate('0.125s ease-out', 
-                    style({ opacity: 1 }))
-          ]
-        ),
-        transition(
-          ':leave', 
-          [
-            style({ opacity: 1 }),
-            animate('0.125s ease-in',
-                    style({ height: 0, opacity: 0 }))
-          ]
-        )
-      ]
-    )
-  ]
+    selector: 'app-damage-calculator',
+    templateUrl: './damage-calculator.component.html',
+    styleUrls: ['./damage-calculator.component.scss'],
+    animations: [
+        trigger('collapseAnimation', [
+            transition(':enter', [
+                style({ height: 0, opacity: 0 }),
+                animate('0.125s ease-out', style({ opacity: 1 }))
+            ]),
+            transition(':leave', [
+                style({ opacity: 1 }),
+                animate('0.125s ease-in', style({ height: 0, opacity: 0 }))
+            ])
+        ])
+    ],
+    standalone: false
 })
 
 export class DamageCalculatorComponent implements OnInit, OnDestroy {

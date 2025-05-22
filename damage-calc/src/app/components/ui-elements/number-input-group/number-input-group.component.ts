@@ -2,9 +2,10 @@ import { Component, Input, OnInit, Output } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 @Component({
-  selector: 'app-number-input-group',
-  templateUrl: './number-input-group.component.html',
-  styleUrls: ['./number-input-group.component.scss']
+    selector: 'app-number-input-group',
+    templateUrl: './number-input-group.component.html',
+    styleUrls: ['./number-input-group.component.scss'],
+    standalone: false
 })
 export class NumberInputGroupComponent implements OnInit {
 

@@ -1,5 +1,5 @@
 @use '@angular/material' as mat;
-@import '../../../variables';
+@use '../../../variables' as vars;
 
 .navbar-picker {
     align-items: center;
@@ -13,7 +13,7 @@
     }
 
     ::ng-deep.mat-mdc-text-field-wrapper {
-        height: $navbar-height;
+        height: vars.$navbar-height;
         margin-bottom: 0.5rem;
         border: none;
         border-radius: 0;
@@ -55,11 +55,11 @@
 }
 
 .mat-mdc-unelevated-button:not(:disabled) {
-    padding: $gutter;
+    padding: vars.$gutter;
 }
 
 .webp-icon {
-    margin-right: $gutter-small;
+    margin-right: vars.$gutter-small;
     cursor: pointer;
 
     &.extra-item {
@@ -68,7 +68,7 @@
 }
 
 span.menu-item {
-    margin-left: $gutter;
+    margin-left: vars.$gutter;
 }
 
 .language-trigger {

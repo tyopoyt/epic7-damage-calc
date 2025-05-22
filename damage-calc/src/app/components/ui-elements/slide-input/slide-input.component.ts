@@ -3,9 +3,10 @@ import { BehaviorSubject } from 'rxjs';
 import { ScreenService } from 'src/app/services/screen.service';
 
 @Component({
-  selector: 'app-slide-input',
-  templateUrl: './slide-input.component.html',
-  styleUrls: ['./slide-input.component.scss']
+    selector: 'app-slide-input',
+    templateUrl: './slide-input.component.html',
+    styleUrls: ['./slide-input.component.scss'],
+    standalone: false
 })
 export class SlideInputComponent implements OnInit {
 
