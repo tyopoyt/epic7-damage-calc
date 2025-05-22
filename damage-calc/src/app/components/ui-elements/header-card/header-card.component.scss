@@ -1,4 +1,4 @@
-@import '../../../../variables';
+@use '../../../../variables' as vars;
 
 mat-card {
     height: 10rem;
@@ -29,15 +29,15 @@ mat-card {
         height: calc(100% - 2rem);
 
         &.green {
-            color: $e7-earth-dark-color;
+            color: vars.$e7-earth-dark-color;
         }
 
         &.blue {
-            color: $e7-buff-color;
+            color: vars.$e7-buff-color;
         }
 
         &.red {
-            color: $e7-debuff-color;
+            color: vars.$e7-debuff-color;
         }
 
         &.normal-weight {
@@ -45,25 +45,25 @@ mat-card {
         }
 
         .additional {
-            font-size: $medium-font-size;
+            font-size: vars.$medium-font-size;
             position: absolute;
-            bottom: $gutter;
-            right: $gutter;
+            bottom: vars.$gutter;
+            right: vars.$gutter;
 
             .additional-icon {
-                height: calc($medium-font-size * 1.25);
+                height: calc(vars.$medium-font-size * 1.25);
                 padding-top: 0.01rem;
 
                 &.green {
-                    filter: $e7-earth-dark-color-filter;
+                    filter: vars.$e7-earth-dark-color-filter;
                 }
 
                 &.blue {
-                    filter: $e7-buff-color-filter;
+                    filter: vars.$e7-buff-color-filter;
                 }
         
                 &.red {
-                    filter: $e7-debuff-color-filter;
+                    filter: vars.$e7-debuff-color-filter;
                 }
             }
         }
@@ -73,5 +73,5 @@ mat-card {
         cursor: help;
     }
 
-    background-color: $ui-medium-dark-color;
+    background-color: vars.$ui-medium-dark-color;
 }

@@ -1,7 +1,7 @@
-@import "../../../variables";
+@use "../../../variables" as vars;
 
 .has-radio-buttons {
-    margin-top: $gutter;
+    margin-top: vars.$gutter;
 }
 
 mat-card {
@@ -33,5 +33,5 @@ mat-card {
         cursor: help;
     }
 
-    background-color: $ui-medium-dark-color;
+    background-color: vars.$ui-medium-dark-color;
 }

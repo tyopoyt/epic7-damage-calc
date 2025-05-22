@@ -1,4 +1,4 @@
-@import '../../../../variables';
+@use '../../../../variables' as vars;
 
 mat-card {
   margin: 0.5rem 0 0;
@@ -27,30 +27,30 @@ mat-slider {
     margin: 0;
 
     // ::ng-deep.mdc-slider__thumb {
-    //   --mat-mdc-slider-focus-ripple-color: #{$e7-buff-color-low-opacity};
-    //   --mat-mdc-slider-hover-ripple-color: #{$e7-buff-color-low-opacity};
+    //   --mat-mdc-slider-focus-ripple-color: #{vars.$e7-buff-color-low-opacity};
+    //   --mat-mdc-slider-hover-ripple-color: #{vars.$e7-buff-color-low-opacity};
     // }
 
     // ::ng-deep.mdc-slider__track--active_fill {
-    //   background-color: $e7-buff-darker-color !important;
+    //   background-color: vars.$e7-buff-darker-color !important;
     //   border: none;
     // }
 
     // ::ng-deep.mdc-slider__thumb-knob {
-    //   background-color: $e7-buff-contrast-color !important;
+    //   background-color: vars.$e7-buff-contrast-color !important;
     //   border: none;
     // }
 
     // ::ng-deep.mdc-slider__track--inactive {
-    //   background-color: $e7-buff-darker-color !important;
+    //   background-color: vars.$e7-buff-darker-color !important;
     //   opacity: 0.2;
     // }
 }
 
 .extra-label {
   font-size: 1rem;
-  background-color: $ui-medium-color;
-  border-radius: $gutter;
-  padding: $gutter-tiny $gutter-small $gutter-small;
+  background-color: vars.$ui-medium-color;
+  border-radius: vars.$gutter;
+  padding: vars.$gutter-tiny vars.$gutter-small vars.$gutter-small;
   color: white
 }

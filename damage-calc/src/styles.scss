@@ -1,3 +1,4 @@
+@use "variables" as vars;
 
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
@@ -34,8 +35,6 @@ $damage-calc-theme: mat.m2-define-light-theme((
 // that you are using.
 @include mat.all-component-themes($damage-calc-theme);
 
-@import "variables";
-
 /* 
  * This and other stylesheets have a lot of ::ng-deeps which I don't love but it's basically impossible
  *  to do anything with angular material components besides make a generic form without using ng-deep.
@@ -49,29 +48,29 @@ $damage-calc-theme: mat.m2-define-light-theme((
   }
 }
 html, body {
-  color: $font-light-color;
-  background-color: $background-dark-color;
+  color: vars.$font-light-color;
+  background-color: vars.$background-dark-color;
 
   ::-webkit-scrollbar {
     width: 0.6rem;
   }
     
   ::-webkit-scrollbar-track {
-      background: $ui-medium-color;
-      border-radius: $gutter;
+      background: vars.$ui-medium-color;
+      border-radius: vars.$gutter;
   }
     
   ::-webkit-scrollbar-thumb {
-      background: $e7-buff-darker-color;
-      border-radius: $gutter;
+      background: vars.$e7-buff-darker-color;
+      border-radius: vars.$gutter;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-      background: $e7-buff-color;
+      background: vars.$e7-buff-color;
   }
 
   // firefox doesn't support webkit scrollbar so this is pretty much all the customization :(
-  scrollbar-color: $e7-buff-darker-color $ui-medium-color;
+  scrollbar-color: vars.$e7-buff-darker-color vars.$ui-medium-color;
 
   div.mat-mdc-select-panel {
     max-height: 25rem;
@@ -79,8 +78,8 @@ html, body {
 
   .mtx-mdc-tooltip {
     .mdc-tooltip__surface {
-      color: $font-light-color;
-      background-color: $ui-medium-color;
+      color: vars.$font-light-color;
+      background-color: vars.$ui-medium-color;
       max-width: unset;
       width: max-content;
       min-width: 10rem;
@@ -92,47 +91,47 @@ html, body {
 
   .mat-mdc-dialog-container {
     .mat-mdc-dialog-surface {
-      background-color: $ui-medium-dark-color;
-      border-radius: $gutter;
+      background-color: vars.$ui-medium-dark-color;
+      border-radius: vars.$gutter;
 
       .mdc-text-field--filled:not(.mdc-text-field--disabled) {
-        background-color: $ui-dark-color;
-        border-radius: $gutter;
+        background-color: vars.$ui-dark-color;
+        border-radius: vars.$gutter;
 
       }
       .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-text-field__input {
-        --mdc-filled-text-field-caret-color: #{$e7-buff-contrast-color};
+        --mdc-filled-text-field-caret-color: #{vars.$e7-buff-contrast-color};
       }
 
       .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-floating-label, .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-floating-label--float-above {
-        --mdc-filled-text-field-caret-color: #{$font-light-color};
-        --mdc-filled-text-field-focus-active-indicator-color: #{$font-light-color};
-        --mdc-filled-text-field-focus-label-text-color: #{$font-light-color};
-        --mdc-outlined-text-field-caret-color: #{$font-light-color};
-        --mdc-outlined-text-field-focus-outline-color: #{$font-light-color};
-        --mdc-outlined-text-field-focus-label-text-color: #{$font-light-color};
+        --mdc-filled-text-field-caret-color: #{vars.$font-light-color};
+        --mdc-filled-text-field-focus-active-indicator-color: #{vars.$font-light-color};
+        --mdc-filled-text-field-focus-label-text-color: #{vars.$font-light-color};
+        --mdc-outlined-text-field-caret-color: #{vars.$font-light-color};
+        --mdc-outlined-text-field-focus-outline-color: #{vars.$font-light-color};
+        --mdc-outlined-text-field-focus-label-text-color: #{vars.$font-light-color};
 
-        --mdc-filled-text-field-label-text-color: #{$ui-light-color};
-        --mdc-filled-text-field-disabled-label-text-color: #{$ui-light-color};
-        --mdc-filled-text-field-input-text-color: #{$ui-light-color};
-        --mdc-filled-text-field-disabled-input-text-color: #{$ui-light-color};
-        --mdc-filled-text-field-input-text-placeholder-color: #{$ui-light-color};
-        --mdc-filled-text-field-active-indicator-color: #{$ui-light-color};
-        --mdc-filled-text-field-disabled-active-indicator-color: #{$ui-light-color};
-        --mdc-filled-text-field-hover-active-indicator-color: #{$ui-light-color};
-        --mdc-outlined-text-field-label-text-color: #{$ui-light-color};
-        --mdc-outlined-text-field-disabled-label-text-color: #{$ui-light-color};
-        --mdc-outlined-text-field-input-text-color: #{$ui-light-color};
-        --mdc-outlined-text-field-disabled-input-text-color: #{$ui-light-color};
-        --mdc-outlined-text-field-input-text-placeholder-color: #{$ui-light-color};
-        --mdc-outlined-text-field-outline-color: #{$ui-light-color};
-        --mdc-outlined-text-field-disabled-outline-color: #{$ui-light-color};
-        --mdc-outlined-text-field-hover-outline-color: #{$ui-light-color};
-        --mat-form-field-disabled-input-text-placeholder-color: #{$ui-light-color};
+        --mdc-filled-text-field-label-text-color: #{vars.$ui-light-color};
+        --mdc-filled-text-field-disabled-label-text-color: #{vars.$ui-light-color};
+        --mdc-filled-text-field-input-text-color: #{vars.$ui-light-color};
+        --mdc-filled-text-field-disabled-input-text-color: #{vars.$ui-light-color};
+        --mdc-filled-text-field-input-text-placeholder-color: #{vars.$ui-light-color};
+        --mdc-filled-text-field-active-indicator-color: #{vars.$ui-light-color};
+        --mdc-filled-text-field-disabled-active-indicator-color: #{vars.$ui-light-color};
+        --mdc-filled-text-field-hover-active-indicator-color: #{vars.$ui-light-color};
+        --mdc-outlined-text-field-label-text-color: #{vars.$ui-light-color};
+        --mdc-outlined-text-field-disabled-label-text-color: #{vars.$ui-light-color};
+        --mdc-outlined-text-field-input-text-color: #{vars.$ui-light-color};
+        --mdc-outlined-text-field-disabled-input-text-color: #{vars.$ui-light-color};
+        --mdc-outlined-text-field-input-text-placeholder-color: #{vars.$ui-light-color};
+        --mdc-outlined-text-field-outline-color: #{vars.$ui-light-color};
+        --mdc-outlined-text-field-disabled-outline-color: #{vars.$ui-light-color};
+        --mdc-outlined-text-field-hover-outline-color: #{vars.$ui-light-color};
+        --mat-form-field-disabled-input-text-placeholder-color: #{vars.$ui-light-color};
       }
 
       .mat-mdc-dialog-title {
-        color: $font-light-color;
+        color: vars.$font-light-color;
       }
 
       .mat-mdc-dialog-actions {
@@ -142,61 +141,61 @@ html, body {
 
       .mdc-button {
         .mdc-button__label {
-          color: $font-light-color;
+          color: vars.$font-light-color;
         }
       }
     }
   }
 
   .mat-mdc-tab.mdc-tab .mdc-tab__text-label {
-    color: $font-light-color;
+    color: vars.$font-light-color;
   }
 
   .mat-mdc-tab.mdc-tab--active, .mat-mdc-tab.mdc-tab--active:hover {
     .mdc-tab__text-label {
-      color: $e7-buff-medium-color;
+      color: vars.$e7-buff-medium-color;
     }
 
     .mdc-tab-indicator__content--underline {
-      border-color: $e7-buff-medium-color;
+      border-color: vars.$e7-buff-medium-color;
     }
 
     &:hover {
       .mdc-tab__text-label {
-        color: $e7-buff-contrast-color;
+        color: vars.$e7-buff-contrast-color;
       }
   
       .mdc-tab-indicator__content--underline {
-        border-color: $e7-buff-contrast-color;
+        border-color: vars.$e7-buff-contrast-color;
       }
     }
   }
 
   .mat-mdc-tab.mdc-tab--active.cdk-focused {
     .mdc-tab__text-label {
-      color: $e7-buff-contrast-color;
+      color: vars.$e7-buff-contrast-color;
     }
 
     .mdc-tab-indicator__content--underline {
-      border-color: $e7-buff-contrast-color;
+      border-color: vars.$e7-buff-contrast-color;
     }
   }
 
   .sticky-top {
     position: sticky;
-    top: $gutter;
-    z-index: $navabar-z-index;
+    top: vars.$gutter;
+    z-index: vars.$navbar-z-index;
   }
 
   .icon {
-    filter: $font-light-color-filter;
+    filter: vars.$font-light-color-filter;
   }
 
   .mini-card {
     width: max-content;
     height: 1.75rem;
-    background-color: $ui-dark-color;
-    border-radius: $gutter-small;
+    background-color: vars.$ui-dark-color;
+    border-radius: vars.$gutter-small;
   }
 
   .mat-mdc-unelevated-button:not(:disabled) {
@@ -215,11 +214,11 @@ html, body {
     }
 
     &.filter {
-      filter: $font-light-color-filter;
+      filter: vars.$font-light-color-filter;
     }
 
     &.indented {
-      padding-left: $gutter-indent;
+      padding-left: vars.$gutter-indent;
     }
   }
 
@@ -236,16 +235,16 @@ html, body {
   }
 
   .mat-mdc-menu-item:not([disabled]):hover, .mat-mdc-option:not([disabled]):hover {
-    background-color: $ui-dark-color;
+    background-color: vars.$ui-dark-color;
   }
 
   .text-color {
-    color: $font-light-color !important;
+    color: vars.$font-light-color !important;
   }
 
   .mat-mdc-option:not([disabled]).mdc-list-item--selected {
     color: white;
-    background-color: $e7-buff-contrast-color;
+    background-color: vars.$e7-buff-contrast-color;
 
     html div.mat-mdc-select-panel .mat-mdc-option .mdc-list-item__primary-text, body div.mat-mdc-select-panel .mat-mdc-option .mdc-list-item__primary-text {
       font-weight: bold;
@@ -261,23 +260,23 @@ html, body {
         .mat-mdc-menu-submenu-icon {
           right: unset;
           bottom: unset;
-          left: $gutter;
-          top: $language-arrow-top;
+          left: vars.$gutter;
+          top: vars.$language-arrow-top;
           transform: rotate(0.5turn);
-          filter: $font-light-color-filter
+          filter: vars.$font-light-color-filter
         }
 
         .mat-mdc-menu-item-text {
-          padding-left: $gutter-tiny;
+          padding-left: vars.$gutter-tiny;
         }
       }
 
       &.language-menu {
-        padding-left: $gutter-jumbo;
+        padding-left: vars.$gutter-jumbo;
 
         &.mat-mdc-menu-item-submenu-trigger {
           .mat-mdc-menu-submenu-icon {
-            left: $gutter;
+            left: vars.$gutter;
           }
         }
       }
@@ -287,16 +286,16 @@ html, body {
   .canvas-holder {
     height: 30dvh;
     width: 100%;
-    margin-bottom: $gutter-small;
+    margin-bottom: vars.$gutter-small;
   }
 
   // TODO: get the slider thumb hover indicators not to be clipped
   .multi-slide {
-    border-radius: $gutter;
+    border-radius: vars.$gutter;
     overflow: hidden;
-    margin-top: $gutter;
+    margin-top: vars.$gutter;
     box-shadow: var(--mdc-elevated-card-container-elevation);
-    background-color: $ui-dark-color;
+    background-color: vars.$ui-dark-color;
 
     .mat-mdc-card {
       margin-top: 0;
@@ -311,66 +310,66 @@ html, body {
     }
 
     > :first-child {
-      margin-top: $gutter-large;
+      margin-top: vars.$gutter-large;
     }
   }
 
   mat-slider.mat-mdc-slider {
     .mdc-slider__thumb {
-      --mat-mdc-slider-focus-ripple-color: #{$e7-buff-color-low-opacity};
-      --mat-mdc-slider-hover-ripple-color: #{$e7-buff-color-low-opacity};
+      --mat-mdc-slider-focus-ripple-color: #{vars.$e7-buff-color-low-opacity};
+      --mat-mdc-slider-hover-ripple-color: #{vars.$e7-buff-color-low-opacity};
     }
 
     .mdc-slider__track--active_fill {
-      background-color: $e7-buff-darker-color !important;
+      background-color: vars.$e7-buff-darker-color !important;
       border: none;
     }
 
     .mdc-slider__thumb-knob {
-      background-color: $e7-buff-contrast-color !important;
+      background-color: vars.$e7-buff-contrast-color !important;
       border: none;
     }
 
     .mdc-slider__track--inactive {
-      background-color: $e7-buff-darker-color !important;
+      background-color: vars.$e7-buff-darker-color !important;
       opacity: 0.2;
     }
 
     &.mobile-width-slider {
       width: 80%;
       align-self: flex-start;
-      margin-left: $gutter;
+      margin-left: vars.$gutter;
     }
   }
 
   ngx-mat-select-search {
     input.mat-select-search-input {
       // important because some id is filled and used in the selector
-      background-color: $ui-medium-color !important;
-      color: $font-light-color !important;
+      background-color: vars.$ui-medium-color !important;
+      color: vars.$font-light-color !important;
     }
     ::placeholder {
-      color: $font-light-color !important;
+      color: vars.$font-light-color !important;
       opacity: 1; /* Firefox */
     }
     
     ::-ms-input-placeholder { /* Edge 12 -18 */
-      color: $font-light-color !important;
+      color: vars.$font-light-color !important;
     }
   }
 
   .page-container {
     mat-form-field {
-      border-radius: $gutter;
+      border-radius: vars.$gutter;
       overflow: hidden;
       .mdc-text-field--no-label:not(.mdc-text-field--outlined):not(.mdc-text-field--textarea) .mat-mdc-form-field-infix {
         min-height: 10px;
         height: 2.5rem;
-        padding: $gutter 0;
+        padding: vars.$gutter 0;
       }
       &.mat-mdc-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-mdc-text-field-wrapper {
-        background-color: $ui-dark-color;
-        padding: 0 $gutter;
+        background-color: vars.$ui-dark-color;
+        padding: 0 vars.$gutter;
       }
     }
 
@@ -382,69 +381,69 @@ html, body {
   
     .has-icons {
       &.mat-mdc-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-mdc-text-field-wrapper .mat-mdc-select-value-text {
-        padding-left: calc(2.5rem + (2 * #{$gutter-small}));
+        padding-left: calc(2.5rem + (2 * #{vars.$gutter-small}));
       }
 
       &-3 {
         &.mat-mdc-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-mdc-text-field-wrapper .mat-mdc-select-value-text {
-          padding-left: calc(3.75rem + (2 * #{$gutter-small}));
+          padding-left: calc(3.75rem + (2 * #{vars.$gutter-small}));
         }
       }
     }
 
     .has-icon {
       &.mat-mdc-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-mdc-text-field-wrapper .mat-mdc-select-value-text {
-        padding-left: calc(1.25rem + #{$gutter-small});
+        padding-left: calc(1.25rem + #{vars.$gutter-small});
       }
     }
   }
 
   .preset-hint {
-    color: $font-light-color;
+    color: vars.$font-light-color;
   }
 
   .mat-mdc-optgroup-label {
     font-weight: bold;
-    color: $font-light-color;
+    color: vars.$font-light-color;
   }
 
   .count-badge {
     display: flex;
     justify-content: center;
-    color: $font-light-color;
-    background-color: $ui-medium-dark-color;
+    color: vars.$font-light-color;
+    background-color: vars.$ui-medium-dark-color;
     width: 1rem;
-    margin-left: $gutter-tiny;
-    border-radius: $gutter-small;
+    margin-left: vars.$gutter-tiny;
+    border-radius: vars.$gutter-small;
   }
 
   .number-input-display {
-    background-color: $ui-medium-dark-color;
+    background-color: vars.$ui-medium-dark-color;
     text-align: center;
     font-weight: 600;
-    color: $font-light-color;
+    color: vars.$font-light-color;
   }
 
   .mat-mdc-unelevated-button:not(:disabled) {
-    background-color: $ui-darker-color;
-    color: $font-light-color;
+    background-color: vars.$ui-darker-color;
+    color: vars.$font-light-color;
   }
 
   .mat-mdc-form-field {
     .mat-mdc-select-value {
-      color: $font-light-color;
+      color: vars.$font-light-color;
     }
 
     &.number-input-field {
       .mat-mdc-text-field-wrapper {
-        background-color: $ui-medium-dark-color;
+        background-color: vars.$ui-medium-dark-color;
       }
     }
 
     .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-text-field__input {
       text-align: center;
       font-weight: 600;
-      color: $font-light-color;
+      color: vars.$font-light-color;
     }
 
     .mat-mdc-text-field-wrapper {
@@ -460,7 +459,7 @@ html, body {
 
     .mat-mdc-select-arrow {
       // important so it doesn't change color when active
-      color: $font-light-color !important;
+      color: vars.$font-light-color !important;
       margin-left: 0.25rem;
     }
 
@@ -475,48 +474,48 @@ html, body {
     .mat-mdc-form-field {
       &.number-input-field {
         .mat-mdc-text-field-wrapper {
-          background-color: $ui-dark-color;
+          background-color: vars.$ui-dark-color;
         }
       }      
     }
 
     .mat-mdc-card {
-      background-color: $ui-medium-dark-color;
+      background-color: vars.$ui-medium-dark-color;
     }
 
     .mat-mdc-unelevated-button:not(:disabled) {
-      background-color: $ui-darker-color;
-      color: $font-light-color;
+      background-color: vars.$ui-darker-color;
+      color: vars.$font-light-color;
     }
 
     mat-radio-button {
       .mdc-form-field {
-        color: $font-light-color;
+        color: vars.$font-light-color;
 
-        --mdc-radio-disabled-selected-icon-color: #{$font-dark-color};
-        --mdc-radio-disabled-unselected-icon-color: #{$font-dark-color};
-        --mat-radio-disabled-label-color: #{$font-dark-color};
+        --mdc-radio-disabled-selected-icon-color: #{vars.$font-dark-color};
+        --mdc-radio-disabled-unselected-icon-color: #{vars.$font-dark-color};
+        --mat-radio-disabled-label-color: #{vars.$font-dark-color};
 
         --mdc-radio-unselected-hover-icon-color: whitesmoke;
-        --mdc-radio-unselected-icon-color: #{$font-light-color};
-        --mdc-radio-unselected-pressed-icon-color: #{$e7-buff-color};
-        --mdc-radio-selected-focus-icon-color: #{$e7-buff-medium-color};
-        --mdc-radio-selected-hover-icon-color: #{$e7-buff-medium-color};
-        --mdc-radio-selected-icon-color: #{$e7-buff-medium-color};
-        --mdc-radio-selected-pressed-icon-color: #{$e7-buff-medium-color};
-        --mat-radio-ripple-color: #{$font-light-color};
-        --mat-radio-checked-ripple-color: #{$e7-buff-medium-color};
+        --mdc-radio-unselected-icon-color: #{vars.$font-light-color};
+        --mdc-radio-unselected-pressed-icon-color: #{vars.$e7-buff-color};
+        --mdc-radio-selected-focus-icon-color: #{vars.$e7-buff-medium-color};
+        --mdc-radio-selected-hover-icon-color: #{vars.$e7-buff-medium-color};
+        --mdc-radio-selected-icon-color: #{vars.$e7-buff-medium-color};
+        --mdc-radio-selected-pressed-icon-color: #{vars.$e7-buff-medium-color};
+        --mat-radio-ripple-color: #{vars.$font-light-color};
+        --mat-radio-checked-ripple-color: #{vars.$e7-buff-medium-color};
       }
     }
   }
 
   .mat-mdc-card {
-    padding: $gutter 0.75rem;
-    background-color: $ui-dark-color;
+    padding: vars.$gutter 0.75rem;
+    background-color: vars.$ui-dark-color;
     margin: 0.5rem 0 0 0.5rem;
 
     span.header {
-      background-color: $ui-dark-color;
+      background-color: vars.$ui-dark-color;
     }
 
     &.cols-2-left {
@@ -524,15 +523,15 @@ html, body {
     }
 
     .slider-row {
-      color: $font-light-color;
+      color: vars.$font-light-color;
     }
   }
 
   .mat-mdc-table {
-    border-radius: $gutter;
-    margin: $gutter-small 0 $gutter;
+    border-radius: vars.$gutter;
+    margin: vars.$gutter-small 0 vars.$gutter;
     overflow: hidden;
-    background-color: $ui-medium-dark-color;
+    background-color: vars.$ui-medium-dark-color;
 
     &.smaller-padding {
       .mat-mdc-header-cell, .mat-mdc-cell {
@@ -549,11 +548,11 @@ html, body {
     thead {
       > tr {
         font-weight: bold;
-        background-color: $ui-medium-color;
-        color: $font-light-color;
+        background-color: vars.$ui-medium-color;
+        color: vars.$font-light-color;
 
         .mat-mdc-header-cell {
-          border-right: $gutter-tiny solid $ui-dark-color;
+          border-right: vars.$gutter-tiny solid vars.$ui-dark-color;
           border-bottom: none;
         }
 
@@ -564,13 +563,13 @@ html, body {
     }
 
     tr {
-      background-color: $ui-dark-color;
-      color: $font-light-color;
+      background-color: vars.$ui-dark-color;
+      color: vars.$font-light-color;
 
       .mat-mdc-cell {
         display: table-cell;
-        border-bottom: 2px solid $ui-medium-color;
-        border-right: 2px solid $ui-medium-color;
+        border-bottom: 2px solid vars.$ui-medium-color;
+        border-right: 2px solid vars.$ui-medium-color;
       }
 
       > :last-child {
@@ -580,18 +579,18 @@ html, body {
   }
 
   div.mat-mdc-select-panel {
-    background-color: $ui-medium-dark-color;
+    background-color: vars.$ui-medium-dark-color;
     padding: 0 !important;
   
     .mat-mdc-option {
-      color: $font-light-color;
+      color: vars.$font-light-color;
       padding: 0 0.5rem;
       .mdc-list-item__primary-text {
-        color: $font-light-color;
+        color: vars.$font-light-color;
       }
 
       &.mdc-list-item--selected:not(.mdc-list-item--disabled) {
-        background-color: $e7-buff-contrast-color;
+        background-color: vars.$e7-buff-contrast-color;
 
         .mdc-list-item__primary-text {
           font-weight: bold;
@@ -602,24 +601,24 @@ html, body {
 
     .mat-mdc-option:focus.mdc-list-item, .mat-mdc-option.mat-mdc-option-active.mdc-list-item {
       &:not(.mdc-list-item--selected) {
-        background-color: $ui-dark-color;
+        background-color: vars.$ui-dark-color;
       }
     }
   }
 
   .cdk-overlay-container {
-    z-index: $popup-z-index;
+    z-index: vars.$popup-z-index;
   }
 
   .mat-mdc-tooltip .mdc-tooltip__surface {
-    color: $font-light-color;
-    background-color: $ui-darker-color;
+    color: vars.$font-light-color;
+    background-color: vars.$ui-darker-color;
   }
 
   div.mat-mdc-menu-panel {
-    background-color: $ui-medium-dark-color;
+    background-color: vars.$ui-medium-dark-color;
     padding: 0 !important;
-    margin-top: $gutter-small;
+    margin-top: vars.$gutter-small;
 
     // Seems to consistently assign the submenu panel id 0
     &#mat-menu-panel-0 {
@@ -633,7 +632,7 @@ html, body {
 
         > .selected {
           color: whitesmoke;
-          background-color: $e7-buff-contrast-color;
+          background-color: vars.$e7-buff-contrast-color;
 
           .mat-mdc-menu-item-text {
             font-weight: bold;
@@ -652,12 +651,12 @@ html, body {
       flex-direction: column;
       height: 7.5rem;
       justify-content: space-around;
-      margin-top: $gutter;
-      z-index: $popup-z-index;
+      margin-top: vars.$gutter;
+      z-index: vars.$popup-z-index;
       position: relative;
 
       > *.mat-mdc-menu-item, > * {
-        padding: $gutter-small $gutter;
+        padding: vars.$gutter-small vars.$gutter;
         height: 2.5rem;
         min-height: unset;
 
@@ -670,7 +669,7 @@ html, body {
         height: 2rem;
 
         &:hover {
-          background-color: $ui-dark-color;
+          background-color: vars.$ui-dark-color;
         }
       }
 
@@ -692,7 +691,7 @@ html, body {
             margin-right: 0;
 
             .language-trigger {
-              padding-left: $gutter;
+              padding-left: vars.$gutter;
               justify-content: flex-start;
             }
           }
@@ -713,58 +712,58 @@ html, body {
     }
 
     .mat-mdc-menu-item {
-      color: $font-light-color;
-      padding: 0 $gutter;
+      color: vars.$font-light-color;
+      padding: 0 vars.$gutter;
     }
   }
 
   .mat-mdc-slide-toggle, .mat-mdc-checkbox {
-    padding-bottom: $gutter-small;
-    margin-left: $gutter;
+    padding-bottom: vars.$gutter-small;
+    margin-left: vars.$gutter;
 
     .mdc-label {
-      color: $font-light-color;
+      color: vars.$font-light-color;
       font-size: medium;
     }
 
     .mdc-switch {
       // activated colors
-      --mdc-switch-selected-track-color: #{$e7-buff-darker-color};
-      --mdc-switch-selected-icon-color: #{$font-light-color};
-      --mdc-switch-unselected-icon-color: #{$font-light-color};
-      --mdc-switch-selected-handle-color: #{$e7-buff-color};
-      --mdc-switch-selected-focus-handle-color: #{$e7-buff-color};
-      --mdc-switch-selected-hover-handle-color: #{$e7-buff-medium-color};
-      --mdc-switch-selected-pressed-handle-color: #{$e7-buff-darker-color};
-      --mdc-switch-selected-focus-track-color: #{$e7-buff-darker-color};
-      --mdc-switch-selected-hover-track-color: #{$e7-buff-darker-color};
-      --mdc-switch-selected-pressed-track-color: #{$e7-buff-darker-color};
+      --mdc-switch-selected-track-color: #{vars.$e7-buff-darker-color};
+      --mdc-switch-selected-icon-color: #{vars.$font-light-color};
+      --mdc-switch-unselected-icon-color: #{vars.$font-light-color};
+      --mdc-switch-selected-handle-color: #{vars.$e7-buff-color};
+      --mdc-switch-selected-focus-handle-color: #{vars.$e7-buff-color};
+      --mdc-switch-selected-hover-handle-color: #{vars.$e7-buff-medium-color};
+      --mdc-switch-selected-pressed-handle-color: #{vars.$e7-buff-darker-color};
+      --mdc-switch-selected-focus-track-color: #{vars.$e7-buff-darker-color};
+      --mdc-switch-selected-hover-track-color: #{vars.$e7-buff-darker-color};
+      --mdc-switch-selected-pressed-track-color: #{vars.$e7-buff-darker-color};
 
 
       // deactivated colors
       --mdc-switch-unselected-focus-handle-color: #{ui-dark-color};
-      --mdc-switch-unselected-focus-track-color: #{$ui-medium-color};
+      --mdc-switch-unselected-focus-track-color: #{vars.$ui-medium-color};
       --mdc-switch-unselected-handle-color: #{ui-dark-color};
       --mdc-switch-unselected-hover-handle-color: #{font-dark-color};
-      --mdc-switch-unselected-hover-track-color: #{$ui-medium-color};
+      --mdc-switch-unselected-hover-track-color: #{vars.$ui-medium-color};
       --mdc-switch-unselected-pressed-handle-color: #{ui-dark-color};
-      --mdc-switch-unselected-pressed-track-color: #{$ui-medium-color};
-      --mdc-switch-handle-surface-color: #{$ui-dark-color};
-      --mdc-switch-unselected-track-color: #{$ui-medium-color};
+      --mdc-switch-unselected-pressed-track-color: #{vars.$ui-medium-color};
+      --mdc-switch-handle-surface-color: #{vars.$ui-dark-color};
+      --mdc-switch-unselected-track-color: #{vars.$ui-medium-color};
 
       // ripple colors
-      --mdc-switch-selected-focus-state-layer-color: #{$ui-dark-color};
-      --mdc-switch-selected-hover-state-layer-color: #{$ui-dark-color};
-      --mdc-switch-selected-pressed-state-layer-color: #{$ui-dark-color};
+      --mdc-switch-selected-focus-state-layer-color: #{vars.$ui-dark-color};
+      --mdc-switch-selected-hover-state-layer-color: #{vars.$ui-dark-color};
+      --mdc-switch-selected-pressed-state-layer-color: #{vars.$ui-dark-color};
 
     }
 
     .mdc-checkbox {
-      padding: $gutter;
+      padding: vars.$gutter;
 
       .mdc-checkbox__background {
-        top: $gutter;
-        left: $gutter;
+        top: vars.$gutter;
+        left: vars.$gutter;
       }
 
       .mat-mdc-checkbox-touch-target {
@@ -777,37 +776,37 @@ html, body {
         height: 1rem;
       }
 
-      --mdc-checkbox-selected-checkmark-color: #{$font-light-color};
-      --mdc-checkbox-selected-focus-icon-color: #{$e7-buff-contrast-color};
-      --mdc-checkbox-selected-hover-icon-color: #{$e7-buff-contrast-color};
-      --mdc-checkbox-selected-icon-color: #{$e7-buff-contrast-color};
-      --mdc-checkbox-selected-pressed-icon-color: #{$e7-buff-contrast-color};
-      --mdc-checkbox-unselected-focus-icon-color: #{$ui-medium-light-color};
-      --mdc-checkbox-unselected-hover-icon-color: #{$ui-medium-light-color};
-      --mdc-checkbox-unselected-icon-color: #{$ui-medium-light-color};
-      --mdc-checkbox-unselected-pressed-icon-color: #{$ui-medium-light-color};
-      --mdc-checkbox-selected-focus-state-layer-color: #{$e7-buff-contrast-color};
-      --mdc-checkbox-selected-hover-state-layer-color: #{$e7-buff-contrast-color};
-      --mdc-checkbox-selected-pressed-state-layer-color: #{$e7-buff-contrast-color};
-      --mdc-checkbox-unselected-focus-state-layer-color: #{$font-light-color};
-      --mdc-checkbox-unselected-hover-state-layer-color: #{$font-light-color};
-      --mdc-checkbox-unselected-pressed-state-layer-color: #{$font-light-color};
+      --mdc-checkbox-selected-checkmark-color: #{vars.$font-light-color};
+      --mdc-checkbox-selected-focus-icon-color: #{vars.$e7-buff-contrast-color};
+      --mdc-checkbox-selected-hover-icon-color: #{vars.$e7-buff-contrast-color};
+      --mdc-checkbox-selected-icon-color: #{vars.$e7-buff-contrast-color};
+      --mdc-checkbox-selected-pressed-icon-color: #{vars.$e7-buff-contrast-color};
+      --mdc-checkbox-unselected-focus-icon-color: #{vars.$ui-medium-light-color};
+      --mdc-checkbox-unselected-hover-icon-color: #{vars.$ui-medium-light-color};
+      --mdc-checkbox-unselected-icon-color: #{vars.$ui-medium-light-color};
+      --mdc-checkbox-unselected-pressed-icon-color: #{vars.$ui-medium-light-color};
+      --mdc-checkbox-selected-focus-state-layer-color: #{vars.$e7-buff-contrast-color};
+      --mdc-checkbox-selected-hover-state-layer-color: #{vars.$e7-buff-contrast-color};
+      --mdc-checkbox-selected-pressed-state-layer-color: #{vars.$e7-buff-contrast-color};
+      --mdc-checkbox-unselected-focus-state-layer-color: #{vars.$font-light-color};
+      --mdc-checkbox-unselected-hover-state-layer-color: #{vars.$font-light-color};
+      --mdc-checkbox-unselected-pressed-state-layer-color: #{vars.$font-light-color};
     }
   }
 
   .mat-mdc-checkbox {
     height: 2rem;
     margin-left: 0;
-    margin-right: $gutter;
+    margin-right: vars.$gutter;
 
     .mdc-label {
       padding-left: 0;
     }
 
     .mdc-form-field {
-      background-color: $ui-dark-color;
-      border-radius: $gutter;
-      padding-right: $gutter;
+      background-color: vars.$ui-dark-color;
+      border-radius: vars.$gutter;
+      padding-right: vars.$gutter;
     }
   }
 
@@ -823,10 +822,10 @@ html, body {
 
     justify-content: center;
 
-    color: $font-light-color;
-    background-color: $ui-dark-color;
-    height: $navbar-height !important;
-    z-index: $navabar-z-index;
+    color: vars.$font-light-color;
+    background-color: vars.$ui-dark-color;
+    height: vars.$navbar-height !important;
+    z-index: vars.$navbar-z-index;
 
     &.small {
       padding: 0 0.5rem;
@@ -859,54 +858,54 @@ html, body {
     }
 
     &:hover {
-        color: $font-light-color;
+        color: vars.$font-light-color;
     }
 
     &.selected {
-        color: $font-light-color;
+        color: vars.$font-light-color;
     }
   }
 
   &.light-theme {
-    color: $font-dark-color;
+    color: vars.$font-dark-color;
     background-color: whitesmoke !important;
 
     .mat-mdc-tab.mdc-tab .mdc-tab__text-label {
-      color: $font-dark-color;
+      color: vars.$font-dark-color;
     }
   
     .mat-mdc-tab.mdc-tab--active, .mat-mdc-tab.mdc-tab--active:hover {
       .mdc-tab__text-label {
-        color: $e7-buff-medium-color;
+        color: vars.$e7-buff-medium-color;
       }
   
       .mdc-tab-indicator__content--underline {
-        border-color: $e7-buff-medium-color;
+        border-color: vars.$e7-buff-medium-color;
       }
   
       &:hover {
         .mdc-tab__text-label {
-          color: $e7-buff-contrast-color;
+          color: vars.$e7-buff-contrast-color;
         }
     
         .mdc-tab-indicator__content--underline {
-          border-color: $e7-buff-contrast-color;
+          border-color: vars.$e7-buff-contrast-color;
         }
       }
     }
   
     .mat-mdc-tab.mdc-tab--active.cdk-focused {
       .mdc-tab__text-label {
-        color: $e7-buff-contrast-color;
+        color: vars.$e7-buff-contrast-color;
       }
   
       .mdc-tab-indicator__content--underline {
-        border-color: $e7-buff-contrast-color;
+        border-color: vars.$e7-buff-contrast-color;
       }
     }
 
     .text-color {
-      color: $font-dark-color !important;
+      color: vars.$font-dark-color !important;
     }
 
     ::-webkit-scrollbar {
@@ -914,62 +913,62 @@ html, body {
     }
       
     ::-webkit-scrollbar-track {
-        background: $ui-light-theme-color;
+        background: vars.$ui-light-theme-color;
     }
       
     ::-webkit-scrollbar-thumb {
-        background: $e7-buff-contrast-color;
+        background: vars.$e7-buff-contrast-color;
     }
   
     ::-webkit-scrollbar-thumb:hover {
-        background: $e7-buff-color;
+        background: vars.$e7-buff-color;
     }
   
     // firefox doesn't support webkit scrollbar so this is pretty much all the customization :(
-    scrollbar-color: $e7-buff-contrast-color $ui-light-theme-color;
+    scrollbar-color: vars.$e7-buff-contrast-color vars.$ui-light-theme-color;
 
     .mtx-mdc-tooltip {
       .mdc-tooltip__surface {
-        color: $font-dark-color;
-        background-color: $ui-light-theme-light-color;
+        color: vars.$font-dark-color;
+        background-color: vars.$ui-light-theme-light-color;
       }
     }
 
     .icon {
-      filter: $font-dark-color-filter;
+      filter: vars.$font-dark-color-filter;
     }
 
     .mini-card {
-      background-color: $ui-light-theme-medium-color;
+      background-color: vars.$ui-light-theme-medium-color;
     }
 
     .mat-mdc-unelevated-button:not(:disabled) {
-      background-color: $ui-light-theme-medium-color;
-      color: $font-dark-color;
+      background-color: vars.$ui-light-theme-medium-color;
+      color: vars.$font-dark-color;
     }
 
     .mat-mdc-tooltip .mdc-tooltip__surface {
       color: white;
-      background-color: $ui-medium-dark-color;
+      background-color: vars.$ui-medium-dark-color;
     }
 
     .multi-slide {
-      background-color: $ui-lighter-color;
+      background-color: vars.$ui-lighter-color;
     }
 
     .preset-hint {
-      color: $font-dark-color;
+      color: vars.$font-dark-color;
     }
 
     .mat-mdc-optgroup-label {
-      color: $font-dark-color;
+      color: vars.$font-dark-color;
     }
 
     div.switch-nested-menu-arrows {
       button[mat-menu-item] {    
         &.mat-mdc-menu-item-submenu-trigger {
           .mat-mdc-menu-submenu-icon {
-            filter: $font-dark-color-filter
+            filter: vars.$font-dark-color-filter
           }
         }
       }
@@ -978,66 +977,66 @@ html, body {
     ngx-mat-select-search {
       input.mat-select-search-input {
         // important because some id is filled and used in the selector
-        background-color: $ui-light-theme-color !important;
-        color: $font-dark-color !important;
+        background-color: vars.$ui-light-theme-color !important;
+        color: vars.$font-dark-color !important;
       }
       ::placeholder {
-        color: $font-dark-color;
+        color: vars.$font-dark-color;
         opacity: 1; /* Firefox */
       }
       
       ::-ms-input-placeholder { /* Edge 12 -18 */
-        color: $font-dark-color;
+        color: vars.$font-dark-color;
       }
     }
 
     .mat-mdc-dialog-container {
       .mat-mdc-dialog-surface {
-        background-color: $ui-lighter-color;
+        background-color: vars.$ui-lighter-color;
 
         .mdc-text-field--filled:not(.mdc-text-field--disabled) {
           background-color: whitesmoke;
         }
   
         .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-floating-label, .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-floating-label--float-above {
-          --mdc-filled-text-field-caret-color: #{$font-dark-color};
-          --mdc-filled-text-field-focus-active-indicator-color: #{$font-dark-color};
-          --mdc-filled-text-field-focus-label-text-color: #{$font-dark-color};
-          --mdc-outlined-text-field-caret-color: #{$font-dark-color};
-          --mdc-outlined-text-field-focus-outline-color: #{$font-dark-color};
-          --mdc-outlined-text-field-focus-label-text-color: #{$font-dark-color};
+          --mdc-filled-text-field-caret-color: #{vars.$font-dark-color};
+          --mdc-filled-text-field-focus-active-indicator-color: #{vars.$font-dark-color};
+          --mdc-filled-text-field-focus-label-text-color: #{vars.$font-dark-color};
+          --mdc-outlined-text-field-caret-color: #{vars.$font-dark-color};
+          --mdc-outlined-text-field-focus-outline-color: #{vars.$font-dark-color};
+          --mdc-outlined-text-field-focus-label-text-color: #{vars.$font-dark-color};
 
-          --mdc-filled-text-field-label-text-color: #{$font-dark-color};
-          --mdc-filled-text-field-disabled-label-text-color: #{$font-dark-color};
-          --mdc-filled-text-field-input-text-color: #{$font-dark-color};
-          --mdc-filled-text-field-disabled-input-text-color: #{$font-dark-color};
-          --mdc-filled-text-field-input-text-placeholder-color: #{$font-dark-color};
-          --mdc-filled-text-field-active-indicator-color: #{$font-dark-color};
-          --mdc-filled-text-field-disabled-active-indicator-color: #{$font-dark-color};
-          --mdc-filled-text-field-hover-active-indicator-color: #{$font-dark-color};
-          --mdc-outlined-text-field-label-text-color: #{$font-dark-color};
-          --mdc-outlined-text-field-disabled-label-text-color: #{$font-dark-color};
-          --mdc-outlined-text-field-input-text-color: #{$font-dark-color};
-          --mdc-outlined-text-field-disabled-input-text-color: #{$font-dark-color};
-          --mdc-outlined-text-field-input-text-placeholder-color: #{$font-dark-color};
-          --mdc-outlined-text-field-outline-color: #{$font-dark-color};
-          --mdc-outlined-text-field-disabled-outline-color: #{$font-dark-color};
-          --mdc-outlined-text-field-hover-outline-color: #{$font-dark-color};
-          --mat-form-field-disabled-input-text-placeholder-color: #{$font-dark-color};
+          --mdc-filled-text-field-label-text-color: #{vars.$font-dark-color};
+          --mdc-filled-text-field-disabled-label-text-color: #{vars.$font-dark-color};
+          --mdc-filled-text-field-input-text-color: #{vars.$font-dark-color};
+          --mdc-filled-text-field-disabled-input-text-color: #{vars.$font-dark-color};
+          --mdc-filled-text-field-input-text-placeholder-color: #{vars.$font-dark-color};
+          --mdc-filled-text-field-active-indicator-color: #{vars.$font-dark-color};
+          --mdc-filled-text-field-disabled-active-indicator-color: #{vars.$font-dark-color};
+          --mdc-filled-text-field-hover-active-indicator-color: #{vars.$font-dark-color};
+          --mdc-outlined-text-field-label-text-color: #{vars.$font-dark-color};
+          --mdc-outlined-text-field-disabled-label-text-color: #{vars.$font-dark-color};
+          --mdc-outlined-text-field-input-text-color: #{vars.$font-dark-color};
+          --mdc-outlined-text-field-disabled-input-text-color: #{vars.$font-dark-color};
+          --mdc-outlined-text-field-input-text-placeholder-color: #{vars.$font-dark-color};
+          --mdc-outlined-text-field-outline-color: #{vars.$font-dark-color};
+          --mdc-outlined-text-field-disabled-outline-color: #{vars.$font-dark-color};
+          --mdc-outlined-text-field-hover-outline-color: #{vars.$font-dark-color};
+          --mat-form-field-disabled-input-text-placeholder-color: #{vars.$font-dark-color};
         }
   
         .mat-mdc-dialog-title {
-          color: $font-dark-color;
+          color: vars.$font-dark-color;
         }
   
         .mdc-button {
           .mdc-button__label {
-            color: $font-dark-color;
+            color: vars.$font-dark-color;
           }
 
           &.light-text {
             .mdc-button__label {
-              color: $font-light-color;
+              color: vars.$font-light-color;
             }
           }
         }
@@ -1047,28 +1046,28 @@ html, body {
     .page-container {
       mat-form-field {
         &.mat-mdc-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-mdc-text-field-wrapper {
-          background-color: $ui-lighter-color;
+          background-color: vars.$ui-lighter-color;
         }
       }
 
       .damage-block {
         mat-form-field {
           &.mat-mdc-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-mdc-text-field-wrapper {
-            background-color: $ui-light-theme-medium-color;
+            background-color: vars.$ui-light-theme-medium-color;
           }
         }
 
         mat-radio-button {
           .mdc-form-field {
-            color: $font-dark-color;
+            color: vars.$font-dark-color;
     
-            --mdc-radio-disabled-selected-icon-color: #{$ui-medium-light-color};
-            --mdc-radio-disabled-unselected-icon-color: #{$ui-medium-light-color};
-            --mat-radio-disabled-label-color: #{$ui-medium-light-color};
+            --mdc-radio-disabled-selected-icon-color: #{vars.$ui-medium-light-color};
+            --mdc-radio-disabled-unselected-icon-color: #{vars.$ui-medium-light-color};
+            --mat-radio-disabled-label-color: #{vars.$ui-medium-light-color};
     
             --mdc-radio-unselected-hover-icon-color: grey;
-            --mdc-radio-unselected-icon-color: #{$font-dark-color};
-            --mat-radio-ripple-color: #{$font-dark-color};
+            --mdc-radio-unselected-icon-color: #{vars.$font-dark-color};
+            --mat-radio-ripple-color: #{vars.$font-dark-color};
           }
         }
       }
@@ -1076,33 +1075,33 @@ html, body {
 
     .webp-icon, .png-icon, .svg-icon {
       &.filter {
-        filter: $font-dark-color-filter;
+        filter: vars.$font-dark-color-filter;
 
         &.white-filter {
-          filter: $font-light-color-filter;
+          filter: vars.$font-light-color-filter;
         }
       }
     }
 
     div.mat-mdc-menu-panel {
-      background-color: $ui-light-color;
+      background-color: vars.$ui-light-color;
   
       .mat-mdc-menu-item {
-        color: $font-dark-color;
+        color: vars.$font-dark-color;
       }
     }
 
     mat-slider.mat-mdc-slider {
       .mdc-slider__track--active_fill {
-        background-color: $e7-buff-color !important;
+        background-color: vars.$e7-buff-color !important;
       }
   
       .mdc-slider__thumb-knob {
-        background-color: $e7-buff-color !important;
+        background-color: vars.$e7-buff-color !important;
       }
   
       .mdc-slider__track--inactive {
-        background-color: $e7-buff-contrast-color !important;
+        background-color: vars.$e7-buff-contrast-color !important;
       }
     }
 
@@ -1115,7 +1114,7 @@ html, body {
     .mat-mdc-form-field {
 
       .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-text-field__input {
-        color: $font-dark-color;
+        color: vars.$font-dark-color;
       }
 
       &.number-input-field {
@@ -1125,40 +1124,40 @@ html, body {
       }
 
       .mat-mdc-select-value {
-        color: $font-dark-color;
+        color: vars.$font-dark-color;
       }
   
       .mat-mdc-select-arrow {
         // important so it doesn't change color when active
-        color: $font-dark-color !important;
+        color: vars.$font-dark-color !important;
       }
     }
 
     .mat-mdc-card {
-      background-color: $ui-lighter-color;
+      background-color: vars.$ui-lighter-color;
   
       .slider-row {
-        color: $font-dark-color;
+        color: vars.$font-dark-color;
       }
 
       span.header {
-        background-color: $ui-light-theme-color;
+        background-color: vars.$ui-light-theme-color;
       }
     }
 
     .damage-block {
       .mat-mdc-card {
-        background-color: $ui-lighter-color;
+        background-color: vars.$ui-lighter-color;
       }
     }
 
     .mat-mdc-table {
       thead {
         > tr {
-          background-color: $ui-light-theme-medium-color;
+          background-color: vars.$ui-light-theme-medium-color;
   
           .mat-mdc-header-cell {
-            border-right: $gutter-tiny solid $ui-light-color;
+            border-right: vars.$gutter-tiny solid vars.$ui-light-color;
           }
   
           > :last-child {
@@ -1168,12 +1167,12 @@ html, body {
       }
   
       tr {
-        background-color: $ui-light-color;
-        color: $font-dark-color;
+        background-color: vars.$ui-light-color;
+        color: vars.$font-dark-color;
   
         .mat-mdc-cell {
-          border-bottom: 2px solid $ui-light-theme-medium-color;
-          border-right: 2px solid $ui-light-theme-medium-color;
+          border-bottom: 2px solid vars.$ui-light-theme-medium-color;
+          border-right: 2px solid vars.$ui-light-theme-medium-color;
         }
   
         > :last-child {
@@ -1191,17 +1190,17 @@ html, body {
     }
 
     div.mat-mdc-select-panel {
-      background: $ui-light-theme-light-color;
+      background: vars.$ui-light-theme-light-color;
     
       .mat-mdc-option {
-        color: $font-dark-color;
+        color: vars.$font-dark-color;
 
         .mdc-list-item__primary-text {
-          color: $font-dark-color;
+          color: vars.$font-dark-color;
         }
 
         &.mdc-list-item--selected:not(.mdc-list-item--disabled) {
-          color: $e7-buff-color;
+          color: vars.$e7-buff-color;
 
           .mdc-list-item__primary-text {
             color: whitesmoke;
@@ -1211,55 +1210,55 @@ html, body {
 
       .mat-mdc-option:focus.mdc-list-item, .mat-mdc-option.mat-mdc-option-active.mdc-list-item {
         &:not(.mdc-list-item--selected) {
-          background-color: $ui-light-theme-color;
+          background-color: vars.$ui-light-theme-color;
         }
       }
     }
 
     .navbar {
-      color: $font-dark-color;
-      background-color: $ui-light-color;
+      color: vars.$font-dark-color;
+      background-color: vars.$ui-light-color;
     }
 
     .mat-mdc-slide-toggle, .mat-mdc-checkbox {
       .mdc-label {
-        color: $font-dark-color;
+        color: vars.$font-dark-color;
       }
 
       .mdc-checkbox {
         --mdc-checkbox-selected-checkmark-color: whitesmoke;
-        --mdc-checkbox-unselected-focus-icon-color: #{$ui-dark-color};
-        --mdc-checkbox-unselected-hover-icon-color: #{$ui-dark-color};
-        --mdc-checkbox-unselected-icon-color: #{$ui-dark-color};
-        --mdc-checkbox-unselected-pressed-icon-color: #{$ui-dark-color};
-        --mdc-checkbox-unselected-focus-state-layer-color: #{$ui-medium-color};
-        --mdc-checkbox-unselected-hover-state-layer-color: #{$ui-medium-color};
-        --mdc-checkbox-unselected-pressed-state-layer-color: #{$ui-medium-color};
+        --mdc-checkbox-unselected-focus-icon-color: #{vars.$ui-dark-color};
+        --mdc-checkbox-unselected-hover-icon-color: #{vars.$ui-dark-color};
+        --mdc-checkbox-unselected-icon-color: #{vars.$ui-dark-color};
+        --mdc-checkbox-unselected-pressed-icon-color: #{vars.$ui-dark-color};
+        --mdc-checkbox-unselected-focus-state-layer-color: #{vars.$ui-medium-color};
+        --mdc-checkbox-unselected-hover-state-layer-color: #{vars.$ui-medium-color};
+        --mdc-checkbox-unselected-pressed-state-layer-color: #{vars.$ui-medium-color};
       }
     }
 
     .mat-mdc-checkbox .mdc-form-field {
-      background-color: $ui-lighter-color;
+      background-color: vars.$ui-lighter-color;
       box-shadow: var(--mdc-elevated-card-container-elevation) !important;
     }
 
     .mat-mdc-menu-item:not([disabled]):hover, .mat-mdc-option:not([disabled]):hover {
-      background-color: $ui-light-theme-color;
+      background-color: vars.$ui-light-theme-color;
     }
 
     div.mat-mdc-menu-panel {
-      background-color: $ui-light-theme-light-color;
+      background-color: vars.$ui-light-theme-light-color;
   
       .mat-mdc-menu-content {
         > mat-slide-toggle {
           &:hover {
-            background-color: $ui-light-theme-color;
+            background-color: vars.$ui-light-theme-color;
           }
         }
       }
   
       .mat-mdc-menu-item {
-        color: $font-dark-color;
+        color: vars.$font-dark-color;
       }
     }
 
@@ -1272,11 +1271,11 @@ html, body {
       }
 
       &:hover {
-          color: $font-dark-color;
+          color: vars.$font-dark-color;
       }
 
       &.selected {
-          color: $font-dark-color;
+          color: vars.$font-dark-color;
       }
     }
 
@@ -1288,12 +1287,12 @@ html, body {
   &.retro-theme {
     .page-container {
       mat-form-field {
-        border: 1px solid $ui-light-color;
+        border: 1px solid vars.$ui-light-color;
       }
 
       .column-3 {
         > * {
-          width: calc(33.3% - calc(#{$gutter} * (2/3)) - 2px);
+          width: calc(33.3% - calc(#{vars.$gutter} * (2/3)) - 2px);
         }
       }
 
@@ -1303,18 +1302,18 @@ html, body {
 
       .damage-block, .credits-block {
         mat-card.mat-mdc-card {
-          border: 1px solid $ui-medium-light-color;
+          border: 1px solid vars.$ui-medium-light-color;
         }
       }
 
       app-number-input-group {
         .mat-mdc-unelevated-button:not(:disabled) {
-          border: 1px solid $ui-medium-light-color;
+          border: 1px solid vars.$ui-medium-light-color;
           height: 2.1rem;
         }
 
         mat-form-field {
-          border: 1px solid $ui-light-color;
+          border: 1px solid vars.$ui-light-color;
           border-right: none;
           border-left: none;
         }
@@ -1323,13 +1322,13 @@ html, body {
       .mat-mdc-checkbox {
         .mdc-form-field {
           background-color: transparent;
-          border: 1px solid $ui-light-color;
+          border: 1px solid vars.$ui-light-color;
         }
 
         &:not(.mat-mdc-checkbox-checked) {
           .mdc-checkbox__background {
-            border-color: $font-light-color !important; // really don't feel like fighting angular material on this one
-            background: $ui-light-color !important;
+            border-color: vars.$font-light-color !important; // really don't feel like fighting angular material on this one
+            background: vars.$ui-light-color !important;
           }
         }
         
@@ -1349,7 +1348,7 @@ html, body {
         }
 
         mat-form-field {
-          border: 1px solid $ui-light-theme-color;
+          border: 1px solid vars.$ui-light-theme-color;
           &.mat-mdc-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-mdc-text-field-wrapper {
             background-color: whitesmoke;
           }
@@ -1367,12 +1366,12 @@ html, body {
   
         app-number-input-group {
           .mat-mdc-unelevated-button:not(:disabled) {
-            border: 1px solid $ui-medium-light-color;
+            border: 1px solid vars.$ui-medium-light-color;
             background-color: transparent;
           }
   
           mat-form-field {
-            border-color: $ui-medium-light-color;
+            border-color: vars.$ui-medium-light-color;
             border-right: none;
             border-left: none;
           }
@@ -1380,12 +1379,12 @@ html, body {
   
         .mat-mdc-checkbox {
           .mdc-form-field {
-            border: 1px solid $ui-medium-light-color;
+            border: 1px solid vars.$ui-medium-light-color;
           }
   
           &:not(.mat-mdc-checkbox-checked) {
             .mdc-checkbox__background {
-              border-color: $ui-medium-light-color !important; // really don't feel like fighting angular material on this one
+              border-color: vars.$ui-medium-light-color !important; // really don't feel like fighting angular material on this one
               background: transparent !important;
             }
           }
@@ -1393,13 +1392,13 @@ html, body {
         }
 
         .mat-mdc-table {
-          border: 1px solid $ui-medium-light-color;
+          border: 1px solid vars.$ui-medium-light-color;
           thead {
             > tr {
-              background-color: $ui-light-theme-color;
+              background-color: vars.$ui-light-theme-color;
       
               .mat-mdc-header-cell {
-                border-right: $gutter-tiny solid $ui-light-theme-medium-color;
+                border-right: vars.$gutter-tiny solid vars.$ui-light-theme-medium-color;
               }
       
               > :last-child {
@@ -1410,11 +1409,11 @@ html, body {
       
           tr {
             background-color: white;
-            color: $font-dark-color;
+            color: vars.$font-dark-color;
       
             .mat-mdc-cell {
-              border-bottom: 2px solid $ui-light-theme-medium-color;
-              border-right: 2px solid $ui-light-theme-medium-color;
+              border-bottom: 2px solid vars.$ui-light-theme-medium-color;
+              border-right: 2px solid vars.$ui-light-theme-medium-color;
             }
       
             > :last-child {
@@ -1588,7 +1587,7 @@ body {
 }
 
 .jumbo-margin-top {
-  margin-top: $gutter-jumbo;
+  margin-top: vars.$gutter-jumbo;
 }
 
 .padding-left {
@@ -1666,12 +1665,12 @@ body {
   padding: 0 3dvw 0.5rem;
   align-self: center;
   width: 94dvw; // 100vw - the side padding
-  height: calc(100dvh - #{$navbar-height} - 0.5rem);
+  height: calc(100dvh - #{vars.$navbar-height} - 0.5rem);
   overflow: auto;
 
   &.sticky-bottom {
     padding-bottom: 0;
-    height: calc(100dvh - #{$navbar-height});
+    height: calc(100dvh - #{vars.$navbar-height});
   }
 
   display: flex;
@@ -1703,12 +1702,12 @@ app-slide-input {
 
 .absolute-left {
   position: absolute;
-  left: $gutter;
+  left: vars.$gutter;
 }
 
 .absolute-right {
   position: absolute;
-  right: $gutter;
+  right: vars.$gutter;
 }
 
 .left {
@@ -1735,7 +1734,7 @@ app-slide-input {
   align-items: flex-start;
 
   > * {
-    width: calc(50% - calc(#{$gutter} / 2));
+    width: calc(50% - calc(#{vars.$gutter} / 2));
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -1743,11 +1742,11 @@ app-slide-input {
   }
 
   > :nth-child(1) {
-    margin-right: calc(#{$gutter} / 2);
+    margin-right: calc(#{vars.$gutter} / 2);
   }
 
   > :nth-child(2) {
-    margin-left: calc(#{$gutter} / 2);
+    margin-left: calc(#{vars.$gutter} / 2);
   }
 }
 
@@ -1757,7 +1756,7 @@ app-slide-input {
   align-items: flex-start;
 
   > * {
-    width: calc(25% - calc(#{$gutter} * 3));
+    width: calc(25% - calc(#{vars.$gutter} * 3));
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -1766,21 +1765,21 @@ app-slide-input {
 
   > :nth-child(1) {
     margin-left: 1rem;
-    margin-right: calc(#{$gutter} / 2);
+    margin-right: calc(#{vars.$gutter} / 2);
   }
 
   > :nth-child(2) {
-    margin-left: calc(#{$gutter} / 2);
+    margin-left: calc(#{vars.$gutter} / 2);
     margin-right: 1rem;
   }
 
   > :nth-child(3) {
     margin-left: 1rem;
-    margin-right: calc(#{$gutter} / 2);
+    margin-right: calc(#{vars.$gutter} / 2);
   }
 
   > :nth-child(4) {
-    margin-left: calc(#{$gutter} / 2);
+    margin-left: calc(#{vars.$gutter} / 2);
     margin-right: 1rem;
   }
 }
@@ -1794,7 +1793,7 @@ app-slide-input {
   justify-content: space-between;
 
   > * {
-    width: calc(33.3% - calc(#{$gutter} * (2/3)));
+    width: calc(33.3% - calc(#{vars.$gutter} * (2/3)));
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -1802,15 +1801,15 @@ app-slide-input {
   }
 
   > :nth-child(1) {
-    margin-right: calc(#{$gutter} / 2);
+    margin-right: calc(#{vars.$gutter} / 2);
   }
 
   > :nth-child(2) {
-    margin: 0 calc(#{$gutter} / 2);
+    margin: 0 calc(#{vars.$gutter} / 2);
   }
 
   > :nth-child(3) {
-    margin-left: calc(#{$gutter} / 2);
+    margin-left: calc(#{vars.$gutter} / 2);
   }
 }
 
@@ -1837,36 +1836,36 @@ app-slide-input {
 
 .select-icon {
   position: absolute;
-  bottom: calc(#{$gutter} + #{$gutter-tiny});
+  bottom: calc(#{vars.$gutter} + #{vars.$gutter-tiny});
 
   &-2 {
     position: absolute;
-    left: calc(1.25rem + #{$gutter-tiny});
-    bottom: calc(#{$gutter} + #{$gutter-tiny});
+    left: calc(1.25rem + #{vars.$gutter-tiny});
+    bottom: calc(#{vars.$gutter} + #{vars.$gutter-tiny});
   }
 
   &-3 {
     position: absolute;
-    left: calc(2.5rem + #{$gutter-tiny});
-    bottom: calc(#{$gutter} + #{$gutter-tiny});
+    left: calc(2.5rem + #{vars.$gutter-tiny});
+    bottom: calc(#{vars.$gutter} + #{vars.$gutter-tiny});
   }
 }
 
 .select-option-icon {
   position: absolute;
-  bottom: calc(#{$gutter} + #{$gutter-tiny});
-  left: $gutter;
+  bottom: calc(#{vars.$gutter} + #{vars.$gutter-tiny});
+  left: vars.$gutter;
 
   &-2 {
     position: absolute;
-    left: calc(#{$gutter} + 1.25rem);
-    bottom: calc(#{$gutter} + #{$gutter-tiny});
+    left: calc(#{vars.$gutter} + 1.25rem);
+    bottom: calc(#{vars.$gutter} + #{vars.$gutter-tiny});
   }
 
   &-3 {
     position: absolute;
-    left: calc(#{$gutter} + 2.5rem);
-    bottom: calc(#{$gutter} + #{$gutter-tiny});
+    left: calc(#{vars.$gutter} + 2.5rem);
+    bottom: calc(#{vars.$gutter} + #{vars.$gutter-tiny});
   }
 }
 
@@ -1874,18 +1873,18 @@ html div.mat-mdc-select-panel .mat-mdc-option, body div.mat-mdc-select-panel .ma
   min-height: 10px;
   height: 2.5rem;
   &.has-icons {
-    padding-left: calc(2.5rem + (2 * #{$gutter}));
+    padding-left: calc(2.5rem + (2 * #{vars.$gutter}));
 
     &-3 {
-      padding-left: calc(3.75rem + (2 * #{$gutter}));
+      padding-left: calc(3.75rem + (2 * #{vars.$gutter}));
     }
   }
 
   &.has-icon {
-    padding-left: calc(1.25rem + #{$gutter-large});
+    padding-left: calc(1.25rem + #{vars.$gutter-large});
 
     &.indented {
-      padding-left: calc(1.25rem + #{$gutter-extra-large} + #{$gutter-indent});
+      padding-left: calc(1.25rem + #{vars.$gutter-extra-large} + #{vars.$gutter-indent});
     }
   }
 }
@@ -1904,48 +1903,48 @@ mat-pseudo-checkbox {
 
 // These importants are to ensure these styles override other more contextual styles
 .color-grey {
-  background-color: $ui-medium-color !important;
-  color: $ui-light-color !important;
+  background-color: vars.$ui-medium-color !important;
+  color: vars.$ui-light-color !important;
 }
 
 .color-blue {
-  background-color: $e7-buff-ui-color !important;
-  color: $ui-light-color !important;
+  background-color: vars.$e7-buff-ui-color !important;
+  color: vars.$ui-light-color !important;
 }
 
 .color-orange {
-  background-color: $ui-orange-color !important;
-  color: $ui-light-color !important;
+  background-color: vars.$ui-orange-color !important;
+  color: vars.$ui-light-color !important;
 }
 
 .color-green {
-  background-color: $e7-earth-ui-color !important;
-  color: $ui-light-color !important;
+  background-color: vars.$e7-earth-ui-color !important;
+  color: vars.$ui-light-color !important;
 }
 
 .button-line {
   border-radius: 0 !important;
 
   &-left {
-    border-radius: $gutter 0 0 $gutter !important;
+    border-radius: vars.$gutter 0 0 vars.$gutter !important;
   }
 
   &-right {
-    border-radius: 0 $gutter $gutter 0 !important;
+    border-radius: 0 vars.$gutter vars.$gutter 0 !important;
   }
 }
 
 .button-line, .button-line-left, .button-line-right {
-  padding: $gutter-small !important;
+  padding: vars.$gutter-small !important;
   min-width: 2.5rem !important;
 
   .svg-icon {
     height: 1.25rem;
-    filter: $font-light-color-filter;
+    filter: vars.$font-light-color-filter;
 
     &.white {
       height: 1rem;
-      filter: $white-to-font-light-filter
+      filter: vars.$white-to-font-light-filter
     }
   }
 }

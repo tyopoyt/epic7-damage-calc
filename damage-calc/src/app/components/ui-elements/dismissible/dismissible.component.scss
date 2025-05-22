@@ -1,8 +1,8 @@
-@import "../../../../variables";
+@use "../../../../variables" as vars;
 
 :host {
     display: flex;
-    margin-top: $gutter;
+    margin-top: vars.$gutter;
     width: 100%;
     color: white;
 
@@ -10,8 +10,8 @@
     .dismissible {
         width: 100%;
         height: max-content;
-        padding: $gutter-extra-large;
-        border-radius: $gutter;
+        padding: vars.$gutter-extra-large;
+        border-radius: vars.$gutter;
         position: relative;
         font-size: medium;
 
@@ -23,24 +23,24 @@
         }
 
         &.info {
-            background-color: $ui-info-color;
+            background-color: vars.$ui-info-color;
         }
         
         &.instructions {
-            background-color: $e7-buff-ui-color;
+            background-color: vars.$e7-buff-ui-color;
         }
         
         &.warn {
-            background-color: $e7-fire-color;
+            background-color: vars.$e7-fire-color;
         }
 
         .svg-icon {
             height: 1.35rem;
             position: absolute;
-            top: $gutter-large;
-            right: $gutter-large;
+            top: vars.$gutter-large;
+            right: vars.$gutter-large;
 
-            filter: $white-filter;
+            filter: vars.$white-filter;
         }
     }
 }

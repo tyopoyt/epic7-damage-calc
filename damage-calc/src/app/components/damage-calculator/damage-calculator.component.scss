@@ -1,13 +1,13 @@
 @use '@angular/material' as mat;
-@import "../../../variables";
+@use "../../../variables" as vars;
 
 .header-block {
     h1 {
         font-weight: bold;
-        margin: $gutter-jumbo 0 0;
+        margin: vars.$gutter-jumbo 0 0;
 
         &.line-title {
-            margin-top: $gutter;
+            margin-top: vars.$gutter;
         }
     }
 
@@ -16,7 +16,7 @@
             margin-top: 0;
             width: 100%;
             text-align: left;
-            margin-bottom: $gutter;
+            margin-bottom: vars.$gutter;
         }
     }
 }
@@ -24,7 +24,7 @@
 .damage-block {
     position: sticky;
     bottom: env(safe-area-inset-bottom, 0);
-    z-index: $damage-block-z-index;
+    z-index: vars.$damage-block-z-index;
 
     .skill-holder {
         align-items: center;
@@ -75,22 +75,22 @@
 
     .collapse-icon {
         position: absolute;
-        right: $gutter;
+        right: vars.$gutter;
 
         &.normal-top {
-            top: $gutter-large;
+            top: vars.$gutter-large;
         }
 
         &.smaller-top {
-            top: $gutter;
+            top: vars.$gutter;
         }
 
         &.graph-top {
-            top: calc($gutter-large + 22.5rem)
+            top: calc(vars.$gutter-large + 22.5rem)
         }
 
         &.graph-top-small {
-            top: calc($gutter + 22.5rem)
+            top: calc(vars.$gutter + 22.5rem)
         }
     }
 }
@@ -101,16 +101,16 @@
 }
 
 .filter-select-container {
-    margin-top: $gutter;
+    margin-top: vars.$gutter;
 
     &.jumbo-margin-top {
-        margin-top: $gutter-jumbo;
+        margin-top: vars.$gutter-jumbo;
     }
 
     &.flex-column {
         mat-form-field {
             width: 100%;
-            margin-bottom: $gutter;
+            margin-bottom: vars.$gutter;
         }
 
         > :last-child {
@@ -124,7 +124,7 @@
 }
 
 .credits-block {
-    margin-bottom: $gutter;
+    margin-bottom: vars.$gutter;
 
     .icon-line {
         position: relative;
@@ -144,14 +144,14 @@
     
     .svg-icon.link {
         position: absolute;
-        top: $gutter-small;
+        top: vars.$gutter-small;
     }
 
     .column-3 {
         div.credit-column {
-            padding: 0 0 $gutter;
-            height: calc(100% - $gutter);
-            border-right: 1.5px solid $ui-medium-color;       
+            padding: 0 0 vars.$gutter;
+            height: calc(100% - vars.$gutter);
+            border-right: 1.5px solid vars.$ui-medium-color;       
         }
 
         > :nth-child(1) {
@@ -170,17 +170,17 @@
         > * {
             display: flex;
             flex-direction: column;
-            border-bottom: 1.5px solid $ui-medium-color;
-            padding-bottom: $gutter;
+            border-bottom: 1.5px solid vars.$ui-medium-color;
+            padding-bottom: vars.$gutter;
             height: min-content;
         }
 
         > :first-child {
-            margin-bottom: $gutter;
+            margin-bottom: vars.$gutter;
         }
 
         > :nth-child(2) {
-            margin-bottom: $gutter;
+            margin-bottom: vars.$gutter;
         }
 
         > :last-child {
@@ -191,10 +191,10 @@
     
 
     a {
-        color:$e7-buff-color;
+        color: vars.$e7-buff-color;
         font-size: 1.1rem;
         text-decoration: none;
-        margin-bottom: $gutter-small;
+        margin-bottom: vars.$gutter-small;
         width: max-content;
     }
 }
@@ -223,7 +223,7 @@
 
 .preset-hint {
     font-size: small;
-    margin: 0 0 0 $gutter-small;
-    padding-top: $gutter-tiny;
+    margin: 0 0 0 vars.$gutter-small;
+    padding-top: vars.$gutter-tiny;
 }
 
