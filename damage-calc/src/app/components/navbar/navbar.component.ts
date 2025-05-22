@@ -9,9 +9,10 @@ import { CustomLanguage, LanguageService } from 'src/app/services/language.servi
 import { ScreenService, Theme } from 'src/app/services/screen.service';
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss']
+    selector: 'app-navbar',
+    templateUrl: './navbar.component.html',
+    styleUrls: ['./navbar.component.scss'],
+    standalone: false
 })
 export class NavbarComponent implements OnInit  {
 

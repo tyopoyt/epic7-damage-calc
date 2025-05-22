@@ -36,9 +36,10 @@ export interface DamageDataset {
 }
 
 @Component({
-  selector: 'app-damage-graph',
-  templateUrl: './damage-graph.component.html',
-  styleUrls: ['./damage-graph.component.scss']
+    selector: 'app-damage-graph',
+    templateUrl: './damage-graph.component.html',
+    styleUrls: ['./damage-graph.component.scss'],
+    standalone: false
 })
 export class DamageGraphComponent implements OnInit, OnDestroy, AfterViewInit {
 

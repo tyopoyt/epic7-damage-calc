@@ -8,9 +8,10 @@ import { TranslationPipe } from 'src/app/pipes/translation.pipe';
 import { DismissibleColorOption } from '../ui-elements/dismissible/dismissible.component';
 
 @Component({
-  selector: 'app-speed-tuner',
-  templateUrl: './speed-tuner.component.html',
-  styleUrls: ['./speed-tuner.component.scss']
+    selector: 'app-speed-tuner',
+    templateUrl: './speed-tuner.component.html',
+    styleUrls: ['./speed-tuner.component.scss'],
+    standalone: false
 })
 export class SpeedTunerComponent implements OnInit {
 

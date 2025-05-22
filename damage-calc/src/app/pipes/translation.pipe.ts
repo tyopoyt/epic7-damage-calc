@@ -5,7 +5,8 @@ import { Language } from '../models/languages';
 import * as _ from 'lodash-es'
 
 @Pipe({
-  name: 'translate'
+    name: 'translate',
+    standalone: false
 })
 export class TranslationPipe implements PipeTransform {
 

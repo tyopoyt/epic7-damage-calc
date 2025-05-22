@@ -13,9 +13,10 @@ export interface BuildSaveData {
 }
 
 @Component({
-  selector: 'app-compare-save',
-  templateUrl: './compare-save.component.html',
-  styleUrls: ['./compare-save.component.scss'],
+    selector: 'app-compare-save',
+    templateUrl: './compare-save.component.html',
+    styleUrls: ['./compare-save.component.scss'],
+    standalone: false
 })
 export class CompareSaveComponent {
 

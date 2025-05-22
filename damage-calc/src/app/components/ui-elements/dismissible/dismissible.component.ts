@@ -7,9 +7,10 @@ export enum DismissibleColorOption {
 }
 
 @Component({
-  selector: 'app-dismissible',
-  templateUrl: './dismissible.component.html',
-  styleUrls: ['./dismissible.component.scss']
+    selector: 'app-dismissible',
+    templateUrl: './dismissible.component.html',
+    styleUrls: ['./dismissible.component.scss'],
+    standalone: false
 })
 export class DismissibleComponent implements OnInit {
 

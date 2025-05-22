@@ -2,7 +2,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { DamageFormData } from '../models/forms';
 
 @Pipe({
-  name: 'typeof'
+    name: 'typeof',
+    standalone: false
 })
 export class TypeofPipe implements PipeTransform {
 
