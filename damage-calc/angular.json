@@ -74,10 +74,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "damage-calc:build:production"
+              "buildTarget": "damage-calc:build:production"
             },
             "development": {
-              "browserTarget": "damage-calc:build:development"
+              "buildTarget": "damage-calc:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -85,7 +85,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "damage-calc:build"
+            "buildTarget": "damage-calc:build"
           }
         },
         "test": {
