@@ -1,1 +1,1 @@
-ng build & XCOPY ..\..\CNAME ..\docs & XCOPY ..\docs\index.html "..\docs\404.html*"
+ng build & XCOPY ..\..\CNAME ..\docs & XCOPY ..\docs\browser\index.html "..\docs\browser\404.html*"
