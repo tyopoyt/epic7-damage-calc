@@ -20,9 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": {
-              "base": "../docs"
-            },
+            "outputPath": "../docs",
             "index": "src/index.html",
             "baseHref": "https://e7calc.xyz",
             "polyfills": [
