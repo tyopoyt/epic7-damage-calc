@@ -4419,7 +4419,7 @@ export const Heroes: Record<string, Hero> = {
         pow: () => 1,
         flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) =>  inputValues.casterFinalDefense() * 1.4,
         flatTip: () => ({ casterDefense: 140 }),
-        enhance: [0.05, 0, 0.05, 0, 0.05],
+        enhance: [0.05, 0, 0.1, 0, 0.15],
         isSingle: () => true,
       }),
       s3: new Skill({
