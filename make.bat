@@ -1,1 +1,1 @@
-rd /S /Q ..\docs & ng build --configuration production & XCOPY "..\docs\browser\*" "..\docs" /E /H /Y & XCOPY ..\..\CNAME ..\docs & XCOPY ..\docs\index.html "..\docs\404.html*"
+rd /S /Q ..\docs & ng build --configuration production & XCOPY "..\docs\browser\*" "..\docs" /E /H /Y & XCOPY ..\..\CNAME ..\docs & XCOPY ..\docs\index.html "..\docs\404.html*" & rd /S /Q ..\docs\browser

@@ -25,6 +25,7 @@ export enum HeroClass {
 //TODO: refactor atk to attack and crit to critDamage
 export class Hero {
     attackIncrease: (inputValues: DamageFormData) => number;
+    resistanceIncrease: (artifact: Artifact, inputValues: DamageFormData) => number;
     flatAttackIncrease: (inputValues: DamageFormData, artifact: Artifact) => number;
     defenseIncrease: (inputValues: DamageFormData) => number;
     speedIncrease: (inputValues: DamageFormData) => number;
@@ -53,6 +54,7 @@ export class Hero {
     )
   {
     this.attackIncrease = _.get(heroValues, 'attackIncrease', () => 1);
+    this.resistanceIncrease = _.get(heroValues, 'resistanceIncrease', () => 0);
     this.flatAttackIncrease = _.get(heroValues, 'flatAttackIncrease', () => 0);
     this.defenseIncrease = _.get(heroValues, 'defenseIncrease', () => 0);
     this.speedIncrease = _.get(heroValues, 'speedIncrease', () => 1);

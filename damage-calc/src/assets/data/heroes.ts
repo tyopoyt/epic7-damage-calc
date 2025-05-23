@@ -3227,6 +3227,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 966,
     baseHP: 7323,
     baseDefense: 657,
+    resistanceIncrease: (artifact: Artifact, inputValues: DamageFormData) => inputValues.casterFinalMaxHP(artifact) * 0.0065,
     barrierSkills: ['S3'],
     barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number, soulburn: boolean) => inputValues.casterFinalMaxHP(artifact) * 0.15,
     skills: {

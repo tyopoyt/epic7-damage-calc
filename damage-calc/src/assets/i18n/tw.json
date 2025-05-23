@@ -874,6 +874,7 @@
         "target": "目標",
         "artifactDamageHint": "神器的追加傷害,已經包含在下方的表格裏",
         "attackIncreaseHint": "諸如亞露嘉或坤特之類的被動者的攻擊增加",
+        "resistanceIncreaseHint": "被動的阻力增加了風紀委員艾莉雅",
         "heroSpecific": "角色 特性",
         "debuffSpecific": "有貶義 特性",
         "buffSpecific": "愛好者 特性",

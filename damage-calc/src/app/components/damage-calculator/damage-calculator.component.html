@@ -474,11 +474,20 @@
                     <div class="neat-container flex-row extra-large-margin-right">
                         <div *ngIf="!!attackIncrease && !collapsed" class="neat-container small-padding-top medium-text">
                             <div class="mini-card neat-container flex-row small-margin-left tiny-padding-right bold-text">
-                                <img class="png-icon medium tiny-margin-right tiny-margin-left" src="assets/buffs/attack-buff.png" alt="Artifact Damage">
+                                <img class="png-icon medium tiny-margin-right tiny-margin-left" src="assets/buffs/attack-buff.png" alt="Attack Increase">
                                 <span class="microscopic-margin-bottom">
                                     {{attackIncrease}}
                                 </span>
                                 <img class="icon tiny tiny-margin-left" src="assets/icons/help-circle-outline.svg" alt="Hint" matTooltip="{{'attackIncreaseHint' | translate:'ui':languageService.language.value}}">
+                            </div>
+                        </div>
+                        <div *ngIf="!!resistanceIncrease && !collapsed" class="neat-container small-padding-top medium-text">
+                            <div class="mini-card neat-container flex-row small-margin-left tiny-padding-right bold-text">
+                                <img class="png-icon medium tiny-margin-right tiny-margin-left" src="assets/icons/resistance_icon.png" alt="Resistance Increase">
+                                <span class="microscopic-margin-bottom">
+                                    {{resistanceIncrease}}
+                                </span>
+                                <img class="icon tiny tiny-margin-left" src="assets/icons/help-circle-outline.svg" alt="Hint" matTooltip="{{'resistanceIncreaseHint' | translate:'ui':languageService.language.value}}">
                             </div>
                         </div>
                         <div *ngIf="!!artifactDamage && !collapsed" class="neat-container small-padding-top medium-text">
