@@ -7,6 +7,8 @@ To test your translation locally, there is a hidden option to load a custom tran
 <img src="./language_custom.gif" alt="image" width="800" height="auto">
 
 ## Changelog
+### <strong>May 22 2025 Update:</strong>
+- Added ML Aria, Robin, An Assassin's Pledge, and Frantic Flight.  Also updated to Angular 19 and fixed some warnings/deprecations.
 ### <strong>May 15 2025 Update:</strong>
 - Add New Kid Adin ee.
 ### <strong>Apr 28 2025 Update:</strong>

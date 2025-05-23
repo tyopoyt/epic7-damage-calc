@@ -41,6 +41,13 @@ export const Artifacts: Record<string, Artifact> = {
     scale: [0.08, 0.088, 0.096, 0.104, 0.112, 0.12, 0.128, 0.136, 0.144, 0.152, 0.16],
     type: ArtifactDamageType.damage
   }),
+  an_assassins_pledge: new Artifact({
+    id: 'an_assassins_pledge',
+    name: 'An Assassin\'s Pledge',
+    type: ArtifactDamageType.dot,
+    dot: [DoT.burn],
+    exclusive: HeroClass.ranger
+  }),
   an_offer_you_cant_refuse: new Artifact({
     id: 'an_offer_you_cant_refuse',
     name: 'An Offer You Can\'t Refuse',
@@ -207,6 +214,15 @@ export const Artifacts: Record<string, Artifact> = {
     type: ArtifactDamageType.damage,
     exclusive: HeroClass.mage,
     applies: (skill: Skill, inputValues: DamageFormData, soulburn: boolean) => skill.isSingle(inputValues, soulburn),
+  }),
+  frantic_flight: new Artifact({
+    id: 'frantic_flight',
+    name: 'Frantic Flight',
+    scale: [0.02, 0.022, 0.024, 0.026, 0.028, 0.03, 0.032, 0.034, 0.036, 0.038, 0.04],
+    type: ArtifactDamageType.critDamageBoost,
+    artifactSpecific:['attackSkillStack'],
+    artifactSpecificMaximums:{'attackSkillStack': 6},
+    value: (artiScale: number, inputValues: DamageFormData) => artiScale * inputValues.attackSkillStack,
   }),
   golden_rose: new Artifact({
     id: 'golden_rose',

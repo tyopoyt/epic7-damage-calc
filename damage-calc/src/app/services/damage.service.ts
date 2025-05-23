@@ -133,7 +133,7 @@ export class DamageService {
       critBoost: (skill.critDmgBoost(soulburn) * 100),
       critBoostTip: this.languageService.getSkillModTip(skill.critDmgBoostTip(soulburn)),
       // TODO: is there any reason this is called twice w/ ternary rather than just seting the value?
-      detonation: skill.detonation(this.damageForm) ? Math.round((skill.detonation(this.damageForm) - 1) * 100) : 0,
+      detonation: skill.detonation(soulburn, this.damageForm) ? Math.round((skill.detonation(soulburn, this.damageForm) - 1) * 100) : 0,
       elementalAdvantage: skill.elementalAdvantage(this.damageForm),
       exEq: skill.exclusiveEquipmentMultiplier(this.damageForm) * 100,
       fixed: fixedDamage * additionalDamageReduction,
@@ -186,19 +186,19 @@ export class DamageService {
   }
 
   // Get detonation damage for relevant DoTs
-  getDetonateDamage(skill: Skill) {
+  getDetonateDamage(soulburn: boolean, skill: Skill) {
     let damage = 0;
 
-    if (skill.detonate.includes(DoT.bleed)) damage += this.damageForm.targetBleedDetonate * skill.detonation(this.damageForm) * this.getDotDamage(skill, DoT.bleed);
-    if (skill.detonate.includes(DoT.burn)) damage += this.damageForm.targetBurnDetonate * skill.detonation(this.damageForm) * this.getDotDamage(skill, DoT.burn);
-    if (skill.detonate.includes(DoT.bomb)) damage += this.damageForm.targetBombDetonate * skill.detonation(this.damageForm) * this.getDotDamage(skill, DoT.bomb);
+    if (skill.detonate.includes(DoT.bleed)) damage += this.damageForm.targetBleedDetonate * skill.detonation(soulburn, this.damageForm) * this.getDotDamage(skill, DoT.bleed);
+    if (skill.detonate.includes(DoT.burn)) damage += this.damageForm.targetBurnDetonate * skill.detonation(soulburn, this.damageForm) * this.getDotDamage(skill, DoT.burn);
+    if (skill.detonate.includes(DoT.bomb)) damage += this.damageForm.targetBombDetonate * skill.detonation(soulburn, this.damageForm) * this.getDotDamage(skill, DoT.bomb);
 
     return damage;
   }
 
   // Calculate aftermath (additional) damage
   getAfterMathDamage(skill: Skill, hitType: HitType, soulburn: boolean) {
-    const detonation = this.getDetonateDamage(skill);
+    const detonation = this.getDetonateDamage(soulburn, skill);
     const debuffDamage = this.damageForm.targetMagicNailed ? this.damageForm.targetFinalMaxHP() * 0.02 : 0
     const buffDamage = this.currentHero.getAfterMathSkillDamage(this.getChallengeAftermathSkill(skill), hitType, soulburn, this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), this.getGlobalDefenseMult(true), this.dataService.currentTarget)
                      + this.currentHero.getAfterMathSkillDamage(this.getSpecialFriendshipAftermathSkill(), hitType, soulburn, this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), this.getGlobalDefenseMult(true), this.dataService.currentTarget);
@@ -241,7 +241,7 @@ export class DamageService {
     const newDamages: DamageRow[] = []
     for (const skill of Object.values(this.currentHero.skills)) {
       // probably will never happen but if a hero is made whose rate is 0 unless extra, this logic will need to change
-      if (skill.rate(false, this.damageForm, false) || skill.pow(false, this.damageForm) || skill.afterMath(HitType.crit, this.damageForm, false) || skill.detonation(this.damageForm)) {
+      if (skill.rate(false, this.damageForm, false) || skill.pow(false, this.damageForm) || skill.afterMath(HitType.crit, this.damageForm, false) || skill.detonation(true, this.damageForm)) {
         newDamages.push(this.getDamage(skill, false, false, skill.isCounter));
 
         if (skill.soulburn) {

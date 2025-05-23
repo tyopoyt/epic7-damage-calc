@@ -1762,5 +1762,15 @@ export const SkillIDs: Record<string, Record<string, string>> = {
     "mighty_scout": {
         "s1": "sk_m0005_w",
         "s2": "sk_m0006_w"
-    }
+    },
+    "disciplinary_prefect_aria": {
+        "s1": "sk_c2129_1",
+        "s2": "sk_c2129_2",
+        "s3": "sk_c2129_3"
+    },
+    "robin": {
+        "s1": "sk_c1169_1",
+        "s2": "sk_c1169_2",
+        "s3": "sk_c1169_3"
+    },
 }

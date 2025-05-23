@@ -46,7 +46,7 @@ export class Skill {
     canCounter: boolean;
     critDmgBoost: Function;
     critDmgBoostTip: Function;
-    detonation: (inputValues: DamageFormData) => number;
+    detonation: (solburn: boolean, inputValues: DamageFormData) => number;
     elementalAdvantage: (inputValues: DamageFormData) => boolean;
     enhance: number[];
     enhanceFrom: string;

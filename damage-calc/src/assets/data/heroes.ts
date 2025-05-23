@@ -3219,6 +3219,53 @@ export const Heroes: Record<string, Hero> = {
       })
     }
   }),
+  disciplinary_prefect_aria: new Hero({
+    element: HeroElement.dark,
+    class: HeroClass.warrior,
+    heroSpecific: ['casterMaxHP', 'skill3Stack'],
+    heroSpecificMaximums: {'skill3Stack': 2},
+    baseAttack: 966,
+    baseHP: 7323,
+    baseDefense: 657,
+    barrierSkills: ['S3'],
+    barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number, soulburn: boolean) => inputValues.casterFinalMaxHP(artifact) * 0.15,
+    skills: {
+      s1: new Skill({
+        id: 's1',
+        hpScaling: true,
+        rate: () => 0.5,
+        pow: () => 1,
+        flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * 0.05,
+        flatTip: () => ({ casterMaxHP: 5 }),
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        isSingle: () => true,
+      }),
+      s1_extra: new Skill({
+        id: 's1_extra',
+        name: 'mlAriaDisciplinaryWarning',
+        hpScaling: true,
+        rate: () => 0.75,
+        pow: () => 1,
+        flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * 0.18,
+        flatTip: () => ({ casterMaxHP: 18 }),
+        isExtra: true,
+        isSingle: () => true,
+        onlyCrit: () => true,
+      }),
+      s3: new Skill({
+        id: 's3',
+        hpScaling: true,
+        rate: (soulburn: boolean) => soulburn ? 1.24 : 1,
+        pow: () => 1,
+        flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * (soulburn ? 0.225 : 0.17),
+        flatTip: (soulburn: boolean) => ({ casterMaxHP: soulburn ? 22.5 : 17 }),
+        isSingle: () => true,
+        enhance: [0.05, 0.05, 0, 0.05, 0.15],
+        penetrate: (soulburn: boolean, inputValues: DamageFormData) => 0.35 * inputValues.skill3Stack,
+        onlyCrit: () => true,
+      })
+    }
+  }),
   dizzy: new Hero({
     element: HeroElement.ice,
     class: HeroClass.mage,
@@ -8510,6 +8557,41 @@ export const Heroes: Record<string, Hero> = {
       })
     }
   }),
+  robin: new Hero({
+    element: HeroElement.fire,
+    class: HeroClass.ranger,
+    baseAttack: 1003,
+    baseHP: 5704,
+    baseDefense: 585,
+    heroSpecific: ['targetBurnDetonate', 'targetBombDetonate'],
+    dot: [DoT.burn, DoT.bleed],
+    skills: {
+      s1: new Skill({
+        id: 's1',
+        rate: () => 1,
+        pow: () => 1,
+        enhance: [0.05, 0, 0.1, 0, 0.15],
+        isSingle: () => true,
+      }),
+      s2: new Skill({
+        id: 's2',
+        rate: () => 0.9,
+        pow: () => 1,
+        enhance: [0.05, 0, 0.1, 0, 0.15],
+        isAOE: () => true,
+      }),
+      s3: new Skill({
+        id: 's3',
+        rate: () => 1.05,
+        pow: () => 1,
+        enhance: [0.15, 0, 0, 0, 0.15],
+        isAOE: () => true,
+        soulburn: true,
+        detonate: [DoT.burn, DoT.bleed],
+        detonation: (soulburn: boolean) => soulburn ? 1 : 0,
+      })
+    }
+  }),
   romann: new Hero({
     element: HeroElement.ice,
     class: HeroClass.mage,
@@ -9679,7 +9761,7 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 1,
         pow: () => 1,
         detonate: DoT.bomb,
-        detonation: (inputValues: DamageFormData) => inputValues.exclusiveEquipment2 ? 1.1 : 0,
+        detonation: (soulburn: boolean, inputValues: DamageFormData) => inputValues.exclusiveEquipment2 ? 1.1 : 0,
         enhance: [0.05, 0, 0.1, 0, 0.15],
         isSingle: () => true,
         noCrit: true,
