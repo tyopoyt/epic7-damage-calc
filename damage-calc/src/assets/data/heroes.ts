@@ -3264,6 +3264,7 @@ export const Heroes: Record<string, Hero> = {
         enhance: [0.05, 0.05, 0, 0.05, 0.15],
         penetrate: (soulburn: boolean, inputValues: DamageFormData) => 0.35 * inputValues.skill3Stack,
         onlyCrit: () => true,
+        soulburn: true
       })
     }
   }),
