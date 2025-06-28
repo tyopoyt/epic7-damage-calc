@@ -321,9 +321,9 @@ export const Artifacts: Record<string, Artifact> = {
     exclusive: HeroClass.knight,
     artifactSpecific:['casterCurrentHPPercent'],
     value: (artiScale: number, inputValues: DamageFormData) => {
-      if (inputValues.casterCurrentHPPercent < 26) return artiScale;
-      if (inputValues.casterCurrentHPPercent < 51) return artiScale * (2/3);
-      if (inputValues.casterCurrentHPPercent < 76) return artiScale * (1/3);
+      if (inputValues.casterCurrentHPPercent < 25) return artiScale;
+      if (inputValues.casterCurrentHPPercent < 50) return artiScale * (2/3);
+      if (inputValues.casterCurrentHPPercent < 75) return artiScale * (1/3);
       return 0;
     }
   }),
