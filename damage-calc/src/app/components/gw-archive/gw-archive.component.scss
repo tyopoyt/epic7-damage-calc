@@ -1,4 +1,10 @@
-@use "../../../variables.scss"  as vars;
+@use "../../../variables" as vars;
+
+:host {
+    margin-top: #{vars.$gutter-small};
+    display: flex;
+    height: calc(100dvh - #{vars.$navbar-height} - 0.5rem);
+}
 
 .page-container {
     overflow-x: hidden;

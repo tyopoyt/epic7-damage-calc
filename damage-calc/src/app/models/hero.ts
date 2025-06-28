@@ -143,7 +143,7 @@ export class Hero {
       if (skillMultipliers.attackPercent) {
         skillDamage = this.getAttack(artifact, inputValues, attackMultiplier, skill, soulburn, hitType, isExtra) * skillMultipliers.attackPercent * BattleConstants.damageConstant * target.defensivePower(new Skill({ id: 'FixedPenetration', penetrate: () => skillMultipliers.penetrate }), inputValues, defenseMultiplier, artifact, false, attack, speed, hitType, true);
       } else if (skillMultipliers.defensePercent) {
-        skillDamage = inputValues.casterFinalDefense() * skillMultipliers.defensePercent * BattleConstants.damageConstant * target.defensivePower(new Skill({ id: 'FixedPenetration', penetrate: () => skillMultipliers.penetrate }), inputValues, defenseMultiplier, artifact, false, attack, speed, hitType, true);
+        skillDamage = inputValues.casterFinalDefense(artifact) * skillMultipliers.defensePercent * BattleConstants.damageConstant * target.defensivePower(new Skill({ id: 'FixedPenetration', penetrate: () => skillMultipliers.penetrate }), inputValues, defenseMultiplier, artifact, false, attack, speed, hitType, true);
       } else if (skillMultipliers.hpPercent) {
         skillDamage = inputValues.casterFinalMaxHP(artifact) * skillMultipliers.hpPercent * BattleConstants.damageConstant * target.defensivePower(new Skill({ id: 'FixedPenetration', penetrate: () => skillMultipliers.penetrate }), inputValues, defenseMultiplier, artifact, false, attack, speed, hitType, true);
       } else if (skillMultipliers.injuryPercent) {
@@ -164,7 +164,7 @@ export class Hero {
         if (skillMultipliers.attackPercent) {
           skillDamage += this.getAttack(artifact, inputValues, attackMultiplier, skill, soulburn, hitType, isExtra) * skillMultipliers.attackPercent * BattleConstants.damageConstant * target.defensivePower(new Skill({ id: 'FixedPenetration', penetrate: () => skillMultipliers.penetrate }), inputValues, defenseMultiplier, artifact, false, attack, speed, hitType, true);
         } else if (skillMultipliers.defensePercent) {
-          skillDamage += inputValues.casterFinalDefense() * skillMultipliers.defensePercent * BattleConstants.damageConstant * target.defensivePower(new Skill({ id: 'FixedPenetration', penetrate: () => skillMultipliers.penetrate }), inputValues, defenseMultiplier, artifact, false, attack, speed, hitType, true);
+          skillDamage += inputValues.casterFinalDefense(artifact) * skillMultipliers.defensePercent * BattleConstants.damageConstant * target.defensivePower(new Skill({ id: 'FixedPenetration', penetrate: () => skillMultipliers.penetrate }), inputValues, defenseMultiplier, artifact, false, attack, speed, hitType, true);
         } else if (skillMultipliers.hpPercent) {
           skillDamage += inputValues.casterFinalMaxHP(artifact) * skillMultipliers.hpPercent * BattleConstants.damageConstant * target.defensivePower(new Skill({ id: 'FixedPenetration', penetrate: () => skillMultipliers.penetrate }), inputValues, defenseMultiplier, artifact, false, attack, speed, hitType, true);
         } else if (skillMultipliers.injuryPercent) {
@@ -194,7 +194,7 @@ export class Hero {
       if (artiMultipliers.attackPercent) {
         return additionalDamageReduction * this.getAttack(artifact, inputValues, attackMultiplier, skill, soulburn, hitType, isExtra) * artiMultipliers.attackPercent * BattleConstants.damageConstant * target.defensivePower(new Skill({ id: 'FixedPenetration', penetrate: () => artiMultipliers.penetrate }), inputValues, defenseMultiplier, artifact, false, attack, speed, hitType, true);
       } else if (artiMultipliers.defensePercent) {
-        return additionalDamageReduction * inputValues.casterFinalDefense(this.defenseIncrease(inputValues)) * artiMultipliers.defensePercent * BattleConstants.damageConstant * target.defensivePower(new Skill({ id: 'FixedPenetration', penetrate: () => artiMultipliers.penetrate }), inputValues, defenseMultiplier, artifact, false, attack, speed, hitType, true);
+        return additionalDamageReduction * inputValues.casterFinalDefense(artifact, this.defenseIncrease(inputValues)) * artiMultipliers.defensePercent * BattleConstants.damageConstant * target.defensivePower(new Skill({ id: 'FixedPenetration', penetrate: () => artiMultipliers.penetrate }), inputValues, defenseMultiplier, artifact, false, attack, speed, hitType, true);
       } else if (artiMultipliers.hpPercent) {
         return additionalDamageReduction * inputValues.casterFinalMaxHP(artifact) * artiMultipliers.hpPercent * BattleConstants.damageConstant * target.defensivePower(new Skill({ id: 'FixedPenetration', penetrate: () => artiMultipliers.penetrate }), inputValues, defenseMultiplier, artifact, false, attack, speed, hitType, true);
       } else if (artiMultipliers.fixedDamage) {

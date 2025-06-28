@@ -13,7 +13,8 @@ export enum ArtifactDamageType {
     fixedDamage = 'fixedDamage',
     flat = 'flat',
     dot = 'dot',
-    health_only = 'health_only'
+    health_only = 'health_only',
+    defense = 'defense'
 }
 
 export class Artifact {
@@ -23,7 +24,8 @@ export class Artifact {
     heroExclusive: string[];
     type: ArtifactDamageType;
     applies: (skill: Skill, inputValues: DamageFormData, soulburn: boolean) => boolean; // Pass Skill
-    value: (artiScale: number, inputValues: DamageFormData, skill: Skill, isExtra: boolean, hitType: HitType, soulburn: boolean) => number; // Pass Skill and DamageFormData (and optionally isExtra)
+    // TODO: Made the later inputs optional to avoid clutter, change if this causes any issues
+    value: (artiScale: number, inputValues: DamageFormData, skill?: Skill, isExtra?: boolean, hitType?: HitType, soulburn?: boolean) => number; // Pass Skill and DamageFormData (and optionally isExtra)
     scale: number[];
     additional: number[];
     maxHP: number;

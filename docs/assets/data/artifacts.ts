@@ -313,6 +313,20 @@ export const Artifacts: Record<string, Artifact> = {
     exclusive: HeroClass.knight,
     applies: (skill: Skill, inputValues: DamageFormData, soulburn: boolean) => skill.isSingle(inputValues, soulburn),
   }),
+  noble_oath: new Artifact({
+    id: 'noble_oath',
+    name: 'Noble Oath',
+    scale: [0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1],
+    type: ArtifactDamageType.defense,
+    exclusive: HeroClass.knight,
+    artifactSpecific:['casterCurrentHPPercent'],
+    value: (artiScale: number, inputValues: DamageFormData) => {
+      if (inputValues.casterCurrentHPPercent < 26) return artiScale;
+      if (inputValues.casterCurrentHPPercent < 51) return artiScale * (2/3);
+      if (inputValues.casterCurrentHPPercent < 76) return artiScale * (1/3);
+      return 0;
+    }
+  }),
   otherworldly_machinery: new Artifact({
     id: 'otherworldly_machinery',
     name: 'Otherworldly Machinery',

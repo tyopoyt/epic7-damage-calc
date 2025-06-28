@@ -795,8 +795,12 @@ export class DamageFormData {
 
     // Get the caster's final defense after modifiers
     // TODO: Make sure the targetdefense... get replaced when constants are renamed
-    casterFinalDefense = (heroMultiplier = 0) => {
-        let defenseMultiplier = (1 + (this.casterDefenseUp ? BattleConstants.targetDefenseUp : 0)
+    casterFinalDefense = (artifact: Artifact, heroMultiplier = 0) => {
+        const artifactDefenseMultiplier = (artifact.type === ArtifactDamageType.defense ? artifact.value(artifact.getScale(this.artifactLevel), this) : 0);
+
+        let defenseMultiplier = (1
+        + artifactDefenseMultiplier
+        + (this.casterDefenseUp ? BattleConstants.targetDefenseUp : 0)
         + (this.casterDefenseDown ? BattleConstants.targetDefenseDown : 0)
         + (this.casterPilfered ? BattleConstants.pilfer : 0)
         + (this.casterHasTrauma ? BattleConstants.trauma : 0)

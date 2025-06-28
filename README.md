@@ -7,6 +7,8 @@ To test your translation locally, there is a hidden option to load a custom tran
 <img src="./language_custom.gif" alt="image" width="800" height="auto">
 
 ## Changelog
+### <strong>Jun 28 2025 Update:</strong>
+- Added Noble Oath and fixed bug preventing proper display of the app after a recent Chromium update.
 ### <strong>Jun 05 2025 Update:</strong>
 - Updated units from the 6/05 balance patch.
 ### <strong>May 22 2025 Update:</strong>

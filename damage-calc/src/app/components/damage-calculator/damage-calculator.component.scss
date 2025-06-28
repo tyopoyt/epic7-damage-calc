@@ -1,6 +1,11 @@
 @use '@angular/material' as mat;
 @use "../../../variables" as vars;
 
+:host {
+    display: flex;
+    height: calc(100dvh - #{vars.$navbar-height});
+}
+
 .header-block {
     h1 {
         font-weight: bold;
