@@ -2602,6 +2602,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1177,
     baseHP: 5542,
     baseDefense: 553,
+    heroSpecific: ['exclusiveEquipment2'],
     skills: {
       s1: new Skill({
         id: 's1',
@@ -2625,6 +2626,7 @@ export const Heroes: Record<string, Hero> = {
         rate: (soulburn: boolean) => soulburn ? 3.3 : 1.8,
         pow: () => 0.8,
         enhance: [0.1, 0.1, 0, 0.15, 0.15],
+        exclusiveEquipmentMultiplier: (inputValues: DamageFormData) => inputValues.exclusiveEquipment2 ? 0.2 : 0,
         isSingle: () => true,
       })
     }

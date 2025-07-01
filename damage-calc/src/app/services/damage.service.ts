@@ -199,7 +199,7 @@ export class DamageService {
   // Calculate aftermath (additional) damage
   getAfterMathDamage(skill: Skill, hitType: HitType, soulburn: boolean) {
     const detonation = this.getDetonateDamage(soulburn, skill);
-    const debuffDamage = this.damageForm.targetMagicNailed ? this.damageForm.targetFinalMaxHP() * 0.02 : 0
+    const debuffDamage = this.damageForm.targetMagicNailed ? this.currentHero.getAfterMathSkillDamage(this.getMagicNailSkill(), hitType, soulburn, this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), this.getGlobalDefenseMult(true), this.dataService.currentTarget) : 0
     const buffDamage = this.currentHero.getAfterMathSkillDamage(this.getChallengeAftermathSkill(skill), hitType, soulburn, this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), this.getGlobalDefenseMult(true), this.dataService.currentTarget)
                      + this.currentHero.getAfterMathSkillDamage(this.getSpecialFriendshipAftermathSkill(), hitType, soulburn, this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), this.getGlobalDefenseMult(true), this.dataService.currentTarget);
     const artiDamage: number = this.currentHero.getAfterMathArtifactDamage(skill, this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), this.getGlobalDefenseMult(true), this.dataService.currentTarget, soulburn, hitType) || 0;
@@ -305,6 +305,14 @@ export class DamageService {
   getSpecialFriendshipAftermathSkill() {
     if (this.damageForm.casterHasSpecialFriendship) {
       return new Skill({afterMath: (hitType: HitType) => (hitType === HitType.crit) ? new AftermathSkill({ hpPercent: 0.08 }) : null});
+    } else {
+      return new Skill({});
+    }
+  }
+
+  getMagicNailSkill() {
+    if (this.damageForm.targetMagicNailed) {
+      return new Skill({afterMath: () => new AftermathSkill({ attackPercent: 0.8 })});
     } else {
       return new Skill({});
     }
