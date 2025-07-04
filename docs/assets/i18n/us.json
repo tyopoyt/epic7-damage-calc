@@ -648,6 +648,7 @@
     "attack": "Attack",
     "cdam": "CDam",
     "defense": "Defense",
+    "heroLevel": "Hero Level",
     "hp": "HP",
     "speed": "Speed",
     "current_stats": "Current Stats",

@@ -466,6 +466,7 @@
         "non_attack_skill_stack_10": "非攻擊叠加數",
         "turn_stack": "回合叠加數",
         "turn_stack_3": "回合叠加數",
+        "heroLevel": "英雄等級",
         "turn_stack_10": "回合叠加數",
         "dead_people": "死亡人數",
         "artifactProc": "神器觸發",

@@ -469,6 +469,7 @@
     "turn_stack": "ターン経過回数",
     "turn_stack_3": "ターン経過回数",
     "turn_stack_10": "ターン経過回数",
+    "heroLevel": "英雄レベル",
     "dead_people": "気絶中人数",
     "artifactProc": "遺物効果発動",
     "highest_ally_attack": "最も攻撃力の高い味方の攻撃力",
