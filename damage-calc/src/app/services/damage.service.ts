@@ -181,6 +181,8 @@ export class DamageService {
         return this.currentHero.getAttack(this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill, false, HitType.normal) * 1.5 * BattleConstants.damageConstant * this.dataService.currentTarget.defensivePower(DoTSkill, this.damageForm, this.getGlobalDefenseMult(), this.currentArtifact, false, casterAttack, casterSpeed, HitType.normal, true);
       case DoT.nail:
         return this.currentHero.getAttack(this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill, false, HitType.normal) * 0.8 * BattleConstants.damageConstant * this.dataService.currentTarget.defensivePower(DoTSkill, this.damageForm, this.getGlobalDefenseMult(), this.currentArtifact, false, casterAttack, casterSpeed, HitType.normal, true);
+      case DoT.rupture:
+        return this.damageForm.targetFinalMaxHP() * 0.12 * BattleConstants.damageConstant * this.dataService.currentTarget.defensivePower(DoTSkill, this.damageForm, this.getGlobalDefenseMult(), this.currentArtifact, false, casterAttack, casterSpeed, HitType.normal, true);
       default: return 0;
     }
   }
@@ -199,7 +201,11 @@ export class DamageService {
   // Calculate aftermath (additional) damage
   getAfterMathDamage(skill: Skill, hitType: HitType, soulburn: boolean) {
     const detonation = this.getDetonateDamage(soulburn, skill);
-    const debuffDamage = this.damageForm.targetMagicNailed ? this.currentHero.getAfterMathSkillDamage(this.getMagicNailSkill(), hitType, soulburn, this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), this.getGlobalDefenseMult(true), this.dataService.currentTarget) : 0
+  
+    const nailDamage = this.damageForm.targetMagicNailed ? this.currentHero.getAfterMathSkillDamage(this.getMagicNailSkill(), hitType, soulburn, this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), this.getGlobalDefenseMult(true), this.dataService.currentTarget) : 0;
+    const ruptureDamage = this.damageForm.targetRuptured ? this.currentHero.getAfterMathSkillDamage(this.getRuptureSkill(), hitType, soulburn, this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), this.getGlobalDefenseMult(true), this.dataService.currentTarget) : 0;
+    const debuffDamage = nailDamage + ruptureDamage;
+
     const buffDamage = this.currentHero.getAfterMathSkillDamage(this.getChallengeAftermathSkill(skill), hitType, soulburn, this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), this.getGlobalDefenseMult(true), this.dataService.currentTarget)
                      + this.currentHero.getAfterMathSkillDamage(this.getSpecialFriendshipAftermathSkill(), hitType, soulburn, this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), this.getGlobalDefenseMult(true), this.dataService.currentTarget);
     const artiDamage: number = this.currentHero.getAfterMathArtifactDamage(skill, this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), this.getGlobalDefenseMult(true), this.dataService.currentTarget, soulburn, hitType) || 0;
@@ -313,6 +319,14 @@ export class DamageService {
   getMagicNailSkill() {
     if (this.damageForm.targetMagicNailed) {
       return new Skill({afterMath: () => new AftermathSkill({ attackPercent: 0.8 })});
+    } else {
+      return new Skill({});
+    }
+  }
+
+  getRuptureSkill() {
+    if (this.damageForm.targetRuptured) {
+      return new Skill({afterMath: () => new AftermathSkill({ hpPercent: 0.12 })});
     } else {
       return new Skill({});
     }

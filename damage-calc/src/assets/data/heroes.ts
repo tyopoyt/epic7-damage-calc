@@ -919,6 +919,40 @@ export const Heroes: Record<string, Hero> = {
       })
     }
   }),
+  argent_waves_hwayoung: new Hero({
+    element: HeroElement.ice,
+    class: HeroClass.thief,
+    baseAttack: 1283,
+    baseHP: 5138,
+    baseDefense: 522,
+    skills: {
+      s1: new Skill({
+        id: 's1',
+        rate: () => 1.2,
+        pow: () => 1,
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        isSingle: () => true,
+      }),
+      s2: new Skill({
+        id: 's2',
+        name: 'argent_waves_hwayoung_swallow_kick',
+        rate: () => 1.25,
+        pow: () => 1,
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        isExtra: true,
+        penetrate: () => 0.5,
+        isSingle: () => true,
+      }),
+      s3: new Skill({
+        id: 's3',
+        soulburn: true,
+        rate: (soulburn: boolean) => soulburn ? 1.35 : 1.1,
+        pow: () => 1,
+        enhance: [0.05, 0.05, 0, 0.05, 0.15],
+        isAOE: () => true,
+      })
+    }
+  }),
   aria: new Hero({
     element: HeroElement.ice,
     class: HeroClass.mage,
@@ -10689,6 +10723,38 @@ export const Heroes: Record<string, Hero> = {
         detonate: [DoT.burn],
         detonation: () => 1,
         enhance: [0.05, 0, 0.1, 0, 0.15],
+        isAOE: () => true,
+      })
+    }
+  }),
+  witch_of_the_mere_tenebria: new Hero({
+    element: HeroElement.light,
+    class: HeroClass.mage,
+    baseAttack: 1102,
+    baseHP: 5782,
+    baseDefense: 634,
+    barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData) => inputValues.heroLevel * 100,
+    heroSpecific: ['heroLevel'],
+    skills: {
+      s1: new Skill({
+        id: 's1',
+        rate: () => 1,
+        pow: () => 1,
+        enhance: [0.05, 0, 0.05, 0.05, 0, 0.15],
+        isSingle: () => true,
+      }),
+      s2: new Skill({
+        id: 's2',
+        soulburn: true,
+        rate: () => 1,
+        pow: () => 1,
+        enhance: [0.05, 0, 0.05, 0.05, 0, 0.15],
+        isAOE: () => true,
+      }),
+      s3: new Skill({
+        id: 's3',
+        rate: () => 1,
+        pow: () => 1,
         isAOE: () => true,
       })
     }

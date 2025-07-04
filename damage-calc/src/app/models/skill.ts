@@ -6,7 +6,8 @@ export enum DoT {
     bleed = 'bleed',
     burn = 'burn',
     bomb = 'bomb',
-    nail = 'nail'
+    nail = 'nail',
+    rupture = 'rupture'
 }
 
 export enum HitType {

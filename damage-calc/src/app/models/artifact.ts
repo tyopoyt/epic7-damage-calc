@@ -41,6 +41,7 @@ export class Artifact {
     extraAttackBonus: boolean;
     artifactSpecific: string[];
     artifactSpecificMaximums: Record<string, number>;
+    ignoreDamageTransfer: (inputValues: DamageFormData) => boolean;
 
     constructor(data: any) {
         this.id = _.get(data, 'id', 'noProc');
@@ -65,6 +66,7 @@ export class Artifact {
         this.penetrate = _.get(data, 'penetrate', 0.7);
         this.artifactSpecific = _.get(data, 'artifactSpecific', []);
         this.artifactSpecificMaximums = _.get(data, 'artifactSpecificMaximums', {});
+        this.ignoreDamageTransfer = _.get(data, 'ignoreDamageTransfer', () => false);
     }
 
     getDefensePenetration(level: number, inputValues: DamageFormData, skill: Skill, soulburn: boolean, hitType: HitType, isExtra = false): number {

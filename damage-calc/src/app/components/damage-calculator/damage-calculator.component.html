@@ -358,6 +358,18 @@
                         {{'decreasedDefense' | translate:'form':languageService.language.value}}
                     </span>
                 </mat-checkbox>
+                <mat-checkbox class="small-margin-top" [checked]="inputValues.targetTargeted" (change)="inputChange('targetTargeted', $event.checked)">
+                    <span class="neat-container">
+                        <img class="png-icon medium tiny-margin-right" src="assets/debuffs/target-debuff.png" alt="Target debuff">
+                        {{'target' | translate:'form':languageService.language.value}}
+                    </span>
+                </mat-checkbox>
+                <mat-checkbox class="small-margin-top" [checked]="inputValues.targetRuptured" (change)="inputChange('targetRuptured', $event.checked); updateFormInputs()">
+                    <span class="neat-container">
+                        <img class="png-icon medium tiny-margin-right" src="assets/debuffs/rupture-debuff.png" alt="Target debuff">
+                        {{'targetRuptured' | translate:'form':languageService.language.value}}
+                    </span>
+                </mat-checkbox>
                 <mat-checkbox class="small-margin-top" [checked]="inputValues.targetPilfered" (change)="inputChange('targetPilfered', $event.checked)">
                     <span class="neat-container">
                         <img class="png-icon medium tiny-margin-right" src="assets/debuffs/pilfer-debuff.png" alt="Defense break">
@@ -368,12 +380,6 @@
                     <span class="neat-container">
                         <img class="png-icon medium tiny-margin-right" src="assets/debuffs/trauma-debuff.png" alt="Trauma debuff">
                         {{'trauma' | translate:'form':languageService.language.value}}
-                    </span>
-                </mat-checkbox>
-                <mat-checkbox class="small-margin-top" [checked]="inputValues.targetTargeted" (change)="inputChange('targetTargeted', $event.checked)">
-                    <span class="neat-container">
-                        <img class="png-icon medium tiny-margin-right" src="assets/debuffs/target-debuff.png" alt="Target debuff">
-                        {{'target' | translate:'form':languageService.language.value}}
                     </span>
                 </mat-checkbox>
                 <mat-checkbox class="small-margin-top" [checked]="inputValues.targetMagicNailed" (change)="inputChange('targetMagicNailed', $event.checked); updateFormInputs()">

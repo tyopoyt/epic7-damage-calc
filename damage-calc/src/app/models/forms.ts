@@ -16,10 +16,19 @@ export const FormDefaults: Record<string, {max?: number, min?: number, defaultVa
         min: 0,
         defaultValue: 100
     },
+    heroLevel: {
+        max: 60,
+        min: 1,
+        defaultValue: 60
+    },
     artifactLevel: {
         max: 30,
         min: 0,
         defaultValue: 30
+    },
+    artifactProc: {
+        icon: 'icons/artifact.png',
+        default: true
     },
     critDamage: {
         max: 350,
@@ -485,7 +494,9 @@ export class DamageFormData {
     // Make sure to periodically comment the next line to ensure functions are being passed the right params
     [key: string]: string | number | boolean | DefensePreset | ReductionPreset | undefined | ((artifact: Artifact) => number) | ((heroMultiplier: number) => number) | Record<string, number>,
     AOEStack: number;
+    heroLevel: number;
     artifactLevel: number;
+    artifactProc: boolean;
     attack: number;
     attackImprint: number;
     attackIncreasePercent: number;
@@ -526,6 +537,7 @@ export class DamageFormData {
     casterHasStealth: boolean;
     casterHasTrauma: boolean;
     casterPilfered: boolean;
+    targetRuptured: boolean;
     casterHasStarsBlessing: boolean;
     casterHasSpecialFriendship: boolean;
     casterHasPossession: boolean;
@@ -637,6 +649,8 @@ export class DamageFormData {
     constructor(data: any) {
         this.AOEStack = _.get(data, 'AOEStack', 0);
         this.artifactLevel = _.get(data, 'artifactLevel', 0);
+        this.heroLevel = _.get(data, 'heroLevel', 0);
+        this.artifactProc = _.get(data, 'artifactProc', true);
         this.attack = _.get(data, 'attack', 2500);
         this.attackImprint = _.get(data, 'attackImprint', 0);
         this.attackIncreasePercent = _.get(data, 'attackIncreasePercent', 0);
@@ -689,6 +703,7 @@ export class DamageFormData {
         this.casterPerception = _.get(data, 'casterPerception', false);
         this.casterTurn = _.get(data, 'casterTurn', true);
         this.casterPilfered= _.get(data, 'casterPilfered', false);
+        this.targetRuptured= _.get(data, 'targetRuptured', false);
         this.casterSpeed = _.get(data, 'casterSpeed', 150);
         this.casterSpeedUp = _.get(data, 'casterSpeedUp', false);
         this.casterSpeedDown = _.get(data, 'casterSpeedDown', false);

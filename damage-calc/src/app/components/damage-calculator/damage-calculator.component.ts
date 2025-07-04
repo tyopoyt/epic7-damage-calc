@@ -120,7 +120,7 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['skill', 'crit', 'crush', 'normal', 'miss']
   damageData = new MatTableDataSource<DamageRow>();
   heroDots: DoT[] = [];
-  dotDamages = {'bleed': 0, 'bomb': 0, 'burn': 0, 'nail': 0};
+  dotDamages = {'bleed': 0, 'bomb': 0, 'burn': 0, 'nail': 0, 'rupture': 0};
   artifactDamage = 0;
   attackIncrease = 0;
   resistanceIncrease = 0;
@@ -374,7 +374,7 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
     this.heroSpecificMaximums = this.hero.heroSpecificMaximums;
     this.artifactSpecificMaximums = this.artifact.artifactSpecificMaximums;
 
-    this.debuffSpecificNumberInputs = []
+    this.debuffSpecificNumberInputs =  this.inputValues.targetRuptured ? ['targetMaxHP'] : []
     this.buffSpecificNumberInputs = this.inputValues.casterHasChallenge ? ['targetMaxHP'] : []
 
     if (this.inputValues.casterHasSpecialFriendship) {
@@ -685,6 +685,10 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
         this.heroDots.push(DoT.nail)
       }
 
+      if (this.inputValues.targetRuptured) {
+        this.heroDots.push(DoT.rupture)
+      }
+
       if (this.inputValues.casterHasExplosives && !this.heroDots.includes(DoT.bomb)) {
         this.heroDots.push(DoT.bomb)
       }
@@ -693,6 +697,7 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
       this.dotDamages['bomb'] = this.heroDots.includes(DoT.bomb) ? Math.round(this.damageService.getDotDamage(DoTSkill, DoT.bomb)) : 0;
       this.dotDamages['burn'] = this.heroDots.includes(DoT.burn) ? Math.round(this.damageService.getDotDamage(DoTSkill, DoT.burn)) : 0;
       this.dotDamages['nail'] = this.heroDots.includes(DoT.nail) ? Math.round(this.damageService.getDotDamage(DoTSkill, DoT.nail)) : 0;
+      this.dotDamages['rupture'] = this.heroDots.includes(DoT.rupture) ? Math.round(this.damageService.getDotDamage(DoTSkill, DoT.rupture)) : 0;
     });
   }
 
