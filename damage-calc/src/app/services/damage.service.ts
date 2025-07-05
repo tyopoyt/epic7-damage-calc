@@ -169,6 +169,8 @@ export class DamageService {
 
   // This getAtk is called because of lilias
   getDotDamage(skill: Skill, type: DoT) {
+    const hitType = HitType.crit;
+    const soulburn = true; // should this soulburn be true or false? does it even matter? don't think there's a situation where it affects anything w/ dots
     // TODO: is it necessary to pass skill in here? or can just use DoTSkill?
     const casterAttack = this.currentHero.getAttack(this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill, false, HitType.normal);
     const casterSpeed = this.currentHero.getSpeed(this.damageForm) // TODO: refactor so this isn't needed?  DotDamage probably shouldn't require the caster's speed...
@@ -180,9 +182,9 @@ export class DamageService {
       case DoT.bomb:
         return this.currentHero.getAttack(this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill, false, HitType.normal) * 1.5 * BattleConstants.damageConstant * this.dataService.currentTarget.defensivePower(DoTSkill, this.damageForm, this.getGlobalDefenseMult(), this.currentArtifact, false, casterAttack, casterSpeed, HitType.normal, true);
       case DoT.nail:
-        return this.currentHero.getAttack(this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill, false, HitType.normal) * 0.8 * BattleConstants.damageConstant * this.dataService.currentTarget.defensivePower(DoTSkill, this.damageForm, this.getGlobalDefenseMult(), this.currentArtifact, false, casterAttack, casterSpeed, HitType.normal, true);
+        return this.currentHero.getAfterMathSkillDamage(this.getMagicNailSkill(), hitType, soulburn, this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), this.getGlobalDefenseMult(true), this.dataService.currentTarget);
       case DoT.rupture:
-        return this.damageForm.targetFinalMaxHP() * 0.12 * BattleConstants.damageConstant * this.dataService.currentTarget.defensivePower(DoTSkill, this.damageForm, this.getGlobalDefenseMult(), this.currentArtifact, false, casterAttack, casterSpeed, HitType.normal, true);
+        return this.currentHero.getAfterMathSkillDamage(this.getRuptureSkill(), hitType, soulburn, this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), this.getGlobalDefenseMult(true), this.dataService.currentTarget);
       default: return 0;
     }
   }
