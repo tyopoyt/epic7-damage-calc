@@ -10734,6 +10734,7 @@ export const Heroes: Record<string, Hero> = {
     baseHP: 5782,
     baseDefense: 634,
     barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData) => inputValues.heroLevel * 100,
+    barrierSkills: ['S2'],
     heroSpecific: ['heroLevel'],
     skills: {
       s1: new Skill({
