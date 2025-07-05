@@ -10745,7 +10745,6 @@ export const Heroes: Record<string, Hero> = {
       }),
       s2: new Skill({
         id: 's2',
-        soulburn: true,
         rate: () => 1,
         pow: () => 1,
         enhance: [0.05, 0, 0.05, 0.05, 0, 0.15],
