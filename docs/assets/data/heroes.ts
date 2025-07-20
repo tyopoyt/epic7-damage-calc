@@ -9519,7 +9519,7 @@ export const Heroes: Record<string, Hero> = {
         id: 's3',
         rate: () => 0.95,
         pow: () => 1,
-        penetrate: () => 1,
+        penetrate: (soulburn: boolean, inputValues: DamageFormData) => inputValues.targetIsHighestMaxHP ? 1 : 0,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
         isAOE: () => true,
       }),
