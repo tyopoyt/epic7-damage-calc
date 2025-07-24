@@ -104,7 +104,8 @@ export const Artifacts: Record<string, Artifact> = {
     id: 'discreet_hands',
     type: ArtifactDamageType.attack,
     exclusive: HeroClass.thief,
-    value: () => 0.1
+    // value: () => 0.1
+    scale: [0.1, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2],
   }),
   dark_blood_keeper: new Artifact({
     id: 'dark_blood_keeper',

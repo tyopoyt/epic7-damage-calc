@@ -7,6 +7,8 @@ To test your translation locally, there is a hidden option to load a custom tran
 <img src="./language_custom.gif" alt="image" width="800" height="auto">
 
 ## Changelog
+### <strong>Jul 24 2025 Update:</strong>
+- Fix Discreet Hands scaling.
 ### <strong>Jul 04 2025 Update:</strong>
 - Added Argent Waves Hwayoung, Summer Photogenic, Witch of the Mere Tenebria, and her Rupture debuff.
 ### <strong>Jun 28 2025 Update:</strong>
