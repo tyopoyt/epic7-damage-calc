@@ -2421,3 +2421,83 @@
   //     })
   //   }
   // }),
+
+  // straze_old: new Hero({
+  //   element: HeroElement.dark,
+  //   class: HeroClass.warrior,
+  //   baseAttack: 1228,
+  //   baseHP: 5784,
+  //   baseDefense: 553,
+  //   heroSpecific: ['numberOfTargets', 'targetIsHighestMaxHP', 'targetAttack'],
+  //   skills: {
+  //     s1: new Skill({
+  //       id: 's1',
+  //       rate: () => 1,
+  //       pow: () => 1,
+  //       enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+  //       isSingle: () => true,
+  //     }),
+  //     s2: new Skill({
+  //       id: 's2',
+  //       rate: () => 0.9,
+  //       pow: () => 1,
+  //       mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => {
+  //         switch (inputValues.numberOfTargets) {
+  //         case 1: return 1.6;
+  //         case 2: return 1.4;
+  //         case 3: return 1.2;
+  //         default: return 1;
+  //         }
+  //       },
+  //       multTip: () => ({per_fewer_target: 20}),
+  //       enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+  //       isAOE: () => true,
+  //     }),
+  //     s3: new Skill({
+  //       id: 's3',
+  //       rate: () => 0.95,
+  //       pow: () => 1,
+  //       penetrate: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact, heroAttack: number) => {
+  //         if (!inputValues.targetIsHighestMaxHP) return 0;
+
+  //         const targetAtk = inputValues.targetFinalAttack();
+
+  //         const penDiff = (heroAttack - targetAtk) * 0.00035;
+
+  //         return Math.min(Math.max(0, penDiff) + 0.3, 1);
+  //       },
+  //       penetrateTip: () => ({caster_target_atk_diff: 0.035}),
+  //       enhance: [0.05, 0.05, 0, 0.1, 0.1],
+  //       isAOE: () => true,
+  //     }),
+  //   }
+  // }),
+
+    // assassin_cartuja_old: new Hero({
+  //   element: HeroElement.dark,
+  //   class: HeroClass.warrior,
+  //   baseAttack: 1119,
+  //   baseHP: 6019,
+  //   baseDefense: 594,
+  //   dot: [DoT.bleed],
+  //   skills: {
+  //     s1: new Skill({
+  //       id: 's1',
+  //       rate: () => 1,
+  //       pow: () => 1,
+  //       flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * 0.06,
+  //       flatTip: () => ({ casterMaxHP: 6 }),
+  //       enhance: [0.05, 0, 0.1, 0, 0.15],
+  //       isSingle: () => true,
+  //     }),
+  //     s3: new Skill({
+  //       id: 's3',
+  //       rate: () => 1.5,
+  //       pow: () => 0.95,
+  //       flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * 0.15,
+  //       flatTip: () => ({ casterMaxHP: 6 }),
+  //       enhance: [0.05, 0.05, 0, 0.1, 0.15],
+  //       isSingle: () => true,
+  //     })
+  //   }
+  // }),
