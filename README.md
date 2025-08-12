@@ -7,6 +7,8 @@ To test your translation locally, there is a hidden option to load a custom tran
 <img src="./language_custom.gif" alt="image" width="800" height="auto">
 
 ## Changelog
+### <strong>Aug 12 2025 Update:</strong>
+- Fix missing update for Assassin Cartuja.
 ### <strong>Aug 11 2025 Update:</strong>
 - 8/6 balance patch changes.
 ### <strong>Jul 24 2025 Update:</strong>
