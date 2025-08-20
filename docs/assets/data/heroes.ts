@@ -7445,6 +7445,37 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1068,
     baseHP: 4733,
     baseDefense: 515,
+    heroSpecific: ['targetInjuries', 'exclusiveEquipment3'],
+    skills: {
+      s1: new Skill({
+        id: 's1',
+        soulburn: true,
+        rate: () => 0.9,
+        pow: () => 1,
+        fixed: (hitType: HitType, inputValues: DamageFormData) => (hitType !== HitType.miss && inputValues.casterVigor) ? (inputValues.targetInjuries * 0.5) : 0,
+        fixedTip: (fixedDamage: number, inputValues: DamageFormData) => ({ targetInjuries: inputValues.casterVigor ? 50 : 0 }),
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        isSingle: (inputValues: DamageFormData, soulburn: boolean) => !soulburn,
+        isAOE: (inputValues: DamageFormData, soulburn: boolean) => soulburn
+      }),
+      s3: new Skill({
+        id: 's3',
+        rate: () => 1.4,
+        pow: () => 1,
+        exclusiveEquipmentMultiplier: (inputValues: DamageFormData) => inputValues.exclusiveEquipment3 ? 0.1 : 0,
+        fixed: (hitType: HitType, inputValues: DamageFormData) => (hitType !== HitType.miss && inputValues.casterVigor) ? inputValues.targetInjuries : 0,
+        fixedTip: (fixedDamage: number, inputValues: DamageFormData) => ({ targetInjuries: inputValues.casterVigor ? 100 : 0 }),
+        enhance: [0.05, 0.05, 0, 0.1, 0.1],
+        isSingle: () => true,
+      }),
+    }
+  }),
+  new_kid_adin_old: new Hero({
+    element: HeroElement.dark,
+    class: HeroClass.thief,
+    baseAttack: 1068,
+    baseHP: 4733,
+    baseDefense: 515,
     heroSpecific: ['casterTurn', 'targetInjuries', 'exclusiveEquipment3'],
     skills: {
       s1: new Skill({

@@ -400,7 +400,7 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
           this.heroSpecificBooleanInputs.push('highestAllyAttackUpGreat')
         } else if (input === 'targetSpeed') {
           this.heroSpecificBooleanInputs.push('targetEnraged')
-          this.heroSpecificBooleanInputs.push('targetRampage')
+          this.heroSpecificBooleanInputs.push('targetHasRampage')
         }
       }
     })

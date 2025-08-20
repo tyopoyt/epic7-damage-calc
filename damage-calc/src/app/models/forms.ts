@@ -108,7 +108,7 @@ export const FormDefaults: Record<string, {max?: number, min?: number, defaultVa
     casterRampage: {
         icon: 'buffs/rampage-buff.png'
     },
-    targetRampage: {
+    targetHasRampage: {
         icon: 'buffs/rampage-buff.png'
     },
     targetSpeedUp: {
@@ -783,7 +783,7 @@ export class DamageFormData {
         this.targetSpeed = _.get(data, 'targetSpeed', 150);
         this.targetSpeedUp = _.get(data, 'targetSpeedUp', false);
         this.targetSpeedDown = _.get(data, 'targetSpeedDown', false);
-        this.targetRampage = _.get(data, 'targetRampage', false);
+        this.targetHasRampage = _.get(data, 'targetHasRampage', false);
         this.targetStunned = _.get(data, 'targetStunned', false);
         this.targetTargeted = _.get(data, 'targetTargeted', false);
         this.targetVigor = _.get(data, 'targetVigor', false);
@@ -805,7 +805,7 @@ export class DamageFormData {
         return Math.floor(this.targetSpeed * (1 + (this.targetSpeedUp ? BattleConstants.spdUp - 1 : 0)
            + (this.targetSpeedDown ? 1 - BattleConstants.spdUp : 0)
            + (this.targetEnraged ? BattleConstants.targetEnraged - 1 : 0)
-           + (this.targetRampage ? BattleConstants.rampage : 0)));
+           + (this.targetHasRampage ? BattleConstants.rampage : 0)));
     }
 
     // Get the caster's final defense after modifiers
