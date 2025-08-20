@@ -19,7 +19,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 984,
     baseHP: 6266,
     baseDefense: 637,
-    heroSpecific: ['casterMaxHP'],
+    heroSpecific: ['exclusiveEquipment1', 'casterMaxHP'],
     skills: {
       s1: new Skill({
         id: 's1',
@@ -28,6 +28,7 @@ export const Heroes: Record<string, Hero> = {
         pow: () => 0.9,
         flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * 0.12,
         flatTip: () => ({casterMaxHP: 12}),
+        exclusiveEquipmentMultiplier: (inputValues: DamageFormData) => inputValues.exclusiveEquipment1 ? 0.2 : 0,
         enhance: [0.05, 0.05, 0.05, 0, 0.05, 0.05, 0.1],
         isSingle: () => true,
       }),
