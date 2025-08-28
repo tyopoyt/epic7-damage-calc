@@ -9256,8 +9256,8 @@ export const Heroes: Record<string, Hero> = {
     }
   }),
   setsuka: new Hero({
-    element: HeroElement.earth,
-    class: HeroClass.knight,
+    element: HeroElement.fire,
+    class: HeroClass.thief,
     baseAttack: 894,
     baseHP: 6840,
     baseDefense: 694,
