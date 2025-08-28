@@ -414,6 +414,13 @@ export const TargetReductionPresetGroups: Record<string, ReductionPreset[]> = {
             icon: 'buffs/escort-buff'
         },
         {
+            id: 'offering',
+            name: 'Offering Buff',
+            label: '70%',
+            damageTransfer: 70,
+            icon: 'buffs/offering-buff'
+        },
+        {
             id: 'aurius',
             name: 'Aurius (Max)',
             label: '20% (+10% Defense)', // TODO: translate defense here somehow

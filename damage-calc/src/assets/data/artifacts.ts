@@ -1,6 +1,6 @@
 import { Artifact } from "src/app/models/artifact";
 import { DamageFormData } from "src/app/models/forms";
-import { HeroClass, HeroElement } from "src/app/models/hero";
+import { Hero, HeroClass, HeroElement } from "src/app/models/hero";
 import { DoT, HitType, Skill } from "src/app/models/skill";
 import { Heroes } from "./heroes";
 import { ArtifactDamageType } from "src/app/models/artifact"
@@ -111,6 +111,8 @@ export const Artifacts: Record<string, Artifact> = {
     id: 'dark_blood_keeper',
     type: ArtifactDamageType.attack,
     exclusive: HeroClass.thief,
+    barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number, soulburn: boolean, barrierScale: number) => hero.getAttack(artifact, inputValues, attackMultiplier, skill, soulburn, HitType.normal) * barrierScale,
+    barrierScale: [0.35, 0.385, 0.42, 0.455, 0.49, 0.525, 0.56, 0.595, 0.63, 0.665, 0.7],
     value: () => 0.15
   }),
   daydream_joker: new Artifact({
@@ -127,6 +129,8 @@ export const Artifacts: Record<string, Artifact> = {
     value: () => 0.15,
     type: ArtifactDamageType.damage,
     exclusive: HeroClass.mage,
+    barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number, soulburn: boolean, barrierScale: number) => hero.getAttack(artifact, inputValues, attackMultiplier, skill, soulburn, HitType.normal) * barrierScale,
+    barrierScale: [0.6, 0.66, 0.72, 0.78, 0.84, 0.9, 0.96, 1.02, 1.08, 1.14, 1.2],
   }),
   double_edged_decrescent: new Artifact({
     id: 'double_edged_decrescent',
@@ -206,6 +210,8 @@ export const Artifacts: Record<string, Artifact> = {
     name: 'Feed of Criticism',
     type: ArtifactDamageType.attack,
     scale: [0.1, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2],
+    barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number, soulburn: boolean, barrierScale: number) => hero.getAttack(artifact, inputValues, attackMultiplier, skill, soulburn, HitType.normal) * barrierScale,
+    barrierScale: [0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1],
     exclusive: HeroClass.thief
   }),
   frame_of_light: new Artifact({
@@ -375,6 +381,13 @@ export const Artifacts: Record<string, Artifact> = {
     exclusive: HeroClass.warrior,
     type: ArtifactDamageType.damage
   }),
+  a_precious_connection: new Artifact({
+    id: 'a_precious_connection',
+    name: 'A Precious Connection',
+    maxHP: 1.1,
+    exclusive: HeroClass.knight,
+    type: ArtifactDamageType.health_only
+  }),
   prelude_to_a_new_era: new Artifact({
     id: 'prelude_to_a_new_era',
     name: 'Prelude to a New Era',
@@ -513,6 +526,17 @@ export const Artifacts: Record<string, Artifact> = {
     type: ArtifactDamageType.attack,
     scale: [0.1, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2],
     exclusive: HeroClass.warrior,
+  }),
+  sphere_of_sadism: new Artifact({
+    id: 'sphere_of_sadism',
+    name: 'Sphere of Sadism',
+    artifactSpecific:['casterHasBarrier', 'casterMaxHP'],
+    scale:[0.1, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2],
+    type: ArtifactDamageType.damage,
+    exclusive: HeroClass.knight,
+    barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number, soulburn: boolean, barrierScale: number) => inputValues.casterFinalMaxHP(artifact) * barrierScale,
+    barrierScale: [0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15],
+    applies: (skill: Skill, inputValues: DamageFormData, soulburn: boolean) => skill.isSingle(inputValues, soulburn) && inputValues.casterHasBarrier,
   }),
   star_of_the_deep_sea: new Artifact({
     id: 'star_of_the_deep_sea',

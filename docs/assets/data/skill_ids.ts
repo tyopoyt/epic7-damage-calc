@@ -1783,4 +1783,24 @@ export const SkillIDs: Record<string, Record<string, string>> = {
         "s2": "sk_c6050_2",
         "s3": "sk_c6050_3"
     },
+    "aram": {
+        "s1": "sk_c5175_1",
+        "s2": "sk_c5175_2",
+        "s3": "sk_c5175_3"
+    },
+    "lady_of_the_scales": {
+        "s1": "sk_c6005_1",
+        "s2": "sk_c6005_2",
+        "s3": "sk_c6005_3"
+    },
+    "setsuka": {
+        "s1": "sk_c1176_1",
+        "s2": "sk_c1176_2",
+        "s3": "sk_c1176_3"
+    },
+    "genesis_ras": {
+        "s1": "sk_c2001_1",
+        "s2": "sk_c2001_2",
+        "s3": "sk_c2001_3"
+    },
 }

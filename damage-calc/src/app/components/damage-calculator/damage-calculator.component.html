@@ -136,6 +136,12 @@
                     {{'cascade' | translate:'form':languageService.language.value}}
                 </span>
             </mat-checkbox>
+            <mat-checkbox class="small-margin-top" [checked]="inputValues.casterHasAbundance" (change)="inputChange('casterHasAbundance', $event.checked)">
+                <span class="neat-container">
+                    <img class="png-icon medium tiny-margin-right" src="assets/buffs/abundance-buff.png" alt="abundance buff">
+                    {{'abundance' | translate:'form':languageService.language.value}}
+                </span>
+            </mat-checkbox>
             <!-- TODO: add challenge translations when available -->
             <mat-checkbox class="small-margin-top" [checked]="inputValues.casterHasChallenge" (change)="inputChange('casterHasChallenge', $event.checked); updateFormInputs()">
                 <span class="neat-container">
@@ -215,10 +221,10 @@
             </div>
         </div>
         <!-- Artifact form inputs -->
-        <div *ngIf="artifact.id !== 'noProc' && (artifact.scale || artifactSpecificNumberInputs.length || artifactSpecificBooleanInputs.length)" class="artifact-block header-block">
+        <div *ngIf="artifact.id !== 'noProc' && (artifact.scale || artifact.barrierScale || artifactSpecificNumberInputs.length || artifactSpecificBooleanInputs.length)" class="artifact-block header-block">
             <h1>{{'artifact' | translate:'ui':languageService.language.value}}</h1>
             <div class="neat-container full-width">
-                <app-slide-input #slideInput *ngIf="artifact.scale"
+                <app-slide-input #slideInput *ngIf="artifact.scale || artifact.barrierScale"
                     [label]="'level' | translate:'form':languageService.language.value"
                     [max]="30" [min]="0" [default]="30" (valueChange)="inputChange('artifactLevel', $event)"
                     [column]="screenService.mediumScreen.value">

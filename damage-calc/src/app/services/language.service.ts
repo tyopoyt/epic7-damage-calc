@@ -128,4 +128,8 @@ export class LanguageService {
   
     return `(${output.join(', ')})`;
   };
+
+  translate = (category: string, key: string) : string => {
+    return _.get(this.translationDict[category], key, key.toString())
+  };
 }

@@ -396,11 +396,18 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
         if (input === 'targetAttack') {
           this.heroSpecificBooleanInputs.push('targetAttackUpGreat')
           this.heroSpecificBooleanInputs.push('targetEnraged')
+          this.heroSpecificBooleanInputs.push('targetHasDemonBladeUnleashed')
         } else if (input === 'highestAllyAttack') {
           this.heroSpecificBooleanInputs.push('highestAllyAttackUpGreat')
         } else if (input === 'targetSpeed') {
           this.heroSpecificBooleanInputs.push('targetEnraged')
           this.heroSpecificBooleanInputs.push('targetHasRampage')
+        }
+      } else {
+        if (input === 'casterMaxHP') {
+          this.heroSpecificBooleanInputs.push('casterHasCollapse')
+        } else if (input === 'targetMaxHP') {
+          this.heroSpecificBooleanInputs.push('targetHasCollapse')
         }
       }
     })
@@ -423,11 +430,8 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
 
     // This one is only used for Prayer of solitude for now
     // TODO: can this logic just check the max hp field on the artifact?
-    if (this.heroSpecificNumberInputs.includes('casterMaxHP') && (this.inputValues.casterPilfered || this.dataService.HPIncreaseArtifacts.includes(this.dataService.currentArtifactID.value))) {
+    if ((this.heroSpecificNumberInputs.includes('casterMaxHP') || this.artifactSpecificNumberInputs.includes('casterMaxHP')) && (this.inputValues.casterPilfered || this.dataService.HPIncreaseArtifacts.includes(this.dataService.currentArtifactID.value))) {
       this.heroSpecificBooleanInputs.push('inBattleHP');
-    }
-    if (this.artifactSpecificNumberInputs.includes('casterMaxHP') && (this.inputValues.casterPilfered || this.dataService.HPIncreaseArtifacts.includes(this.dataService.currentArtifactID.value))) {
-      this.artifactSpecificBooleanInputs.push('inBattleHP');
     }
 
     // TODO: Default to checked for Beehoo and artifact specific (are hero ones working?) with default true

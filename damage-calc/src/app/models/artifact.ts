@@ -1,5 +1,5 @@
 import { DamageFormData } from "./forms";
-import { HeroClass } from "./hero";
+import { Hero, HeroClass } from "./hero";
 import { DoT, HitType, Skill } from "./skill";
 
 import  * as _ from 'lodash-es'
@@ -26,6 +26,8 @@ export class Artifact {
     applies: (skill: Skill, inputValues: DamageFormData, soulburn: boolean) => boolean; // Pass Skill
     // TODO: Made the later inputs optional to avoid clutter, change if this causes any issues
     value: (artiScale: number, inputValues: DamageFormData, skill?: Skill, isExtra?: boolean, hitType?: HitType, soulburn?: boolean) => number; // Pass Skill and DamageFormData (and optionally isExtra)
+    barrier?: ((hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number, soulburn: boolean, barrierScale: number) => number) | null;
+    barrierScale?: number[];
     scale: number[];
     additional: number[];
     maxHP: number;
@@ -58,6 +60,8 @@ export class Artifact {
         this.speedScaling = _.get(data, 'speedScaling', false);
         this.extraAttackBonus = _.get(data, 'extraAttackBonus', false);
         this.value = _.get(data, 'value', (artifactScale: number) => artifactScale);
+        this.barrier = _.get(data, 'barrier', null);
+        this.barrierScale = _.get(data, 'barrierScale', []);
         this.flat = _.get(data, 'flat', () => 0); //TODO: add appropriate inputs to these fxns
         this.attackPercent = _.get(data, 'attackPercent', 0);
         this.defensePercent = _.get(data, 'defensePercent', 0);

@@ -793,6 +793,22 @@ export const Heroes: Record<string, Hero> = {
       })
     }
   }),
+  aram: new Hero({
+    element: HeroElement.fire,
+    class: HeroClass.soul_weaver,
+    baseAttack: 785,
+    baseHP: 5077,
+    baseDefense: 634,
+    skills: {
+      s1: new Skill({
+        id: 's1',
+        rate: () => 1,
+        pow: () => 0.95,
+        enhance: [0.05, 0.05, 0, 0.05, 0, 0.1, 0.1],
+        isSingle: () => true,
+      }),
+    }
+  }),
   aramintha: new Hero({
     element: HeroElement.fire,
     class: HeroClass.mage,
@@ -2375,6 +2391,14 @@ export const Heroes: Record<string, Hero> = {
     baseHP: 4491,
     baseDefense: 627,
     heroSpecific: ['criticalHitStack'],
+    attackIncrease: (inputValues: DamageFormData) => {
+      let boost = 0;
+      for (let i = 0; i < inputValues.molagoras2; i++) {
+        boost += Heroes.challenger_dominiel.skills.s2.enhance[i];
+      }
+
+      return 1 + (inputValues.criticalHitStack * (0.054 + (0.054 * boost)));
+    },
     skills: {
       s1: new Skill({
         id: 's1',
@@ -2382,21 +2406,6 @@ export const Heroes: Record<string, Hero> = {
         rate: (soulburn: boolean) => soulburn ? 2.5 : 1,
         pow: (soulburn: boolean) => soulburn ? 1 : 0.9,
         critDmgBoost: () => 0.2,
-        mult: (molagoras: Record<string, number>, inputValues: DamageFormData) => {
-          let mult = 0;
-          for (let i = 0; i < inputValues.molagoras2; i++) {
-            mult += Heroes.challenger_dominiel.skills.s2.enhance[i];
-          }
-
-          return 1 + (inputValues.criticalHitStack * (0.054 + (0.054 * mult)));
-        },
-        multTip: (inputValues: DamageFormData) => {
-          let mult = 0;
-          for (let i = 0; i < inputValues.molagoras2; i++) {
-            mult += Heroes.challenger_dominiel.skills.s2.enhance[i];
-          }
-          return { per_crit_hit: (5.4 + (5.4 * mult)).toFixed(2) };
-        },
         enhance: [0.05, 0.05, 0.05, 0.1, 0.15],
         isSingle: () => true,
       }),
@@ -4401,6 +4410,56 @@ export const Heroes: Record<string, Hero> = {
       })
     }
   }),
+  genesis_ras: new Hero({
+    element: HeroElement.light,
+    class: HeroClass.knight,
+    baseAttack: 885,
+    baseHP: 6663,
+    baseDefense: 733,
+    heroSpecific: ['numberOfTargets', 'casterMaxHP'],
+    skills: {
+      s1: new Skill({
+        id: 's1',
+        hpScaling: true,
+        rate: () => 0.9,
+        pow: () => 1,
+        flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * 0.1,
+        flatTip: () => ({ casterMaxHP: 10 }),
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        isSingle: () => true,
+      }),
+      s2: new Skill({
+        id: 's2',
+        hpScaling: true,
+        rate: () => 0.9,
+        pow: () => 1,
+        flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * 0.07,
+        flatTip: () => ({ casterMaxHP: 7 }),
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        isSingle: () => true,
+      }),
+      s3: new Skill({
+        id: 's3',
+        hpScaling: true,
+        rate: () => 0.1,
+        pow: () => 1,
+        flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * 0.05,
+        flatTip: () => ({ casterMaxHP: 5 }),
+        penetrate: () => 1,
+        mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => {
+          switch (inputValues.numberOfTargets) {
+          case 1: return 3.1;
+          case 2: return 2.4;
+          case 3: return 1.7;
+          default: return 1.0;
+          }
+        },
+        multTip: () => ({ per_fewer_target: 70 }),
+        enhance: [0.05, 0.05, 0, 0.1, 0.1],
+        isAOE: () => true,
+      })
+    }
+  }),
   glenn: new Hero({
     element: HeroElement.earth,
     class: HeroClass.ranger,
@@ -5920,6 +5979,22 @@ export const Heroes: Record<string, Hero> = {
         isSingle: (inputValues: DamageFormData, soulburn: boolean) => !soulburn,
         isAOE: (inputValues: DamageFormData, soulburn: boolean) => soulburn,
       })
+    }
+  }),
+  lady_of_the_scales: new Hero({
+    element: HeroElement.light,
+    class: HeroClass.soul_weaver,
+    baseAttack: 694,
+    baseHP: 4855,
+    baseDefense: 655,
+    skills: {
+      s1: new Skill({
+        id: 's1',
+        rate: () => 1,
+        pow: () => 1,
+        enhance: [0.05, 0, 0.1, 0, 0.15],
+        isSingle: () => true,
+      }),
     }
   }),
   laia: new Hero({
@@ -9178,6 +9253,40 @@ export const Heroes: Record<string, Hero> = {
         enhance: [0.1, 0, 0, 0, 0.15],
         isSingle: () => true,
       })
+    }
+  }),
+  setsuka: new Hero({
+    element: HeroElement.earth,
+    class: HeroClass.knight,
+    baseAttack: 894,
+    baseHP: 6840,
+    baseDefense: 694,
+    heroSpecific: ['casterMaxHP', 'casterCurrentHP', 'casterHasDemonBladeUnleashed'],
+    barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number, soulburn: boolean) => inputValues.casterFinalMaxHP(artifact) * 0.35,
+    skills: {
+      s1: new Skill({
+        id: 's1',
+        hpScaling: true,
+        soulburn: true,
+        rate: (soulburn: boolean) => soulburn ? 1.3 : 0.6,
+        pow: () => 1,
+        flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * 0.12,
+        flatTip: () => ({casterMaxHP: 12}),
+        enhance: [0.05, 0, 0.05, 0.05, 0, 0.15],
+        isSingle: () => true,
+      }),
+      s2: new Skill({
+        id: 's2',
+        name: 'setsuka_blade_art',
+        hpScaling: true,
+        rate: () => 0.9,
+        pow: () => 0.95,
+        flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => Math.max(inputValues.casterFinalMaxHP(artifact) - inputValues.casterCurrentHP, 0) * 0.4,
+        flatTip: () => ({caster_lost_hp: 40}),
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.1],
+        isExtra: true,
+        isAOE: () => true,
+      }),
     }
   }),
   sez: new Hero({
