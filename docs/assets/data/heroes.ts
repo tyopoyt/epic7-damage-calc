@@ -9258,9 +9258,9 @@ export const Heroes: Record<string, Hero> = {
   setsuka: new Hero({
     element: HeroElement.fire,
     class: HeroClass.thief,
-    baseAttack: 894,
-    baseHP: 6840,
-    baseDefense: 694,
+    baseAttack: 1228,
+    baseHP: 6266,
+    baseDefense: 473,
     heroSpecific: ['casterMaxHP', 'casterCurrentHP', 'casterHasDemonBladeUnleashed'],
     barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number, soulburn: boolean) => inputValues.casterFinalMaxHP(artifact) * 0.35,
     skills: {
