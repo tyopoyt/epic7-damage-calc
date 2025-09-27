@@ -4358,7 +4358,7 @@ export const Heroes: Record<string, Hero> = {
         name: 'frierenVollzanbel',
         rate: () => 1,
         pow: () => 1,
-        mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + (1 - (inputValues.targetCurrentHPPercent / 100)) * 0.0035,
+        mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + (1 - (inputValues.targetCurrentHPPercent / 100)) * 0.35,
         multTip: () => ({ target_lost_hp_pc: 0.35 }),
         isAOE: () => true,
         isExtra: true,
