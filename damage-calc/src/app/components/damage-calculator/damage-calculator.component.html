@@ -493,6 +493,15 @@
                                 <img class="icon tiny tiny-margin-left" src="assets/icons/help-circle-outline.svg" alt="Hint" matTooltip="{{'attackIncreaseHint' | translate:'ui':languageService.language.value}}">
                             </div>
                         </div>
+                        <div *ngIf="!!speedIncrease && !collapsed" class="neat-container small-padding-top medium-text">
+                            <div class="mini-card neat-container flex-row small-margin-left tiny-padding-right bold-text">
+                                <img class="png-icon medium tiny-margin-right tiny-margin-left" src="assets/buffs/speed-buff.png" alt="Speed Increase">
+                                <span class="microscopic-margin-bottom">
+                                    {{speedIncrease}}
+                                </span>
+                                <img class="icon tiny tiny-margin-left" src="assets/icons/help-circle-outline.svg" alt="Hint" matTooltip="{{'speedIncreaseHint' | translate:'ui':languageService.language.value}}">
+                            </div>
+                        </div>
                         <div *ngIf="!!resistanceIncrease && !collapsed" class="neat-container small-padding-top medium-text">
                             <div class="mini-card neat-container flex-row small-margin-left tiny-padding-right bold-text">
                                 <img class="png-icon medium tiny-margin-right tiny-margin-left" src="assets/icons/resistance_icon.png" alt="Resistance Increase">

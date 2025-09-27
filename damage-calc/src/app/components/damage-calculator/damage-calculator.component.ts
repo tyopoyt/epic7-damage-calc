@@ -123,6 +123,7 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
   dotDamages = {'bleed': 0, 'bomb': 0, 'burn': 0, 'nail': 0, 'rupture': 0};
   artifactDamage = 0;
   attackIncrease = 0;
+  speedIncrease = 0;
   resistanceIncrease = 0;
   barriers: {label: string, value: number}[]  = []
   // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -675,6 +676,7 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
     this.updateBarriers();
     this.artifactDamage = Math.max(this.damageService.getArtifactDamage(false, HitType.crit), this.damageService.getArtifactDamage(true, HitType.crit));
     this.attackIncrease = Math.round(((this.hero.attackIncrease(this.inputValues) - 1) + this.hero.innateAttackIncrease(this.inputValues)) * this.inputValues.attack);
+    this.speedIncrease = this.hero.speedIncrease(this.inputValues) !== 1 ? this.hero.getSpeed(this.inputValues) : 0;
     this.resistanceIncrease = Math.round(this.hero.resistanceIncrease(this.artifact, this.inputValues));
   }
 
