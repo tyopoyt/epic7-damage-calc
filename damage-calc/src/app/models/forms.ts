@@ -16,6 +16,11 @@ export const FormDefaults: Record<string, {max?: number, min?: number, defaultVa
         min: 0,
         defaultValue: 100
     },
+    effectResistance: {
+        max: 400,
+        min: 0,
+        defaultValue: 200
+    },
     heroLevel: {
         max: 60,
         min: 1,
@@ -595,6 +600,7 @@ export class DamageFormData {
     enemyCounterStack: number;
     enemyNumberOfDebuffs: number;
     enemyDefeated: boolean;
+    effectResistance: number;
     exclusiveEquipment1: boolean;
     exclusiveEquipment2: boolean;
     exclusiveEquipment3: boolean;
@@ -780,6 +786,7 @@ export class DamageFormData {
         this.reductionPreset = _.get(data, 'reductionPreset', null);
         this.S3OnCooldown = _.get(data, 'S3OnCooldown', true);
         this.singleAttackStack = _.get(data, 'singleAttackStack', 0);
+        this.effectResistance = _.get(data, 'effectResistance', 200);
         this.skill3Stack = _.get(data, 'skill3Stack', 0);
         this.skill1Stack = _.get(data, 'skill1Stack', 0);
         this.skillTreeCompleted = _.get(data, 'skillTreeCompleted', true);
@@ -825,11 +832,12 @@ export class DamageFormData {
     }
 
     // Get the caster's final speed after modifiers
-    casterFinalSpeed = () => {
+    casterFinalSpeed = (heroSpeedMultiplier: number = 0) => {
         return Math.floor((this.inputOverrides['casterSpeed'] ? this.inputOverrides['casterSpeed'] : this.casterSpeed) * (1 + (this.casterSpeedUp ? BattleConstants.spdUp - 1 : 0)
            + (this.casterSpeedDown ? 1 - BattleConstants.spdUp : 0)
            + (this.casterEnraged ? BattleConstants.casterEnraged - 1 : 0)
-           + (this.casterRampage ? BattleConstants.rampage : 0)));
+           + (this.casterRampage ? BattleConstants.rampage : 0)
+           + heroSpeedMultiplier));
     }
 
     // Get the target's final speed after modifiers

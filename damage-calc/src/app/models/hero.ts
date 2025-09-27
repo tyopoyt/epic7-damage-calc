@@ -127,9 +127,9 @@ export class Hero {
     return ((atk + atkImprint) * atkMod) + this.flatAttackIncrease(inputValues, artifact);
   }
 
-  // Get the hero's attack if it's modified
+  // Get the hero's speed if it's modified
   getSpeed(inputValues: DamageFormData): number {
-    return inputValues.casterFinalSpeed() * this.speedIncrease(inputValues);
+    return inputValues.casterFinalSpeed(this.speedIncrease(inputValues) - 1);
   }
 
   // Get the hero's aftermath (additional) damage

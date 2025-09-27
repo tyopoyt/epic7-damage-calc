@@ -100,6 +100,15 @@ export const Artifacts: Record<string, Artifact> = {
     type: ArtifactDamageType.penetrate,
     exclusive: HeroClass.knight
   }),
+  butterfly_hair_ornament: new Artifact({
+    id: 'butterfly_hair_ornament',
+    name: 'Butterfly Hair Ornament',
+    type: ArtifactDamageType.attack,
+    scale: [0.1, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2],
+    barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number, soulburn: boolean, barrierScale: number) => hero.getAttack(artifact, inputValues, attackMultiplier, skill, soulburn, HitType.normal) * barrierScale,
+    barrierScale: [0.25, 0.275, 0.3, 0.325, 0.35, 0.375, 0.4, 0.425, 0.45, 0.475, 0.5],
+    exclusive: HeroClass.mage,
+  }),
   discreet_hands: new Artifact({
     id: 'discreet_hands',
     type: ArtifactDamageType.attack,
@@ -268,6 +277,14 @@ export const Artifacts: Record<string, Artifact> = {
     id: 'jack_o_symbol',
     name: 'Jack-O\'s Symbol',
     scale: [0.12, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2, 0.21, 0.22, 0.24],
+    type: ArtifactDamageType.damage,
+    exclusive: HeroClass.warrior,
+    applies: (skill: Skill, inputValues: DamageFormData, soulburn: boolean) => skill.isSingle(inputValues, soulburn),
+  }),
+  jumbo_berry_special: new Artifact({
+    id: 'jumbo_berry_special',
+    name: 'Jumbo Berry Special',
+    scale: [0.1, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2],
     type: ArtifactDamageType.damage,
     exclusive: HeroClass.warrior,
     applies: (skill: Skill, inputValues: DamageFormData, soulburn: boolean) => skill.isSingle(inputValues, soulburn),

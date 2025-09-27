@@ -1803,4 +1803,24 @@ export const SkillIDs: Record<string, Record<string, string>> = {
         "s2": "sk_c2001_2",
         "s3": "sk_c2001_3"
     },
+    "wretched_rose": {
+        "s1": "sk_c6003_1",
+        "s2": "sk_c6003_2",
+        "s3": "sk_c6003_3"
+    },
+    "frieren": {
+        "s1": "sk_c1172_1",
+        "s2": "sk_c1172_2",
+        "s3": "sk_c1172_3"
+    },
+    "fern": {
+        "s1": "sk_c1173_1",
+        "s2": "sk_c1173_2",
+        "s3": "sk_c1173_3"
+    },
+    "stark": {
+        "s1": "sk_c1174_1",
+        "s2": "sk_c1174_2",
+        "s3": "sk_c1174_3"
+    },
 }

@@ -7,6 +7,8 @@ To test your translation locally, there is a hidden option to load a custom tran
 <img src="./language_custom.gif" alt="image" width="800" height="auto">
 
 ## Changelog
+### <strong>Sep 27 2025 Update:</strong>
+- Added Frieren, Fern, Stark, Wretched Rose, Jumbo Berry Special, Butterfly Hairpin, and 9/25 Balance patch changes.
 ### <strong>Aug 28 2025 Update:</strong>
 - Added Setsuka, Genesis Ras, Lady of the Scales, A Precious Connection, and Sphere of Sadism.
 - Fixed CDom's passive

@@ -13,7 +13,7 @@ export class PageNotFoundComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.imageIndex = Math.floor(Math.random() * 15)
+    this.imageIndex = Math.floor(Math.random() * 18)
   }
 
 }
