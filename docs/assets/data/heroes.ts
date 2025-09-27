@@ -4188,7 +4188,7 @@ export const Heroes: Record<string, Hero> = {
         enhance: [0.05, 0, 0.05, 0, 0.1, 0, 0.15],
         isSingle: () => true,
       }),
-      s2: new Skill({
+      s3: new Skill({
         id: 's3',
         speedScaling: true,
         rate: () => 1.35,
