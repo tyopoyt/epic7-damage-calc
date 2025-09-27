@@ -6529,7 +6529,7 @@ export const Heroes: Record<string, Hero> = {
         name: 's3_splash',
         rate: () => 0,
         pow: () => 0,
-        afterMath: (hitType: HitType, inputValues: DamageFormData) => inputValues.elementalAdvantage ? new AftermathSkill({ attackPercent: 1.2 }) : null,
+        afterMath: () => new AftermathSkill({ attackPercent: 1.2 }),
         noCrit: true,
         noMiss: true,
       })
