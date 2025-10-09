@@ -10311,7 +10311,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1010,
     baseHP: 5097,
     baseDefense: 497,
-    heroSpecific: ['casterCurrentHPPercent'],
+    heroSpecific: ['casterCurrentHPPercent', 'exclusiveEquipment2'],
     dot: [DoT.bleed],
     skills: {
       s1: new Skill({
@@ -10330,6 +10330,7 @@ export const Heroes: Record<string, Hero> = {
         pow: () => 1.05,
         mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + (100 - inputValues.casterCurrentHPPercent) * 0.005,
         multTip: () => ({ caster_lost_hp_pc: 0.50 }),
+        exclusiveEquipmentMultiplier: (inputValues: DamageFormData) => inputValues.exclusiveEquipment2 ? 0.1 : 0,
         enhance: [0.1, 0, 0, 0, 0.15],
         isAOE: () => true,
       })
