@@ -45,6 +45,8 @@ import { RemoveOldPipe } from './pipes/remove-old.pipe';
 import { SpeedSolverComponent } from './components/speed-solver/speed-solver.component';
 import { GwArchiveComponent } from './components/gw-archive/gw-archive.component';
 import { SkillIconPipe } from './pipes/skill-icon.pipe';
+import { ExportPictureComponent } from './components/export-picture/export-picture.component';
+import { StackedHeroIconComponent } from './components/ui-elements/stacked-hero-icon/stacked-hero-icon.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +70,9 @@ import { SkillIconPipe } from './pipes/skill-icon.pipe';
     RemoveOldPipe,
     SpeedSolverComponent,
     GwArchiveComponent,
-    SkillIconPipe
+    SkillIconPipe,
+    ExportPictureComponent,
+    StackedHeroIconComponent
   ],
   imports: [
     AppRoutingModule,

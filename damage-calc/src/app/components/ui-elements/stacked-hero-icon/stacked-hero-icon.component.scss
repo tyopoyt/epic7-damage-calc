@@ -1,0 +1,34 @@
+.stacked-icon {
+    position: relative;
+    width: 118px;
+    height: 118px;
+}
+
+.hero-icon {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 112px;
+    height: 112px;
+    z-index: 1;
+}
+
+.hero-frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 118px;
+    height: 118px;
+    pointer-events: none; /* so clicks pass through */
+    z-index: 2;
+}
+
+.hero-bg {
+    position: absolute;
+    width: 112px;
+    height: 112px;
+    top: 3px;
+    left: 3px;
+    pointer-events: none; /* so clicks pass through */
+    z-index: 0;
+}

@@ -27,6 +27,7 @@ import { DamageGraphComponent } from '../damage-graph/damage-graph.component';
 import { debounce, delay } from 'src/app/utils/utils';
 import { DefensePreset, ReductionPreset, TargetPresetGroups, TargetReductionPresetGroups } from 'src/app/models/target-presets';
 import { GoogleTagManagerService } from 'angular-google-tag-manager';
+import { ExportPictureComponent } from '../export-picture/export-picture.component';
 
 @Component({
     selector: 'app-damage-calculator',

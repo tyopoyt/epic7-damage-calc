@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <div class="page-container sticky-bottom">
     <span class="page-body">
+        <app-export-picture></app-export-picture>
+
         <app-dismissible [content]="'damageCalculatorUpdates' | translate:'info':languageService.language.value" [color]="DismissibleColorOption.info"></app-dismissible>
         <!-- <app-dismissible *ngIf="heroID === 'harsetti'" [content]="'harsettiWarning' | translate:'info':languageService.language.value" [color]="DismissibleColorOption.warn"></app-dismissible> -->
         <!-- Hero/arti/preset selector row -->
