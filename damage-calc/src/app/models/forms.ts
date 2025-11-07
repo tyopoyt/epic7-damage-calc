@@ -82,6 +82,12 @@ export const FormDefaults: Record<string, {max?: number, min?: number, defaultVa
     casterHasSpecialFriendship: {
         icon: 'buffs/special-friendship-buff.png'
     },
+    casterHasSuperhumanization: {
+        icon: 'buffs/superhumanization-buff.png'
+    },
+    targetHasSuperhumanization: {
+        icon: 'buffs/superhumanization-buff.png'
+    },
     casterHasPossession: {
         icon: 'buffs/possession-buff.png'
     },
@@ -571,6 +577,8 @@ export class DamageFormData {
     targetRuptured: boolean;
     casterHasStarsBlessing: boolean;
     casterHasSpecialFriendship: boolean;
+    casterHasSuperhumanization: boolean;
+    targetHasSuperhumanization: boolean;
     casterHasPossession: boolean;
     casterInjury: number;
     casterInvincible: boolean;
@@ -730,6 +738,8 @@ export class DamageFormData {
         this.casterHasTrauma = _.get(data, 'casterHasTrauma', false);
         this.casterHasStarsBlessing = _.get(data, 'casterHasStarsBlessing', false);
         this.casterHasSpecialFriendship = _.get(data, 'casterHasSpecialFriendship', false);
+        this.casterHasSuperhumanization = _.get(data, 'casterHasSuperhumanization', false);
+        this.targetHasSuperhumanization = _.get(data, 'targetHasSuperhumanization', false);
         this.casterHasPossession = _.get(data, 'casterHasPossession', false);
         this.casterInvincible = _.get(data, 'casterInvincible', false);
         this.casterInjury = _.get(data, 'casterInjury', 0);
@@ -837,6 +847,7 @@ export class DamageFormData {
            + (this.casterSpeedDown ? 1 - BattleConstants.spdUp : 0)
            + (this.casterEnraged ? BattleConstants.casterEnraged - 1 : 0)
            + (this.casterRampage ? BattleConstants.rampage : 0)
+           + (this.casterHasSuperhumanization ? BattleConstants.superhumanization : 0)
            + heroSpeedMultiplier));
     }
 
@@ -893,13 +904,26 @@ export class DamageFormData {
 
     // Get the caster's final max HP after modifiers
     casterFinalMaxHP = (artifact: Artifact) => {
-        const artifactHP = (artifact.type === ArtifactDamageType.health_only && artifact.scale?.length) ? artifact.scale[Math.floor(this.artifactLevel/3)] : artifact.maxHP;
-        return (this.casterHasCollapse ? 0.5 : 1) * ((this.inputOverrides['casterMaxHP'] ? this.inputOverrides['casterMaxHP'] : this.casterMaxHP) * ((this.inBattleHP ? 1 : artifactHP) + this.casterMaxHPIncrease / 100) * (!this.inBattleHP && this.casterPilfered ? BattleConstants.casterPilfered : 1));
+        const artifactHP = 
+              (artifact.type === ArtifactDamageType.health_only && artifact.scale?.length)
+            ? artifact.scale[Math.floor(this.artifactLevel/3)]
+            : artifact.maxHP;
+
+        return (this.casterHasCollapse ? 0.5 : 1) 
+             * ((this.inputOverrides['casterMaxHP'] ? this.inputOverrides['casterMaxHP'] : this.casterMaxHP)
+                * ((this.inBattleHP ? 1 : artifactHP) + this.casterMaxHPIncrease / 100)
+                * (!this.inBattleHP && this.casterPilfered ? BattleConstants.casterPilfered : 1)
+                * (!this.inBattleHP && this.casterHasSuperhumanization ? BattleConstants.superhumanization + 1 : 1)
+               );
     }
 
     // Get the target's final max HP after modifiers
     targetFinalMaxHP = () => {
-        return (this.targetHasCollapse ? 0.5 : 1) * ((this.inputOverrides['targetMaxHP'] ? this.inputOverrides['targetMaxHP'] : this.targetMaxHP * (this.defensePreset?.hpDamageMultiplier ? this.defensePreset.hpDamageMultiplier : 1)));
+        return (this.targetHasCollapse ? 0.5 : 1)
+             * ((this.inputOverrides['targetMaxHP'] ? this.inputOverrides['targetMaxHP'] : this.targetMaxHP
+                * (this.defensePreset?.hpDamageMultiplier ? this.defensePreset.hpDamageMultiplier : 1))
+                * (this.targetHasSuperhumanization ? BattleConstants.superhumanization + 1 : 1)
+               );
     }
 
     // Get the target's final attack after modifiers

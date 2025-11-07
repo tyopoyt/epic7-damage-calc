@@ -124,6 +124,13 @@ export const Artifacts: Record<string, Artifact> = {
     barrierScale: [0.35, 0.385, 0.42, 0.455, 0.49, 0.525, 0.56, 0.595, 0.63, 0.665, 0.7],
     value: () => 0.15
   }),
+  master_of_the_nightmare: new Artifact({
+    id: 'master_of_the_nightmare',
+    type: ArtifactDamageType.attack,
+    exclusive: HeroClass.thief,
+    // value: () => 0.1
+    scale: [0.1, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2],
+  }),
   daydream_joker: new Artifact({
     id: 'daydream_joker',
     name: 'Daydream Joker',

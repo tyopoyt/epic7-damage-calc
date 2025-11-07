@@ -1789,7 +1789,6 @@ export const Heroes: Record<string, Hero> = {
       }),
     }
   }),
-
   blooming_lidica: new Hero({
     element: HeroElement.earth,
     class: HeroClass.thief,
@@ -8950,6 +8949,31 @@ export const Heroes: Record<string, Hero> = {
       })
     }
   }),
+  saria: new Hero({
+    element: HeroElement.earth,
+    class: HeroClass.ranger,
+    baseAttack: 1327,
+    baseHP: 5138,
+    baseDefense: 582,
+    skills: {
+      s1: new Skill({
+        id: 's1',
+        rate: () => 1,
+        pow: () => 1,
+        enhance: [0.05, 0, 0.05, 0, 0.05, 0.05, 0.1],
+        isSingle: () => true,
+      }),
+      s2: new Skill({
+        id: 's2',
+        name: 'saria_wings_of_liberation',
+        rate: () => 1.4,
+        pow: () => 0.9,
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.1],
+        isExtra: true,
+        isAOE: () => true,
+      })
+    }
+  }),
   savior_adin: new Hero({
     element: HeroElement.light,
     class: HeroClass.thief,
@@ -9009,6 +9033,27 @@ export const Heroes: Record<string, Hero> = {
         fixedTip: () => ({fixed: 4000, fixed_per_stack: 4000 }),
         enhance: [0.05, 0.05, 0.05, 0, 0.1, 0.1, 0.1],
         isAOE: () => true,
+      }),
+    }
+  }),
+  school_nurse_yulha: new Hero({
+    element: HeroElement.dark,
+    class: HeroClass.thief,
+    baseAttack: 1054,
+    baseHP: 6606,
+    baseDefense: 518,
+    dot: [DoT.bleed],
+    heroSpecific: ['casterMaxHP', 'targetBleedDetonate'],
+    flatAttackIncrease: (inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * 0.08,
+    skills: {
+      s1: new Skill({
+        id: 's1',
+        rate: () => 0.9,
+        pow: () => 1,
+        enhance: [0.05, 0, 0.05, 0.05, 0, 0.15],
+        detonate: DoT.bleed,
+        detonation: () => 1.3,
+        isSingle: () => true
       }),
     }
   }),

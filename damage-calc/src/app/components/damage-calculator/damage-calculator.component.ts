@@ -403,12 +403,17 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
         } else if (input === 'targetSpeed') {
           this.heroSpecificBooleanInputs.push('targetEnraged')
           this.heroSpecificBooleanInputs.push('targetHasRampage')
+          this.heroSpecificBooleanInputs.push('targetHasSuperhumanization')
+        } else if (input === 'casterSpeed') {
+          this.heroSpecificBooleanInputs.push('casterHasSuperhumanization')
         }
       } else {
         if (input === 'casterMaxHP') {
           this.heroSpecificBooleanInputs.push('casterHasCollapse')
+          this.heroSpecificBooleanInputs.push('casterHasSuperhumanization')
         } else if (input === 'targetMaxHP') {
           this.heroSpecificBooleanInputs.push('targetHasCollapse')
+          this.heroSpecificBooleanInputs.push('targetHasSuperhumanization')
         }
       }
     })
@@ -675,7 +680,7 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
     this.updateDots();
     this.updateBarriers();
     this.artifactDamage = Math.max(this.damageService.getArtifactDamage(false, HitType.crit), this.damageService.getArtifactDamage(true, HitType.crit));
-    this.attackIncrease = Math.round(((this.hero.attackIncrease(this.inputValues) - 1) + this.hero.innateAttackIncrease(this.inputValues)) * this.inputValues.attack);
+    this.attackIncrease = Math.round(((this.hero.attackIncrease(this.inputValues) - 1) + this.hero.innateAttackIncrease(this.inputValues)) * this.inputValues.attack + this.hero.flatAttackIncrease(this.inputValues, this.artifact));
     this.speedIncrease = this.hero.speedIncrease(this.inputValues) !== 1 ? this.hero.getSpeed(this.inputValues) : 0;
     this.resistanceIncrease = Math.round(this.hero.resistanceIncrease(this.artifact, this.inputValues));
   }
