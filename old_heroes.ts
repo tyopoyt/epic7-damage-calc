@@ -2803,3 +2803,199 @@
   //     }),
   //   }
   // }),
+
+  tempest_surin_old: new Hero({
+    element: HeroElement.light,
+    class: HeroClass.thief,
+    baseAttack: 1010,
+    baseHP: 5097,
+    baseDefense: 497,
+    heroSpecific: ['casterCurrentHPPercent'],
+    dot: [DoT.bleed],
+    skills: {
+      s1: new Skill({
+        id: 's1',
+        rate: () => 1,
+        pow: () => 1,
+        mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + (100 - inputValues.casterCurrentHPPercent) * 0.0015,
+        multTip: () => ({ caster_lost_hp_pc: 15 }),
+        enhance: [0.05, 0, 0.1, 0, 0.15],
+        isSingle: () => true,
+      }),
+      s3: new Skill({
+        id: 's3',
+        soulburn: true,
+        rate: (soulburn: boolean) => soulburn ? 1.25 : 1,
+        pow: () => 1.05,
+        mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + (100 - inputValues.casterCurrentHPPercent) * 0.002,
+        multTip: () => ({ caster_lost_hp_pc: 20 }),
+        enhance: [0.1, 0, 0, 0, 0.15],
+        isAOE: () => true,
+      })
+    }
+  }),
+
+  commander_lorina_old: new Hero({
+    element: HeroElement.dark,
+    class: HeroClass.warrior,
+    baseAttack: 1144,
+    baseHP: 4895,
+    baseDefense: 543,
+    heroSpecific: ['targetMaxHP', 'targetCurrentHPPercent', 'attackSkillStack', 'skillTreeCompleted'],
+    heroSpecificMaximums: {'attackSkillStack': 5},
+    attackIncrease: (inputValues: DamageFormData) => {
+      let boost = 0.1;
+      for (let i = 0; i < inputValues.molagoras2; i++) {
+        boost += Heroes.commander_lorina.skills.s2.enhance[i];
+      }
+
+      return 1 + inputValues.attackSkillStack * boost;
+    },
+    skills: {
+      s1: new Skill({
+        id: 's1',
+        rate: () => 1,
+        pow: () => 0.9,
+        flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.targetFinalMaxHP() * 0.02,
+        flatTip: () => ({ targetMaxHP: 2 }),
+        mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.skillTreeCompleted ? 1.02 : 1,
+        multTip: (inputValues: DamageFormData) => (inputValues.skillTreeCompleted ? { skill_tree: 2 } : null),
+        enhance: [0.05, 0.05, 0.1, 0.1, 0.1],
+        isSingle: () => true,
+      }),
+      s2: new Skill({
+        id: 's2',
+        enhance: [0.005, 0.005, 0.01, 0.01, 0.02]
+      }),
+      s3: new Skill({
+        id: 's3',
+        rate: () => 1.5,
+        pow: () => 0.95,
+        mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + (100 - inputValues.targetCurrentHPPercent) * 0.005,
+        multTip: () => ({ target_lost_hp_pc: 50 }),
+        enhance: [0.05, 0.05, 0, 0.1, 0.15],
+        isSingle: () => true,
+      })
+    }
+  }),
+
+  fumyr_old: new Hero({
+    element: HeroElement.ice,
+    class: HeroClass.mage,
+    baseAttack: 1039,
+    baseHP: 5299,
+    baseDefense: 673,
+    heroSpecific: ['casterElementalWisdomStack'],
+    skills: {
+      s1: new Skill({
+        id: 's1',
+        rate: () => 0.9,
+        pow: () => 1,
+        enhance: [0.05, 0.05, 0.0, 0.05, 0.15],
+        isSingle: () => true,
+      }),
+      s3: new Skill({
+        id: 's3',
+        rate: () => 1.5,
+        pow: () => 1,
+        fixed: (hitType: HitType, inputValues: DamageFormData) => inputValues.casterElementalWisdomStack * 3000,
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        isSingle: () => true,
+      })
+    }
+  }),
+  lorina_old: new Hero({
+    element: HeroElement.dark,
+    class: HeroClass.warrior,
+    baseAttack: 1144,
+    baseHP: 4895,
+    baseDefense: 543,
+    heroSpecific: ['targetMaxHP', 'attackSkillStack'],
+    heroSpecificMaximums: {'attackSkillStack': 5},
+    attackIncrease: (inputValues: DamageFormData) => {
+      let boost = 0.1;
+      for (let i = 0; i < inputValues.molagoras2; i++) {
+        boost += Heroes.lorina.skills.s2.enhance[i];
+      }
+
+      return 1 + inputValues.attackSkillStack * boost;
+    },
+    skills: {
+      s1: new Skill({
+        id: 's1',
+        rate: () => 1,
+        pow: () => 0.9,
+        flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.targetFinalMaxHP() * 0.02,
+        flatTip: () => ({ targetMaxHP: 2 }),
+        enhance: [0.05, 0.05, 0.1, 0.1, 0.1],
+        isSingle: () => true,
+      }),
+      s2: new Skill({
+        id: 's2',
+        enhance: [0.005, 0.005, 0.01, 0.01, 0.02]
+      }),
+      s3: new Skill({
+        id: 's3',
+        rate: () => 1.5,
+        pow: () => 0.95,
+        flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.targetFinalMaxHP() * 0.03,
+        flatTip: () => ({ targetMaxHP: 3 }),
+        enhance: [0.05, 0.05, 0, 0.1, 0.15],
+        isSingle: () => true,
+      })
+    }
+  }),
+  maid_chloe_old: new Hero({
+    element: HeroElement.light,
+    class: HeroClass.soul_weaver,
+    baseAttack: 640,
+    baseHP: 5340,
+    baseDefense: 720,
+    skills: {
+      s1: new Skill({
+        id: 's1',
+        rate: () => 1,
+        pow: () => 1,
+        enhance: [0.05, 0, 0.05, 0, 0.1, 0, 0.1],
+        isSingle: () => true,
+      })
+    }
+  }),
+  operator_sigret_old: new Hero({
+    element: HeroElement.dark,
+    class: HeroClass.ranger,
+    baseAttack: 1079,
+    baseHP: 5502,
+    baseDefense: 564,
+    heroSpecific: ['targetHasBarrier', 'casterSpeed'],
+    skills: {
+      s1: new Skill({
+        id: 's1',
+        rate: () => 1,
+        pow: () => 1,
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        isSingle: () => true,
+      }),
+      s2: new Skill({
+        id: 's2',
+        speedScaling: true,
+        rate: () => 0.75,
+        pow: () => 1,
+        mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + inputValues.casterFinalSpeed() * 0.00075,
+        multTip: () => ({ casterSpeed: 0.075 }),
+        penetrate: (soulburn: boolean, inputValues: DamageFormData) => inputValues.targetHasBarrier ? 1.0 : 0.5,
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        isSingle: () => true,
+      }),
+      s3: new Skill({
+        id: 's3',
+        speedScaling: true,
+        rate: () => 1,
+        pow: () => 1.1,
+        mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + inputValues.casterFinalSpeed() * 0.001125,
+        multTip: () => ({ casterSpeed: 0.1125 }),
+        enhance: [0.05, 0, 0, 0, 0.15],
+        isAOE: () => true,
+      })
+    }
+  }),

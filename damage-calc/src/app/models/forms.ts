@@ -79,6 +79,9 @@ export const FormDefaults: Record<string, {max?: number, min?: number, defaultVa
     casterHasStarsBlessing: {
         icon: 'buffs/stars-blessing-buff.png'
     },
+    casterHasWarGod: {
+        icon: 'buffs/war-god-buff.png'
+    },
     casterHasSpecialFriendship: {
         icon: 'buffs/special-friendship-buff.png'
     },
@@ -467,7 +470,7 @@ export const FormDefaults: Record<string, {max?: number, min?: number, defaultVa
         defaultValue: 0
     },
     enemyCounterStack: {
-        max: 4,
+        max: 5,
         min: 0,
         defaultValue: 0
     },
@@ -576,6 +579,7 @@ export class DamageFormData {
     casterPilfered: boolean;
     targetRuptured: boolean;
     casterHasStarsBlessing: boolean;
+    casterHasWarGod: boolean;
     casterHasSpecialFriendship: boolean;
     casterHasSuperhumanization: boolean;
     targetHasSuperhumanization: boolean;
@@ -737,6 +741,7 @@ export class DamageFormData {
         this.casterHasStealth = _.get(data, 'casterHasStealth', false);
         this.casterHasTrauma = _.get(data, 'casterHasTrauma', false);
         this.casterHasStarsBlessing = _.get(data, 'casterHasStarsBlessing', false);
+        this.casterHasWarGod = _.get(data, 'casterHasWarGod', false);
         this.casterHasSpecialFriendship = _.get(data, 'casterHasSpecialFriendship', false);
         this.casterHasSuperhumanization = _.get(data, 'casterHasSuperhumanization', false);
         this.targetHasSuperhumanization = _.get(data, 'targetHasSuperhumanization', false);

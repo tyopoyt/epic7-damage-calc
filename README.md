@@ -7,6 +7,8 @@ To test your translation locally, there is a hidden option to load a custom tran
 <img src="./language_custom.gif" alt="image" width="800" height="auto">
 
 ## Changelog
+### <strong>Dec 14 2025 Update:</strong>
+- Added Sealed Eye Surin, and Swift Flagbearer Sigret. Updated heroes in 11/20 balance patch.
 ### <strong>Sep 27 2025 Update:</strong>
 - Added Frieren, Fern, Stark, Wretched Rose, Jumbo Berry Special, Butterfly Hairpin, and 9/25 Balance patch changes.
 ### <strong>Aug 28 2025 Update:</strong>
