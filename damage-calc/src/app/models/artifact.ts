@@ -6,6 +6,7 @@ import  * as _ from 'lodash-es'
 
 export enum ArtifactDamageType {
     damage = 'damage',
+    damageAndAftermath = 'damageAndAftermath',
     penetrate = 'penetrate',
     aftermath = 'aftermath',
     attack = 'attack',
@@ -23,7 +24,7 @@ export class Artifact {
     exclusive: HeroClass;
     heroExclusive: string[];
     type: ArtifactDamageType;
-    applies: (skill: Skill, inputValues: DamageFormData, soulburn: boolean) => boolean; // Pass Skill
+    applies: (skill: Skill, inputValues: DamageFormData, soulburn: boolean, hitType: HitType) => boolean; // Pass Skill
     // TODO: Made the later inputs optional to avoid clutter, change if this causes any issues
     value: (artiScale: number, inputValues: DamageFormData, skill?: Skill, isExtra?: boolean, hitType?: HitType, soulburn?: boolean) => number; // Pass Skill and DamageFormData (and optionally isExtra)
     barrier?: ((hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number, soulburn: boolean, barrierScale: number) => number) | null;
@@ -74,7 +75,7 @@ export class Artifact {
     }
 
     getDefensePenetration(level: number, inputValues: DamageFormData, skill: Skill, soulburn: boolean, hitType: HitType, isExtra = false): number {
-      if (!(this.id && this.type === ArtifactDamageType.penetrate && this.applies(skill, inputValues, soulburn))) {
+      if (!(this.id && this.type === ArtifactDamageType.penetrate && this.applies(skill, inputValues, soulburn, hitType))) {
         return 0;
       }
       return this.value(this.getScale(level), inputValues, skill, isExtra, hitType, soulburn);
@@ -97,8 +98,11 @@ export class Artifact {
     }
 
     getDamageMultiplier(level: number, inputValues: DamageFormData, skill: Skill, soulburn: boolean, hitType: HitType, isExtra = false) {
-      if(!this.applies(skill, inputValues, soulburn)) return 0;
-      if (this.id === undefined || this.type !== ArtifactDamageType.damage) {
+      if(!this.applies(skill, inputValues, soulburn, hitType)) return 0;
+      if (this.id === undefined
+        || !([ArtifactDamageType.damage, ArtifactDamageType.damageAndAftermath].includes(this.type))
+        || !this.applies(skill, inputValues, soulburn, hitType)
+      ) {
         return 0;
       }
 
@@ -122,8 +126,12 @@ export class Artifact {
     }
 
     getAfterMathMultipliers(skill: Skill, inputValues: DamageFormData, soulburn: boolean, isExtra: boolean, hitType: HitType) {
-        if(!this.applies(skill, inputValues, soulburn)) return null;
-        if (this.id === undefined || ![ArtifactDamageType.aftermath, ArtifactDamageType.fixedDamage].includes(this.type)  || (this.attackPercent === undefined && this.defensePercent === undefined && this.hpPercent === undefined) || this.penetrate === undefined) {
+        if(!this.applies(skill, inputValues, soulburn, hitType)) return null;
+        if (this.id === undefined
+            || ![ArtifactDamageType.aftermath, ArtifactDamageType.fixedDamage, ArtifactDamageType.damageAndAftermath].includes(this.type)
+            || !this.applies(skill, inputValues, soulburn, hitType)
+            || (this.attackPercent === undefined && this.defensePercent === undefined && this.hpPercent === undefined)
+            || this.penetrate === undefined) {
           return null;
         }
 

@@ -170,7 +170,7 @@ export class Hero {
         } else if (skillMultipliers.injuryPercent) {
           skillDamage += inputValues.targetInjuries * skillMultipliers.injuryPercent * BattleConstants.damageConstant * target.defensivePower(new Skill({ id: 'FixedPenetration', penetrate: () => skillMultipliers.penetrate }), inputValues, defenseMultiplier, artifact, false, attack, speed, hitType, true);
         } else if (skillMultipliers.targetMaxHPPercent) {
-          // TODO: should this also be affected by target's defensive power?
+          // rupture and challenge
           skillDamage += inputValues.targetFinalMaxHP() * skillMultipliers.targetMaxHPPercent;
         } else if (skillMultipliers.allyHPPercent) {
           skillDamage += inputValues.allyMaxHP * skillMultipliers.allyHPPercent * BattleConstants.damageConstant * target.defensivePower(new Skill({ id: 'FixedPenetration', penetrate: () => skillMultipliers.penetrate }), inputValues, defenseMultiplier, artifact, false, attack, speed, hitType, true);

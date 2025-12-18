@@ -226,7 +226,9 @@ export class DamageService {
     const casterSpeed = this.currentHero.getSpeed(this.damageForm)
     let critDmgBuff = this.damageForm.increasedCritDamage ? BattleConstants.increasedCritDamage : 0.0;
     critDmgBuff += this.damageForm.casterHasStarsBlessing ? BattleConstants.casterHasStarsBlessing - 1 : 0;
+    const miss = 0.75 * this.offensivePower(skill, HitType.miss, soulburn, isExtra) * this.dataService.currentTarget.defensivePower(skill, this.damageForm, this.getGlobalDefenseMult(), this.currentArtifact, soulburn, casterAttack, casterSpeed, HitType.normal);
     const hit = this.offensivePower(skill, HitType.normal, soulburn, isExtra) * this.dataService.currentTarget.defensivePower(skill, this.damageForm, this.getGlobalDefenseMult(), this.currentArtifact, soulburn, casterAttack, casterSpeed, HitType.normal);
+    const crush = 1.3 * this.offensivePower(skill, HitType.crush, soulburn, isExtra) * this.dataService.currentTarget.defensivePower(skill, this.damageForm, this.getGlobalDefenseMult(), this.currentArtifact, soulburn, casterAttack, casterSpeed, HitType.normal);
     const critHit = this.offensivePower(skill, HitType.crit, soulburn, isExtra) * this.dataService.currentTarget.defensivePower(skill, this.damageForm, this.getGlobalDefenseMult(), this.currentArtifact, soulburn, casterAttack, casterSpeed, HitType.crit);
     const critDmg = Math.min((this.damageForm.casterFinalCritDamage / 100) + critDmgBuff, 3.5)
         + (skill.critDmgBoost ? skill.critDmgBoost(soulburn) : 0)
@@ -237,9 +239,9 @@ export class DamageService {
       skill: (skill.name || skill.id) + (soulburn ? '_soulburn' : (isExtra ? '_extra' : (isCounter && !skill.isCounter ? '_counter': ''))),
       // these 4 need isCounter back at the end if new skill that cares about it is added
       crit: skill.noCrit || skill.onlyMiss ? null : Math.round(critHit * critDmg + ((skill.fixed(HitType.crit, this.damageForm, this.currentArtifact, soulburn) + skill.fixed2(HitType.crit, this.damageForm, this.currentArtifact, soulburn)) * additionalDamageReduction) + this.getAfterMathDamage(skill, HitType.crit, soulburn)),
-      crush: skill.noCrit || skill.onlyCrit(soulburn) || skill.onlyMiss ? null : Math.round(hit * 1.3 + ((skill.fixed(HitType.crit, this.damageForm, this.currentArtifact, soulburn) + skill.fixed2(HitType.crit, this.damageForm, this.currentArtifact, soulburn)) * additionalDamageReduction) + this.getAfterMathDamage(skill, HitType.crush, soulburn)),
+      crush: skill.noCrit || skill.onlyCrit(soulburn) || skill.onlyMiss ? null : Math.round(crush + ((skill.fixed(HitType.crit, this.damageForm, this.currentArtifact, soulburn) + skill.fixed2(HitType.crit, this.damageForm, this.currentArtifact, soulburn)) * additionalDamageReduction) + this.getAfterMathDamage(skill, HitType.crush, soulburn)),
       normal: skill.onlyCrit(soulburn) || skill.onlyMiss ? null : Math.round(hit + ((skill.fixed(HitType.crit, this.damageForm, this.currentArtifact, soulburn) + skill.fixed2(HitType.crit, this.damageForm, this.currentArtifact, soulburn)) * additionalDamageReduction) + this.getAfterMathDamage(skill, HitType.normal, soulburn)),
-      miss: skill.noMiss ? null : Math.round(hit * 0.75 + ((skill.fixed(HitType.crit, this.damageForm, this.currentArtifact, soulburn) + skill.fixed2(HitType.crit, this.damageForm, this.currentArtifact, soulburn)) * additionalDamageReduction) + this.getAfterMathDamage(skill, HitType.miss, soulburn))
+      miss: skill.noMiss ? null : Math.round(miss + ((skill.fixed(HitType.crit, this.damageForm, this.currentArtifact, soulburn) + skill.fixed2(HitType.crit, this.damageForm, this.currentArtifact, soulburn)) * additionalDamageReduction) + this.getAfterMathDamage(skill, HitType.miss, soulburn))
     };
   }
 
@@ -341,7 +343,7 @@ export class DamageService {
 
   getRuptureSkill() {
     if (this.damageForm.targetRuptured) {
-      return new Skill({afterMath: () => new AftermathSkill({ hpPercent: 0.12 })});
+      return new Skill({afterMath: () => new AftermathSkill({ targetMaxHPPercent : 0.12 })});
     } else {
       return new Skill({});
     }

@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Chart, ChartConfiguration, ChartOptions } from 'chart.js';
-import { Skill } from 'src/app/models/skill';
+import { HitType, Skill } from 'src/app/models/skill';
 import { DamageRow, DamageService } from 'src/app/services/damage.service';
 import { DataService } from 'src/app/services/data.service';
 import { DisplayConstants } from 'src/assets/data/constants';
@@ -299,7 +299,7 @@ export class DamageGraphComponent implements OnInit, OnDestroy, AfterViewInit {
       (this.options.plugins.annotation.annotations as {value: number}[])[0].value = intersectionPoint;
     }
     
-    const artifactApplies = this.dataService.currentArtifact.value.applies(skill, this.dataService.damageInputValues, soulburn);
+    const artifactApplies = this.dataService.currentArtifact.value.applies(skill, this.dataService.damageInputValues, soulburn, this.damageToUse as HitType);
   
     // Filter out any unneeded datasets for unused stats ============================================================
     const attackLabel = this.translationPipe.transform('attack', 'graph', this.languageService.language.value);

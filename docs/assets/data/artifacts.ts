@@ -645,6 +645,17 @@ export const Artifacts: Record<string, Artifact> = {
     exclusive: HeroClass.mage,
     value: (artiScale: number, inputValues: DamageFormData) => artiScale + (inputValues.enemyDefeated ? Artifacts.time_matter.additional[Artifacts.time_matter.scale.indexOf(artiScale)] : 0) ,
   }),
+  tome_of_lifes_end: new Artifact({
+    id: 'tome_of_lifes_end',
+    name: "Tome of Life's End",
+    scale: [0.1, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2],
+    // scale: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    type: ArtifactDamageType.damageAndAftermath,
+    exclusive: HeroClass.warrior,
+    attackPercent: 0.4,
+    penetrate: 0.7,
+    applies: (skill: Skill, inputValues: DamageFormData, soulburn: boolean, hitType: HitType) => [HitType.normal, HitType.miss].includes(hitType)
+  }),
   torn_sleeve: new Artifact({
     id: 'torn_sleeve',
     name: 'Torn Sleeve',

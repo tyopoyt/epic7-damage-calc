@@ -7,6 +7,8 @@ To test your translation locally, there is a hidden option to load a custom tran
 <img src="./language_custom.gif" alt="image" width="800" height="auto">
 
 ## Changelog
+### <strong>Dec 18 2025 Update:</strong>
+- Added Hecate, Tome of Life's End, and Shepherd of the Dark Diene.
 ### <strong>Dec 14 2025 Update:</strong>
 - Added Sealed Eye Surin, and Swift Flagbearer Sigret. Updated heroes in 11/20 balance patch.
 ### <strong>Sep 27 2025 Update:</strong>

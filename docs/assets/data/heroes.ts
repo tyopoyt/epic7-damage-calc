@@ -4948,6 +4948,69 @@ export const Heroes: Record<string, Hero> = {
       })
     }
   }),
+  hecate: new Hero({
+    element: HeroElement.earth,
+    class: HeroClass.warrior,
+    baseAttack: 966,
+    baseHP: 7323,
+    baseDefense: 657,
+    skills: {
+      s1: new Skill({
+        id: 's1',
+        rate: () => 0.35,
+        pow: () => 1,
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        penetrate: (soulburn: boolean, inputValues: DamageFormData) => {
+          let extra = 0;
+          for (let i = 0; i < inputValues.molagoras2; i++) {
+            extra += Heroes.hecate.skills.s2.enhance[i];
+          }
+
+          return 0.85 + extra;
+        },
+        isSingle: () => true,
+        noCrit: true,
+      }),
+      s1_extra: new Skill({
+        id: 's1_extra',
+        name: 'hecate_final_deliverance',
+        rate: () => 0.25,
+        pow: () => 1.3,
+        penetrate: (soulburn: boolean, inputValues: DamageFormData) => {
+          let extra = 0;
+          for (let i = 0; i < inputValues.molagoras2; i++) {
+            extra += Heroes.hecate.skills.s2.enhance[i];
+          }
+
+          return 0.85 + extra;
+        },
+        isAOE: () => true,
+        isExtra: true,
+        noCrit: true,
+      }),
+      s2: new Skill({
+        id: 's2',
+        enhance: [0.02, 0.02, 0.03, 0.03, 0.05]
+      }),
+      s3: new Skill({
+        id: 's3',
+        rate: () => 1.5,
+        pow: () => 1,
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        penetrate: (soulburn: boolean, inputValues: DamageFormData) => {
+          let extra = 0;
+          for (let i = 0; i < inputValues.molagoras2; i++) {
+            extra += Heroes.hecate.skills.s2.enhance[i];
+          }
+
+          return 0.85 + extra;
+        },
+        isSingle: () => true,
+        ignoreDamageTransfer: () => true,
+        noCrit: true,
+      })
+    }
+  }),
   helen: new Hero({
     element: HeroElement.ice,
     class: HeroClass.knight,
@@ -9136,6 +9199,38 @@ export const Heroes: Record<string, Hero> = {
         multTip: (inputValues: DamageFormData) => (inputValues.skillTreeCompleted ? {skill_tree: 5} : null),
         enhance: [0.05, 0.05, 0, 0, 0.1, 0, 0.15],
         isAOE: () => true,
+      })
+    }
+  }),
+  shepherd_of_the_dark_diene: new Hero({
+    element: HeroElement.dark,
+    class: HeroClass.mage,
+    baseAttack: 1039,
+    baseHP: 6034,
+    baseDefense: 613,
+    heroSpecific: ['casterMaxHP'],
+    skills: {
+      s1: new Skill({
+        id: 's1',
+        hpScaling: true,
+        rate: (soulburn: boolean) => soulburn ? 1 : 0.5,
+        pow: () => 1,
+        flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * ( soulburn ? 0.24 : 0.12),
+        flatTip: (soulburn: boolean) => ({ casterMaxHP: soulburn ? 24 : 12 }),
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        isSingle: () => true,
+        onlyCrit: () => true,
+      }),
+      s3: new Skill({
+        id: 's3',
+        hpScaling: true,
+        rate: () => 0.5,
+        pow: () => 1,
+        flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * 0.2,
+        flatTip: () => ({ casterMaxHP: 20 }),
+        enhance: [0.05, 0.05, 0, 0.05, 0.15],
+        isAOE: () => true,
+        onlyCrit: () => true,
       })
     }
   }),
