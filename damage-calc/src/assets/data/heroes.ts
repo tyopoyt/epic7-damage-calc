@@ -9213,6 +9213,7 @@ export const Heroes: Record<string, Hero> = {
       s1: new Skill({
         id: 's1',
         hpScaling: true,
+        soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 1 : 0.5,
         pow: () => 1,
         flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * ( soulburn ? 0.24 : 0.12),
