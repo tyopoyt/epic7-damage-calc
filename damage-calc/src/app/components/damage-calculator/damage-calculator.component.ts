@@ -679,7 +679,7 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
   updateDamageBlockHeader() { 
     this.updateDots();
     this.updateBarriers();
-    this.artifactDamage = Math.max(this.damageService.getArtifactDamage(false, HitType.crit), this.damageService.getArtifactDamage(true, HitType.crit));
+    this.artifactDamage = Math.max(this.damageService.getArtifactDamage(false, HitType.crit), this.damageService.getArtifactDamage(true, HitType.crit), this.damageService.getArtifactDamage(false, HitType.normal), this.damageService.getArtifactDamage(true, HitType.normal));
     this.attackIncrease = Math.round(((this.hero.attackIncrease(this.inputValues) - 1) + this.hero.innateAttackIncrease(this.inputValues)) * this.inputValues.attack + this.hero.flatAttackIncrease(this.inputValues, this.artifact));
     this.speedIncrease = this.hero.speedIncrease(this.inputValues) !== 1 ? this.hero.getSpeed(this.inputValues) : 0;
     this.resistanceIncrease = Math.round(this.hero.resistanceIncrease(this.artifact, this.inputValues));
