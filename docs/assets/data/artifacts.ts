@@ -460,6 +460,14 @@ export const Artifacts: Record<string, Artifact> = {
     exclusive: HeroClass.ranger,
     scale: [0.05, 0.055, 0.06, 0.065, 0.07, 0.075, 0.08, 0.085, 0.09, 0.095, 0.1],
   }),
+  ritual_of_sealing_flames: new Artifact({
+    id: 'ritual_of_sealing_flames',
+    name: 'Ritual of Sealing Flames',
+    barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number, soulburn: boolean, barrierScale: number) => hero.getAttack(artifact, inputValues, attackMultiplier, skill, soulburn, HitType.normal) * barrierScale,
+    barrierScale: [0.6, 0.66, 0.72, 0.78, 0.84, 0.9, 0.96, 1.02, 1.08, 1.14, 1.2],
+    exclusive: HeroClass.warrior,
+    type: ArtifactDamageType.barrier_only
+  }),
   rocket_punch_gauntlet: new Artifact({
     id: 'rocket_punch_gauntlet',
     name: 'Rocket Punch Gauntlet',
@@ -638,7 +646,7 @@ export const Artifacts: Record<string, Artifact> = {
   time_matter: new Artifact({
     id: 'time_matter',
     name: 'Time Matter',
-    scale: [0.06, 0.66, 0.072, 0.078, 0.084, 0.09, 0.096, 0.102, 0.108, 0.114, 0.12],
+    scale: [0.06, 0.066, 0.072, 0.078, 0.084, 0.09, 0.096, 0.102, 0.108, 0.114, 0.12],
     additional: [0.12, 0.132, 0.144, 0.156, 0.168, 0.18, 0.192, 0.204, 0.216, 0.228, 0.24],
     artifactSpecific:['enemyDefeated'],
     type: ArtifactDamageType.damage,

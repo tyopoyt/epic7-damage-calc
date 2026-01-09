@@ -15,6 +15,7 @@ export enum ArtifactDamageType {
     flat = 'flat',
     dot = 'dot',
     health_only = 'health_only',
+    barrier_only = 'barrier_only',
     defense = 'defense'
 }
 
