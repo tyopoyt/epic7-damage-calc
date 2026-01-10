@@ -6281,9 +6281,10 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1158,
     baseHP: 6002,
     baseDefense: 553,
-    heroSpecific: ['casterFullFightingSpirit', 'attackSkillStack'],
+    heroSpecific: ['casterFullFightingSpirit', 'attackSkillStack', 'exclusiveEquipment2'],
     heroSpecificMaximums: {'attackSkillStack': 3},
     barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number, soulburn: boolean) => hero.getAttack(artifact, inputValues, attackMultiplier, skill, soulburn, HitType.normal) * 0.8,
+    barrierSkills: ['S3'],
     attackIncrease: (inputValues: DamageFormData) => {
       let boost = 0.15;
       for (let i = 0; i < inputValues.molagoras2; i++) {
@@ -6309,7 +6310,7 @@ export const Heroes: Record<string, Hero> = {
         isAOE: () => true,
         rate: () => 0.9,
         pow: () => 1,
-        penetrate: (soulburn: boolean, inputValues: DamageFormData) => inputValues.casterFullFightingSpirit ? 0.5 : 0,
+        penetrate: (soulburn: boolean, inputValues: DamageFormData) => inputValues.casterFullFightingSpirit ? (inputValues.exclusiveEquipment2 ? 0.6 : 0.5) : 0,
         enhance: [0.05, 0.05, 0, 0.1, 0.1]
       })
     }
