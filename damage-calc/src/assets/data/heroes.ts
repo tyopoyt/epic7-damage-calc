@@ -9162,6 +9162,7 @@ export const Heroes: Record<string, Hero> = {
       }),
       s3: new Skill({
         id: 's3',
+        soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 1.65 : 1.2,
         pow: () => 1,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
