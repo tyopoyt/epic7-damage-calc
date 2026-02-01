@@ -7512,7 +7512,7 @@ export const Heroes: Record<string, Hero> = {
         soulburn: true,
         rate: (soulburn: boolean) => (soulburn ? 0.5 : 0.3),
         pow: () => 1,
-        pentrate: () => 1,
+        penetrate: () => 1,
         enhance: [0.05, 0.0, 0.05, 0.1, 0, 0.1],
         isSingle: () => true,
       }),
