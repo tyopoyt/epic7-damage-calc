@@ -7492,6 +7492,48 @@ export const Heroes: Record<string, Hero> = {
       })
     }
   }),
+  monarch_of_the_sword_iseria: new Hero({
+    name: 'Monarch of the Sword Iseria',
+    element: HeroElement.light,
+    class: HeroClass.knight,
+    baseAttack: 1112,
+    baseHP: 6321,
+    baseDefense: 645,
+    attackIncrease: (inputValues: DamageFormData) => {
+      let buff = BattleConstants.fractureAttack;
+      return 1 + Math.min(inputValues.casterFractureStack, 10) * buff;
+    },
+    barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number, soulburn: boolean) => hero.getAttack(artifact, inputValues, attackMultiplier, skill, soulburn, HitType.normal) * 0.7,
+    heroSpecific: ['casterFractureStack'],
+    skills: {
+      s1: new Skill({
+        id: 's1',
+        soulburn: true,
+        rate: (soulburn: boolean) => (soulburn ? 0.5 : 0.3),
+        pow: () => 1,
+        pentrate: () => 1,
+        enhance: [0.05, 0.0, 0.05, 0.1, 0, 0.1],
+        isSingle: () => true,
+      }),
+      s2: new Skill({
+        id: 's2',
+        name: 'monarch_of_the_sword_iseria_sword_of_duty',
+        rate: () => 0.3,
+        pow: () => 1,
+        afterMath: (hitType: HitType) => hitType !== HitType.miss ? new AftermathSkill(({ attackPercent: 1.25 })) : null,
+        enhanceFrom: 's1',
+        isSingle: () => true,
+      }),
+      s3: new Skill({
+        id: 's3',
+        rate: () => 0.3,
+        pow: () => 1,
+        afterMath: (hitType: HitType) => hitType !== HitType.miss ? new AftermathSkill(({ attackPercent: 1.55 })) : null,
+        enhance: [0.05, 0.1, 0.15],
+        isAOE: () => true,
+      }),
+    }
+  }),
   montmorancy: new Hero({
     element: HeroElement.ice,
     class: HeroClass.soul_weaver,

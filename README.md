@@ -7,6 +7,8 @@ To test your translation locally, there is a hidden option to load a custom tran
 <img src="./language_custom.gif" alt="image" width="800" height="auto">
 
 ## Changelog
+### <strong>Jan 31 2026 Update:</strong>
+- Added Monarch of the Sword Iseria
 ### <strong>Jan 9 2026 Update:</strong>
 - Added Aki, Ritual of Sealing Flames, and 1/8 Balance patch changes.
 ### <strong>Dec 18 2025 Update:</strong>

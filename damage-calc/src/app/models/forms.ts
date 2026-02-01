@@ -406,6 +406,11 @@ export const FormDefaults: Record<string, {max?: number, min?: number, defaultVa
         min: 0,
         defaultValue: 0
     },
+    casterFractureStack: {
+        max: 10,
+        min: 0,
+        defaultValue: 0
+    },
     casterFightingSpirit: {
         max: 100,
         min: 0,
@@ -555,6 +560,7 @@ export class DamageFormData {
     casterHasBarrier: boolean;
     casterFightingSpirit: number;
     casterSpoilsStack: number;
+    casterFractureStack: number;
     casterFullFocus: boolean;
     casterFury: boolean;
     casterBuffed: boolean;
@@ -719,6 +725,7 @@ export class DamageFormData {
         this.casterHasBarrier = _.get(data, 'casterHasBarrier', true);
         this.casterFightingSpirit = _.get(data, 'casterFightingSpirit', 0);
         this.casterSpoilsStack = _.get(data, 'casterSpoilsStack', 0);
+        this.casterFractureStack = _.get(data, 'casterFractureStack', 0);
         this.casterFullFocus = _.get(data, 'casterFullFocus', false);
         this.casterFury = _.get(data, 'casterFury', false);
         this.casterBuffed = _.get(data, 'casterBuffed', false);
