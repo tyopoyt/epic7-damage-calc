@@ -7504,6 +7504,7 @@ export const Heroes: Record<string, Hero> = {
       return 1 + Math.min(inputValues.casterFractureStack, 10) * buff;
     },
     barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number, soulburn: boolean) => hero.getAttack(artifact, inputValues, attackMultiplier, skill, soulburn, HitType.normal) * 0.7,
+    barrierSkills: ['Passive'],
     heroSpecific: ['casterFractureStack'],
     skills: {
       s1: new Skill({
