@@ -11569,7 +11569,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 1158,
     baseHP: 6002,
     baseDefense: 553,
-    heroSpecific: ['exclusiveEquipment3'],
+    heroSpecific: ['exclusiveEquipment3', 'numberOfTargets'],
     skills: {
       s1: new Skill({
         id: 's1',
