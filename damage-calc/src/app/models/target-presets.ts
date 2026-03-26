@@ -409,8 +409,8 @@ export const TargetReductionPresetGroups: Record<string, ReductionPreset[]> = {
         {
             id: 'escort',
             name: 'Escort Buff',
-            label: '30%',
-            damageTransfer: 30,
+            label: '40%',
+            damageTransfer: 40,
             icon: 'buffs/escort-buff'
         },
         {

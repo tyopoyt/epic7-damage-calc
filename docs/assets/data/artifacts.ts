@@ -443,16 +443,6 @@ export const Artifacts: Record<string, Artifact> = {
     exclusive: HeroClass.ranger,
     applies: (skill: Skill, inputValues: DamageFormData, soulburn: boolean) => skill.isAOE(inputValues, soulburn)
   }),
-  reingar_special_drink_old: new Artifact({
-    id: 'reingar_special_drink',
-    name: 'Reingar\'s Special Drink',
-    type: ArtifactDamageType.aftermath,
-    artifactSpecific:['targetDefenseDownAftermath'],
-    attackPercent: 0.3,
-    penetrate: 0.7,
-    exclusive: HeroClass.ranger,
-    applies: (skill: Skill, inputValues: DamageFormData, soulburn: boolean) => skill.isAOE(inputValues, soulburn)
-  }),
   renewed_will: new Artifact({
     id: 'renewed_will',
     name: 'Renewed Will',
@@ -541,13 +531,6 @@ export const Artifacts: Record<string, Artifact> = {
     type: ArtifactDamageType.attack,
     scale: [0.1, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2],
     exclusive: HeroClass.warrior,
-  }),
-  sigurd_scythe_old: new Artifact({
-    id: 'sigurd_scythe',
-    name: 'Sigurd Scythe',
-    type: ArtifactDamageType.attack,
-    exclusive: HeroClass.warrior,
-    value: () => 0.25
   }),
   spear_of_a_new_dawn: new Artifact({
     id: 'spear_of_a_new_dawn',
@@ -679,6 +662,19 @@ export const Artifacts: Record<string, Artifact> = {
     exclusive: HeroClass.thief
   }),
   tyrants_descent: new Artifact({
+    id: 'tyrants_descent',
+    name: "Tyrant's Descent",
+    artifactSpecific: ['targetNumberOfDebuffs'],
+    scale: [0.08, 0.088, 0.096, 0.104, 0.112, 0.12, 0.128, 0.136, 0.144, 0.152, 0.16],
+    // TODO: Check additional scaling, is max 32 total or 32 + scale
+    additional: [0.24, 0.248, 0.256, 0.264, 0.272, 0.28, 0.288, 0.296, 0.304, 0.312, 0.32],
+    type: ArtifactDamageType.damage,
+    exclusive: HeroClass.warrior,
+    value: (artiScale: number, inputValues: DamageFormData) => {
+      return artiScale + Math.min(inputValues.targetNumberOfDebuffs * 0.03, Artifacts.tyrants_descent.additional[Artifacts.tyrants_descent.scale.indexOf(artiScale)])
+    }
+  }),
+  tyrants_descent_old: new Artifact({
     id: 'tyrants_descent',
     name: "Tyrant's Descent",
     artifactSpecific: ['targetNumberOfDebuffs'],
