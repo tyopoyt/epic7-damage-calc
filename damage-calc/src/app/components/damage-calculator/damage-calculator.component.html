@@ -189,6 +189,12 @@
                     {{'torrentSet' | translate:'form':languageService.language.value}}
                 </span>
             </mat-checkbox>
+            <mat-checkbox class="small-margin-top" [checked]="inputValues.pursuitSet" (change)="inputChange('pursuitSet', $event.checked)">
+                <span class="neat-container">
+                    <img class="png-icon medium tiny-margin-right" src="assets/sets/pursuit-set.png" alt="Pursuit set">
+                    {{'pursuitSet' | translate:'form':languageService.language.value}}
+                </span>
+            </mat-checkbox>
         </div>
         <div *ngIf="stackingSets.length" class="artifact-block header-block">
             <h1>{{'numberOfSets' | translate:'form':languageService.language.value}}</h1>
@@ -390,8 +396,14 @@
                 </mat-checkbox>
                 <mat-checkbox class="small-margin-top" [checked]="inputValues.targetMagicNailed" (change)="inputChange('targetMagicNailed', $event.checked); updateFormInputs()">
                     <span class="neat-container">
-                        <img class="png-icon medium tiny-margin-right" src="assets/debuffs/nail-debuff.png" alt="Target debuff">
+                        <img class="png-icon medium tiny-margin-right" src="assets/debuffs/nail-debuff.png" alt="Target magic nail">
                         {{'targetMagicNailed' | translate:'form':languageService.language.value}}
+                    </span>
+                </mat-checkbox>
+                <mat-checkbox class="small-margin-top" [checked]="inputValues.targetLaceration" (change)="inputChange('targetLaceration', $event.checked); updateFormInputs()">
+                    <span class="neat-container">
+                        <img class="png-icon medium tiny-margin-right" src="assets/debuffs/laceration-debuff.png" alt="Target laceration">
+                        {{'targetLaceration' | translate:'form':languageService.language.value}}
                     </span>
                 </mat-checkbox>
             </div>

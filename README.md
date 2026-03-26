@@ -7,6 +7,10 @@ To test your translation locally, there is a hidden option to load a custom tran
 <img src="./language_custom.gif" alt="image" width="800" height="auto">
 
 ## Changelog
+### <strong>Mar 26 2026 Update:</strong>
+- Added Ruiza, Tactical Archetype Coli, Shadow Winds 7, and Notos.
+- Updated Heroes from balance patch.
+- Added Pursuit Set.
 ### <strong>Jan 31 2026 Update:</strong>
 - Added Monarch of the Sword Iseria
 ### <strong>Jan 9 2026 Update:</strong>

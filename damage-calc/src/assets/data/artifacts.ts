@@ -508,6 +508,13 @@ export const Artifacts: Record<string, Artifact> = {
     exclusive: HeroClass.mage,
     value: () => 0.15
   }),
+  shadow_winds_7: new Artifact({
+    id: 'shadow_winds_7',
+    name: 'Shadow Winds 7',
+    type: ArtifactDamageType.attack,
+    scale: [0.1, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2],
+    exclusive: HeroClass.thief,
+  }),
   shepherd_of_the_hollow: new Artifact({
     id: 'shepherd_of_the_hollow',
     name: 'Shepherd of the Hollow',

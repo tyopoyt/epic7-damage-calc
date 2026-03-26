@@ -241,12 +241,26 @@ export const FormDefaults: Record<string, {max?: number, min?: number, defaultVa
     targetIsHighestMaxHP: {
         icon: 'icons/highest-hp.png',
     },
+    targetIsHighestDefense: {
+        icon: 'icons/highest-def.png',
+    },
     casterHasBzzt: {
         icon: 'buffs/bzzt-buff.png',
         default: true
     },
+    casterHasGodOfBattle: {
+        icon: 'buffs/god-of-battle-buff.png',
+    },
     casterHasCollapse: {
         icon: 'debuffs/collapse-debuff.png',
+        default: false
+    },
+    casterOverload: {
+        icon: 'buffs/overload-buff.png',
+        default: false
+    },
+    casterEnergyDepletion: {
+        icon: 'debuffs/energy-depletion-debuff.png',
         default: false
     },
     targetHasCollapse: {
@@ -393,7 +407,8 @@ export const FormDefaults: Record<string, {max?: number, min?: number, defaultVa
     },
     // TODO: default of casterBuffed depending on other buff boxes
     casterBuffed: {
-        icon: 'icons/e7-chevron-up.png'
+        icon: 'icons/e7-chevron-up.png',
+        default: true,
     },
     // TODO: caster has bzzt (and other unique buffs from passive) default to true? Check on queryparams stuff w/ that
     casterFocus: {
@@ -565,8 +580,10 @@ export class DamageFormData {
     casterFury: boolean;
     casterBuffed: boolean;
     casterHasBzzt: boolean;
-    casterHasCascade: boolean;
+    casterHasGodOfBattle: boolean;
     casterHasCollapse: boolean;
+    casterOverload: boolean;
+    casterEnergyDepletion: boolean;
     targetHasCollapse: boolean;
     casterHasAbundance: boolean;
     casterHasChallenge: boolean;
@@ -640,6 +657,7 @@ export class DamageFormData {
     numberOfHits: number;
     numberOfTargets: number;
     penetrationSet: boolean;
+    pursuitSet: boolean;
     rageSet: boolean;
     reductionPreset?: ReductionPreset;
     S3OnCooldown: boolean;
@@ -659,6 +677,7 @@ export class DamageFormData {
     targetDefense: number;
     targetDefenseIncrease: number;
     targetDefenseDown: boolean;
+    targetLaceration: boolean;
     targetPilfered: boolean;
     targetDefenseDownAftermath: boolean;
     targetDefenseUp: boolean;
@@ -670,6 +689,7 @@ export class DamageFormData {
     targetHasTrauma: boolean;
     targetInjuries: number;
     targetIsHighestMaxHP: boolean;
+    targetIsHighestDefense: boolean;
     targetMagicNailed: boolean;
     targetMaxHP: number;
     targetNumberOfBleeds: number;
@@ -728,9 +748,12 @@ export class DamageFormData {
         this.casterFractureStack = _.get(data, 'casterFractureStack', 0);
         this.casterFullFocus = _.get(data, 'casterFullFocus', false);
         this.casterFury = _.get(data, 'casterFury', false);
-        this.casterBuffed = _.get(data, 'casterBuffed', false);
+        this.casterBuffed = _.get(data, 'casterBuffed', true);
         this.casterHasBzzt = _.get(data, 'casterHasBzzt', true);
+        this.casterHasGodOfBattle = _.get(data, 'casterHasGodOfBattle', false);
         this.casterHasCascade = _.get(data, 'casterHasCascade', false);
+        this.casterOverload = _.get(data, 'casterOverload', false);
+        this.casterEnergyDepletion = _.get(data, 'casterEnergyDepletion', false);
         this.casterHasCollapse = _.get(data, 'casterHasCollapse', false);
         this.targetHasCollapse = _.get(data, 'targetHasCollapse', false);
         this.casterHasAbundance = _.get(data, 'casterHasAbundance', false);
@@ -804,6 +827,7 @@ export class DamageFormData {
         this.numberOfHits = _.get(data, 'numberOfHits', 1);
         this.numberOfTargets = _.get(data, 'numberOfTargets', 4);
         this.penetrationSet = _.get(data, 'penetrationSet', false);
+        this.pursuitSet = _.get(data, 'pursuitSet', false);
         this.rageSet = _.get(data, 'rageSet', false);
         this.reductionPreset = _.get(data, 'reductionPreset', null);
         this.S3OnCooldown = _.get(data, 'S3OnCooldown', true);
@@ -824,6 +848,7 @@ export class DamageFormData {
         this.targetDefense = _.get(data, 'targetDefense', 1000);
         this.targetDefenseIncrease = _.get(data, 'targetDefenseIncrease', 0);
         this.targetDefenseDown = _.get(data, 'targetDefenseDown', false);
+        this.targetLaceration = _.get(data, 'targetLaceration', false);
         this.targetPilfered= _.get(data, 'targetPilfered', false);
         this.targetDefenseDownAftermath = _.get(data, 'targetDefenseDownAftermath', false);
         this.targetDefenseUp = _.get(data, 'targetDefenseUp', false);
@@ -835,6 +860,7 @@ export class DamageFormData {
         this.targetHasTrauma = _.get(data, 'targetHasTrauma', false);
         this.targetInjuries = _.get(data, 'targetInjuries', 0);
         this.targetIsHighestMaxHP = _.get(data, 'targetIsHighestMaxHP', false);
+        this.targetIsHighestDefense = _.get(data, 'targetIsHighestDefense', false);
         this.targetMagicNailed = _.get(data, 'targetMagicNailed', false);
         this.targetMaxHP = _.get(data, 'targetMaxHP', 10000);
         this.targetNumberOfBleeds = _.get(data, 'targetNumberOfBleeds', 0);
@@ -860,6 +886,8 @@ export class DamageFormData {
            + (this.casterEnraged ? BattleConstants.casterEnraged - 1 : 0)
            + (this.casterRampage ? BattleConstants.rampage : 0)
            + (this.casterHasSuperhumanization ? BattleConstants.superhumanization : 0)
+           + (this.casterOverload ? BattleConstants.casterOverload - 1 : 0)
+           + (this.casterEnergyDepletion ? -1 * BattleConstants.casterEnergyDepletion : 0)
            + heroSpeedMultiplier));
     }
 
@@ -922,10 +950,11 @@ export class DamageFormData {
             : artifact.maxHP;
 
         return (this.casterHasCollapse ? 0.5 : 1) 
-             * ((this.inputOverrides['casterMaxHP'] ? this.inputOverrides['casterMaxHP'] : this.casterMaxHP)
+                * ((this.inputOverrides['casterMaxHP'] ? this.inputOverrides['casterMaxHP'] : this.casterMaxHP)
                 * ((this.inBattleHP ? 1 : artifactHP) + this.casterMaxHPIncrease / 100)
                 * (!this.inBattleHP && this.casterPilfered ? BattleConstants.casterPilfered : 1)
                 * (!this.inBattleHP && this.casterHasSuperhumanization ? BattleConstants.superhumanization + 1 : 1)
+                * (!this.inBattleHP && this.casterHasGodOfBattle ? BattleConstants.casterHasGodOfBattle : 1)
                );
     }
 

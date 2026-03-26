@@ -1863,4 +1863,19 @@ export const SkillIDs: Record<string, Record<string, string>> = {
         "s2": "sk_c6024_2",
         "s3": "sk_c6024_3"
     },
+    "ruiza": {
+        "s1": "sk_c1180_1",
+        "s2": "sk_c1180_2",
+        "s3": "sk_c1180_3"
+    },
+    "tactical_archetype_coli": {
+        "s1": "sk_c5033_1",
+        "s2": "sk_c5033_2",
+        "s3": "sk_c5033_3"
+    },
+    "notos": {
+        "s1": "sk_c2181_1",
+        "s2": "sk_c2181_2",
+        "s3": "sk_c2181_3"
+    },
 }
