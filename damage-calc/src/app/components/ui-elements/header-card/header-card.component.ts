@@ -1,6 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { LanguageService } from 'src/app/services/language.service';
+import { Component, Input } from '@angular/core';
 
 export enum HeaderCardComponentColorOption {
   none = '',

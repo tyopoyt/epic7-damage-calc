@@ -7,6 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
+    "test:snapshots:generate": "tsx --tsconfig tsconfig.json scripts/generate-snapshots.ts",
+    "test:snapshots": "ng test --include=**/damage.service.spec.ts --watch=false",
     "lint": "ng lint"
   },
   "private": true,
@@ -56,6 +58,7 @@
     "karma-coverage": "~2.0.3",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.0",
+    "tsx": "^4.21.0",
     "typescript": "5.8.3",
     "webpack-bundle-analyzer": "^4.9.1"
   }

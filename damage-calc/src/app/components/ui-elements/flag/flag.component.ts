@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Language, Languages } from 'src/app/models/languages';
 
 @Component({
     selector: 'app-flag',

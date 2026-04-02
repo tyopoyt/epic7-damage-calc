@@ -2,7 +2,7 @@
 <mat-toolbar class="navbar mat-elevation-z2" [class.small]="screenService.smallScreen.value">
     <span class="neat-container absolute-left">
         <img class="navbar-icon" [class.small]="screenService.tinyScreen.value" src="assets/icons/{{toolSelection.value}}_logo.png" alt="Revive buff icon">
-        <span *ngIf="!screenService.microscopicScreen.value" [class.medium-text]="screenService.tinyScreen.value">{{'app_title' | translate:'titles':languageService.language.value}}</span>
+        <span *ngIf="!screenService.microscopicScreen.value" [class.medium-text]="screenService.tinyScreen.value">{{'app_title' | translate:'titles'}}</span>
     </span>
     <div class="navbar-options">
         <span class="neat-container">
@@ -16,7 +16,7 @@
                         'medium-margin-left': !screenService.largeScreen.value
                     }"
                     (click)="selectTool(toolTitle)">
-                    {{toolTitle | translate:'titles':languageService.language.value}}
+                    {{toolTitle | translate:'titles'}}
                 </span>
             </span>
             <ng-template #smallScreenPageSelect>
@@ -25,11 +25,11 @@
                         <!-- This trigger has the same value but is here for styling purposes -->
                         <mat-select-trigger class="tool-trigger" [class.medium-text]="screenService.tinyScreen.value">
                             <span class="neat-container">
-                                {{toolSelection.value | translate:'titles':languageService.language.value}}
+                                {{toolSelection.value | translate:'titles'}}
                             </span>
                         </mat-select-trigger>
                         <mat-option *ngFor="let toolTitle of toolTitles" [value]="toolTitle">
-                            {{toolTitle | translate:'titles':languageService.language.value}}
+                            {{toolTitle | translate:'titles'}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -42,7 +42,7 @@
             <span class="neat-container icon-holder">
                 <button type="button" (click)="openKofi()"  mat-flat-button>
                     <img class="webp-icon" src="assets/icons/ko-fi.webp" alt="ko-fi icon">
-                    {{'donate' | translate:'ui':languageService.language.value}}
+                    {{'donate' | translate:'ui'}}
                 </button>
                 <ng-template [ngTemplateOutlet]="darkModeToggle"></ng-template>
                 <ng-template [ngTemplateOutlet]="retroModeToggle"></ng-template>
@@ -71,8 +71,8 @@
                     <img class="icon navbar-icon right" [matMenuTriggerFor]="extraItemMenu" (click)="setSlideToggleIcons(50)" src="assets/icons/cog.svg" alt="Settings">
                     <mat-menu class="switch-nested-menu-arrows extra-item" #extraItemMenu="matMenu">
                         <button mat-menu-item class="top-menu-item menu-item neat-container donate-button" (click)="openKofi()">
-                            <img class="webp-icon extra-item" src="assets/icons/ko-fi.webp">
-                            {{'donate' | translate:'ui':languageService.language.value}}
+                            <img class="webp-icon extra-item" src="assets/icons/ko-fi.webp" alt="ko-fi icon">
+                            {{'donate' | translate:'ui'}}
                         </button>
                         <ng-template [ngTemplateOutlet]="darkModeToggle"></ng-template>
                         <ng-template [ngTemplateOutlet]="retroModeToggle"></ng-template>
@@ -113,11 +113,11 @@
 </ng-template>
 
 <ng-template #darkModeToggle>
-    <mat-slide-toggle [class.margin-right]="languageService.language.value?.custom" [class.top-menu-item]="!screenService.microscopicScreen.value" #darkModeSwitch class="pointer" (click)="toggleDarkMode()" [checked]="screenService.theme === Theme.dark || screenService.theme === Theme.retro">{{'dark_mode' | translate:'ui':languageService.language.value}}</mat-slide-toggle>
+    <mat-slide-toggle [class.margin-right]="languageService.language.value?.custom" [class.top-menu-item]="!screenService.microscopicScreen.value" #darkModeSwitch class="pointer" (click)="toggleDarkMode()" [checked]="screenService.theme === Theme.dark || screenService.theme === Theme.retro">{{'dark_mode' | translate:'ui'}}</mat-slide-toggle>
 </ng-template>
 
 <ng-template #retroModeToggle>
-    <mat-slide-toggle [class.margin-right]="languageService.language.value?.custom" [class.top-menu-item]="!screenService.microscopicScreen.value" #retroModeSwitch class="pointer" (click)="toggleRetroMode()" [checked]="screenService.theme === Theme.retro || screenService.theme === Theme.retroLight">{{'retro_mode' | translate:'ui':languageService.language.value}}</mat-slide-toggle>
+    <mat-slide-toggle [class.margin-right]="languageService.language.value?.custom" [class.top-menu-item]="!screenService.microscopicScreen.value" #retroModeSwitch class="pointer" (click)="toggleRetroMode()" [checked]="screenService.theme === Theme.retro || screenService.theme === Theme.retroLight">{{'retro_mode' | translate:'ui'}}</mat-slide-toggle>
 </ng-template>
 
 <mat-menu #languageMenu="matMenu">

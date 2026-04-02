@@ -7,8 +7,7 @@ import { HeaderCardComponentColorOption, HeaderCardComponentSizeOption } from '.
 import { TranslationPipe } from 'src/app/pipes/translation.pipe';
 import { DismissibleColorOption } from '../ui-elements/dismissible/dismissible.component';
 import { FormControl } from '@angular/forms';
-import { ChartConfiguration, ChartData, ChartOptions } from 'chart.js';
-import { DisplayConstants } from 'src/assets/data/constants';
+import { ChartConfiguration, ChartOptions } from 'chart.js';
 
 @Component({
     selector: 'app-speed-solver',
@@ -71,7 +70,7 @@ export class SpeedSolverComponent implements OnInit {
               const maxData = dataDiff + 5
               const labels = this.speedData.labels || []
               const cumulativeProbability = this.probabilityData.slice(minData, maxData + 1).reduce((sum, value) => Number(sum) + Number(value), 0)
-              return `${(item.formattedValue * 100).toFixed(1)}% ${this.translationPipe.transform('chanceSpeed', 'graph', this.languageService.language.value)} ≈${item.label}${dataDiff !== 0 ? ('\n|\n' + (cumulativeProbability * 100).toFixed(1) + '% ' + this.translationPipe.transform('chanceSpeedBetween', 'graph', this.languageService.language.value) + ' ' + labels[minData] +  '~' + labels[maxData]) : ''}`
+              return `${(item.formattedValue * 100).toFixed(1)}% ${this.translationPipe.transform('chanceSpeed', 'graph')} ≈${item.label}${dataDiff !== 0 ? ('\n|\n' + (cumulativeProbability * 100).toFixed(1) + '% ' + this.translationPipe.transform('chanceSpeedBetween', 'graph') + ' ' + labels[minData] +  '~' + labels[maxData]) : ''}`
             }
           },
         },
@@ -139,7 +138,7 @@ export class SpeedSolverComponent implements OnInit {
   }
 
   translate(key: string) {
-    return this.translationPipe.transform(key, 'form', this.languageService.language.value);
+    return this.translationPipe.transform(key, 'form');
   }
 
   calculate() {

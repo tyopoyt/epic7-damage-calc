@@ -1,5 +1,7 @@
 <span class="dismissible neat-container" [ngClass]="color">
     <strong *ngIf="!!title">{{title}}</strong>
     <p>{{content}}</p>
-    <img class="icon svg-icon pointer" (click)="dismiss()" src="assets/icons/close.svg" alt="close">
+    <button class="icon svg-icon pointer" (click)="dismiss()" aria-label="Dismiss">
+        <img src="assets/icons/close.svg" alt="">
+    </button>
 </span>
