@@ -456,6 +456,7 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
     this.heroSpecificNumberInputs.forEach(input => {
       if (input === 'casterMaxHP') {
         this.heroSpecificNumberInputs.push('casterMaxHPIncrease')
+        this.heroSpecificNumberInputs.push('casterLingeringFragranceStack')
       }
     })
 
@@ -463,6 +464,7 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
     this.artifactSpecificNumberInputs.forEach(input => {
       if (input === 'casterMaxHP') {
         this.artifactSpecificNumberInputs.push('casterMaxHPIncrease')
+        this.artifactSpecificNumberInputs.push('casterLingeringFragranceStack')
       }
     })
 

@@ -11,6 +11,7 @@ To test your translation locally, there is a hidden option to load a custom tran
 - Added testing!
 - Cleaned up some code in damage service
 - Added Fracture for target
+- Added Perfumer Byblis
 ### <strong>Mar 26 2026 Update:</strong>
 - Added Ruiza, Tactical Archetype Coli, Shadow Winds 7, and Notos.
 - Updated Heroes from balance patch.

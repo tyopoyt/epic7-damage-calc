@@ -141392,6 +141392,143 @@
       }
     }
   },
+  "perfumer_byblis": {
+    "noProc": {
+      "s1": {
+        "skill": "s1",
+        "crit": 3508,
+        "crush": 1824,
+        "normal": 1403,
+        "miss": 1052
+      }
+    },
+    "a_symbol_of_unity": {
+      "s1": {
+        "skill": "s1",
+        "crit": 4069,
+        "crush": 2116,
+        "normal": 1628,
+        "miss": 1221
+      }
+    },
+    "ancient_sheath": {
+      "s1": {
+        "skill": "s1",
+        "crit": 4069,
+        "crush": 2116,
+        "normal": 1628,
+        "miss": 1221
+      }
+    },
+    "daydream_joker": {
+      "s1": {
+        "skill": "s1",
+        "crit": 3733,
+        "crush": 1941,
+        "normal": 1493,
+        "miss": 1120
+      }
+    },
+    "exorcist_tonfa": {
+      "s1": {
+        "skill": "s1",
+        "crit": 4069,
+        "crush": 2116,
+        "normal": 1628,
+        "miss": 1221
+      }
+    },
+    "frantic_flight": {
+      "s1": {
+        "skill": "s1",
+        "crit": 3508,
+        "crush": 1824,
+        "normal": 1403,
+        "miss": 1052
+      }
+    },
+    "our_beautiful_seasons": {
+      "s1": {
+        "skill": "s1",
+        "crit": 4210,
+        "crush": 2189,
+        "normal": 1684,
+        "miss": 1263
+      }
+    },
+    "portrait_of_the_saviors": {
+      "s1": {
+        "skill": "s1",
+        "crit": 4210,
+        "crush": 2189,
+        "normal": 1684,
+        "miss": 1263
+      }
+    },
+    "p_o_s": {
+      "s1": {
+        "skill": "s1",
+        "crit": 3508,
+        "crush": 1824,
+        "normal": 1403,
+        "miss": 1052
+      }
+    },
+    "prelude_to_a_new_era": {
+      "s1": {
+        "skill": "s1",
+        "crit": 4210,
+        "crush": 2189,
+        "normal": 1684,
+        "miss": 1263
+      }
+    },
+    "proof_of_friendship": {
+      "s1": {
+        "skill": "s1",
+        "crit": 3508,
+        "crush": 1824,
+        "normal": 1403,
+        "miss": 1052
+      }
+    },
+    "special_strawberry_cake": {
+      "s1": {
+        "skill": "s1",
+        "crit": 4210,
+        "crush": 2189,
+        "normal": 1684,
+        "miss": 1263
+      }
+    },
+    "sword_of_cycling_seasons": {
+      "s1": {
+        "skill": "s1",
+        "crit": 3508,
+        "crush": 1824,
+        "normal": 1403,
+        "miss": 1052
+      }
+    },
+    "sword_of_the_morning": {
+      "s1": {
+        "skill": "s1",
+        "crit": 4210,
+        "crush": 2189,
+        "normal": 1684,
+        "miss": 1263
+      }
+    },
+    "victorious_flag": {
+      "s1": {
+        "skill": "s1",
+        "crit": 4069,
+        "crush": 2116,
+        "normal": 1628,
+        "miss": 1221
+      }
+    }
+  },
   "pernilla": {
     "noProc": {
       "s1": {

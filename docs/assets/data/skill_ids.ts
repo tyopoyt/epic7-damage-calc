@@ -1878,4 +1878,9 @@ export const SkillIDs: Record<string, Record<string, string>> = {
         "s2": "sk_c2181_2",
         "s3": "sk_c2181_3"
     },
+    "perfumer_byblis": {
+        "s1": "sk_c5154_1",
+        "s2": "sk_c5154_2",
+        "s3": "sk_c5154_3"
+    },
 }

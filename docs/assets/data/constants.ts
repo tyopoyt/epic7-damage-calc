@@ -43,6 +43,7 @@ export const BattleConstants: Record<string, number> = {
   'casterOverload': 1.5,
   'casterEnergyDepletion': 0.5,
   'casterHasGodOfBattle': 2,
+  'lingeringFragrance': 0.05,
 };
 
 export const HeroConstants = {

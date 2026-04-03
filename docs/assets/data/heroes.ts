@@ -8142,6 +8142,25 @@ export const Heroes: Record<string, Hero> = {
       }),
     }
   }),
+  perfumer_byblis: new Hero({
+    element: HeroElement.fire,
+    class: HeroClass.soul_weaver,
+    baseAttack: 640,
+    baseHP: 5340,
+    baseDefense: 720,
+    heroSpecific: ['casterMaxHP'],
+    barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData) => inputValues.casterFinalMaxHP(artifact) * 0.10,
+    barrierSkills: ['S2'],
+    skills: {
+      s1: new Skill({
+        id: 's1',
+        rate: () => 1,
+        pow: () => 1,
+        enhance: [0.05, 0, 0.10, 0, 0.15],
+        isSingle: () => true,
+      }),
+    }
+  }),
   pernilla: new Hero({
     element: HeroElement.dark,
     class: HeroClass.warrior,

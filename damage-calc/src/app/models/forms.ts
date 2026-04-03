@@ -60,6 +60,12 @@ export const FormDefaults: Record<string, {max?: number, min?: number, defaultVa
         min: 0,
         defaultValue: 0
     },
+    casterLingeringFragranceStack: {
+        max: 5,
+        min: 0,
+        defaultValue: 0,
+        icon: 'buffs/lingering-fragrance-buff.png'
+    },
     casterInjury: {
         max: 25000,
         min: 0,
@@ -616,6 +622,7 @@ export class DamageFormData {
     casterInvincible: boolean;
     casterMaxHP: number;
     casterMaxHPIncrease: number;
+    casterLingeringFragranceStack: number;
     casterTurn: boolean;
     allyMaxHP: number;
     casterNumberOfBuffs: number;
@@ -787,6 +794,7 @@ export class DamageFormData {
         this.casterInjury = _.get(data, 'casterInjury', 0);
         this.casterMaxHP = _.get(data, 'casterMaxHP', 10000);
         this.casterMaxHPIncrease = _.get(data, 'casterMaxHPIncrease', 0);
+        this.casterLingeringFragranceStack = _.get(data, 'casterLingeringFragranceStack', 0);
         this.allyMaxHP = _.get(data, 'allyMaxHP', 10000);
         this.casterNumberOfBuffs = _.get(data, 'casterNumberOfBuffs', 0)
         this.alliesNumberOfBuffs = _.get(data, 'alliesNumberOfBuffs', 0)
@@ -964,6 +972,7 @@ export class DamageFormData {
                 * (!this.inBattleHP && this.casterPilfered ? BattleConstants.casterPilfered : 1)
                 * (!this.inBattleHP && this.casterHasSuperhumanization ? BattleConstants.superhumanization + 1 : 1)
                 * (!this.inBattleHP && this.casterHasGodOfBattle ? BattleConstants.casterHasGodOfBattle : 1)
+                * (!this.inBattleHP && this.casterLingeringFragranceStack ? (1 + this.casterLingeringFragranceStack * BattleConstants.lingeringFragrance) : 1)
                );
     }
 
