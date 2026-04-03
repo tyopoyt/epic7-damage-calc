@@ -400,12 +400,34 @@
                         {{'targetMagicNailed' | translate:'form'}}
                     </span>
                 </mat-checkbox>
+                <mat-checkbox class="small-margin-top" [checked]="inputValues.targetFractured" (change)="inputChange('targetFractured', $event.checked); updateFormInputs()">
+                    <span class="neat-container">
+                        <img class="png-icon medium tiny-margin-right" src="assets/debuffs/fracture-debuff.png" alt="Target fracture">
+                        {{'targetFractured' | translate:'form'}}
+                    </span>
+                </mat-checkbox>
                 <mat-checkbox class="small-margin-top" [checked]="inputValues.targetLaceration" (change)="inputChange('targetLaceration', $event.checked); updateFormInputs()">
                     <span class="neat-container">
                         <img class="png-icon medium tiny-margin-right" src="assets/debuffs/laceration-debuff.png" alt="Target laceration">
                         {{'targetLaceration' | translate:'form'}}
                     </span>
                 </mat-checkbox>
+            </div>
+        </div>
+        <!-- debuff-specific inputs form -->
+        <div *ngIf="debuffSpecificNumberInputs.length" class="debuff-specific-block header-block">
+            <h1>{{'debuffSpecific' | translate:'ui'}}</h1>
+            <div class="neat-container full-width">
+                <div *ngFor="let input of debuffSpecificNumberInputs" class="full-width">
+                    <app-slide-input #slideInput
+                        [label]="input | translate:'form'"
+                        [max]="formDefaults[input]?.max || 10000"
+                        [min]="formDefaults[input]?.min || 0" [step]="formDefaults[input]?.step || 1"
+                        [default]="formDefaults[input]?.defaultValue || 0"
+                        (valueChange)="inputChange(input, $event)"
+                        [column]="screenService.mediumScreen.value">
+                    </app-slide-input>
+                </div>
             </div>
         </div>
         <!-- Hero-specific inputs form -->
@@ -433,22 +455,6 @@
                             <img class="icon tiny tiny-margin-left" *ngIf="formDefaults[input]?.hint" src="assets/icons/help-circle-outline.svg" alt="Hint" matTooltip="{{(formDefaults[input]?.hint || '') | translate:'form'}}">
                         </span>
                     </mat-checkbox>
-                </div>
-            </div>
-        </div>
-        <!-- debuff-specific inputs form -->
-        <div *ngIf="debuffSpecificNumberInputs.length" class="debuff-specific-block header-block">
-            <h1>{{'debuffSpecific' | translate:'ui'}}</h1>
-            <div class="neat-container full-width">
-                <div *ngFor="let input of debuffSpecificNumberInputs" class="full-width">
-                    <app-slide-input #slideInput
-                        [label]="input | translate:'form'"
-                        [max]="formDefaults[input]?.max || 10000"
-                        [min]="formDefaults[input]?.min || 0" [step]="formDefaults[input]?.step || 1"
-                        [default]="formDefaults[input]?.defaultValue || 0"
-                        (valueChange)="inputChange(input, $event)"
-                        [column]="screenService.mediumScreen.value">
-                    </app-slide-input>
                 </div>
             </div>
         </div>

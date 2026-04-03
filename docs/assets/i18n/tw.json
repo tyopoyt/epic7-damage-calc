@@ -715,6 +715,8 @@
         "targetHasTrauma": "心理陰影",
         "targetInjuries": "目標的傷害",
         "targetIsHighestMaxHP": "目標是最高HP",
+        "targetFractured": "龜裂",
+        "targetFractureStack": "龜裂叠加數",
         "targetLaceration": "裂傷",
         "targetMagicNailed": "目標有魔術指甲",
         "targetMaxHP": "目標的最大HP",

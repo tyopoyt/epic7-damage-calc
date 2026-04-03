@@ -10,6 +10,7 @@ To test your translation locally, there is a hidden option to load a custom tran
 ### <strong>Apr 02 2026 Update:</strong>
 - Added testing!
 - Cleaned up some code in damage service
+- Added Fracture for target
 ### <strong>Mar 26 2026 Update:</strong>
 - Added Ruiza, Tactical Archetype Coli, Shadow Winds 7, and Notos.
 - Updated Heroes from balance patch.

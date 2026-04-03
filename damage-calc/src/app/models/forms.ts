@@ -421,6 +421,11 @@ export const FormDefaults: Record<string, {max?: number, min?: number, defaultVa
         min: 0,
         defaultValue: 0
     },
+    targetFractureStack: {
+        max: 10,
+        min: 0,
+        defaultValue: 0
+    },
     casterFractureStack: {
         max: 10,
         min: 0,
@@ -677,6 +682,8 @@ export class DamageFormData {
     targetDefense: number;
     targetDefenseIncrease: number;
     targetDefenseDown: boolean;
+    targetFractured: boolean;
+    targetFractureStack: number;
     targetLaceration: boolean;
     targetPilfered: boolean;
     targetDefenseDownAftermath: boolean;
@@ -848,6 +855,8 @@ export class DamageFormData {
         this.targetDefense = _.get(data, 'targetDefense', 1000);
         this.targetDefenseIncrease = _.get(data, 'targetDefenseIncrease', 0);
         this.targetDefenseDown = _.get(data, 'targetDefenseDown', false);
+        this.targetFractured = _.get(data, 'targetFractured', false);
+        this.targetFractureStack = _.get(data, 'targetFractureStack', 0);
         this.targetLaceration = _.get(data, 'targetLaceration', false);
         this.targetPilfered= _.get(data, 'targetPilfered', false);
         this.targetDefenseDownAftermath = _.get(data, 'targetDefenseDownAftermath', false);

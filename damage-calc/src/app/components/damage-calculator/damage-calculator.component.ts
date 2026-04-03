@@ -375,7 +375,10 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
     this.heroSpecificMaximums = this.hero.heroSpecificMaximums;
     this.artifactSpecificMaximums = this.artifact.artifactSpecificMaximums;
 
-    this.debuffSpecificNumberInputs =  this.inputValues.targetRuptured ? ['targetMaxHP'] : []
+    this.debuffSpecificNumberInputs = this.inputValues.targetRuptured ? ['targetMaxHP'] : [];
+    if (this.inputValues.targetFractured) {
+      this.debuffSpecificNumberInputs.push('targetFractureStack');
+    }
     this.buffSpecificNumberInputs = this.inputValues.casterHasChallenge ? ['targetMaxHP'] : []
 
     if (this.inputValues.casterHasSpecialFriendship) {

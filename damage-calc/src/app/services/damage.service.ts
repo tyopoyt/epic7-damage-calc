@@ -60,6 +60,10 @@ export class DamageService {
       mult += BattleConstants['targetDefenseDown']
     }
 
+    if (this.damageForm.targetFractured) {
+      mult -= Math.min(this.damageForm.targetFractureStack, 10) * BattleConstants.fractureDefense;
+    }
+
     // TODO: double check defense + trauma interaction?
     // TODO: also check pilfer + defbreak interaction
     if (this.damageForm.targetHasTrauma && this.damageForm.targetDefenseDown) {

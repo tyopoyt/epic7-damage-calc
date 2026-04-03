@@ -718,6 +718,8 @@
         "targetHasTrauma": "트라우마",
         "targetInjuries": "대상의 상처",
         "targetIsHighestMaxHP": "최대 생명력이 가장 높은 대상",
+        "targetFractured": "균열",
+        "targetFractureStack": "대상의 균열 스택",
         "targetLaceration": "열상",
         "targetMagicNailed": "대상에게 마법못이 있음",
         "targetMaxHP": "대상의 최대 체력",

@@ -714,6 +714,8 @@
         "targetHasTrauma": "创伤",
         "targetInjuries": "目标的伤口",
         "targetIsHighestMaxHP": "目标是最高生命",
+        "targetFractured": "龟裂",
+        "targetFractureStack": "龟裂叠加数",
         "targetLaceration": "裂伤",
         "targetMagicNailed": "魔法钉",
         "targetMaxHP": "目标的最大生命",

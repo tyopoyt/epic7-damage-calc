@@ -563,6 +563,8 @@
     "target_to_resist": "Chance do Alvo Resistir",
     "target": "",
     "targetDefenseIncrease": "",
+    "targetFractured": "Fratura",
+    "targetFractureStack": "Stack de Fratura",
     "targetLaceration": "Laceração",
     "targetMagicNailed": "Alvo com Prego Mágico",
     "targetRuptured": "Ruptura",
