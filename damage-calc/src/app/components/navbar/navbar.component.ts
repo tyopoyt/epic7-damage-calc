@@ -1,7 +1,7 @@
-import { CurrencyPipe, Location } from '@angular/common';
-import { AfterViewInit, Component, ElementRef, HostListener, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { Location } from '@angular/common';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { UntypedFormControl } from '@angular/forms';
-import { MatSelect, MatSelectChange } from '@angular/material/select';
+import { MatSelect } from '@angular/material/select';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GoogleTagManagerService } from 'angular-google-tag-manager';
 import { Language, Languages } from 'src/app/models/languages';
@@ -22,8 +22,8 @@ export class NavbarComponent implements OnInit  {
 
   customLanguage = CustomLanguage
 
-  languages = Object.values(Object.entries(Languages).filter(entry => entry[0].length <= 2 && entry[0] !== 'zh').map(([key, value]) => value));
-  countries = Object.entries(Languages).map(([key, value]) => value.countryCode)
+  languages = Object.values(Object.entries(Languages).filter(entry => entry[0].length <= 2 && entry[0] !== 'zh').map(([_key, value]) => value));
+  countries = Object.entries(Languages).map(([_key, value]) => value.countryCode)
   toolTitles: string[] = [];
   languageSelection = new UntypedFormControl(Languages.us);
   toolSelection: UntypedFormControl;

@@ -791,7 +791,7 @@
   //     }),
   //     s1_bis: new Skill({
   //       id: 's1_bis',
-  //       name: 'ml_kayron_flash_slash',
+  //       name: 'twistedEidolonKayronFlashSlash',
   //       rate: () => 0.85,
   //       pow: () => 1,
   //       enhanceFrom: 's1',
@@ -1200,7 +1200,7 @@
   //     }),
   //     s1_bis: new Skill({
   //       id: 's1_bis',
-  //       name: 'ml_celine_nimble_sword',
+  //       name: 'spiritEyeCelineNimbleSword',
   //       rate: () => 1.3,
   //       pow: () => 0.9,
   //       penetrate: () => 0.35,
@@ -1435,7 +1435,7 @@
   //       isSingle: () => true,
   //     }),
   //     s1_bis: new Skill({
-  //       name: 'kane_rock_smash',
+  //       name: 'kaneRockSmash',
   //       id: 's1_bis',
   //       rate: () => 0.5,
   //       pow: () => 1.3,
@@ -1892,7 +1892,7 @@
       //     }),
       //     s1_bis: new Skill({
       //       id: 's1_bis',
-      //       name: 'sez_encroach',
+      //       name: 'sezEncroach',
       //       rate: () => 0.5,
       //       pow: () => 1,
       //       mult: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => 1 + (100 - inputValues.targetCurrentHPPercent) * 0.003,
@@ -1973,7 +1973,7 @@
       //       soulburn: true
       //     }),
       //     s1_bis: new Skill({
-      //       name: 'ml_kayron_flash_slash',
+      //       name: 'twistedEidolonKayronFlashSlash',
       //       id: 's1_bis',
       //       rate: () => 0.85,
       //       pow: () => 1,
@@ -2784,7 +2784,7 @@
   //       soulburn: true
   //     }),
   //     s1_bis: new Skill({
-  //       name: 'ml_kayron_flash_slash',
+  //       name: 'twistedEidolonKayronFlashSlash',
   //       id: 's1_bis',
   //       rate: () => 1,
   //       pow: () => 1,
@@ -3182,7 +3182,7 @@
   //     }),
   //     s1_bis: new Skill({
   //       id: 's1_bis',
-  //       name: 'beehoo_incinerate',
+  //       name: 'beehooIncinerate',
   //       rate: () => 1.2,
   //       pow: () => 0.9,
   //       enhanceFrom: 's1',

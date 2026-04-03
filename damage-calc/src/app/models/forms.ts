@@ -546,7 +546,7 @@ export const TargetAttackModifiers = [
 
 export class DamageFormData {
     // Make sure to periodically comment the next line to ensure functions are being passed the right params
-    [key: string]: string | number | boolean | DefensePreset | ReductionPreset | undefined | ((artifact: Artifact) => number) | ((heroMultiplier: number) => number) | Record<string, number>,
+    [key: string]: string | number | boolean | DefensePreset | ReductionPreset | undefined | ((artifact: Artifact) => number) | ((heroMultiplier: number) => number) | Record<string, number>;
     AOEStack: number;
     heroLevel: number;
     artifactLevel: number;
@@ -718,8 +718,8 @@ export class DamageFormData {
 
     constructor(data: any) {
         this.AOEStack = _.get(data, 'AOEStack', 0);
-        this.artifactLevel = _.get(data, 'artifactLevel', 0);
-        this.heroLevel = _.get(data, 'heroLevel', 0);
+        this.artifactLevel = _.get(data, 'artifactLevel', 30);
+        this.heroLevel = _.get(data, 'heroLevel', 60);
         this.artifactProc = _.get(data, 'artifactProc', true);
         this.attack = _.get(data, 'attack', 2500);
         this.attackImprint = _.get(data, 'attackImprint', 0);

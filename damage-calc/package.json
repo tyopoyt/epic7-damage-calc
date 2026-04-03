@@ -7,7 +7,13 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint"
+    "test:snapshots:generate": "tsx --tsconfig tsconfig.json scripts/generate-snapshots.ts",
+    "test:snapshots": "ng test --include=**/damage.service.spec.ts --watch=false",
+    "lint": "ng lint",
+    "test:e2e": "playwright test",
+    "test:e2e:headed": "cross-env HEADED=1 playwright test --workers=4",
+    "test:e2e:noProc": "playwright test e2e/noProc.spec.ts",
+    "test:e2e:artifacts": "playwright test e2e/artifacts.spec.ts"
   },
   "private": true,
   "dependencies": {
@@ -43,12 +49,14 @@
     "@angular-eslint/template-parser": "19.4.0",
     "@angular/cli": "^19.2.13",
     "@angular/compiler-cli": "^19.2.12",
+    "@playwright/test": "^1.59.1",
     "@types/jasmine": "~3.6.0",
     "@types/lodash": "^4.14.197",
     "@types/lodash-es": "^4.17.9",
     "@types/node": "^12.11.1",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
     "@typescript-eslint/parser": "^7.2.0",
+    "cross-env": "^10.1.0",
     "eslint": "^8.57.0",
     "jasmine-core": "^5.7.1",
     "karma": "^6.4.4",
@@ -56,6 +64,7 @@
     "karma-coverage": "~2.0.3",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.0",
+    "tsx": "^4.21.0",
     "typescript": "5.8.3",
     "webpack-bundle-analyzer": "^4.9.1"
   }

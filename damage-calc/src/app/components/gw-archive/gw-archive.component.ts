@@ -88,7 +88,7 @@ export class GwArchiveComponent {
   // Determine if a hero matches the user's search, including name, nickname, element, and class
   heroMatches(heroName: string, searchTerm: string): boolean {
     const scrubbed = searchTerm.replace(/ /g,'');
-    const heroLocalizedName = this.translationPipe.transform(heroName, 'heroes', this.language).toLowerCase();
+    const heroLocalizedName = this.translationPipe.transform(heroName, 'heroes').toLowerCase();
     return heroLocalizedName.replace(/ /g,'').includes(scrubbed)
             || _.get(this.languageService.translationDict.nicknames, heroName, '').replace(/ /g,'').includes(scrubbed)
             || Heroes[heroName].element == scrubbed

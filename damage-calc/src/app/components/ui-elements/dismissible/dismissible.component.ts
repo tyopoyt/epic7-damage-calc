@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, Input, OnInit } from '@angular/core';
 
 export enum DismissibleColorOption {
   info = 'info',

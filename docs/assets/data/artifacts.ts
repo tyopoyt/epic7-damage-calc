@@ -62,7 +62,7 @@ export const Artifacts: Record<string, Artifact> = {
     type: ArtifactDamageType.damage,
     scale: [0.1, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2],
     exclusive: HeroClass.ranger,
-    applies: (skill: Skill, inputValues: DamageFormData) => skill.id === 's1' || skill.s1Benefits,
+    applies: (skill: Skill, _inputValues: DamageFormData) => skill.id === 's1' || skill.s1Benefits,
   }),
   ancient_sheath: new Artifact({
     id: 'ancient_sheath',
@@ -70,7 +70,7 @@ export const Artifacts: Record<string, Artifact> = {
     type: ArtifactDamageType.damage,
     scale: [0.08, 0.088, 0.096, 0.104, 0.112, 0.12, 0.128, 0.136, 0.144, 0.152, 0.16],
     // TODO: check s1_soulburn and s1_extra
-    applies: (skill: Skill, inputValues: DamageFormData) => skill.id === 's1' || skill.s1Benefits,
+    applies: (skill: Skill, _inputValues: DamageFormData) => skill.id === 's1' || skill.s1Benefits,
   }),
   black_hand_of_the_goddess: new Artifact({
     id: 'black_hand_of_the_goddess',
@@ -361,7 +361,7 @@ export const Artifacts: Record<string, Artifact> = {
   otherworldly_machinery: new Artifact({
     id: 'otherworldly_machinery',
     name: 'Otherworldly Machinery',
-    scale: [0.08, 0.088, 0.096, 0.104, 0.112, 0.12, 0.128, 0.136, 0.144, 0.152, 0.16],
+    value: () => 0.1,
     type: ArtifactDamageType.damage,
     exclusive: HeroClass.ranger,
     applies: (skill: Skill, inputValues: DamageFormData, soulburn: boolean) => skill.isAOE(inputValues, soulburn),

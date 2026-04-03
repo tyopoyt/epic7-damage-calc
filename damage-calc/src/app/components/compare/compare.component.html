@@ -1,8 +1,8 @@
-<h1 mat-dialog-title>{{'compareDamage' | translate:'ui':languageService.language.value}}</h1>
+<h1 mat-dialog-title>{{'compareDamage' | translate:'ui'}}</h1>
 <div mat-dialog-content>
   <mat-tab-group (selectedIndexChange)="tabChange($event)">
     <!-- Single unit compare -->
-    <mat-tab label="{{dataService.currentHeroID.value | translate:'heroes':languageService.language.value }}">
+    <mat-tab label="{{dataService.currentHeroID.value | translate:'heroes' }}">
       <table class="small-margin-top" *ngIf="!!damageData.data.length; else noBuilds" [class.tiny-padding]="screenService.smallScreen.value" mat-table [dataSource]="damageData">
         <ng-container matColumnDef="delete">
           <th mat-header-cell *matHeaderCellDef></th>
@@ -10,13 +10,13 @@
         </ng-container>
 
         <ng-container matColumnDef="buildName">
-          <th mat-header-cell *matHeaderCellDef> {{"build" | translate:'ui':languageService.language.value}} </th>
-          <td mat-cell *matCellDef="let element"> {{element.buildName | translate:'skills':languageService.language.value}} </td>
+          <th mat-header-cell *matHeaderCellDef> {{"build" | translate:'ui'}} </th>
+          <td mat-cell *matCellDef="let element"> {{element.buildName | translate:'skills'}} </td>
         </ng-container>
 
         <ng-container *ngFor="let skill of skills; index as i">
             <ng-container matColumnDef="{{skill}}">
-                <th mat-header-cell *matHeaderCellDef> {{skill | translate:'skills':languageService.language.value}} </th>
+                <th mat-header-cell *matHeaderCellDef> {{skill | translate:'skills'}} </th>
                 <td mat-cell *matCellDef="let element"> {{element.damages[i]}} </td>
             </ng-container>
         </ng-container>
@@ -26,13 +26,13 @@
       </table>
       <ng-template #noBuilds>
         <div class="text-color large-margin-top">
-          {{'noBuilds' | translate:'ui':languageService.language.value}}
+          {{'noBuilds' | translate:'ui'}}
         </div>
       </ng-template>
     </mat-tab>
 
     <!-- Multi unit compare -->
-    <mat-tab label="{{'multiCompare' | translate:'ui':languageService.language.value }}">
+    <mat-tab label="{{'multiCompare' | translate:'ui' }}">
       <table class="small-margin-top" *ngIf="!!multiCompareDamageData.data.length; else noMultiBuilds" [class.tiny-padding]="screenService.smallScreen.value" mat-table [dataSource]="multiCompareDamageData">
         <ng-container matColumnDef="delete">
           <th mat-header-cell *matHeaderCellDef></th>
@@ -40,19 +40,19 @@
         </ng-container>
 
         <ng-container matColumnDef="hero">
-          <th mat-header-cell *matHeaderCellDef> {{"hero" | translate:'ui':languageService.language.value}} </th>
-          <td mat-cell *matCellDef="let element"> {{element.hero | translate:'heroes':languageService.language.value}} </td>
+          <th mat-header-cell *matHeaderCellDef> {{"hero" | translate:'ui'}} </th>
+          <td mat-cell *matCellDef="let element"> {{element.hero | translate:'heroes'}} </td>
         </ng-container>
 
         <ng-container matColumnDef="buildName">
-          <th mat-header-cell *matHeaderCellDef> {{"build" | translate:'ui':languageService.language.value}} </th>
-          <td mat-cell *matCellDef="let element"> {{element.buildName | translate:'skills':languageService.language.value}} </td>
+          <th mat-header-cell *matHeaderCellDef> {{"build" | translate:'ui'}} </th>
+          <td mat-cell *matCellDef="let element"> {{element.buildName | translate:'skills'}} </td>
         </ng-container>
 
         <ng-container *ngFor="let skill of multiCompareSkills">
             <ng-container matColumnDef="{{skill}}">
-                <th mat-header-cell *matHeaderCellDef> {{skill | translate:'skills':languageService.language.value}} <img class="icon tiny tiny-margin-left" *ngIf="skill === 'extraSkill'" src="assets/icons/help-circle-outline.svg" alt="Hint" matTooltip="{{'extraSkillHint' | translate:'ui':languageService.language.value}}"></th>
-                <td mat-cell *matCellDef="let element"> {{element.damages[skill] ? element.damages[skill] : ('nonApplicable' | translate:'skills':languageService.language.value)}} </td>
+                <th mat-header-cell *matHeaderCellDef> {{skill | translate:'skills'}} <img class="icon tiny tiny-margin-left" *ngIf="skill === 'extraSkill'" src="assets/icons/help-circle-outline.svg" alt="Hint" matTooltip="{{'extraSkillHint' | translate:'ui'}}"></th>
+                <td mat-cell *matCellDef="let element"> {{element.damages[skill] ? element.damages[skill] : ('nonApplicable' | translate:'skills')}} </td>
             </ng-container>
         </ng-container>
       
@@ -61,20 +61,20 @@
       </table>
       <ng-template #noMultiBuilds>
         <div class="text-color large-margin-top">
-          {{'noMultiBuilds' | translate:'ui':languageService.language.value}}
+          {{'noMultiBuilds' | translate:'ui'}}
         </div>
       </ng-template>
     </mat-tab>
   </mat-tab-group>
-  <i *ngIf="(!tabIndex && !!damageData.data.length) || (tabIndex && !!multiCompareDamageData.data.length)" class="text-color">{{'compareTip' | translate:'ui':languageService.language.value}}</i>
+  <i *ngIf="(!tabIndex && !!damageData.data.length) || (tabIndex && !!multiCompareDamageData.data.length)" class="text-color">{{'compareTip' | translate:'ui'}}</i>
 </div>
 
 <div mat-dialog-actions>
   <button *ngIf="!!damageData.data.length" (click)="tabIndex ? removeAllMultiCompareBuilds() : removeAllBuilds()" mat-button>
     <img class="svg-icon filter medium tiny-margin-right" src="assets/icons/delete.svg" alt="delete all builds">
-    {{ (tabIndex ? 'removeMultiCompareBuilds' : 'removeAllBuilds') | translate:'ui':languageService.language.value}}
+    {{ (tabIndex ? 'removeMultiCompareBuilds' : 'removeAllBuilds') | translate:'ui'}}
   </button>
   <button mat-button (click)="close()" class="color-blue light-text" cdkFocusInitial>
-    {{'close' | translate:'ui':languageService.language.value}}
+    {{'close' | translate:'ui'}}
   </button>
 </div>

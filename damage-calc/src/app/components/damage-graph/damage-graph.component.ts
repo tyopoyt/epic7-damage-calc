@@ -109,7 +109,7 @@ export class DamageGraphComponent implements OnInit, OnDestroy, AfterViewInit {
       tooltip: {
         callbacks: {
           // TODO: translate, obviously
-          label: (item: any) => `${this.translationPipe.transform('withMore', 'graph', this.languageService.language.value)} ${item.dataset.label}: ${item.formattedValue}`// TODO: define type?            
+          label: (item: any) => `${this.translationPipe.transform('withMore', 'graph')} ${item.dataset.label}: ${item.formattedValue}`// TODO: define type?            
         },
       },
       legend: {
@@ -167,7 +167,7 @@ export class DamageGraphComponent implements OnInit, OnDestroy, AfterViewInit {
   {
     // TODO: Make this type safe
     if (this.options.plugins?.annotation?.annotations && (this.options.plugins?.annotation?.annotations as any[])[0]) {
-      (this.options.plugins.annotation.annotations as any[])[0].label.content = this.translationPipe.transform('currentStats', 'ui', this.languageService.language.value)
+      (this.options.plugins.annotation.annotations as any[])[0].label.content = this.translationPipe.transform('currentStats', 'ui')
     }
 
     this.skillControl = new FormControl<string | null>('s1')
@@ -235,7 +235,7 @@ export class DamageGraphComponent implements OnInit, OnDestroy, AfterViewInit {
               scaleID: 'y',
               label: {
                 display: true,
-                content: this.translationPipe.transform('oneshot', 'ui', this.languageService.language.value),
+                content: this.translationPipe.transform('oneshot', 'ui'),
                 position: 'start',
                 backgroundColor: 'rgba(25, 25, 25, 0.75)',
                 font: {
@@ -302,32 +302,32 @@ export class DamageGraphComponent implements OnInit, OnDestroy, AfterViewInit {
     const artifactApplies = this.dataService.currentArtifact.value.applies(skill, this.dataService.damageInputValues, soulburn, this.damageToUse as HitType);
   
     // Filter out any unneeded datasets for unused stats ============================================================
-    const attackLabel = this.translationPipe.transform('attack', 'graph', this.languageService.language.value);
+    const attackLabel = this.translationPipe.transform('attack', 'graph');
     let filteredDatasets = this.damageData.datasets.filter(dataset => dataset.label === attackLabel);
     // TODO: if extras are supported fix the skill.rate calls in this file
     if (!skill.rate(!!soulburn, this.dataService.damageInputValues, false) && filteredDatasets.length && !(this.artifact.attackPercent && artifactApplies)) {
       this.damageData.datasets.splice(this.damageData.datasets.indexOf(filteredDatasets[0]), 1);
     }
   
-    const critDamageLabel = this.translationPipe.transform('critDamage', 'graph', this.languageService.language.value);
+    const critDamageLabel = this.translationPipe.transform('critDamage', 'graph');
     filteredDatasets = this.damageData.datasets.filter(dataset => dataset.label === critDamageLabel);
     if (this.damageToUse !== 'crit' && filteredDatasets.length) {
       this.damageData.datasets.splice(this.damageData.datasets.indexOf(filteredDatasets[0]), 1);
     }
   
-    const casterDefenseLabel = this.translationPipe.transform('casterDefense', 'graph', this.languageService.language.value);
+    const casterDefenseLabel = this.translationPipe.transform('casterDefense', 'graph');
     filteredDatasets = this.damageData.datasets.filter(dataset => dataset.label === casterDefenseLabel);
     if (!skill.defenseScaling && filteredDatasets.length && !(this.artifact.defenseScaling && artifactApplies)) {
       this.damageData.datasets.splice(this.damageData.datasets.indexOf(filteredDatasets[0]), 1);
     }
   
-    const casterMaxHPLabel = this.translationPipe.transform('casterMaxHP', 'graph', this.languageService.language.value);
+    const casterMaxHPLabel = this.translationPipe.transform('casterMaxHP', 'graph');
     filteredDatasets = this.damageData.datasets.filter(dataset => dataset.label === casterMaxHPLabel);
     if (!skill.hpScaling && filteredDatasets.length && !(this.artifact.hpScaling && artifactApplies)) {
       this.damageData.datasets.splice(this.damageData.datasets.indexOf(filteredDatasets[0]), 1);
     }
   
-    const casterSpeedLabel = this.translationPipe.transform('casterSpeed', 'graph', this.languageService.language.value);
+    const casterSpeedLabel = this.translationPipe.transform('casterSpeed', 'graph');
     filteredDatasets = this.damageData.datasets.filter(dataset => dataset.label === casterSpeedLabel);
     if (!skill.speedScaling && filteredDatasets.length && !(this.artifact.speedScaling && artifactApplies)) {
       this.damageData.datasets.splice(this.damageData.datasets.indexOf(filteredDatasets[0]), 1);
@@ -385,7 +385,7 @@ export class DamageGraphComponent implements OnInit, OnDestroy, AfterViewInit {
   getStatDataPoints(stat: StatType, step: number, intersectionPoint: number, stepCount: number, skill: Skill, soulburn = false, maxStat = Infinity) {
     // filteredDatasets = this.damageData.filter(dataset => dataset.label === formLabel(stat));
     // Dataset configuation
-    const statLabel = this.translationPipe.transform(stat, 'graph', this.languageService.language.value);
+    const statLabel = this.translationPipe.transform(stat, 'graph');
     const filteredDatasets = this.damageData.datasets.filter(dataset => dataset.label === statLabel);
     if (!filteredDatasets.length) {
       this.damageData.datasets.push({

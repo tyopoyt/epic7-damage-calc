@@ -108,7 +108,7 @@ export class DamageService {
   }
 
   // Get skill multiplier info for the popup
-  getModifiers(skill: Skill, soulburn = false, isExtra = false, isCounter = false) {
+  getModifiers(skill: Skill, soulburn = false, isExtra = false, /* previously used for challenge, add back if needed: isCounter = false*/) {
     // Handle aftermath damage
     const aftermathFormula = skill.afterMath(HitType.crit, this.damageForm, soulburn);
     const formattedAftermathFormula: Record<string, number> = {}

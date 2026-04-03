@@ -92,7 +92,7 @@ export class SpeedTunerComponent implements OnInit {
   }
 
   translate(key: string) {
-    return this.translationPipe.transform(key, 'form', this.languageService.language.value);
+    return this.translationPipe.transform(key, 'form');
   }
 
  /*
