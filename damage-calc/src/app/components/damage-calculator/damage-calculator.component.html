@@ -592,7 +592,7 @@
                     </ng-container>
                     <!-- eslint-enable -->
                     <tr mat-header-row *matHeaderRowDef="displayedColumns" [class.large-text]="!screenService.smallScreen.value"></tr>
-                    <tr mat-row *matRowDef="let row; columns: displayedColumns;" [class.large-text]="!screenService.smallScreen.value"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;" [class.large-text]="!screenService.smallScreen.value" [attr.data-skill]="row.skill"></tr>
                   </table>
             </mat-card>
         </div>
