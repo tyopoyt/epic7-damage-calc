@@ -5,7 +5,8 @@ import * as _ from 'lodash-es'
 
 @Pipe({
     name: 'translate',
-    standalone: false
+    standalone: false,
+    pure: false
 })
 export class TranslationPipe implements PipeTransform {
 
