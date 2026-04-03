@@ -9,7 +9,7 @@
                 <img class="png-icon medium tiny-margin-right select-icon" src="assets/heroes/{{heroID | removeOld}}-icon.png" onerror="this.onerror=null; this.src='assets/heroes/missing.png';" alt="{{dataService.currentHeroID.value}} portrait">
                 <img class="png-icon medium tiny-margin-right select-icon-2" src="assets/elements/{{hero.element}}.png" alt="{{hero.element}}">
                 <img class="png-icon medium tiny-margin-right select-icon-3" src="assets/classes/{{hero.class}}.png" alt="{{hero.class}}">
-                <mat-select [formControl]="heroControl" placeholder="" #singleSelect (selectionChange)="selectHero($event.value)">
+                <mat-select id="hero-select" [formControl]="heroControl" placeholder="" #singleSelect (selectionChange)="selectHero($event.value)">
                     <mat-option>
                         <ngx-mat-select-search spellcheck="false" [formControl]="heroFilterControl" placeholderLabel="Find hero..."></ngx-mat-select-search>
                     </mat-option>
@@ -24,7 +24,7 @@
             <mat-form-field class="neat-container has-icons">
                 <img class="png-icon medium tiny-margin-right select-icon" src=" assets/artifacts/{{artifact.id}}.png" onerror="this.onerror=null; this.src='assets/artifacts/noProc.png';" alt="{{artifact.id}}">
                 <img class="png-icon medium tiny-margin-right select-icon-2" src=" assets/{{artifact.heroExclusive.length ? 'heroes' : 'classes'}}/{{artifact.heroExclusive.length ? artifact.heroExclusive[0] + '-icon' : artifact.exclusive}}.png" alt="{{artifact.exclusive}}">
-                <mat-select [formControl]="artifactControl" placeholder="" #singleSelect (selectionChange)="selectArtifact($event.value)">
+                <mat-select id="artifact-select" [formControl]="artifactControl" placeholder="" #singleSelect (selectionChange)="selectArtifact($event.value)">
                     <mat-option>
                         <ngx-mat-select-search spellcheck="false" [formControl]="artifactFilterControl" placeholderLabel="Find artifact..."></ngx-mat-select-search>
                     </mat-option>
@@ -552,7 +552,7 @@
                     <img class="svg-icon large filter pointer collapse-icon" (click)="toggleTable()" src="{{collapsed ? 'assets/icons/chevron-up.svg' : 'assets/icons/chevron-down.svg'}}" alt="collapse">
                 </div>
                 <!-- Damage table -->
-                <table [@collapseAnimation] *ngIf="!collapsed" [class.tiny-padding]="screenService.mediumSmallScreen.value" mat-table [dataSource]="damageData">
+                <table id="damage-table" [@collapseAnimation] *ngIf="!collapsed" [class.tiny-padding]="screenService.mediumSmallScreen.value" mat-table [dataSource]="damageData">
                     <ng-container matColumnDef="skill">
                       <th mat-header-cell *matHeaderCellDef> {{"skill" | translate:'ui':languageService.language.value}} </th>
                       <td mat-cell *matCellDef="let element"><span (click)="toggleCycling()" class="flex-aligned flex-between">
