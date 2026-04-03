@@ -718,8 +718,8 @@ export class DamageFormData {
 
     constructor(data: any) {
         this.AOEStack = _.get(data, 'AOEStack', 0);
-        this.artifactLevel = _.get(data, 'artifactLevel', 0);
-        this.heroLevel = _.get(data, 'heroLevel', 0);
+        this.artifactLevel = _.get(data, 'artifactLevel', 30);
+        this.heroLevel = _.get(data, 'heroLevel', 60);
         this.artifactProc = _.get(data, 'artifactProc', true);
         this.attack = _.get(data, 'attack', 2500);
         this.attackImprint = _.get(data, 'attackImprint', 0);
