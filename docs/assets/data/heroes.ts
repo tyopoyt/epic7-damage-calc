@@ -11526,17 +11526,14 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 603,
     baseDefense: 662,
     baseHP: 4945,
-    heroSpecific: ['casterDefense'],
-    barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, _attackMultiplier: number, _soulburn: boolean) => inputValues.casterFinalDefense(artifact),
+    heroSpecific: ['casterMaxHP'],
+    barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, _attackMultiplier: number, _soulburn: boolean) => inputValues.casterFinalMaxHP(artifact) * 0.2,
     skills: {
       s1: new Skill({
         id: 's1',
-        defenseScaling: true,
-        rate: () => 0.5,
+        rate: () => 1,
         pow: () => 1,
-        flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalDefense(artifact) * 0.7,
-        flatTip: () => ({casterDefense: 70}),
-        enhance: [0.05, 0.1, 0, 0, 0.15],
+        enhance: [0.05, 0, 0.05, 0, 0.1, 0.1],
         isSingle: () => true,
       })
     }
