@@ -135,6 +135,7 @@ export const Artifacts: Record<string, Artifact> = {
     id: 'daydream_joker',
     name: 'Daydream Joker',
     scale: [0.015, 0.0165, 0.018, 0.0195, 0.021, 0.0225, 0.024, 0.0255, 0.027, 0.0285, 0.03],
+    // scale: [0.008, 0.009, 0.009, 0.01, 0.011, 0.012, 0.012, 0.013, 0.014, 0.015, 0.016],
     type: ArtifactDamageType.flat,
     artifactSpecific:['targetMaxHP'],
     flat: (artiScale: number, inputValues: DamageFormData) => inputValues.targetFinalMaxHP() * artiScale
