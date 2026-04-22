@@ -178,7 +178,7 @@ export class SpeedTunerComponent implements OnInit {
       this.recommendationText = `${this.translate('properly_tuned')}${this.fasterPushesSlower ? this.translate('proper_cr') : this.translate('proper_order')}${this.translate('full_stop')}`;
       if (this.slowerSpeed !== slowUnitSpeedReq || this.fasterSpeed !== fastUnitSpeedReq) {
         this.recommendationSubText = `${this.translate('slower_unit_possible')}${slowerPossible}${this.fasterPushesSlower ? this.translate('less') : this.translate('more')}${this.translate('speed_speed_tuner')}` +
-                                     `${this.translate('_or_')}${this.translate('faster_unit_possible')}${fasterPossible}${this.fasterPushesSlower ? this.translate('less') : this.translate('more')}${this.translate('speed_speed_tuner')}${this.translate('full_stop')}`;
+                                     `${this.translate('_or_')}${this.translate('faster_unit_possible')}${fasterPossible}${this.fasterPushesSlower ? this.translate('more') : this.translate('less')}${this.translate('speed_speed_tuner')}${this.translate('full_stop')}`;
       }
       this.displayColor = HeaderCardComponentColorOption.green;
     }
