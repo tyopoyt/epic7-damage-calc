@@ -20,10 +20,23 @@ import * as path from 'path';
 
 type ArtifactSnapshots = Record<string, DamageRow>;
 type HeroSnapshots = Record<string, ArtifactSnapshots>;
-const snapshots: Record<string, HeroSnapshots> = {};
+const outputPath = path.join(process.cwd(), 'src/testing/damage-snapshots.json');
 
-const heroEntries = Object.entries(Heroes);
+const generateAll = process.argv.includes('--all');
+
+const existing: Record<string, HeroSnapshots> = (!generateAll && fs.existsSync(outputPath))
+  ? JSON.parse(fs.readFileSync(outputPath, 'utf-8'))
+  : {};
+
+const snapshots: Record<string, HeroSnapshots> = { ...existing };
+
+const heroEntries = Object.entries(Heroes).filter(([heroId]) => !(heroId in existing));
 const artifactEntries = Object.entries(Artifacts);
+
+if (heroEntries.length === 0) {
+  console.log(`No new heroes to add. Total heroes in snapshot: ${Object.keys(existing).length} → ${outputPath}`);
+  process.exit(0);
+}
 
 const env = createMockEnv(heroEntries[0][1]);
 const service = new DamageService(env.dataService as any, env.languageService as any);
@@ -78,11 +91,12 @@ for (const [heroId, hero] of heroEntries) {
   }
 }
 
-const outputPath = path.join(process.cwd(), 'src/testing/damage-snapshots.json');
 fs.writeFileSync(outputPath, JSON.stringify(snapshots, null, 2));
 
-const heroCount = Object.keys(snapshots).length;
-const artifactCount = Object.values(snapshots).reduce((n, h) => n + Object.keys(h).length, 0);
-const skillCount = Object.values(snapshots).reduce((n, h) =>
-  n + Object.values(h).reduce((m, a) => m + Object.keys(a).length, 0), 0);
-console.log(`Snapshots written: ${heroCount} heroes, ${artifactCount} hero×artifact combos, ${skillCount} total skill variants → ${outputPath}`);
+const newHeroes = Object.keys(snapshots).filter(id => !(id in existing));
+const newHeroCount = newHeroes.length;
+const totalHeroCount = Object.keys(snapshots).length;
+const newArtifactCount = newHeroes.reduce((n, id) => n + Object.keys(snapshots[id]).length, 0);
+const newSkillCount = newHeroes.reduce((n, id) =>
+  n + Object.values(snapshots[id]).reduce((m, a) => m + Object.keys(a).length, 0), 0);
+console.log(`Added ${newHeroCount} new heroes (${newArtifactCount} hero×artifact combos, ${newSkillCount} skill variants). Total heroes in snapshot: ${totalHeroCount} → ${outputPath}`);

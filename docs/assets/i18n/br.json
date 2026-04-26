@@ -108,6 +108,7 @@
     "emilia": "Emilia",
     "enott": "Enott",
     "ervalen": "Ervalen",
+    "estelle": "Estelle",
     "fairytale_tenebria": "Tenébria das Fábulas",
     "faithless_lidica": "Lídica Infiel",
     "falconer_kluri": "Falconeira Kluri",
@@ -245,6 +246,7 @@
     "ruele_of_light": "Ruele da Luz",
     "ruiza": "Luíza",
     "sage_baal_and_sezan": "Sábio Baal e Sezan",
+    "salome": "Salome",
     "savior_adin": "Adine Salvadora",
     "schuri": "Schuri",
     "sealed_eye_surin": "Surin Olho Selado",
@@ -393,7 +395,8 @@
     "victorious_flag": "Bandeira da Vitória",
     "violet_talisman": "Talismã Purpúrio",
     "wind_rider": "Cavaleira do Vento",
-    "wings_of_light_and_shadow": "Asas de Luz e Trevas"
+    "wings_of_light_and_shadow": "Asas de Luz e Trevas",
+    "with_a_little_friend": "Junto do Pequeno Amigo"
   },
   "form": {
     "_or_": " OU ",

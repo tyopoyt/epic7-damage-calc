@@ -128,6 +128,7 @@
     "empyrean_ilynav": "蒼穹のイリーナブ",
     "enott": "エノット",
     "ervalen": "エルバレン",
+    "estelle": "エステル",
     "eternal_wanderer_ludwig": "永劫の漂流者 ルートヴィヒ",
     "ezra": "工ズラ",
     "fairytale_tenebria": "メルヘン テネブレア",
@@ -293,6 +294,7 @@
     "ruele_of_light": "神光のルエル",
     "ruiza": "ルイザ",
     "sage_baal_and_sezan": "賢者 バアル＆セザン",
+    "salome": "サロメ",
     "saria": "サルミア",
     "savior_adin": "救済者 アーディン",
     "schniel": "シュネル",
@@ -468,7 +470,8 @@
     "victorious_flag": "勝利の旗",
     "violet_talisman": "紫菫の輝き",
     "wind_rider": "旋風の操手",
-    "wings_of_light_and_shadow": "光影の双翼"
+    "wings_of_light_and_shadow": "光影の双翼",
+    "with_a_little_friend": "小さなおともだちと一緒に"
   },
   "form": {
     "_or_": " または",

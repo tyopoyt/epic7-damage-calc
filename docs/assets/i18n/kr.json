@@ -128,6 +128,7 @@
         "empyrean_ilynav": "창공의 일리나브",
         "enott": "에노트",
         "ervalen": "에르발렌",
+        "estelle": "에스텔",
         "eternal_wanderer_ludwig": "영겁의 표류자 루트비히",
         "ezra": "에즈라",
         "fairytale_tenebria": "메르헨 테네브리아",
@@ -294,6 +295,7 @@
         "ruele_of_light": "빛의 루엘",
         "ruiza": "루이자",
         "sage_baal_and_sezan": "현자 바알 & 세잔",
+        "salome": "살로메",
         "saria": "사르미아",
         "savior_adin": "구원자 아딘",
         "schniel": "슈니엘",
@@ -469,7 +471,8 @@
         "victorious_flag": "승전의 깃발",
         "violet_talisman": "보랏빛 탈리스만",
         "wind_rider": "윈드라이더",
-        "wings_of_light_and_shadow": "명암의 쌍익"
+        "wings_of_light_and_shadow": "명암의 쌍익",
+        "with_a_little_friend": "작은 친구와 함께"
     },
     "form": {
         "_or_": " 또는",

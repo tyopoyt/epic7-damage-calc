@@ -743,4 +743,11 @@ export const Artifacts: Record<string, Artifact> = {
       return artiScale + (hitType === HitType.crit ? Artifacts.wings_of_light_and_shadow.additional[Artifacts.wings_of_light_and_shadow.scale.indexOf(artiScale)] : 0);
     }
   }),
+  with_a_little_friend: new Artifact({
+    id: 'with_a_little_friend',
+    name: 'With a Little Friend',
+    scale: [1.05, 1.055, 1.06, 1.065, 1.07, 1.075, 1.08, 1.085, 1.09, 1.095, 1.1],
+    exclusive: HeroClass.knight,
+    type: ArtifactDamageType.health_only
+  }),
 };

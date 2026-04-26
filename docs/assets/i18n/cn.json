@@ -128,6 +128,7 @@
         "empyrean_ilynav": "苍穹伊莉娜芙",
         "enott": "艾诺特",
         "ervalen": "艾尔巴伦",
+        "estelle": "艾丝黛",
         "eternal_wanderer_ludwig": "永劫漂流者鲁特比",
         "ezra": "艾自拉",
         "fairytale_tenebria": "童话泰妮布里雅",
@@ -291,6 +292,7 @@
         "ruele_of_light": "光之瑞儿",
         "ruiza": "露易莎",
         "sage_baal_and_sezan": "贤者巴尔&塞尚",
+        "salome": "萨洛美",
         "saria": "萨若米亚",
         "savior_adin": "救援者艾庭",
         "schniel": "修尼尔",
@@ -465,7 +467,8 @@
         "victorious_flag": "胜战旗帜",
         "violet_talisman": "紫色护身符",
         "wind_rider": "乘风者",
-        "wings_of_light_and_shadow": "明暗双翼"
+        "wings_of_light_and_shadow": "明暗双翼",
+        "with_a_little_friend": "与小同伴同行"
     },
     "form": {
         "_or_": " 或者",
