@@ -34,5 +34,10 @@ export default defineConfig({
       testMatch: '**/artifacts.spec.ts',
       use: { ...devices['Desktop Chrome'] },
     },
+    {
+      name: 'artifacts-all',
+      testMatch: '**/artifacts-all.spec.ts',
+      use: { ...devices['Desktop Chrome'] },
+    },
   ],
 });
