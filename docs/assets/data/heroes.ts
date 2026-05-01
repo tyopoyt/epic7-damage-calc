@@ -6033,6 +6033,7 @@ export const Heroes: Record<string, Hero> = {
         penetrate: (soulburn: boolean, inputValues: DamageFormData) => inputValues.casterHasStealth ? 0.6 : 0.3,
         exclusiveEquipmentMultiplier: (inputValues: DamageFormData) => inputValues.exclusiveEquipment2 ? 0.1 : 0,
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
+        soulburn: true,
         isAOE: () => true,
       }),
       s3: new Skill({
@@ -8702,6 +8703,37 @@ export const Heroes: Record<string, Hero> = {
     }
   }),
   righteous_thief_roozid: new Hero({
+    element: HeroElement.earth,
+    class: HeroClass.thief,
+    baseAttack: 812,
+    baseHP: 4370,
+    baseDefense: 462,
+    heroSpecific: ['casterSpeed'],
+    skills: {
+      s1: new Skill({
+        id: 's1',
+        speedScaling: true,
+        rate: () => 0.9,
+        pow: () => 1,
+        mult: (soulburn: boolean, inputValues: DamageFormData, _artifact: Artifact) => 1 + inputValues.casterFinalSpeed() * 0.00075,
+        multTip: () => ({ casterSpeed: 0.075 }),
+        enhance: [0.05, 0, 0.1, 0, 0.15],
+        isSingle: () => true,
+      }),
+      s2: new Skill({
+        id: 's2',
+        speedScaling: true,
+        rate: (soulburn: boolean) => soulburn ? 2.2 : 1.6,
+        pow: () => 1,
+        mult: (soulburn: boolean, inputValues: DamageFormData, _artifact: Artifact) => 1 + inputValues.casterFinalSpeed() * 0.001125,
+        multTip: () => ({ casterSpeed: 0.1125 }),
+        enhance: [0.05, 0.1, 0, 0, 0.15],
+        isSingle: () => true,
+        soulburn: true
+      })
+    }
+  }),
+  righteous_thief_roozid_old: new Hero({
     element: HeroElement.earth,
     class: HeroClass.thief,
     baseAttack: 812,
