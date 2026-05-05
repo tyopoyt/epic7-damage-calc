@@ -4700,7 +4700,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 984,
     baseDefense: 637,
     baseHP: 6266,
-    heroSpecific: ['casterDefense'],
+    heroSpecific: ['casterDefense', 'exclusiveEquipment3'],
     skills: {
       s1: new Skill({
         id: 's1',
@@ -4733,6 +4733,7 @@ export const Heroes: Record<string, Hero> = {
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
         soulburn: true,
         penetrate: () => 1,
+        exclusiveEquipmentMultiplier: (inputValues: DamageFormData) => inputValues.exclusiveEquipment3 ? 0.2 : 0,
         isSingle: (inputValues: DamageFormData, soulburn: boolean) => soulburn,
         isAOE: (inputValues: DamageFormData, soulburn: boolean) => !soulburn,
         noCrit: true
@@ -10895,6 +10896,7 @@ export const Heroes: Record<string, Hero> = {
     baseHP: 4370,
     baseDefense: 662,
     heroSpecific: ['casterSpeed', 'targetSpeed'],
+    barrierSkills: ['S3'],
     barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number, soulburn: boolean) => hero.getAttack(artifact, inputValues, attackMultiplier, skill, soulburn, HitType.normal) * 1,
     skills: {
       s1: new Skill({
@@ -10904,10 +10906,6 @@ export const Heroes: Record<string, Hero> = {
         enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
         ignoreDamageTransfer: () => true,
         isSingle: () => true,
-      }),
-      s2: new Skill({
-        id: 's2',
-        enhance: [0.05, 0.1, 0, 0.1, 0.15],
       }),
       s3: new Skill({
         id: 's3',
@@ -10941,7 +10939,7 @@ export const Heroes: Record<string, Hero> = {
     barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, _attackMultiplier: number, _soulburn: boolean) => {
       let boost = 1.0;
       for (let i = 0; i < inputValues.molagoras2; i++) {
-        boost += Heroes['top_model_luluca'].skills.s2.enhance[i];
+        boost += Heroes['top_model_luluca_old'].skills.s2.enhance[i];
       }
 
       return 55 * boost * 60;
