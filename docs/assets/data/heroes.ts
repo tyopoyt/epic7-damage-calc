@@ -5470,6 +5470,22 @@ export const Heroes: Record<string, Hero> = {
       })
     }
   }),
+  ivana: new Hero({
+    element: HeroElement.fire,
+    class: HeroClass.soul_weaver,
+    baseAttack: 694,
+    baseHP: 4855,
+    baseDefense: 655,
+    skills: {
+      s1: new Skill({
+        id: 's1',
+        rate: () => 1,
+        pow: () => 1,
+        enhance: [0.05, 0, 0.1, 0, 0.15],
+        isSingle: () => true,
+      }),
+    }
+  }),
   jack_o: new Hero({
     element: HeroElement.fire,
     class: HeroClass.warrior,

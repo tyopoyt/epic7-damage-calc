@@ -26,6 +26,7 @@ export class Artifact {
     heroExclusive: string[];
     type: ArtifactDamageType;
     applies: (skill: Skill, inputValues: DamageFormData, soulburn: boolean, hitType: HitType) => boolean; // Pass Skill
+    appliesAftermath: ((skill: Skill, inputValues: DamageFormData, soulburn: boolean, hitType: HitType) => boolean) | null;
     // TODO: Made the later inputs optional to avoid clutter, change if this causes any issues
     value: (artiScale: number, inputValues: DamageFormData, skill?: Skill, isExtra?: boolean, hitType?: HitType, soulburn?: boolean) => number; // Pass Skill and DamageFormData (and optionally isExtra)
     barrier?: ((hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number, soulburn: boolean, barrierScale: number) => number) | null;
@@ -57,6 +58,7 @@ export class Artifact {
         this.additional = _.get(data, 'additional', null);
         this.maxHP = _.get(data, 'maxHP', 1);
         this.applies = _.get(data, 'applies', () => true);
+        this.appliesAftermath = _.get(data, 'appliesAftermath', null);
         this.defenseScaling = _.get(data, 'defenseScaling', false);
         this.hpScaling = _.get(data, 'hpScaling', false);
         this.speedScaling = _.get(data, 'speedScaling', false);
@@ -127,10 +129,10 @@ export class Artifact {
     }
 
     getAfterMathMultipliers(skill: Skill, inputValues: DamageFormData, soulburn: boolean, isExtra: boolean, hitType: HitType) {
-        if(!this.applies(skill, inputValues, soulburn, hitType)) return null;
+        const aftermathApplies = this.appliesAftermath ?? this.applies;
+        if (!aftermathApplies(skill, inputValues, soulburn, hitType)) return null;
         if (this.id === undefined
             || ![ArtifactDamageType.aftermath, ArtifactDamageType.fixedDamage, ArtifactDamageType.damageAndAftermath].includes(this.type)
-            || !this.applies(skill, inputValues, soulburn, hitType)
             || (this.attackPercent === undefined && this.defensePercent === undefined && this.hpPercent === undefined)
             || this.penetrate === undefined) {
           return null;

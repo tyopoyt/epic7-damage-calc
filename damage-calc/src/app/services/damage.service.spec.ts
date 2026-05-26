@@ -4,6 +4,10 @@ import { Heroes } from 'src/assets/data/heroes';
 import { Artifacts } from 'src/assets/data/artifacts';
 import snapshots from 'src/testing/damage-snapshots.json';
 
+const karmaArgs: string[] = (window as any).__karma__?.config?.args ?? [];
+const excludeIdx = karmaArgs.indexOf('--exclude');
+const excludePattern = excludeIdx >= 0 ? karmaArgs[excludeIdx + 1] : '';
+
 describe('DamageService snapshot regression', () => {
   let service: DamageService;
   let env: ReturnType<typeof createMockEnv>;
@@ -14,7 +18,9 @@ describe('DamageService snapshot regression', () => {
   });
 
   for (const [heroId, heroSnapshots] of Object.entries(snapshots)) {
+    if (excludePattern && heroId.includes(excludePattern)) continue;
     for (const [artifactId, artifactSnapshots] of Object.entries(heroSnapshots)) {
+      if (excludePattern && artifactId.includes(excludePattern)) continue;
       for (const [variantKey, expected] of Object.entries(artifactSnapshots)) {
         it(`${heroId} - ${artifactId} - ${variantKey}`, () => {
           const hero = Heroes[heroId];

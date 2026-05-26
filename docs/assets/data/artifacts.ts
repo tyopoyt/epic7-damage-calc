@@ -654,7 +654,7 @@ export const Artifacts: Record<string, Artifact> = {
     exclusive: HeroClass.warrior,
     attackPercent: 0.4,
     penetrate: 0.7,
-    applies: (skill: Skill, inputValues: DamageFormData, soulburn: boolean, hitType: HitType) => [HitType.normal, HitType.miss].includes(hitType)
+    appliesAftermath: (skill: Skill, inputValues: DamageFormData, soulburn: boolean, hitType: HitType) => [HitType.normal, HitType.miss].includes(hitType)
   }),
   torn_sleeve: new Artifact({
     id: 'torn_sleeve',

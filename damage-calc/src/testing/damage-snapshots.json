@@ -499,15 +499,15 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 4197,
-        "crush": 2182,
+        "crit": 5036,
+        "crush": 2619,
         "normal": 2950,
         "miss": 2446
       },
       "s3": {
         "skill": "s3",
-        "crit": 7178,
-        "crush": 3733,
+        "crit": 8614,
+        "crush": 4479,
         "normal": 4381,
         "miss": 3520
       }
@@ -7033,29 +7033,29 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 2456,
-        "crush": 1277,
+        "crit": 2947,
+        "crush": 1532,
         "normal": 2114,
         "miss": 1820
       },
       "s1_crit": {
         "skill": "s1_crit",
-        "crit": 3508,
+        "crit": 4210,
         "crush": null,
         "normal": null,
         "miss": 2198
       },
       "s3": {
         "skill": "s3",
-        "crit": 5262,
-        "crush": 2736,
+        "crit": 6315,
+        "crush": 3284,
         "normal": 3461,
         "miss": 2830
       },
       "s3_soulburn": {
         "skill": "s3_soulburn",
-        "crit": 6315,
-        "crush": 3284,
+        "crit": 7578,
+        "crush": 3940,
         "normal": 3967,
         "miss": 3209
       }
@@ -8033,15 +8033,15 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 1754,
-        "crush": 912,
+        "crit": 2105,
+        "crush": 1095,
         "normal": 1777,
         "miss": 1567
       },
       "s3": {
         "skill": "s3",
-        "crit": 2493,
-        "crush": 1297,
+        "crit": 2992,
+        "crush": 1556,
         "normal": 2132,
         "miss": 1833
       }
@@ -9389,22 +9389,22 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 2877,
-        "crush": 1496,
+        "crit": 3452,
+        "crush": 1795,
         "normal": 2316,
         "miss": 1971
       },
       "s2": {
         "skill": "alencia_trample",
-        "crit": 3298,
-        "crush": 1715,
+        "crit": 3957,
+        "crush": 2058,
         "normal": 2518,
         "miss": 2123
       },
       "s3": {
         "skill": "s3",
-        "crit": 3859,
-        "crush": 2007,
+        "crit": 4631,
+        "crush": 2408,
         "normal": 2788,
         "miss": 2325
       }
@@ -13342,22 +13342,22 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 5122,
-        "crush": 2664,
+        "crit": 6147,
+        "crush": 3196,
         "normal": 3394,
         "miss": 2779
       },
       "s1_soulburn": {
         "skill": "s1_soulburn",
-        "crit": 9691,
-        "crush": 5039,
+        "crit": 11629,
+        "crush": 6047,
         "normal": 5587,
         "miss": 4424
       },
       "s3": {
         "skill": "s3",
-        "crit": 7268,
-        "crush": 3779,
+        "crit": 8721,
+        "crush": 4535,
         "normal": 4424,
         "miss": 3552
       }
@@ -19160,15 +19160,15 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 4350,
-        "crush": 2262,
+        "crit": 5220,
+        "crush": 2714,
         "normal": 3024,
         "miss": 2502
       },
       "s3": {
         "skill": "s3",
-        "crit": 7268,
-        "crush": 3779,
+        "crit": 8721,
+        "crush": 4535,
         "normal": 4424,
         "miss": 3552
       }
@@ -22302,22 +22302,22 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 3542,
-        "crush": 1842,
+        "crit": 4250,
+        "crush": 2210,
         "normal": 2636,
         "miss": 2211
       },
       "s2": {
         "skill": "s2",
-        "crit": 5313,
-        "crush": 2763,
+        "crit": 6375,
+        "crush": 3315,
         "normal": 3486,
         "miss": 2848
       },
       "s3": {
         "skill": "s3",
-        "crit": 3157,
-        "crush": 1642,
+        "crit": 3789,
+        "crush": 1970,
         "normal": 2451,
         "miss": 2072
       }
@@ -23704,15 +23704,15 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 3999,
-        "crush": 2080,
+        "crit": 4799,
+        "crush": 2496,
         "normal": 2855,
         "miss": 2375
       },
       "s3": {
         "skill": "s3",
-        "crit": 6806,
-        "crush": 3539,
+        "crit": 8167,
+        "crush": 4247,
         "normal": 4202,
         "miss": 3386
       }
@@ -26380,22 +26380,22 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 2769,
-        "crush": 1440,
+        "crit": 3322,
+        "crush": 1728,
         "normal": 2264,
         "miss": 1932
       },
       "s1_rock_smash": {
         "skill": "s1_rock_smash",
-        "crit": 1730,
-        "crush": 900,
+        "crit": 2077,
+        "crush": 1080,
         "normal": 1766,
         "miss": 1558
       },
       "s3": {
         "skill": "s3",
-        "crit": 5262,
-        "crush": 2736,
+        "crit": 6315,
+        "crush": 3284,
         "normal": 3461,
         "miss": 2830
       }
@@ -29758,29 +29758,29 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 3508,
-        "crush": 1824,
+        "crit": 4210,
+        "crush": 2189,
         "normal": 2619,
         "miss": 2198
       },
       "s1_soulburn": {
         "skill": "s1_soulburn",
-        "crit": 5964,
-        "crush": 3101,
+        "crit": 7157,
+        "crush": 3721,
         "normal": 3798,
         "miss": 3082
       },
       "s2": {
         "skill": "s2",
-        "crit": 4210,
-        "crush": 2189,
+        "crit": 5052,
+        "crush": 2627,
         "normal": 2956,
         "miss": 2451
       },
       "s3": {
         "skill": "s3",
-        "crit": 7016,
-        "crush": 3648,
+        "crit": 8420,
+        "crush": 4378,
         "normal": 4303,
         "miss": 3461
       }
@@ -35161,22 +35161,22 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 4210,
-        "crush": 2189,
+        "crit": 5052,
+        "crush": 2627,
         "normal": 2956,
         "miss": 2451
       },
       "s3": {
         "skill": "s3",
-        "crit": 6230,
-        "crush": 3239,
+        "crit": 7476,
+        "crush": 3887,
         "normal": 3926,
         "miss": 3178
       },
       "s3_soulburn": {
         "skill": "s3_soulburn",
-        "crit": 7960,
-        "crush": 4139,
+        "crit": 9552,
+        "crush": 4967,
         "normal": 4756,
         "miss": 3801
       }
@@ -35751,15 +35751,15 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 3508,
-        "crush": 1824,
+        "crit": 4210,
+        "crush": 2189,
         "normal": 2619,
         "miss": 2198
       },
       "s3": {
         "skill": "s3",
-        "crit": 5440,
-        "crush": 2829,
+        "crit": 6528,
+        "crush": 3395,
         "normal": 3547,
         "miss": 2894
       }
@@ -36313,15 +36313,15 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 3508,
-        "crush": 1824,
+        "crit": 4210,
+        "crush": 2189,
         "normal": 2619,
         "miss": 2198
       },
       "s3": {
         "skill": "s3",
-        "crit": 3157,
-        "crush": 1642,
+        "crit": 3789,
+        "crush": 1970,
         "normal": 2451,
         "miss": 2072
       }
@@ -38149,22 +38149,22 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 2596,
-        "crush": 1350,
+        "crit": 3115,
+        "crush": 1620,
         "normal": 2182,
         "miss": 1870
       },
       "s3": {
         "skill": "s3",
-        "crit": 2807,
-        "crush": 1459,
+        "crit": 3368,
+        "crush": 1751,
         "normal": 2283,
         "miss": 1946
       },
       "s3_soulburn": {
         "skill": "s3_soulburn",
-        "crit": 3929,
-        "crush": 2043,
+        "crit": 4715,
+        "crush": 2452,
         "normal": 2821,
         "miss": 2350
       }
@@ -42189,22 +42189,22 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 4210,
-        "crush": 2189,
+        "crit": 5052,
+        "crush": 2627,
         "normal": 2956,
         "miss": 2451
       },
       "s3": {
         "skill": "s3",
-        "crit": 6354,
-        "crush": 3304,
+        "crit": 7625,
+        "crush": 3965,
         "normal": 3985,
         "miss": 3223
       },
       "s3_soulburn": {
         "skill": "s3_soulburn",
-        "crit": 9117,
-        "crush": 4741,
+        "crit": 10940,
+        "crush": 5689,
         "normal": 5312,
         "miss": 4218
       }
@@ -44441,22 +44441,22 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 3253,
-        "crush": 1692,
+        "crit": 3904,
+        "crush": 2030,
         "normal": 2497,
         "miss": 2107
       },
       "s2": {
         "skill": "s2",
-        "crit": 3883,
-        "crush": 2019,
+        "crit": 4589,
+        "crush": 2386,
         "normal": 2771,
         "miss": 2312
       },
       "s3": {
         "skill": "s3",
-        "crit": 6120,
-        "crush": 3183,
+        "crit": 7344,
+        "crush": 3819,
         "normal": 3873,
         "miss": 3139
       }
@@ -46444,29 +46444,29 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 3400,
-        "crush": 1768,
+        "crit": 4080,
+        "crush": 2122,
         "normal": 2568,
         "miss": 2160
       },
       "s2": {
         "skill": "s2",
-        "crit": 4080,
-        "crush": 2122,
+        "crit": 4896,
+        "crush": 2546,
         "normal": 2894,
         "miss": 2404
       },
       "s3": {
         "skill": "s3",
-        "crit": 5829,
-        "crush": 3031,
+        "crit": 6995,
+        "crush": 3637,
         "normal": 3733,
         "miss": 3034
       },
       "s3_soulburn": {
         "skill": "s3_soulburn",
-        "crit": 10686,
-        "crush": 5557,
+        "crit": 12824,
+        "crush": 6668,
         "normal": 6065,
         "miss": 4783
       }
@@ -47286,22 +47286,22 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 3157,
-        "crush": 1642,
+        "crit": 3789,
+        "crush": 1970,
         "normal": 2451,
         "miss": 2072
       },
       "s2": {
         "skill": "s2",
-        "crit": 7145,
-        "crush": 3715,
+        "crit": 8574,
+        "crush": 4458,
         "normal": 4365,
         "miss": 3508
       },
       "s3": {
         "skill": "s3",
-        "crit": 3859,
-        "crush": 2007,
+        "crit": 4631,
+        "crush": 2408,
         "normal": 2788,
         "miss": 2325
       }
@@ -48320,22 +48320,22 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 3496,
-        "crush": 1818,
+        "crit": 4195,
+        "crush": 2181,
         "normal": 2613,
         "miss": 2194
       },
       "s2": {
         "skill": "s2",
-        "crit": 3288,
-        "crush": 1710,
+        "crit": 3945,
+        "crush": 2052,
         "normal": 2514,
         "miss": 2119
       },
       "s3": {
         "skill": "s3",
-        "crit": 5440,
-        "crush": 2829,
+        "crit": 6528,
+        "crush": 3395,
         "normal": 3547,
         "miss": 2894
       }
@@ -50013,29 +50013,29 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 3508,
-        "crush": 1824,
+        "crit": 4210,
+        "crush": 2189,
         "normal": 2619,
         "miss": 2198
       },
       "s2": {
         "skill": "s2",
-        "crit": 2550,
-        "crush": 1326,
+        "crit": 3060,
+        "crush": 1591,
         "normal": 2160,
         "miss": 1854
       },
       "s3": {
         "skill": "s3",
-        "crit": 2982,
-        "crush": 1551,
+        "crit": 3578,
+        "crush": 1861,
         "normal": 2367,
         "miss": 2009
       },
       "s3_soulburn": {
         "skill": "s3_soulburn",
-        "crit": 3859,
-        "crush": 2007,
+        "crit": 4631,
+        "crush": 2408,
         "normal": 2788,
         "miss": 2325
       }
@@ -52574,15 +52574,15 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 4407,
-        "crush": 2291,
+        "crit": 5141,
+        "crush": 2673,
         "normal": 2992,
         "miss": 2478
       },
       "s3": {
         "skill": "s3",
-        "crit": 10933,
-        "crush": 5685,
+        "crit": 12755,
+        "crush": 6633,
         "normal": 6038,
         "miss": 4762
       }
@@ -54073,8 +54073,8 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 4153,
-        "crush": 2160,
+        "crit": 4984,
+        "crush": 2592,
         "normal": 2929,
         "miss": 2431
       }
@@ -54607,15 +54607,15 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 3403,
-        "crush": 1769,
+        "crit": 4083,
+        "crush": 2123,
         "normal": 2569,
         "miss": 2161
       },
       "s2": {
         "skill": "s2",
-        "crit": 1610,
-        "crush": 837,
+        "crit": 1932,
+        "crush": 1005,
         "normal": 1708,
         "miss": 1515
       }
@@ -56859,8 +56859,8 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 3438,
-        "crush": 1788,
+        "crit": 4126,
+        "crush": 2145,
         "normal": 2586,
         "miss": 2173
       },
@@ -57723,15 +57723,15 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 3157,
-        "crush": 1642,
+        "crit": 3789,
+        "crush": 1970,
         "normal": 2451,
         "miss": 2072
       },
       "s3": {
         "skill": "s3",
-        "crit": 5131,
-        "crush": 2668,
+        "crit": 6157,
+        "crush": 3202,
         "normal": 3398,
         "miss": 2783
       }
@@ -58559,15 +58559,15 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 3508,
-        "crush": 1824,
+        "crit": 4210,
+        "crush": 2189,
         "normal": 2619,
         "miss": 2198
       },
       "s2": {
         "skill": "s2",
-        "crit": 2807,
-        "crush": 1459,
+        "crit": 3368,
+        "crush": 1751,
         "normal": 2283,
         "miss": 1946
       }
@@ -59555,28 +59555,28 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 2456,
-        "crush": 1277,
+        "crit": 2947,
+        "crush": 1532,
         "normal": 2114,
         "miss": 1820
       },
       "s1_bis": {
         "skill": "disciplinaryPrefectAriaDisciplinaryAction",
-        "crit": 3967,
+        "crit": 4760,
         "crush": null,
         "normal": null,
         "miss": 2364
       },
       "s3": {
         "skill": "s3",
-        "crit": 5894,
+        "crit": 7072,
         "crush": null,
         "normal": null,
         "miss": 3057
       },
       "s3_soulburn": {
         "skill": "s3_soulburn",
-        "crit": 7507,
+        "crit": 9009,
         "crush": null,
         "normal": null,
         "miss": 3638
@@ -63876,22 +63876,22 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 4911,
-        "crush": 2554,
+        "crit": 5894,
+        "crush": 3065,
         "normal": 3293,
         "miss": 2704
       },
       "s2": {
         "skill": "s2",
-        "crit": 3578,
-        "crush": 1861,
+        "crit": 4294,
+        "crush": 2233,
         "normal": 2653,
         "miss": 2224
       },
       "s3": {
         "skill": "s3",
-        "crit": 7718,
-        "crush": 4013,
+        "crit": 9261,
+        "crush": 4816,
         "normal": 4640,
         "miss": 3714
       }
@@ -67487,15 +67487,15 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 3508,
-        "crush": 1824,
+        "crit": 4210,
+        "crush": 2189,
         "normal": 2619,
         "miss": 2198
       },
       "s2": {
         "skill": "s2",
-        "crit": 5313,
-        "crush": 2763,
+        "crit": 6375,
+        "crush": 3315,
         "normal": 3486,
         "miss": 2848
       }
@@ -75635,29 +75635,29 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 3929,
-        "crush": 2043,
+        "crit": 4715,
+        "crush": 2452,
         "normal": 2821,
         "miss": 2350
       },
       "s2": {
         "skill": "s2",
-        "crit": 3859,
-        "crush": 2007,
+        "crit": 4631,
+        "crush": 2408,
         "normal": 2788,
         "miss": 2325
       },
       "s3": {
         "skill": "s3",
-        "crit": 5984,
-        "crush": 3112,
+        "crit": 7181,
+        "crush": 3734,
         "normal": 3808,
         "miss": 3090
       },
       "s3_soulburn": {
         "skill": "s3_soulburn",
-        "crit": 8364,
-        "crush": 4350,
+        "crit": 10037,
+        "crush": 5219,
         "normal": 4950,
         "miss": 3947
       }
@@ -78213,15 +78213,15 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 4350,
-        "crush": 2262,
+        "crit": 5220,
+        "crush": 2714,
         "normal": 3024,
         "miss": 2502
       },
       "s3": {
         "skill": "s3",
-        "crit": 3929,
-        "crush": 2043,
+        "crit": 4715,
+        "crush": 2452,
         "normal": 2821,
         "miss": 2350
       }
@@ -80954,15 +80954,15 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 3859,
-        "crush": 2007,
+        "crit": 4631,
+        "crush": 2408,
         "normal": 2788,
         "miss": 2325
       },
       "s1_soulburn": {
         "skill": "s1_soulburn",
-        "crit": 6315,
-        "crush": 3284,
+        "crit": 7578,
+        "crush": 3940,
         "normal": 3967,
         "miss": 3209
       }
@@ -81950,15 +81950,15 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 3771,
-        "crush": 2163,
+        "crit": 4441,
+        "crush": 2512,
         "normal": 2965,
         "miss": 2142
       },
       "s2": {
         "skill": "s2",
-        "crit": 3929,
-        "crush": 2043,
+        "crit": 4715,
+        "crush": 2452,
         "normal": 2821,
         "miss": 2350
       },
@@ -87707,15 +87707,15 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 3508,
-        "crush": 1824,
+        "crit": 4210,
+        "crush": 2189,
         "normal": 2619,
         "miss": 2198
       },
       "s2": {
         "skill": "s2",
-        "crit": 5364,
-        "crush": 2789,
+        "crit": 6437,
+        "crush": 3347,
         "normal": 3510,
         "miss": 2867
       }
@@ -88496,15 +88496,15 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 2807,
-        "crush": 1459,
+        "crit": 3368,
+        "crush": 1751,
         "normal": 2283,
         "miss": 1946
       },
       "s3": {
         "skill": "s3",
-        "crit": 3508,
-        "crush": 1824,
+        "crit": 4210,
+        "crush": 2189,
         "normal": 2619,
         "miss": 2198
       }
@@ -92486,29 +92486,29 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 2982,
-        "crush": 1551,
+        "crit": 3578,
+        "crush": 1861,
         "normal": 2367,
         "miss": 2009
       },
       "s1_bis": {
         "skill": "immortalWukongS1AOE",
-        "crit": 2982,
-        "crush": 1551,
+        "crit": 3578,
+        "crush": 1861,
         "normal": 2367,
         "miss": 2009
       },
       "s1_bis_soulburn": {
         "skill": "immortalWukongS1AOE_soulburn",
-        "crit": 3859,
-        "crush": 2007,
+        "crit": 4631,
+        "crush": 2408,
         "normal": 2788,
         "miss": 2325
       },
       "s3": {
         "skill": "s3",
-        "crit": 5723,
-        "crush": 2976,
+        "crit": 6775,
+        "crush": 3523,
         "normal": 3646,
         "miss": 2968
       }
@@ -93104,15 +93104,15 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 3333,
-        "crush": 1733,
+        "crit": 3999,
+        "crush": 2080,
         "normal": 2535,
         "miss": 2135
       },
       "s3": {
         "skill": "s3",
-        "crit": 1889,
-        "crush": 982,
+        "crit": 2267,
+        "crush": 1179,
         "normal": 1842,
         "miss": 1616
       }
@@ -95901,22 +95901,22 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 2631,
-        "crush": 1368,
+        "crit": 3157,
+        "crush": 1642,
         "normal": 2198,
         "miss": 1883
       },
       "s1_bis": {
         "skill": "jackODustAttack",
-        "crit": 2968,
-        "crush": 1544,
+        "crit": 3562,
+        "crush": 1852,
         "normal": 2360,
         "miss": 2004
       },
       "s3": {
         "skill": "s3",
-        "crit": 5701,
-        "crush": 2964,
+        "crit": 6841,
+        "crush": 3557,
         "normal": 3672,
         "miss": 2988
       }
@@ -96708,22 +96708,22 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 3508,
-        "crush": 1824,
+        "crit": 4210,
+        "crush": 2189,
         "normal": 2619,
         "miss": 2198
       },
       "s3": {
         "skill": "s3",
-        "crit": 5262,
-        "crush": 2736,
+        "crit": 6315,
+        "crush": 3284,
         "normal": 3461,
         "miss": 2830
       },
       "s3_soulburn": {
         "skill": "s3_soulburn",
-        "crit": 7718,
-        "crush": 4013,
+        "crit": 9261,
+        "crush": 4816,
         "normal": 4640,
         "miss": 3714
       }
@@ -98860,22 +98860,22 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 4146,
-        "crush": 2156,
+        "crit": 4975,
+        "crush": 2587,
         "normal": 2926,
         "miss": 2428
       },
       "s2": {
         "skill": "s2",
-        "crit": 3508,
-        "crush": 1824,
+        "crit": 4210,
+        "crush": 2189,
         "normal": 2619,
         "miss": 2198
       },
       "s3": {
         "skill": "s3",
-        "crit": 4153,
-        "crush": 2160,
+        "crit": 4984,
+        "crush": 2592,
         "normal": 2929,
         "miss": 2431
       }
@@ -99713,15 +99713,15 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 3508,
-        "crush": 1824,
+        "crit": 4210,
+        "crush": 2189,
         "normal": 2619,
         "miss": 2198
       },
       "s3": {
         "skill": "s3",
-        "crit": 3562,
-        "crush": 1852,
+        "crit": 4275,
+        "crush": 2223,
         "normal": 2645,
         "miss": 2218
       }
@@ -100492,22 +100492,22 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 3157,
-        "crush": 1642,
+        "crit": 3789,
+        "crush": 1970,
         "normal": 2451,
         "miss": 2072
       },
       "s1_bis": {
         "skill": "kaneRockSmash",
-        "crit": 1214,
-        "crush": 631,
+        "crit": 1457,
+        "crush": 758,
         "normal": 1518,
         "miss": 1373
       },
       "s3": {
         "skill": "s3",
-        "crit": 5613,
-        "crush": 2919,
+        "crit": 6736,
+        "crush": 3503,
         "normal": 3630,
         "miss": 2956
       }
@@ -103865,22 +103865,22 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 4911,
-        "crush": 2554,
+        "crit": 5894,
+        "crush": 3065,
         "normal": 3293,
         "miss": 2704
       },
       "s2": {
         "skill": "s2",
-        "crit": 5613,
-        "crush": 2919,
+        "crit": 6736,
+        "crush": 3503,
         "normal": 3630,
         "miss": 2956
       },
       "s3": {
         "skill": "s3",
-        "crit": 9180,
-        "crush": 4774,
+        "crit": 11017,
+        "crush": 5729,
         "normal": 5342,
         "miss": 4240
       }
@@ -105124,15 +105124,15 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 3508,
-        "crush": 1824,
+        "crit": 4210,
+        "crush": 2189,
         "normal": 2619,
         "miss": 2198
       },
       "s3": {
         "skill": "s3",
-        "crit": 5100,
-        "crush": 2652,
+        "crit": 6120,
+        "crush": 3183,
         "normal": 3384,
         "miss": 2772
       }
@@ -106181,6 +106181,13 @@
         "normal": 1824,
         "miss": 1368
       },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 5473,
+        "crush": 2846,
+        "normal": 2189,
+        "miss": 1642
+      },
       "s3": {
         "skill": "s3",
         "crit": 7578,
@@ -106203,6 +106210,13 @@
         "crush": 2751,
         "normal": 2116,
         "miss": 1587
+      },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 6348,
+        "crush": 3301,
+        "normal": 2539,
+        "miss": 1904
       },
       "s3": {
         "skill": "s3",
@@ -106227,6 +106241,13 @@
         "normal": 1824,
         "miss": 1368
       },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 5473,
+        "crush": 2846,
+        "normal": 2189,
+        "miss": 1642
+      },
       "s3": {
         "skill": "s3",
         "crit": 7578,
@@ -106249,6 +106270,13 @@
         "crush": 2846,
         "normal": 2189,
         "miss": 1642
+      },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 6567,
+        "crush": 3415,
+        "normal": 2627,
+        "miss": 1970
       },
       "s3": {
         "skill": "s3",
@@ -106273,6 +106301,13 @@
         "normal": 2098,
         "miss": 1573
       },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 6294,
+        "crush": 3273,
+        "normal": 2517,
+        "miss": 1888
+      },
       "s3": {
         "skill": "s3",
         "crit": 8714,
@@ -106295,6 +106330,13 @@
         "crush": 2846,
         "normal": 2189,
         "miss": 1642
+      },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 6567,
+        "crush": 3415,
+        "normal": 2627,
+        "miss": 1970
       },
       "s3": {
         "skill": "s3",
@@ -106319,6 +106361,13 @@
         "normal": 1941,
         "miss": 1456
       },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 5765,
+        "crush": 2998,
+        "normal": 2306,
+        "miss": 1730
+      },
       "s3": {
         "skill": "s3",
         "crit": 7881,
@@ -106341,6 +106390,13 @@
         "crush": 2371,
         "normal": 1824,
         "miss": 1368
+      },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 5473,
+        "crush": 2846,
+        "normal": 2189,
+        "miss": 1642
       },
       "s3": {
         "skill": "s3",
@@ -106365,6 +106421,13 @@
         "normal": 2116,
         "miss": 1587
       },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 6348,
+        "crush": 3301,
+        "normal": 2539,
+        "miss": 1904
+      },
       "s3": {
         "skill": "s3",
         "crit": 8476,
@@ -106387,6 +106450,13 @@
         "crush": 2758,
         "normal": 2121,
         "miss": 1591
+      },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 6364,
+        "crush": 3309,
+        "normal": 2545,
+        "miss": 1909
       },
       "s3": {
         "skill": "s3",
@@ -106411,6 +106481,13 @@
         "normal": 2189,
         "miss": 1642
       },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 6567,
+        "crush": 3415,
+        "normal": 2627,
+        "miss": 1970
+      },
       "s3": {
         "skill": "s3",
         "crit": 9093,
@@ -106433,6 +106510,13 @@
         "crush": 2371,
         "normal": 1824,
         "miss": 1368
+      },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 5473,
+        "crush": 2846,
+        "normal": 2189,
+        "miss": 1642
       },
       "s3": {
         "skill": "s3",
@@ -106457,6 +106541,13 @@
         "normal": 2153,
         "miss": 1614
       },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 6458,
+        "crush": 3358,
+        "normal": 2583,
+        "miss": 1937
+      },
       "s3": {
         "skill": "s3",
         "crit": 8588,
@@ -106479,6 +106570,13 @@
         "crush": 2846,
         "normal": 2189,
         "miss": 1642
+      },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 6567,
+        "crush": 3415,
+        "normal": 2627,
+        "miss": 1970
       },
       "s3": {
         "skill": "s3",
@@ -106503,6 +106601,13 @@
         "normal": 2189,
         "miss": 1642
       },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 6567,
+        "crush": 3415,
+        "normal": 2627,
+        "miss": 1970
+      },
       "s3": {
         "skill": "s3",
         "crit": 8700,
@@ -106525,6 +106630,13 @@
         "crush": 2371,
         "normal": 1824,
         "miss": 1368
+      },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 5473,
+        "crush": 2846,
+        "normal": 2189,
+        "miss": 1642
       },
       "s3": {
         "skill": "s3",
@@ -106549,6 +106661,13 @@
         "normal": 2189,
         "miss": 1642
       },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 6567,
+        "crush": 3415,
+        "normal": 2627,
+        "miss": 1970
+      },
       "s3": {
         "skill": "s3",
         "crit": 8700,
@@ -106571,6 +106690,13 @@
         "crush": 2846,
         "normal": 2189,
         "miss": 1642
+      },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 6567,
+        "crush": 3415,
+        "normal": 2627,
+        "miss": 1970
       },
       "s3": {
         "skill": "s3",
@@ -106595,6 +106721,13 @@
         "normal": 2043,
         "miss": 1532
       },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 6129,
+        "crush": 3187,
+        "normal": 2452,
+        "miss": 1839
+      },
       "s3": {
         "skill": "s3",
         "crit": 8251,
@@ -106617,6 +106750,13 @@
         "crush": 2846,
         "normal": 2189,
         "miss": 1642
+      },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 6567,
+        "crush": 3415,
+        "normal": 2627,
+        "miss": 1970
       },
       "s3": {
         "skill": "s3",
@@ -106641,6 +106781,13 @@
         "normal": 2189,
         "miss": 1642
       },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 6567,
+        "crush": 3415,
+        "normal": 2627,
+        "miss": 1970
+      },
       "s3": {
         "skill": "s3",
         "crit": 9093,
@@ -106663,6 +106810,13 @@
         "crush": 2371,
         "normal": 1824,
         "miss": 1368
+      },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 5473,
+        "crush": 2846,
+        "normal": 2189,
+        "miss": 1642
       },
       "s3": {
         "skill": "s3",
@@ -106687,6 +106841,13 @@
         "normal": 2121,
         "miss": 1591
       },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 6364,
+        "crush": 3309,
+        "normal": 2545,
+        "miss": 1909
+      },
       "s3": {
         "skill": "s3",
         "crit": 7578,
@@ -106709,6 +106870,13 @@
         "crush": 2727,
         "normal": 2098,
         "miss": 1573
+      },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 6294,
+        "crush": 3273,
+        "normal": 2517,
+        "miss": 1888
       },
       "s3": {
         "skill": "s3",
@@ -106733,6 +106901,13 @@
         "normal": 2189,
         "miss": 1642
       },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 6567,
+        "crush": 3415,
+        "normal": 2627,
+        "miss": 1970
+      },
       "s3": {
         "skill": "s3",
         "crit": 9093,
@@ -106755,6 +106930,13 @@
         "crush": 2371,
         "normal": 1824,
         "miss": 1368
+      },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 5473,
+        "crush": 2846,
+        "normal": 2189,
+        "miss": 1642
       },
       "s3": {
         "skill": "s3",
@@ -106779,6 +106961,13 @@
         "normal": 2116,
         "miss": 1587
       },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 6348,
+        "crush": 3301,
+        "normal": 2539,
+        "miss": 1904
+      },
       "s3": {
         "skill": "s3",
         "crit": 8476,
@@ -106802,6 +106991,13 @@
         "normal": 1824,
         "miss": 1368
       },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 5473,
+        "crush": 2846,
+        "normal": 2189,
+        "miss": 1642
+      },
       "s3": {
         "skill": "s3",
         "crit": 7578,
@@ -106824,6 +107020,13 @@
         "crush": 3794,
         "normal": 2919,
         "miss": 2189
+      },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 8756,
+        "crush": 4553,
+        "normal": 3503,
+        "miss": 2627
       },
       "s3": {
         "skill": "s3",
@@ -107551,22 +107754,22 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 3692,
-        "crush": 1920,
+        "crit": 4430,
+        "crush": 2304,
         "normal": 2707,
         "miss": 2264
       },
       "s2": {
         "skill": "s2",
-        "crit": 2769,
-        "crush": 1440,
+        "crit": 3322,
+        "crush": 1728,
         "normal": 2264,
         "miss": 1932
       },
       "s2_soulburn": {
         "skill": "s2_soulburn",
-        "crit": 3634,
-        "crush": 1890,
+        "crit": 4361,
+        "crush": 2268,
         "normal": 2680,
         "miss": 2244
       }
@@ -109611,8 +109814,8 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 2596,
-        "crush": 1350,
+        "crit": 3115,
+        "crush": 1620,
         "normal": 2182,
         "miss": 1870
       },
@@ -112293,22 +112496,22 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 4190,
-        "crush": 2179,
+        "crit": 5027,
+        "crush": 2614,
         "normal": 2946,
         "miss": 2444
       },
       "s3": {
         "skill": "s3",
-        "crit": 3508,
-        "crush": 1824,
+        "crit": 4210,
+        "crush": 2189,
         "normal": 2619,
         "miss": 2198
       },
       "s3_soulburn": {
         "skill": "s3_soulburn",
-        "crit": 4210,
-        "crush": 2189,
+        "crit": 5052,
+        "crush": 2627,
         "normal": 2956,
         "miss": 2451
       }
@@ -113677,8 +113880,8 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 3508,
-        "crush": 1824,
+        "crit": 4210,
+        "crush": 2189,
         "normal": 2619,
         "miss": 2198
       },
@@ -113691,8 +113894,8 @@
       },
       "s3": {
         "skill": "s3",
-        "crit": 3542,
-        "crush": 1842,
+        "crit": 4250,
+        "crush": 2210,
         "normal": 2636,
         "miss": 2211
       }
@@ -115463,22 +115666,22 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 4210,
-        "crush": 2189,
+        "crit": 5052,
+        "crush": 2627,
         "normal": 2956,
         "miss": 2451
       },
       "s2": {
         "skill": "s2",
-        "crit": 4210,
-        "crush": 2189,
+        "crit": 5052,
+        "crush": 2627,
         "normal": 2956,
         "miss": 2451
       },
       "s3": {
         "skill": "s3",
-        "crit": 9748,
-        "crush": 5069,
+        "crit": 11698,
+        "crush": 6083,
         "normal": 5615,
         "miss": 4445
       }
@@ -116672,22 +116875,22 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 3060,
-        "crush": 1591,
+        "crit": 3672,
+        "crush": 1910,
         "normal": 2404,
         "miss": 2037
       },
       "s1_soulburn": {
         "skill": "s1_soulburn",
-        "crit": 5032,
-        "crush": 2617,
+        "crit": 6039,
+        "crush": 3140,
         "normal": 3351,
         "miss": 2747
       },
       "s3": {
         "skill": "s3",
-        "crit": 5000,
-        "crush": 2600,
+        "crit": 6000,
+        "crush": 3120,
         "normal": 3336,
         "miss": 2736
       }
@@ -117479,15 +117682,15 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 4210,
-        "crush": 2189,
+        "crit": 5052,
+        "crush": 2627,
         "normal": 2956,
         "miss": 2451
       },
       "s3": {
         "skill": "s3",
-        "crit": 8551,
-        "crush": 4447,
+        "crit": 10261,
+        "crush": 5336,
         "normal": 5040,
         "miss": 4014
       },
@@ -118503,28 +118706,28 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 3508,
+        "crit": 4210,
         "crush": null,
         "normal": null,
         "miss": 2198
       },
       "s1_soulburn": {
         "skill": "s1_soulburn",
-        "crit": 4736,
+        "crit": 5683,
         "crush": null,
         "normal": null,
         "miss": 2640
       },
       "s2": {
         "skill": "s2",
-        "crit": 2807,
+        "crit": 3368,
         "crush": null,
         "normal": null,
         "miss": 1946
       },
       "s3": {
         "skill": "s3",
-        "crit": 5613,
+        "crit": 6736,
         "crush": null,
         "normal": null,
         "miss": 2956
@@ -119121,15 +119324,15 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 4093,
-        "crush": 2409,
+        "crit": 4794,
+        "crush": 2774,
         "normal": 3204,
         "miss": 2198
       },
       "s1_soulburn": {
         "skill": "s1_soulburn",
-        "crit": 4093,
-        "crush": 2409,
+        "crit": 4794,
+        "crush": 2774,
         "normal": 3204,
         "miss": 2198
       }
@@ -119683,15 +119886,15 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 3672,
-        "crush": 1910,
+        "crit": 4407,
+        "crush": 2291,
         "normal": 2698,
         "miss": 2257
       },
       "s3": {
         "skill": "s3",
-        "crit": 5191,
-        "crush": 2700,
+        "crit": 6230,
+        "crush": 3239,
         "normal": 3427,
         "miss": 2804
       }
@@ -122300,22 +122503,22 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 3149,
-        "crush": 1638,
+        "crit": 3779,
+        "crush": 1965,
         "normal": 2728,
         "miss": 2350
       },
       "s1_soulburn": {
         "skill": "s1_soulburn",
-        "crit": 9448,
-        "crush": 4913,
+        "crit": 11338,
+        "crush": 5896,
         "normal": 5751,
         "miss": 4618
       },
       "s3": {
         "skill": "s3",
-        "crit": 9053,
-        "crush": 4708,
+        "crit": 10864,
+        "crush": 5649,
         "normal": 5562,
         "miss": 4475
       }
@@ -123598,29 +123801,29 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 3461,
+        "crit": 4153,
         "crush": null,
         "normal": null,
         "miss": 2181
       },
       "s1_soulburn": {
         "skill": "s1_soulburn",
-        "crit": 5884,
+        "crit": 7060,
         "crush": null,
         "normal": null,
         "miss": 3054
       },
       "s2": {
         "skill": "s2",
-        "crit": 5416,
+        "crit": 6499,
         "crush": null,
         "normal": null,
         "miss": 2885
       },
       "s3": {
         "skill": "s3",
-        "crit": 3859,
-        "crush": 2007,
+        "crit": 4631,
+        "crush": 2408,
         "normal": 2788,
         "miss": 2325
       }
@@ -124755,15 +124958,15 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 4069,
-        "crush": 2116,
+        "crit": 4883,
+        "crush": 2539,
         "normal": 2889,
         "miss": 2400
       },
       "s2": {
         "skill": "s2",
-        "crit": 6525,
-        "crush": 3393,
+        "crit": 7830,
+        "crush": 4072,
         "normal": 4068,
         "miss": 3285
       }
@@ -125317,15 +125520,15 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 3508,
-        "crush": 1824,
+        "crit": 4210,
+        "crush": 2189,
         "normal": 2619,
         "miss": 2198
       },
       "s3": {
         "skill": "s3",
-        "crit": 3508,
-        "crush": 1824,
+        "crit": 4210,
+        "crush": 2189,
         "normal": 2619,
         "miss": 2198
       }
@@ -127125,15 +127328,15 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 3859,
-        "crush": 2007,
+        "crit": 4561,
+        "crush": 2371,
         "normal": 2760,
         "miss": 2304
       },
       "s2": {
         "skill": "s2",
-        "crit": 5633,
-        "crush": 2929,
+        "crit": 6705,
+        "crush": 3487,
         "normal": 3618,
         "miss": 2947
       }
@@ -132354,15 +132557,15 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 3513,
-        "crush": 1827,
+        "crit": 4144,
+        "crush": 2155,
         "normal": 2593,
         "miss": 2179
       },
       "s3": {
         "skill": "s3",
-        "crit": 5854,
-        "crush": 3044,
+        "crit": 6907,
+        "crush": 3591,
         "normal": 3698,
         "miss": 3007
       }
@@ -133133,22 +133336,22 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 3508,
-        "crush": 1824,
+        "crit": 4210,
+        "crush": 2189,
         "normal": 2619,
         "miss": 2198
       },
       "s2": {
         "skill": "s2",
-        "crit": 2807,
-        "crush": 1459,
+        "crit": 3368,
+        "crush": 1751,
         "normal": 2283,
         "miss": 1946
       },
       "s3": {
         "skill": "s3",
-        "crit": 3461,
-        "crush": 1800,
+        "crit": 4153,
+        "crush": 2160,
         "normal": 2597,
         "miss": 2181
       }
@@ -143365,15 +143568,15 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 2280,
-        "crush": 1186,
+        "crit": 2736,
+        "crush": 1423,
         "normal": 2030,
         "miss": 1756
       },
       "s3": {
         "skill": "s3",
-        "crit": 6315,
-        "crush": 3284,
+        "crit": 7578,
+        "crush": 3940,
         "normal": 3967,
         "miss": 3209
       }
@@ -145386,29 +145589,29 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 4210,
-        "crush": 2189,
+        "crit": 5052,
+        "crush": 2627,
         "normal": 2956,
         "miss": 2451
       },
       "s2": {
         "skill": "s2_counter",
-        "crit": 3157,
-        "crush": 1642,
+        "crit": 3789,
+        "crush": 1970,
         "normal": 2451,
         "miss": 2072
       },
       "s3": {
         "skill": "s3",
-        "crit": 4210,
-        "crush": 2189,
+        "crit": 5052,
+        "crush": 2627,
         "normal": 2956,
         "miss": 2451
       },
       "s3_soulburn": {
         "skill": "s3_soulburn",
-        "crit": 5087,
-        "crush": 2645,
+        "crit": 6104,
+        "crush": 3174,
         "normal": 3377,
         "miss": 2767
       }
@@ -148755,21 +148958,21 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 4631,
+        "crit": 5557,
         "crush": null,
         "normal": null,
         "miss": 2902
       },
       "s1_soulburn": {
         "skill": "s1_soulburn",
-        "crit": 11577,
+        "crit": 13892,
         "crush": null,
         "normal": null,
         "miss": 5403
       },
       "s3": {
         "skill": "s3",
-        "crit": 5482,
+        "crit": 6578,
         "crush": null,
         "normal": null,
         "miss": 3208
@@ -149706,22 +149909,22 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 3157,
-        "crush": 1642,
+        "crit": 3789,
+        "crush": 1970,
         "normal": 2451,
         "miss": 2072
       },
       "s2": {
         "skill": "s2",
-        "crit": 2807,
-        "crush": 1459,
+        "crit": 3368,
+        "crush": 1751,
         "normal": 2283,
         "miss": 1946
       },
       "s3": {
         "skill": "s3",
-        "crit": 3508,
-        "crush": 1824,
+        "crit": 4210,
+        "crush": 2189,
         "normal": 2619,
         "miss": 2198
       }
@@ -152150,458 +152353,79 @@
     "noProc": {
       "s1": {
         "skill": "s1",
-        "crit": 3122,
-        "crush": 1624,
-        "normal": 1249,
-        "miss": 937
+        "crit": 3513,
+        "crush": 1827,
+        "normal": 1405,
+        "miss": 1054
       },
       "s2": {
         "skill": "s2",
-        "crit": 4920,
-        "crush": 2558,
-        "normal": 1968,
-        "miss": 1476
+        "crit": 6560,
+        "crush": 3411,
+        "normal": 2624,
+        "miss": 1968
+      },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 9020,
+        "crush": 4691,
+        "normal": 3608,
+        "miss": 2706
       }
     },
     "a_symbol_of_unity": {
       "s1": {
         "skill": "s1",
-        "crit": 3571,
-        "crush": 1857,
-        "normal": 1429,
-        "miss": 1071
+        "crit": 4018,
+        "crush": 2089,
+        "normal": 1607,
+        "miss": 1205
       },
       "s2": {
         "skill": "s2",
-        "crit": 5594,
-        "crush": 2909,
-        "normal": 2237,
-        "miss": 1678
+        "crit": 7458,
+        "crush": 3878,
+        "normal": 2983,
+        "miss": 2237
+      },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 10255,
+        "crush": 5333,
+        "normal": 4102,
+        "miss": 3077
       }
     },
     "ancient_sheath": {
       "s1": {
         "skill": "s1",
-        "crit": 3571,
-        "crush": 1857,
-        "normal": 1429,
-        "miss": 1071
+        "crit": 4018,
+        "crush": 2089,
+        "normal": 1607,
+        "miss": 1205
       },
       "s2": {
         "skill": "s2",
-        "crit": 4920,
-        "crush": 2558,
-        "normal": 1968,
-        "miss": 1476
+        "crit": 6560,
+        "crush": 3411,
+        "normal": 2624,
+        "miss": 1968
+      },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 9020,
+        "crush": 4691,
+        "normal": 3608,
+        "miss": 2706
       }
     },
     "discreet_hands": {
       "s1": {
         "skill": "s1",
-        "crit": 3747,
-        "crush": 1948,
-        "normal": 1499,
-        "miss": 1124
-      },
-      "s2": {
-        "skill": "s2",
-        "crit": 5904,
-        "crush": 3070,
-        "normal": 2362,
-        "miss": 1771
-      }
-    },
-    "dark_blood_keeper": {
-      "s1": {
-        "skill": "s1",
-        "crit": 3591,
-        "crush": 1867,
-        "normal": 1436,
-        "miss": 1077
-      },
-      "s2": {
-        "skill": "s2",
-        "crit": 5658,
-        "crush": 2942,
-        "normal": 2263,
-        "miss": 1697
-      }
-    },
-    "master_of_the_nightmare": {
-      "s1": {
-        "skill": "s1",
-        "crit": 3747,
-        "crush": 1948,
-        "normal": 1499,
-        "miss": 1124
-      },
-      "s2": {
-        "skill": "s2",
-        "crit": 5904,
-        "crush": 3070,
-        "normal": 2362,
-        "miss": 1771
-      }
-    },
-    "daydream_joker": {
-      "s1": {
-        "skill": "s1",
-        "crit": 3373,
-        "crush": 1754,
-        "normal": 1349,
-        "miss": 1012
-      },
-      "s2": {
-        "skill": "s2",
-        "crit": 5183,
-        "crush": 2695,
-        "normal": 2073,
-        "miss": 1555
-      }
-    },
-    "double_edged_decrescent": {
-      "s1": {
-        "skill": "s1",
-        "crit": 3122,
-        "crush": 1624,
-        "normal": 1249,
-        "miss": 937
-      },
-      "s2": {
-        "skill": "s2",
-        "crit": 4920,
-        "crush": 2558,
-        "normal": 1968,
-        "miss": 1476
-      }
-    },
-    "exorcist_tonfa": {
-      "s1": {
-        "skill": "s1",
-        "crit": 3571,
-        "crush": 1857,
-        "normal": 1429,
-        "miss": 1071
-      },
-      "s2": {
-        "skill": "s2",
-        "crit": 5594,
-        "crush": 2909,
-        "normal": 2237,
-        "miss": 1678
-      }
-    },
-    "elyha_knife": {
-      "s1": {
-        "skill": "s1",
-        "crit": 3690,
-        "crush": 1919,
-        "normal": 1476,
-        "miss": 1107
-      },
-      "s2": {
-        "skill": "s2",
-        "crit": 5815,
-        "crush": 3024,
-        "normal": 2326,
-        "miss": 1744
-      }
-    },
-    "feed_of_criticism": {
-      "s1": {
-        "skill": "s1",
-        "crit": 3747,
-        "crush": 1948,
-        "normal": 1499,
-        "miss": 1124
-      },
-      "s2": {
-        "skill": "s2",
-        "crit": 5904,
-        "crush": 3070,
-        "normal": 2362,
-        "miss": 1771
-      }
-    },
-    "frantic_flight": {
-      "s1": {
-        "skill": "s1",
-        "crit": 3122,
-        "crush": 1624,
-        "normal": 1249,
-        "miss": 937
-      },
-      "s2": {
-        "skill": "s2",
-        "crit": 4920,
-        "crush": 2558,
-        "normal": 1968,
-        "miss": 1476
-      }
-    },
-    "hostess_of_the_banquet": {
-      "s1": {
-        "skill": "s1",
-        "crit": 3627,
-        "crush": 1886,
-        "normal": 1451,
-        "miss": 1088
-      },
-      "s2": {
-        "skill": "s2",
-        "crit": 5678,
-        "crush": 2953,
-        "normal": 2271,
-        "miss": 1703
-      }
-    },
-    "our_beautiful_seasons": {
-      "s1": {
-        "skill": "s1",
-        "crit": 3684,
-        "crush": 1915,
-        "normal": 1473,
-        "miss": 1105
-      },
-      "s2": {
-        "skill": "s2",
-        "crit": 5762,
-        "crush": 2996,
-        "normal": 2305,
-        "miss": 1729
-      }
-    },
-    "portrait_of_the_saviors": {
-      "s1": {
-        "skill": "s1",
-        "crit": 3684,
-        "crush": 1915,
-        "normal": 1473,
-        "miss": 1105
-      },
-      "s2": {
-        "skill": "s2",
-        "crit": 5762,
-        "crush": 2996,
-        "normal": 2305,
-        "miss": 1729
-      }
-    },
-    "p_o_s": {
-      "s1": {
-        "skill": "s1",
-        "crit": 3122,
-        "crush": 1624,
-        "normal": 1249,
-        "miss": 937
-      },
-      "s2": {
-        "skill": "s2",
-        "crit": 4920,
-        "crush": 2558,
-        "normal": 1968,
-        "miss": 1476
-      }
-    },
-    "prelude_to_a_new_era": {
-      "s1": {
-        "skill": "s1",
-        "crit": 3684,
-        "crush": 1915,
-        "normal": 1473,
-        "miss": 1105
-      },
-      "s2": {
-        "skill": "s2",
-        "crit": 5762,
-        "crush": 2996,
-        "normal": 2305,
-        "miss": 1729
-      }
-    },
-    "shadow_winds_7": {
-      "s1": {
-        "skill": "s1",
-        "crit": 3747,
-        "crush": 1948,
-        "normal": 1499,
-        "miss": 1124
-      },
-      "s2": {
-        "skill": "s2",
-        "crit": 5904,
-        "crush": 3070,
-        "normal": 2362,
-        "miss": 1771
-      }
-    },
-    "shepherd_of_the_hollow": {
-      "s1": {
-        "skill": "s1",
-        "crit": 3459,
-        "crush": 1799,
-        "normal": 1384,
-        "miss": 1038
-      },
-      "s2": {
-        "skill": "s2",
-        "crit": 5425,
-        "crush": 2821,
-        "normal": 2170,
-        "miss": 1628
-      }
-    },
-    "special_strawberry_cake": {
-      "s1": {
-        "skill": "s1",
-        "crit": 3684,
-        "crush": 1915,
-        "normal": 1473,
-        "miss": 1105
-      },
-      "s2": {
-        "skill": "s2",
-        "crit": 5762,
-        "crush": 2996,
-        "normal": 2305,
-        "miss": 1729
-      }
-    },
-    "summer_photogenic": {
-      "s1": {
-        "skill": "s1",
-        "crit": 3747,
-        "crush": 1948,
-        "normal": 1499,
-        "miss": 1124
-      },
-      "s2": {
-        "skill": "s2",
-        "crit": 5904,
-        "crush": 3070,
-        "normal": 2362,
-        "miss": 1771
-      }
-    },
-    "sword_of_cycling_seasons": {
-      "s1": {
-        "skill": "s1",
-        "crit": 3122,
-        "crush": 1624,
-        "normal": 1249,
-        "miss": 937
-      },
-      "s2": {
-        "skill": "s2",
-        "crit": 4920,
-        "crush": 2558,
-        "normal": 1968,
-        "miss": 1476
-      }
-    },
-    "sword_of_summer_twilight": {
-      "s1": {
-        "skill": "s1",
-        "crit": 3122,
-        "crush": 1624,
-        "normal": 1249,
-        "miss": 937
-      },
-      "s2": {
-        "skill": "s2",
-        "crit": 4920,
-        "crush": 2558,
-        "normal": 1968,
-        "miss": 1476
-      }
-    },
-    "sword_of_winter_shadow": {
-      "s1": {
-        "skill": "s1",
-        "crit": 3591,
-        "crush": 1867,
-        "normal": 1436,
-        "miss": 1077
-      },
-      "s2": {
-        "skill": "s2",
-        "crit": 5658,
-        "crush": 2942,
-        "normal": 2263,
-        "miss": 1697
-      }
-    },
-    "sword_of_the_morning": {
-      "s1": {
-        "skill": "s1",
-        "crit": 3747,
-        "crush": 1948,
-        "normal": 1499,
-        "miss": 1124
-      },
-      "s2": {
-        "skill": "s2",
-        "crit": 5904,
-        "crush": 3070,
-        "normal": 2362,
-        "miss": 1771
-      }
-    },
-    "torn_sleeve": {
-      "s1": {
-        "skill": "s1",
-        "crit": 3122,
-        "crush": 1624,
-        "normal": 1249,
-        "miss": 937
-      },
-      "s2": {
-        "skill": "s2",
-        "crit": 4920,
-        "crush": 2558,
-        "normal": 1968,
-        "miss": 1476
-      }
-    },
-    "victorious_flag": {
-      "s1": {
-        "skill": "s1",
-        "crit": 3571,
-        "crush": 1857,
-        "normal": 1429,
-        "miss": 1071
-      },
-      "s2": {
-        "skill": "s2",
-        "crit": 5594,
-        "crush": 2909,
-        "normal": 2237,
-        "miss": 1678
-      }
-    },
-    "violet_talisman": {
-      "s1": {
-        "skill": "s1",
-        "crit": 3122,
-        "crush": 1624,
-        "normal": 1249,
-        "miss": 937
-      },
-      "s2": {
-        "skill": "s2",
-        "crit": 4920,
-        "crush": 2558,
-        "normal": 1968,
-        "miss": 1476
-      }
-    },
-    "wind_rider": {
-      "s1": {
-        "skill": "s1",
-        "crit": 4996,
-        "crush": 2598,
-        "normal": 1998,
-        "miss": 1499
+        "crit": 4215,
+        "crush": 2192,
+        "normal": 1686,
+        "miss": 1265
       },
       "s2": {
         "skill": "s2",
@@ -152609,6 +152433,588 @@
         "crush": 4094,
         "normal": 3149,
         "miss": 2362
+      },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 10824,
+        "crush": 5629,
+        "normal": 4330,
+        "miss": 3247
+      }
+    },
+    "dark_blood_keeper": {
+      "s1": {
+        "skill": "s1",
+        "crit": 4039,
+        "crush": 2100,
+        "normal": 1616,
+        "miss": 1212
+      },
+      "s2": {
+        "skill": "s2",
+        "crit": 7544,
+        "crush": 3923,
+        "normal": 3018,
+        "miss": 2263
+      },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 10373,
+        "crush": 5394,
+        "normal": 4149,
+        "miss": 3112
+      }
+    },
+    "master_of_the_nightmare": {
+      "s1": {
+        "skill": "s1",
+        "crit": 4215,
+        "crush": 2192,
+        "normal": 1686,
+        "miss": 1265
+      },
+      "s2": {
+        "skill": "s2",
+        "crit": 7872,
+        "crush": 4094,
+        "normal": 3149,
+        "miss": 2362
+      },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 10824,
+        "crush": 5629,
+        "normal": 4330,
+        "miss": 3247
+      }
+    },
+    "daydream_joker": {
+      "s1": {
+        "skill": "s1",
+        "crit": 3763,
+        "crush": 1957,
+        "normal": 1505,
+        "miss": 1129
+      },
+      "s2": {
+        "skill": "s2",
+        "crit": 6823,
+        "crush": 3548,
+        "normal": 2729,
+        "miss": 2047
+      },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 9283,
+        "crush": 4827,
+        "normal": 3713,
+        "miss": 2785
+      }
+    },
+    "double_edged_decrescent": {
+      "s1": {
+        "skill": "s1",
+        "crit": 3513,
+        "crush": 1827,
+        "normal": 1405,
+        "miss": 1054
+      },
+      "s2": {
+        "skill": "s2",
+        "crit": 6560,
+        "crush": 3411,
+        "normal": 2624,
+        "miss": 1968
+      },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 9020,
+        "crush": 4691,
+        "normal": 3608,
+        "miss": 2706
+      }
+    },
+    "exorcist_tonfa": {
+      "s1": {
+        "skill": "s1",
+        "crit": 4018,
+        "crush": 2089,
+        "normal": 1607,
+        "miss": 1205
+      },
+      "s2": {
+        "skill": "s2",
+        "crit": 7458,
+        "crush": 3878,
+        "normal": 2983,
+        "miss": 2237
+      },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 10255,
+        "crush": 5333,
+        "normal": 4102,
+        "miss": 3077
+      }
+    },
+    "elyha_knife": {
+      "s1": {
+        "skill": "s1",
+        "crit": 4151,
+        "crush": 2159,
+        "normal": 1660,
+        "miss": 1245
+      },
+      "s2": {
+        "skill": "s2",
+        "crit": 7753,
+        "crush": 4032,
+        "normal": 3101,
+        "miss": 2326
+      },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 10660,
+        "crush": 5543,
+        "normal": 4264,
+        "miss": 3198
+      }
+    },
+    "feed_of_criticism": {
+      "s1": {
+        "skill": "s1",
+        "crit": 4215,
+        "crush": 2192,
+        "normal": 1686,
+        "miss": 1265
+      },
+      "s2": {
+        "skill": "s2",
+        "crit": 7872,
+        "crush": 4094,
+        "normal": 3149,
+        "miss": 2362
+      },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 10824,
+        "crush": 5629,
+        "normal": 4330,
+        "miss": 3247
+      }
+    },
+    "frantic_flight": {
+      "s1": {
+        "skill": "s1",
+        "crit": 3513,
+        "crush": 1827,
+        "normal": 1405,
+        "miss": 1054
+      },
+      "s2": {
+        "skill": "s2",
+        "crit": 6560,
+        "crush": 3411,
+        "normal": 2624,
+        "miss": 1968
+      },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 9020,
+        "crush": 4691,
+        "normal": 3608,
+        "miss": 2706
+      }
+    },
+    "hostess_of_the_banquet": {
+      "s1": {
+        "skill": "s1",
+        "crit": 4081,
+        "crush": 2122,
+        "normal": 1632,
+        "miss": 1224
+      },
+      "s2": {
+        "skill": "s2",
+        "crit": 7571,
+        "crush": 3937,
+        "normal": 3028,
+        "miss": 2271
+      },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 10409,
+        "crush": 5413,
+        "normal": 4164,
+        "miss": 3123
+      }
+    },
+    "our_beautiful_seasons": {
+      "s1": {
+        "skill": "s1",
+        "crit": 4144,
+        "crush": 2155,
+        "normal": 1658,
+        "miss": 1243
+      },
+      "s2": {
+        "skill": "s2",
+        "crit": 7683,
+        "crush": 3995,
+        "normal": 3073,
+        "miss": 2305
+      },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 10564,
+        "crush": 5493,
+        "normal": 4226,
+        "miss": 3169
+      }
+    },
+    "portrait_of_the_saviors": {
+      "s1": {
+        "skill": "s1",
+        "crit": 4144,
+        "crush": 2155,
+        "normal": 1658,
+        "miss": 1243
+      },
+      "s2": {
+        "skill": "s2",
+        "crit": 7683,
+        "crush": 3995,
+        "normal": 3073,
+        "miss": 2305
+      },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 10564,
+        "crush": 5493,
+        "normal": 4226,
+        "miss": 3169
+      }
+    },
+    "p_o_s": {
+      "s1": {
+        "skill": "s1",
+        "crit": 3513,
+        "crush": 1827,
+        "normal": 1405,
+        "miss": 1054
+      },
+      "s2": {
+        "skill": "s2",
+        "crit": 6560,
+        "crush": 3411,
+        "normal": 2624,
+        "miss": 1968
+      },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 9020,
+        "crush": 4691,
+        "normal": 3608,
+        "miss": 2706
+      }
+    },
+    "prelude_to_a_new_era": {
+      "s1": {
+        "skill": "s1",
+        "crit": 4144,
+        "crush": 2155,
+        "normal": 1658,
+        "miss": 1243
+      },
+      "s2": {
+        "skill": "s2",
+        "crit": 7683,
+        "crush": 3995,
+        "normal": 3073,
+        "miss": 2305
+      },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 10564,
+        "crush": 5493,
+        "normal": 4226,
+        "miss": 3169
+      }
+    },
+    "shadow_winds_7": {
+      "s1": {
+        "skill": "s1",
+        "crit": 4215,
+        "crush": 2192,
+        "normal": 1686,
+        "miss": 1265
+      },
+      "s2": {
+        "skill": "s2",
+        "crit": 7872,
+        "crush": 4094,
+        "normal": 3149,
+        "miss": 2362
+      },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 10824,
+        "crush": 5629,
+        "normal": 4330,
+        "miss": 3247
+      }
+    },
+    "shepherd_of_the_hollow": {
+      "s1": {
+        "skill": "s1",
+        "crit": 3891,
+        "crush": 2024,
+        "normal": 1557,
+        "miss": 1167
+      },
+      "s2": {
+        "skill": "s2",
+        "crit": 7234,
+        "crush": 3762,
+        "normal": 2894,
+        "miss": 2170
+      },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 9946,
+        "crush": 5172,
+        "normal": 3979,
+        "miss": 2984
+      }
+    },
+    "special_strawberry_cake": {
+      "s1": {
+        "skill": "s1",
+        "crit": 4144,
+        "crush": 2155,
+        "normal": 1658,
+        "miss": 1243
+      },
+      "s2": {
+        "skill": "s2",
+        "crit": 7683,
+        "crush": 3995,
+        "normal": 3073,
+        "miss": 2305
+      },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 10564,
+        "crush": 5493,
+        "normal": 4226,
+        "miss": 3169
+      }
+    },
+    "summer_photogenic": {
+      "s1": {
+        "skill": "s1",
+        "crit": 4215,
+        "crush": 2192,
+        "normal": 1686,
+        "miss": 1265
+      },
+      "s2": {
+        "skill": "s2",
+        "crit": 7872,
+        "crush": 4094,
+        "normal": 3149,
+        "miss": 2362
+      },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 10824,
+        "crush": 5629,
+        "normal": 4330,
+        "miss": 3247
+      }
+    },
+    "sword_of_cycling_seasons": {
+      "s1": {
+        "skill": "s1",
+        "crit": 3513,
+        "crush": 1827,
+        "normal": 1405,
+        "miss": 1054
+      },
+      "s2": {
+        "skill": "s2",
+        "crit": 6560,
+        "crush": 3411,
+        "normal": 2624,
+        "miss": 1968
+      },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 9020,
+        "crush": 4691,
+        "normal": 3608,
+        "miss": 2706
+      }
+    },
+    "sword_of_summer_twilight": {
+      "s1": {
+        "skill": "s1",
+        "crit": 3513,
+        "crush": 1827,
+        "normal": 1405,
+        "miss": 1054
+      },
+      "s2": {
+        "skill": "s2",
+        "crit": 6560,
+        "crush": 3411,
+        "normal": 2624,
+        "miss": 1968
+      },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 9020,
+        "crush": 4691,
+        "normal": 3608,
+        "miss": 2706
+      }
+    },
+    "sword_of_winter_shadow": {
+      "s1": {
+        "skill": "s1",
+        "crit": 4039,
+        "crush": 2100,
+        "normal": 1616,
+        "miss": 1212
+      },
+      "s2": {
+        "skill": "s2",
+        "crit": 7544,
+        "crush": 3923,
+        "normal": 3018,
+        "miss": 2263
+      },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 10373,
+        "crush": 5394,
+        "normal": 4149,
+        "miss": 3112
+      }
+    },
+    "sword_of_the_morning": {
+      "s1": {
+        "skill": "s1",
+        "crit": 4215,
+        "crush": 2192,
+        "normal": 1686,
+        "miss": 1265
+      },
+      "s2": {
+        "skill": "s2",
+        "crit": 7872,
+        "crush": 4094,
+        "normal": 3149,
+        "miss": 2362
+      },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 10824,
+        "crush": 5629,
+        "normal": 4330,
+        "miss": 3247
+      }
+    },
+    "torn_sleeve": {
+      "s1": {
+        "skill": "s1",
+        "crit": 3513,
+        "crush": 1827,
+        "normal": 1405,
+        "miss": 1054
+      },
+      "s2": {
+        "skill": "s2",
+        "crit": 6560,
+        "crush": 3411,
+        "normal": 2624,
+        "miss": 1968
+      },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 9020,
+        "crush": 4691,
+        "normal": 3608,
+        "miss": 2706
+      }
+    },
+    "victorious_flag": {
+      "s1": {
+        "skill": "s1",
+        "crit": 4018,
+        "crush": 2089,
+        "normal": 1607,
+        "miss": 1205
+      },
+      "s2": {
+        "skill": "s2",
+        "crit": 7458,
+        "crush": 3878,
+        "normal": 2983,
+        "miss": 2237
+      },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 10255,
+        "crush": 5333,
+        "normal": 4102,
+        "miss": 3077
+      }
+    },
+    "violet_talisman": {
+      "s1": {
+        "skill": "s1",
+        "crit": 3513,
+        "crush": 1827,
+        "normal": 1405,
+        "miss": 1054
+      },
+      "s2": {
+        "skill": "s2",
+        "crit": 6560,
+        "crush": 3411,
+        "normal": 2624,
+        "miss": 1968
+      },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 9020,
+        "crush": 4691,
+        "normal": 3608,
+        "miss": 2706
+      }
+    },
+    "wind_rider": {
+      "s1": {
+        "skill": "s1",
+        "crit": 5620,
+        "crush": 2922,
+        "normal": 2248,
+        "miss": 1686
+      },
+      "s2": {
+        "skill": "s2",
+        "crit": 10496,
+        "crush": 5458,
+        "normal": 4199,
+        "miss": 3149
+      },
+      "s2_soulburn": {
+        "skill": "s2_soulburn",
+        "crit": 14432,
+        "crush": 7505,
+        "normal": 5773,
+        "miss": 4330
       }
     }
   },
@@ -153112,15 +153518,15 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 3508,
-        "crush": 1824,
+        "crit": 4210,
+        "crush": 2189,
         "normal": 2619,
         "miss": 2198
       },
       "s3": {
         "skill": "s3",
-        "crit": 3157,
-        "crush": 1642,
+        "crit": 3789,
+        "crush": 1970,
         "normal": 2451,
         "miss": 2072
       }
@@ -154293,22 +154699,22 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 3859,
-        "crush": 2007,
+        "crit": 4631,
+        "crush": 2408,
         "normal": 2788,
         "miss": 2325
       },
       "s2": {
         "skill": "s2",
-        "crit": 5788,
-        "crush": 3010,
+        "crit": 6946,
+        "crush": 3612,
         "normal": 3714,
         "miss": 3019
       },
       "s3": {
         "skill": "s3",
-        "crit": 11315,
-        "crush": 8284,
+        "crit": 12578,
+        "crush": 8940,
         "normal": 8967,
         "miss": 8209
       }
@@ -160574,15 +160980,15 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 3740,
-        "crush": 1945,
+        "crit": 4488,
+        "crush": 2334,
         "normal": 2731,
         "miss": 2282
       },
       "s3": {
         "skill": "s3",
-        "crit": 6151,
-        "crush": 3962,
+        "crit": 7063,
+        "crush": 4436,
         "normal": 4715,
         "miss": 2577
       }
@@ -171073,22 +171479,22 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 3859,
-        "crush": 2007,
+        "crit": 4631,
+        "crush": 2408,
         "normal": 2788,
         "miss": 2325
       },
       "s1_soulburn": {
         "skill": "s1_soulburn",
-        "crit": 5262,
-        "crush": 2736,
+        "crit": 6315,
+        "crush": 3284,
         "normal": 3461,
         "miss": 2830
       },
       "s3": {
         "skill": "s3",
-        "crit": 6665,
-        "crush": 3466,
+        "crit": 7999,
+        "crush": 4159,
         "normal": 4135,
         "miss": 3335
       }
@@ -172129,22 +172535,22 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 3508,
-        "crush": 1824,
+        "crit": 4210,
+        "crush": 2189,
         "normal": 2619,
         "miss": 2198
       },
       "s2": {
         "skill": "s2",
-        "crit": 4385,
-        "crush": 2280,
+        "crit": 5262,
+        "crush": 2736,
         "normal": 3040,
         "miss": 2514
       },
       "s3": {
         "skill": "s3",
-        "crit": 7157,
-        "crush": 3721,
+        "crit": 8588,
+        "crush": 4466,
         "normal": 4371,
         "miss": 3512
       }
@@ -174273,22 +174679,22 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 4210,
-        "crush": 2189,
+        "crit": 4911,
+        "crush": 2554,
         "normal": 2900,
         "miss": 2409
       },
       "s2": {
         "skill": "s2",
-        "crit": 3017,
-        "crush": 1569,
+        "crit": 3620,
+        "crush": 1883,
         "normal": 2384,
         "miss": 2022
       },
       "s3": {
         "skill": "s3",
-        "crit": 7250,
-        "crush": 4219,
+        "crit": 8513,
+        "crush": 4876,
         "normal": 4902,
         "miss": 4144
       }
@@ -178235,28 +178641,28 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 3157,
-        "crush": 1642,
+        "crit": 3789,
+        "crush": 1970,
         "normal": 2451,
         "miss": 2072
       },
       "s2": {
         "skill": "s2",
-        "crit": 3438,
+        "crit": 4126,
         "crush": null,
         "normal": null,
         "miss": 2173
       },
       "s3": {
         "skill": "s3",
-        "crit": 6727,
+        "crit": 8072,
         "crush": null,
         "normal": null,
         "miss": 3357
       },
       "s3_soulburn": {
         "skill": "s3_soulburn",
-        "crit": 8779,
+        "crit": 10535,
         "crush": null,
         "normal": null,
         "miss": 4096
@@ -179070,22 +179476,22 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 3508,
-        "crush": 1824,
+        "crit": 4210,
+        "crush": 2189,
         "normal": 2619,
         "miss": 2198
       },
       "s2": {
         "skill": "s2",
-        "crit": 3157,
-        "crush": 1642,
+        "crit": 3789,
+        "crush": 1970,
         "normal": 2451,
         "miss": 2072
       },
       "s3": {
         "skill": "s3",
-        "crit": 3333,
-        "crush": 1733,
+        "crit": 3999,
+        "crush": 2080,
         "normal": 2535,
         "miss": 2135
       }
@@ -179660,14 +180066,14 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 3508,
+        "crit": 4210,
         "crush": null,
         "normal": null,
         "miss": 2198
       },
       "s1_bis": {
         "skill": "successorTaeyouRoaringSpiritfall",
-        "crit": 6490,
+        "crit": 7788,
         "crush": null,
         "normal": null,
         "miss": 3272
@@ -185876,29 +186282,29 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 3707,
-        "crush": 1928,
+        "crit": 4373,
+        "crush": 2274,
         "normal": 2685,
         "miss": 2248
       },
       "s1_soulburn": {
         "skill": "s1_soulburn",
-        "crit": 6241,
-        "crush": 3246,
+        "crit": 7364,
+        "crush": 3829,
         "normal": 3881,
         "miss": 3145
       },
       "s1_bis": {
         "skill": "taeyouTidalCrash",
-        "crit": 4683,
-        "crush": 2435,
+        "crit": 5525,
+        "crush": 2873,
         "normal": 3146,
         "miss": 2593
       },
       "s3": {
         "skill": "s3",
-        "crit": 3400,
-        "crush": 1768,
+        "crit": 4080,
+        "crush": 2122,
         "normal": 2568,
         "miss": 2160
       }
@@ -186711,22 +187117,22 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 3508,
-        "crush": 1824,
+        "crit": 4210,
+        "crush": 2189,
         "normal": 2619,
         "miss": 2198
       },
       "s3": {
         "skill": "s3",
-        "crit": 5100,
-        "crush": 2652,
+        "crit": 6120,
+        "crush": 3183,
         "normal": 3384,
         "miss": 2772
       },
       "s3_soulburn": {
         "skill": "s3_soulburn",
-        "crit": 6120,
-        "crush": 3183,
+        "crit": 7344,
+        "crush": 3819,
         "normal": 3873,
         "miss": 3139
       }
@@ -187904,15 +188310,15 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 3508,
-        "crush": 1824,
+        "crit": 4210,
+        "crush": 2189,
         "normal": 2619,
         "miss": 2198
       },
       "s3": {
         "skill": "s3",
-        "crit": 6315,
-        "crush": 3284,
+        "crit": 7578,
+        "crush": 3940,
         "normal": 3967,
         "miss": 3209
       }
@@ -190741,22 +191147,22 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 3542,
-        "crush": 1842,
+        "crit": 4250,
+        "crush": 2210,
         "normal": 2636,
         "miss": 2211
       },
       "s3": {
         "skill": "s3",
-        "crit": 4624,
-        "crush": 2405,
+        "crit": 5549,
+        "crush": 2886,
         "normal": 3155,
         "miss": 2600
       },
       "s3_soulburn": {
         "skill": "s3_soulburn",
-        "crit": 6936,
-        "crush": 3607,
+        "crit": 8324,
+        "crush": 4328,
         "normal": 4265,
         "miss": 3433
       }
@@ -194351,22 +194757,22 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 5157,
-        "crush": 3642,
+        "crit": 5789,
+        "crush": 3970,
         "normal": 4451,
         "miss": 4072
       },
       "s1_soulburn": {
         "skill": "s1_soulburn",
-        "crit": 7052,
-        "crush": 4627,
+        "crit": 8062,
+        "crush": 5152,
         "normal": 5360,
         "miss": 4754
       },
       "s3": {
         "skill": "s3",
-        "crit": 7262,
-        "crush": 4736,
+        "crit": 8315,
+        "crush": 5284,
         "normal": 5461,
         "miss": 4830
       }
@@ -203882,22 +204288,22 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 3508,
-        "crush": 1824,
+        "crit": 4210,
+        "crush": 2189,
         "normal": 2619,
         "miss": 2198
       },
       "s2": {
         "skill": "s2",
-        "crit": 2429,
-        "crush": 1263,
+        "crit": 2914,
+        "crush": 1516,
         "normal": 2101,
         "miss": 1810
       },
       "s3": {
         "skill": "s3",
-        "crit": 6922,
-        "crush": 3599,
+        "crit": 8306,
+        "crush": 4319,
         "normal": 4258,
         "miss": 3427
       }
@@ -205843,22 +206249,22 @@
     "tome_of_lifes_end": {
       "s1": {
         "skill": "s1",
-        "crit": 3859,
-        "crush": 2007,
+        "crit": 4631,
+        "crush": 2408,
         "normal": 2788,
         "miss": 2325
       },
       "s1_soulburn": {
         "skill": "s1_soulburn",
-        "crit": 6315,
-        "crush": 3284,
+        "crit": 7578,
+        "crush": 3940,
         "normal": 3967,
         "miss": 3209
       },
       "s3": {
         "skill": "s3",
-        "crit": 6665,
-        "crush": 3466,
+        "crit": 7999,
+        "crush": 4159,
         "normal": 4135,
         "miss": 3335
       }
