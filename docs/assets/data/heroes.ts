@@ -11629,12 +11629,6 @@ export const Heroes: Record<string, Hero> = {
         enhance: [0.05, 0, 0.05, 0.05, 0, 0.15],
         isAOE: () => true,
       }),
-      s3: new Skill({
-        id: 's3',
-        rate: () => 1,
-        pow: () => 1,
-        isAOE: () => true,
-      })
     }
   }),
   wretched_rose: new Hero({
