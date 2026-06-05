@@ -549,6 +549,11 @@ export const FormDefaults: Record<string, {max?: number, min?: number, defaultVa
         min: 0,
         defaultValue: 0
     },
+    numberOfSouls: {
+        max: 80,
+        min: 0,
+        defaultValue: 0
+    },
 }
 
 export const TargetAttackModifiers = [
@@ -678,6 +683,7 @@ export class DamageFormData {
     skill1Stack: number;
     skillTreeCompleted: boolean;
     soulburnStack: number;
+    numberOfSouls: number;
     targetAsleep: boolean;
     targetAttack: number;
     targetBleedDetonate: number;
@@ -852,6 +858,7 @@ export class DamageFormData {
         this.skill1Stack = _.get(data, 'skill1Stack', 0);
         this.skillTreeCompleted = _.get(data, 'skillTreeCompleted', true);
         this.soulburnStack = _.get(data, 'soulburnStack', 0);
+        this.numberOfSouls = _.get(data, 'numberOfSouls', 0);
         this.targetAsleep = _.get(data, 'targetAsleep', false);
         this.targetAttack = _.get(data, 'targetAttack', 2000);
         this.targetBleedDetonate = _.get(data, 'targetBleedDetonate', 0);
