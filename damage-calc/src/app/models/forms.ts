@@ -897,7 +897,7 @@ export class DamageFormData {
     }
 
     // Get the caster's final speed after modifiers
-    casterFinalSpeed = (heroSpeedMultiplier: number = 0) => {
+    casterFinalSpeed = (heroSpeedMultiplier: number = 0, artifact?: Artifact) => {
         return Math.floor((this.inputOverrides['casterSpeed'] ? this.inputOverrides['casterSpeed'] : this.casterSpeed) * (1 + (this.casterSpeedUp ? BattleConstants.spdUp - 1 : 0)
            + (this.casterSpeedDown ? 1 - BattleConstants.spdUp : 0)
            + (this.casterEnraged ? BattleConstants.casterEnraged - 1 : 0)
@@ -905,7 +905,8 @@ export class DamageFormData {
            + (this.casterHasSuperhumanization ? BattleConstants.superhumanization : 0)
            + (this.casterOverload ? BattleConstants.casterOverload - 1 : 0)
            + (this.casterEnergyDepletion ? -1 * BattleConstants.casterEnergyDepletion : 0)
-           + heroSpeedMultiplier));
+           + heroSpeedMultiplier
+           + (artifact ? artifact.getSpeedBoost(this) : 0)));
     }
 
     // Get the target's final speed after modifiers

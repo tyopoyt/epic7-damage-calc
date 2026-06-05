@@ -44,6 +44,7 @@ export class Artifact {
     speedScaling: boolean;
     penetrate: number;
     extraAttackBonus: boolean;
+    speedBoost: ((inputValues: DamageFormData) => number) | null;
     artifactSpecific: string[];
     artifactSpecificMaximums: Record<string, number>;
     ignoreDamageTransfer: (inputValues: DamageFormData) => boolean;
@@ -63,6 +64,7 @@ export class Artifact {
         this.hpScaling = _.get(data, 'hpScaling', false);
         this.speedScaling = _.get(data, 'speedScaling', false);
         this.extraAttackBonus = _.get(data, 'extraAttackBonus', false);
+        this.speedBoost = _.get(data, 'speedBoost', null);
         this.value = _.get(data, 'value', (artifactScale: number) => artifactScale);
         this.barrier = _.get(data, 'barrier', null);
         this.barrierScale = _.get(data, 'barrierScale', []);
@@ -126,6 +128,11 @@ export class Artifact {
       }
 
       return this.value(this.getScale(level), inputValues, skill, isExtra, hitType, soulburn);
+    }
+
+    getSpeedBoost(inputValues: DamageFormData): number {
+      if (!this.id || !this.speedBoost) return 0;
+      return this.speedBoost(inputValues);
     }
 
     getAfterMathMultipliers(skill: Skill, inputValues: DamageFormData, soulburn: boolean, isExtra: boolean, hitType: HitType) {

@@ -128,8 +128,8 @@ export class Hero {
   }
 
   // Get the hero's speed if it's modified
-  getSpeed(inputValues: DamageFormData): number {
-    return inputValues.casterFinalSpeed(this.speedIncrease(inputValues) - 1);
+  getSpeed(inputValues: DamageFormData, artifact?: Artifact): number {
+    return inputValues.casterFinalSpeed(this.speedIncrease(inputValues) - 1, artifact);
   }
 
   // Get the hero's aftermath (additional) damage
@@ -137,7 +137,7 @@ export class Hero {
     let skillDamage = 0;
     let skillMultipliers = skill.afterMath(hitType, inputValues, soulburn);
     const attack = this.getAttack(artifact, inputValues, attackMultiplier, skill, soulburn, hitType, isExtra)
-    const speed = this.getSpeed(inputValues)
+    const speed = this.getSpeed(inputValues, artifact)
     // TODO: can aftermath skills just use the same skill as DoTSkill now?
     if (skillMultipliers !== null) {
       if (skillMultipliers.attackPercent) {
@@ -189,7 +189,7 @@ export class Hero {
 
     const artiMultipliers = artifact.getAfterMathMultipliers(skill, inputValues, soulburn, isExtra || skill.id.endsWith('extra'), hitType);
     const attack = this.getAttack(artifact, inputValues, attackMultiplier, skill, soulburn, hitType, isExtra || skill.id.endsWith('extra'))
-    const speed = this.getSpeed(inputValues)
+    const speed = this.getSpeed(inputValues, artifact)
     const additionalDamageReduction = 1 - (inputValues.additionalDamageReduction / 100)
     const additionalDamageIncrease = inputValues.pursuitSet ? 1.2 : 1;
     // TODO: can aftermath skills just use the same skill as DoTSkill now?

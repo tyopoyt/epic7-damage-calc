@@ -135,8 +135,8 @@ export class DamageService {
       multTip: this.languageService.getSkillModTip(skill.multTip(soulburn)),
       afterMathDmg: Math.round(this.currentHero.getAfterMathSkillDamage(skill, HitType.crit, soulburn, this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), this.getGlobalDefenseMult(true), this.dataService.currentTarget)),
       afterMathFormula: Object.keys(formattedAftermathFormula).length ? this.languageService.getSkillModTip(formattedAftermathFormula) : '',
-      critBoost: (skill.critDmgBoost(soulburn) * 100),
-      critBoostTip: this.languageService.getSkillModTip(skill.critDmgBoostTip(soulburn)),
+      critBoost: (skill.critDmgBoost(soulburn, this.damageForm) * 100),
+      critBoostTip: this.languageService.getSkillModTip(skill.critDmgBoostTip(soulburn, this.damageForm)),
       // TODO: is there any reason this is called twice w/ ternary rather than just seting the value?
       detonation: skill.detonation(soulburn, this.damageForm) ? Math.round((skill.detonation(soulburn, this.damageForm) - 1) * 100) : 0,
       elementalAdvantage: skill.elementalAdvantage(this.damageForm),
@@ -145,7 +145,7 @@ export class DamageService {
       fixedTip: this.languageService.getSkillModTip(skill.fixedTip(fixedDamage, this.damageForm)),
       flat: Math.round(skill.flat(soulburn, this.damageForm, this.currentArtifact)),
       flatTip: this.languageService.getSkillModTip(skill.flatTip(soulburn, this.damageForm)),
-      pen: Math.max((skill.penetrate(soulburn, this.damageForm, this.currentArtifact, this.currentHero.getAttack(this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill, soulburn, HitType.crit), this.currentHero.getSpeed(this.damageForm)) * 100) - this.damageForm.penetrationResistance, 0).toFixed(2),
+      pen: Math.max((skill.penetrate(soulburn, this.damageForm, this.currentArtifact, this.currentHero.getAttack(this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill, soulburn, HitType.crit), this.currentHero.getSpeed(this.damageForm, this.currentArtifact)) * 100) - this.damageForm.penetrationResistance, 0).toFixed(2),
       penTip: this.languageService.getSkillModTip(skill.penetrateTip(soulburn)),
     };
   }
@@ -179,7 +179,7 @@ export class DamageService {
     const soulburn = true; // should this soulburn be true or false? does it even matter? don't think there's a situation where it affects anything w/ dots
     // TODO: is it necessary to pass skill in here? or can just use DoTSkill?
     const casterAttack = this.currentHero.getAttack(this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill, false, HitType.normal);
-    const casterSpeed = this.currentHero.getSpeed(this.damageForm) // TODO: refactor so this isn't needed?  DotDamage probably shouldn't require the caster's speed...
+    const casterSpeed = this.currentHero.getSpeed(this.damageForm, this.currentArtifact) // TODO: refactor so this isn't needed?  DotDamage probably shouldn't require the caster's speed...
     switch (type) {
       case DoT.bleed:
         return this.currentHero.getAttack(this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill, false, HitType.normal) * 0.4 * BattleConstants.damageConstant * this.dataService.currentTarget.defensivePower(DoTSkill, this.damageForm, this.getGlobalDefenseMult(), this.currentArtifact, false, casterAttack, casterSpeed, HitType.normal, true);
@@ -230,7 +230,7 @@ export class DamageService {
     const additionalDamageReduction = 1 - (this.damageForm.additionalDamageReduction / 100)
     const additionalDamageIncrease = this.damageForm.pursuitSet ? 1.2 : 1;
     const casterAttack = this.currentHero.getAttack(this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill, soulburn, HitType.normal);
-    const casterSpeed = this.currentHero.getSpeed(this.damageForm)
+    const casterSpeed = this.currentHero.getSpeed(this.damageForm, this.currentArtifact)
     let critDmgBuff = this.damageForm.increasedCritDamage ? BattleConstants.increasedCritDamage : 0.0;
     critDmgBuff += this.damageForm.casterHasStarsBlessing ? BattleConstants.casterHasStarsBlessing - 1 : 0;
     critDmgBuff += this.damageForm.casterHasGodOfBattle ? this.damageForm.critDamage / 100 : 0;
@@ -239,7 +239,7 @@ export class DamageService {
     const crush = 1.3 * this.offensivePower(skill, HitType.crush, soulburn, isExtra) * this.dataService.currentTarget.defensivePower(skill, this.damageForm, this.getGlobalDefenseMult(), this.currentArtifact, soulburn, casterAttack, casterSpeed, HitType.normal);
     const critHit = this.offensivePower(skill, HitType.crit, soulburn, isExtra) * this.dataService.currentTarget.defensivePower(skill, this.damageForm, this.getGlobalDefenseMult(), this.currentArtifact, soulburn, casterAttack, casterSpeed, HitType.crit);
     const critDmg = Math.min((this.damageForm.casterFinalCritDamage / 100) + critDmgBuff, 3.5)
-        + (skill.critDmgBoost ? skill.critDmgBoost(soulburn) : 0)
+        + (skill.critDmgBoost ? skill.critDmgBoost(soulburn, this.damageForm) : 0)
         + (this.currentArtifact.getCritDmgBoost(this.damageForm.artifactLevel, this.damageForm, skill, soulburn, HitType.crit, isExtra) || 0)
         + (this.damageForm.casterPerception ? BattleConstants.perception : 0);
 

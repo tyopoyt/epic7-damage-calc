@@ -394,8 +394,12 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
     // Extra checkboxes for hero
     this.heroSpecificNumberInputs.forEach(input => {
       if (this.dataService.buffModifiedSpecific.includes(input)) {
-        this.heroSpecificBooleanInputs.push(`${input}Up`);
-        this.heroSpecificBooleanInputs.push(`${input}Down`);
+        // rhianna_and_luciella's crit boost uses base speed (start of battle), so speed buffs don't apply
+        const skipSpeedBuffs = input === 'casterSpeed' && this.heroID === 'rhianna_and_luciella';
+        if (!skipSpeedBuffs) {
+          this.heroSpecificBooleanInputs.push(`${input}Up`);
+          this.heroSpecificBooleanInputs.push(`${input}Down`);
+        }
 
         if (input === 'targetAttack') {
           this.heroSpecificBooleanInputs.push('targetAttackUpGreat')
@@ -407,7 +411,7 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
           this.heroSpecificBooleanInputs.push('targetEnraged')
           this.heroSpecificBooleanInputs.push('targetHasRampage')
           this.heroSpecificBooleanInputs.push('targetHasSuperhumanization')
-        } else if (input === 'casterSpeed') {
+        } else if (input === 'casterSpeed' && !skipSpeedBuffs) {
           this.heroSpecificBooleanInputs.push('casterHasSuperhumanization')
         }
       } else {
@@ -686,7 +690,7 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
     this.updateBarriers();
     this.artifactDamage = Math.max(this.damageService.getArtifactDamage(false, HitType.crit), this.damageService.getArtifactDamage(true, HitType.crit), this.damageService.getArtifactDamage(false, HitType.normal), this.damageService.getArtifactDamage(true, HitType.normal));
     this.attackIncrease = Math.round(((this.hero.attackIncrease(this.inputValues) - 1) + this.hero.innateAttackIncrease(this.inputValues)) * this.inputValues.attack + this.hero.flatAttackIncrease(this.inputValues, this.artifact));
-    this.speedIncrease = this.hero.speedIncrease(this.inputValues) !== 1 ? this.hero.getSpeed(this.inputValues) : 0;
+    this.speedIncrease = this.hero.speedIncrease(this.inputValues) !== 1 ? this.hero.getSpeed(this.inputValues, this.artifact) : 0;
     this.resistanceIncrease = Math.round(this.hero.resistanceIncrease(this.artifact, this.inputValues));
   }
 
