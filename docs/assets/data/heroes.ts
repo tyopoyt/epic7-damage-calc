@@ -1252,6 +1252,39 @@ export const Heroes: Record<string, Hero> = {
       })
     }
   }),
+  aubade_ludwig: new Hero({
+    element: HeroElement.ice,
+    class: HeroClass.ranger,
+    baseAttack: 1003,
+    baseDefense: 760,
+    baseHP: 5704,
+    heroSpecific: ['numberOfSouls', 'casterMaxHP'],
+    barrierSkills: ['S3', 'S3 Soulburn'],
+    barrier: (_hero: Hero, _skill: Skill, artifact: Artifact, inputValues: DamageFormData, _attackMultiplier: number, soulburn: boolean) =>
+      inputValues.casterFinalMaxHP(artifact) * 0.25,
+    barrier2: (_hero: Hero, _skill: Skill, artifact: Artifact, inputValues: DamageFormData, _attackMultiplier: number, soulburn: boolean) =>
+      inputValues.casterFinalMaxHP(artifact) * 0.32,
+    skills: {
+      s1: new Skill({
+        id: 's1',
+        rate: () => 0.7,
+        pow: () => 1,
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        isSingle: () => true,
+      }),
+      s1_bis: new Skill({
+        id: 's1_bis',
+        name: 'aubadeLudwigLightOfCondemnation',
+        rate: () => 0.4,
+        pow: () => 1.3,
+        fixed: (_hitType: HitType, inputValues: DamageFormData) =>
+          1000 + Math.min(inputValues.numberOfSouls * 300, 24000),
+        fixedTip: () => ({ fixed: 1000, per_soul: 300 }),
+        isAOE: () => true,
+        isExtra: true,
+      }),
+    }
+  }),
   auxiliary_lots: new Hero({
     element: HeroElement.dark,
     class: HeroClass.mage,
@@ -8717,6 +8750,69 @@ export const Heroes: Record<string, Hero> = {
         soulburn: true,
         isSingle: () => true,
       })
+    }
+  }),
+  rhianna_and_luciella: new Hero({
+    element: HeroElement.dark,
+    class: HeroClass.thief,
+    baseAttack: 1003,
+    baseHP: 5057,
+    baseDefense: 511,
+    heroSpecific: ['casterSpeed'],
+    barrierSkills: ['S3'],
+    barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData, attackMultiplier: number, soulburn: boolean) => hero.getAttack(artifact, inputValues, attackMultiplier, skill, soulburn, HitType.normal) * 1.6,
+    skills: {
+      s1: new Skill({
+        id: 's1',
+        name: 'rhiannaAndLuciellaS1Rhianna',
+        rate: () => 0.7,
+        pow: () => 0.95,
+        isSingle: () => true,
+        canExtra: true,
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.1],
+      }),
+      s1_bis: new Skill({
+        id: 's1_bis',
+        name: 'rhiannaAndLuciellaS1Luciella',
+        rate: () => 1,
+        pow: () => 0.95,
+        isSingle: () => true,
+        canExtra: true,
+        enhanceFrom: 's1',
+        critDmgBoost: (_soulburn: boolean, inputValues: DamageFormData) => inputValues.casterSpeed * 0.003,
+        critDmgBoostTip: (_soulburn: boolean, inputValues: DamageFormData) => ({ casterSpeed: 30 }),
+      }),
+      s2: new Skill({
+        id: 's2',
+        name: 'rhiannaAndLuciellaS2Rhianna',
+        rate: () => 1,
+        pow: () => 1,
+        isSingle: () => true,
+        canExtra: true,
+        enhance: [0.05, 0.1, 0.15],
+      }),
+      s2_bis: new Skill({
+        id: 's2_bis',
+        name: 'rhiannaAndLuciellaS2Luciella',
+        rate: (soulburn: boolean) => soulburn ? 3 : 1.5,
+        pow: () => 1,
+        isSingle: () => true,
+        canExtra: true,
+        soulburn: true,
+        enhanceFrom: 's2',
+        critDmgBoost: (_soulburn: boolean, inputValues: DamageFormData) => inputValues.casterSpeed * 0.003,
+        critDmgBoostTip: (_soulburn: boolean, inputValues: DamageFormData) => ({ casterSpeed: 30 }),
+      }),
+      s3: new Skill({
+        id: 's3',
+        rate: () => 1.3,
+        pow: () => 1,
+        isAOE: () => true,
+        ignoreDamageTransfer: () => true,
+        enhance: [0.05, 0.05, 0, 0.05, 0.05, 0.1],
+        critDmgBoost: (_soulburn: boolean, inputValues: DamageFormData) => inputValues.casterSpeed * 0.003,
+        critDmgBoostTip: (_soulburn: boolean, inputValues: DamageFormData) => ({ casterSpeed: 30 }),
+      }),
     }
   }),
   righteous_thief_roozid: new Hero({

@@ -109,6 +109,17 @@ export const Artifacts: Record<string, Artifact> = {
     barrierScale: [0.25, 0.275, 0.3, 0.325, 0.35, 0.375, 0.4, 0.425, 0.45, 0.475, 0.5],
     exclusive: HeroClass.mage,
   }),
+  butterflys_baptism: new Artifact({
+    id: 'butterflys_baptism',
+    name: "Butterfly's Baptism",
+    type: ArtifactDamageType.attack,
+    exclusive: HeroClass.thief,
+    artifactSpecific: ['turnStack'],
+    artifactSpecificMaximums: {'turnStack': 3},
+    speedScaling: true,
+    value: (_artiScale: number, inputValues: DamageFormData) => inputValues.turnStack * 0.05,
+    speedBoost: (inputValues: DamageFormData) => inputValues.turnStack * 0.05,
+  }),
   discreet_hands: new Artifact({
     id: 'discreet_hands',
     type: ArtifactDamageType.attack,
