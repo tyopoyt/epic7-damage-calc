@@ -644,6 +644,7 @@ export const Artifacts: Record<string, Artifact> = {
     additional: [0.1, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2],
     type: ArtifactDamageType.damage,
     exclusive: HeroClass.warrior,
+    soulburnBonus: true,
     value: (artiScale: number, inputValues: DamageFormData, skill: Skill, isExtra: boolean, hitType: HitType, soulburn: boolean) => artiScale + (soulburn ? Artifacts.thorn_of_the_blue_rose.additional[Artifacts.thorn_of_the_blue_rose.scale.indexOf(artiScale)] : 0)
   }),
   time_matter: new Artifact({

@@ -85,6 +85,7 @@ export class Skill {
     defenseScaling: boolean;
     speedScaling: boolean;
     soulburn: boolean;
+    canSoulburn: boolean;
 
     // TODO: refactor atk to attackToUse
     constructor(data: any) {
@@ -134,6 +135,7 @@ export class Skill {
         this.speedScaling = _.get(data, 'speedScaling', false);
         this.detonate = _.get(data, 'detonate', []);
         this.soulburn = _.get(data, 'soulburn', false);
+        this.canSoulburn = _.get(data, 'canSoulburn', false);
     }
 }
 

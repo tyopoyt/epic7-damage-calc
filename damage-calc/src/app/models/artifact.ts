@@ -44,6 +44,7 @@ export class Artifact {
     speedScaling: boolean;
     penetrate: number;
     extraAttackBonus: boolean;
+    soulburnBonus: boolean;
     speedBoost: ((inputValues: DamageFormData) => number) | null;
     artifactSpecific: string[];
     artifactSpecificMaximums: Record<string, number>;
@@ -64,6 +65,7 @@ export class Artifact {
         this.hpScaling = _.get(data, 'hpScaling', false);
         this.speedScaling = _.get(data, 'speedScaling', false);
         this.extraAttackBonus = _.get(data, 'extraAttackBonus', false);
+        this.soulburnBonus = _.get(data, 'soulburnBonus', false);
         this.speedBoost = _.get(data, 'speedBoost', null);
         this.value = _.get(data, 'value', (artifactScale: number) => artifactScale);
         this.barrier = _.get(data, 'barrier', null);

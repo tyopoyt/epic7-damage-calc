@@ -36,7 +36,7 @@ export function createMockEnv(initialHero: Hero) {
     currentTarget: new Target(),
     attackModifiers: [
       'decreasedAttack', 'attackUp', 'attackUpGreat', 'casterVigor', 'casterEnraged',
-      'casterHasStarsBlessing', 'casterHasPossession', 'casterHasArchdemonsMight',
+      'casterHasStarsBlessing', 'casterHasPossession',
       'casterPromotionStack', 'casterSpoilsStack', 'casterPilfered', 'casterHasDemonBladeUnleashed',
       'casterOverload', 'casterEnergyDepletion', 'casterHasGodOfBattle'
     ],
