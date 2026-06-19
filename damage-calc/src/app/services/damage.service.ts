@@ -229,6 +229,7 @@ export class DamageService {
 
     const additionalDamageReduction = 1 - (this.damageForm.additionalDamageReduction / 100)
     const additionalDamageIncrease = this.damageForm.pursuitSet ? 1.2 : 1;
+    const damageTransferReduction = (skill.ignoreDamageTransfer(this.damageForm) || this.currentArtifact.ignoreDamageTransfer(this.damageForm)) ? 1 : (1 - this.damageForm.damageTransfer / 100);
     const casterAttack = this.currentHero.getAttack(this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill, soulburn, HitType.normal);
     const casterSpeed = this.currentHero.getSpeed(this.damageForm, this.currentArtifact)
     let critDmgBuff = this.damageForm.increasedCritDamage ? BattleConstants.increasedCritDamage : 0.0;
@@ -246,10 +247,10 @@ export class DamageService {
     return {
       skill: (skill.name || skill.id) + (soulburn ? '_soulburn' : (isExtra ? '_extra' : (isCounter && !skill.isCounter ? '_counter': ''))),
       // these 4 need isCounter back at the end if new skill that cares about it is added
-      crit: skill.noCrit || skill.onlyMiss ? null : Math.round(critHit * critDmg + ((skill.fixed(HitType.crit, this.damageForm, this.currentArtifact, soulburn) + skill.fixed2(HitType.crit, this.damageForm, this.currentArtifact, soulburn)) * additionalDamageIncrease * additionalDamageReduction) + this.getAfterMathDamage(skill, HitType.crit, soulburn)),
-      crush: skill.noCrit || skill.onlyCrit(soulburn) || skill.onlyMiss ? null : Math.round(crush + ((skill.fixed(HitType.crush, this.damageForm, this.currentArtifact, soulburn) + skill.fixed2(HitType.crush, this.damageForm, this.currentArtifact, soulburn)) * additionalDamageIncrease * additionalDamageReduction) + this.getAfterMathDamage(skill, HitType.crush, soulburn)),
-      normal: skill.onlyCrit(soulburn) || skill.onlyMiss ? null : Math.round(hit + ((skill.fixed(HitType.normal, this.damageForm, this.currentArtifact, soulburn) + skill.fixed2(HitType.normal, this.damageForm, this.currentArtifact, soulburn)) * additionalDamageIncrease * additionalDamageReduction) + this.getAfterMathDamage(skill, HitType.normal, soulburn)),
-      miss: skill.noMiss ? null : Math.round(miss + ((skill.fixed(HitType.miss, this.damageForm, this.currentArtifact, soulburn) + skill.fixed2(HitType.miss, this.damageForm, this.currentArtifact, soulburn)) * additionalDamageIncrease * additionalDamageReduction) + this.getAfterMathDamage(skill, HitType.miss, soulburn))
+      crit: skill.noCrit || skill.onlyMiss ? null : Math.round(critHit * critDmg + ((skill.fixed(HitType.crit, this.damageForm, this.currentArtifact, soulburn) + skill.fixed2(HitType.crit, this.damageForm, this.currentArtifact, soulburn)) * additionalDamageIncrease * additionalDamageReduction * damageTransferReduction) + this.getAfterMathDamage(skill, HitType.crit, soulburn)),
+      crush: skill.noCrit || skill.onlyCrit(soulburn) || skill.onlyMiss ? null : Math.round(crush + ((skill.fixed(HitType.crush, this.damageForm, this.currentArtifact, soulburn) + skill.fixed2(HitType.crush, this.damageForm, this.currentArtifact, soulburn)) * additionalDamageIncrease * additionalDamageReduction * damageTransferReduction) + this.getAfterMathDamage(skill, HitType.crush, soulburn)),
+      normal: skill.onlyCrit(soulburn) || skill.onlyMiss ? null : Math.round(hit + ((skill.fixed(HitType.normal, this.damageForm, this.currentArtifact, soulburn) + skill.fixed2(HitType.normal, this.damageForm, this.currentArtifact, soulburn)) * additionalDamageIncrease * additionalDamageReduction * damageTransferReduction) + this.getAfterMathDamage(skill, HitType.normal, soulburn)),
+      miss: skill.noMiss ? null : Math.round(miss + ((skill.fixed(HitType.miss, this.damageForm, this.currentArtifact, soulburn) + skill.fixed2(HitType.miss, this.damageForm, this.currentArtifact, soulburn)) * additionalDamageIncrease * additionalDamageReduction * damageTransferReduction) + this.getAfterMathDamage(skill, HitType.miss, soulburn))
     };
   }
 
