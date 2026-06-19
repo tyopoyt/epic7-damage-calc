@@ -673,6 +673,7 @@ export class DamageFormData {
     numberOfDeaths: number;
     numberOfHits: number;
     numberOfTargets: number;
+    fervorSet: boolean;
     penetrationSet: boolean;
     pursuitSet: boolean;
     rageSet: boolean;
@@ -847,6 +848,7 @@ export class DamageFormData {
         this.numberOfDeaths = _.get(data, 'numberOfDeaths', 0);
         this.numberOfHits = _.get(data, 'numberOfHits', 1);
         this.numberOfTargets = _.get(data, 'numberOfTargets', 4);
+        this.fervorSet = _.get(data, 'fervorSet', false);
         this.penetrationSet = _.get(data, 'penetrationSet', false);
         this.pursuitSet = _.get(data, 'pursuitSet', false);
         this.rageSet = _.get(data, 'rageSet', false);

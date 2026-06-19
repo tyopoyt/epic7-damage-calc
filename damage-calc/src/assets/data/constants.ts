@@ -17,6 +17,7 @@ export const BattleConstants: Record<string, number> = {
   'rageSet': 0.3,
   'superhumanization': 1,
   'torrentSet': 0.1,
+  'fervorSet': 0.2,
   'penetrationSet': 0.15,
   'targetDefenseUp': 0.6,
   'targetDefenseDown': -0.7,

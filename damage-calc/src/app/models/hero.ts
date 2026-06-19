@@ -3,6 +3,7 @@ import { Target } from "./target";
 import { DamageFormData } from "./forms";
 import { DoT, HitType, Skill } from "./skill";
 import { BattleConstants } from "../../assets/data/constants"
+import { getHeroBaseStats } from "../../assets/data/stat-tables";
 import * as _ from 'lodash-es'
 
 export enum HeroElement {
@@ -13,15 +14,8 @@ export enum HeroElement {
     dark = 'dark'
 }
 
-export enum HeroClass {
-    common = 'common',
-    knight = 'knight',
-    mage = 'mage',
-    ranger = 'ranger',
-    soul_weaver = 'soul_weaver',
-    warrior = 'warrior',
-    thief = 'thief'
-}
+import { HeroClass, HeroStarGrade, HeroStarSign } from './hero-enums';
+export { HeroClass, HeroStarGrade, HeroStarSign } from './hero-enums';
 //TODO: refactor atk to attack and crit to critDamage
 export class Hero {
     attackIncrease: (inputValues: DamageFormData) => number;
@@ -34,6 +28,8 @@ export class Hero {
     barrier2Enhance?: string;
     barrierEnhance?: string;
     barrierSkills?: string[];
+    starGrade: HeroStarGrade;
+    starSign: HeroStarSign;
     baseAttack: number;
     baseDefense: number;
     baseHP: number;
@@ -63,10 +59,13 @@ export class Hero {
     this.barrier2Enhance = _.get(heroValues, 'barrier2Enhance', '');
     this.barrierEnhance = _.get(heroValues, 'barrierEnhance', '');
     this.barrierSkills = _.get(heroValues, 'barrierSkills', []);
-    this.baseAttack = _.get(heroValues, 'baseAttack', 0);
-    this.baseDefense = _.get(heroValues, 'baseDefense', 0);
-    this.baseHP = _.get(heroValues, 'baseHP', 0);
     this.class = _.get(heroValues, 'class', HeroClass.warrior);
+    this.starGrade = _.get(heroValues, 'starGrade', HeroStarGrade.five);
+    this.starSign  = _.get(heroValues, 'starSign', HeroStarSign.aries);
+    const stats = getHeroBaseStats(this.class, this.starGrade, this.starSign);
+    this.baseAttack  = stats ? stats.atk : _.get(heroValues, 'baseAttack', 0);
+    this.baseDefense = stats ? stats.def : _.get(heroValues, 'baseDefense', 0);
+    this.baseHP      = stats ? stats.hp  : _.get(heroValues, 'baseHP', 0);
     this.dot = _.get(heroValues, 'dot', []);
     this.element = _.get(heroValues, 'element', HeroElement.fire);
     this.gameID = _.get(heroValues, 'gameID', '0000');

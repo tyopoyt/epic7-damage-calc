@@ -195,6 +195,12 @@
                     {{'pursuitSet' | translate:'form'}}
                 </span>
             </mat-checkbox>
+            <mat-checkbox class="small-margin-top" [checked]="inputValues.fervorSet" (change)="inputChange('fervorSet', $event.checked)">
+                <span class="neat-container">
+                    <img class="png-icon medium tiny-margin-right" src="assets/sets/fervor-set.png" alt="Fervor set">
+                    {{'fervorSet' | translate:'form'}}
+                </span>
+            </mat-checkbox>
         </div>
         <div *ngIf="stackingSets.length" class="artifact-block header-block">
             <h1>{{'numberOfSets' | translate:'form'}}</h1>

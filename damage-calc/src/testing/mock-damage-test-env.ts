@@ -40,7 +40,7 @@ export function createMockEnv(initialHero: Hero) {
       'casterPromotionStack', 'casterSpoilsStack', 'casterPilfered', 'casterHasDemonBladeUnleashed',
       'casterOverload', 'casterEnergyDepletion', 'casterHasGodOfBattle'
     ],
-    damageMultSets: ['rageSet', 'torrentSet'],
+    damageMultSets: ['rageSet', 'torrentSet', 'fervorSet'],
     heroConstants: { beehooBurnMult: 1.3 }
   };
 

@@ -42,7 +42,7 @@ export class DataService {
   ]
   
   damageMultSets = [
-    'rageSet', 'torrentSet'
+    'rageSet', 'torrentSet', 'fervorSet'
   ]
 
   displayConstants = {
