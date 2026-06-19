@@ -91,6 +91,7 @@ export const Heroes: Record<string, Hero> = {
         pow: () => 0.9,
         penetrate: () => 0.7,
         enhanceFrom: 's1',
+        s1Benefits: true,
         isSingle: () => true,
         canCounter: true
       }),
@@ -101,6 +102,7 @@ export const Heroes: Record<string, Hero> = {
         pow: () => 0.9,
         penetrate: () => 0.7,
         enhanceFrom: 's1',
+        s1Benefits: true,
         isSingle: () => true,
       }),
       s3: new Skill({
