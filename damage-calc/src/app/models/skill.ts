@@ -46,6 +46,7 @@ export class Skill {
     canExtra: boolean;
     canCounter: boolean;
     critDmgBoost: Function;
+    critDmgBoostCapped: boolean;
     critDmgBoostTip: Function;
     detonation: (solburn: boolean, inputValues: DamageFormData) => number;
     elementalAdvantage: (inputValues: DamageFormData) => boolean;
@@ -97,6 +98,7 @@ export class Skill {
         this.canCounter = _.get(data, 'canCounter', false);
         this.extraModifier = _.get(data, 'extraModifier', false);
         this.critDmgBoost = _.get(data, 'critDmgBoost', () => 0);
+        this.critDmgBoostCapped = _.get(data, 'critDmgBoostCapped', false);
         this.critDmgBoostTip = _.get(data, 'critDmgBoostTip', () => null);
         this.detonation = _.get(data, 'detonation', () => 0);
         this.elementalAdvantage = _.get(data, 'elementalAdvantage', (inputValues: DamageFormData) => inputValues.elementalAdvantage);

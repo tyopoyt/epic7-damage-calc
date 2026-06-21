@@ -239,8 +239,9 @@ export class DamageService {
     const hit = this.offensivePower(skill, HitType.normal, soulburn, isExtra) * this.dataService.currentTarget.defensivePower(skill, this.damageForm, this.getGlobalDefenseMult(), this.currentArtifact, soulburn, casterAttack, casterSpeed, HitType.normal);
     const crush = 1.3 * this.offensivePower(skill, HitType.crush, soulburn, isExtra) * this.dataService.currentTarget.defensivePower(skill, this.damageForm, this.getGlobalDefenseMult(), this.currentArtifact, soulburn, casterAttack, casterSpeed, HitType.normal);
     const critHit = this.offensivePower(skill, HitType.crit, soulburn, isExtra) * this.dataService.currentTarget.defensivePower(skill, this.damageForm, this.getGlobalDefenseMult(), this.currentArtifact, soulburn, casterAttack, casterSpeed, HitType.crit);
-    const critDmg = Math.min((this.damageForm.casterFinalCritDamage / 100) + critDmgBuff, 3.5)
-        + (skill.critDmgBoost ? skill.critDmgBoost(soulburn, this.damageForm) : 0)
+    const skillCritBoost = skill.critDmgBoost ? skill.critDmgBoost(soulburn, this.damageForm) : 0;
+    const critDmg = Math.min((this.damageForm.casterFinalCritDamage / 100) + critDmgBuff + (skill.critDmgBoostCapped ? skillCritBoost : 0), 3.5)
+        + (skill.critDmgBoostCapped ? 0 : skillCritBoost)
         + (this.currentArtifact.getCritDmgBoost(this.damageForm.artifactLevel, this.damageForm, skill, soulburn, HitType.crit, isExtra) || 0)
         + (this.damageForm.casterPerception ? BattleConstants.perception : 0);
 
