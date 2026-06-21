@@ -8785,6 +8785,7 @@ export const Heroes: Record<string, Hero> = {
         canExtra: true,
         enhanceFrom: 's1',
         critDmgBoost: (_soulburn: boolean, inputValues: DamageFormData) => inputValues.casterSpeed * 0.003,
+        critDmgBoostCapped: true,
         critDmgBoostTip: (_soulburn: boolean, inputValues: DamageFormData) => ({ casterSpeed: 30 }),
       }),
       s2: new Skill({
@@ -8806,6 +8807,7 @@ export const Heroes: Record<string, Hero> = {
         soulburn: true,
         enhanceFrom: 's2',
         critDmgBoost: (_soulburn: boolean, inputValues: DamageFormData) => inputValues.casterSpeed * 0.003,
+        critDmgBoostCapped: true,
         critDmgBoostTip: (_soulburn: boolean, inputValues: DamageFormData) => ({ casterSpeed: 30 }),
       }),
       s3: new Skill({
@@ -8816,6 +8818,7 @@ export const Heroes: Record<string, Hero> = {
         ignoreDamageTransfer: () => true,
         enhance: [0.05, 0.05, 0, 0.05, 0.05, 0.1],
         critDmgBoost: (_soulburn: boolean, inputValues: DamageFormData) => inputValues.casterSpeed * 0.003,
+        critDmgBoostCapped: true,
         critDmgBoostTip: (_soulburn: boolean, inputValues: DamageFormData) => ({ casterSpeed: 30 }),
       }),
     }

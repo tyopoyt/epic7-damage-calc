@@ -597,7 +597,7 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
     });
     this.dataService.updateSelectedHero(hero);
     this.updateFormInputs();
-    this.dataService.updateDamageInputValues({exclusiveEquipment1: false, exclusiveEquipment2: false, exclusiveEquipment3: false, casterPerception: false, casterEnraged: false, casterHasPossession: false})
+    this.dataService.updateDamageInputValues({exclusiveEquipment1: false, exclusiveEquipment2: false, exclusiveEquipment3: false, casterPerception: false, casterEnraged: false, casterHasPossession: false, casterHasGodOfBattle: false})
     this.updateDamageBlockHeader();
   }
 
