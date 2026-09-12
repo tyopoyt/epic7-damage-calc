@@ -211928,5 +211928,855 @@
         "miss": 1488
       }
     }
+  },
+  "aube": {
+    "noProc": {
+      "s1": {
+        "skill": "s1",
+        "crit": 3508,
+        "crush": 1824,
+        "normal": 1403,
+        "miss": 1052
+      }
+    },
+    "air_to_surface_missile_misha": {
+      "s1": {
+        "skill": "s1",
+        "crit": 3929,
+        "crush": 1824,
+        "normal": 1403,
+        "miss": 1052
+      }
+    },
+    "a_symbol_of_unity": {
+      "s1": {
+        "skill": "s1",
+        "crit": 4069,
+        "crush": 2116,
+        "normal": 1628,
+        "miss": 1221
+      }
+    },
+    "an_assassins_pledge": {
+      "s1": {
+        "skill": "s1",
+        "crit": 3508,
+        "crush": 1824,
+        "normal": 1403,
+        "miss": 1052
+      }
+    },
+    "an_offer_you_cant_refuse": {
+      "s1": {
+        "skill": "s1",
+        "crit": 4146,
+        "crush": 2156,
+        "normal": 1658,
+        "miss": 1244
+      }
+    },
+    "ambrote": {
+      "s1": {
+        "skill": "s1",
+        "crit": 4210,
+        "crush": 2189,
+        "normal": 1684,
+        "miss": 1263
+      }
+    },
+    "ancient_sheath": {
+      "s1": {
+        "skill": "s1",
+        "crit": 4069,
+        "crush": 2116,
+        "normal": 1628,
+        "miss": 1221
+      }
+    },
+    "daydream_joker": {
+      "s1": {
+        "skill": "s1",
+        "crit": 3733,
+        "crush": 1941,
+        "normal": 1493,
+        "miss": 1120
+      }
+    },
+    "dreamlike_holiday": {
+      "s1": {
+        "skill": "s1",
+        "crit": 3929,
+        "crush": 1824,
+        "normal": 1403,
+        "miss": 1052
+      }
+    },
+    "dux_noctis": {
+      "s1": {
+        "skill": "s1",
+        "crit": 3929,
+        "crush": 2043,
+        "normal": 1572,
+        "miss": 1179
+      }
+    },
+    "exorcist_tonfa": {
+      "s1": {
+        "skill": "s1",
+        "crit": 4069,
+        "crush": 2116,
+        "normal": 1628,
+        "miss": 1221
+      }
+    },
+    "frantic_flight": {
+      "s1": {
+        "skill": "s1",
+        "crit": 3508,
+        "crush": 1824,
+        "normal": 1403,
+        "miss": 1052
+      }
+    },
+    "otherworldly_machinery": {
+      "s1": {
+        "skill": "s1",
+        "crit": 3508,
+        "crush": 1824,
+        "normal": 1403,
+        "miss": 1052
+      }
+    },
+    "our_beautiful_seasons": {
+      "s1": {
+        "skill": "s1",
+        "crit": 4210,
+        "crush": 2189,
+        "normal": 1684,
+        "miss": 1263
+      }
+    },
+    "portrait_of_the_saviors": {
+      "s1": {
+        "skill": "s1",
+        "crit": 4210,
+        "crush": 2189,
+        "normal": 1684,
+        "miss": 1263
+      }
+    },
+    "p_o_s": {
+      "s1": {
+        "skill": "s1",
+        "crit": 3508,
+        "crush": 1824,
+        "normal": 1403,
+        "miss": 1052
+      }
+    },
+    "prelude_to_a_new_era": {
+      "s1": {
+        "skill": "s1",
+        "crit": 4210,
+        "crush": 2189,
+        "normal": 1684,
+        "miss": 1263
+      }
+    },
+    "reingar_special_drink": {
+      "s1": {
+        "skill": "s1",
+        "crit": 3508,
+        "crush": 1824,
+        "normal": 1403,
+        "miss": 1052
+      }
+    },
+    "renewed_will": {
+      "s1": {
+        "skill": "s1",
+        "crit": 3859,
+        "crush": 2007,
+        "normal": 1544,
+        "miss": 1158
+      }
+    },
+    "seal_of_capture": {
+      "s1": {
+        "skill": "s1",
+        "crit": 3508,
+        "crush": 1824,
+        "normal": 1403,
+        "miss": 1052
+      }
+    },
+    "special_strawberry_cake": {
+      "s1": {
+        "skill": "s1",
+        "crit": 4210,
+        "crush": 2189,
+        "normal": 1684,
+        "miss": 1263
+      }
+    },
+    "star_of_the_deep_sea": {
+      "s1": {
+        "skill": "s1",
+        "crit": 3508,
+        "crush": 1824,
+        "normal": 1403,
+        "miss": 1052
+      }
+    },
+    "sword_of_cycling_seasons": {
+      "s1": {
+        "skill": "s1",
+        "crit": 3508,
+        "crush": 1824,
+        "normal": 1403,
+        "miss": 1052
+      }
+    },
+    "sword_of_the_morning": {
+      "s1": {
+        "skill": "s1",
+        "crit": 4210,
+        "crush": 2189,
+        "normal": 1684,
+        "miss": 1263
+      }
+    },
+    "victorious_flag": {
+      "s1": {
+        "skill": "s1",
+        "crit": 4069,
+        "crush": 2116,
+        "normal": 1628,
+        "miss": 1221
+      }
+    }
+  },
+  "tidal_rift_elvira": {
+    "noProc": {
+      "s1": {
+        "skill": "s1",
+        "crit": null,
+        "crush": null,
+        "normal": 4499,
+        "miss": 3374
+      },
+      "s1_extra": {
+        "skill": "s1_extra",
+        "crit": null,
+        "crush": null,
+        "normal": 1894,
+        "miss": 1421
+      },
+      "s3": {
+        "skill": "s3",
+        "crit": null,
+        "crush": null,
+        "normal": 10798,
+        "miss": 8099
+      }
+    },
+    "a_symbol_of_unity": {
+      "s1": {
+        "skill": "s1",
+        "crit": null,
+        "crush": null,
+        "normal": 5219,
+        "miss": 3914
+      },
+      "s1_extra": {
+        "skill": "s1_extra",
+        "crit": null,
+        "crush": null,
+        "normal": 2197,
+        "miss": 1648
+      },
+      "s3": {
+        "skill": "s3",
+        "crit": null,
+        "crush": null,
+        "normal": 12526,
+        "miss": 9394
+      }
+    },
+    "ancient_sheath": {
+      "s1": {
+        "skill": "s1",
+        "crit": null,
+        "crush": null,
+        "normal": 5219,
+        "miss": 3914
+      },
+      "s1_extra": {
+        "skill": "s1_extra",
+        "crit": null,
+        "crush": null,
+        "normal": 1894,
+        "miss": 1421
+      },
+      "s3": {
+        "skill": "s3",
+        "crit": null,
+        "crush": null,
+        "normal": 10798,
+        "miss": 8099
+      }
+    },
+    "black_hand_of_the_goddess": {
+      "s1": {
+        "skill": "s1",
+        "crit": null,
+        "crush": null,
+        "normal": 4499,
+        "miss": 3374
+      },
+      "s1_extra": {
+        "skill": "s1_extra",
+        "crit": null,
+        "crush": null,
+        "normal": 1894,
+        "miss": 1421
+      },
+      "s3": {
+        "skill": "s3",
+        "crit": null,
+        "crush": null,
+        "normal": 10798,
+        "miss": 8099
+      }
+    },
+    "butterfly_hair_ornament": {
+      "s1": {
+        "skill": "s1",
+        "crit": null,
+        "crush": null,
+        "normal": 5399,
+        "miss": 4049
+      },
+      "s1_extra": {
+        "skill": "s1_extra",
+        "crit": null,
+        "crush": null,
+        "normal": 2273,
+        "miss": 1705
+      },
+      "s3": {
+        "skill": "s3",
+        "crit": null,
+        "crush": null,
+        "normal": 12958,
+        "miss": 9718
+      }
+    },
+    "daydream_joker": {
+      "s1": {
+        "skill": "s1",
+        "crit": null,
+        "crush": null,
+        "normal": 4884,
+        "miss": 3663
+      },
+      "s1_extra": {
+        "skill": "s1_extra",
+        "crit": null,
+        "crush": null,
+        "normal": 2299,
+        "miss": 1725
+      },
+      "s3": {
+        "skill": "s3",
+        "crit": null,
+        "crush": null,
+        "normal": 11183,
+        "miss": 8387
+      }
+    },
+    "dignus_orb": {
+      "s1": {
+        "skill": "s1",
+        "crit": null,
+        "crush": null,
+        "normal": 5174,
+        "miss": 3881
+      },
+      "s1_extra": {
+        "skill": "s1_extra",
+        "crit": null,
+        "crush": null,
+        "normal": 2179,
+        "miss": 1634
+      },
+      "s3": {
+        "skill": "s3",
+        "crit": null,
+        "crush": null,
+        "normal": 12418,
+        "miss": 9313
+      }
+    },
+    "exorcist_tonfa": {
+      "s1": {
+        "skill": "s1",
+        "crit": null,
+        "crush": null,
+        "normal": 5219,
+        "miss": 3914
+      },
+      "s1_extra": {
+        "skill": "s1_extra",
+        "crit": null,
+        "crush": null,
+        "normal": 2197,
+        "miss": 1648
+      },
+      "s3": {
+        "skill": "s3",
+        "crit": null,
+        "crush": null,
+        "normal": 12526,
+        "miss": 9394
+      }
+    },
+    "fairy_tale_for_a_nightmare": {
+      "s1": {
+        "skill": "s1",
+        "crit": null,
+        "crush": null,
+        "normal": 4499,
+        "miss": 3374
+      },
+      "s1_extra": {
+        "skill": "s1_extra",
+        "crit": null,
+        "crush": null,
+        "normal": 3894,
+        "miss": 3421
+      },
+      "s3": {
+        "skill": "s3",
+        "crit": null,
+        "crush": null,
+        "normal": 10798,
+        "miss": 8099
+      }
+    },
+    "frame_of_light": {
+      "s1": {
+        "skill": "s1",
+        "crit": null,
+        "crush": null,
+        "normal": 5219,
+        "miss": 3914
+      },
+      "s1_extra": {
+        "skill": "s1_extra",
+        "crit": null,
+        "crush": null,
+        "normal": 1894,
+        "miss": 1421
+      },
+      "s3": {
+        "skill": "s3",
+        "crit": null,
+        "crush": null,
+        "normal": 10798,
+        "miss": 8099
+      }
+    },
+    "frantic_flight": {
+      "s1": {
+        "skill": "s1",
+        "crit": null,
+        "crush": null,
+        "normal": 4499,
+        "miss": 3374
+      },
+      "s1_extra": {
+        "skill": "s1_extra",
+        "crit": null,
+        "crush": null,
+        "normal": 1894,
+        "miss": 1421
+      },
+      "s3": {
+        "skill": "s3",
+        "crit": null,
+        "crush": null,
+        "normal": 10798,
+        "miss": 8099
+      }
+    },
+    "ignition_cloth_gloves": {
+      "s1": {
+        "skill": "s1",
+        "crit": null,
+        "crush": null,
+        "normal": 5129,
+        "miss": 3847
+      },
+      "s1_extra": {
+        "skill": "s1_extra",
+        "crit": null,
+        "crush": null,
+        "normal": 2160,
+        "miss": 1620
+      },
+      "s3": {
+        "skill": "s3",
+        "crit": null,
+        "crush": null,
+        "normal": 12310,
+        "miss": 9232
+      }
+    },
+    "kaladra": {
+      "s1": {
+        "skill": "s1",
+        "crit": null,
+        "crush": null,
+        "normal": 5849,
+        "miss": 4387
+      },
+      "s1_extra": {
+        "skill": "s1_extra",
+        "crit": null,
+        "crush": null,
+        "normal": 2463,
+        "miss": 1847
+      },
+      "s3": {
+        "skill": "s3",
+        "crit": null,
+        "crush": null,
+        "normal": 14037,
+        "miss": 10528
+      }
+    },
+    "last_teatime": {
+      "s1": {
+        "skill": "s1",
+        "crit": null,
+        "crush": null,
+        "normal": 4499,
+        "miss": 3374
+      },
+      "s1_extra": {
+        "skill": "s1_extra",
+        "crit": null,
+        "crush": null,
+        "normal": 2160,
+        "miss": 1620
+      },
+      "s3": {
+        "skill": "s3",
+        "crit": null,
+        "crush": null,
+        "normal": 12310,
+        "miss": 9232
+      }
+    },
+    "our_beautiful_seasons": {
+      "s1": {
+        "skill": "s1",
+        "crit": null,
+        "crush": null,
+        "normal": 5399,
+        "miss": 4049
+      },
+      "s1_extra": {
+        "skill": "s1_extra",
+        "crit": null,
+        "crush": null,
+        "normal": 2273,
+        "miss": 1705
+      },
+      "s3": {
+        "skill": "s3",
+        "crit": null,
+        "crush": null,
+        "normal": 12958,
+        "miss": 9718
+      }
+    },
+    "portrait_of_the_saviors": {
+      "s1": {
+        "skill": "s1",
+        "crit": null,
+        "crush": null,
+        "normal": 5399,
+        "miss": 4049
+      },
+      "s1_extra": {
+        "skill": "s1_extra",
+        "crit": null,
+        "crush": null,
+        "normal": 2273,
+        "miss": 1705
+      },
+      "s3": {
+        "skill": "s3",
+        "crit": null,
+        "crush": null,
+        "normal": 12958,
+        "miss": 9718
+      }
+    },
+    "p_o_s": {
+      "s1": {
+        "skill": "s1",
+        "crit": null,
+        "crush": null,
+        "normal": 4499,
+        "miss": 3374
+      },
+      "s1_extra": {
+        "skill": "s1_extra",
+        "crit": null,
+        "crush": null,
+        "normal": 1894,
+        "miss": 1421
+      },
+      "s3": {
+        "skill": "s3",
+        "crit": null,
+        "crush": null,
+        "normal": 10798,
+        "miss": 8099
+      }
+    },
+    "prelude_to_a_new_era": {
+      "s1": {
+        "skill": "s1",
+        "crit": null,
+        "crush": null,
+        "normal": 5399,
+        "miss": 4049
+      },
+      "s1_extra": {
+        "skill": "s1_extra",
+        "crit": null,
+        "crush": null,
+        "normal": 2273,
+        "miss": 1705
+      },
+      "s3": {
+        "skill": "s3",
+        "crit": null,
+        "crush": null,
+        "normal": 12958,
+        "miss": 9718
+      }
+    },
+    "radiant_forever": {
+      "s1": {
+        "skill": "s1",
+        "crit": null,
+        "crush": null,
+        "normal": 4499,
+        "miss": 3374
+      },
+      "s1_extra": {
+        "skill": "s1_extra",
+        "crit": null,
+        "crush": null,
+        "normal": 2842,
+        "miss": 2131
+      },
+      "s3": {
+        "skill": "s3",
+        "crit": null,
+        "crush": null,
+        "normal": 16197,
+        "miss": 12148
+      }
+    },
+    "scroll_of_shadows": {
+      "s1": {
+        "skill": "s1",
+        "crit": null,
+        "crush": null,
+        "normal": 5219,
+        "miss": 3914
+      },
+      "s1_extra": {
+        "skill": "s1_extra",
+        "crit": null,
+        "crush": null,
+        "normal": 2197,
+        "miss": 1648
+      },
+      "s3": {
+        "skill": "s3",
+        "crit": null,
+        "crush": null,
+        "normal": 12526,
+        "miss": 9394
+      }
+    },
+    "severed_horn_wand": {
+      "s1": {
+        "skill": "s1",
+        "crit": null,
+        "crush": null,
+        "normal": 5174,
+        "miss": 3881
+      },
+      "s1_extra": {
+        "skill": "s1_extra",
+        "crit": null,
+        "crush": null,
+        "normal": 2179,
+        "miss": 1634
+      },
+      "s3": {
+        "skill": "s3",
+        "crit": null,
+        "crush": null,
+        "normal": 12418,
+        "miss": 9313
+      }
+    },
+    "special_strawberry_cake": {
+      "s1": {
+        "skill": "s1",
+        "crit": null,
+        "crush": null,
+        "normal": 5399,
+        "miss": 4049
+      },
+      "s1_extra": {
+        "skill": "s1_extra",
+        "crit": null,
+        "crush": null,
+        "normal": 2273,
+        "miss": 1705
+      },
+      "s3": {
+        "skill": "s3",
+        "crit": null,
+        "crush": null,
+        "normal": 12958,
+        "miss": 9718
+      }
+    },
+    "sword_of_cycling_seasons": {
+      "s1": {
+        "skill": "s1",
+        "crit": null,
+        "crush": null,
+        "normal": 4499,
+        "miss": 3374
+      },
+      "s1_extra": {
+        "skill": "s1_extra",
+        "crit": null,
+        "crush": null,
+        "normal": 1894,
+        "miss": 1421
+      },
+      "s3": {
+        "skill": "s3",
+        "crit": null,
+        "crush": null,
+        "normal": 10798,
+        "miss": 8099
+      }
+    },
+    "sword_of_the_morning": {
+      "s1": {
+        "skill": "s1",
+        "crit": null,
+        "crush": null,
+        "normal": 5399,
+        "miss": 4049
+      },
+      "s1_extra": {
+        "skill": "s1_extra",
+        "crit": null,
+        "crush": null,
+        "normal": 2273,
+        "miss": 1705
+      },
+      "s3": {
+        "skill": "s3",
+        "crit": null,
+        "crush": null,
+        "normal": 12958,
+        "miss": 9718
+      }
+    },
+    "tear_of_the_desert": {
+      "s1": {
+        "skill": "s1",
+        "crit": null,
+        "crush": null,
+        "normal": 4499,
+        "miss": 3374
+      },
+      "s1_extra": {
+        "skill": "s1_extra",
+        "crit": null,
+        "crush": null,
+        "normal": 1894,
+        "miss": 1421
+      },
+      "s3": {
+        "skill": "s3",
+        "crit": null,
+        "crush": null,
+        "normal": 10798,
+        "miss": 8099
+      }
+    },
+    "time_matter": {
+      "s1": {
+        "skill": "s1",
+        "crit": null,
+        "crush": null,
+        "normal": 6119,
+        "miss": 4589
+      },
+      "s1_extra": {
+        "skill": "s1_extra",
+        "crit": null,
+        "crush": null,
+        "normal": 2576,
+        "miss": 1932
+      },
+      "s3": {
+        "skill": "s3",
+        "crit": null,
+        "crush": null,
+        "normal": 14685,
+        "miss": 11014
+      }
+    },
+    "victorious_flag": {
+      "s1": {
+        "skill": "s1",
+        "crit": null,
+        "crush": null,
+        "normal": 5219,
+        "miss": 3914
+      },
+      "s1_extra": {
+        "skill": "s1_extra",
+        "crit": null,
+        "crush": null,
+        "normal": 2197,
+        "miss": 1648
+      },
+      "s3": {
+        "skill": "s3",
+        "crit": null,
+        "crush": null,
+        "normal": 12526,
+        "miss": 9394
+      }
+    }
   }
 }

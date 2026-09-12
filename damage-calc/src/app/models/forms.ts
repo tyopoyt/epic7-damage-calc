@@ -79,6 +79,10 @@ export const FormDefaults: Record<string, {max?: number, min?: number, defaultVa
     casterDefenseUp: {
         icon: 'buffs/defense-buff.png'
     },
+    casterHasIndomitable: {
+        icon: 'buffs/indomitable-buff.png',
+        default: false
+    },
     casterDefenseDown: {
         icon: 'debuffs/defense-debuff.png'
     },
@@ -261,6 +265,10 @@ export const FormDefaults: Record<string, {max?: number, min?: number, defaultVa
         icon: 'debuffs/collapse-debuff.png',
         default: false
     },
+    casterHasDefenseMission: {
+        icon: 'buffs/defense-mission-buff.png',
+        default: false
+    },
     casterOverload: {
         icon: 'buffs/overload-buff.png',
         default: false
@@ -295,6 +303,14 @@ export const FormDefaults: Record<string, {max?: number, min?: number, defaultVa
     },
     casterHasBloodAura: {
         icon: 'buffs/blood-aura-buff.png',
+        default: false
+    },
+    casterHasKnowledgeOfTheStars: {
+        icon: 'buffs/knowledge-of-the-stars-buff.png',
+        default: false
+    },
+    casterHasOffenseMission: {
+        icon: 'buffs/offense-mission-buff.png',
         default: false
     },
     numberOfTargets: {
@@ -582,6 +598,7 @@ export class DamageFormData {
     casterDefense: number;
     casterDefenseUp: boolean;
     casterDefenseDown: boolean;
+    casterHasIndomitable: boolean;
     casterElementalWisdomStack: number;
     casterEffectiveness: number;
     casterPromotionStack: number;
@@ -598,6 +615,7 @@ export class DamageFormData {
     casterHasBzzt: boolean;
     casterHasGodOfBattle: boolean;
     casterHasCollapse: boolean;
+    casterHasDefenseMission: boolean;
     casterOverload: boolean;
     casterEnergyDepletion: boolean;
     targetHasCollapse: boolean;
@@ -606,6 +624,8 @@ export class DamageFormData {
     casterHasExplosives: boolean;
     casterHasOathOfPunishment: boolean;
     casterHasBloodAura: boolean;
+    casterHasKnowledgeOfTheStars: boolean;
+    casterHasOffenseMission: boolean;
     casterHasFlameAlchemist: boolean;
     casterHasArchdemonsMight: boolean;
     casterHasImmensePower: boolean;
@@ -757,6 +777,7 @@ export class DamageFormData {
         this.casterDefense = _.get(data, 'casterDefense', 750);
         this.casterDefenseUp = _.get(data, 'casterDefenseUp', false);
         this.casterDefenseDown = _.get(data, 'casterDefenseDown', false);
+        this.casterHasIndomitable = _.get(data, 'casterHasIndomitable', false);
         this.casterEnraged = _.get(data, 'casterEnraged', false);
         this.casterEffectiveness = _.get(data, 'casterEffectiveness', 100);
         this.casterElementalWisdomStack = _.get(data, 'casterElementalWisdomStack', 0);
@@ -776,12 +797,15 @@ export class DamageFormData {
         this.casterOverload = _.get(data, 'casterOverload', false);
         this.casterEnergyDepletion = _.get(data, 'casterEnergyDepletion', false);
         this.casterHasCollapse = _.get(data, 'casterHasCollapse', false);
+        this.casterHasDefenseMission = _.get(data, 'casterHasDefenseMission', false);
         this.targetHasCollapse = _.get(data, 'targetHasCollapse', false);
         this.casterHasAbundance = _.get(data, 'casterHasAbundance', false);
         this.casterHasChallenge = _.get(data, 'casterHasChallenge', false);
         this.casterHasExplosives = _.get(data, 'casterHasExplosives', false);
         this.casterHasOathOfPunishment = _.get(data, 'casterHasOathOfPunishment', false);
         this.casterHasBloodAura = _.get(data, 'casterHasBloodAura', false);
+        this.casterHasKnowledgeOfTheStars = _.get(data, 'casterHasKnowledgeOfTheStars', false);
+        this.casterHasOffenseMission = _.get(data, 'casterHasOffenseMission', false);
         this.casterHasFlameAlchemist = _.get(data, 'casterHasFlameAlchemist', true);
         this.casterHasArchdemonsMight = _.get(data, 'casterHasArchdemonsMight', false);
         this.casterHasImmensePower = _.get(data, 'casterHasImmensePower', true);
@@ -935,6 +959,7 @@ export class DamageFormData {
         + artifactDefenseMultiplier
         + (this.casterDefenseUp ? BattleConstants.targetDefenseUp : 0)
         + (this.casterDefenseDown ? BattleConstants.targetDefenseDown : 0)
+        + (this.casterHasIndomitable ? BattleConstants.casterHasIndomitable : 0)
         + (this.casterPilfered ? BattleConstants.pilfer : 0)
         + (this.casterHasTrauma ? BattleConstants.trauma : 0)
         + (this.casterVigor ? BattleConstants.casterVigor - 1 : 0)
@@ -982,6 +1007,7 @@ export class DamageFormData {
                 * (!this.inBattleHP && this.casterPilfered ? BattleConstants.casterPilfered : 1)
                 * (!this.inBattleHP && this.casterHasSuperhumanization ? BattleConstants.superhumanization + 1 : 1)
                 * (!this.inBattleHP && this.casterHasGodOfBattle ? BattleConstants.casterHasGodOfBattle : 1)
+                * (!this.inBattleHP && this.casterHasDefenseMission ? BattleConstants.casterHasDefenseMission : 1)
                 * (!this.inBattleHP && this.casterLingeringFragranceStack ? (1 + this.casterLingeringFragranceStack * BattleConstants.lingeringFragrance) : 1)
                );
     }

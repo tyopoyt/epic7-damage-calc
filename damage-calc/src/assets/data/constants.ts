@@ -9,6 +9,7 @@ export const BattleConstants: Record<string, number> = {
   'casterHasDemonBladeUnleashed': 3,
   'targetHasDemonBladeUnleashed': 3,
   'attackUpGreat': 1.75,
+  'casterHasOffenseMission': 1.1,
   'targetAttackUpGreat': 1.75, 
   'targetArchdemonsMight': 1.3, 
   'casterVigor': 1.3,
@@ -43,6 +44,8 @@ export const BattleConstants: Record<string, number> = {
   'casterOverload': 1.5,
   'casterEnergyDepletion': 0.5,
   'casterHasGodOfBattle': 2,
+  'casterHasDefenseMission': 1.1,
+  'casterHasIndomitable': 0.3,
   'lingeringFragrance': 0.05,
 };
 

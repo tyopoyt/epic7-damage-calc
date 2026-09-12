@@ -149,6 +149,18 @@
                     {{'challenge' | translate:'form'}}
                 </span>
             </mat-checkbox>
+            <mat-checkbox class="small-margin-top" [checked]="inputValues.casterHasKnowledgeOfTheStars" (change)="inputChange('casterHasKnowledgeOfTheStars', $event.checked)">
+                <span class="neat-container">
+                    <img class="png-icon medium tiny-margin-right" src="assets/buffs/knowledge-of-the-stars-buff.png" alt="knowledge of the stars buff">
+                    {{'casterHasKnowledgeOfTheStars' | translate:'form'}}
+                </span>
+            </mat-checkbox>
+            <mat-checkbox class="small-margin-top" [checked]="inputValues.casterHasOffenseMission" (change)="inputChange('casterHasOffenseMission', $event.checked)">
+                <span class="neat-container">
+                    <img class="png-icon medium tiny-margin-right" src="assets/buffs/offense-mission-buff.png" alt="offense mission buff">
+                    {{'casterHasOffenseMission' | translate:'form'}}
+                </span>
+            </mat-checkbox>
             <!-- TODO: add explosives translations when available -->
             <mat-checkbox class="small-margin-top" [checked]="inputValues.casterHasExplosives" (change)="inputChange('casterHasExplosives', $event.checked); updateFormInputs()">
                 <span class="neat-container">

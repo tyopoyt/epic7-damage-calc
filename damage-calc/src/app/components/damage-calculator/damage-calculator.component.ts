@@ -413,11 +413,14 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
           this.heroSpecificBooleanInputs.push('targetHasSuperhumanization')
         } else if (input === 'casterSpeed' && !skipSpeedBuffs) {
           this.heroSpecificBooleanInputs.push('casterHasSuperhumanization')
+        } else if (input === 'casterDefense') {
+          this.heroSpecificBooleanInputs.push('casterHasIndomitable')
         }
       } else {
         if (input === 'casterMaxHP') {
           this.heroSpecificBooleanInputs.push('casterHasCollapse')
           this.heroSpecificBooleanInputs.push('casterHasSuperhumanization')
+          this.heroSpecificBooleanInputs.push('casterHasDefenseMission')
         } else if (input === 'targetMaxHP') {
           this.heroSpecificBooleanInputs.push('targetHasCollapse')
           this.heroSpecificBooleanInputs.push('targetHasSuperhumanization')

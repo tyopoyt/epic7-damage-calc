@@ -5,3 +5,6 @@ epic7-damage-calc/node_modules
 damage-calc/node_modules
 damage-calc/.angular
 /.vscode
+
+# Claude Code
+SKILL.md

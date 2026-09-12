@@ -125,7 +125,7 @@ export class DamageService {
       }
     }
     const additionalDamageReduction = 1 - (this.damageForm.additionalDamageReduction / 100)
-    const additionalDamageIncrease = this.damageForm.pursuitSet ? 1.2 : 1;
+    const additionalDamageIncrease = 1 +  (this.damageForm.pursuitSet ? 0.2 : 0) + (this.damageForm.casterHasKnowledgeOfTheStars ? 1 : 0);
     const fixedDamage = Math.round(skill.fixed(HitType.crit, this.damageForm, this.currentArtifact, soulburn)) + Math.round(skill.fixed2(HitType.crit, this.damageForm, this.currentArtifact, soulburn))
 
     return {
@@ -228,7 +228,7 @@ export class DamageService {
     this.damageForm.inputOverrides = inputOverrides ? inputOverrides : {};
 
     const additionalDamageReduction = 1 - (this.damageForm.additionalDamageReduction / 100)
-    const additionalDamageIncrease = this.damageForm.pursuitSet ? 1.2 : 1;
+    const additionalDamageIncrease = 1 +  (this.damageForm.pursuitSet ? 0.2 : 0) + (this.damageForm.casterHasKnowledgeOfTheStars ? 1 : 0);
     const damageTransferReduction = (skill.ignoreDamageTransfer(this.damageForm) || this.currentArtifact.ignoreDamageTransfer(this.damageForm)) ? 1 : (1 - this.damageForm.damageTransfer / 100);
     const casterAttack = this.currentHero.getAttack(this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill, soulburn, HitType.normal);
     const casterSpeed = this.currentHero.getSpeed(this.damageForm, this.currentArtifact)

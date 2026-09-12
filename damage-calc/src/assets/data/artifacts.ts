@@ -331,6 +331,14 @@ export const Artifacts: Record<string, Artifact> = {
     exclusive: HeroClass.mage,
     applies: (skill: Skill, inputValues: DamageFormData, soulburn: boolean) => skill.isAOE(inputValues, soulburn),
   }),
+  light_and_darkness: new Artifact({
+    id: 'light_and_darkness',
+    name: 'Light and Darkness',
+    type: ArtifactDamageType.fixedDamage,
+    scale: [1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000],
+    exclusive: HeroClass.ranger,
+    applies: (skill: Skill, inputValues: DamageFormData, soulburn: boolean) => skill.isAOE(inputValues, soulburn),
+  }),
   mature_sunglasses: new Artifact({
     id: 'mature_sunglasses',
     name: 'Mature Sunglasses',

@@ -38,7 +38,7 @@ export class DataService {
     'decreasedAttack', 'attackUp', 'attackUpGreat', 'casterVigor', 'casterEnraged',
     'casterHasStarsBlessing', 'casterHasPossession',
     'casterPromotionStack', 'casterSpoilsStack', 'casterPilfered', 'casterHasDemonBladeUnleashed',
-    'casterOverload', 'casterEnergyDepletion', 'casterHasGodOfBattle'
+    'casterOverload', 'casterEnergyDepletion', 'casterHasGodOfBattle', 'casterHasOffenseMission'
   ]
   
   damageMultSets = [
