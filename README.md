@@ -7,7 +7,7 @@ To test your translation locally, there is a hidden option to load a custom tran
 <img src="./language_custom.gif" alt="image" width="800" height="auto">
 
 ## Changelog
-### <strong>Sep 12 2026 Update:</strong> 
+### <strong>Sep 12 2026 Update:</strong>
 - Added Tidal Rift Elvira, Aube, Eye of the Abyss Fumyr, Lisette, Uncharted Pioneer Politis, and Light and Darkness.  Also added Indomitable buff and 7/16 balance patch changes.
 ### <strong>Apr 26 2026 Update:</strong>
 - Added Salome, Estelle, and With a Little Friend.
