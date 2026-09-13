@@ -66,6 +66,12 @@ export const FormDefaults: Record<string, {max?: number, min?: number, defaultVa
         defaultValue: 0,
         icon: 'buffs/lingering-fragrance-buff.png'
     },
+    casterDivinityStack: {
+        max: 4,
+        min: 0,
+        defaultValue: 0,
+        icon: 'buffs/divinity-buff.png'
+    },
     casterInjury: {
         max: 25000,
         min: 0,
@@ -648,6 +654,7 @@ export class DamageFormData {
     casterMaxHP: number;
     casterMaxHPIncrease: number;
     casterLingeringFragranceStack: number;
+    casterDivinityStack: number;
     casterTurn: boolean;
     allyMaxHP: number;
     casterNumberOfBuffs: number;
@@ -826,6 +833,7 @@ export class DamageFormData {
         this.casterMaxHP = _.get(data, 'casterMaxHP', 10000);
         this.casterMaxHPIncrease = _.get(data, 'casterMaxHPIncrease', 0);
         this.casterLingeringFragranceStack = _.get(data, 'casterLingeringFragranceStack', 0);
+        this.casterDivinityStack = _.get(data, 'casterDivinityStack', 0);
         this.allyMaxHP = _.get(data, 'allyMaxHP', 10000);
         this.casterNumberOfBuffs = _.get(data, 'casterNumberOfBuffs', 0)
         this.alliesNumberOfBuffs = _.get(data, 'alliesNumberOfBuffs', 0)
@@ -960,6 +968,7 @@ export class DamageFormData {
         + (this.casterDefenseUp ? BattleConstants.targetDefenseUp : 0)
         + (this.casterDefenseDown ? BattleConstants.targetDefenseDown : 0)
         + (this.casterHasIndomitable ? BattleConstants.casterHasIndomitable : 0)
+        + (this.casterDivinityStack * BattleConstants.divinity)
         + (this.casterPilfered ? BattleConstants.pilfer : 0)
         + (this.casterHasTrauma ? BattleConstants.trauma : 0)
         + (this.casterVigor ? BattleConstants.casterVigor - 1 : 0)
@@ -1009,6 +1018,7 @@ export class DamageFormData {
                 * (!this.inBattleHP && this.casterHasGodOfBattle ? BattleConstants.casterHasGodOfBattle : 1)
                 * (!this.inBattleHP && this.casterHasDefenseMission ? BattleConstants.casterHasDefenseMission : 1)
                 * (!this.inBattleHP && this.casterLingeringFragranceStack ? (1 + this.casterLingeringFragranceStack * BattleConstants.lingeringFragrance) : 1)
+                * (!this.inBattleHP && this.casterDivinityStack ? (1 + this.casterDivinityStack * BattleConstants.divinity) : 1)
                );
     }
 

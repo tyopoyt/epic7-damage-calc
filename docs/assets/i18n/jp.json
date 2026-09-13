@@ -565,6 +565,7 @@
     "casterMaxHP": "自身の生命力上限値",
     "casterMaxHPIncrease": "自身の最大HP増加",
     "casterLingeringFragranceStack": "残り香スタック",
+    "casterDivinityStack": "Divinity Stacks",
     "casternumberOfBuffs": "自身のバフ数",
     "casterOverload": "自身の過負荷",
     "casterPerception": "キャスターには認識があります",

@@ -768,6 +768,7 @@
     "casterMaxHP": "Caster's Max HP",
     "casterMaxHPIncrease": "Caster Max HP Increase",
     "casterLingeringFragranceStack": "Lingering Fragrance Stacks",
+    "casterDivinityStack": "Divinity Stacks",
     "casterNumberOfBuffs": "Buffs on Caster",
     "casterOverload": "Caster has Overload",
     "casterPerception": "Caster has Perception",

@@ -4192,13 +4192,6 @@ export const Heroes: Record<string, Hero> = {
         enhance: [0.05, 0, 0.05, 0.05, 0, 0.15],
         isSingle: () => true,
       }),
-      s3: new Skill({
-        id: 's3',
-        rate: () => 1,
-        pow: () => 1,
-        enhance: [0, 0, 0],
-        isSingle: () => true,
-      }),
     }
   }),
   ezra: new Hero({
@@ -6825,7 +6818,7 @@ export const Heroes: Record<string, Hero> = {
     baseAttack: 830,
     baseDefense: 735,
     baseHP: 5121,
-    heroSpecific: ['casterMaxHP'],
+    heroSpecific: ['casterMaxHP', 'casterDivinityStack'],
     skills: {
       s1: new Skill({
         id: 's1',

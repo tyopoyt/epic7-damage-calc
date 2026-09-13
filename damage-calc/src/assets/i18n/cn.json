@@ -561,6 +561,7 @@
         "casterMaxHP": "施法者的最大生命",
         "casterMaxHPIncrease": "施法者的最大生命值增加（％）",
         "casterLingeringFragranceStack": "余香叠加数",
+        "casterDivinityStack": "Divinity Stacks",
         "casterNumberOfBuffs": "在施法者上buff",
         "casterOverload": "施法者的超载",
         "casterPerception": "识破",

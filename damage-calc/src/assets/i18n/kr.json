@@ -565,6 +565,7 @@
         "casterMaxHP": "시전자의 최대 생명력",
         "casterMaxHPIncrease": "시전자의 최대 HP 증가",
         "casterLingeringFragranceStack": "잔향 스택",
+        "casterDivinityStack": "Divinity Stacks",
         "casternumberOfBuffs": "강화효과 수",
         "casterOverload": "시전자의 과부하",
         "casterPerception": "간파",

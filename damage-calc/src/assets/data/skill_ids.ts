@@ -1209,10 +1209,6 @@ export const SkillIDs: Record<string, Record<string, string>> = {
         "s2": "pa_m0019_d",
         "s3": "sk_m0016_d"
     },
-    "tidal_rift_elvira": {
-        "s1": "TODO_s1",
-        "s3": "TODO_s3"
-    },
     "tieria": {
         "s1": "sk_m0013_f",
         "s2": "pa_m0026_f",
@@ -1914,24 +1910,29 @@ export const SkillIDs: Record<string, Record<string, string>> = {
         "s2": "sk_c5069_2",
         "s3": "sk_c5069_3"
     },
+    "tidal_rift_elvira": {
+        "s1": "sk_c2148_1",
+        "s2": "sk_c2148_2",
+        "s3": "sk_c2148_3"
+    },
     "aube": {
-        "s1": "TODO_s1",
-        "s2": "TODO_s2",
-        "s3": "TODO_s3"
+        "s1": "sk_c5190_1",
+        "s2": "sk_c5190_2",
+        "s3": "sk_c5190_3"
     },
     "eye_of_the_abyss_fumyr": {
-        "s1": "TODO_s1",
-        "s2": "TODO_s2",
-        "s3": "TODO_s3"
+        "s1": "sk_c5147_1",
+        "s2": "sk_c5147_2",
+        "s3": "sk_c5147_3"
     },
     "lisette": {
-        "s1": "TODO_s1",
-        "s2": "TODO_s2",
-        "s3": "TODO_s3"
+        "s1": "sk_c2186_1",
+        "s2": "sk_c2186_2",
+        "s3": "sk_c2186_3"
     },
     "uncharted_pioneer_politis": {
-        "s1": "TODO_s1",
-        "s2": "TODO_s2",
-        "s3": "TODO_s3"
+        "s1": "sk_c5112_1",
+        "s2": "sk_c5112_2",
+        "s3": "sk_c5112_3"
     },
 }
