@@ -11080,6 +11080,7 @@ export const Heroes: Record<string, Hero> = {
       }),
       s1_extra: new Skill({
         id: 's1_extra',
+        name: 'tidalRiftElviraTwistedStrike',
         rate: () => 0.3,
         pow: () => 1,
         penetrate: () => 1,
