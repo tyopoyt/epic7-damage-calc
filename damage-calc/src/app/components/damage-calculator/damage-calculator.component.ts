@@ -385,6 +385,10 @@ export class DamageCalculatorComponent implements OnInit, OnDestroy {
       this.buffSpecificNumberInputs.push('casterMaxHP')
     }
 
+    if (this.inputValues.casterHasMorale) {
+      this.buffSpecificNumberInputs.push('casterHasMoraleStack')
+    }
+
     this.addAddtionalBooleanInputs();
     this.addAddtionalNumberInputs();
   }

@@ -161,6 +161,12 @@
                     {{'casterHasOffenseMission' | translate:'form'}}
                 </span>
             </mat-checkbox>
+            <mat-checkbox class="small-margin-top" [checked]="inputValues.casterHasMorale" (change)="inputChange('casterHasMorale', $event.checked); updateFormInputs()">
+                <span class="neat-container">
+                    <img class="png-icon medium tiny-margin-right" src="assets/buffs/morale-buff.png" alt="morale buff">
+                    {{'casterHasMorale' | translate:'form'}}
+                </span>
+            </mat-checkbox>
             <!-- TODO: add explosives translations when available -->
             <mat-checkbox class="small-margin-top" [checked]="inputValues.casterHasExplosives" (change)="inputChange('casterHasExplosives', $event.checked); updateFormInputs()">
                 <span class="neat-container">

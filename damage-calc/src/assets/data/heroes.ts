@@ -938,7 +938,7 @@ export const Heroes: Record<string, Hero> = {
         rate: () => 0.975,
         pow: () => 1,
         mult: (_soulburn: boolean, inputValues: DamageFormData) => 1 + (inputValues.casterHasArchdemonsMight && inputValues.elementalAdvantage ? 0.6 : 0),
-        enhance: [0.05, 0, 0.05, 0, 0.1, 0.1]
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.1]
       }),
       s3: new Skill({
         id: 's3',
@@ -5032,6 +5032,54 @@ export const Heroes: Record<string, Hero> = {
       })
     }
   }),
+  haru: new Hero({
+    element: HeroElement.ice,
+    class: HeroClass.warrior,
+    baseAttack: 966,
+    baseHP: 7323,
+    baseDefense: 657,
+    heroSpecific: ['casterMaxHP', 'targetHasBarrier', 'skill3Stack'],
+    heroSpecificMaximums: { 'skill3Stack': 5 },
+    barrier: (hero: Hero, skill: Skill, artifact: Artifact, inputValues: DamageFormData) => inputValues.casterFinalMaxHP(artifact) * 0.09,
+    skills: {
+      s1: new Skill({
+        id: 's1',
+        hpScaling: true,
+        rate: () => 1,
+        pow: () => 1,
+        flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * 0.12,
+        flatTip: () => ({ casterMaxHP: 12 }),
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.1],
+        isSingle: () => true,
+      }),
+      s1_bis: new Skill({
+        id: 's1_bis',
+        name: 'haruPowerStrike',
+        hpScaling: true,
+        rate: () => 1,
+        pow: () => 1,
+        flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * 0.1,
+        flatTip: () => ({ casterMaxHP: 10 }),
+        penetrate: () => 1,
+        enhanceFrom: 's1',
+        isExtra: true,
+        isSingle: () => true,
+      }),
+      s3: new Skill({
+        id: 's3',
+        hpScaling: true,
+        rate: () => 1,
+        pow: () => 1,
+        flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * 0.25,
+        flatTip: () => ({ casterMaxHP: 25 }),
+        penetrate: (soulburn: boolean, inputValues: DamageFormData) => inputValues.targetHasBarrier ? 0.7 : 0,
+        mult: (soulburn: boolean, inputValues: DamageFormData) => 1 + inputValues.skill3Stack * 0.45,
+        multTip: () => ({ per_stack: 45 }),
+        enhance: [0.05, 0.05, 0, 0.05, 0.15],
+        isSingle: () => true,
+      }),
+    }
+  }),
   hataan: new Hero({
     element: HeroElement.fire,
     class: HeroClass.thief,
@@ -8721,6 +8769,60 @@ export const Heroes: Record<string, Hero> = {
         enhance: [0.05, 0.05, 0, 0.1, 0.1],
         isSingle: () => true,
       })
+    }
+  }),
+  renoa: new Hero({
+    element: HeroElement.dark,
+    class: HeroClass.ranger,
+    baseAttack: 970,
+    baseDefense: 603,
+    baseHP: 5299,
+    heroSpecific: ['casterDefense', 'casterDirgeBulletStack'],
+    skills: {
+      s1: new Skill({
+        id: 's1',
+        defenseScaling: true,
+        rate: () => 0.8,
+        pow: () => 0.85,
+        flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalDefense(artifact) * 1.5,
+        flatTip: () => ({ casterDefense: 150 }),
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.1],
+        isSingle: () => true,
+      }),
+      s1_bis: new Skill({
+        id: 's1_bis',
+        name: 'renoaBlackThorn',
+        defenseScaling: true,
+        rate: () => 1.5,
+        pow: () => 1,
+        flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalDefense(artifact) * 3,
+        flatTip: () => ({ casterDefense: 300 }),
+        enhanceFrom: 's1',
+        isExtra: true,
+        isSingle: () => true,
+      }),
+      s2_extra: new Skill({
+        id: 's2_extra',
+        name: 'renoaDirgeBullet',
+        defenseScaling: true,
+        rate: (soulburn: boolean, inputValues: DamageFormData) => inputValues.casterDirgeBulletStack > 0 ? 0.8 : 0,
+        pow: () => 1,
+        flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterDirgeBulletStack > 0 ? inputValues.casterFinalDefense(artifact) * 1.5 : 0,
+        flatTip: () => ({ casterDefense: 150 }),
+        // Bullets 1-5 are a single hit (100%-500% dmg increase); bullets 6-10 add a second hit always
+        // capped at the full 500% increase, and the two hits' damage is summed into one number here,
+        // since both hits share the same rate/pow/flat and damage scales linearly with mult.
+        mult: (soulburn: boolean, inputValues: DamageFormData) => {
+          const stack = inputValues.casterDirgeBulletStack;
+          if (stack <= 0) {
+            return 0;
+          }
+          return stack <= 5 ? 1 + stack : stack + 2;
+        },
+        multTip: () => ({ per_stack: 100 }),
+        isExtra: true,
+        isSingle: () => true,
+      }),
     }
   }),
   requiem_roana: new Hero({

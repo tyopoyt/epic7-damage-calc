@@ -72,6 +72,20 @@ export const FormDefaults: Record<string, {max?: number, min?: number, defaultVa
         defaultValue: 0,
         icon: 'buffs/divinity-buff.png'
     },
+    casterHasMorale: {
+        icon: 'buffs/morale-buff.png',
+        default: false
+    },
+    casterHasMoraleStack: {
+        max: 10,
+        min: 0,
+        defaultValue: 0,
+    },
+    casterDirgeBulletStack: {
+        max: 10,
+        min: 0,
+        defaultValue: 0,
+    },
     casterInjury: {
         max: 25000,
         min: 0,
@@ -655,6 +669,9 @@ export class DamageFormData {
     casterMaxHPIncrease: number;
     casterLingeringFragranceStack: number;
     casterDivinityStack: number;
+    casterHasMorale: boolean;
+    casterHasMoraleStack: number;
+    casterDirgeBulletStack: number;
     casterTurn: boolean;
     allyMaxHP: number;
     casterNumberOfBuffs: number;
@@ -834,6 +851,9 @@ export class DamageFormData {
         this.casterMaxHPIncrease = _.get(data, 'casterMaxHPIncrease', 0);
         this.casterLingeringFragranceStack = _.get(data, 'casterLingeringFragranceStack', 0);
         this.casterDivinityStack = _.get(data, 'casterDivinityStack', 0);
+        this.casterHasMorale = _.get(data, 'casterHasMorale', false);
+        this.casterHasMoraleStack = _.get(data, 'casterHasMoraleStack', 0);
+        this.casterDirgeBulletStack = _.get(data, 'casterDirgeBulletStack', 0);
         this.allyMaxHP = _.get(data, 'allyMaxHP', 10000);
         this.casterNumberOfBuffs = _.get(data, 'casterNumberOfBuffs', 0)
         this.alliesNumberOfBuffs = _.get(data, 'alliesNumberOfBuffs', 0)

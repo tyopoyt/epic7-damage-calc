@@ -168,6 +168,7 @@ export class DamageService {
     const dmgMod = 1.0
         + this.getGlobalDamageMult(skill, soulburn)
         + this.damageForm.damageIncrease / 100
+        + (this.damageForm.casterHasMorale ? this.damageForm.casterHasMoraleStack * BattleConstants.casterHasMorale : 0)
         + this.currentArtifact.getDamageMultiplier(this.damageForm.artifactLevel, this.damageForm, skill, soulburn, hitType, isExtra)
         + (skill.mult ? skill.mult(soulburn, this.damageForm, this.currentArtifact, this.currentHero.getAttack(this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill, soulburn, hitType)) - 1 : 0);
     return ((this.currentHero.getAttack(this.currentArtifact, this.damageForm, this.getGlobalAttackMult(), skill, soulburn, hitType, isExtra) * rate + flatMod) * BattleConstants.damageConstant + flatMod2) * pow * skillEnhance * elementalAdvantage * target * laceration * dmgMod;
