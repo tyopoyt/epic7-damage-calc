@@ -558,6 +558,16 @@ export const Artifacts: Record<string, Artifact> = {
     name: 'Spear of a New Dawn',
     type: ArtifactDamageType.aftermath,
     artifactSpecific:['targetDefenseDownAftermath'],
+    attackPercent: 0.5,
+    penetrate: 0.7,
+    exclusive: HeroClass.knight,
+    applies: (skill: Skill) => skill.id === 's1' || skill.s1Benefits,
+  }),
+  spear_of_a_new_dawn_old: new Artifact({
+    id: 'spear_of_a_new_dawn',
+    name: 'Spear of a New Dawn',
+    type: ArtifactDamageType.aftermath,
+    artifactSpecific:['targetDefenseDownAftermath'],
     attackPercent: 0.4,
     penetrate: 0.7,
     exclusive: HeroClass.knight,
@@ -690,19 +700,6 @@ export const Artifacts: Record<string, Artifact> = {
     scale: [0.08, 0.088, 0.096, 0.104, 0.112, 0.12, 0.128, 0.136, 0.144, 0.152, 0.16],
     // TODO: Check additional scaling, is max 32 total or 32 + scale
     additional: [0.24, 0.248, 0.256, 0.264, 0.272, 0.28, 0.288, 0.296, 0.304, 0.312, 0.32],
-    type: ArtifactDamageType.damage,
-    exclusive: HeroClass.warrior,
-    value: (artiScale: number, inputValues: DamageFormData) => {
-      return artiScale + Math.min(inputValues.targetNumberOfDebuffs * 0.03, Artifacts.tyrants_descent.additional[Artifacts.tyrants_descent.scale.indexOf(artiScale)])
-    }
-  }),
-  tyrants_descent_old: new Artifact({
-    id: 'tyrants_descent',
-    name: "Tyrant's Descent",
-    artifactSpecific: ['targetNumberOfDebuffs'],
-    scale: [0.06, 0.66, 0.072, 0.078, 0.084, 0.09, 0.096, 0.102, 0.108, 0.114, 0.12],
-    // TODO: Check additional scaling, is max 24 total or 24 + scale
-    additional: [0.18, 0.186, 0.192, 0.198, 0.204, 0.21, 0.216, 0.222, 0.228, 0.234, 0.24],
     type: ArtifactDamageType.damage,
     exclusive: HeroClass.warrior,
     value: (artiScale: number, inputValues: DamageFormData) => {
