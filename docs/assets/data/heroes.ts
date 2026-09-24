@@ -936,7 +936,7 @@ export const Heroes: Record<string, Hero> = {
       s1: new Skill({
         id: 's1',
         rate: () => 0.975,
-        pow: () => 1,
+        pow: () => 0.95,
         mult: (_soulburn: boolean, inputValues: DamageFormData) => 1 + (inputValues.casterHasArchdemonsMight && inputValues.elementalAdvantage ? 0.6 : 0),
         enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.1]
       }),
