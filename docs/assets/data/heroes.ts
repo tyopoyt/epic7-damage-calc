@@ -2797,6 +2797,7 @@ export const Heroes: Record<string, Hero> = {
       s3: new Skill({
         id: 's3',
         hpScaling: true,
+        soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 1.4 : 1,
         pow: () => 0.9,
         flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * (soulburn ? 0.3 : 0.2),
@@ -7606,6 +7607,33 @@ export const Heroes: Record<string, Hero> = {
       })
     }
   }),
+  mei_lin: new Hero({
+    element: HeroElement.fire,
+    class: HeroClass.thief,
+    baseAttack: 1208,
+    baseDefense: 508,
+    baseHP: 5178,
+    heroSpecific: ['casterZealStack'],
+    heroSpecificMaximums: { 'casterZealStack': 2 },
+    skills: {
+      s1: new Skill({
+        id: 's1',
+        rate: () => 0.9,
+        pow: () => 1,
+        onlyCrit: () => true,
+        enhance: [0.05, 0, 0.05, 0.05, 0, 0.15],
+        isSingle: () => true,
+      }),
+      s2: new Skill({
+        id: 's2',
+        rate: (soulburn: boolean, inputValues: DamageFormData) => 1 + ((inputValues.casterZealStack || 0) * 0.7),
+        pow: () => 0.95,
+        onlyCrit: () => true,
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.1],
+        isSingle: () => true,
+      }),
+    }
+  }),
   melany: new Hero({
     element: HeroElement.fire,
     class: HeroClass.warrior,
@@ -9012,6 +9040,9 @@ export const Heroes: Record<string, Hero> = {
         pow: () => 0.85,
         flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalDefense(artifact) * 1.5,
         flatTip: () => ({ casterDefense: 150 }),
+        // Each Dirge Bullet held grants the caster +20% Speed and +20% Crit Dmg (counts toward the crit dmg cap)
+        critDmgBoost: (soulburn: boolean, inputValues: DamageFormData) => inputValues.casterDirgeBulletStack * 0.2,
+        critDmgBoostCapped: true,
         enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.1],
         isSingle: () => true,
       }),
@@ -9023,29 +9054,49 @@ export const Heroes: Record<string, Hero> = {
         pow: () => 1,
         flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalDefense(artifact) * 3,
         flatTip: () => ({ casterDefense: 300 }),
+        critDmgBoost: (soulburn: boolean, inputValues: DamageFormData) => inputValues.casterDirgeBulletStack * 0.2,
+        critDmgBoostCapped: true,
         enhanceFrom: 's1',
         isExtra: true,
         isSingle: () => true,
       }),
+      // Bullets 1-5 scale this first shot's dmg increase 100%-500%; a second, always-maxed shot
+      // fires separately once bullets exceed 5 (see s2_extra2) rather than being summed into this one
       s2_extra: new Skill({
         id: 's2_extra',
-        name: 'renoaDirgeBullet',
+        name: 'renoaDirgeBulletHit1',
         defenseScaling: true,
         rate: (soulburn: boolean, inputValues: DamageFormData) => inputValues.casterDirgeBulletStack > 0 ? 0.8 : 0,
         pow: () => 1,
         flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterDirgeBulletStack > 0 ? inputValues.casterFinalDefense(artifact) * 1.5 : 0,
         flatTip: () => ({ casterDefense: 150 }),
-        // Bullets 1-5 are a single hit (100%-500% dmg increase); bullets 6-10 add a second hit always
-        // capped at the full 500% increase, and the two hits' damage is summed into one number here,
-        // since both hits share the same rate/pow/flat and damage scales linearly with mult.
         mult: (soulburn: boolean, inputValues: DamageFormData) => {
           const stack = inputValues.casterDirgeBulletStack;
           if (stack <= 0) {
             return 0;
           }
-          return stack <= 5 ? 1 + stack : stack + 2;
+          return 1 + (stack > 5 ? stack - 5 : stack);
         },
         multTip: () => ({ per_stack: 100 }),
+        critDmgBoost: (soulburn: boolean, inputValues: DamageFormData) => inputValues.casterDirgeBulletStack * 0.2,
+        critDmgBoostCapped: true,
+        isExtra: true,
+        isSingle: () => true,
+      }),
+      // Second shot: only exists once bullets reach 6+ (deals 0 below that), always maxed at 500% when it fires
+      s2_extra2: new Skill({
+        id: 's2_extra2',
+        name: 'renoaDirgeBulletHit2',
+        defenseScaling: true,
+        rate: (soulburn: boolean, inputValues: DamageFormData) => inputValues.casterDirgeBulletStack >= 6 ? 0.8 : 0,
+        pow: () => 1,
+        flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterDirgeBulletStack >= 6 ? inputValues.casterFinalDefense(artifact) * 1.5 : 0,
+        flatTip: () => ({ casterDefense: 150 }),
+        mult: (soulburn: boolean, inputValues: DamageFormData) => inputValues.casterDirgeBulletStack >= 6 ? 6 : 0,
+        multTip: () => ({ per_stack: 100 }),
+        critDmgBoost: (soulburn: boolean, inputValues: DamageFormData) => inputValues.casterDirgeBulletStack * 0.2,
+        critDmgBoostCapped: true,
+        enhanceFrom: 's2_extra',
         isExtra: true,
         isSingle: () => true,
       }),
