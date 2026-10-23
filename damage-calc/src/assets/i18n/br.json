@@ -365,7 +365,7 @@
     "els_fist": "Punho de El",
     "elyha_knife": "Faca de Elyha",
     "exorcist_tonfa": "Tonfas do Exorcista",
-    "flame_dragons_jewel": "Flame Dragon's Jewel",
+    "flame_dragons_jewel": "Joia do Dragão Flamejante",
     "frame_of_light": "Frame of Light",
     "golden_rose": "Golden Roase",
     "hell_cutter": "Lâmina do Inferno",
@@ -630,7 +630,8 @@
     "tidalRiftElviraTwistedStrike": "Golpe Distorcido",
     "haruPowerStrike": "Golpe Poderoso",
     "renoaBlackThorn": "Espinho Negro",
-    "renoaDirgeBullet": "Bala Fúnebre",
+    "renoaDirgeBulletHit1": "Bala Fúnebre - Tiro 1",
+    "renoaDirgeBulletHit2": "Bala Fúnebre - Tiro 2",
     "custom": {
       "all_fire": "{v}% Time de Fogo",
       "allies_buff": "+{v} por Buff",
