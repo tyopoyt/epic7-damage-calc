@@ -86,6 +86,11 @@ export const FormDefaults: Record<string, {max?: number, min?: number, defaultVa
         min: 0,
         defaultValue: 0,
     },
+    casterZealStack: {
+        max: 2,
+        min: 0,
+        defaultValue: 0,
+    },
     casterInjury: {
         max: 25000,
         min: 0,
@@ -672,6 +677,7 @@ export class DamageFormData {
     casterHasMorale: boolean;
     casterHasMoraleStack: number;
     casterDirgeBulletStack: number;
+    casterZealStack: number;
     casterTurn: boolean;
     allyMaxHP: number;
     casterNumberOfBuffs: number;
@@ -854,6 +860,7 @@ export class DamageFormData {
         this.casterHasMorale = _.get(data, 'casterHasMorale', false);
         this.casterHasMoraleStack = _.get(data, 'casterHasMoraleStack', 0);
         this.casterDirgeBulletStack = _.get(data, 'casterDirgeBulletStack', 0);
+        this.casterZealStack = _.get(data, 'casterZealStack', 0);
         this.allyMaxHP = _.get(data, 'allyMaxHP', 10000);
         this.casterNumberOfBuffs = _.get(data, 'casterNumberOfBuffs', 0)
         this.alliesNumberOfBuffs = _.get(data, 'alliesNumberOfBuffs', 0)

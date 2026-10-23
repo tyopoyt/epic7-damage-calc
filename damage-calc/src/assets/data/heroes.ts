@@ -2797,6 +2797,7 @@ export const Heroes: Record<string, Hero> = {
       s3: new Skill({
         id: 's3',
         hpScaling: true,
+        soulburn: true,
         rate: (soulburn: boolean) => soulburn ? 1.4 : 1,
         pow: () => 0.9,
         flat: (soulburn: boolean, inputValues: DamageFormData, artifact: Artifact) => inputValues.casterFinalMaxHP(artifact) * (soulburn ? 0.3 : 0.2),
@@ -7604,6 +7605,33 @@ export const Heroes: Record<string, Hero> = {
         enhance: [0.05, 0, 0, 0, 0.1, 0.15],
         isSingle: () => true,
       })
+    }
+  }),
+  mei_lin: new Hero({
+    element: HeroElement.fire,
+    class: HeroClass.thief,
+    baseAttack: 1208,
+    baseDefense: 508,
+    baseHP: 5178,
+    heroSpecific: ['casterZealStack'],
+    heroSpecificMaximums: { 'casterZealStack': 2 },
+    skills: {
+      s1: new Skill({
+        id: 's1',
+        rate: () => 0.9,
+        pow: () => 1,
+        onlyCrit: () => true,
+        enhance: [0.05, 0, 0.05, 0.05, 0, 0.15],
+        isSingle: () => true,
+      }),
+      s2: new Skill({
+        id: 's2',
+        rate: (soulburn: boolean, inputValues: DamageFormData) => 1 + ((inputValues.casterZealStack || 0) * 0.7),
+        pow: () => 0.95,
+        onlyCrit: () => true,
+        enhance: [0.05, 0.05, 0.05, 0.05, 0.05, 0.1],
+        isSingle: () => true,
+      }),
     }
   }),
   melany: new Hero({
